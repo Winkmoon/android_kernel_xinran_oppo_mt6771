@@ -1,0 +1,6 @@
+menuconfig OPPO_FINGERPRINT
+	bool "OPLUS fingerprint"
+	depends on SPI_MASTER
+	default y
+	help
+	  Say Y here to enable OPLUS fingerprint support
