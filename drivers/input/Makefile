@@ -32,7 +32,7 @@ obj-$(CONFIG_INPUT_KEYCOMBO)	+= keycombo.o
 
 #ifdef VENDOR_EDIT
 #obj-$(CONFIG_MTK_FINGERPRINT_SUPPORT)  += fingerprint/
-obj-$(CONFIG_OPPO_FINGERPRINT)  += oppo_fp_drivers/
+#obj-$(CONFIG_OPPO_FINGERPRINT)  += oppo_fp_drivers/   # 与 drivers/fingerprint/ 内容完全相同，保留后者避免重复编译
 obj-$(CONFIG_OPPO_FINGERPRINT)  += oppo_secure_common/
 #endif /*VENDOR_EDIT*/
 obj-$(CONFIG_RMI4_CORE)		+= rmi4/
