@@ -1320,9 +1320,13 @@ static int check_version(const struct load_info *info,
 	return 1;
 
 bad_version:
-	pr_warn("%s: disagrees about version of symbol %s\n",
+	/* Same here: tolerate symbol CRC differences instead of refusing
+	 * to load vendor prebuilt modules.
+	 */
+	pr_warn("%s: disagrees about version of symbol %s, force loading\n",
 	       info->name, symname);
-	return 0;
+	add_taint_module(mod, TAINT_FORCED_MODULE, LOCKDEP_NOW_UNRELIABLE);
+	return 1;
 }
 
 static inline int check_modstruct_version(const struct load_info *info,
@@ -3040,9 +3044,12 @@ static int check_modinfo(struct module *mod, struct load_info *info, int flags)
 		if (err)
 			return err;
 	} else if (!same_magic(modmagic, vermagic, info->index.vers)) {
-		pr_err("%s: version magic '%s' should be '%s'\n",
-		       info->name, modmagic, vermagic);
-		return -ENOEXEC;
+		/* Allow loading modules built for a different kernel build
+		 * (e.g. vendor prebuilt modules) instead of refusing them.
+		 */
+		pr_warn("%s: version magic '%s' should be '%s', force loading\n",
+			info->name, modmagic, vermagic);
+		add_taint_module(mod, TAINT_FORCED_MODULE, LOCKDEP_NOW_UNRELIABLE);
 	}
 
 	if (!get_modinfo(info, "intree")) {
