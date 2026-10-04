@@ -375,14 +375,13 @@ static void qmu_tx_zlp_error_handler(struct mtu3 *mtu, u8 epnum)
 	void __iomem *mbase = mtu->mac_base;
 	struct qmu_gpd *gpd_current = NULL;
 	dma_addr_t gpd_dma = mtu3_readl(mbase, USB_QMU_TQCPR(epnum));
-	struct usb_request *req = NULL;
 	struct mtu3_request *mreq;
 	u32 txcsr = 0;
 	int ret;
 
 	mreq = next_request(mep);
 	if (mreq && mreq->request.length == 0)
-		req = &mreq->request;
+		(void)(&mreq->request);
 	else
 		return;
 

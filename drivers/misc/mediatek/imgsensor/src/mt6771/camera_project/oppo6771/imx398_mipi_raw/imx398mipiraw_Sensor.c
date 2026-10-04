@@ -77,7 +77,6 @@ static kal_uint32 streaming_control(kal_bool enable);
 #define MODULE_ID_OFFSET 0x0000
 //extern void register_imgsensor_deviceinfo(char *name, char *version, u8 module_id);
 static kal_uint8 deviceInfo_register_value = 0x00;
-static kal_uint16 gmodule_id = 0xFFFF;
 #endif
 static BOOL read_spc_flag = FALSE;
 
@@ -3434,7 +3433,7 @@ static kal_uint32 get_imgsensor_id(UINT32 *sensor_id)
 			if (*sensor_id == imgsensor_info.sensor_id) {
 				#ifdef OPLUS_FEATURE_CAMERA_COMMON
 				module_id = read_module_id();
-				gmodule_id = module_id;
+				
 				read_eeprom_SN();
 				if(deviceInfo_register_value == 0x00){
 					Oplusimgsensor_Registdeviceinfo("Cam_b", DEVICE_VERSION_IMX398, module_id);

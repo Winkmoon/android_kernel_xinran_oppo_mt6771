@@ -130,8 +130,6 @@ static phys_addr_t s_g_tag_phy_addr;
 static unsigned int s_g_tag_cnt;
 /* Note, this for tag info solution version */
 static unsigned int s_g_lk_info_tag_version;
-/* Note, this for feature option solution version */
-static int s_g_curr_ccci_fo_version;
 
 /*------------------------------------------*/
 /* RAT configure setting */
@@ -610,7 +608,6 @@ static unsigned int md_resv_mem_size[MAX_MD_NUM_AT_LK];
 /* share memory */
 static unsigned int md_resv_smem_size[MAX_MD_NUM_AT_LK];
 static unsigned int md_resv_size_list[MAX_MD_NUM_AT_LK];
-static unsigned int resv_smem_size;
 static unsigned int md1md3_resv_smem_size;
 
 static phys_addr_t md_resv_mem_list[MAX_MD_NUM_AT_LK];
@@ -1365,7 +1362,7 @@ _common_process:
 	verify_md_enable_setting();
 
 	s_g_lk_load_img_status |= LK_LOAD_MD_EN;
-	s_g_curr_ccci_fo_version = CCCI_FO_VER_02;
+	
 
 	/* Get META settings at device tree, only MD1 use this */
 	raw_ptr = (unsigned int *)of_get_flat_dt_prop(s_g_dt_chosen_node,
@@ -2145,7 +2142,7 @@ int ccci_reserve_mem_of_init(struct reserved_mem *rmem)
 			"reserve_mem_of_init, rptr=0x%pa, rsize=0x%x\n",
 			&rptr, rsize);
 			resv_smem_addr = rptr;
-			resv_smem_size = rsize;
+			
 		} else
 			CCCI_UTIL_INF_MSG("memory reserve key %s not support\n",
 				rmem->name);

@@ -109,7 +109,6 @@ static ssize_t gz_test_store(struct device *dev,
 {
 	char tmp[50];
 	char c;
-	struct task_struct *th;
 
 	if (n > 50) {
 		KREE_DEBUG("err: n > 50\n");
@@ -124,44 +123,44 @@ static ssize_t gz_test_store(struct device *dev,
 	switch (c) {
 	case '0':
 		KREE_DEBUG("get gz version\n");
-		th = kthread_run(get_gz_version, NULL, "GZ version");
+		(void)(kthread_run(get_gz_version, NULL, "GZ version"));
 		break;
 	case '1':
 		KREE_DEBUG("test tipc\n");
-		th = kthread_run(gz_tipc_test, NULL, "GZ tipc test");
+		(void)(kthread_run(gz_tipc_test, NULL, "GZ tipc test"));
 		break;
 	case '2':
 		KREE_DEBUG("test general functions\n");
-		th = kthread_run(gz_test, NULL, "GZ KREE test");
+		(void)(kthread_run(gz_test, NULL, "GZ KREE test"));
 		break;
 	case '3':
 		KREE_DEBUG("test shared memory functions\n");
-		th = kthread_run(gz_test_shm, NULL, "GZ KREE test");
+		(void)(kthread_run(gz_test_shm, NULL, "GZ KREE test"));
 		break;
 	case '4':
 		KREE_DEBUG("test GenieZone abort\n");
-		th = kthread_run(gz_abort_test, NULL, "GZ KREE test");
+		(void)(kthread_run(gz_abort_test, NULL, "GZ KREE test"));
 		break;
 	case '5':
 		KREE_DEBUG("test chunk memory\n");
-		th = kthread_run(chunk_memory_ut, NULL, "MCM UT");
+		(void)(kthread_run(chunk_memory_ut, NULL, "MCM UT"));
 		break;
 	case '6':
 		KREE_DEBUG("test VReg\n");
-		th = kthread_run(vreg_test, NULL, "VReg test");
+		(void)(kthread_run(vreg_test, NULL, "VReg test"));
 		break;
 	case '9':
 		KREE_DEBUG("test RKP_GZKM\n");
-		th = kthread_run(test_rkp_gzkernel_memory, NULL, "RKP_GZKM");
+		(void)(kthread_run(test_rkp_gzkernel_memory, NULL, "RKP_GZKM"));
 		break;
 	case 'a':
 		KREE_DEBUG("test RKP\n");
-		th = kthread_run(test_rkp, NULL, "RKP_LinuxKM");
+		(void)(kthread_run(test_rkp, NULL, "RKP_LinuxKM"));
 		break;
 	case 'C':
 		KREE_DEBUG("test GZ Secure Storage\n");
-		th = kthread_run(test_SecureStorageBasic, NULL,
-				 "sec_storage_ut");
+		(void)(kthread_run(test_SecureStorageBasic, NULL,
+				 "sec_storage_ut"));
 		break;
 	default:
 		KREE_DEBUG("err: unknown test case\n");
@@ -1003,7 +1002,6 @@ static long _sc_test_upt_chmdata(struct file *filep, unsigned long arg)
 	struct kree_user_sc_param cparam;
 	int ret;
 	KREE_ION_HANDLE ION_Handle = 0;
-	KREE_SECUREMEM_HANDLE shm_handle;
 	KREE_SESSION_HANDLE echo_session = 0;
 	union MTEEC_PARAM param[4];
 	uint32_t size;
@@ -1017,7 +1015,7 @@ static long _sc_test_upt_chmdata(struct file *filep, unsigned long arg)
 	}
 
 	/*input params */
-	shm_handle = cparam.other_handle;
+	
 	ION_Handle = cparam.ION_handle;
 	size = cparam.size;
 
@@ -1072,7 +1070,6 @@ static TZ_RESULT _reg_shmem_from_userspace(
 
 	struct MTIOMMU_PIN_RANGE_T *pin = NULL;
 	uint64_t *map_p = NULL;
-	int numOfPA = 0;
 	KREE_SHAREDMEM_PARAM shm_param = {0};
 
 	KREE_DEBUG("[%s][%d] runs.\n", __func__, __LINE__);
@@ -1174,7 +1171,7 @@ static TZ_RESULT _reg_shmem_from_userspace(
 	shm_param.size = 0;
 	shm_param.mapAry = (void *)map_p;
 
-	numOfPA = pin->nrPages;
+	
 	//KREE_DEBUG("[%s]numOfPA=0x%x\n", __func__, numOfPA);
 
 	cret = KREE_RegisterSharedmem(session, shm_handle, &shm_param);

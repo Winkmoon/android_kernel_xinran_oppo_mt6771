@@ -118,7 +118,6 @@ static size_t scp_A_get_last_log(size_t b_len)
 {
 	size_t ret = 0;
 	int scp_awake_flag;
-	unsigned int log_start_idx;
 	unsigned int log_end_idx;
 	unsigned int update_start_idx;
 	unsigned char *scp_last_log_buf =
@@ -138,8 +137,8 @@ static size_t scp_A_get_last_log(size_t b_len)
 		pr_debug("[SCP] %s: awake scp fail\n", __func__);
 	}
 
-	log_start_idx = readl((void __iomem *)(SCP_TCM +
-					last_log_info.scp_log_start_addr));
+	(void)(readl((void __iomem *)(SCP_TCM +
+					last_log_info.scp_log_start_addr)));
 	log_end_idx = readl((void __iomem *)(SCP_TCM +
 					last_log_info.scp_log_end_addr));
 

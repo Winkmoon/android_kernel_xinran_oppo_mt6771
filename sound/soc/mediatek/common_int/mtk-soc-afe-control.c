@@ -96,12 +96,6 @@ static DEFINE_SPINLOCK(auddrv_dl3_lock);
 static unsigned long spinlock_flags[Soc_Aud_Digital_Block_MEM_HDMI + 1];
 
 static DEFINE_MUTEX(afe_control_mutex);
-
-/* static  variable */
-static bool AudioDaiBtStatus;
-static bool AudioAdcI2SStatus;
-static bool Audio2ndAdcI2SStatus;
-static bool AudioMrgStatus;
 static bool mAudioInit;
 static bool mVOWStatus;
 static struct audio_digital_i2s *m2ndI2S;    /* input */
@@ -182,10 +176,10 @@ static bool CheckSize(unsigned int size)
 
 static void AfeGlobalVarInit(void)
 {
-	AudioDaiBtStatus = false;
-	AudioAdcI2SStatus = false;
-	Audio2ndAdcI2SStatus = false;
-	AudioMrgStatus = false;
+	
+	
+	
+	
 	mAudioInit = false;
 	mVOWStatus = false;
 	m2ndI2S = NULL;    /* input */
@@ -408,10 +402,10 @@ int InitAfeControl(struct device *pDev)
 		memset((void *)&mtk_dais, 0, sizeof(mtk_dais));
 	}
 
-	AudioDaiBtStatus = false;
-	AudioAdcI2SStatus = false;
-	Audio2ndAdcI2SStatus = false;
-	AudioMrgStatus = false;
+	
+	
+	
+	
 	InitSramManager(pDev, SramBlockSize);
 	init_irq_manager();
 
@@ -2831,7 +2825,7 @@ void auddrv_dl1_write_handler(kal_uint32 bytes)
 	struct afe_block_t *user_block = &(user_dl_block);
 	unsigned long flags;
 
-	long wait_time, tout;
+	long wait_time;
 	wait_queue_entry_t wait;
 	wait_time = msecs_to_jiffies(20);
 
@@ -2846,7 +2840,7 @@ void auddrv_dl1_write_handler(kal_uint32 bytes)
 		set_current_state(TASK_INTERRUPTIBLE);
 		add_wait_queue(&ktvsleep, &wait);
 		//pr_warn("%s: offset is not enough xxx, user remained %d bytes, afe remained %d bytes\n", __func__, user_block->u4DataRemained, afe_block->u4DataRemained);
-		tout = schedule_timeout(wait_time);
+		(void)(schedule_timeout(wait_time));
 		remove_wait_queue(&ktvsleep, &wait);
 		set_current_state(TASK_RUNNING);
 	}

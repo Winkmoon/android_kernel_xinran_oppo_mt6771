@@ -435,16 +435,15 @@ static ssize_t regulator_enable_set(struct device *dev,
                 struct device_attribute *attribute, const char *buffer, size_t count)
 {
         int op = 0;
-        bool enable = false;
         int rc = 0;
         struct  fpc1020_data *fpc1020 = dev_get_drvdata(dev);
         if (1 == sscanf(buffer, "%d", &op)) {
                 if (op == 1) {
-                        enable = true;
+                        
                         fpc_power_on(fpc1020);
                 }
                 else if (op == 0) {
-                        enable = false;
+                        
                         fpc_power_off(fpc1020);
                 }
         } else {

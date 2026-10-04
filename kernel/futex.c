@@ -2984,7 +2984,7 @@ static long futex_wait_restart(struct restart_block *restart)
 				restart->futex.val, tp, restart->futex.bitset);
 #else /* OPLUS_FEATURE_UIFIRST */
 	return (long)futex_wait(uaddr, restart->futex.flags,
-				restart->futex.val, tp, restart->futex.bitset, (u32)(restart->futex.uaddr2));
+				restart->futex.val, tp, restart->futex.bitset, (u32)(unsigned long)(restart->futex.uaddr2));
 #endif /* OPLUS_FEATURE_UIFIRST */
 }
 
@@ -3983,7 +3983,7 @@ long do_futex(u32 __user *uaddr, int op, u32 val, ktime_t *timeout,
 #ifndef OPLUS_FEATURE_UIFIRST
 	return futex_wait(uaddr, flags, val, timeout, val3);
 #else /* OPLUS_FEATURE_UIFIRST */
-	return futex_wait(uaddr, flags, val, timeout, val3, (u32)uaddr2);
+	return futex_wait(uaddr, flags, val, timeout, val3, (u32)(unsigned long)uaddr2);
 #endif /* OPLUS_FEATURE_UIFIRST */
 	case FUTEX_WAKE:
 		val3 = FUTEX_BITSET_MATCH_ANY;

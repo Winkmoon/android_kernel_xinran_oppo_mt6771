@@ -104,7 +104,6 @@ static struct wd_api *g_wd_api;
 static int g_kinterval = -1;
 static int g_timeout = -1;
 static int g_need_config;
-static int wdt_start;
 static int g_enable = 1;
 static struct work_struct wdk_work;
 static struct workqueue_struct *wdk_workqueue;
@@ -325,7 +324,7 @@ static int start_kicker_thread_with_default_setting(void)
 
 	g_need_config = 0;/* Note, we DO NOT want to call configure function */
 
-	wdt_start = 1;		/* Start once only */
+			/* Start once only */
 	rtc_update = jiffies;	/* update rtc_update time base*/
 
 	spin_unlock(&lock);
@@ -833,7 +832,9 @@ ssize_t mtk_rgu_pause_wdt_show(struct kobject *kobj, char *buffer)
 {
 	int remain = PAGE_SIZE;
 	int len = 0;
-	char *ptr = buffer;
+#ifdef __ENABLE_WDT_SYSFS__
+	char *ptr __maybe_unused = buffer;
+#endif
 
 	ptr += len;
 	remain -= len;

@@ -154,9 +154,8 @@ update_average_load(enum AVG_LOAD_ID id, unsigned int freq, unsigned int cpu)
 	struct cpu_load_data *pcpu = &per_cpu(cpuload, cpu);
 	u64 cur_wall_time, cur_idle_time, cur_iowait_time;
 	unsigned int idle_time, wall_time, iowait_time;
-	unsigned int cur_load, prev_avg_load_rel, prev_avg_load_abs;
+	unsigned int cur_load;
 	unsigned int load_at_max_freq_rel, load_at_max_freq_abs;
-	u64 prev_wall_time, prev_cpu_idle, prev_cpu_iowait;
 
 #ifdef CONFIG_CPU_FREQ
 	cur_idle_time = get_cpu_idle_time(cpu, &cur_wall_time, 0);
@@ -165,9 +164,9 @@ update_average_load(enum AVG_LOAD_ID id, unsigned int freq, unsigned int cpu)
 #endif /* CONFIG_CPU_FREQ */
 	cur_iowait_time = get_cpu_iowait_time(cpu, &cur_wall_time);
 
-	prev_wall_time = pcpu->prev_cpu_wall;
-	prev_cpu_idle = pcpu->prev_cpu_idle;
-	prev_cpu_iowait = pcpu->prev_cpu_iowait;
+	
+	
+	
 
 	wall_time = (unsigned int) (cur_wall_time - pcpu->prev_cpu_wall);
 	pcpu->prev_cpu_wall = cur_wall_time;
@@ -198,8 +197,8 @@ update_average_load(enum AVG_LOAD_ID id, unsigned int freq, unsigned int cpu)
 		load_at_max_freq_rel = 0;
 	}
 
-	prev_avg_load_rel = pcpu->avg_load_maxfreq_rel;
-	prev_avg_load_abs = pcpu->avg_load_maxfreq_abs;
+	
+	
 
 #if 1
 	if (!pcpu->avg_load_maxfreq_rel || !pcpu->avg_load_maxfreq_abs) {

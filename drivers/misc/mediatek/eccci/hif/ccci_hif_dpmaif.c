@@ -813,7 +813,7 @@ static int dpmaif_net_rx_push_thread(void *arg)
 #ifdef CCCI_SKB_TRACE
 	struct ccci_per_md *per_md_data = ccci_get_per_md_data(hif_ctrl->md_id);
 #endif
-	int count = 0;
+	int count __maybe_unused = 0;
 	int ret;
 #ifdef USING_BATCHING
 	struct list_head head, gro_head;
@@ -2358,7 +2358,7 @@ static atomic_t s_tx_busy_assert_on;
 
 static int dpmaif_tx_release(unsigned char q_num, unsigned short budget)
 {
-	unsigned int rel_cnt, hw_rd_cnt, real_rel_cnt;
+	unsigned int rel_cnt, hw_rd_cnt __maybe_unused, real_rel_cnt;
 	struct dpmaif_tx_queue *txq = &dpmaif_ctrl->txq[q_num];
 
 	/* update rd idx: from HW */
@@ -2914,7 +2914,7 @@ static void dpmaif_irq_rx_done(unsigned int rx_done_isr)
 
 static void dpmaif_irq_tx_done(unsigned int tx_done_isr)
 {
-	int i, ret;
+	int i, ret __maybe_unused;
 	unsigned int intr_ul_que_done;
 
 	for (i = 0; i < DPMAIF_TXQ_NUM; i++) {

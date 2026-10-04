@@ -120,7 +120,6 @@ static int port_char_init(struct port_t *port)
 static int c2k_req_push_to_usb(struct port_t *port, struct sk_buff *skb)
 {
 	int md_id = port->md_id;
-	struct ccci_header *ccci_h = NULL;
 	int read_len, read_count, ret = 0;
 	int c2k_ch_id;
 #if (MD_GENERATION <= 6292)
@@ -141,7 +140,7 @@ static int c2k_req_push_to_usb(struct port_t *port, struct sk_buff *skb)
 	}
 
 	/* caculate available data */
-	ccci_h = (struct ccci_header *)skb->data;
+	
 	read_len = skb->len - sizeof(struct ccci_header);
 	/* remove CCCI header */
 	skb_pull(skb, sizeof(struct ccci_header));

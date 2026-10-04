@@ -508,7 +508,7 @@ int sspm_ipi_send_async_wait(int mid, int opts, void *retbuf)
 
 int sspm_ipi_send_async_wait_ex(int mid, int opts, void *retbuf, int retslot)
 {
-	int ret = 0, lock = 0, polling = 0;
+	int ret = 0, lock = 0;
 	struct _pin_send *pin;
 	unsigned long wait_comp;
 
@@ -523,13 +523,13 @@ int sspm_ipi_send_async_wait_ex(int mid, int opts, void *retbuf, int retslot)
 
 	if (!(opts & IPI_OPT_REDEF_MASK)) {
 		lock = pin->lock & IPI_LOCK_ORIGINAL;
-		polling = pin->polling;
+		
 	} else {
 		if (opts & IPI_OPT_LOCK_MASK) {
 			lock = 1;
 			pin->lock |= 0x6;
 			if (opts & IPI_OPT_POLLING_MASK)
-				polling = 1;
+				(void)(1);
 		} else {
 			pin->lock |= 0x4;
 		}

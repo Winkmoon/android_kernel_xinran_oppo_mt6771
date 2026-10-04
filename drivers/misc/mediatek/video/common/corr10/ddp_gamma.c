@@ -1271,10 +1271,9 @@ static int disp_ccorr_set_listener(enum DISP_MODULE_ENUM module,
 static int disp_ccorr_bypass(enum DISP_MODULE_ENUM module, int bypass)
 {
 	const int base_offset = ccorr_get_offset(module);
-	int relay = 0;
 
 	if (bypass) {
-		relay = 1;
+		
 		g_ccorr_relay_value[index_of_ccorr(module)] = 0x1;
 	} else {
 		g_ccorr_relay_value[index_of_ccorr(module)] = 0x0;
@@ -1432,7 +1431,6 @@ static int ddp_simple_strtoul(char *ptr, unsigned long *res)
 	int i;
 	char buffer[20];
 	int end = 0;
-	int ret = 0;
 
 	for (i = 0; i < 20; i += 1) {
 		end = i;
@@ -1444,7 +1442,7 @@ static int ddp_simple_strtoul(char *ptr, unsigned long *res)
 	if (end > 0) {
 		strncpy(buffer, ptr, end);
 		buffer[end] = '\0';
-		ret = kstrtoul(buffer, 0, res);
+		(void)(kstrtoul(buffer, 0, res));
 
 	}
 	return end;

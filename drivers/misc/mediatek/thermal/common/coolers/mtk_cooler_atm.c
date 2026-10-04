@@ -245,7 +245,9 @@ static struct atm_cpu_min_opp g_c_min_opp;
 #endif
 
 #if defined(CLATM_SET_INIT_CFG)
+#ifndef FAST_RESPONSE_ATM
 static int active_adp_cooler = CLATM_INIT_CFG_ACTIVE_ATM_COOLER;
+#endif
 #else
 static int active_adp_cooler;
 #endif
@@ -1098,8 +1100,6 @@ struct CATM_T thermal_atm_t;
 static void catmplus_update_params(void)
 {
 
-	int ret = 0;
-
 	thermal_atm_t.t_catm_par.CATM_ON = ctm_on;
 	thermal_atm_t.t_catm_par.K_TT = K_TT;
 	thermal_atm_t.t_catm_par.K_SUM_TT_LOW = K_SUM_TT_LOW;
@@ -1117,7 +1117,7 @@ static void catmplus_update_params(void)
 	thermal_atm_t.t_continuetm_par.STEADY_TARGET_TPCB  =
 						STEADY_TARGET_TPCB;
 
-	ret = wakeup_ta_algo(TA_CATMPLUS);
+	(void)(wakeup_ta_algo(TA_CATMPLUS));
 	/*tscpu_warn("catmplus_update_params : ret %d\n" , ret);*/
 }
 
@@ -2185,13 +2185,12 @@ static int adp_cpu_get_cur_state
 static int adp_cpu_set_cur_state
 (struct thermal_cooling_device *cdev, unsigned long state)
 {
-	int ttj = 117000;
 	unsigned int prev_active_state = cl_dev_adp_cpu_state_active;
 
 	cl_dev_adp_cpu_state[(cdev->type[13] - '0')] = state;
 
 	/* TODO: no exit point can be obtained in mtk_ts_cpu.c */
-	ttj = decide_ttj();
+	(void)(decide_ttj());
 
 	/* tscpu_dprintk("adp_cpu_set_cur_state[%d] =%d, ttj=%d\n",
 	 *				(cdev->type[13] - '0'), state, ttj);
@@ -2448,7 +2447,9 @@ static ssize_t tscpu_write_atm_setting
 				#endif
 			}
 
+#ifndef FAST_RESPONSE_ATM
 			active_adp_cooler = i_id;
+#endif
 
 			/* --- SPA parameters --- */
 			thermal_spa_t.t_spa_Tpolicy_info.min_cpu_power[i_id] =
@@ -3499,7 +3500,7 @@ static enum hrtimer_restart atm_loop(struct hrtimer *timer)
 static void atm_loop(unsigned long data)
 {
 #endif
-	int temp;
+	int temp __maybe_unused;
 #ifdef ENALBE_UART_LIMIT
 #if ENALBE_UART_LIMIT
 	static int hasDisabled;

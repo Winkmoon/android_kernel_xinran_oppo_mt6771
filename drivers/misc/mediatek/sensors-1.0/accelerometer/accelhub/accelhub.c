@@ -209,7 +209,6 @@ static int accelhub_ReadChipInfo(char *buf, int bufsize)
 static int accelhub_ReadSensorData(char *buf, int bufsize)
 {
 	struct accelhub_ipi_data *obj = obj_ipi_data;
-	uint64_t time_stamp = 0;
 	struct data_unit_t data;
 	int acc[ACCELHUB_AXES_NUM];
 	int err = 0;
@@ -225,7 +224,7 @@ static int accelhub_ReadSensorData(char *buf, int bufsize)
 		pr_err("sensor_get_data_from_hub fail!\n");
 		return err;
 	}
-	time_stamp = data.time_stamp;
+	
 	acc[ACCELHUB_AXIS_X] = data.accelerometer_t.x;
 	acc[ACCELHUB_AXIS_Y] = data.accelerometer_t.y;
 	acc[ACCELHUB_AXIS_Z] = data.accelerometer_t.z;
@@ -361,8 +360,7 @@ static int result = 0;
 static ssize_t factory_step_debounce_show(struct device_driver *ddri, char *buf)
 {
 	ssize_t _tLength = 0;
-	int res;
-	res = oppo_send_factory_mode_cmd_to_hub(ID_ACCELEROMETER, 1, &result);
+	(void)(oppo_send_factory_mode_cmd_to_hub(ID_ACCELEROMETER, 1, &result));
 	pr_err("factory_step_debounce_show\n");
 	_tLength = snprintf(buf, PAGE_SIZE, "%d\n", result);
 	return _tLength;

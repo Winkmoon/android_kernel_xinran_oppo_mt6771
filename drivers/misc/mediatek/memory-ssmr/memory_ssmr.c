@@ -719,9 +719,8 @@ out:
 
 static int memory_region_online(struct SSMR_Feature *feature)
 {
-	unsigned long alloc_pages;
 
-	alloc_pages = feature->alloc_pages;
+	
 
 	if (feature->use_cache_memory) {
 		feature->alloc_pages = 0;

@@ -400,7 +400,7 @@ void halShowPleInfo(IN struct ADAPTER *prAdapter,
 {
 #define BUF_SIZE 1024
 
-	uint32_t ple_buf_ctrl[3] = {0}, pg_sz, pg_num, bit_field_1, bit_field_2;
+	uint32_t ple_buf_ctrl[3] = {0}, pg_sz, bit_field_1, bit_field_2;
 	uint32_t ple_stat[17] = {0}, pg_flow_ctrl[6] = {0};
 	uint32_t sta_pause[4] = {0}, dis_sta_map[4] = {0};
 	uint32_t fpg_cnt, ffa_cnt, fpg_head, fpg_tail, hif_max_q, hif_min_q;
@@ -464,7 +464,7 @@ void halShowPleInfo(IN struct ADAPTER *prAdapter,
 	DBGLOG(HAL, INFO,
 		"\t\tPage Offset=%d(in unit of 2KB)\n",
 		(ple_buf_ctrl[0] & (0xf << 17)) >> 17);
-	pg_num = (ple_buf_ctrl[0] & 0xfff);
+	
 	DBGLOG(HAL, INFO,
 		"\t\tTotal Page=%d pages\n", (ple_buf_ctrl[0] & 0xfff));
 	DBGLOG(HAL, INFO,
@@ -651,7 +651,6 @@ void halShowDmaschInfo(IN struct ADAPTER *prAdapter)
 	uint32_t mapping_offset = 0;
 	uint32_t mapping_qidx;
 	uint32_t groupidx = 0;
-	uint8_t idx = 0;
 	u_int8_t pktin_int_refill_ena;
 	u_int8_t pdma_add_int_refill_ena;
 	u_int8_t ple_add_int_refill_ena;
@@ -670,7 +669,7 @@ void halShowDmaschInfo(IN struct ADAPTER *prAdapter)
 	for (mapping_qidx = 0; mapping_qidx < 32; mapping_qidx++) {
 		uint32_t mapping_group;
 
-		idx = 0;
+		
 
 		if (mapping_qidx == 0) {
 			qmapping_addr = MT_HIF_DMASHDL_Q_MAP0;

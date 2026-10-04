@@ -193,11 +193,10 @@ EXPORT_SYMBOL(osal_restore_fs);
 
 void *osal_get_filp_struct(int fp_id)
 {
-	int val = 0;
 	struct file *ret;
 
 	if (fp_id >= 1 && fp_id < OSAL_MAX_FP_COUNT) {
-		val = down_interruptible(&osal_fp_sem);
+		(void)(down_interruptible(&osal_fp_sem));
 
 		ret = g_osal_fp[fp_id];
 
@@ -214,10 +213,9 @@ EXPORT_SYMBOL(osal_get_filp_struct);
 loff_t osal_filp_seek_set(int fp_id, loff_t off)
 {
 	loff_t offset;
-	int val = 0;
 
 	if (fp_id >= 1 && fp_id < OSAL_MAX_FP_COUNT) {
-		val = down_interruptible(&osal_fp_sem);
+		(void)(down_interruptible(&osal_fp_sem));
 
 		offset = g_osal_fp[fp_id]->f_op->llseek(g_osal_fp[fp_id],
 							off,
@@ -235,10 +233,9 @@ EXPORT_SYMBOL(osal_filp_seek_set);
 loff_t osal_filp_seek_end(int fp_id, loff_t off)
 {
 	loff_t offset;
-	int val = 0;
 
 	if (fp_id >= 1 && fp_id < OSAL_MAX_FP_COUNT) {
-		val = down_interruptible(&osal_fp_sem);
+		(void)(down_interruptible(&osal_fp_sem));
 
 		offset = g_osal_fp[fp_id]->f_op->llseek(g_osal_fp[fp_id],
 							off,
@@ -256,10 +253,9 @@ EXPORT_SYMBOL(osal_filp_seek_end);
 loff_t osal_filp_pos(int fp_id)
 {
 	loff_t offset;
-	int val = 0;
 
 	if (fp_id >= 1 && fp_id < OSAL_MAX_FP_COUNT) {
-		val = down_interruptible(&osal_fp_sem);
+		(void)(down_interruptible(&osal_fp_sem));
 
 		offset = g_osal_fp[fp_id]->f_pos;
 
@@ -275,10 +271,9 @@ EXPORT_SYMBOL(osal_filp_pos);
 long osal_filp_read(int fp_id, char *buf, unsigned long len)
 {
 	ssize_t read_len;
-	int val = 0;
 
 	if (fp_id >= 1 && fp_id < OSAL_MAX_FP_COUNT) {
-		val = down_interruptible(&osal_fp_sem);
+		(void)(down_interruptible(&osal_fp_sem));
 
 		read_len =
 			g_osal_fp[fp_id]->f_op->read(g_osal_fp[fp_id], buf, len,
@@ -296,10 +291,9 @@ EXPORT_SYMBOL(osal_filp_read);
 long osal_is_err(int fp_id)
 {
 	bool err;
-	int val = 0;
 
 	if (fp_id >= 1 && fp_id < OSAL_MAX_FP_COUNT) {
-		val = down_interruptible(&osal_fp_sem);
+		(void)(down_interruptible(&osal_fp_sem));
 
 		err = IS_ERR(g_osal_fp[fp_id]);
 

@@ -1632,6 +1632,7 @@ firmware_class.path=/vendor/firmware loop.max_part=7";
 		interrupts = <GIC_SPI 74 IRQ_TYPE_EDGE_FALLING>;
 		clocks = <&infracfg_ao INFRACFG_AO_AUXADC_CG>;
 		clock-names = "auxadc-main";
+		#io-channel-cells = <1>;
 	};
 
 	apdma: dma-controller@11000780 {

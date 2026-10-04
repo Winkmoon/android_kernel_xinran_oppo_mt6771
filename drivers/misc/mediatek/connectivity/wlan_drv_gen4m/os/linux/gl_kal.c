@@ -1321,8 +1321,6 @@ kalIndicateStatusAndComplete(IN struct GLUE_INFO
 
 	uint32_t bufLen;
 	struct PARAM_STATUS_INDICATION *pStatus;
-	struct PARAM_AUTH_EVENT *pAuth;
-	struct PARAM_PMKID_CANDIDATE_LIST *pPmkid;
 	uint8_t arBssid[PARAM_MAC_ADDR_LEN];
 	struct PARAM_SSID ssid = {0};
 	struct ieee80211_channel *prChannel = NULL;
@@ -1348,8 +1346,8 @@ kalIndicateStatusAndComplete(IN struct GLUE_INFO
 	ASSERT(prAdapter);
 
 	pStatus = (struct PARAM_STATUS_INDICATION *)pvBuf;
-	pAuth = (struct PARAM_AUTH_EVENT *)pStatus;
-	pPmkid = (struct PARAM_PMKID_CANDIDATE_LIST *)(pStatus + 1);
+	
+	(void)((struct PARAM_PMKID_CANDIDATE_LIST *)(pStatus + 1));
 
 	prDevHandler = wlanGetNetDev(prGlueInfo, ucBssIndex);
 
@@ -2176,12 +2174,16 @@ kalHardStartXmit(struct sk_buff *prOrgSkb,
 	uint32_t u4SkbLen = 0;
 	struct mt66xx_chip_info *prChipInfo;
 	uint32_t u4TxHeadRoomSize = 0;
+#if CFG_SUPPORT_WIFI_SYSDVT
 	struct ADAPTER *prAdapter = NULL;
+#endif
 
 	ASSERT(prOrgSkb);
 	ASSERT(prGlueInfo);
 
+#if CFG_SUPPORT_WIFI_SYSDVT
 	prAdapter = prGlueInfo->prAdapter;
+#endif
 	prChipInfo = prGlueInfo->prAdapter->chip_info;
 	u4TxHeadRoomSize = NIC_TX_DESC_AND_PADDING_LENGTH +
 		prChipInfo->txd_append_size;
@@ -2658,14 +2660,22 @@ kalIPv6FrameClassifier(IN struct GLUE_INFO *prGlueInfo,
 		       OUT struct TX_PACKET_INFO *prTxPktInfo)
 {
 	uint8_t ucIpv6Proto;
+#if CFG_SUPPORT_WIFI_SYSDVT
 	uint8_t *pucL3Hdr;
+#endif
+#if CFG_SUPPORT_WIFI_SYSDVT
 	struct ADAPTER *prAdapter = NULL;
+#endif
 
+#if CFG_SUPPORT_WIFI_SYSDVT
 	prAdapter = prGlueInfo->prAdapter;
+#endif
 	ucIpv6Proto = pucIpv6Hdr[IPV6_HDR_IP_PROTOCOL_OFFSET];
 
 	if (ucIpv6Proto == IP_PRO_UDP) {
+#if CFG_SUPPORT_WIFI_SYSDVT
 		pucL3Hdr = &pucIpv6Hdr[IPV6_HDR_LEN];
+#endif
 #if CFG_SUPPORT_WIFI_SYSDVT
 #if (CFG_TCP_IP_CHKSUM_OFFLOAD)
 		/* set UDP CHECKSUM to 0xff for verify CSO function */
@@ -2677,7 +2687,9 @@ kalIPv6FrameClassifier(IN struct GLUE_INFO *prGlueInfo,
 #endif /* CFG_TCP_IP_CHKSUM_OFFLOAD */
 #endif /* Automation */
 	} else if (ucIpv6Proto == IP_PRO_TCP) {
+#if CFG_SUPPORT_WIFI_SYSDVT
 		pucL3Hdr = &pucIpv6Hdr[IPV6_HDR_LEN];
+#endif
 #if CFG_SUPPORT_WIFI_SYSDVT
 #if (CFG_TCP_IP_CHKSUM_OFFLOAD)
 		/* set TCP CHECKSUM to 0xff for verify CSO function */
@@ -2725,18 +2737,16 @@ kalSecurityFrameClassifier(IN struct GLUE_INFO *prGlueInfo,
 			   IN uint16_t u2EthType, IN uint8_t *aucLookAheadBuf,
 			   OUT struct TX_PACKET_INFO *prTxPktInfo)
 {
-	uint8_t *pucEapol;
-	uint8_t ucEapolType;
 	uint8_t ucSeqNo;
 	uint8_t	ucEAPoLKey = 0;
 	uint8_t	ucEapOffset = ETHER_HEADER_LEN;
 	uint16_t u2KeyInfo = 0;
 
-	pucEapol = pucIpHdr;
+	
 
 	if (u2EthType == ETH_P_1X) {
 
-		ucEapolType = pucEapol[1];
+		
 
 		/* Leave EAP to check */
 		ucEAPoLKey = aucLookAheadBuf[1 + ucEapOffset];
@@ -5798,7 +5808,6 @@ kalReadyOnChannel(IN struct GLUE_INFO *prGlueInfo,
 		  IN uint8_t ucBssIndex)
 {
 	struct ieee80211_channel *prChannel = NULL;
-	enum nl80211_channel_type rChannelType;
 
 	/* ucChannelNum = wlanGetChannelNumberByNetwork(prGlueInfo->prAdapter,
 	 *                NETWORK_TYPE_AIS_INDEX);
@@ -5822,20 +5831,20 @@ kalReadyOnChannel(IN struct GLUE_INFO *prGlueInfo,
 
 		switch (eSco) {
 		case CHNL_EXT_SCN:
-			rChannelType = NL80211_CHAN_NO_HT;
+			(void)(NL80211_CHAN_NO_HT);
 			break;
 
 		case CHNL_EXT_SCA:
-			rChannelType = NL80211_CHAN_HT40MINUS;
+			(void)(NL80211_CHAN_HT40MINUS);
 			break;
 
 		case CHNL_EXT_SCB:
-			rChannelType = NL80211_CHAN_HT40PLUS;
+			(void)(NL80211_CHAN_HT40PLUS);
 			break;
 
 		case CHNL_EXT_RES:
 		default:
-			rChannelType = NL80211_CHAN_HT20;
+			(void)(NL80211_CHAN_HT20);
 			break;
 		}
 
@@ -5869,7 +5878,6 @@ kalRemainOnChannelExpired(IN struct GLUE_INFO *prGlueInfo,
 			  IN uint8_t ucBssIndex)
 {
 	struct ieee80211_channel *prChannel = NULL;
-	enum nl80211_channel_type rChannelType;
 
 	ucChannelNum =
 		wlanGetChannelNumberByNetwork(prGlueInfo->prAdapter,
@@ -5893,20 +5901,20 @@ kalRemainOnChannelExpired(IN struct GLUE_INFO *prGlueInfo,
 
 		switch (eSco) {
 		case CHNL_EXT_SCN:
-			rChannelType = NL80211_CHAN_NO_HT;
+			(void)(NL80211_CHAN_NO_HT);
 			break;
 
 		case CHNL_EXT_SCA:
-			rChannelType = NL80211_CHAN_HT40MINUS;
+			(void)(NL80211_CHAN_HT40MINUS);
 			break;
 
 		case CHNL_EXT_SCB:
-			rChannelType = NL80211_CHAN_HT40PLUS;
+			(void)(NL80211_CHAN_HT40PLUS);
 			break;
 
 		case CHNL_EXT_RES:
 		default:
-			rChannelType = NL80211_CHAN_HT20;
+			(void)(NL80211_CHAN_HT20);
 			break;
 		}
 
@@ -6626,13 +6634,12 @@ static ssize_t kalMetCtrlWriteProcfs(struct file *file,
 	char acBuf[128 + 1];	/* + 1 for "\0" */
 	uint32_t u4CopySize;
 	int u8MetProfEnable;
-	ssize_t result;
 
 	IN struct GLUE_INFO *prGlueInfo;
 
 	u4CopySize = (count < (sizeof(acBuf) - 1)) ? count :
 		     (sizeof(acBuf) - 1);
-	result = copy_from_user(acBuf, buffer, u4CopySize);
+	(void)(copy_from_user(acBuf, buffer, u4CopySize));
 	acBuf[u4CopySize] = '\0';
 
 	if (sscanf(acBuf, " %d", &u8MetProfEnable) == 1)
@@ -6651,13 +6658,12 @@ static ssize_t kalMetPortWriteProcfs(struct file *file,
 	char acBuf[128 + 1];	/* + 1 for "\0" */
 	uint32_t u4CopySize;
 	int u16MetUdpPort;
-	ssize_t result;
 
 	IN struct GLUE_INFO *prGlueInfo;
 
 	u4CopySize = (count < (sizeof(acBuf) - 1)) ? count :
 		     (sizeof(acBuf) - 1);
-	result = copy_from_user(acBuf, buffer, u4CopySize);
+	(void)(copy_from_user(acBuf, buffer, u4CopySize));
 	acBuf[u4CopySize] = '\0';
 
 	if (sscanf(acBuf, " %d", &u16MetUdpPort) == 1)
@@ -7030,7 +7036,6 @@ void kalWowProcess(IN struct GLUE_INFO *prGlueInfo,
 	struct CMD_PACKET_FILTER_CAP rCmdPacket_Filter_Cap;
 	struct WOW_CTRL *pWOW_CTRL =
 			&prGlueInfo->prAdapter->rWowCtrl;
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	uint32_t ii, wait = 0;
 	struct BSS_INFO *prAisBssInfo = NULL;
 
@@ -7074,7 +7079,7 @@ void kalWowProcess(IN struct GLUE_INFO *prGlueInfo,
 		rCmdPacket_Filter_Cap.usEnableBits &=
 			~PACKETF_CAP_TYPE_MAGIC;
 
-	rStatus = wlanSendSetQueryCmd(prGlueInfo->prAdapter,
+	(void)(wlanSendSetQueryCmd(prGlueInfo->prAdapter,
 				      CMD_ID_SET_PF_CAPABILITY,
 				      TRUE,
 				      FALSE,
@@ -7084,7 +7089,7 @@ void kalWowProcess(IN struct GLUE_INFO *prGlueInfo,
 				      sizeof(struct CMD_PACKET_FILTER_CAP),
 				      (uint8_t *)&rCmdPacket_Filter_Cap,
 				      NULL,
-				      0);
+				      0));
 
 	/* ARP offload */
 	wlanSetSuspendMode(prGlueInfo, enable);
@@ -7144,7 +7149,7 @@ void kalWowProcess(IN struct GLUE_INFO *prGlueInfo,
 		rCmdWowlanParam.ucCmd = PM_WOWLAN_REQ_STOP;
 	}
 
-	rStatus = wlanSendSetQueryCmd(prGlueInfo->prAdapter,
+	(void)(wlanSendSetQueryCmd(prGlueInfo->prAdapter,
 				      CMD_ID_SET_WOWLAN,
 				      TRUE,
 				      FALSE,
@@ -7154,7 +7159,7 @@ void kalWowProcess(IN struct GLUE_INFO *prGlueInfo,
 				      sizeof(struct CMD_WOWLAN_PARAM),
 				      (uint8_t *)&rCmdWowlanParam,
 				      NULL,
-				      0);
+				      0));
 
 
 	while (1) {

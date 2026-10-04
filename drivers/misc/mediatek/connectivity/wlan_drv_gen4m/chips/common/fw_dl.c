@@ -610,9 +610,13 @@ uint32_t wlanImageSectionDownloadStage(
 	struct mt66xx_chip_info *prChipInfo = prAdapter->chip_info;
 	struct patch_dl_target target;
 	struct PATCH_FORMAT_T *prPatchHeader;
+#if (CFG_DOWNLOAD_DYN_MEMORY_MAP == 1)
 	struct FWDL_OPS_T *prFwDlOps;
+#endif
 
+#if (CFG_DOWNLOAD_DYN_MEMORY_MAP == 1)
 	prFwDlOps = prChipInfo->fw_dl_ops;
+#endif
 
 	/* 3a. parse file header for decision of
 	 * divided firmware download or not
@@ -2348,7 +2352,6 @@ uint32_t wlanDownloadPatch(IN struct ADAPTER *prAdapter)
 	}
 
 #if (CFG_ROM_PATCH_NO_SEM_CTRL == 0)
-#pragma message("ROM code supports SEM-CTRL for ROM patch download")
 	if (wlanPatchIsDownloaded(prAdapter)) {
 		kalFirmwareImageUnmapping(prAdapter->prGlueInfo, NULL,
 					  prFwBuffer);

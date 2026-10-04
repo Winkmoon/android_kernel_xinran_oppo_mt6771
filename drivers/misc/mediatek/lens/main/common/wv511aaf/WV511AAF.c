@@ -45,8 +45,6 @@ static spinlock_t *g_AF_SpinLock;
 static struct i2c_client *g_pstAF_I2Cclient;
 static int *g_s4AF_Opened;
 
-static int g_sr;
-
 static unsigned long g_u4AF_INF;
 static unsigned long g_u4AF_MACRO = 1023;
 static unsigned long g_u4CurrPosition;
@@ -153,7 +151,7 @@ static int initAF(void)
 	if (*g_s4AF_Opened == 1) {
 
 		spin_lock(g_AF_SpinLock);
-		g_sr = 3;
+		
 		*g_s4AF_Opened = 2;
 		spin_unlock(g_AF_SpinLock);
 	}
@@ -244,7 +242,7 @@ int WV511AAF_Release(struct inode *a_pstInode, struct file *a_pstFile)
 
 	if (*g_s4AF_Opened == 2) {
 		spin_lock(g_AF_SpinLock);
-		g_sr = 5;
+		
 		spin_unlock(g_AF_SpinLock);
 		s4AF_WriteReg(200);
 		msleep(20);

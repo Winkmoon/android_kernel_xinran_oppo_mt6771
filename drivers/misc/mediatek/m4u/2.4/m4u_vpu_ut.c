@@ -318,7 +318,7 @@ static void verify_m4u_do_mva_alloc(unsigned int test_region_start,
 					unsigned int port_id,
 					struct m4u_buf_info_t *pinfo_array[])
 {
-	unsigned int va_offset = 0xff, actual_mva_start;
+	unsigned int va_offset = 0xff;
 	unsigned int size;
 	unsigned int i;
 	unsigned int ret = 0;
@@ -329,7 +329,7 @@ static void verify_m4u_do_mva_alloc(unsigned int test_region_start,
 		/*M4U_PORT_DISP_OVL0, M4U_PORT_VPU*/
 		pinfo_array[i]->port = port_id;
 		size = gtest_mva_end[i] - gtest_mva_start[i] + 1;
-		actual_mva_start = gtest_mva_start[i] | va_offset;
+		
 		ret = m4u_do_mva_alloc(va_offset, size, (void *)pinfo_array[i]);
 		if (!ret) {
 			M4UMSG("port: %d m4u_do_mva_alloc 0x%x bytes failed.\n",
@@ -626,7 +626,6 @@ void test_dummy(void)
 	struct m4u_buf_info_t tmp;
 	struct m4u_buf_info_t *pMvaInfo = &tmp;
 	unsigned int ret = 0;
-	unsigned int startIdx;
 
 	/*M4U_PORT_DISP_OVL0, M4U_PORT_VPU*/
 	pMvaInfo->port = M4U_VPU_PORT_NAME;
@@ -634,7 +633,7 @@ void test_dummy(void)
 	M4UMSG("test %dth region [0x%x, 0x%x].\n",
 			i, gtest_mva_start[0], gtest_mva_end[0]);
 	nr = MVA_GRAPH_BLOCK_NR_ALIGNED(size);
-	startIdx = MVAGRAPH_INDEX(gtest_mva_start[0]);
+	(void)(MVAGRAPH_INDEX(gtest_mva_start[0]));
 	ret = m4u_check_mva_region(gtest_mva_start[0], nr, pMvaInfo);
 	if (ret)
 		M4UMSG(

@@ -313,8 +313,7 @@ static void print_cfs_group_stats_at_AEE(struct seq_file *m,
 
 void print_cfs_rq_at_AEE(struct seq_file *m, int cpu, struct cfs_rq *cfs_rq)
 {
-	s64 MIN_vruntime = -1, min_vruntime, max_vruntime = -1,
-		spread, rq0_min_vruntime, spread0;
+	s64 MIN_vruntime = -1, min_vruntime, max_vruntime = -1;
 	struct rq *rq = cpu_rq(cpu);
 	struct sched_entity *last;
 	unsigned long flags;
@@ -337,7 +336,7 @@ void print_cfs_rq_at_AEE(struct seq_file *m, int cpu, struct cfs_rq *cfs_rq)
 	if (last)
 		max_vruntime = last->vruntime;
 	min_vruntime = cfs_rq->min_vruntime;
-	rq0_min_vruntime = cpu_rq(0)->cfs.min_vruntime;
+	(void)(cpu_rq(0)->cfs.min_vruntime);
 	if (locked)
 		raw_spin_unlock_irqrestore(&rq->lock, flags);
 	SEQ_printf_at_AEE(m, "  .%-30s: %lld.%06ld\n", "MIN_vruntime",
@@ -346,12 +345,12 @@ void print_cfs_rq_at_AEE(struct seq_file *m, int cpu, struct cfs_rq *cfs_rq)
 			SPLIT_NS(min_vruntime));
 	SEQ_printf_at_AEE(m, "  .%-30s: %lld.%06ld\n", "max_vruntime",
 			SPLIT_NS(max_vruntime));
-	spread = max_vruntime - MIN_vruntime;
+	
 	/*
 	 * SEQ_printf_at_AEE(m, "  .%-30s: %Ld.%06ld\n", "spread",
 	 *		SPLIT_NS(spread));
 	 */
-	spread0 = min_vruntime - rq0_min_vruntime;
+	
 	/*
 	 * SEQ_printf_at_AEE(m, "  .%-30s: %Ld.%06ld\n", "spread0",
 	 *		SPLIT_NS(spread0));

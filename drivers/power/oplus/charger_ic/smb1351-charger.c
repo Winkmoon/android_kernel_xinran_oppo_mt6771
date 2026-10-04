@@ -1999,12 +1999,11 @@ static int oplus_chg_hw_init(void)
 }
 static int smb1351_kick_wdt(void)
 {
-	int rc;
 	return 0;
 	if (atomic_read(&smb1351_chip->charger_suspended) == 1) {
 		return 0;
 	}
-	rc = smb1351_masked_write(smb1351_chip, WDOG_SAFETY_TIMER_CTRL_REG, WDOG_TIMER_EN_BIT, WDOG_TIMER_EN_BIT);
+	(void)(smb1351_masked_write(smb1351_chip, WDOG_SAFETY_TIMER_CTRL_REG, WDOG_TIMER_EN_BIT, WDOG_TIMER_EN_BIT));
 	return 0;
 
 }
@@ -2028,30 +2027,29 @@ static void smb1351_set_aicl_point(int vol)
 
 static int smb1351_reset_charger(void)
 {
-	int rc;
 	u8 reg1;
 	u8 reg2;
 	u8 reg3;
-	rc = smb1351_masked_write(smb1351_chip, CHG_CURRENT_CTRL_REG, 0xff, 0x5a);
-	rc = smb1351_masked_write(smb1351_chip, CHG_OTH_CURRENT_CTRL_REG, 0xff, 0x01);
-	rc = smb1351_masked_write(smb1351_chip, VARIOUS_FUNC_REG, 0xff, 0x97);
-	rc = smb1351_masked_write(smb1351_chip, VFLOAT_REG, 0xff, 0xeb);
-	rc = smb1351_masked_write(smb1351_chip, CHG_CTRL_REG, 0xff, 0x81);
-	rc = smb1351_masked_write(smb1351_chip, CHG_STAT_TIMERS_CTRL_REG, 0xff, 0x11);
-	rc = smb1351_masked_write(smb1351_chip, CHG_PIN_EN_CTRL_REG, 0xff, 0x18);
-	rc = smb1351_masked_write(smb1351_chip, THERM_A_CTRL_REG, 0xff, 0xd5);
-	rc = smb1351_masked_write(smb1351_chip, WDOG_SAFETY_TIMER_CTRL_REG, 0xff, 0x80);
-	rc = smb1351_masked_write(smb1351_chip, OTG_USBIN_AICL_CTRL_REG, 0xff, 0x18);
-	rc = smb1351_masked_write(smb1351_chip, OTG_TLIM_CTRL_REG, 0xff, 0x2c);
-	rc = smb1351_masked_write(smb1351_chip, HARD_SOFT_LIMIT_CELL_TEMP_REG, 0xff, 0x40);
-	rc = smb1351_masked_write(smb1351_chip, FAULT_INT_REG, 0xff, 0x00);
-	rc = smb1351_masked_write(smb1351_chip, STATUS_INT_REG, 0xff, 0x00);
-	rc = smb1351_masked_write(smb1351_chip, VARIOUS_FUNC_2_REG, 0xff, 0x98);
-	rc = smb1351_masked_write(smb1351_chip, FLEXCHARGER_REG, 0xff, 0x77);
-	rc = smb1351_masked_write(smb1351_chip, VARIOUS_FUNC_3_REG, 0xff, 0xa2);
-	rc = smb1351_masked_write(smb1351_chip, HVDCP_BATT_MISSING_CTRL_REG, 0xff, 0x60);
-	rc = smb1351_masked_write(smb1351_chip, PON_OPTIONS_REG, 0xff, 0x4c);
-	rc = smb1351_masked_write(smb1351_chip, OTG_MODE_POWER_OPTIONS_REG, 0xff, 0x1c);
+	(void)(smb1351_masked_write(smb1351_chip, CHG_CURRENT_CTRL_REG, 0xff, 0x5a));
+	(void)(smb1351_masked_write(smb1351_chip, CHG_OTH_CURRENT_CTRL_REG, 0xff, 0x01));
+	(void)(smb1351_masked_write(smb1351_chip, VARIOUS_FUNC_REG, 0xff, 0x97));
+	(void)(smb1351_masked_write(smb1351_chip, VFLOAT_REG, 0xff, 0xeb));
+	(void)(smb1351_masked_write(smb1351_chip, CHG_CTRL_REG, 0xff, 0x81));
+	(void)(smb1351_masked_write(smb1351_chip, CHG_STAT_TIMERS_CTRL_REG, 0xff, 0x11));
+	(void)(smb1351_masked_write(smb1351_chip, CHG_PIN_EN_CTRL_REG, 0xff, 0x18));
+	(void)(smb1351_masked_write(smb1351_chip, THERM_A_CTRL_REG, 0xff, 0xd5));
+	(void)(smb1351_masked_write(smb1351_chip, WDOG_SAFETY_TIMER_CTRL_REG, 0xff, 0x80));
+	(void)(smb1351_masked_write(smb1351_chip, OTG_USBIN_AICL_CTRL_REG, 0xff, 0x18));
+	(void)(smb1351_masked_write(smb1351_chip, OTG_TLIM_CTRL_REG, 0xff, 0x2c));
+	(void)(smb1351_masked_write(smb1351_chip, HARD_SOFT_LIMIT_CELL_TEMP_REG, 0xff, 0x40));
+	(void)(smb1351_masked_write(smb1351_chip, FAULT_INT_REG, 0xff, 0x00));
+	(void)(smb1351_masked_write(smb1351_chip, STATUS_INT_REG, 0xff, 0x00));
+	(void)(smb1351_masked_write(smb1351_chip, VARIOUS_FUNC_2_REG, 0xff, 0x98));
+	(void)(smb1351_masked_write(smb1351_chip, FLEXCHARGER_REG, 0xff, 0x77));
+	(void)(smb1351_masked_write(smb1351_chip, VARIOUS_FUNC_3_REG, 0xff, 0xa2));
+	(void)(smb1351_masked_write(smb1351_chip, HVDCP_BATT_MISSING_CTRL_REG, 0xff, 0x60));
+	(void)(smb1351_masked_write(smb1351_chip, PON_OPTIONS_REG, 0xff, 0x4c));
+	(void)(smb1351_masked_write(smb1351_chip, OTG_MODE_POWER_OPTIONS_REG, 0xff, 0x1c));
 	smb1351_read_reg(smb1351_chip, 0x42, &reg1);
 	smb1351_read_reg(smb1351_chip, 0x44, &reg2);
 	smb1351_read_reg(smb1351_chip, 0x46, &reg3);

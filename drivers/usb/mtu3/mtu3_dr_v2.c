@@ -217,8 +217,6 @@ static void switch_port_to_host(struct ssusb_mtk *ssusb)
 {
 	int retval;
 
-	u32 check_clk = 0;
-
 	dev_info(ssusb->dev, "%s\n", __func__);
 	ssusb_dual_phy_power_on(ssusb, true);
 	ssusb_clk_on(ssusb, true);
@@ -227,7 +225,7 @@ static void switch_port_to_host(struct ssusb_mtk *ssusb)
 
 	if (ssusb->otg_switch.is_u3h_drd) {
 		ssusb_port0_switch(ssusb, USB3_PORT, true);
-		check_clk = SSUSB_U3_MAC_RST_B_STS;
+		
 	}
 
 	/*ssusb_check_clocks(ssusb, check_clk);*/

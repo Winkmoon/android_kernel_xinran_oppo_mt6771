@@ -67,7 +67,7 @@
 #define PWM0_CLK_NAMING (DISP_PWM)
 #endif
 
-static int pwm_dbg_en;
+static int pwm_dbg_en __maybe_unused;
 #define PWM_ERR(fmt, arg...) pr_notice("[PWM] %s: " fmt "\n", __func__, ##arg)
 #define PWM_NOTICE(fmt, arg...) pr_info("[PWM] %s: " fmt "\n", __func__, ##arg)
 #define PWM_MSG(fmt, arg...) pr_debug("[PWM] %s: " fmt "\n", __func__, ##arg)

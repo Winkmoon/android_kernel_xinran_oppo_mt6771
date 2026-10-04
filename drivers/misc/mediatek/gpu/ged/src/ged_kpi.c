@@ -293,7 +293,6 @@ struct GED_KPI_HEAD *prev_main_head;
 
 /* for calculating KPI info per second */
 static unsigned long long g_pre_TimeStamp1;
-static unsigned long long g_pre_TimeStamp2;
 static unsigned long long g_pre_TimeStampS;
 static unsigned long long g_elapsed_time_per_sec;
 static unsigned long long g_cpu_time_accum;
@@ -689,7 +688,7 @@ static inline void ged_kpi_calc_kpi_info(u64 ulID, struct GED_KPI *psKPI
 	if (main_head != prev_main_head && main_head == psHead) {
 		ged_kpi_clean_kpi_info();
 		g_pre_TimeStamp1 = psKPI->ullTimeStamp1;
-		g_pre_TimeStamp2 = psKPI->ullTimeStamp2;
+		
 		g_pre_TimeStampS = psKPI->ullTimeStampS;
 		ged_kpi_main_head_reset();
 		prev_main_head = main_head;
@@ -706,7 +705,7 @@ static inline void ged_kpi_calc_kpi_info(u64 ulID, struct GED_KPI *psKPI
 		g_frame_count++;
 
 		g_pre_TimeStamp1 = psKPI->ullTimeStamp1;
-		g_pre_TimeStamp2 = psKPI->ullTimeStamp2;
+		
 		g_pre_TimeStampS = psKPI->ullTimeStampS;
 
 		if (g_elapsed_time_per_sec >= GED_KPI_SEC_DIVIDER &&

@@ -628,7 +628,6 @@ int mtk_cfg80211_vendor_get_rtt_capabilities(
 	struct wiphy *wiphy, struct wireless_dev *wdev,
 	const void *data, int data_len)
 {
-	struct GLUE_INFO *prGlueInfo = NULL;
 	int32_t i4Status = -EINVAL;
 	struct PARAM_WIFI_RTT_CAPABILITIES rRttCapabilities;
 	struct sk_buff *skb;
@@ -637,7 +636,7 @@ int mtk_cfg80211_vendor_get_rtt_capabilities(
 
 	ASSERT(wiphy);
 	ASSERT(wdev);
-	prGlueInfo = (struct GLUE_INFO *) wiphy_priv(wiphy);
+	(void)((struct GLUE_INFO *) wiphy_priv(wiphy));
 
 	skb = cfg80211_vendor_cmd_alloc_reply_skb(wiphy,
 			sizeof(rRttCapabilities));

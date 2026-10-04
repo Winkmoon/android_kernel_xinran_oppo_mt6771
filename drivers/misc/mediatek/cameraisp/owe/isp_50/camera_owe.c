@@ -932,7 +932,6 @@ signed int occ_enque_cb(struct frame *frames, void *req)
 	unsigned int f, fcnt;
 	/*TODO: define engine request struct */
 	struct OWE_OCCRequest *_req;
-	struct OWE_OCCConfig *pcfg;
 
 	_req = (struct OWE_OCCRequest *) req;
 
@@ -944,7 +943,7 @@ signed int occ_enque_cb(struct frame *frames, void *req)
 	for (f = 0; f < fcnt; f++) {
 		memcpy(frames[f].data, &_req->m_pOweConfig[f],
 						sizeof(struct OWE_OCCConfig));
-		pcfg = &_req->m_pOweConfig[f];
+		
 	}
 
 	return 0;
@@ -954,7 +953,6 @@ signed int occ_deque_cb(struct frame *frames, void *req)
 {
 	unsigned int f, fcnt;
 	struct OWE_OCCRequest *_req;
-	struct OWE_OCCConfig *pcfg;
 
 	_req = (struct OWE_OCCRequest *) req;
 
@@ -967,7 +965,7 @@ signed int occ_deque_cb(struct frame *frames, void *req)
 		memcpy(&_req->m_pOweConfig[f], frames[f].data,
 						sizeof(struct OWE_OCCConfig));
 		LOG_DBG("[%s]request deque frame(%d/%d).", __func__, f, fcnt);
-		pcfg = &_req->m_pOweConfig[f];
+		
 	}
 
 	return 0;
@@ -1144,7 +1142,6 @@ signed int wmfe_enque_cb(struct frame *frames, void *req)
 	unsigned int f, fcnt;
 	/*TODO: define engine request struct */
 	struct OWE_WMFERequest *_req;
-	struct OWE_WMFEConfig *pcfg;
 
 	_req = (struct OWE_WMFERequest *) req;
 
@@ -1156,7 +1153,7 @@ signed int wmfe_enque_cb(struct frame *frames, void *req)
 	for (f = 0; f < fcnt; f++) {
 		memcpy(frames[f].data, &_req->m_pWmfeConfig[f],
 			sizeof(struct OWE_WMFEConfig));
-		pcfg = &_req->m_pWmfeConfig[f];
+		
 	}
 
 	return 0;
@@ -1166,7 +1163,6 @@ signed int wmfe_deque_cb(struct frame *frames, void *req)
 {
 	unsigned int f, fcnt;
 	struct OWE_WMFERequest *_req;
-	struct OWE_WMFEConfig *pcfg;
 
 	_req = (struct OWE_WMFERequest *) req;
 
@@ -1180,7 +1176,7 @@ signed int wmfe_deque_cb(struct frame *frames, void *req)
 			sizeof(struct OWE_WMFEConfig));
 		LOG_DBG("[%s]request dequeued frame(%d/%d).",
 			__func__, f, fcnt);
-		pcfg = &_req->m_pWmfeConfig[f];
+		
 	}
 
 	return 0;
@@ -3034,14 +3030,13 @@ EXIT:
  ******************************************************************************/
 static signed int OWE_release(struct inode *pInode, struct file *pFile)
 {
-	struct OWE_USER_INFO_STRUCT *pUserInfo;
 	/*unsigned int Reg;*/
 
 	LOG_DBG("- E. UserCount: %d.", OWEInfo.UserCount);
 
 	/*  */
 	if (pFile->private_data != NULL) {
-		pUserInfo = (struct OWE_USER_INFO_STRUCT *) pFile->private_data;
+		
 		kfree(pFile->private_data);
 		pFile->private_data = NULL;
 	}
@@ -3463,7 +3458,7 @@ static signed int OWE_remove(struct platform_device *pDev)
 /******************************************************************************
  *
  ******************************************************************************/
-static signed int bPass1_On_In_Resume_TG1;
+static signed int bPass1_On_In_Resume_TG1 __maybe_unused;
 
 static signed int OWE_suspend(struct platform_device *pDev, pm_message_t Mesg)
 {

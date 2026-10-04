@@ -446,13 +446,12 @@ void mtk_trigger_aee_report(const char *msg)
 }
 
 static struct work_struct		   g_pa_work;
-static u64 g_pa;
 static void pa_Handle(struct work_struct *_psWork)
 {
 }
 void mtk_trigger_emi_report(u64 pa)
 {
-	g_pa = pa;
+	
 	pr_err("emi mpu violation: pa: 0x%llx, dump registers and trigger check_pa", pa);
 	queue_work(g_aee_workqueue, &g_pa_work);
 }

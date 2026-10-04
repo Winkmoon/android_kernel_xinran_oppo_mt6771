@@ -25,7 +25,6 @@
 #include "upmu_common.h"
 
 static struct sram_log_header *sram_header;
-static int sram_log_store_status = BUFF_NOT_READY;
 static int dram_log_store_status = BUFF_NOT_READY;
 static char *pbuff;
 static struct pl_lk_log *dram_curlog_header;
@@ -552,7 +551,7 @@ static int __init log_store_early_init(void)
 	if (sram_header->sig != SRAM_HEADER_SIG) {
 		pr_notice("log_store: sram header sig 0x%x.\n",
 			sram_header->sig);
-		sram_log_store_status = BUFF_ERROR;
+		
 		sram_header = NULL;
 		return -1;
 	}
@@ -560,7 +559,7 @@ static int __init log_store_early_init(void)
 	sram_dram_buff = &(sram_header->dram_buf);
 	if (sram_dram_buff->sig != DRAM_HEADER_SIG) {
 		pr_notice("log_store: sram header DRAM sig error");
-		sram_log_store_status = BUFF_ERROR;
+		
 		sram_dram_buff = NULL;
 		return -1;
 	}

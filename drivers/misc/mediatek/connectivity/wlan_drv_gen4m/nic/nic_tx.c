@@ -2084,7 +2084,7 @@ void nicTxFreeDescTemplate(IN struct ADAPTER *prAdapter,
 {
 	struct TX_DESC_OPS_T *prTxDescOps;
 	uint8_t ucTid;
-	uint8_t ucTxDescSize;
+	uint8_t ucTxDescSize __maybe_unused;
 	void *prTxDesc;
 	void *prFirstTxDesc;
 
@@ -2264,12 +2264,16 @@ uint32_t nicTxMsduQueue(IN struct ADAPTER *prAdapter,
 			uint8_t ucPortIdx, struct QUE *prQue)
 {
 	struct MSDU_INFO *prMsduInfo;
+#if CFG_HIF_STATISTICS
 	struct TX_CTRL *prTxCtrl;
+#endif
 
 	ASSERT(prAdapter);
 	ASSERT(prQue);
 
+#if CFG_HIF_STATISTICS
 	prTxCtrl = &prAdapter->rTxCtrl;
+#endif
 
 #if CFG_HIF_STATISTICS
 	prTxCtrl->u4TotalTxAccessNum++;
@@ -2551,7 +2555,6 @@ void nicTxFreePacket(IN struct ADAPTER *prAdapter,
 {
 	void *prNativePacket;
 	struct TX_CTRL *prTxCtrl;
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 
 	ASSERT(prAdapter);
 
@@ -2562,7 +2565,6 @@ void nicTxFreePacket(IN struct ADAPTER *prAdapter,
 	wlanTxProfilingTagMsdu(prAdapter, prMsduInfo, TX_PROF_TAG_DRV_FREE);
 
 	if (fgDrop)
-		rStatus = WLAN_STATUS_FAILURE;
 
 	if (prMsduInfo->eSrc == TX_PACKET_OS) {
 		if (prNativePacket)
@@ -2598,17 +2600,13 @@ void nicTxFreePacket(IN struct ADAPTER *prAdapter,
 void nicTxFreeMsduInfoPacket(IN struct ADAPTER *prAdapter,
 			     IN struct MSDU_INFO *prMsduInfoListHead)
 {
-	void *prNativePacket;
 	struct MSDU_INFO *prMsduInfo = prMsduInfoListHead;
-	struct TX_CTRL *prTxCtrl;
 
 	ASSERT(prAdapter);
 	ASSERT(prMsduInfoListHead);
 
-	prTxCtrl = &prAdapter->rTxCtrl;
 
 	while (prMsduInfo) {
-		prNativePacket = prMsduInfo->prPacket;
 
 #if 1
 		nicTxFreePacket(prAdapter, prMsduInfo, TRUE);
@@ -3093,7 +3091,6 @@ u_int8_t nicTxProcessCmdDataPacket(IN struct ADAPTER *prAdapter,
 #define _SET_PID HAL_MAC_CONNAC2X_TXD_SET_PID
 #define _TX_DESC struct HW_MAC_CONNAC2X_TX_DESC*
 #endif
-	struct BSS_INFO *prBssInfo;
 	_TX_DESC prTxDesc;
 
 	/* Sanity check */
@@ -3112,8 +3109,6 @@ u_int8_t nicTxProcessCmdDataPacket(IN struct ADAPTER *prAdapter,
 		return FALSE;
 	}
 
-	prBssInfo = GET_BSS_INFO_BY_INDEX(prAdapter,
-					  prMsduInfo->ucBssIndex);
 	/* Set StaRecIndex here*/
 	qmDetermineStaRecIndex(prAdapter, prMsduInfo);
 	prMsduInfo->eSrc = TX_PACKET_OS;
@@ -3177,8 +3172,6 @@ u_int8_t nicTxProcessMngPacket(IN struct ADAPTER *prAdapter,
 #if 0
 	uint16_t u2RateCode;
 #endif
-	struct BSS_INFO *prBssInfo;
-	struct STA_RECORD *prStaRec;
 
 	if (prMsduInfo->eSrc != TX_PACKET_MGMT)
 		return FALSE;
@@ -3193,10 +3186,6 @@ u_int8_t nicTxProcessMngPacket(IN struct ADAPTER *prAdapter,
 	if (!prMsduInfo->ucMacHeaderLength)
 		return FALSE;
 
-	prBssInfo = GET_BSS_INFO_BY_INDEX(prAdapter,
-					  prMsduInfo->ucBssIndex);
-	prStaRec = cnmGetStaRecByIndex(prAdapter,
-				       prMsduInfo->ucStaRecIndex);
 
 	/* MMPDU: force stick to TC4 */
 	if (prMsduInfo->fgMgmtUseDataQ)
@@ -4607,11 +4596,9 @@ static uint32_t nicTxDirectStartXmitMain(struct sk_buff
 		struct ADAPTER *prAdapter,
 		uint8_t ucCheckTc, uint8_t ucStaRecIndex,
 		uint8_t ucBssIndex)
-{
-	struct STA_RECORD *prStaRec;	/* The current focused STA */
+{	/* The current focused STA */
 	struct BSS_INFO *prBssInfo;
 	uint8_t ucTC = 0, ucHifTc = 0;
-	struct QUE *prTxQue;
 	u_int8_t fgDropPacket = FALSE;
 	struct QUE_ENTRY *prQueueEntry = (struct QUE_ENTRY *) NULL;
 	struct QUE rProcessingQue;
@@ -4685,8 +4672,8 @@ static uint32_t nicTxDirectStartXmitMain(struct sk_buff
 			wlanProcessQueuedMsduInfo(prAdapter, prMsduInfo);
 			return WLAN_STATUS_FAILURE;
 		default:
-			prTxQue = qmDetermineStaTxQueue(prAdapter, prMsduInfo,
-							ucActivedTspec, &ucTC);
+			(void)(qmDetermineStaTxQueue(prAdapter, prMsduInfo,
+							ucActivedTspec, &ucTC));
 			break;	/*default */
 		}	/* switch (prMsduInfo->ucStaRecIndex) */
 
@@ -4721,8 +4708,8 @@ static uint32_t nicTxDirectStartXmitMain(struct sk_buff
 
 		nicTxFillDataDesc(prAdapter, prMsduInfo);
 
-		prStaRec = cnmGetStaRecByIndex(prAdapter,
-					       prMsduInfo->ucStaRecIndex);
+		(void)(cnmGetStaRecByIndex(prAdapter,
+					       prMsduInfo->ucStaRecIndex));
 
 		QUEUE_INSERT_TAIL(prProcessingQue,
 				  (struct QUE_ENTRY *) prMsduInfo);
@@ -5319,7 +5306,7 @@ void nicTxHandleRoamingDone(struct ADAPTER *prAdapter,
 int32_t nicTxGetVectorInfo(IN char *pcCommand, IN int i4TotalLen,
 				   IN struct TX_VECTOR_BBP_LATCH *prTxV)
 {
-	uint8_t rate, txmode, frmode, sgi, ldpc, nsts, stbc, txpwr;
+	uint8_t rate, txmode, frmode, sgi, ldpc, nsts, stbc;
 	int32_t i4BytesWritten = 0;
 
 	rate = TX_VECTOR_GET_TX_RATE(prTxV);
@@ -5329,7 +5316,7 @@ int32_t nicTxGetVectorInfo(IN char *pcCommand, IN int i4TotalLen,
 	sgi = TX_VECTOR_GET_TX_SGI(prTxV);
 	ldpc = TX_VECTOR_GET_TX_LDPC(prTxV);
 	stbc = TX_VECTOR_GET_TX_STBC(prTxV);
-	txpwr = TX_VECTOR_GET_TX_PWR(prTxV);
+	(void)(TX_VECTOR_GET_TX_PWR(prTxV));
 
 	if (prTxV->u4TxV[0] == 0xFFFFFFFF) {
 		i4BytesWritten += kalScnprintf(pcCommand + i4BytesWritten,

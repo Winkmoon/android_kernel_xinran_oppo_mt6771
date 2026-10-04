@@ -200,8 +200,6 @@ void roamingFsmUninit(IN struct ADAPTER *prAdapter, IN uint8_t ucBssIndex)
 void roamingFsmSendCmd(IN struct ADAPTER *prAdapter,
 	IN struct CMD_ROAMING_TRANSIT *prTransit)
 {
-	struct ROAMING_INFO *prRoamingFsmInfo;
-	uint32_t rStatus;
 	uint8_t ucBssIndex = prTransit->ucBssidx;
 
 	DBGLOG(ROAMING, LOUD,
@@ -209,10 +207,9 @@ void roamingFsmSendCmd(IN struct ADAPTER *prAdapter,
 	       ucBssIndex,
 	       kalGetTimeTick());
 
-	prRoamingFsmInfo =
-		aisGetRoamingInfo(prAdapter, ucBssIndex);
+	(void)(aisGetRoamingInfo(prAdapter, ucBssIndex));
 
-	rStatus = wlanSendSetQueryCmd(prAdapter,	/* prAdapter */
+	(void)(wlanSendSetQueryCmd(prAdapter,	/* prAdapter */
 				      CMD_ID_ROAMING_TRANSIT,	/* ucCID */
 				      TRUE,	/* fgSetQuery */
 				      FALSE,	/* fgNeedResp */
@@ -224,7 +221,7 @@ void roamingFsmSendCmd(IN struct ADAPTER *prAdapter,
 				      (uint8_t *)prTransit, /* pucInfoBuffer */
 				      NULL,	/* pvSetQueryBuffer */
 				      0	/* u4SetQueryBufferLen */
-				     );
+				     ));
 
 	/* ASSERT(rStatus == WLAN_STATUS_PENDING); */
 }				/* end of roamingFsmSendCmd() */
@@ -274,7 +271,9 @@ static u_int8_t roamingFsmIsNeedScan(
 	IN uint8_t ucBssIndex)
 {
 	struct AIS_SPECIFIC_BSS_INFO *asbi = NULL;
+#if CFG_SUPPORT_ROAMING_SKIP_ONE_AP
 	struct LINK *prEssLink = NULL;
+#endif
 	u_int8_t fgIsNeedScan = TRUE;
 
 	asbi = aisGetAisSpecBssInfo(prAdapter, ucBssIndex);
@@ -283,7 +282,9 @@ static u_int8_t roamingFsmIsNeedScan(
 		return TRUE;
 	}
 
+#if CFG_SUPPORT_ROAMING_SKIP_ONE_AP
 	prEssLink = &asbi->rCurEssLink;
+#endif
 
 #if CFG_SUPPORT_ROAMING_SKIP_ONE_AP
 	/*
@@ -369,7 +370,6 @@ void roamingFsmSteps(IN struct ADAPTER *prAdapter,
 	IN uint8_t ucBssIndex)
 {
 	struct ROAMING_INFO *prRoamingFsmInfo;
-	enum ENUM_ROAMING_STATE ePreviousState;
 	u_int8_t fgIsTransition = (u_int8_t) FALSE;
 	u_int32_t u4ScnResultsTimeout = prAdapter->rWifiVar.u4DiscoverTimeout;
 
@@ -386,7 +386,7 @@ void roamingFsmSteps(IN struct ADAPTER *prAdapter,
 		/* NOTE(Kevin): This is the only place to
 		 *    change the eCurrentState(except initial)
 		 */
-		ePreviousState = prRoamingFsmInfo->eCurrentState;
+		
 		prRoamingFsmInfo->eCurrentState = eNextState;
 
 		fgIsTransition = (u_int8_t) FALSE;
@@ -561,7 +561,6 @@ void roamingFsmRunEventDiscovery(IN struct ADAPTER *prAdapter,
 	eNextState = ROAMING_STATE_DISCOVERY;
 	/* DECISION -> DISCOVERY */
 	if (eNextState != prRoamingFsmInfo->eCurrentState) {
-		struct BSS_INFO *prAisBssInfo;
 		struct BSS_DESC *prBssDesc;
 		struct BSS_DESC *prBssDescTarget;
 		uint8_t arBssid[PARAM_MAC_ADDR_LEN];
@@ -575,8 +574,7 @@ void roamingFsmRunEventDiscovery(IN struct ADAPTER *prAdapter,
 			aisGetConnSettings(prAdapter, ucBssIndex);
 
 		/* sync. rcpi with firmware */
-		prAisBssInfo =
-			&(prAdapter->rWifiVar.arBssInfoPool[NETWORK_TYPE_AIS]);
+		
 		prBssDesc = prAisFsmInfo->prTargetBssDesc;
 		if (prBssDesc) {
 			COPY_SSID(rSsid.aucSsid, rSsid.u4SsidLen,

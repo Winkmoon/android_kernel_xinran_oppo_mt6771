@@ -879,7 +879,9 @@ void ip_rt_send_redirect(struct sk_buff *skb)
 	struct in_device *in_dev;
 	struct inet_peer *peer;
 	struct net *net;
+#ifdef CONFIG_IP_ROUTE_VERBOSE
 	int log_martians;
+#endif
 	int vif;
 
 	rcu_read_lock();
@@ -888,7 +890,9 @@ void ip_rt_send_redirect(struct sk_buff *skb)
 		rcu_read_unlock();
 		return;
 	}
+#ifdef CONFIG_IP_ROUTE_VERBOSE
 	log_martians = IN_DEV_LOG_MARTIANS(in_dev);
+#endif
 	vif = l3mdev_master_ifindex_rcu(rt->dst.dev);
 	rcu_read_unlock();
 

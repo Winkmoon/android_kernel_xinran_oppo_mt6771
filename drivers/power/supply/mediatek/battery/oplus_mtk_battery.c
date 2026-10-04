@@ -136,7 +136,6 @@ extern signed int battery_meter_get_battery_current(void);
 
 #endif
 static struct class *adc_cali_class;
-static int adc_cali_major;
 static dev_t adc_cali_devno;
 static struct cdev *adc_cali_cdev;
 
@@ -1765,7 +1764,6 @@ static void nl_send_to_user(u32 pid, int seq, struct fgd_nl_msg_t *reply_msg)
 static void nl_data_handler(struct sk_buff *skb)
 {
 	u32 pid;
-	kuid_t uid;
 	int seq;
 	void *data;
 	struct nlmsghdr *nlh;
@@ -1774,7 +1772,7 @@ static void nl_data_handler(struct sk_buff *skb)
 
 	nlh = (struct nlmsghdr *)skb->data;
 	pid = NETLINK_CREDS(skb)->pid;
-	uid = NETLINK_CREDS(skb)->uid;
+	(void)(NETLINK_CREDS(skb)->uid);
 	seq = nlh->nlmsg_seq;
 
 	data = NLMSG_DATA(nlh);
@@ -3074,14 +3072,13 @@ static ssize_t store_FG_meter_resistance(
 					const char *buf, size_t size)
 {
 	unsigned long val = 0;
-	int ret;
 
 	bm_err("[%s]\n", __func__);
 
 	if (buf != NULL && size != 0) {
 		bm_err("[%s] buf is %s\n",
 			__func__, buf);
-		ret = kstrtoul(buf, 10, &val);
+		(void)(kstrtoul(buf, 10, &val));
 		if (val < 0) {
 			bm_err(
 				"[%s] val is %d ??\n",
@@ -3116,14 +3113,13 @@ static ssize_t store_FG_nafg_disable(
 					const char *buf, size_t size)
 {
 	unsigned long val = 0;
-	int ret;
 
 	bm_err("[%s]\n", __func__);
 
 	if (buf != NULL && size != 0) {
 		bm_err("[%s] buf is %s\n",
 			__func__, buf);
-		ret = kstrtoul(buf, 10, &val);
+		(void)(kstrtoul(buf, 10, &val));
 		if (val < 0) {
 			bm_err(
 				"[%s] val is %d ??\n",
@@ -3165,13 +3161,12 @@ static ssize_t store_FG_ntc_disable_nafg(
 					const char *buf, size_t size)
 {
 	unsigned long val = 0;
-	int ret;
 
 	bm_err("[%s]\n",  __func__);
 
 	if (buf != NULL && size != 0) {
 		bm_err("[%s] buf is %s\n", __func__, buf);
-		ret = kstrtoul(buf, 10, &val);
+		(void)(kstrtoul(buf, 10, &val));
 		if (val < 0) {
 			bm_err(
 				"[%s] val is %d ??\n",  __func__,
@@ -3221,14 +3216,13 @@ static ssize_t store_uisoc_update_type(
 					const char *buf, size_t size)
 {
 	unsigned long val = 0;
-	int ret;
 
 	bm_err("[%s]\n", __func__);
 
 	if (buf != NULL && size != 0) {
 		bm_err("[%s] buf is %s\n",
 			__func__, buf);
-		ret = kstrtoul(buf, 10, &val);
+		(void)(kstrtoul(buf, 10, &val));
 		if (val < 0) {
 			bm_err(
 				"[%s] val is %d ??\n",
@@ -3279,13 +3273,12 @@ static ssize_t store_FG_daemon_log_level(
 					 const char *buf, size_t size)
 {
 	unsigned long val = 0;
-	int ret;
 
 	bm_err("[FG_daemon_log_level]\n");
 
 	if (buf != NULL && size != 0) {
 		bm_err("[FG_daemon_log_level] buf is %s\n", buf);
-		ret = kstrtoul(buf, 10, &val);
+		(void)(kstrtoul(buf, 10, &val));
 		if (val < 0) {
 			bm_err(
 				"[FG_daemon_log_level] val is %d ??\n",
@@ -3333,13 +3326,12 @@ static ssize_t store_shutdown_cond_enable(
 					const char *buf, size_t size)
 {
 	unsigned long val = 0;
-	int ret;
 
 	bm_err("[%s]\n", __func__);
 	if (buf != NULL && size != 0) {
 		bm_err("[%s] buf is %s\n",
 			__func__, buf);
-		ret = kstrtoul(buf, 10, &val);
+		(void)(kstrtoul(buf, 10, &val));
 		if (val < 0) {
 			bm_err(
 				"[%s] val is %d ??\n",
@@ -3376,13 +3368,12 @@ static ssize_t store_reset_battery_cycle(
 					const char *buf, size_t size)
 {
 	unsigned long val = 0;
-	int ret;
 
 	bm_err("[%s]\n", __func__);
 	if (buf != NULL && size != 0) {
 		bm_err("[%s] buf is %s\n",
 			__func__, buf);
-		ret = kstrtoul(buf, 10, &val);
+		(void)(kstrtoul(buf, 10, &val));
 		if (val < 0) {
 			bm_err(
 				"[%s] val is %d ??\n",
@@ -3422,13 +3413,12 @@ static ssize_t store_reset_aging_factor(
 				const char *buf, size_t size)
 {
 	unsigned long val = 0;
-	int ret;
 
 	bm_err("[%s]\n", __func__);
 	if (buf != NULL && size != 0) {
 		bm_err("[%s] buf is %s\n",
 			__func__, buf);
-		ret = kstrtoul(buf, 10, &val);
+		(void)(kstrtoul(buf, 10, &val));
 		if (val < 0) {
 			bm_err(
 				"[%s] val is %d ??\n",
@@ -3656,13 +3646,12 @@ static int battery_callback(
 signed int battery_meter_meta_tool_cali_car_tune(int meta_current)
 {
 	int cali_car_tune = 0;
-	int ret = 0;
 
 	if (meta_current == 0)
 		return fg_cust_data.car_tune_value * 10;
 
-	ret = gauge_dev_enable_car_tune_value_calibration(
-		gm.gdev, meta_current, &cali_car_tune);
+	(void)(gauge_dev_enable_car_tune_value_calibration(
+		gm.gdev, meta_current, &cali_car_tune));
 
 	return cali_car_tune;		/* 1000 base */
 }
@@ -4132,10 +4121,9 @@ static int meter_fg_30_get_battery_soc(void)
 static int meter_fg_30_get_average_current(void)
 {
 	int ret = 0;
-	bool volid;
 
 	//ret = gauge_get_average_current(&volid);
-	volid = gauge_get_current(&ret);
+	(void)(gauge_get_current(&ret));
 	ret = ret / 10;
 	if (battery_meter_get_battery_current_signed() == 1)
 		ret = 0 - ret;	/* charging */
@@ -4433,7 +4421,7 @@ static void register_battery_devinfo(void)
 }
 #endif  /*VENDOR_EDIT*/
 
-static int average_current_fg_30 = 0;
+
 static void get_average_current(struct work_struct *work);
 static struct workqueue_struct *average_current_wq = NULL;
 static DECLARE_DELAYED_WORK(get_average_current_wk, get_average_current);
@@ -4445,7 +4433,7 @@ static void get_average_current(struct work_struct *work)
 	int fg_current_temp = 0;
 	bool valid = false;
 
-	average_current_fg_30 = battery_meter_get_battery_current();
+	(void)(battery_meter_get_battery_current());
 	delay_time = 5;
 
 	if (battery_meter_get_battery_current_signed() == 1) {
@@ -4456,7 +4444,7 @@ static void get_average_current(struct work_struct *work)
 		}
 		if (i != 0)
 			fg_current_avg = fg_current_avg / i;
-		average_current_fg_30 = fg_current_avg;
+		
 		delay_time = 3;
 	}
 
@@ -4594,9 +4582,7 @@ void dis_GM3_SRC_SEL(void)
 #endif /* VENDOR_EDIT */
 static int __init battery_probe(struct platform_device *dev)
 {
-	int ret_device_file = 0;
 	int ret;
-	struct class_device *class_dev = NULL;
 	const char *fg_swocv_v = NULL;
 	char fg_swocv_v_tmp[10];
 	int fg_swocv_v_len = 0;
@@ -4623,12 +4609,12 @@ static int __init battery_probe(struct platform_device *dev)
 	ret = cdev_add(adc_cali_cdev, adc_cali_devno, 1);
 	if (ret)
 		bm_notice("adc_cali Error: cdev_add\n");
-	adc_cali_major = MAJOR(adc_cali_devno);
+	(void)(MAJOR(adc_cali_devno));
 	adc_cali_class = class_create(THIS_MODULE, ADC_CALI_DEVNAME);
-	class_dev = (struct class_device *)device_create(adc_cali_class,
+	(void)((struct class_device *)device_create(adc_cali_class,
 							 NULL,
 					adc_cali_devno,
-					NULL, ADC_CALI_DEVNAME);
+					NULL, ADC_CALI_DEVNAME));
 /*****************************/
 
 	mtk_battery_init(dev);
@@ -4651,32 +4637,32 @@ static int __init battery_probe(struct platform_device *dev)
 	ret = device_create_file(&(dev->dev), &dev_attr_UI_SOC);
 
 	/* sysfs node */
-	ret_device_file = device_create_file(&(dev->dev),
-		&dev_attr_uisoc_update_type);
-	ret_device_file = device_create_file(&(dev->dev),
-		&dev_attr_disable_nafg);
-	ret_device_file = device_create_file(&(dev->dev),
-		&dev_attr_ntc_disable_nafg);
-	ret_device_file = device_create_file(&(dev->dev),
-		&dev_attr_FG_meter_resistance);
-	ret_device_file = device_create_file(&(dev->dev),
-		&dev_attr_FG_daemon_log_level);
-	ret_device_file = device_create_file(&(dev->dev),
-		&dev_attr_FG_daemon_disable);
-	ret_device_file = device_create_file(&(dev->dev),
-		&dev_attr_BAT_EC);
-	ret_device_file = device_create_file(&(dev->dev),
-		&dev_attr_FG_Battery_CurrentConsumption);
-	ret_device_file = device_create_file(&(dev->dev),
-		&dev_attr_Power_On_Voltage);
-	ret_device_file = device_create_file(&(dev->dev),
-		&dev_attr_Power_Off_Voltage);
-	ret_device_file = device_create_file(&(dev->dev),
-		&dev_attr_shutdown_condition_enable);
-	ret_device_file = device_create_file(&(dev->dev),
-		&dev_attr_reset_battery_cycle);
-	ret_device_file = device_create_file(&(dev->dev),
-		&dev_attr_reset_aging_factor);
+	(void)(device_create_file(&(dev->dev),
+		&dev_attr_uisoc_update_type));
+	(void)(device_create_file(&(dev->dev),
+		&dev_attr_disable_nafg));
+	(void)(device_create_file(&(dev->dev),
+		&dev_attr_ntc_disable_nafg));
+	(void)(device_create_file(&(dev->dev),
+		&dev_attr_FG_meter_resistance));
+	(void)(device_create_file(&(dev->dev),
+		&dev_attr_FG_daemon_log_level));
+	(void)(device_create_file(&(dev->dev),
+		&dev_attr_FG_daemon_disable));
+	(void)(device_create_file(&(dev->dev),
+		&dev_attr_BAT_EC));
+	(void)(device_create_file(&(dev->dev),
+		&dev_attr_FG_Battery_CurrentConsumption));
+	(void)(device_create_file(&(dev->dev),
+		&dev_attr_Power_On_Voltage));
+	(void)(device_create_file(&(dev->dev),
+		&dev_attr_Power_Off_Voltage));
+	(void)(device_create_file(&(dev->dev),
+		&dev_attr_shutdown_condition_enable));
+	(void)(device_create_file(&(dev->dev),
+		&dev_attr_reset_battery_cycle));
+	(void)(device_create_file(&(dev->dev),
+		&dev_attr_reset_aging_factor));
 
 	if (of_scan_flat_dt(fb_early_init_dt_get_chosen, NULL) > 0)
 		fg_swocv_v =
@@ -4898,8 +4884,6 @@ static int __init battery_init(void)
 	struct netlink_kernel_cfg cfg = {
 		.input = nl_data_handler,
 	};
-
-	int ret;
 #ifdef VENDOR_EDIT
 	struct oplus_gauge_chip *chip = NULL;
 #endif /* VENDOR_EDIT */
@@ -4933,10 +4917,10 @@ if(!is_vooc_project()) {
 #ifdef CONFIG_OF
 	/* register battery_device by DTS */
 #else
-	ret = platform_device_register(&battery_device);
+	(void)(platform_device_register(&battery_device));
 #endif
 
-	ret = platform_driver_register(&battery_driver_probe);
+	(void)(platform_driver_register(&battery_driver_probe));
 #if 0
 #ifdef VENDOR_EDIT
 /* Yichun.Chen  PSW.BSP.CHG  2019-07-29  for aging issue */

@@ -419,7 +419,6 @@ retry:
 int port_ipc_init(struct port_t *port)
 {
 	struct cdev *dev;
-	int ret = 0;
 	struct ccci_ipc_ctrl *ipc_ctrl =
 		kmalloc(sizeof(struct ccci_ipc_ctrl), GFP_KERNEL);
 
@@ -451,10 +450,10 @@ int port_ipc_init(struct port_t *port)
 		}
 		cdev_init(dev, &ipc_dev_fops);
 		dev->owner = THIS_MODULE;
-		ret = cdev_add(dev, MKDEV(port->major,
-			port->minor_base + port->minor), 1);
-		ret = ccci_register_dev_node(port->name, port->major,
-			port->minor_base + port->minor);
+		(void)(cdev_add(dev, MKDEV(port->major,
+			port->minor_base + port->minor), 1));
+		(void)(ccci_register_dev_node(port->name, port->major,
+			port->minor_base + port->minor));
 		port->interception = 0;
 		port->flags |= PORT_F_ADJUST_HEADER;
 	} else {

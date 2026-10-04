@@ -278,7 +278,6 @@ static void rdma_set_ultra_l(unsigned int idx, unsigned int bpp, void *handle,
 	/* rdma golden setting variables */
 	unsigned int mmsysclk = 300;
 	unsigned int is_wrot_sram = 0;
-	unsigned int fifo_mode = 1;
 
 	unsigned int ultra_low_us = 5;
 	unsigned int ultra_high_us = 6;
@@ -363,7 +362,7 @@ static void rdma_set_ultra_l(unsigned int idx, unsigned int bpp, void *handle,
 	}
 
 	is_wrot_sram = gsc->is_wrot_sram;
-	fifo_mode = gsc->fifo_mode;
+	
 
 	if (gsc->is_dc)
 		fill_rate = 960 * mmsysclk; /* FIFO depth / us */

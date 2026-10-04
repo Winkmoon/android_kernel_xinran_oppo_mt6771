@@ -49,7 +49,6 @@
 #define TIME_1MS  1000000
 
 static struct kobject *comp_kobj;
-static struct rb_root ui_pid_tree;
 static struct rb_root connect_api_tree;
 
 static inline int fpsgo_com_check_is_surfaceflinger(int pid)
@@ -204,7 +203,6 @@ void fpsgo_ctrl2comp_enqueue_start(int pid,
 	unsigned long long identifier)
 {
 	struct render_info *f_render;
-	int xgf_ret = 0;
 	int check_render;
 	int ret;
 
@@ -274,10 +272,9 @@ void fpsgo_ctrl2comp_enqueue_start(int pid,
 		FPSGO_COM_TRACE("update pid[%d] tgid[%d] buffer_id:%llu api:%d",
 			f_render->pid, f_render->tgid,
 			f_render->buffer_id, f_render->api);
-		xgf_ret =
-			fpsgo_comp2xgf_qudeq_notify(pid, f_render->buffer_id,
+		(void)(fpsgo_comp2xgf_qudeq_notify(pid, f_render->buffer_id,
 					XGF_QUEUE_START, NULL, NULL,
-					enqueue_start_time);
+					enqueue_start_time));
 		break;
 	case BY_PASS_TYPE:
 		f_render->t_enqueue_start = enqueue_start_time;
@@ -297,7 +294,6 @@ void fpsgo_ctrl2comp_enqueue_end(int pid,
 	unsigned long long identifier)
 {
 	struct render_info *f_render;
-	int xgf_ret = 0;
 	int check_render;
 	unsigned long long running_time = 0;
 	unsigned long long mid = 0;
@@ -350,10 +346,9 @@ void fpsgo_ctrl2comp_enqueue_end(int pid,
 			"pid[%d] type[%d] enqueue_e:%llu enqueue_l:%llu",
 			pid, f_render->frame_type,
 			enqueue_end_time, f_render->enqueue_length);
-		xgf_ret =
-			fpsgo_comp2xgf_qudeq_notify(pid, f_render->buffer_id,
+		(void)(fpsgo_comp2xgf_qudeq_notify(pid, f_render->buffer_id,
 					XGF_QUEUE_END, &running_time, &mid,
-					enqueue_end_time);
+					enqueue_end_time));
 		if (running_time != 0)
 			f_render->running_time = running_time;
 		f_render->mid = mid;
@@ -388,7 +383,6 @@ void fpsgo_ctrl2comp_dequeue_start(int pid,
 	unsigned long long identifier)
 {
 	struct render_info *f_render;
-	int xgf_ret = 0;
 	int check_render;
 	int ret;
 
@@ -448,10 +442,9 @@ void fpsgo_ctrl2comp_dequeue_start(int pid,
 		f_render->t_dequeue_start = dequeue_start_time;
 		FPSGO_COM_TRACE("pid[%d] type[%d] dequeue_s:%llu",
 			pid, f_render->frame_type, dequeue_start_time);
-		xgf_ret =
-			fpsgo_comp2xgf_qudeq_notify(pid, f_render->buffer_id,
+		(void)(fpsgo_comp2xgf_qudeq_notify(pid, f_render->buffer_id,
 					XGF_DEQUEUE_START, NULL, NULL,
-					dequeue_start_time);
+					dequeue_start_time));
 		break;
 	case BY_PASS_TYPE:
 		break;
@@ -469,7 +462,6 @@ void fpsgo_ctrl2comp_dequeue_end(int pid,
 	unsigned long long identifier)
 {
 	struct render_info *f_render;
-	int xgf_ret = 0;
 	int check_render;
 	int ret;
 
@@ -527,9 +519,8 @@ void fpsgo_ctrl2comp_dequeue_end(int pid,
 			"pid[%d] type[%d] dequeue_e:%llu dequeue_l:%llu",
 			pid, f_render->frame_type,
 			dequeue_end_time, f_render->dequeue_length);
-		xgf_ret =
-			fpsgo_comp2xgf_qudeq_notify(pid, f_render->buffer_id,
-				XGF_DEQUEUE_END, NULL, NULL, dequeue_end_time);
+		(void)(fpsgo_comp2xgf_qudeq_notify(pid, f_render->buffer_id,
+				XGF_DEQUEUE_END, NULL, NULL, dequeue_end_time));
 		fpsgo_comp2fbt_deq_end(f_render, dequeue_end_time);
 		fpsgo_systrace_c_fbt_gm(-300, 0, f_render->dequeue_length,
 			"%d_%d-dequeue_length", pid, f_render->frame_type);
@@ -810,7 +801,7 @@ void __exit fpsgo_composer_exit(void)
 
 int __init fpsgo_composer_init(void)
 {
-	ui_pid_tree = RB_ROOT;
+	
 	connect_api_tree = RB_ROOT;
 
 	if (!fpsgo_sysfs_create_dir(NULL, "composer", &comp_kobj))

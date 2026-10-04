@@ -491,9 +491,8 @@ static DEVICE_ATTR(debug_log, 0664, show_debug_log, store_debug_log);
 
 static int spm_probe(struct platform_device *pdev)
 {
-	int ret;
 
-	ret = device_create_file(&(pdev->dev), &dev_attr_debug_log);
+	(void)(device_create_file(&(pdev->dev), &dev_attr_debug_log));
 
 	return 0;
 }
@@ -592,7 +591,6 @@ int __spm_get_dram_type(void)
 
 int __init spm_module_init(void)
 {
-	int r = 0;
 	int ret = -1;
 	int is_ext_buck = 0;
 
@@ -615,10 +613,10 @@ int __init spm_module_init(void)
 
 	spm_register_init();
 	if (spm_irq_register() != 0)
-		r = -EPERM;
+		(void)(-EPERM);
 #if defined(CONFIG_PM)
 	if (spm_fs_init() != 0)
-		r = -EPERM;
+		(void)(-EPERM);
 #endif
 
 	/* Note: Initialize irq type to avoid pending irqs */

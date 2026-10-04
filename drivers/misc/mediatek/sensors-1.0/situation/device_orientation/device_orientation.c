@@ -42,14 +42,13 @@ static int device_orientation_get_data(int *probability, int *status)
 {
 	int err = 0;
 	struct data_unit_t data;
-	uint64_t time_stamp = 0;
 
 	err = sensor_get_data_from_hub(ID_DEVICE_ORIENTATION, &data);
 	if (err < 0) {
 		pr_err("sensor_get_data_from_hub fail!!\n");
 		return -1;
 	}
-	time_stamp		= data.time_stamp;
+	
 	*probability	= data.gesture_data_t.probability;
 	return 0;
 }

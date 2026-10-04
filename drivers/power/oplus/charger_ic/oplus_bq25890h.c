@@ -1256,24 +1256,23 @@ close_time:
 
 void is_iindpm_mode(void)
 {
-	int rc = 0;
 	int val_buf;
 	int reg_ovp;
 	int val_buf1;
 	int charger_type = 0;
 
-	rc = bq25890h_read_reg(charger_ic, REG13_BQ25890H_ADDRESS, &reg_ovp);
+	(void)(bq25890h_read_reg(charger_ic, REG13_BQ25890H_ADDRESS, &reg_ovp));
 	val_buf = reg_ovp & 0x40;
-	rc = bq25890h_read_reg(charger_ic, REG0B_BQ25890H_ADDRESS, &reg_ovp);
+	(void)(bq25890h_read_reg(charger_ic, REG0B_BQ25890H_ADDRESS, &reg_ovp));
 	val_buf1 = reg_ovp & 0x18;
 	if ((val_buf == 0x40) || (val_buf1 == 0x10)) {
 		charger_type = mt_power_supply_type_check();
 		if (charger_type == POWER_SUPPLY_TYPE_USB) {
-			rc = bq25890h_config_interface(charger_ic, REG00_BQ25890H_ADDRESS, REG00_BQ25890H_INPUT_CURRENT_LIMIT_500MA, REG00_BQ25890H_INPUT_CURRENT_LIMIT_MASK);
+			(void)(bq25890h_config_interface(charger_ic, REG00_BQ25890H_ADDRESS, REG00_BQ25890H_INPUT_CURRENT_LIMIT_500MA, REG00_BQ25890H_INPUT_CURRENT_LIMIT_MASK));
 			bq25890h_dump_registers();
 			printk("is_iindpm_mode_usb\n");
 		} else if (charger_type == POWER_SUPPLY_TYPE_USB_DCP){
-			rc = bq25890h_config_interface(charger_ic, REG00_BQ25890H_ADDRESS, REG00_BQ25890H_INPUT_CURRENT_LIMIT_2000MA, REG00_BQ25890H_INPUT_CURRENT_LIMIT_MASK);
+			(void)(bq25890h_config_interface(charger_ic, REG00_BQ25890H_ADDRESS, REG00_BQ25890H_INPUT_CURRENT_LIMIT_2000MA, REG00_BQ25890H_INPUT_CURRENT_LIMIT_MASK));
 			bq25890h_dump_registers();
 			printk("is_iindpm_mode_dcp\n");
 		}
@@ -1403,7 +1402,6 @@ extern unsigned int upmu_get_rgs_chrdet(void);
 
 enum charger_type mt_charger_type_detection_bq25890h(void)
 {
-	int rc =0;
 	int addr = 0;
 	int val_buf;
 	int count = 0;
@@ -1439,11 +1437,11 @@ enum charger_type mt_charger_type_detection_bq25890h(void)
 	bq25890h_config_interface(charger_ic, REG02_BQ25890H_ADDRESS, 0x02, 0);
 	bq25890h_dump_registers();
 	
-	rc = bq25890h_read_reg(charger_ic, REG02_BQ25890H_ADDRESS, &val_buf);
+	(void)(bq25890h_read_reg(charger_ic, REG02_BQ25890H_ADDRESS, &val_buf));
 	val_buf &= 0x02;
 	while (val_buf == 0x02 && count < 20) {
 		count++;
-		rc = bq25890h_read_reg(charger_ic, REG02_BQ25890H_ADDRESS, &val_buf);
+		(void)(bq25890h_read_reg(charger_ic, REG02_BQ25890H_ADDRESS, &val_buf));
 		val_buf &= 0x02;
 		usleep_range(50000, 50200);
 		if (!upmu_get_rgs_chrdet()) {
@@ -1460,7 +1458,7 @@ enum charger_type mt_charger_type_detection_bq25890h(void)
 		return MTK_CHR_Type_num;
 	}
 
-	rc = bq25890h_read_reg(charger_ic, addr, &val_buf);
+	(void)(bq25890h_read_reg(charger_ic, addr, &val_buf));
 	bq25890h_dump_registers();
 	val_buf = val_buf & 0xe0;
 	printk("mt_charger_type_detection3, val_buf=[0x%x]\n", val_buf);
@@ -1484,11 +1482,11 @@ enum charger_type mt_charger_type_detection_bq25890h(void)
 		bq25890h_config_interface(charger_ic, REG02_BQ25890H_ADDRESS, 0x02, 0);
 		bq25890h_dump_registers();
 		
-		rc = bq25890h_read_reg(charger_ic, REG02_BQ25890H_ADDRESS, &val_buf);
+		(void)(bq25890h_read_reg(charger_ic, REG02_BQ25890H_ADDRESS, &val_buf));
 		val_buf &= 0x02;
 		while (val_buf == 0x02 && count < 20) {
 			count++;
-			rc = bq25890h_read_reg(charger_ic, REG02_BQ25890H_ADDRESS, &val_buf);
+			(void)(bq25890h_read_reg(charger_ic, REG02_BQ25890H_ADDRESS, &val_buf));
 			val_buf &= 0x02;
 			usleep_range(50000, 50200);
 			if (!upmu_get_rgs_chrdet()) {
@@ -1505,7 +1503,7 @@ enum charger_type mt_charger_type_detection_bq25890h(void)
 			return MTK_CHR_Type_num;
 		}
 
-		rc = bq25890h_read_reg(charger_ic, addr, &val_buf);
+		(void)(bq25890h_read_reg(charger_ic, addr, &val_buf));
 		bq25890h_dump_registers();
 		val_buf = val_buf & 0xe0;
 		printk("mt_charger_type_detection: 2nd, val_buf=[0x%x]\n", val_buf);

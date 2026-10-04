@@ -97,16 +97,15 @@ static int sched_hint_thread(void *data)
 
 		/* status change from scheduler hint */
 		if (kthread_status != sched_status) {
-			int ret;
 
 			kthread_status = sched_status;
 
 			//TODO: remove comment after met ready
 			//met_tag_oneshot(0, "sched_hint", kthread_status);
 
-			ret = blocking_notifier_call_chain
+			(void)(blocking_notifier_call_chain
 					(&sched_hint_notifier_list,
-					kthread_status, NULL);
+					kthread_status, NULL));
 
 			/* reset throttle time */
 			g_shd.throttle = ktime_add_ns(

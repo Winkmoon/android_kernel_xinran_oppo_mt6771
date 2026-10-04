@@ -435,7 +435,7 @@ err_exit:
 static void mdee_dumper_info_prepare_v1(struct ccci_fsm_ee *mdee)
 {
 	struct ex_log_t *ex_info;
-	int ee_type, ee_case;
+	int ee_type;
 	struct mdee_dumper_v1 *dumper = mdee->dumper_obj;
 	int md_id = mdee->md_id;
 	struct debug_info_t *debug_info = &dumper->debug_info;
@@ -466,7 +466,7 @@ static void mdee_dumper_info_prepare_v1(struct ccci_fsm_ee *mdee)
 		CCCI_DEBUG_LOG(md_id, FSM,
 			"Parse ex info from shared memory\n");
 	}
-	ee_case = dumper->more_info;
+	
 
 	memset(debug_info, 0, sizeof(struct debug_info_t));
 	ee_type = ex_info->header.ex_type;

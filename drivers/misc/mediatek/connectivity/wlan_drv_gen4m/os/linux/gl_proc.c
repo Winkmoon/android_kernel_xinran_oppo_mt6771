@@ -653,7 +653,6 @@ static ssize_t procMCRRead(struct file *filp, char __user *buf,
 	uint32_t u4BufLen;
 	uint32_t u4Count;
 	uint8_t *temp = &g_aucProcBuf[0];
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 
 	/* Kevin: Apply PROC read method 1. */
 	if (*f_pos > 0)
@@ -663,9 +662,9 @@ static ssize_t procMCRRead(struct file *filp, char __user *buf,
 
 	rMcrInfo.u4McrOffset = u4McrOffset;
 
-	rStatus = kalIoctl(prGlueInfo,
+	(void)(kalIoctl(prGlueInfo,
 		wlanoidQueryMcrRead, (void *)&rMcrInfo,
-		sizeof(rMcrInfo), TRUE, TRUE, TRUE, &u4BufLen);
+		sizeof(rMcrInfo), TRUE, TRUE, TRUE, &u4BufLen));
 	kalMemZero(g_aucProcBuf, sizeof(g_aucProcBuf));
 	SNPRINTF(temp, g_aucProcBuf,
 		("MCR (0x%08xh): 0x%08x\n", rMcrInfo.u4McrOffset,
@@ -705,7 +704,6 @@ static ssize_t procMCRWrite(struct file *file, const char __user *buffer,
 	int i4CopySize;
 	struct PARAM_CUSTOM_MCR_RW_STRUCT rMcrInfo;
 	uint32_t u4BufLen;
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	int num = 0;
 
 	ASSERT(data);
@@ -735,10 +733,10 @@ static ssize_t procMCRWrite(struct file *file, const char __user *buffer,
 			/* printk("Write 0x%lx to MCR 0x%04lx\n", */
 			/* rMcrInfo.u4McrOffset, rMcrInfo.u4McrData); */
 
-			rStatus = kalIoctl(prGlueInfo,
+			(void)(kalIoctl(prGlueInfo,
 					   wlanoidSetMcrWrite,
 					   (void *)&rMcrInfo, sizeof(rMcrInfo),
-					   FALSE, FALSE, TRUE, &u4BufLen);
+					   FALSE, FALSE, TRUE, &u4BufLen));
 
 		}
 		break;

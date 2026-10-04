@@ -1789,7 +1789,6 @@ static ssize_t fstb_fps_list_store(struct kobject *kobj,
 	int  nr_level, start_fps, end_fps;
 	int mode = 1;
 	int pid = 0;
-	int ret = 0;
 	struct fps_level level[MAX_NR_RENDER_FPS_LEVELS];
 
 	if ((count > 0) && (count < FPSGO_SYSFS_MAX_BUFF_SIZE)) {
@@ -1799,7 +1798,7 @@ static ssize_t fstb_fps_list_store(struct kobject *kobj,
 
 			substr = strsep(&sepstr, " ");
 			if (!substr || !strncpy(proc_name, substr, 16)) {
-				ret = -EINVAL;
+				
 				goto err;
 			}
 			proc_name[15] = '\0';
@@ -1812,20 +1811,20 @@ static ssize_t fstb_fps_list_store(struct kobject *kobj,
 			if (!substr || kstrtoint(substr, 10, &nr_level) != 0 ||
 					nr_level > MAX_NR_RENDER_FPS_LEVELS ||
 					nr_level < 0) {
-				ret = -EINVAL;
+				
 				goto err;
 			}
 
 			for (i = 0; i < nr_level; i++) {
 				substr = strsep(&sepstr, " ");
 				if (!substr) {
-					ret = -EINVAL;
+					
 					goto err;
 				}
 
 				if (sscanf(substr, "%d-%d",
 					&start_fps, &end_fps) != 2) {
-					ret = -EINVAL;
+					
 					goto err;
 				}
 				level[i].start = start_fps;
@@ -1835,11 +1834,11 @@ static ssize_t fstb_fps_list_store(struct kobject *kobj,
 			if (mode == 0) {
 				if (switch_process_fps_range(proc_name,
 					nr_level, level))
-					ret = -EINVAL;
+					(void)(-EINVAL);
 			} else {
 				if (switch_thread_fps_range(pid,
 					nr_level, level))
-					ret = -EINVAL;
+					(void)(-EINVAL);
 			}
 
 		}
@@ -2111,11 +2110,10 @@ static KOBJ_ATTR_ROO(fpsgo_status);
 
 int mtk_fstb_init(void)
 {
-	int num_cluster = 0;
 
 	mtk_fstb_dprintk_always("init\n");
 
-	num_cluster = arch_get_nr_clusters();
+	(void)(arch_get_nr_clusters());
 
 	ged_kpi_output_gfx_info2_fp = gpu_time_update;
 

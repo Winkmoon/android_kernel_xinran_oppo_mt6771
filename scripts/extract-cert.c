@@ -12,6 +12,12 @@
  * of the licence, or (at your option) any later version.
  */
 #define _GNU_SOURCE
+/* The PKCS#11 support in this host tool still uses the OpenSSL ENGINE API,
+ * which OpenSSL 3.0 marks deprecated but continues to provide.  Ask OpenSSL
+ * itself to not mark those interfaces deprecated instead of disabling the
+ * compiler warning, so that the deprecation policy of the library applies.
+ */
+#define OPENSSL_SUPPRESS_DEPRECATED
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>

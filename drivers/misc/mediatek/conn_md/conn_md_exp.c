@@ -41,24 +41,21 @@ EXPORT_SYMBOL(mtk_conn_md_bridge_reg);
 int mtk_conn_md_bridge_unreg(uint32 u_id)
 {
 
-	int i_ret = -1;
-
 	/*delete user */
-	i_ret = conn_md_del_user(u_id);
+	(void)(conn_md_del_user(u_id));
 	return 0;
 }
 EXPORT_SYMBOL(mtk_conn_md_bridge_unreg);
 int mtk_conn_md_bridge_send_msg(struct ipc_ilm *ilm)
 {
-	int i_ret = -1;
 	/*sanity check */
 	if (NULL != ilm && NULL != ilm->local_para_ptr) {
 		/*send data */
-		i_ret = conn_md_send_msg(ilm);
+		(void)(conn_md_send_msg(ilm));
 	} else {
 		CONN_MD_ERR_FUNC("ERROR, ilm(%p),local_para_ptr(%p)\n",
 				ilm, ilm == NULL ? NULL : ilm->local_para_ptr);
-		i_ret = CONN_MD_ERR_INVALID_PARAM;
+		
 	}
 
 	return 0;

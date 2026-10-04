@@ -1395,36 +1395,35 @@ int hal_dma_pm_ops(struct _MTK_DMA_INFO_STR_ *p_dma_info,
 		i_ret = 0;
 		break;
 	case BTIF_PM_RESTORE_NOIRQ:{
-			unsigned int flag = 0;
 			struct _MTK_BTIF_IRQ_STR_ *p_irq = p_dma_info->p_irq;
 
 #ifdef CONFIG_OF
-			flag = p_irq->irq_flags;
+			(void)(p_irq->irq_flags);
 #else
 			switch (p_irq->sens_type) {
 			case IRQ_SENS_EDGE:
 				if (p_irq->edge_type == IRQ_EDGE_FALL)
-					flag = IRQF_TRIGGER_FALLING;
+					(void)(IRQF_TRIGGER_FALLING);
 				else if (p_irq->edge_type == IRQ_EDGE_RAISE)
-					flag = IRQF_TRIGGER_RISING;
+					(void)(IRQF_TRIGGER_RISING);
 				else if (p_irq->edge_type == IRQ_EDGE_BOTH)
-					flag = IRQF_TRIGGER_RISING |
-					    IRQF_TRIGGER_FALLING;
+					(void)(IRQF_TRIGGER_RISING |
+					    IRQF_TRIGGER_FALLING);
 				else
-					flag = IRQF_TRIGGER_FALLING;
+					(void)(IRQF_TRIGGER_FALLING);
 					/*make this as default type */
 				break;
 			case IRQ_SENS_LVL:
 				if (p_irq->lvl_type == IRQ_LVL_LOW)
-					flag = IRQF_TRIGGER_LOW;
+					(void)(IRQF_TRIGGER_LOW);
 				else if (p_irq->lvl_type == IRQ_LVL_HIGH)
-					flag = IRQF_TRIGGER_HIGH;
+					(void)(IRQF_TRIGGER_HIGH);
 				else
-					flag = IRQF_TRIGGER_LOW;
+					(void)(IRQF_TRIGGER_LOW);
 					/*make this as default type */
 				break;
 			default:
-				flag = IRQF_TRIGGER_LOW;
+				(void)(IRQF_TRIGGER_LOW);
 				/*make this as default type */
 				break;
 			}

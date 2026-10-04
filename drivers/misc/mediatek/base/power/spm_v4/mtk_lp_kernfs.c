@@ -224,7 +224,7 @@ int mtk_lp_kernfs_create_group(struct kobject *kobj
 {
 	struct kernfs_node *kn;
 	struct attribute *const *attr;
-	int error = 0, i;
+	int error = 0, i __maybe_unused;
 
 	kn = mtk_lp_kernfs_create_dir(kobj, grp->name, 0755);
 

@@ -1597,7 +1597,6 @@ static int init_vooc_proc(struct oplus_vooc_chip *chip)
 }
 void oplus_vooc_init(struct oplus_vooc_chip *chip)
 {
-	int ret = 0;
 
 	chip->detach_unexpectly = false;
 	chip->allow_reading = true;
@@ -1642,19 +1641,19 @@ void oplus_vooc_init(struct oplus_vooc_chip *chip)
 
 		chip->fw_path = kzalloc(MAX_FW_NAME_LENGTH, GFP_KERNEL);
 		if (chip->fw_path == NULL) {
-			ret = -ENOMEM;
+			
 			chg_err("panel_data.fw_name kzalloc error\n");
 			goto manu_fwpath_alloc_err;
 		}
 		chip->manufacture_info.version = kzalloc(MAX_DEVICE_VERSION_LENGTH, GFP_KERNEL);
 		if (chip->manufacture_info.version == NULL) {
-			ret = -ENOMEM;
+			
 			chg_err("manufacture_info.version kzalloc error\n");
 			goto manu_version_alloc_err;
 		}
 		chip->manufacture_info.manufacture = kzalloc(MAX_DEVICE_MANU_LENGTH, GFP_KERNEL);
 		if (chip->manufacture_info.manufacture == NULL) {
-			ret = -ENOMEM;
+			
 			chg_err("panel_data.manufacture kzalloc error\n");
 			goto manu_info_alloc_err;
 		}

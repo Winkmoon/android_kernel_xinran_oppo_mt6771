@@ -3074,10 +3074,9 @@ s32 cmdq_op_if(struct cmdqRecStruct *handle, CMDQ_VARIABLE arg_b,
 		return -EFAULT;
 
 	do {
-		u32 old_logic_pos;
 
 		logic_pos  = handle->pkt->cmd_buf_size;
-		old_logic_pos = logic_pos;
+		
 
 		/* append conditional jump instruction */
 		status = cmdq_append_jump_c_command(handle, arg_b,
@@ -3226,11 +3225,10 @@ s32 cmdq_op_while(struct cmdqRecStruct *handle, CMDQ_VARIABLE arg_b,
 		return -EFAULT;
 
 	do {
-		u32 old_logic_pos;
 
 		/* keep index of logic cmd */
 		logic_pos = handle->pkt->cmd_buf_size;
-		old_logic_pos = logic_pos;
+		
 
 		/* append conditional jump instruction */
 		status = cmdq_append_jump_c_command(handle, arg_b,

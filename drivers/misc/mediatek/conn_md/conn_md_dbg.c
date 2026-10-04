@@ -84,7 +84,6 @@ static int conn_md_dbg_write(struct file *file, const char *buffer,
 	unsigned long x = 0;
 	long y = 0;
 	long z = 0;
-	long i;
 	char *pToken = NULL;
 	char *pDelimiter = " \t";
 
@@ -103,19 +102,19 @@ static int conn_md_dbg_write(struct file *file, const char *buffer,
 	pBuf = buf;
 	pToken = strsep(&pBuf, pDelimiter);
 	if (pToken != NULL)
-		i = kstrtol(pToken, 16, &x);
+		(void)(kstrtol(pToken, 16, &x));
 	else
 		x = 0;
 
 	pToken = strsep(&pBuf, "\t\n ");
 	if (pToken != NULL)
-		i = kstrtol(pToken, 16, &y);
+		(void)(kstrtol(pToken, 16, &y));
 	else
 		y = 0;
 
 	pToken = strsep(&pBuf, "\t\n ");
 	if (pToken != NULL)
-		i = kstrtol(pToken, 16, &z);
+		(void)(kstrtol(pToken, 16, &z));
 	else
 		z = 0;
 

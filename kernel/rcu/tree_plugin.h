@@ -649,7 +649,7 @@ static int rcu_print_task_exp_stall(struct rcu_node *rnp)
  */
 static void rcu_preempt_check_blocked_tasks(struct rcu_node *rnp)
 {
-	struct task_struct *t;
+	struct task_struct *t __maybe_unused;
 
 	RCU_LOCKDEP_WARN(preemptible(), "rcu_preempt_check_blocked_tasks() invoked with preemption enabled!!!\n");
 	WARN_ON_ONCE(rcu_preempt_blocked_readers_cgp(rnp));

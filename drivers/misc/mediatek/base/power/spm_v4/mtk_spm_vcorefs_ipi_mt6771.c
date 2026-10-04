@@ -54,7 +54,6 @@ static int qos_recv_thread(void *arg)
 void helio_dvfsrc_sspm_ipi_init(int dvfs_en, int dram_type)
 {
 	struct qos_data qos_d;
-	struct task_struct *qos_task;
 
 	qos_d.cmd = QOS_IPI_QOS_ENABLE;
 	qos_d.u.qos_init.enable = 1;
@@ -62,7 +61,7 @@ void helio_dvfsrc_sspm_ipi_init(int dvfs_en, int dram_type)
 	qos_d.u.qos_init.spm_dram_type = dram_type;
 	qos_ipi_to_sspm_command(&qos_d, 4);
 
-	qos_task = kthread_run(qos_recv_thread, NULL, "qos_recv");
+	(void)(kthread_run(qos_recv_thread, NULL, "qos_recv"));
 }
 #endif
 

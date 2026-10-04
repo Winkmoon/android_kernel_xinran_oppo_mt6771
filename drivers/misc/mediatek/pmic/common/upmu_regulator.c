@@ -765,11 +765,11 @@ void pmic_regulator_debug_init(struct platform_device *dev,
 			       struct dentry *debug_dir)
 {
 	/* /sys/class/regulator/.../ */
-	int ret_device_file = 0, i;
+	int i;
 	struct dentry *mt_pmic_dir = debug_dir;
 
 #ifdef REGULATOR_TEST
-	ret_device_file = device_create_file(&(dev->dev), &dev_attr_buck_api);
+	(void)(device_create_file(&(dev->dev), &dev_attr_buck_api));
 #endif /*--REGULATOR_TEST--*/
 
 	/* /sys/class/regulator/.../ */
@@ -778,14 +778,14 @@ void pmic_regulator_debug_init(struct platform_device *dev,
 		/*PMICLOG("[PMIC] register buck id=%d\n",i);*/
 		if (*(int *)(&mt_bucks[i].en_att)) {
 			PMICLOG("[PMIC] register ldo en_att\n");
-			ret_device_file = device_create_file(&(dev->dev),
-						&(mt_bucks[i].en_att));
+			(void)(device_create_file(&(dev->dev),
+						&(mt_bucks[i].en_att)));
 		}
 
 		if (*(int *)(&mt_bucks[i].voltage_att)) {
 			PMICLOG("[PMIC] register ldo voltage_att\n");
-			ret_device_file = device_create_file(&(dev->dev),
-						&(mt_bucks[i].voltage_att));
+			(void)(device_create_file(&(dev->dev),
+						&(mt_bucks[i].voltage_att)));
 		}
 	}
 	/*ret_device_file = device_create_file(&(dev->dev),
@@ -796,18 +796,18 @@ void pmic_regulator_debug_init(struct platform_device *dev,
 		/*PMICLOG("[PMIC] register ldo id=%d\n",i);*/
 		if (*(int *)(&mt_ldos[i].en_att)) {
 			PMICLOG("[PMIC] register ldo en_att\n");
-			ret_device_file = device_create_file(&(dev->dev),
-						&mt_ldos[i].en_att);
+			(void)(device_create_file(&(dev->dev),
+						&mt_ldos[i].en_att));
 		}
 
 		if (*(int *)(&mt_ldos[i].voltage_att)) {
 			PMICLOG("[PMIC] register ldo voltage_att\n");
-			ret_device_file = device_create_file(&(dev->dev),
-						&mt_ldos[i].voltage_att);
+			(void)(device_create_file(&(dev->dev),
+						&mt_ldos[i].voltage_att));
 		}
 	}
-	ret_device_file = device_create_file(&(dev->dev),
-					     &dev_attr_buck_ldo_info);
+	(void)(device_create_file(&(dev->dev),
+					     &dev_attr_buck_ldo_info));
 
 	debugfs_create_file("dump_ldo_status", 0644,
 			    mt_pmic_dir, NULL, &pmic_debug_proc_fops);

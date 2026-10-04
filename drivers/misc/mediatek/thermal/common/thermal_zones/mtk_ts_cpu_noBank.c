@@ -144,7 +144,9 @@ static unsigned int interval = 1000;
 
 int tscpu_g_curr_temp;
 int tscpu_g_prev_temp;
+#if THERMAL_GPIO_OUT_TOGGLE
 static int g_max_temp = 50000;	/* default=50 deg */
+#endif
 
 static int tc_mid_trip = -275000;
 /* trip_temp[0] must be initialized to the thermal HW protection point. */
@@ -178,7 +180,7 @@ static int tscpu_num_opp;
 static struct mtk_cpu_power_info *mtk_cpu_power;
 
 static int g_tc_resume;	/* default=0,read temp */
-static int proc_write_flag;
+
 
 static struct thermal_zone_device *thz_dev;
 #if defined(TZCPU_SET_INIT_CFG)
@@ -705,7 +707,9 @@ static int tscpu_get_temp
 	tscpu_set_GPIO_toggle_for_monitor();
 #endif
 
+#if THERMAL_GPIO_OUT_TOGGLE
 	g_max_temp = curr_temp;
+#endif
 
 	return ret;
 }
@@ -1488,7 +1492,7 @@ static ssize_t tscpu_write
 defined(CONFIG_MACH_MT6893)
 		apthermolmt_set_general_cpu_power_limit(0);
 #endif
-		proc_write_flag = 1;
+		(void)(1);
 		kfree(ptr_mtktscpu_data);
 		return count;
 	}

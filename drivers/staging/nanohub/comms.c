@@ -312,7 +312,7 @@ int nanohub_comms_rx_retrans_boottime(struct nanohub_data *data, u32 cmd,
 {
 	int packet_size = 0;
 	struct nanohub_packet_pad *pad = packet_alloc(GFP_KERNEL);
-	int delay = 0;
+	int delay __maybe_unused = 0;
 	int ret;
 	u32 seq;
 	struct timespec ts;
@@ -365,7 +365,7 @@ int nanohub_comms_tx_rx_retrans(struct nanohub_data *data, u32 cmd,
 {
 	int packet_size = 0;
 	struct nanohub_packet_pad *pad = packet_alloc(GFP_KERNEL);
-	int delay = 0;
+	int delay __maybe_unused = 0;
 	int ret;
 	u32 seq;
 

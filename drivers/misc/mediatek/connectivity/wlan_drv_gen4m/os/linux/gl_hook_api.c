@@ -3274,7 +3274,6 @@ int32_t TxBfProfileTagWrite(struct net_device *prNetDev,
 {
 	int32_t i4Status = 0;
 	struct GLUE_INFO *prGlueInfo = NULL;
-	struct ADAPTER *prAdapter = NULL;
 	uint32_t u4BufLen = 0;
 	union PARAM_CUSTOM_TXBF_ACTION_STRUCT rTxBfActionInfo;
 
@@ -3282,7 +3281,7 @@ int32_t TxBfProfileTagWrite(struct net_device *prNetDev,
 
 	ASSERT(prNetDev);
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
-	prAdapter = prGlueInfo->prAdapter;
+	
 
 	DBGLOG(RFTEST, ERROR,
 	       "prPfmuTag1 : au4RawData[0] = 0x%08x\n",
@@ -3470,7 +3469,6 @@ int32_t TxBfProfileTagRead(struct net_device *prNetDev,
 {
 	int32_t i4Status = 0;
 	struct GLUE_INFO *prGlueInfo = NULL;
-	struct ADAPTER *prAdapter = NULL;
 	uint32_t u4BufLen = 0;
 	union PARAM_CUSTOM_TXBF_ACTION_STRUCT rTxBfActionInfo;
 
@@ -3478,7 +3476,7 @@ int32_t TxBfProfileTagRead(struct net_device *prNetDev,
 
 	ASSERT(prNetDev);
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
-	prAdapter = prGlueInfo->prAdapter;
+	
 
 	DBGLOG(RFTEST, ERROR,
 	       "TxBfProfileTagRead : profileIdx = 0x%08x\n", profileIdx);
@@ -3504,13 +3502,12 @@ int32_t StaRecCmmUpdate(struct net_device *prNetDev,
 {
 	struct STAREC_COMMON rStaRecCmm;
 	struct GLUE_INFO *prGlueInfo = NULL;
-	struct ADAPTER *prAdapter = NULL;
 	uint32_t u4BufLen = 0;
 	int32_t i4Status = 0;
 
 	ASSERT(prNetDev);
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
-	prAdapter = prGlueInfo->prAdapter;
+	
 
 	kalMemZero(&rStaRecCmm, sizeof(struct STAREC_COMMON));
 	/* Tag assignment */
@@ -3542,13 +3539,12 @@ int32_t StaRecBfUpdate(struct net_device *prNetDev,
 	/* PARAM_CUSTOM_STA_REC_UPD_STRUCT_T rStaRecUpdateInfo = {0}; */
 	/* P_STA_RECORD_T                        prStaRec; */
 	struct GLUE_INFO *prGlueInfo = NULL;
-	struct ADAPTER *prAdapter = NULL;
 	uint32_t u4BufLen = 0;
 	int32_t i4Status = 0;
 
 	ASSERT(prNetDev);
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
-	prAdapter = prGlueInfo->prAdapter;
+	
 
 	kalMemZero(&rStaRecBF, sizeof(struct CMD_STAREC_BF));
 	/* Tag assignment */
@@ -3611,13 +3607,12 @@ int32_t DevInfoUpdate(struct net_device *prNetDev,
 {
 	struct CMD_DEVINFO_ACTIVE rDevInfo;
 	struct GLUE_INFO *prGlueInfo = NULL;
-	struct ADAPTER *prAdapter = NULL;
 	uint32_t u4BufLen = 0;
 	int32_t i4Status = 0;
 
 	ASSERT(prNetDev);
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
-	prAdapter = prGlueInfo->prAdapter;
+	
 
 	kalMemZero(&rDevInfo, sizeof(struct CMD_DEVINFO_ACTIVE));
 	/* Tag assignment */
@@ -3643,13 +3638,12 @@ int32_t BssInfoUpdate(struct net_device *prNetDev,
 {
 	struct BSSINFO_BASIC rBssInfo;
 	struct GLUE_INFO *prGlueInfo = NULL;
-	struct ADAPTER *prAdapter = NULL;
 	uint32_t u4BufLen = 0;
 	int32_t i4Status = 0;
 
 	ASSERT(prNetDev);
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
-	prAdapter = prGlueInfo->prAdapter;
+	
 
 	kalMemZero(&rBssInfo, sizeof(struct BSSINFO_BASIC));
 	/* Tag assignment */
@@ -3677,7 +3671,6 @@ int32_t TxBfProfileDataRead(struct net_device *prNetDev,
 {
 	int32_t i4Status = 0;
 	struct GLUE_INFO *prGlueInfo = NULL;
-	struct ADAPTER *prAdapter = NULL;
 	uint32_t u4BufLen = 0;
 	union PARAM_CUSTOM_TXBF_ACTION_STRUCT rTxBfActionInfo;
 
@@ -3685,7 +3678,7 @@ int32_t TxBfProfileDataRead(struct net_device *prNetDev,
 
 	ASSERT(prNetDev);
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
-	prAdapter = prGlueInfo->prAdapter;
+	
 
 	DBGLOG(RFTEST, ERROR,
 	       "TxBfProfileDataRead : ucPfmuIdx = 0x%08x\n", profileIdx);
@@ -3722,7 +3715,6 @@ int32_t TxBfProfileDataWrite(struct net_device *prNetDev,
 {
 	int32_t i4Status = 0;
 	struct GLUE_INFO *prGlueInfo = NULL;
-	struct ADAPTER *prAdapter = NULL;
 	uint32_t u4BufLen = 0;
 	union PARAM_CUSTOM_TXBF_ACTION_STRUCT rTxBfActionInfo;
 
@@ -3730,7 +3722,7 @@ int32_t TxBfProfileDataWrite(struct net_device *prNetDev,
 
 	ASSERT(prNetDev);
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
-	prAdapter = prGlueInfo->prAdapter;
+	
 
 	DBGLOG(RFTEST, ERROR,
 	       "TxBfProfileDataWrite : ucPfmuIdx = 0x%08x\n", profileIdx);
@@ -3825,7 +3817,6 @@ int32_t TxBfProfilePnRead(struct net_device *prNetDev,
 {
 	int32_t i4Status = 0;
 	struct GLUE_INFO *prGlueInfo = NULL;
-	struct ADAPTER *prAdapter = NULL;
 	uint32_t u4BufLen = 0;
 	union PARAM_CUSTOM_TXBF_ACTION_STRUCT rTxBfActionInfo;
 
@@ -3833,7 +3824,7 @@ int32_t TxBfProfilePnRead(struct net_device *prNetDev,
 
 	ASSERT(prNetDev);
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
-	prAdapter = prGlueInfo->prAdapter;
+	
 
 	DBGLOG(RFTEST, ERROR,
 	       "TxBfProfilePnRead : ucPfmuIdx = 0x%08x\n", profileIdx);
@@ -3853,7 +3844,6 @@ int32_t TxBfProfilePnWrite(struct net_device *prNetDev,
 {
 	int32_t i4Status = 0;
 	struct GLUE_INFO *prGlueInfo = NULL;
-	struct ADAPTER *prAdapter = NULL;
 	uint32_t u4BufLen = 0;
 	union PARAM_CUSTOM_TXBF_ACTION_STRUCT rTxBfActionInfo;
 
@@ -3861,7 +3851,7 @@ int32_t TxBfProfilePnWrite(struct net_device *prNetDev,
 
 	ASSERT(prNetDev);
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
-	prAdapter = prGlueInfo->prAdapter;
+	
 
 	DBGLOG(RFTEST, ERROR,
 	       "TxBfProfilePnWrite : ucPfmuIdx = 0x%08x\n", profileIdx);
@@ -3919,7 +3909,6 @@ int32_t TxBfSounding(struct net_device *prNetDev,
 {
 	int32_t i4Status = 0;
 	struct GLUE_INFO *prGlueInfo = NULL;
-	struct ADAPTER *prAdapter = NULL;
 	uint32_t u4BufLen = 0;
 	union PARAM_CUSTOM_TXBF_ACTION_STRUCT rTxBfActionInfo;
 
@@ -3927,7 +3916,7 @@ int32_t TxBfSounding(struct net_device *prNetDev,
 
 	ASSERT(prNetDev);
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
-	prAdapter = prGlueInfo->prAdapter;
+	
 
 	DBGLOG(RFTEST, ERROR, "TxBfSounding : ucSuMu = 0x%08x\n",
 	       ucSuMu);
@@ -3996,7 +3985,6 @@ int32_t TxBfSoundingStop(struct net_device *prNetDev)
 {
 	int32_t i4Status = 0;
 	struct GLUE_INFO *prGlueInfo = NULL;
-	struct ADAPTER *prAdapter = NULL;
 	uint32_t u4BufLen = 0;
 	union PARAM_CUSTOM_TXBF_ACTION_STRUCT rTxBfActionInfo;
 
@@ -4004,7 +3992,7 @@ int32_t TxBfSoundingStop(struct net_device *prNetDev)
 
 	ASSERT(prNetDev);
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
-	prAdapter = prGlueInfo->prAdapter;
+	
 
 	DBGLOG(RFTEST, ERROR, "TxBfSoundingStop\n");
 
@@ -4025,7 +4013,6 @@ int32_t TxBfTxApply(struct net_device *prNetDev,
 {
 	int32_t i4Status = 0;
 	struct GLUE_INFO *prGlueInfo = NULL;
-	struct ADAPTER *prAdapter = NULL;
 	uint32_t u4BufLen = 0;
 	union PARAM_CUSTOM_TXBF_ACTION_STRUCT rTxBfActionInfo;
 
@@ -4033,7 +4020,7 @@ int32_t TxBfTxApply(struct net_device *prNetDev,
 
 	ASSERT(prNetDev);
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
-	prAdapter = prGlueInfo->prAdapter;
+	
 
 	DBGLOG(RFTEST, ERROR,
 	       "TxBfTxApply : ucWlanId = 0x%08x, fgETxBf = 0x%08x,fgITxBf = 0x%08x,fgMuTxBf = 0x%08x\n",
@@ -4058,7 +4045,6 @@ int32_t TxBfPfmuMemAlloc(struct net_device *prNetDev,
 {
 	int32_t i4Status = 0;
 	struct GLUE_INFO *prGlueInfo = NULL;
-	struct ADAPTER *prAdapter = NULL;
 	uint32_t u4BufLen = 0;
 	union PARAM_CUSTOM_TXBF_ACTION_STRUCT rTxBfActionInfo;
 
@@ -4066,7 +4052,7 @@ int32_t TxBfPfmuMemAlloc(struct net_device *prNetDev,
 
 	ASSERT(prNetDev);
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
-	prAdapter = prGlueInfo->prAdapter;
+	
 
 	DBGLOG(RFTEST, ERROR,
 	       "TxBfPfmuMemAlloc : ucSuMuMode = 0x%08x, ucWlanIdx = 0x%08x\n",
@@ -4089,7 +4075,6 @@ int32_t TxBfPfmuMemRelease(struct net_device *prNetDev,
 {
 	int32_t i4Status = 0;
 	struct GLUE_INFO *prGlueInfo = NULL;
-	struct ADAPTER *prAdapter = NULL;
 	uint32_t u4BufLen = 0;
 	union PARAM_CUSTOM_TXBF_ACTION_STRUCT rTxBfActionInfo;
 
@@ -4097,7 +4082,7 @@ int32_t TxBfPfmuMemRelease(struct net_device *prNetDev,
 
 	ASSERT(prNetDev);
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
-	prAdapter = prGlueInfo->prAdapter;
+	
 
 	DBGLOG(RFTEST, ERROR,
 	       "TxBfPfmuMemRelease : ucWlanId = 0x%08x\n", ucWlanId);
@@ -4175,7 +4160,6 @@ int32_t TxBfManualAssoc(struct net_device *prNetDev,
 	struct CMD_MANUAL_ASSOC_STRUCT rManualAssoc;
 	/* P_STA_RECORD_T prStaRec; */
 	struct GLUE_INFO *prGlueInfo = NULL;
-	struct ADAPTER *prAdapter = NULL;
 	uint32_t u4BufLen = 0;
 	int32_t i4Status = 0;
 	/* uint8_t ucNsts;
@@ -4184,7 +4168,7 @@ int32_t TxBfManualAssoc(struct net_device *prNetDev,
 
 	ASSERT(prNetDev);
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
-	prAdapter = prGlueInfo->prAdapter;
+	
 
 	kalMemZero(&rManualAssoc,
 		   sizeof(struct CMD_MANUAL_ASSOC_STRUCT));

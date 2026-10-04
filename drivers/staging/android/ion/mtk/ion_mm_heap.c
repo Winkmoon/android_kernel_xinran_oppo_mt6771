@@ -312,6 +312,8 @@ int ion_get_domain_id(int from_kernel, int *port)
 static int ion_mm_heap_phys(struct ion_heap *heap, struct ion_buffer *buffer,
 			    ion_phys_addr_t *addr, size_t *len);
 
+#if defined(CONFIG_MTK_IOMMU_PGTABLE_EXT) && \
+	(CONFIG_MTK_IOMMU_PGTABLE_EXT > 32)
 static int ion_mm_heap_init_domain(struct ion_mm_buffer_info *buffer_info,
 				   unsigned int domain)
 {
@@ -358,6 +360,7 @@ static int ion_mm_heap_init_domain(struct ion_mm_buffer_info *buffer_info,
 
 	return 0;
 }
+#endif
 
 /* #define BOOSTPOOL_DEBUG */
 static int ion_mm_heap_allocate(struct ion_heap *heap,
@@ -1358,7 +1361,6 @@ static int ion_mm_heap_debug_show(struct ion_heap *heap, struct seq_file *s,
 	struct rb_node *n;
 	int i;
 	bool has_orphaned = false;
-	struct ion_mm_buffer_info *bug_info;
 	unsigned long long current_ts;
 
 	current_ts = sched_clock();
@@ -1438,7 +1440,7 @@ static int ion_mm_heap_debug_show(struct ion_heap *heap, struct seq_file *s,
 		*buffer = rb_entry(n, struct ion_buffer, node);
 
 		/* when exception occur, ion need to dump all the buffers */
-		bug_info = (struct ion_mm_buffer_info *)buffer->priv_virt;
+		
 		if (heap->id == ION_HEAP_TYPE_MULTIMEDIA_FOR_CAMERA &&
 		    buffer->heap->id != ION_HEAP_TYPE_MULTIMEDIA_FOR_CAMERA)
 			continue;
@@ -1932,11 +1934,12 @@ struct ion_heap *ion_mm_heap_create(struct ion_platform_heap *unused)
 #ifdef CONFIG_OPLUS_ION_BOOSTPOOL
 	if (unused->id == ION_HEAP_TYPE_MULTIMEDIA_FOR_CAMERA &&
 	    !IS_ERR_OR_NULL(boost_root_dir)) {
+		unsigned long cam_sz = 32 * 256, uncached_sz = 32 * 256;
+
 		if (!kcrit_scene_init())
 			pr_err("%s: init kcrit scene failed!\n",
 			       __func__);
 
-		unsigned long cam_sz = 32 * 256, uncached_sz = 32 * 256;
 		/* on low memory target, we should not set 128Mib on camera pool. */
 		if (totalram_pages > (SZ_4G >> PAGE_SHIFT)) {
 			cam_sz = 128 * 256;
@@ -2187,9 +2190,6 @@ long ion_mm_ioctl(struct ion_client *client, unsigned int cmd,
 {
 	struct ion_mm_data param;
 	long ret = 0;
-	/* char dbgstr[256]; */
-	unsigned long ret_copy;
-	unsigned int buffer_sec = 0;
 	enum ion_heap_type buffer_type = 0;
 	struct ion_buffer *buffer;
 	struct ion_handle *kernel_handle;
@@ -2198,8 +2198,8 @@ long ion_mm_ioctl(struct ion_client *client, unsigned int cmd,
 	if (from_kernel)
 		param = *(struct ion_mm_data *)arg;
 	else
-		ret_copy = copy_from_user(&param, (void __user *)arg,
-					  sizeof(struct ion_mm_data));
+		(void)(copy_from_user(&param, (void __user *)arg,
+					  sizeof(struct ion_mm_data)));
 
 	switch (param.mm_cmd) {
 	case ION_MM_CONFIG_BUFFER:
@@ -2246,11 +2246,9 @@ long ion_mm_ioctl(struct ion_client *client, unsigned int cmd,
 		}
 
 		if ((int)buffer->heap->type == ION_HEAP_TYPE_MULTIMEDIA) {
-			struct ion_mm_buffer_info *buffer_info =
-			    buffer->priv_virt;
-			enum ION_MM_CMDS mm_cmd = param.mm_cmd;
+						enum ION_MM_CMDS mm_cmd = param.mm_cmd;
 
-			buffer_sec = buffer_info->security;
+			
 
 			if (param.config_buffer_param.module_id < 0 &&
 			    param.config_buffer_param.module_id != -1) {
@@ -2288,7 +2286,7 @@ long ion_mm_ioctl(struct ion_client *client, unsigned int cmd,
 			    buffer->priv_virt;
 			int domain_idx = ion_get_domain_id(
 				1, &param.config_buffer_param.module_id);
-			buffer_sec = buffer_info->security;
+			
 #ifndef CONFIG_MTK_IOMMU_V2
 			if (buffer_info->MVA[domain_idx] == 0) {
 #endif
@@ -2312,7 +2310,7 @@ long ion_mm_ioctl(struct ion_client *client, unsigned int cmd,
 			struct ion_sec_buffer_info *buffer_info =
 			    buffer->priv_virt;
 
-			buffer_sec = buffer_info->security;
+			
 #ifndef CONFIG_MTK_IOMMU_V2
 			if (buffer_info->MVA == 0) {
 #endif
@@ -2381,9 +2379,7 @@ long ion_mm_ioctl(struct ion_client *client, unsigned int cmd,
 		}
 
 		if ((int)buffer->heap->type == ION_HEAP_TYPE_MULTIMEDIA) {
-			struct ion_mm_buffer_info *buffer_info =
-			    buffer->priv_virt;
-			enum ION_MM_CMDS mm_cmd = param.mm_cmd;
+						enum ION_MM_CMDS mm_cmd = param.mm_cmd;
 			ion_phys_addr_t phy_addr;
 
 			/* make sure get_iova can't break by config_buffer */
@@ -2429,7 +2425,6 @@ long ion_mm_ioctl(struct ion_client *client, unsigned int cmd,
 			ion_phys_addr_t phy_addr;
 			size_t len;
 			struct ion_heap_ops *sec_ops;
-			int ret;
 
 			len = param.get_phys_param.len;
 			sec_heap = buffer->heap;
@@ -2443,7 +2438,7 @@ long ion_mm_ioctl(struct ion_client *client, unsigned int cmd,
 			}
 
 			mutex_lock(&buffer->lock);
-			ret = sec_ops->phys(sec_heap, buffer, &phy_addr, &len);
+			(void)(sec_ops->phys(sec_heap, buffer, &phy_addr, &len));
 			param.get_phys_param.phy_addr = phy_addr;
 			mutex_unlock(&buffer->lock);
 
@@ -2482,14 +2477,14 @@ long ion_mm_ioctl(struct ion_client *client, unsigned int cmd,
 			struct ion_mm_buffer_info *buffer_info =
 			    buffer->priv_virt;
 
-			buffer_sec = buffer_info->security;
+			
 			ion_mm_cp_dbg_info(&param.buf_debug_info_param,
 					   &buffer_info->dbg_info);
 		} else if ((int)buffer->heap->type == ION_HEAP_TYPE_FB) {
 			struct ion_fb_buffer_info *buffer_info =
 			    buffer->priv_virt;
 
-			buffer_sec = buffer_info->security;
+			
 			ion_mm_cp_dbg_info(&param.buf_debug_info_param,
 					   &buffer_info->dbg_info);
 		} else if ((int)buffer->heap->type ==
@@ -2497,7 +2492,7 @@ long ion_mm_ioctl(struct ion_client *client, unsigned int cmd,
 			struct ion_sec_buffer_info *buffer_info =
 			    buffer->priv_virt;
 
-			buffer_sec = buffer_info->security;
+			
 			ion_mm_cp_dbg_info(&param.buf_debug_info_param,
 					   &buffer_info->dbg_info);
 		} else {
@@ -2533,14 +2528,14 @@ long ion_mm_ioctl(struct ion_client *client, unsigned int cmd,
 			struct ion_mm_buffer_info *buffer_info =
 			    buffer->priv_virt;
 
-			buffer_sec = buffer_info->security;
+			
 			ion_mm_cp_dbg_info(&buffer_info->dbg_info,
 					   &param.buf_debug_info_param);
 		} else if ((int)buffer->heap->type == ION_HEAP_TYPE_FB) {
 			struct ion_fb_buffer_info *buffer_info =
 			    buffer->priv_virt;
 
-			buffer_sec = buffer_info->security;
+			
 			ion_mm_cp_dbg_info(&buffer_info->dbg_info,
 					   &param.buf_debug_info_param);
 		} else if ((int)buffer->heap->type ==
@@ -2548,7 +2543,7 @@ long ion_mm_ioctl(struct ion_client *client, unsigned int cmd,
 			struct ion_sec_buffer_info *buffer_info =
 			    buffer->priv_virt;
 
-			buffer_sec = buffer_info->security;
+			
 			ion_mm_cp_dbg_info(&buffer_info->dbg_info,
 					   &param.buf_debug_info_param);
 		} else {
@@ -2590,9 +2585,8 @@ long ion_mm_ioctl(struct ion_client *client, unsigned int cmd,
 	if (from_kernel)
 		*(struct ion_mm_data *)arg = param;
 	else
-		ret_copy =
-		    copy_to_user((void __user *)arg, &param,
-				 sizeof(struct ion_mm_data));
+		(void)(copy_to_user((void __user *)arg, &param,
+				 sizeof(struct ion_mm_data)));
 	return ret;
 }
 
@@ -2616,7 +2610,7 @@ int ion_mm_heap_cache_allocate(struct ion_heap *heap,
 	int i = 0;
 	unsigned long size_remaining = PAGE_ALIGN(size);
 	unsigned int max_order = orders[0];
-	unsigned long long start, end;
+	unsigned long long start;
 
 	INIT_LIST_HEAD(&pages);
 	start = sched_clock();
@@ -2638,7 +2632,7 @@ int ion_mm_heap_cache_allocate(struct ion_heap *heap,
 		max_order = info->order;
 		i++;
 	}
-	end = sched_clock();
+	(void)(sched_clock());
 
 	if (!info) {
 		IONMSG("%s err info, size %ld, remain %ld.\n",

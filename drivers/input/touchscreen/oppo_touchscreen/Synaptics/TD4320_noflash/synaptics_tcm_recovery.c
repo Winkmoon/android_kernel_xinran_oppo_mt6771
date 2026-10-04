@@ -215,7 +215,6 @@ static int recovery_write_flash(struct recovery_hcd *recovery_hcd)
     int retval;
     unsigned char *data_ptr;
     unsigned int chunk_buf_size;
-    unsigned int chunk_data_size;
     unsigned int entries_written;
     unsigned int entries_to_write;
 
@@ -225,7 +224,7 @@ static int recovery_write_flash(struct recovery_hcd *recovery_hcd)
 
     chunk_buf_size = sizeof(recovery_hcd->chunk_buf);
 
-    chunk_data_size = chunk_buf_size - 1;
+    
 
     recovery_hcd->chunk_buf[chunk_buf_size - 1] = F35_WRITE_CHUNK_COMMAND;
 

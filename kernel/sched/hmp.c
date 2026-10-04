@@ -1254,7 +1254,7 @@ hmp_dequeue_entity_load_avg(struct cfs_rq *cfs_rq, struct sched_entity *se)
 static unsigned int hmp_idle_pull(int this_cpu)
 {
 	int cpu;
-	struct sched_entity *curr, *orig;
+	struct sched_entity *curr;
 	struct hmp_domain *hmp_domain = NULL;
 	struct rq *target = NULL, *rq;
 	unsigned long flags, ratio = 0;
@@ -1300,7 +1300,7 @@ static unsigned int hmp_idle_pull(int this_cpu)
 			}
 		}
 
-		orig = curr;
+		
 		curr = hmp_get_heaviest_task(curr, this_cpu);
 		/* check if heaviest eligible task on this
 		 * CPU is heavier than previous task

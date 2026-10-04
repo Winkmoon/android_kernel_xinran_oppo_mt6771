@@ -1791,7 +1791,6 @@ static const struct file_operations mtk_disp_mgr_fops = {
 static int mtk_disp_mgr_probe(struct platform_device *pdev)
 {
 	struct class_device;
-	struct class_device *class_dev = NULL;
 	int ret;
 
 	pr_debug("%s called\n", __func__);
@@ -1811,9 +1810,9 @@ static int mtk_disp_mgr_probe(struct platform_device *pdev)
 	}
 
 	mtk_disp_mgr_class = class_create(THIS_MODULE, DISP_SESSION_DEVICE);
-	class_dev = (struct class_device *)device_create(mtk_disp_mgr_class,
+	(void)((struct class_device *)device_create(mtk_disp_mgr_class,
 						NULL, mtk_disp_mgr_devno,
-						NULL, DISP_SESSION_DEVICE);
+						NULL, DISP_SESSION_DEVICE));
 
 	#ifdef OPLUS_BUG_STABILITY
 	if ((oppo_boot_mode == OPPO_SILENCE_BOOT)

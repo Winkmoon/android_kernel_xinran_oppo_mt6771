@@ -460,8 +460,8 @@ MTK_WCN_BOOL wmt_dev_is_file_exist(PUINT8 pFileName)
 }
 
 static ULONG count_last_access_sdio;
-static ULONG count_last_access_btif;
-static ULONG count_last_access_uart;
+static ULONG count_last_access_btif __maybe_unused;
+static ULONG count_last_access_uart __maybe_unused;
 static ULONG jiffies_last_poll;
 
 static INT32 wmt_dev_tra_sdio_update(VOID)
@@ -918,7 +918,6 @@ LONG WMT_unlocked_ioctl(struct file *filp, UINT32 cmd, ULONG arg)
 		do {
 			P_OSAL_OP pOp;
 			MTK_WCN_BOOL bRet;
-			UINT32 u4Wait;
 			/* UINT8 lpbk_buf[1024] = {0}; */
 			UINT32 effectiveLen = 0;
 			P_OSAL_SIGNAL pSignal = NULL;
@@ -935,7 +934,7 @@ LONG WMT_unlocked_ioctl(struct file *filp, UINT32 cmd, ULONG arg)
 			}
 			WMT_DBG_FUNC("len = %d\n", effectiveLen);
 
-			u4Wait = 2000;
+			
 			if (copy_from_user(&gLpbkBuf[0], (PVOID)arg + sizeof(effectiveLen), effectiveLen)) {
 				WMT_ERR_FUNC("copy_from_user failed at %d\n", __LINE__);
 				iRet = -EFAULT;
@@ -1120,7 +1119,6 @@ LONG WMT_unlocked_ioctl(struct file *filp, UINT32 cmd, ULONG arg)
 	case WMT_IOCTL_SET_PATCH_INFO:
 		do {
 			WMT_PATCH_INFO wMtPatchInfo;
-			P_WMT_PATCH_INFO pTemp = NULL;
 			UINT32 dWloadSeq;
 			static UINT32 counter;
 
@@ -1150,7 +1148,7 @@ LONG WMT_unlocked_ioctl(struct file *filp, UINT32 cmd, ULONG arg)
 			     wMtPatchInfo.addRess[2],
 			     wMtPatchInfo.addRess[3]);
 			osal_memcpy(pPatchInfo + dWloadSeq - 1, &wMtPatchInfo, sizeof(WMT_PATCH_INFO));
-			pTemp = pPatchInfo + dWloadSeq - 1;
+			
 			if (++counter == pAtchNum) {
 				wmt_lib_set_patch_info(pPatchInfo);
 				counter = 0;

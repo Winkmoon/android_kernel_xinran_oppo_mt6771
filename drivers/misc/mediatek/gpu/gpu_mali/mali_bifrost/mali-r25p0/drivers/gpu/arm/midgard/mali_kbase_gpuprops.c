@@ -195,7 +195,7 @@ static void kbase_gpuprops_calculate_props(
 {
 	int i;
 	u32 gpu_id;
-	u32 product_id;
+	u32 product_id __maybe_unused;
 
 	/* Populate the base_gpu_props structure */
 	kbase_gpuprops_update_core_props_gpu_id(gpu_props);

@@ -3404,7 +3404,9 @@ unsigned long try_to_free_mem_cgroup_pages(struct mem_cgroup *memcg,
 	struct zonelist *zonelist;
 	unsigned long nr_reclaimed;
 	unsigned long pflags;
-	int nid;
+#ifdef CONFIG_MEMCG
+	int nid __maybe_unused;
+#endif
 	unsigned int noreclaim_flag;
 	struct scan_control sc = {
 		.nr_to_reclaim = max(nr_pages, SWAP_CLUSTER_MAX),
@@ -3423,7 +3425,9 @@ unsigned long try_to_free_mem_cgroup_pages(struct mem_cgroup *memcg,
 	 * take care of from where we get pages. So the node where we start the
 	 * scan does not need to be the current node.
 	 */
+#ifdef CONFIG_MEMCG
 	nid = mem_cgroup_select_victim_node(memcg);
+#endif
 
 	zonelist = &NODE_DATA(nid)->node_zonelists[ZONELIST_FALLBACK];
 

@@ -1286,12 +1286,11 @@ void opchg_set_switch_fast_charger(struct oplus_vooc_chip *chip)
 
 void opchg_set_vooc_chargerid_switch_val(struct oplus_vooc_chip *chip, int value)
 {
-	int level = 0;
 
 	if (value == 1)
-		level = 1;
+		(void)(1);
 	else if (value == 0)
-		level = 0;
+		(void)(0);
 	else
 		return;
 	/*

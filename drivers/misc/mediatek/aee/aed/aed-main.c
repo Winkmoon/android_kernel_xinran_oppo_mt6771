@@ -2150,7 +2150,6 @@ int DumpThreadNativeInfo(struct aee_oops *oops)
 	struct file *file;
 	int flags;
 	struct mm_struct *mm;
-	int ret = 0;
 	char tpath[512];
 	char *path_p = NULL;
 	struct path base_path;
@@ -2269,8 +2268,8 @@ int DumpThreadNativeInfo(struct aee_oops *oops)
 	oops->userthread_stack.StackLength = length;
 
 
-	ret = copy_from_user((void *)(oops->userthread_stack.Userthread_Stack),
-			(const void __user *)(userstack_start), length);
+	(void)(copy_from_user((void *)(oops->userthread_stack.Userthread_Stack),
+			(const void __user *)(userstack_start), length));
 #else /* 64bit, First deal with K64+U64, the last time to deal with K64+U32 */
 
 	if (is_compat_task()) {	/* K64_U32 */
@@ -2294,9 +2293,9 @@ int DumpThreadNativeInfo(struct aee_oops *oops)
 		     (MaxStackSize-1)) ? (userstack_end - userstack_start) :
 							(MaxStackSize-1);
 		oops->userthread_stack.StackLength = length;
-		ret = copy_from_user(
+		(void)(copy_from_user(
 			(void *)(oops->userthread_stack.Userthread_Stack),
-			(const void __user *)(userstack_start), length);
+			(const void __user *)(userstack_start), length));
 	} else {	/*K64+U64*/
 		userstack_start = (unsigned long)user_ret->user_regs.sp;
 		vma = current_task->mm->mmap;
@@ -2319,9 +2318,9 @@ int DumpThreadNativeInfo(struct aee_oops *oops)
 		     (MaxStackSize-1)) ? (userstack_end - userstack_start) :
 			(MaxStackSize-1);
 		oops->userthread_stack.StackLength = length;
-		ret = copy_from_user(
+		(void)(copy_from_user(
 			(void *)(oops->userthread_stack.Userthread_Stack),
-			(const void __user *)(userstack_start), length);
+			(const void __user *)(userstack_start), length));
 	}
 
 #endif

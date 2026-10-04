@@ -189,7 +189,7 @@ int ccci_fsm_increase_devapc_dump_counter(void)
 static void fsm_routine_exception(struct ccci_fsm_ctl *ctl,
 	struct ccci_fsm_command *cmd, enum CCCI_EE_REASON reason)
 {
-	int count = 0, ex_got = 0;
+	int count = 0;
 	int rec_ok_got = 0, pass_got = 0;
 	struct ccci_fsm_event *event = NULL;
 	unsigned long flags;
@@ -257,7 +257,7 @@ static void fsm_routine_exception(struct ccci_fsm_ctl *ctl,
 				event = list_first_entry(&ctl->event_queue,
 					struct ccci_fsm_event, entry);
 				if (event->event_id == CCCI_EVENT_MD_EX) {
-					ex_got = 1;
+					
 					fsm_finish_event(ctl, event);
 				} else if (event->event_id ==
 						CCCI_EVENT_MD_EX_REC_OK) {

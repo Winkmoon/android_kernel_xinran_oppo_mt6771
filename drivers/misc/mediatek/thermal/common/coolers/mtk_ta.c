@@ -333,7 +333,6 @@ static void ta_nl_send_to_user(int pid, int seq, struct tad_nl_msg_t *reply_msg)
 static void ta_nl_data_handler(struct sk_buff *skb)
 {
 	u32 pid;
-	kuid_t uid;
 	int seq;
 	void *data;
 	struct nlmsghdr *nlh;
@@ -342,7 +341,7 @@ static void ta_nl_data_handler(struct sk_buff *skb)
 
 	nlh = (struct nlmsghdr *)skb->data;
 	pid = NETLINK_CREDS(skb)->pid;
-	uid = NETLINK_CREDS(skb)->uid;
+	(void)(NETLINK_CREDS(skb)->uid);
 	seq = nlh->nlmsg_seq;
 
 	/*tsta_dprintk(

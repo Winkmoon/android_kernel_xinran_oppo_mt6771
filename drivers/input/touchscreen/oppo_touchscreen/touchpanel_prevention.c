@@ -1742,7 +1742,7 @@ static int kernel_grip_parse(struct kernel_grip_info *grip_info, char *input, in
 
 static ssize_t kernel_grip_write(struct file *file, const char __user *buffer, size_t count, loff_t *ppos)
 {
-    char buf[PAGESIZE] = {0};
+    char *buf;
     struct kernel_grip_info *grip_info = PDE_DATA(file_inode(file));
 
     if (!grip_info)
@@ -1752,8 +1752,14 @@ static ssize_t kernel_grip_write(struct file *file, const char __user *buffer, s
         TPD_INFO("%s: count is too large :%d.\n",  __func__, (int)count);
         return count;
     }
+
+    buf = kzalloc(PAGESIZE, GFP_KERNEL);
+    if (!buf)
+        return count;
+
     if (copy_from_user(buf, buffer, count)) {
         TPD_INFO("%s: read proc input error.\n", __func__);
+        kfree(buf);
         return count;
     }
 
@@ -1761,6 +1767,7 @@ static ssize_t kernel_grip_write(struct file *file, const char __user *buffer, s
     kernel_grip_parse(grip_info, buf, count);
     mutex_unlock(&grip_info->grip_mutex);
 
+    kfree(buf);
     return count;
 }
 
@@ -1839,7 +1846,6 @@ static const struct file_operations touch_dir_proc_fops = {
 
 void init_kernel_grip_proc(struct proc_dir_entry *prEntry_tp, struct kernel_grip_info *grip_info)
 {
-    int ret = 0;
     struct proc_dir_entry *prEntry_tmp = NULL;
 
     if (!grip_info || !prEntry_tp)
@@ -1847,13 +1853,13 @@ void init_kernel_grip_proc(struct proc_dir_entry *prEntry_tp, struct kernel_grip
 
     prEntry_tmp = proc_create_data("kernel_grip_handle", 0666, prEntry_tp, &tp_kernel_grip_fops, grip_info);
     if (prEntry_tmp == NULL) {
-        ret = -ENOMEM;
+        
         TPD_INFO("%s: Couldn't create kernel grip proc entry, %d\n", __func__, __LINE__);
     }
 
     prEntry_tmp = proc_create_data("oplus_tp_direction", 0666, prEntry_tp, &touch_dir_proc_fops, grip_info);
     if (prEntry_tmp == NULL) {
-        ret = -ENOMEM;
+        
         TPD_INFO("%s: Couldn't create oplus_tp_direction proc entry, %d\n", __func__, __LINE__);
     }
 }

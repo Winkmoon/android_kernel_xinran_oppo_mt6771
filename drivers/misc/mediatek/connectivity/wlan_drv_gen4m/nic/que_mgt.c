@@ -1874,7 +1874,6 @@ qmDequeueTxPacketsFromGlobalQueue(IN struct ADAPTER *prAdapter,
 	struct QUE *prCurrQueue;
 	uint32_t u4AvaliableResource;
 	struct MSDU_INFO *prDequeuedPkt;
-	struct MSDU_INFO *prBurstEndPkt;
 	struct QUE rMergeQue;
 	struct QUE *prMergeQue;
 	struct QUE_MGT *prQM;
@@ -1895,7 +1894,7 @@ qmDequeueTxPacketsFromGlobalQueue(IN struct ADAPTER *prAdapter,
 	prCurrQueue = &prQM->arTxQueue[TX_QUEUE_INDEX_BMCAST];
 	u4AvaliableResource = u4CurrentQuota;
 	prDequeuedPkt = NULL;
-	prBurstEndPkt = NULL;
+	
 
 	QUEUE_INITIALIZE(&rMergeQue);
 	prMergeQue = &rMergeQue;
@@ -1923,7 +1922,7 @@ qmDequeueTxPacketsFromGlobalQueue(IN struct ADAPTER *prAdapter,
 				QUEUE_INSERT_TAIL(prQue,
 					(struct QUE_ENTRY *)
 					prDequeuedPkt);
-				prBurstEndPkt = prDequeuedPkt;
+				
 				prQM->u4DequeueCounter++;
 				u4AvaliableResource -=
 					prDequeuedPkt->u4PageCount;
@@ -3429,7 +3428,7 @@ u_int8_t qmDetectRxInvalidEAPOL(IN struct ADAPTER *prAdapter,
 	struct BSS_INFO *prBssInfo;
 	uint16_t u2EtherType = 0;
 	u_int8_t fgDrop = FALSE;
-	uint16_t u2SeqCtrl, u2FrameCtrl;
+	uint16_t u2SeqCtrl;
 	uint8_t ucFragNo;
 
 	DEBUGFUNC("qmDetectRxInvalidEAPOL");
@@ -3457,8 +3456,8 @@ u_int8_t qmDetectRxInvalidEAPOL(IN struct ADAPTER *prAdapter,
 		return FALSE;
 
 	/* return FALSE for this frame is a mid/last fragment*/
-	u2FrameCtrl = HAL_RX_STATUS_GET_FRAME_CTL_FIELD(
-			prSwRfb->prRxStatusGroup4);
+	(void)(HAL_RX_STATUS_GET_FRAME_CTL_FIELD(
+			prSwRfb->prRxStatusGroup4));
 	u2SeqCtrl = HAL_RX_STATUS_GET_SEQFrag_NUM(prSwRfb->prRxStatusGroup4);
 	ucFragNo = (uint8_t) (u2SeqCtrl & MASK_SC_FRAG_NUM);
 	if (prSwRfb->fgFragFrame && ucFragNo != 0)
@@ -5176,7 +5175,6 @@ void mqmProcessAssocReq(IN struct ADAPTER *prAdapter,
 {
 	struct STA_RECORD *prStaRec;
 	uint16_t u2Offset;
-	uint8_t *pucIEStart;
 	uint32_t u4Flags;
 
 	DEBUGFUNC("mqmProcessAssocReq");
@@ -5193,7 +5191,7 @@ void mqmProcessAssocReq(IN struct ADAPTER *prAdapter,
 	prStaRec->fgIsQoS = FALSE;
 	prStaRec->fgIsWmmSupported = prStaRec->fgIsUapsdSupported = FALSE;
 
-	pucIEStart = pucIE;
+	
 
 	/* If the device does not support QoS or if
 	 * WMM is not supported by the peer, exit.
@@ -8329,7 +8327,6 @@ u_int8_t qmHandleRxReplay(struct ADAPTER *prAdapter,
 	uint8_t ucKeyID = 0;				/* 0~4 */
 	/* CIPHER_SUITE_NONE~CIPHER_SUITE_GCMP */
 	uint8_t ucSecMode = CIPHER_SUITE_NONE;
-	struct GLUE_INFO *prGlueInfo = NULL;
 	struct GL_WPA_INFO *prWpaInfo = NULL;
 	struct GL_DETECT_REPLAY_INFO *prDetRplyInfo = NULL;
 
@@ -8346,7 +8343,7 @@ u_int8_t qmHandleRxReplay(struct ADAPTER *prAdapter,
 	/* BMC only need check CCMP and TKIP Cipher suite */
 	ucSecMode = prSwRfb->ucSecMode;
 
-	prGlueInfo = prAdapter->prGlueInfo;
+	
 
 	prWpaInfo = aisGetWpaInfo(prAdapter,
 		secGetBssIdxByRfb(prAdapter, prSwRfb));

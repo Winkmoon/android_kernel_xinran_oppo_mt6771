@@ -787,7 +787,6 @@ static const struct file_operations g_stCAM_CAL_fops1 = {
 #define CAM_CAL_DYNAMIC_ALLOCATE_DEVNO 1
 static inline int EEPROM_chrdev_register(void)
 {
-	struct device *device = NULL;
 
 	pr_debug("%s Start\n", __func__);
 
@@ -827,8 +826,8 @@ static inline int EEPROM_chrdev_register(void)
 		pr_debug("Unable to create class, err = %d\n", ret);
 		return ret;
 	}
-	device = device_create(g_drvClass, NULL, g_devNum, NULL,
-		CAM_CAL_DRV_NAME);
+	(void)(device_create(g_drvClass, NULL, g_devNum, NULL,
+		CAM_CAL_DRV_NAME));
 	pr_debug("%s End\n", __func__);
 
 	return 0;

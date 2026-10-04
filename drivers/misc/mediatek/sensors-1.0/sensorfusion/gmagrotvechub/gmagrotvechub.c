@@ -29,14 +29,13 @@ static int gmagrotvec_get_data(int *x, int *y, int *z,
 {
 	int err = 0;
 	struct data_unit_t data;
-	uint64_t time_stamp = 0;
 
 	err = sensor_get_data_from_hub(ID_GEOMAGNETIC_ROTATION_VECTOR, &data);
 	if (err < 0) {
 		pr_err("sensor_get_data_from_hub fail!!\n");
 		return -1;
 	}
-	time_stamp		= data.time_stamp;
+	
 	*x				= data.magnetic_t.azimuth;
 	*y				= data.magnetic_t.pitch;
 	*z				= data.magnetic_t.roll;

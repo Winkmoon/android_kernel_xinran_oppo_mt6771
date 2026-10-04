@@ -3348,7 +3348,6 @@ rlmDomainSendTxPwrLimitCmd(struct ADAPTER *prAdapter,
 	uint8_t ch_idx = 0;
 	uint8_t band_idx = 0;
 	const int8_t *prChannelList = NULL;
-	uint32_t rStatus;
 	uint32_t u4SetQueryInfoLen;
 	uint32_t u4SetCmdTableMaxSize[KAL_NUM_BANDS] = {0};
 	struct CMD_SET_COUNTRY_CHANNEL_POWER_LIMIT_V2
@@ -3457,7 +3456,7 @@ rlmDomainSendTxPwrLimitCmd(struct ADAPTER *prAdapter,
 
 			u4SetQueryInfoLen = u4BufSize;
 			/* Update tx max. power info to chip */
-			rStatus = wlanSendSetQueryCmd(prAdapter,
+			(void)(wlanSendSetQueryCmd(prAdapter,
 				CMD_ID_SET_COUNTRY_POWER_LIMIT,
 				TRUE,
 				FALSE,
@@ -3467,7 +3466,7 @@ rlmDomainSendTxPwrLimitCmd(struct ADAPTER *prAdapter,
 				u4SetQueryInfoLen,
 				(uint8_t *) prTempCmd,
 				NULL,
-				0);
+				0));
 
 			cnmMemFree(prAdapter, prTempCmd);
 
@@ -3553,7 +3552,6 @@ void rlmDomainTxPwrLimitSendPerRateCmd(
 	struct CMD_SET_TXPOWER_COUNTRY_TX_POWER_LIMIT_PER_RATE *prCmd[]
 )
 {
-	uint32_t rStatus;
 	uint32_t u4SetQueryInfoLen;
 	uint8_t band_idx = 0;
 	uint32_t u4SetCountryTxPwrLimitCmdSize =
@@ -3617,7 +3615,7 @@ void rlmDomainTxPwrLimitSendPerRateCmd(
 
 			u4SetQueryInfoLen = u4BufSize;
 			/* Update tx max. power info to chip */
-			rStatus = wlanSendSetQueryCmd(prAdapter,
+			(void)(wlanSendSetQueryCmd(prAdapter,
 				CMD_ID_SET_COUNTRY_POWER_LIMIT_PER_RATE,
 				TRUE,
 				FALSE,
@@ -3627,7 +3625,7 @@ void rlmDomainTxPwrLimitSendPerRateCmd(
 				u4SetQueryInfoLen,
 				(uint8_t *) prTempCmd,
 				NULL,
-				0);
+				0));
 
 			cnmMemFree(prAdapter, prTempCmd);
 
@@ -3741,13 +3739,12 @@ void rlmDomainTxPwrSendTxBfBackoffCmd(
 	struct ADAPTER *prAdapter,
 	struct CMD_TXPWR_TXBF_SET_BACKOFF *prCmd)
 {
-	uint32_t rStatus;
 	uint32_t u4SetQueryInfoLen;
 	uint32_t u4SetCmdSize = sizeof(struct CMD_TXPWR_TXBF_SET_BACKOFF);
 
 	u4SetQueryInfoLen = u4SetCmdSize;
 	/* Update tx max. power info to chip */
-	rStatus = wlanSendSetQueryCmd(prAdapter,
+	(void)(wlanSendSetQueryCmd(prAdapter,
 		CMD_ID_SET_TXBF_BACKOFF,
 		TRUE,
 		FALSE,
@@ -3757,7 +3754,7 @@ void rlmDomainTxPwrSendTxBfBackoffCmd(
 		u4SetQueryInfoLen,
 		(uint8_t *) prCmd,
 		NULL,
-		0);
+		0));
 
 }
 
@@ -4695,7 +4692,7 @@ void _txPwrCtrlDeleteElement(struct ADAPTER *prAdapter,
 	struct LINK_ENTRY *prCur, *prNext;
 	struct TX_PWR_CTRL_ELEMENT *prCurElement = NULL;
 	uint32_t u4MemSize = sizeof(struct TX_PWR_CTRL_ELEMENT);
-	uint32_t u4MemSize2;
+	uint32_t u4MemSize2 __maybe_unused;
 	uint32_t u4SettingSize = sizeof(struct TX_PWR_CTRL_CHANNEL_SETTING);
 	uint8_t ucSettingCount;
 	u_int8_t fgFind;
@@ -4963,7 +4960,7 @@ void txPwrCtrlUninit(struct ADAPTER *prAdapter)
 		&prAdapter->rTxPwr_DynamicList
 	};
 	uint32_t u4MemSize = sizeof(struct TX_PWR_CTRL_ELEMENT);
-	uint32_t u4MemSize2;
+	uint32_t u4MemSize2 __maybe_unused;
 	uint32_t u4SettingSize = sizeof(struct TX_PWR_CTRL_CHANNEL_SETTING);
 	uint8_t ucSettingCount;
 	int32_t i;
@@ -5071,12 +5068,13 @@ void rlmDomainSendPwrLimitCmd(struct ADAPTER *prAdapter)
 {
 	struct CMD_SET_COUNTRY_CHANNEL_POWER_LIMIT *prCmd = NULL;
 	struct CMD_SET_COUNTRY_CHANNEL_POWER_LIMIT *prCmdHE = NULL;
-	uint32_t rStatus;
 	uint16_t u2DefaultTableIndex;
 	uint32_t u4SetCmdTableMaxSize;
 	uint32_t u4SetCmdTableMaxSizeHE;
 	uint32_t u4SetQueryInfoLen;
+#if (CFG_SUPPORT_PWR_LIMIT_HE == 1)
 	uint32_t u4SetQueryInfoLenHE;
+#endif
 	uint8_t bandedgeParam[4] = { 0, 0, 0, 0 };
 	struct DOMAIN_INFO_ENTRY *prDomainInfo;
 	/* TODO : 5G band edge */
@@ -5200,13 +5198,15 @@ void rlmDomainSendPwrLimitCmd(struct ADAPTER *prAdapter)
 	u4SetQueryInfoLen =
 		sizeof(struct CMD_SET_COUNTRY_CHANNEL_POWER_LIMIT);
 
+#if (CFG_SUPPORT_PWR_LIMIT_HE == 1)
 	u4SetQueryInfoLenHE =
 		sizeof(struct CMD_SET_COUNTRY_CHANNEL_POWER_LIMIT);
+#endif
 
 
 	/* Update domain info to chip */
 	if (prCmd->ucNum <= MAX_CMD_SUPPORT_CHANNEL_NUM) {
-		rStatus = wlanSendSetQueryCmd(prAdapter,	/* prAdapter */
+		(void)(wlanSendSetQueryCmd(prAdapter,	/* prAdapter */
 				CMD_ID_SET_COUNTRY_POWER_LIMIT,	/* ucCID */
 				TRUE,	/* fgSetQuery */
 				FALSE,	/* fgNeedResp */
@@ -5217,9 +5217,9 @@ void rlmDomainSendPwrLimitCmd(struct ADAPTER *prAdapter)
 				(uint8_t *) prCmd,	/* pucInfoBuffer */
 				NULL,	/* pvSetQueryBuffer */
 				0	/* u4SetQueryBufferLen */
-		    );
+		    ));
 #if (CFG_SUPPORT_PWR_LIMIT_HE == 1)
-		rStatus = wlanSendSetQueryCmd(prAdapter,	/* prAdapter */
+		(void)(wlanSendSetQueryCmd(prAdapter,	/* prAdapter */
 				CMD_ID_SET_COUNTRY_POWER_LIMIT,	/* ucCID */
 				TRUE,	/* fgSetQuery */
 				FALSE,	/* fgNeedResp */
@@ -5230,7 +5230,7 @@ void rlmDomainSendPwrLimitCmd(struct ADAPTER *prAdapter)
 				(uint8_t *) prCmdHE,	/* pucInfoBuffer */
 				NULL,	/* pvSetQueryBuffer */
 				0	/* u4SetQueryBufferLen */
-		    );
+		    ));
 #endif
 	} else {
 		DBGLOG(RLM, ERROR, "Domain: illegal power limit table\n");

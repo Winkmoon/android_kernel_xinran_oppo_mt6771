@@ -239,7 +239,6 @@ static void tracker_print(void)
 	int i;
 	unsigned int entry_valid;
 	unsigned int entry_secure;
-	unsigned int entry_tid;
 	unsigned int entry_id;
 	unsigned int entry_address;
 	unsigned int entry_data_size;
@@ -256,7 +255,7 @@ static void tracker_print(void)
 		entry_id            = extract_n2mbits(reg_value, 8, 20);
 		entry_data_size     = extract_n2mbits(reg_value, 4, 6);
 		entry_burst_length  = extract_n2mbits(reg_value, 0, 3);
-		entry_tid           = track_entry.ar_trans_tid[i];
+		
 
 
 		pr_debug("read entry = %d, valid = 0x%x, secure = 0x%x,",
@@ -282,7 +281,7 @@ static void tracker_print(void)
 		entry_id            = extract_n2mbits(reg_value, 8, 20);
 		entry_data_size     = extract_n2mbits(reg_value, 4, 6);
 		entry_burst_length  = extract_n2mbits(reg_value, 0, 3);
-		entry_tid           = track_entry.aw_trans_tid[i];
+		
 
 		pr_debug("write entry = %d, valid = 0x%x, secure = 0x%x,",
 			i, entry_valid, entry_secure);
@@ -429,12 +428,11 @@ unsigned int systracker_timeout2_value(void)
 void systracker_enable_default_ex(void)
 {
 	unsigned int con;
-	unsigned int timer_control_value;
 
-	timer_control_value = systracker_timeout_value();
+	(void)(systracker_timeout_value());
 	writel(0, IOMEM(BUS_DBG_TIMER_CON0));
 
-	timer_control_value = systracker_timeout2_value();
+	(void)(systracker_timeout2_value());
 	writel(0, IOMEM(BUS_DBG_TIMER_CON1));
 
 	track_config.state = 1;
@@ -556,7 +554,6 @@ int tracker_dump(char *buf)
 	int i;
 	unsigned int entry_valid;
 	unsigned int entry_secure;
-	unsigned int entry_tid;
 	unsigned int entry_id;
 	unsigned int entry_address;
 	unsigned int entry_data_size;
@@ -610,7 +607,7 @@ int tracker_dump(char *buf)
 				extract_n2mbits(reg_value, 4, 6);
 			entry_burst_length  =
 				extract_n2mbits(reg_value, 0, 3);
-			entry_tid           = track_entry.ar_trans_tid[i];
+			
 
 			ptr += sprintf(ptr,
 				"read entry = %d, valid = 0x%x, secure = 0x%x,",
@@ -664,7 +661,7 @@ int tracker_dump(char *buf)
 				extract_n2mbits(reg_value, 4, 6);
 			entry_burst_length  =
 				extract_n2mbits(reg_value, 0, 3);
-			entry_tid           = track_entry.aw_trans_tid[i];
+			
 
 			ptr += sprintf(ptr,
 				"write entry = %d, valid = 0x%x, secure = 0x%x,",

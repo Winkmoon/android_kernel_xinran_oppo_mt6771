@@ -47,7 +47,7 @@ static u16 gs_pmic_read(u16 reg)
 {
 	u32 reg_val = 0;
 #if defined(CONFIG_MTK_PMIC_NEW_ARCH)
-	u32 ret = 0;
+	u32 ret __maybe_unused = 0;
 
 	ret = pmic_read_interface_nolock(reg, &reg_val, 0xFFFF, 0x0);
 #endif

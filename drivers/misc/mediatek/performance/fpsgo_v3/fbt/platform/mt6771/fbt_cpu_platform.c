@@ -144,12 +144,11 @@ void fbt_set_affinity(pid_t pid, unsigned int prefer_type)
 
 void fbt_set_cpu_prefer(int pid, unsigned int prefer_type)
 {
-	long ret;
 
 	if (!pid)
 		return;
 
-	ret = sched_set_cpuprefer(pid, prefer_type);
+	(void)(sched_set_cpuprefer(pid, prefer_type));
 	fpsgo_systrace_c_fbt(pid, 0, prefer_type, "set_cpuprefer");
 }
 

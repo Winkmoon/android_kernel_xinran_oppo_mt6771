@@ -1591,10 +1591,9 @@ static inline int proxy_register_char_dev(struct port_proxy *proxy_p)
 static inline void proxy_init_all_ports(struct port_proxy *proxy_p)
 {
 	int i;
-	int md_id;
 	struct port_t *port;
 
-	md_id = proxy_p->md_id;
+	
 	for (i = 0; i < ARRAY_SIZE(proxy_p->rx_ch_ports); i++)
 		INIT_LIST_HEAD(&proxy_p->rx_ch_ports[i]);
 
@@ -1734,7 +1733,6 @@ int port_send_msg_to_md(struct port_t *port, unsigned int msg,
 {
 	int md_id = port->md_id;
 	int ch = port->tx_ch;
-	struct port_proxy *proxy_p;
 
 	if (md_id < 0 || md_id >= MAX_MD_NUM) {
 		CCCI_ERROR_LOG(-1, TAG,
@@ -1742,7 +1740,7 @@ int port_send_msg_to_md(struct port_t *port, unsigned int msg,
 		return -ENODEV;
 	}
 	CHECK_MD_ID(md_id);
-	proxy_p = GET_PORT_PROXY(md_id);
+	(void)(GET_PORT_PROXY(md_id));
 	return proxy_send_msg_to_md(port->port_proxy, ch,
 			msg, resv, blocking);
 }

@@ -21,15 +21,14 @@
 unsigned int mt6358_upmu_get_top0_ana_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP0_ID),
 		(&val),
 		(PMIC_TOP0_ANA_ID_MASK),
 		(PMIC_TOP0_ANA_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37,15 +36,14 @@ unsigned int mt6358_upmu_get_top0_ana_id(
 unsigned int mt6358_upmu_get_top0_dig_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP0_ID),
 		(&val),
 		(PMIC_TOP0_DIG_ID_MASK),
 		(PMIC_TOP0_DIG_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53,15 +51,14 @@ unsigned int mt6358_upmu_get_top0_dig_id(
 unsigned int mt6358_upmu_get_top0_ana_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP0_REV0),
 		(&val),
 		(PMIC_TOP0_ANA_MINOR_REV_MASK),
 		(PMIC_TOP0_ANA_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -69,15 +66,14 @@ unsigned int mt6358_upmu_get_top0_ana_minor_rev(
 unsigned int mt6358_upmu_get_top0_ana_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP0_REV0),
 		(&val),
 		(PMIC_TOP0_ANA_MAJOR_REV_MASK),
 		(PMIC_TOP0_ANA_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -85,15 +81,14 @@ unsigned int mt6358_upmu_get_top0_ana_major_rev(
 unsigned int mt6358_upmu_get_top0_dig_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP0_REV0),
 		(&val),
 		(PMIC_TOP0_DIG_MINOR_REV_MASK),
 		(PMIC_TOP0_DIG_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -101,15 +96,14 @@ unsigned int mt6358_upmu_get_top0_dig_minor_rev(
 unsigned int mt6358_upmu_get_top0_dig_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP0_REV0),
 		(&val),
 		(PMIC_TOP0_DIG_MAJOR_REV_MASK),
 		(PMIC_TOP0_DIG_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -117,15 +111,14 @@ unsigned int mt6358_upmu_get_top0_dig_major_rev(
 unsigned int mt6358_upmu_get_top0_dsn_cbs(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP0_DSN_DBI),
 		(&val),
 		(PMIC_TOP0_DSN_CBS_MASK),
 		(PMIC_TOP0_DSN_CBS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -133,15 +126,14 @@ unsigned int mt6358_upmu_get_top0_dsn_cbs(
 unsigned int mt6358_upmu_get_top0_dsn_bix(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP0_DSN_DBI),
 		(&val),
 		(PMIC_TOP0_DSN_BIX_MASK),
 		(PMIC_TOP0_DSN_BIX_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -149,15 +141,14 @@ unsigned int mt6358_upmu_get_top0_dsn_bix(
 unsigned int mt6358_upmu_get_top0_dsn_esp(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP0_DSN_DBI),
 		(&val),
 		(PMIC_TOP0_DSN_ESP_MASK),
 		(PMIC_TOP0_DSN_ESP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -165,15 +156,14 @@ unsigned int mt6358_upmu_get_top0_dsn_esp(
 unsigned int mt6358_upmu_get_top0_dsn_fpi(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP0_DSN_DXI),
 		(&val),
 		(PMIC_TOP0_DSN_FPI_MASK),
 		(PMIC_TOP0_DSN_FPI_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -181,15 +171,14 @@ unsigned int mt6358_upmu_get_top0_dsn_fpi(
 unsigned int mt6358_upmu_get_hwcid(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HWCID),
 		(&val),
 		(PMIC_HWCID_MASK),
 		(PMIC_HWCID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -197,15 +186,14 @@ unsigned int mt6358_upmu_get_hwcid(
 unsigned int mt6358_upmu_get_swcid(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_SWCID),
 		(&val),
 		(PMIC_SWCID_MASK),
 		(PMIC_SWCID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -213,15 +201,14 @@ unsigned int mt6358_upmu_get_swcid(
 unsigned int mt6358_upmu_get_sts_pwrkey(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PONSTS),
 		(&val),
 		(PMIC_STS_PWRKEY_MASK),
 		(PMIC_STS_PWRKEY_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -229,15 +216,14 @@ unsigned int mt6358_upmu_get_sts_pwrkey(
 unsigned int mt6358_upmu_get_sts_rtca(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PONSTS),
 		(&val),
 		(PMIC_STS_RTCA_MASK),
 		(PMIC_STS_RTCA_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -245,15 +231,14 @@ unsigned int mt6358_upmu_get_sts_rtca(
 unsigned int mt6358_upmu_get_sts_chrin(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PONSTS),
 		(&val),
 		(PMIC_STS_CHRIN_MASK),
 		(PMIC_STS_CHRIN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -261,15 +246,14 @@ unsigned int mt6358_upmu_get_sts_chrin(
 unsigned int mt6358_upmu_get_sts_spar(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PONSTS),
 		(&val),
 		(PMIC_STS_SPAR_MASK),
 		(PMIC_STS_SPAR_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -277,15 +261,14 @@ unsigned int mt6358_upmu_get_sts_spar(
 unsigned int mt6358_upmu_get_sts_rboot(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PONSTS),
 		(&val),
 		(PMIC_STS_RBOOT_MASK),
 		(PMIC_STS_RBOOT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -293,15 +276,14 @@ unsigned int mt6358_upmu_get_sts_rboot(
 unsigned int mt6358_upmu_get_sts_uvlo(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_POFFSTS),
 		(&val),
 		(PMIC_STS_UVLO_MASK),
 		(PMIC_STS_UVLO_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -309,15 +291,14 @@ unsigned int mt6358_upmu_get_sts_uvlo(
 unsigned int mt6358_upmu_get_sts_pgfail(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_POFFSTS),
 		(&val),
 		(PMIC_STS_PGFAIL_MASK),
 		(PMIC_STS_PGFAIL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -325,15 +306,14 @@ unsigned int mt6358_upmu_get_sts_pgfail(
 unsigned int mt6358_upmu_get_sts_psoc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_POFFSTS),
 		(&val),
 		(PMIC_STS_PSOC_MASK),
 		(PMIC_STS_PSOC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -341,15 +321,14 @@ unsigned int mt6358_upmu_get_sts_psoc(
 unsigned int mt6358_upmu_get_sts_thrdn(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_POFFSTS),
 		(&val),
 		(PMIC_STS_THRDN_MASK),
 		(PMIC_STS_THRDN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -357,15 +336,14 @@ unsigned int mt6358_upmu_get_sts_thrdn(
 unsigned int mt6358_upmu_get_sts_wrst(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_POFFSTS),
 		(&val),
 		(PMIC_STS_WRST_MASK),
 		(PMIC_STS_WRST_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -373,15 +351,14 @@ unsigned int mt6358_upmu_get_sts_wrst(
 unsigned int mt6358_upmu_get_sts_crst(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_POFFSTS),
 		(&val),
 		(PMIC_STS_CRST_MASK),
 		(PMIC_STS_CRST_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -389,15 +366,14 @@ unsigned int mt6358_upmu_get_sts_crst(
 unsigned int mt6358_upmu_get_sts_pkeylp(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_POFFSTS),
 		(&val),
 		(PMIC_STS_PKEYLP_MASK),
 		(PMIC_STS_PKEYLP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -405,15 +381,14 @@ unsigned int mt6358_upmu_get_sts_pkeylp(
 unsigned int mt6358_upmu_get_sts_normoff(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_POFFSTS),
 		(&val),
 		(PMIC_STS_NORMOFF_MASK),
 		(PMIC_STS_NORMOFF_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -421,15 +396,14 @@ unsigned int mt6358_upmu_get_sts_normoff(
 unsigned int mt6358_upmu_get_sts_bwdt(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_POFFSTS),
 		(&val),
 		(PMIC_STS_BWDT_MASK),
 		(PMIC_STS_BWDT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -437,15 +411,14 @@ unsigned int mt6358_upmu_get_sts_bwdt(
 unsigned int mt6358_upmu_get_sts_ddlo(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_POFFSTS),
 		(&val),
 		(PMIC_STS_DDLO_MASK),
 		(PMIC_STS_DDLO_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -453,15 +426,14 @@ unsigned int mt6358_upmu_get_sts_ddlo(
 unsigned int mt6358_upmu_get_sts_wdt(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_POFFSTS),
 		(&val),
 		(PMIC_STS_WDT_MASK),
 		(PMIC_STS_WDT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -469,15 +441,14 @@ unsigned int mt6358_upmu_get_sts_wdt(
 unsigned int mt6358_upmu_get_sts_pupsrc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_POFFSTS),
 		(&val),
 		(PMIC_STS_PUPSRC_MASK),
 		(PMIC_STS_PUPSRC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -485,15 +456,14 @@ unsigned int mt6358_upmu_get_sts_pupsrc(
 unsigned int mt6358_upmu_get_sts_keypwr(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_POFFSTS),
 		(&val),
 		(PMIC_STS_KEYPWR_MASK),
 		(PMIC_STS_KEYPWR_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -501,15 +471,14 @@ unsigned int mt6358_upmu_get_sts_keypwr(
 unsigned int mt6358_upmu_get_sts_pksp(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_POFFSTS),
 		(&val),
 		(PMIC_STS_PKSP_MASK),
 		(PMIC_STS_PKSP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -547,15 +516,14 @@ unsigned int mt6358_upmu_set_rg_ponsts_clr(
 unsigned int mt6358_upmu_get_vio18_pg_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_DEB_STS0),
 		(&val),
 		(PMIC_VIO18_PG_DEB_MASK),
 		(PMIC_VIO18_PG_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -563,15 +531,14 @@ unsigned int mt6358_upmu_get_vio18_pg_deb(
 unsigned int mt6358_upmu_get_vsram_proc12_pg_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_DEB_STS0),
 		(&val),
 		(PMIC_VSRAM_PROC12_PG_DEB_MASK),
 		(PMIC_VSRAM_PROC12_PG_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -579,15 +546,14 @@ unsigned int mt6358_upmu_get_vsram_proc12_pg_deb(
 unsigned int mt6358_upmu_get_vsram_proc11_pg_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_DEB_STS0),
 		(&val),
 		(PMIC_VSRAM_PROC11_PG_DEB_MASK),
 		(PMIC_VSRAM_PROC11_PG_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -595,15 +561,14 @@ unsigned int mt6358_upmu_get_vsram_proc11_pg_deb(
 unsigned int mt6358_upmu_get_va12_pg_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_DEB_STS0),
 		(&val),
 		(PMIC_VA12_PG_DEB_MASK),
 		(PMIC_VA12_PG_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -611,15 +576,14 @@ unsigned int mt6358_upmu_get_va12_pg_deb(
 unsigned int mt6358_upmu_get_vsram_gpu_pg_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_DEB_STS0),
 		(&val),
 		(PMIC_VSRAM_GPU_PG_DEB_MASK),
 		(PMIC_VSRAM_GPU_PG_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -627,15 +591,14 @@ unsigned int mt6358_upmu_get_vsram_gpu_pg_deb(
 unsigned int mt6358_upmu_get_vsram_others_pg_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_DEB_STS0),
 		(&val),
 		(PMIC_VSRAM_OTHERS_PG_DEB_MASK),
 		(PMIC_VSRAM_OTHERS_PG_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -643,15 +606,14 @@ unsigned int mt6358_upmu_get_vsram_others_pg_deb(
 unsigned int mt6358_upmu_get_vaux18_pg_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_DEB_STS0),
 		(&val),
 		(PMIC_VAUX18_PG_DEB_MASK),
 		(PMIC_VAUX18_PG_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -659,15 +621,14 @@ unsigned int mt6358_upmu_get_vaux18_pg_deb(
 unsigned int mt6358_upmu_get_vxo22_pg_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_DEB_STS0),
 		(&val),
 		(PMIC_VXO22_PG_DEB_MASK),
 		(PMIC_VXO22_PG_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -675,15 +636,14 @@ unsigned int mt6358_upmu_get_vxo22_pg_deb(
 unsigned int mt6358_upmu_get_vdram1_pg_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_DEB_STS0),
 		(&val),
 		(PMIC_VDRAM1_PG_DEB_MASK),
 		(PMIC_VDRAM1_PG_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -691,15 +651,14 @@ unsigned int mt6358_upmu_get_vdram1_pg_deb(
 unsigned int mt6358_upmu_get_vproc12_pg_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_DEB_STS0),
 		(&val),
 		(PMIC_VPROC12_PG_DEB_MASK),
 		(PMIC_VPROC12_PG_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -707,15 +666,14 @@ unsigned int mt6358_upmu_get_vproc12_pg_deb(
 unsigned int mt6358_upmu_get_vproc11_pg_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_DEB_STS0),
 		(&val),
 		(PMIC_VPROC11_PG_DEB_MASK),
 		(PMIC_VPROC11_PG_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -723,15 +681,14 @@ unsigned int mt6358_upmu_get_vproc11_pg_deb(
 unsigned int mt6358_upmu_get_vs1_pg_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_DEB_STS0),
 		(&val),
 		(PMIC_VS1_PG_DEB_MASK),
 		(PMIC_VS1_PG_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -739,15 +696,14 @@ unsigned int mt6358_upmu_get_vs1_pg_deb(
 unsigned int mt6358_upmu_get_vgpu_pg_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_DEB_STS0),
 		(&val),
 		(PMIC_VGPU_PG_DEB_MASK),
 		(PMIC_VGPU_PG_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -755,15 +711,14 @@ unsigned int mt6358_upmu_get_vgpu_pg_deb(
 unsigned int mt6358_upmu_get_vmodem_pg_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_DEB_STS0),
 		(&val),
 		(PMIC_VMODEM_PG_DEB_MASK),
 		(PMIC_VMODEM_PG_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -771,15 +726,14 @@ unsigned int mt6358_upmu_get_vmodem_pg_deb(
 unsigned int mt6358_upmu_get_vcore_pg_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_DEB_STS0),
 		(&val),
 		(PMIC_VCORE_PG_DEB_MASK),
 		(PMIC_VCORE_PG_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -787,15 +741,14 @@ unsigned int mt6358_upmu_get_vcore_pg_deb(
 unsigned int mt6358_upmu_get_vs2_pg_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_DEB_STS0),
 		(&val),
 		(PMIC_VS2_PG_DEB_MASK),
 		(PMIC_VS2_PG_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -803,15 +756,14 @@ unsigned int mt6358_upmu_get_vs2_pg_deb(
 unsigned int mt6358_upmu_get_rsv_pg_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_DEB_STS1),
 		(&val),
 		(PMIC_RSV_PG_DEB_MASK),
 		(PMIC_RSV_PG_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -819,15 +771,14 @@ unsigned int mt6358_upmu_get_rsv_pg_deb(
 unsigned int mt6358_upmu_get_vaud28_pg_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_DEB_STS1),
 		(&val),
 		(PMIC_VAUD28_PG_DEB_MASK),
 		(PMIC_VAUD28_PG_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -835,15 +786,14 @@ unsigned int mt6358_upmu_get_vaud28_pg_deb(
 unsigned int mt6358_upmu_get_vusb_pg_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_DEB_STS1),
 		(&val),
 		(PMIC_VUSB_PG_DEB_MASK),
 		(PMIC_VUSB_PG_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -851,15 +801,14 @@ unsigned int mt6358_upmu_get_vusb_pg_deb(
 unsigned int mt6358_upmu_get_vdram2_pg_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_DEB_STS1),
 		(&val),
 		(PMIC_VDRAM2_PG_DEB_MASK),
 		(PMIC_VDRAM2_PG_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -867,15 +816,14 @@ unsigned int mt6358_upmu_get_vdram2_pg_deb(
 unsigned int mt6358_upmu_get_vio28_pg_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_DEB_STS1),
 		(&val),
 		(PMIC_VIO28_PG_DEB_MASK),
 		(PMIC_VIO28_PG_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -883,15 +831,14 @@ unsigned int mt6358_upmu_get_vio28_pg_deb(
 unsigned int mt6358_upmu_get_vemc_pg_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_DEB_STS1),
 		(&val),
 		(PMIC_VEMC_PG_DEB_MASK),
 		(PMIC_VEMC_PG_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -899,15 +846,14 @@ unsigned int mt6358_upmu_get_vemc_pg_deb(
 unsigned int mt6358_upmu_get_strup_vio18_pg_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_SDN_STS0),
 		(&val),
 		(PMIC_STRUP_VIO18_PG_STATUS_MASK),
 		(PMIC_STRUP_VIO18_PG_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -915,15 +861,14 @@ unsigned int mt6358_upmu_get_strup_vio18_pg_status(
 unsigned int mt6358_upmu_get_strup_vsram_proc12_pg_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_SDN_STS0),
 		(&val),
 		(PMIC_STRUP_VSRAM_PROC12_PG_STATUS_MASK),
 		(PMIC_STRUP_VSRAM_PROC12_PG_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -931,15 +876,14 @@ unsigned int mt6358_upmu_get_strup_vsram_proc12_pg_status(
 unsigned int mt6358_upmu_get_strup_vsram_proc11_pg_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_SDN_STS0),
 		(&val),
 		(PMIC_STRUP_VSRAM_PROC11_PG_STATUS_MASK),
 		(PMIC_STRUP_VSRAM_PROC11_PG_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -947,15 +891,14 @@ unsigned int mt6358_upmu_get_strup_vsram_proc11_pg_status(
 unsigned int mt6358_upmu_get_strup_va12_pg_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_SDN_STS0),
 		(&val),
 		(PMIC_STRUP_VA12_PG_STATUS_MASK),
 		(PMIC_STRUP_VA12_PG_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -963,15 +906,14 @@ unsigned int mt6358_upmu_get_strup_va12_pg_status(
 unsigned int mt6358_upmu_get_strup_vsram_gpu_pg_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_SDN_STS0),
 		(&val),
 		(PMIC_STRUP_VSRAM_GPU_PG_STATUS_MASK),
 		(PMIC_STRUP_VSRAM_GPU_PG_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -979,15 +921,14 @@ unsigned int mt6358_upmu_get_strup_vsram_gpu_pg_status(
 unsigned int mt6358_upmu_get_strup_vsram_others_pg_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_SDN_STS0),
 		(&val),
 		(PMIC_STRUP_VSRAM_OTHERS_PG_STATUS_MASK),
 		(PMIC_STRUP_VSRAM_OTHERS_PG_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -995,15 +936,14 @@ unsigned int mt6358_upmu_get_strup_vsram_others_pg_status(
 unsigned int mt6358_upmu_get_strup_vaux18_pg_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_SDN_STS0),
 		(&val),
 		(PMIC_STRUP_VAUX18_PG_STATUS_MASK),
 		(PMIC_STRUP_VAUX18_PG_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1011,15 +951,14 @@ unsigned int mt6358_upmu_get_strup_vaux18_pg_status(
 unsigned int mt6358_upmu_get_strup_vxo22_pg_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_SDN_STS0),
 		(&val),
 		(PMIC_STRUP_VXO22_PG_STATUS_MASK),
 		(PMIC_STRUP_VXO22_PG_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1027,15 +966,14 @@ unsigned int mt6358_upmu_get_strup_vxo22_pg_status(
 unsigned int mt6358_upmu_get_strup_vdram1_pg_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_SDN_STS0),
 		(&val),
 		(PMIC_STRUP_VDRAM1_PG_STATUS_MASK),
 		(PMIC_STRUP_VDRAM1_PG_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1043,15 +981,14 @@ unsigned int mt6358_upmu_get_strup_vdram1_pg_status(
 unsigned int mt6358_upmu_get_strup_vproc12_pg_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_SDN_STS0),
 		(&val),
 		(PMIC_STRUP_VPROC12_PG_STATUS_MASK),
 		(PMIC_STRUP_VPROC12_PG_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1059,15 +996,14 @@ unsigned int mt6358_upmu_get_strup_vproc12_pg_status(
 unsigned int mt6358_upmu_get_strup_vproc11_pg_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_SDN_STS0),
 		(&val),
 		(PMIC_STRUP_VPROC11_PG_STATUS_MASK),
 		(PMIC_STRUP_VPROC11_PG_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1075,15 +1011,14 @@ unsigned int mt6358_upmu_get_strup_vproc11_pg_status(
 unsigned int mt6358_upmu_get_strup_vs1_pg_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_SDN_STS0),
 		(&val),
 		(PMIC_STRUP_VS1_PG_STATUS_MASK),
 		(PMIC_STRUP_VS1_PG_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1091,15 +1026,14 @@ unsigned int mt6358_upmu_get_strup_vs1_pg_status(
 unsigned int mt6358_upmu_get_strup_vgpu_pg_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_SDN_STS0),
 		(&val),
 		(PMIC_STRUP_VGPU_PG_STATUS_MASK),
 		(PMIC_STRUP_VGPU_PG_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1107,15 +1041,14 @@ unsigned int mt6358_upmu_get_strup_vgpu_pg_status(
 unsigned int mt6358_upmu_get_strup_vmodem_pg_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_SDN_STS0),
 		(&val),
 		(PMIC_STRUP_VMODEM_PG_STATUS_MASK),
 		(PMIC_STRUP_VMODEM_PG_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1123,15 +1056,14 @@ unsigned int mt6358_upmu_get_strup_vmodem_pg_status(
 unsigned int mt6358_upmu_get_strup_vcore_pg_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_SDN_STS0),
 		(&val),
 		(PMIC_STRUP_VCORE_PG_STATUS_MASK),
 		(PMIC_STRUP_VCORE_PG_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1139,15 +1071,14 @@ unsigned int mt6358_upmu_get_strup_vcore_pg_status(
 unsigned int mt6358_upmu_get_strup_vs2_pg_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_SDN_STS0),
 		(&val),
 		(PMIC_STRUP_VS2_PG_STATUS_MASK),
 		(PMIC_STRUP_VS2_PG_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1155,15 +1086,14 @@ unsigned int mt6358_upmu_get_strup_vs2_pg_status(
 unsigned int mt6358_upmu_get_strup_rsv_pg_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_SDN_STS1),
 		(&val),
 		(PMIC_STRUP_RSV_PG_STATUS_MASK),
 		(PMIC_STRUP_RSV_PG_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1171,15 +1101,14 @@ unsigned int mt6358_upmu_get_strup_rsv_pg_status(
 unsigned int mt6358_upmu_get_strup_vaud28_pg_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_SDN_STS1),
 		(&val),
 		(PMIC_STRUP_VAUD28_PG_STATUS_MASK),
 		(PMIC_STRUP_VAUD28_PG_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1187,15 +1116,14 @@ unsigned int mt6358_upmu_get_strup_vaud28_pg_status(
 unsigned int mt6358_upmu_get_strup_vusb_pg_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_SDN_STS1),
 		(&val),
 		(PMIC_STRUP_VUSB_PG_STATUS_MASK),
 		(PMIC_STRUP_VUSB_PG_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1203,15 +1131,14 @@ unsigned int mt6358_upmu_get_strup_vusb_pg_status(
 unsigned int mt6358_upmu_get_strup_vdram2_pg_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		PMIC_STRUP_VDRAM2_PG_STATUS_ADDR,
 		(&val),
 		(PMIC_STRUP_VDRAM2_PG_STATUS_MASK),
 		(PMIC_STRUP_VDRAM2_PG_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1219,15 +1146,14 @@ unsigned int mt6358_upmu_get_strup_vdram2_pg_status(
 unsigned int mt6358_upmu_get_strup_vio28_pg_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_SDN_STS1),
 		(&val),
 		(PMIC_STRUP_VIO28_PG_STATUS_MASK),
 		(PMIC_STRUP_VIO28_PG_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1235,15 +1161,14 @@ unsigned int mt6358_upmu_get_strup_vio28_pg_status(
 unsigned int mt6358_upmu_get_strup_vemc_pg_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PG_SDN_STS1),
 		(&val),
 		(PMIC_STRUP_VEMC_PG_STATUS_MASK),
 		(PMIC_STRUP_VEMC_PG_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1251,15 +1176,14 @@ unsigned int mt6358_upmu_get_strup_vemc_pg_status(
 unsigned int mt6358_upmu_get_strup_vdram1_oc_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_OC_SDN_STS0),
 		(&val),
 		(PMIC_STRUP_VDRAM1_OC_STATUS_MASK),
 		(PMIC_STRUP_VDRAM1_OC_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1267,15 +1191,14 @@ unsigned int mt6358_upmu_get_strup_vdram1_oc_status(
 unsigned int mt6358_upmu_get_strup_vproc12_oc_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_OC_SDN_STS0),
 		(&val),
 		(PMIC_STRUP_VPROC12_OC_STATUS_MASK),
 		(PMIC_STRUP_VPROC12_OC_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1283,15 +1206,14 @@ unsigned int mt6358_upmu_get_strup_vproc12_oc_status(
 unsigned int mt6358_upmu_get_strup_vproc11_oc_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_OC_SDN_STS0),
 		(&val),
 		(PMIC_STRUP_VPROC11_OC_STATUS_MASK),
 		(PMIC_STRUP_VPROC11_OC_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1299,15 +1221,14 @@ unsigned int mt6358_upmu_get_strup_vproc11_oc_status(
 unsigned int mt6358_upmu_get_strup_vs1_oc_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_OC_SDN_STS0),
 		(&val),
 		(PMIC_STRUP_VS1_OC_STATUS_MASK),
 		(PMIC_STRUP_VS1_OC_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1315,15 +1236,14 @@ unsigned int mt6358_upmu_get_strup_vs1_oc_status(
 unsigned int mt6358_upmu_get_strup_vgpu_oc_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_OC_SDN_STS0),
 		(&val),
 		(PMIC_STRUP_VGPU_OC_STATUS_MASK),
 		(PMIC_STRUP_VGPU_OC_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1331,15 +1251,14 @@ unsigned int mt6358_upmu_get_strup_vgpu_oc_status(
 unsigned int mt6358_upmu_get_strup_vmodem_oc_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_OC_SDN_STS0),
 		(&val),
 		(PMIC_STRUP_VMODEM_OC_STATUS_MASK),
 		(PMIC_STRUP_VMODEM_OC_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1347,15 +1266,14 @@ unsigned int mt6358_upmu_get_strup_vmodem_oc_status(
 unsigned int mt6358_upmu_get_strup_vcore_oc_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_OC_SDN_STS0),
 		(&val),
 		(PMIC_STRUP_VCORE_OC_STATUS_MASK),
 		(PMIC_STRUP_VCORE_OC_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1363,15 +1281,14 @@ unsigned int mt6358_upmu_get_strup_vcore_oc_status(
 unsigned int mt6358_upmu_get_strup_vs2_oc_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_OC_SDN_STS0),
 		(&val),
 		(PMIC_STRUP_VS2_OC_STATUS_MASK),
 		(PMIC_STRUP_VS2_OC_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1379,15 +1296,14 @@ unsigned int mt6358_upmu_get_strup_vs2_oc_status(
 unsigned int mt6358_upmu_get_pmu_thermal_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_THERMALSTATUS),
 		(&val),
 		(PMIC_PMU_THERMAL_DEB_MASK),
 		(PMIC_PMU_THERMAL_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1395,15 +1311,14 @@ unsigned int mt6358_upmu_get_pmu_thermal_deb(
 unsigned int mt6358_upmu_get_strup_thermal_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_THERMALSTATUS),
 		(&val),
 		(PMIC_STRUP_THERMAL_STATUS_MASK),
 		(PMIC_STRUP_THERMAL_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1426,15 +1341,14 @@ unsigned int mt6358_upmu_set_rg_srclken_in0_en(
 unsigned int mt6358_upmu_get_rg_srclken_in0_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_CON),
 		(&val),
 		(PMIC_RG_SRCLKEN_IN0_EN_MASK),
 		(PMIC_RG_SRCLKEN_IN0_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1472,15 +1386,14 @@ unsigned int mt6358_upmu_set_rg_srclken_in1_en(
 unsigned int mt6358_upmu_get_rg_srclken_in1_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_CON),
 		(&val),
 		(PMIC_RG_SRCLKEN_IN1_EN_MASK),
 		(PMIC_RG_SRCLKEN_IN1_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1518,15 +1431,14 @@ unsigned int mt6358_upmu_set_rg_srclken_in_sync_en(
 unsigned int mt6358_upmu_get_rg_srclken_in_sync_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_CON),
 		(&val),
 		(PMIC_RG_SRCLKEN_IN_SYNC_EN_MASK),
 		(PMIC_RG_SRCLKEN_IN_SYNC_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1549,15 +1461,14 @@ unsigned int mt6358_upmu_set_rg_osc_en_auto_off(
 unsigned int mt6358_upmu_get_rg_osc_en_auto_off(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_CON),
 		(&val),
 		(PMIC_RG_OSC_EN_AUTO_OFF_MASK),
 		(PMIC_RG_OSC_EN_AUTO_OFF_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1565,15 +1476,14 @@ unsigned int mt6358_upmu_get_rg_osc_en_auto_off(
 unsigned int mt6358_upmu_get_test_out(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TEST_OUT),
 		(&val),
 		(PMIC_TEST_OUT_MASK),
 		(PMIC_TEST_OUT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1686,15 +1596,14 @@ unsigned int mt6358_upmu_set_testmode_sw(
 unsigned int mt6358_upmu_get_pmu_test_mode_scan(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOPSTATUS),
 		(&val),
 		(PMIC_PMU_TEST_MODE_SCAN_MASK),
 		(PMIC_PMU_TEST_MODE_SCAN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1702,15 +1611,14 @@ unsigned int mt6358_upmu_get_pmu_test_mode_scan(
 unsigned int mt6358_upmu_get_pwrkey_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOPSTATUS),
 		(&val),
 		(PMIC_PWRKEY_DEB_MASK),
 		(PMIC_PWRKEY_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1718,15 +1626,14 @@ unsigned int mt6358_upmu_get_pwrkey_deb(
 unsigned int mt6358_upmu_get_chrdet_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOPSTATUS),
 		(&val),
 		(PMIC_CHRDET_DEB_MASK),
 		(PMIC_CHRDET_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -1734,15 +1641,14 @@ unsigned int mt6358_upmu_get_chrdet_deb(
 unsigned int mt6358_upmu_get_homekey_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOPSTATUS),
 		(&val),
 		(PMIC_HOMEKEY_DEB_MASK),
 		(PMIC_HOMEKEY_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -2170,15 +2076,14 @@ unsigned int mt6358_upmu_set_rg_smt_aud_sync_miso(
 unsigned int mt6358_upmu_get_rg_top_rsv0(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_RSV0),
 		(&val),
 		(PMIC_RG_TOP_RSV0_MASK),
 		(PMIC_RG_TOP_RSV0_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -2186,15 +2091,14 @@ unsigned int mt6358_upmu_get_rg_top_rsv0(
 unsigned int mt6358_upmu_get_rg_top_rsv1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_RSV1),
 		(&val),
 		(PMIC_RG_TOP_RSV1_MASK),
 		(PMIC_RG_TOP_RSV1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -2502,15 +2406,14 @@ unsigned int mt6358_upmu_set_rg_srclken_in0_filter_en(
 unsigned int mt6358_upmu_get_rg_srclken_in0_filter_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FILTER_CON0),
 		(&val),
 		(PMIC_RG_SRCLKEN_IN0_FILTER_EN_MASK),
 		(PMIC_RG_SRCLKEN_IN0_FILTER_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -2533,15 +2436,14 @@ unsigned int mt6358_upmu_set_rg_srclken_in1_filter_en(
 unsigned int mt6358_upmu_get_rg_srclken_in1_filter_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FILTER_CON0),
 		(&val),
 		(PMIC_RG_SRCLKEN_IN1_FILTER_EN_MASK),
 		(PMIC_RG_SRCLKEN_IN1_FILTER_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -2564,15 +2466,14 @@ unsigned int mt6358_upmu_set_rg_rtc32k_1v8_0_filter_en(
 unsigned int mt6358_upmu_get_rg_rtc32k_1v8_0_filter_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FILTER_CON0),
 		(&val),
 		(PMIC_RG_RTC32K_1V8_0_FILTER_EN_MASK),
 		(PMIC_RG_RTC32K_1V8_0_FILTER_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -2595,15 +2496,14 @@ unsigned int mt6358_upmu_set_rg_rtc32k_1v8_1_filter_en(
 unsigned int mt6358_upmu_get_rg_rtc32k_1v8_1_filter_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FILTER_CON0),
 		(&val),
 		(PMIC_RG_RTC32K_1V8_1_FILTER_EN_MASK),
 		(PMIC_RG_RTC32K_1V8_1_FILTER_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -2626,15 +2526,14 @@ unsigned int mt6358_upmu_set_rg_spi_clk_filter_en(
 unsigned int mt6358_upmu_get_rg_spi_clk_filter_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FILTER_CON0),
 		(&val),
 		(PMIC_RG_SPI_CLK_FILTER_EN_MASK),
 		(PMIC_RG_SPI_CLK_FILTER_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -2657,15 +2556,14 @@ unsigned int mt6358_upmu_set_rg_spi_csn_filter_en(
 unsigned int mt6358_upmu_get_rg_spi_csn_filter_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FILTER_CON0),
 		(&val),
 		(PMIC_RG_SPI_CSN_FILTER_EN_MASK),
 		(PMIC_RG_SPI_CSN_FILTER_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -2688,15 +2586,14 @@ unsigned int mt6358_upmu_set_rg_spi_mosi_filter_en(
 unsigned int mt6358_upmu_get_rg_spi_mosi_filter_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FILTER_CON0),
 		(&val),
 		(PMIC_RG_SPI_MOSI_FILTER_EN_MASK),
 		(PMIC_RG_SPI_MOSI_FILTER_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -2719,15 +2616,14 @@ unsigned int mt6358_upmu_set_rg_spi_miso_filter_en(
 unsigned int mt6358_upmu_get_rg_spi_miso_filter_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FILTER_CON0),
 		(&val),
 		(PMIC_RG_SPI_MISO_FILTER_EN_MASK),
 		(PMIC_RG_SPI_MISO_FILTER_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -2750,15 +2646,14 @@ unsigned int mt6358_upmu_set_rg_aud_clk_mosi_filter_en(
 unsigned int mt6358_upmu_get_rg_aud_clk_mosi_filter_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FILTER_CON0),
 		(&val),
 		(PMIC_RG_AUD_CLK_MOSI_FILTER_EN_MASK),
 		(PMIC_RG_AUD_CLK_MOSI_FILTER_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -2781,15 +2676,14 @@ unsigned int mt6358_upmu_set_rg_aud_dat_mosi0_filter_en(
 unsigned int mt6358_upmu_get_rg_aud_dat_mosi0_filter_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FILTER_CON0),
 		(&val),
 		(PMIC_RG_AUD_DAT_MOSI0_FILTER_EN_MASK),
 		(PMIC_RG_AUD_DAT_MOSI0_FILTER_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -2812,15 +2706,14 @@ unsigned int mt6358_upmu_set_rg_aud_dat_mosi1_filter_en(
 unsigned int mt6358_upmu_get_rg_aud_dat_mosi1_filter_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FILTER_CON0),
 		(&val),
 		(PMIC_RG_AUD_DAT_MOSI1_FILTER_EN_MASK),
 		(PMIC_RG_AUD_DAT_MOSI1_FILTER_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -2843,15 +2736,14 @@ unsigned int mt6358_upmu_set_rg_aud_sync_mosi_filter_en(
 unsigned int mt6358_upmu_get_rg_aud_sync_mosi_filter_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FILTER_CON0),
 		(&val),
 		(PMIC_RG_AUD_SYNC_MOSI_FILTER_EN_MASK),
 		(PMIC_RG_AUD_SYNC_MOSI_FILTER_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -2874,15 +2766,14 @@ unsigned int mt6358_upmu_set_rg_aud_clk_miso_filter_en(
 unsigned int mt6358_upmu_get_rg_aud_clk_miso_filter_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FILTER_CON0),
 		(&val),
 		(PMIC_RG_AUD_CLK_MISO_FILTER_EN_MASK),
 		(PMIC_RG_AUD_CLK_MISO_FILTER_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -2905,15 +2796,14 @@ unsigned int mt6358_upmu_set_rg_aud_dat_miso0_filter_en(
 unsigned int mt6358_upmu_get_rg_aud_dat_miso0_filter_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FILTER_CON0),
 		(&val),
 		(PMIC_RG_AUD_DAT_MISO0_FILTER_EN_MASK),
 		(PMIC_RG_AUD_DAT_MISO0_FILTER_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -2936,15 +2826,14 @@ unsigned int mt6358_upmu_set_rg_aud_dat_miso1_filter_en(
 unsigned int mt6358_upmu_get_rg_aud_dat_miso1_filter_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FILTER_CON0),
 		(&val),
 		(PMIC_RG_AUD_DAT_MISO1_FILTER_EN_MASK),
 		(PMIC_RG_AUD_DAT_MISO1_FILTER_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -2967,15 +2856,14 @@ unsigned int mt6358_upmu_set_rg_aud_sync_miso_filter_en(
 unsigned int mt6358_upmu_get_rg_aud_sync_miso_filter_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FILTER_CON0),
 		(&val),
 		(PMIC_RG_AUD_SYNC_MISO_FILTER_EN_MASK),
 		(PMIC_RG_AUD_SYNC_MISO_FILTER_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -2998,15 +2886,14 @@ unsigned int mt6358_upmu_set_rg_wdtrstb_in_filter_en(
 unsigned int mt6358_upmu_get_rg_wdtrstb_in_filter_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FILTER_CON1),
 		(&val),
 		(PMIC_RG_WDTRSTB_IN_FILTER_EN_MASK),
 		(PMIC_RG_WDTRSTB_IN_FILTER_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -3029,15 +2916,14 @@ unsigned int mt6358_upmu_set_rg_homekey_filter_en(
 unsigned int mt6358_upmu_get_rg_homekey_filter_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FILTER_CON1),
 		(&val),
 		(PMIC_RG_HOMEKEY_FILTER_EN_MASK),
 		(PMIC_RG_HOMEKEY_FILTER_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -3060,15 +2946,14 @@ unsigned int mt6358_upmu_set_rg_scp_vreq_vao_filter_en(
 unsigned int mt6358_upmu_get_rg_scp_vreq_vao_filter_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FILTER_CON1),
 		(&val),
 		(PMIC_RG_SCP_VREQ_VAO_FILTER_EN_MASK),
 		(PMIC_RG_SCP_VREQ_VAO_FILTER_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -3091,15 +2976,14 @@ unsigned int mt6358_upmu_set_rg_sd_card_det_n_filter_en(
 unsigned int mt6358_upmu_get_rg_sd_card_det_n_filter_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FILTER_CON1),
 		(&val),
 		(PMIC_RG_SD_CARD_DET_N_FILTER_EN_MASK),
 		(PMIC_RG_SD_CARD_DET_N_FILTER_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -3422,15 +3306,14 @@ unsigned int mt6358_upmu_set_top_status(
 unsigned int mt6358_upmu_get_vm_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_TRAP),
 		(&val),
 		(PMIC_VM_MODE_MASK),
 		(PMIC_VM_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -3438,15 +3321,14 @@ unsigned int mt6358_upmu_get_vm_mode(
 unsigned int mt6358_upmu_get_top1_ana_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP1_ID),
 		(&val),
 		(PMIC_TOP1_ANA_ID_MASK),
 		(PMIC_TOP1_ANA_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -3454,15 +3336,14 @@ unsigned int mt6358_upmu_get_top1_ana_id(
 unsigned int mt6358_upmu_get_top1_dig_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP1_ID),
 		(&val),
 		(PMIC_TOP1_DIG_ID_MASK),
 		(PMIC_TOP1_DIG_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -3470,15 +3351,14 @@ unsigned int mt6358_upmu_get_top1_dig_id(
 unsigned int mt6358_upmu_get_top1_ana_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP1_REV0),
 		(&val),
 		(PMIC_TOP1_ANA_MINOR_REV_MASK),
 		(PMIC_TOP1_ANA_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -3486,15 +3366,14 @@ unsigned int mt6358_upmu_get_top1_ana_minor_rev(
 unsigned int mt6358_upmu_get_top1_ana_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP1_REV0),
 		(&val),
 		(PMIC_TOP1_ANA_MAJOR_REV_MASK),
 		(PMIC_TOP1_ANA_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -3502,15 +3381,14 @@ unsigned int mt6358_upmu_get_top1_ana_major_rev(
 unsigned int mt6358_upmu_get_top1_dig_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP1_REV0),
 		(&val),
 		(PMIC_TOP1_DIG_MINOR_REV_MASK),
 		(PMIC_TOP1_DIG_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -3518,15 +3396,14 @@ unsigned int mt6358_upmu_get_top1_dig_minor_rev(
 unsigned int mt6358_upmu_get_top1_dig_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP1_REV0),
 		(&val),
 		(PMIC_TOP1_DIG_MAJOR_REV_MASK),
 		(PMIC_TOP1_DIG_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -3534,15 +3411,14 @@ unsigned int mt6358_upmu_get_top1_dig_major_rev(
 unsigned int mt6358_upmu_get_top1_dsn_cbs(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP1_DSN_DBI),
 		(&val),
 		(PMIC_TOP1_DSN_CBS_MASK),
 		(PMIC_TOP1_DSN_CBS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -3550,15 +3426,14 @@ unsigned int mt6358_upmu_get_top1_dsn_cbs(
 unsigned int mt6358_upmu_get_top1_dsn_bix(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP1_DSN_DBI),
 		(&val),
 		(PMIC_TOP1_DSN_BIX_MASK),
 		(PMIC_TOP1_DSN_BIX_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -3566,15 +3441,14 @@ unsigned int mt6358_upmu_get_top1_dsn_bix(
 unsigned int mt6358_upmu_get_top1_dsn_esp(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP1_DSN_DBI),
 		(&val),
 		(PMIC_TOP1_DSN_ESP_MASK),
 		(PMIC_TOP1_DSN_ESP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -3582,15 +3456,14 @@ unsigned int mt6358_upmu_get_top1_dsn_esp(
 unsigned int mt6358_upmu_get_top1_dsn_fpi(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP1_DSN_DXI),
 		(&val),
 		(PMIC_TOP1_DSN_FPI_MASK),
 		(PMIC_TOP1_DSN_FPI_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -3748,15 +3621,14 @@ unsigned int mt6358_upmu_set_gpio_dout1(
 unsigned int mt6358_upmu_get_gpio_pi0(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_GPIO_PI0),
 		(&val),
 		(PMIC_GPIO_PI0_MASK),
 		(PMIC_GPIO_PI0_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -3764,15 +3636,14 @@ unsigned int mt6358_upmu_get_gpio_pi0(
 unsigned int mt6358_upmu_get_gpio_pi1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_GPIO_PI1),
 		(&val),
 		(PMIC_GPIO_PI1_MASK),
 		(PMIC_GPIO_PI1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -3780,15 +3651,14 @@ unsigned int mt6358_upmu_get_gpio_pi1(
 unsigned int mt6358_upmu_get_gpio_poe0(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_GPIO_POE0),
 		(&val),
 		(PMIC_GPIO_POE0_MASK),
 		(PMIC_GPIO_POE0_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -3796,15 +3666,14 @@ unsigned int mt6358_upmu_get_gpio_poe0(
 unsigned int mt6358_upmu_get_gpio_poe1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_GPIO_POE1),
 		(&val),
 		(PMIC_GPIO_POE1_MASK),
 		(PMIC_GPIO_POE1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -4112,15 +3981,14 @@ unsigned int mt6358_upmu_set_gpio_rsv(
 unsigned int mt6358_upmu_get_top2_ana_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP2_ID),
 		(&val),
 		(PMIC_TOP2_ANA_ID_MASK),
 		(PMIC_TOP2_ANA_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -4128,15 +3996,14 @@ unsigned int mt6358_upmu_get_top2_ana_id(
 unsigned int mt6358_upmu_get_top2_dig_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP2_ID),
 		(&val),
 		(PMIC_TOP2_DIG_ID_MASK),
 		(PMIC_TOP2_DIG_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -4144,15 +4011,14 @@ unsigned int mt6358_upmu_get_top2_dig_id(
 unsigned int mt6358_upmu_get_top2_ana_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP2_REV0),
 		(&val),
 		(PMIC_TOP2_ANA_MINOR_REV_MASK),
 		(PMIC_TOP2_ANA_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -4160,15 +4026,14 @@ unsigned int mt6358_upmu_get_top2_ana_minor_rev(
 unsigned int mt6358_upmu_get_top2_ana_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP2_REV0),
 		(&val),
 		(PMIC_TOP2_ANA_MAJOR_REV_MASK),
 		(PMIC_TOP2_ANA_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -4176,15 +4041,14 @@ unsigned int mt6358_upmu_get_top2_ana_major_rev(
 unsigned int mt6358_upmu_get_top2_dig_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP2_REV0),
 		(&val),
 		(PMIC_TOP2_DIG_MINOR_REV_MASK),
 		(PMIC_TOP2_DIG_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -4192,15 +4056,14 @@ unsigned int mt6358_upmu_get_top2_dig_minor_rev(
 unsigned int mt6358_upmu_get_top2_dig_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP2_REV0),
 		(&val),
 		(PMIC_TOP2_DIG_MAJOR_REV_MASK),
 		(PMIC_TOP2_DIG_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -4208,15 +4071,14 @@ unsigned int mt6358_upmu_get_top2_dig_major_rev(
 unsigned int mt6358_upmu_get_top2_dsn_cbs(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP2_DSN_DBI),
 		(&val),
 		(PMIC_TOP2_DSN_CBS_MASK),
 		(PMIC_TOP2_DSN_CBS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -4224,15 +4086,14 @@ unsigned int mt6358_upmu_get_top2_dsn_cbs(
 unsigned int mt6358_upmu_get_top2_dsn_bix(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP2_DSN_DBI),
 		(&val),
 		(PMIC_TOP2_DSN_BIX_MASK),
 		(PMIC_TOP2_DSN_BIX_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -4240,15 +4101,14 @@ unsigned int mt6358_upmu_get_top2_dsn_bix(
 unsigned int mt6358_upmu_get_top2_dsn_esp(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP2_DSN_DBI),
 		(&val),
 		(PMIC_TOP2_DSN_ESP_MASK),
 		(PMIC_TOP2_DSN_ESP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -4256,15 +4116,14 @@ unsigned int mt6358_upmu_get_top2_dsn_esp(
 unsigned int mt6358_upmu_get_top2_dsn_fpi(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP2_DSN_DXI),
 		(&val),
 		(PMIC_TOP2_DSN_FPI_MASK),
 		(PMIC_TOP2_DSN_FPI_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -5022,15 +4881,14 @@ unsigned int mt6358_upmu_set_rg_pmu_vxo22_on_sw_en(
 unsigned int mt6358_upmu_get_rg_pmu_vxo22_on_sw_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_CKHWEN_CON0),
 		(&val),
 		(PMIC_RG_PMU_VXO22_ON_SW_EN_MASK),
 		(PMIC_RG_PMU_VXO22_ON_SW_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -5353,15 +5211,14 @@ unsigned int mt6358_upmu_set_rg_osc_sel_sw_en(
 unsigned int mt6358_upmu_get_rg_osc_sel_sw_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_CLK_CON0),
 		(&val),
 		(PMIC_RG_OSC_SEL_SW_EN_MASK),
 		(PMIC_RG_OSC_SEL_SW_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -5399,15 +5256,14 @@ unsigned int mt6358_upmu_set_rg_osc_en_sw_en(
 unsigned int mt6358_upmu_get_rg_osc_en_sw_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_CLK_CON0),
 		(&val),
 		(PMIC_RG_OSC_EN_SW_EN_MASK),
 		(PMIC_RG_OSC_EN_SW_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -5430,15 +5286,14 @@ unsigned int mt6358_upmu_set_rg_osc_en(
 unsigned int mt6358_upmu_get_rg_osc_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_CLK_CON0),
 		(&val),
 		(PMIC_RG_OSC_EN_MASK),
 		(PMIC_RG_OSC_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -5461,15 +5316,14 @@ unsigned int mt6358_upmu_set_rg_srcvolten_lp_en(
 unsigned int mt6358_upmu_get_rg_srcvolten_lp_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_CLK_CON0),
 		(&val),
 		(PMIC_RG_SRCVOLTEN_LP_EN_MASK),
 		(PMIC_RG_SRCVOLTEN_LP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -5492,15 +5346,14 @@ unsigned int mt6358_upmu_set_rg_srclken0_lp_en(
 unsigned int mt6358_upmu_get_rg_srclken0_lp_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_CLK_CON0),
 		(&val),
 		(PMIC_RG_SRCLKEN0_LP_EN_MASK),
 		(PMIC_RG_SRCLKEN0_LP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -5523,15 +5376,14 @@ unsigned int mt6358_upmu_set_rg_srclken1_lp_en(
 unsigned int mt6358_upmu_get_rg_srclken1_lp_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_CLK_CON0),
 		(&val),
 		(PMIC_RG_SRCLKEN1_LP_EN_MASK),
 		(PMIC_RG_SRCLKEN1_LP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -5554,15 +5406,14 @@ unsigned int mt6358_upmu_set_rg_srclken2_lp_en(
 unsigned int mt6358_upmu_get_rg_srclken2_lp_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_CLK_CON0),
 		(&val),
 		(PMIC_RG_SRCLKEN2_LP_EN_MASK),
 		(PMIC_RG_SRCLKEN2_LP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -5585,15 +5436,14 @@ unsigned int mt6358_upmu_set_rg_buck_lp_en(
 unsigned int mt6358_upmu_get_rg_buck_lp_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_CLK_CON0),
 		(&val),
 		(PMIC_RG_BUCK_LP_EN_MASK),
 		(PMIC_RG_BUCK_LP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -5616,15 +5466,14 @@ unsigned int mt6358_upmu_set_rg_ldo_lp_en(
 unsigned int mt6358_upmu_get_rg_ldo_lp_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_CLK_CON0),
 		(&val),
 		(PMIC_RG_LDO_LP_EN_MASK),
 		(PMIC_RG_LDO_LP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -5662,15 +5511,14 @@ unsigned int mt6358_upmu_set_rg_buck_pfm_flag_sw_en(
 unsigned int mt6358_upmu_get_rg_buck_pfm_flag_sw_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_CLK_CON0),
 		(&val),
 		(PMIC_RG_BUCK_PFM_FLAG_SW_EN_MASK),
 		(PMIC_RG_BUCK_PFM_FLAG_SW_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -5708,15 +5556,14 @@ unsigned int mt6358_upmu_set_rg_dcxo26m_rdy_sw_en(
 unsigned int mt6358_upmu_get_rg_dcxo26m_rdy_sw_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_CLK_CON0),
 		(&val),
 		(PMIC_RG_DCXO26M_RDY_SW_EN_MASK),
 		(PMIC_RG_DCXO26M_RDY_SW_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -5754,15 +5601,14 @@ unsigned int mt6358_upmu_set_rg_pmu_lp_sw_en(
 unsigned int mt6358_upmu_get_rg_pmu_lp_sw_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_CLK_CON0),
 		(&val),
 		(PMIC_RG_PMU_LP_SW_EN_MASK),
 		(PMIC_RG_PMU_LP_SW_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -5785,15 +5631,14 @@ unsigned int mt6358_upmu_set_rg_pmu_mdb_dcm_sw_en(
 unsigned int mt6358_upmu_get_rg_pmu_mdb_dcm_sw_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_DCM_CON0),
 		(&val),
 		(PMIC_RG_PMU_MDB_DCM_SW_EN_MASK),
 		(PMIC_RG_PMU_MDB_DCM_SW_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -5816,15 +5661,14 @@ unsigned int mt6358_upmu_set_rg_pmu_mdb_dcm_sw_mode(
 unsigned int mt6358_upmu_get_ro_handover_debug(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_HANDOVER_DEBUG0),
 		(&val),
 		(PMIC_RO_HANDOVER_DEBUG_MASK),
 		(PMIC_RO_HANDOVER_DEBUG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6102,15 +5946,14 @@ unsigned int mt6358_upmu_set_rg_wdtrstb_en(
 unsigned int mt6358_upmu_get_rg_wdtrstb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_RST_MISC),
 		(&val),
 		(PMIC_RG_WDTRSTB_EN_MASK),
 		(PMIC_RG_WDTRSTB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6133,15 +5976,14 @@ unsigned int mt6358_upmu_set_rg_wdtrstb_mode(
 unsigned int mt6358_upmu_get_wdtrstb_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_RST_MISC),
 		(&val),
 		(PMIC_WDTRSTB_STATUS_MASK),
 		(PMIC_WDTRSTB_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6179,15 +6021,14 @@ unsigned int mt6358_upmu_set_rg_wdtrstb_fb_en(
 unsigned int mt6358_upmu_get_rg_wdtrstb_fb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_RST_MISC),
 		(&val),
 		(PMIC_RG_WDTRSTB_FB_EN_MASK),
 		(PMIC_RG_WDTRSTB_FB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6225,15 +6066,14 @@ unsigned int mt6358_upmu_set_rg_homekey_rst_en(
 unsigned int mt6358_upmu_get_rg_homekey_rst_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_RST_MISC),
 		(&val),
 		(PMIC_RG_HOMEKEY_RST_EN_MASK),
 		(PMIC_RG_HOMEKEY_RST_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6256,15 +6096,14 @@ unsigned int mt6358_upmu_set_rg_pwrkey_rst_en(
 unsigned int mt6358_upmu_get_rg_pwrkey_rst_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_RST_MISC),
 		(&val),
 		(PMIC_RG_PWRKEY_RST_EN_MASK),
 		(PMIC_RG_PWRKEY_RST_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6437,15 +6276,14 @@ unsigned int mt6358_upmu_set_top_rst_status_rsv(
 unsigned int mt6358_upmu_get_top2_elr_len(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP2_ELR_NUM),
 		(&val),
 		(PMIC_TOP2_ELR_LEN_MASK),
 		(PMIC_TOP2_ELR_LEN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6483,15 +6321,14 @@ unsigned int mt6358_upmu_set_rg_top2_rsv1(
 unsigned int mt6358_upmu_get_top3_ana_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP3_ID),
 		(&val),
 		(PMIC_TOP3_ANA_ID_MASK),
 		(PMIC_TOP3_ANA_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6499,15 +6336,14 @@ unsigned int mt6358_upmu_get_top3_ana_id(
 unsigned int mt6358_upmu_get_top3_dig_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP3_ID),
 		(&val),
 		(PMIC_TOP3_DIG_ID_MASK),
 		(PMIC_TOP3_DIG_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6515,15 +6351,14 @@ unsigned int mt6358_upmu_get_top3_dig_id(
 unsigned int mt6358_upmu_get_top3_ana_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP3_REV0),
 		(&val),
 		(PMIC_TOP3_ANA_MINOR_REV_MASK),
 		(PMIC_TOP3_ANA_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6531,15 +6366,14 @@ unsigned int mt6358_upmu_get_top3_ana_minor_rev(
 unsigned int mt6358_upmu_get_top3_ana_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP3_REV0),
 		(&val),
 		(PMIC_TOP3_ANA_MAJOR_REV_MASK),
 		(PMIC_TOP3_ANA_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6547,15 +6381,14 @@ unsigned int mt6358_upmu_get_top3_ana_major_rev(
 unsigned int mt6358_upmu_get_top3_dig_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP3_REV0),
 		(&val),
 		(PMIC_TOP3_DIG_MINOR_REV_MASK),
 		(PMIC_TOP3_DIG_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6563,15 +6396,14 @@ unsigned int mt6358_upmu_get_top3_dig_minor_rev(
 unsigned int mt6358_upmu_get_top3_dig_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP3_REV0),
 		(&val),
 		(PMIC_TOP3_DIG_MAJOR_REV_MASK),
 		(PMIC_TOP3_DIG_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6579,15 +6411,14 @@ unsigned int mt6358_upmu_get_top3_dig_major_rev(
 unsigned int mt6358_upmu_get_top3_dsn_cbs(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP3_DSN_DBI),
 		(&val),
 		(PMIC_TOP3_DSN_CBS_MASK),
 		(PMIC_TOP3_DSN_CBS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6595,15 +6426,14 @@ unsigned int mt6358_upmu_get_top3_dsn_cbs(
 unsigned int mt6358_upmu_get_top3_dsn_bix(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP3_DSN_DBI),
 		(&val),
 		(PMIC_TOP3_DSN_BIX_MASK),
 		(PMIC_TOP3_DSN_BIX_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6611,15 +6441,14 @@ unsigned int mt6358_upmu_get_top3_dsn_bix(
 unsigned int mt6358_upmu_get_top3_dsn_esp(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP3_DSN_DBI),
 		(&val),
 		(PMIC_TOP3_DSN_ESP_MASK),
 		(PMIC_TOP3_DSN_ESP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6627,15 +6456,14 @@ unsigned int mt6358_upmu_get_top3_dsn_esp(
 unsigned int mt6358_upmu_get_top3_dsn_fpi(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP3_DSN_DXI),
 		(&val),
 		(PMIC_TOP3_DSN_FPI_MASK),
 		(PMIC_TOP3_DSN_FPI_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6658,15 +6486,14 @@ unsigned int mt6358_upmu_set_rg_int_en_spi_cmd_alert(
 unsigned int mt6358_upmu_get_rg_int_en_spi_cmd_alert(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_MISC_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_SPI_CMD_ALERT_MASK),
 		(PMIC_RG_INT_EN_SPI_CMD_ALERT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6689,15 +6516,14 @@ unsigned int mt6358_upmu_set_rg_int_mask_spi_cmd_alert(
 unsigned int mt6358_upmu_get_rg_int_raw_status_spi_cmd_alert(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_MISC_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_SPI_CMD_ALERT_MASK),
 		(PMIC_RG_INT_RAW_STATUS_SPI_CMD_ALERT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6840,15 +6666,14 @@ unsigned int mt6358_upmu_set_rg_int_mask_misc_top(
 unsigned int mt6358_upmu_get_int_status_buck_top(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_INT_STATUS0),
 		(&val),
 		(PMIC_INT_STATUS_BUCK_TOP_MASK),
 		(PMIC_INT_STATUS_BUCK_TOP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6856,15 +6681,14 @@ unsigned int mt6358_upmu_get_int_status_buck_top(
 unsigned int mt6358_upmu_get_int_status_ldo_top(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_INT_STATUS0),
 		(&val),
 		(PMIC_INT_STATUS_LDO_TOP_MASK),
 		(PMIC_INT_STATUS_LDO_TOP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6872,15 +6696,14 @@ unsigned int mt6358_upmu_get_int_status_ldo_top(
 unsigned int mt6358_upmu_get_int_status_psc_top(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_INT_STATUS0),
 		(&val),
 		(PMIC_INT_STATUS_PSC_TOP_MASK),
 		(PMIC_INT_STATUS_PSC_TOP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6888,15 +6711,14 @@ unsigned int mt6358_upmu_get_int_status_psc_top(
 unsigned int mt6358_upmu_get_int_status_sck_top(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_INT_STATUS0),
 		(&val),
 		(PMIC_INT_STATUS_SCK_TOP_MASK),
 		(PMIC_INT_STATUS_SCK_TOP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6904,15 +6726,14 @@ unsigned int mt6358_upmu_get_int_status_sck_top(
 unsigned int mt6358_upmu_get_int_status_bm_top(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_INT_STATUS0),
 		(&val),
 		(PMIC_INT_STATUS_BM_TOP_MASK),
 		(PMIC_INT_STATUS_BM_TOP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6920,15 +6741,14 @@ unsigned int mt6358_upmu_get_int_status_bm_top(
 unsigned int mt6358_upmu_get_int_status_hk_top(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_INT_STATUS0),
 		(&val),
 		(PMIC_INT_STATUS_HK_TOP_MASK),
 		(PMIC_INT_STATUS_HK_TOP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6936,15 +6756,14 @@ unsigned int mt6358_upmu_get_int_status_hk_top(
 unsigned int mt6358_upmu_get_int_status_xpp_top(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_INT_STATUS0),
 		(&val),
 		(PMIC_INT_STATUS_XPP_TOP_MASK),
 		(PMIC_INT_STATUS_XPP_TOP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6952,15 +6771,14 @@ unsigned int mt6358_upmu_get_int_status_xpp_top(
 unsigned int mt6358_upmu_get_int_status_aud_top(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_INT_STATUS0),
 		(&val),
 		(PMIC_INT_STATUS_AUD_TOP_MASK),
 		(PMIC_INT_STATUS_AUD_TOP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6968,15 +6786,14 @@ unsigned int mt6358_upmu_get_int_status_aud_top(
 unsigned int mt6358_upmu_get_int_status_misc_top(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_INT_STATUS0),
 		(&val),
 		(PMIC_INT_STATUS_MISC_TOP_MASK),
 		(PMIC_INT_STATUS_MISC_TOP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -6984,15 +6801,14 @@ unsigned int mt6358_upmu_get_int_status_misc_top(
 unsigned int mt6358_upmu_get_int_status_top_rsv(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_INT_STATUS0),
 		(&val),
 		(PMIC_INT_STATUS_TOP_RSV_MASK),
 		(PMIC_INT_STATUS_TOP_RSV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7000,15 +6816,14 @@ unsigned int mt6358_upmu_get_int_status_top_rsv(
 unsigned int mt6358_upmu_get_int_raw_status_buck_top(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_INT_RAW_STATUS_BUCK_TOP_MASK),
 		(PMIC_INT_RAW_STATUS_BUCK_TOP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7016,15 +6831,14 @@ unsigned int mt6358_upmu_get_int_raw_status_buck_top(
 unsigned int mt6358_upmu_get_int_raw_status_ldo_top(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_INT_RAW_STATUS_LDO_TOP_MASK),
 		(PMIC_INT_RAW_STATUS_LDO_TOP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7032,15 +6846,14 @@ unsigned int mt6358_upmu_get_int_raw_status_ldo_top(
 unsigned int mt6358_upmu_get_int_raw_status_psc_top(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_INT_RAW_STATUS_PSC_TOP_MASK),
 		(PMIC_INT_RAW_STATUS_PSC_TOP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7048,15 +6861,14 @@ unsigned int mt6358_upmu_get_int_raw_status_psc_top(
 unsigned int mt6358_upmu_get_int_raw_status_sck_top(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_INT_RAW_STATUS_SCK_TOP_MASK),
 		(PMIC_INT_RAW_STATUS_SCK_TOP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7064,15 +6876,14 @@ unsigned int mt6358_upmu_get_int_raw_status_sck_top(
 unsigned int mt6358_upmu_get_int_raw_status_bm_top(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_INT_RAW_STATUS_BM_TOP_MASK),
 		(PMIC_INT_RAW_STATUS_BM_TOP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7080,15 +6891,14 @@ unsigned int mt6358_upmu_get_int_raw_status_bm_top(
 unsigned int mt6358_upmu_get_int_raw_status_hk_top(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_INT_RAW_STATUS_HK_TOP_MASK),
 		(PMIC_INT_RAW_STATUS_HK_TOP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7096,15 +6906,14 @@ unsigned int mt6358_upmu_get_int_raw_status_hk_top(
 unsigned int mt6358_upmu_get_int_raw_status_xpp_top(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_INT_RAW_STATUS_XPP_TOP_MASK),
 		(PMIC_INT_RAW_STATUS_XPP_TOP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7112,15 +6921,14 @@ unsigned int mt6358_upmu_get_int_raw_status_xpp_top(
 unsigned int mt6358_upmu_get_int_raw_status_aud_top(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_INT_RAW_STATUS_AUD_TOP_MASK),
 		(PMIC_INT_RAW_STATUS_AUD_TOP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7128,15 +6936,14 @@ unsigned int mt6358_upmu_get_int_raw_status_aud_top(
 unsigned int mt6358_upmu_get_int_raw_status_misc_top(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_INT_RAW_STATUS_MISC_TOP_MASK),
 		(PMIC_INT_RAW_STATUS_MISC_TOP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7144,15 +6951,14 @@ unsigned int mt6358_upmu_get_int_raw_status_misc_top(
 unsigned int mt6358_upmu_get_int_raw_status_top_rsv(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_INT_RAW_STATUS_TOP_RSV_MASK),
 		(PMIC_INT_RAW_STATUS_TOP_RSV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7175,15 +6981,14 @@ unsigned int mt6358_upmu_set_rg_int_polarity(
 unsigned int mt6358_upmu_get_plt0_ana_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PLT0_ID),
 		(&val),
 		(PMIC_PLT0_ANA_ID_MASK),
 		(PMIC_PLT0_ANA_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7191,15 +6996,14 @@ unsigned int mt6358_upmu_get_plt0_ana_id(
 unsigned int mt6358_upmu_get_plt0_dig_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PLT0_ID),
 		(&val),
 		(PMIC_PLT0_DIG_ID_MASK),
 		(PMIC_PLT0_DIG_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7207,15 +7011,14 @@ unsigned int mt6358_upmu_get_plt0_dig_id(
 unsigned int mt6358_upmu_get_plt0_ana_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PLT0_REV0),
 		(&val),
 		(PMIC_PLT0_ANA_MINOR_REV_MASK),
 		(PMIC_PLT0_ANA_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7223,15 +7026,14 @@ unsigned int mt6358_upmu_get_plt0_ana_minor_rev(
 unsigned int mt6358_upmu_get_plt0_ana_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PLT0_REV0),
 		(&val),
 		(PMIC_PLT0_ANA_MAJOR_REV_MASK),
 		(PMIC_PLT0_ANA_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7239,15 +7041,14 @@ unsigned int mt6358_upmu_get_plt0_ana_major_rev(
 unsigned int mt6358_upmu_get_plt0_dig_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PLT0_REV0),
 		(&val),
 		(PMIC_PLT0_DIG_MINOR_REV_MASK),
 		(PMIC_PLT0_DIG_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7255,15 +7056,14 @@ unsigned int mt6358_upmu_get_plt0_dig_minor_rev(
 unsigned int mt6358_upmu_get_plt0_dig_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PLT0_REV0),
 		(&val),
 		(PMIC_PLT0_DIG_MAJOR_REV_MASK),
 		(PMIC_PLT0_DIG_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7271,15 +7071,14 @@ unsigned int mt6358_upmu_get_plt0_dig_major_rev(
 unsigned int mt6358_upmu_get_plt0_dsn_cbs(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PLT0_REV1),
 		(&val),
 		(PMIC_PLT0_DSN_CBS_MASK),
 		(PMIC_PLT0_DSN_CBS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7287,15 +7086,14 @@ unsigned int mt6358_upmu_get_plt0_dsn_cbs(
 unsigned int mt6358_upmu_get_plt0_dsn_bix(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PLT0_REV1),
 		(&val),
 		(PMIC_PLT0_DSN_BIX_MASK),
 		(PMIC_PLT0_DSN_BIX_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7303,15 +7101,14 @@ unsigned int mt6358_upmu_get_plt0_dsn_bix(
 unsigned int mt6358_upmu_get_plt0_dsn_fpi(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PLT0_DSN_DXI),
 		(&val),
 		(PMIC_PLT0_DSN_FPI_MASK),
 		(PMIC_PLT0_DSN_FPI_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7334,15 +7131,14 @@ unsigned int mt6358_upmu_set_rg_osc_128k_trim_en(
 unsigned int mt6358_upmu_get_rg_osc_128k_trim_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_CLK_TRIM),
 		(&val),
 		(PMIC_RG_OSC_128K_TRIM_EN_MASK),
 		(PMIC_RG_OSC_128K_TRIM_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7365,15 +7161,14 @@ unsigned int mt6358_upmu_set_rg_osc_128k_trim_rate(
 unsigned int mt6358_upmu_get_da_osc_128k_trim(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_CLK_TRIM),
 		(&val),
 		(PMIC_DA_OSC_128K_TRIM_MASK),
 		(PMIC_DA_OSC_128K_TRIM_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7561,15 +7356,14 @@ unsigned int mt6358_upmu_set_rg_otp_rd_sw(
 unsigned int mt6358_upmu_get_rg_otp_dout_sw(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_OTP_CON12),
 		(&val),
 		(PMIC_RG_OTP_DOUT_SW_MASK),
 		(PMIC_RG_OTP_DOUT_SW_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7577,15 +7371,14 @@ unsigned int mt6358_upmu_get_rg_otp_dout_sw(
 unsigned int mt6358_upmu_get_rg_otp_rd_busy(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_OTP_CON13),
 		(&val),
 		(PMIC_RG_OTP_RD_BUSY_MASK),
 		(PMIC_RG_OTP_RD_BUSY_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7593,15 +7386,14 @@ unsigned int mt6358_upmu_get_rg_otp_rd_busy(
 unsigned int mt6358_upmu_get_rg_otp_rd_ack(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_OTP_CON13),
 		(&val),
 		(PMIC_RG_OTP_RD_ACK_MASK),
 		(PMIC_RG_OTP_RD_ACK_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7609,15 +7401,14 @@ unsigned int mt6358_upmu_get_rg_otp_rd_ack(
 unsigned int mt6358_upmu_get_rg_otp_pa_sw(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_OTP_CON14),
 		(&val),
 		(PMIC_RG_OTP_PA_SW_MASK),
 		(PMIC_RG_OTP_PA_SW_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7670,15 +7461,14 @@ unsigned int mt6358_upmu_set_rg_mdb_dm1_ds_en(
 unsigned int mt6358_upmu_get_rg_mdb_dm1_ds_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_MDB_CONF1),
 		(&val),
 		(PMIC_RG_MDB_DM1_DS_EN_MASK),
 		(PMIC_RG_MDB_DM1_DS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7716,15 +7506,14 @@ unsigned int mt6358_upmu_set_rg_pmu_mdb_bridge_bypass_en(
 unsigned int mt6358_upmu_get_rg_pmu_mdb_bridge_bypass_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_MDB_CONF2),
 		(&val),
 		(PMIC_RG_PMU_MDB_BRIDGE_BYPASS_EN_MASK),
 		(PMIC_RG_PMU_MDB_BRIDGE_BYPASS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7762,15 +7551,14 @@ unsigned int mt6358_upmu_set_efuse_osc_mode(
 unsigned int mt6358_upmu_get_spislv_ana_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_SPISLV_ID),
 		(&val),
 		(PMIC_SPISLV_ANA_ID_MASK),
 		(PMIC_SPISLV_ANA_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7778,15 +7566,14 @@ unsigned int mt6358_upmu_get_spislv_ana_id(
 unsigned int mt6358_upmu_get_spislv_dig_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_SPISLV_ID),
 		(&val),
 		(PMIC_SPISLV_DIG_ID_MASK),
 		(PMIC_SPISLV_DIG_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7794,15 +7581,14 @@ unsigned int mt6358_upmu_get_spislv_dig_id(
 unsigned int mt6358_upmu_get_spislv_ana_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_SPISLV_REV0),
 		(&val),
 		(PMIC_SPISLV_ANA_MINOR_REV_MASK),
 		(PMIC_SPISLV_ANA_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7810,15 +7596,14 @@ unsigned int mt6358_upmu_get_spislv_ana_minor_rev(
 unsigned int mt6358_upmu_get_spislv_ana_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_SPISLV_REV0),
 		(&val),
 		(PMIC_SPISLV_ANA_MAJOR_REV_MASK),
 		(PMIC_SPISLV_ANA_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7826,15 +7611,14 @@ unsigned int mt6358_upmu_get_spislv_ana_major_rev(
 unsigned int mt6358_upmu_get_spislv_dig_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_SPISLV_REV0),
 		(&val),
 		(PMIC_SPISLV_DIG_MINOR_REV_MASK),
 		(PMIC_SPISLV_DIG_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7842,15 +7626,14 @@ unsigned int mt6358_upmu_get_spislv_dig_minor_rev(
 unsigned int mt6358_upmu_get_spislv_dig_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_SPISLV_REV0),
 		(&val),
 		(PMIC_SPISLV_DIG_MAJOR_REV_MASK),
 		(PMIC_SPISLV_DIG_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7858,15 +7641,14 @@ unsigned int mt6358_upmu_get_spislv_dig_major_rev(
 unsigned int mt6358_upmu_get_spislv_dsn_cbs(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_SPISLV_REV1),
 		(&val),
 		(PMIC_SPISLV_DSN_CBS_MASK),
 		(PMIC_SPISLV_DSN_CBS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7874,15 +7656,14 @@ unsigned int mt6358_upmu_get_spislv_dsn_cbs(
 unsigned int mt6358_upmu_get_spislv_dsn_bix(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_SPISLV_REV1),
 		(&val),
 		(PMIC_SPISLV_DSN_BIX_MASK),
 		(PMIC_SPISLV_DSN_BIX_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7890,15 +7671,14 @@ unsigned int mt6358_upmu_get_spislv_dsn_bix(
 unsigned int mt6358_upmu_get_spislv_dsn_esp(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_SPISLV_REV1),
 		(&val),
 		(PMIC_SPISLV_DSN_ESP_MASK),
 		(PMIC_SPISLV_DSN_ESP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7906,15 +7686,14 @@ unsigned int mt6358_upmu_get_spislv_dsn_esp(
 unsigned int mt6358_upmu_get_spislv_dsn_fpi(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_SPISLV_DSN_DXI),
 		(&val),
 		(PMIC_SPISLV_DSN_FPI_MASK),
 		(PMIC_SPISLV_DSN_FPI_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7937,15 +7716,14 @@ unsigned int mt6358_upmu_set_rg_slp_rw_en(
 unsigned int mt6358_upmu_get_rg_slp_rw_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_RG_SPI_CON0),
 		(&val),
 		(PMIC_RG_SLP_RW_EN_MASK),
 		(PMIC_RG_SLP_RW_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -7998,15 +7776,14 @@ unsigned int mt6358_upmu_set_dew_dio_en(
 unsigned int mt6358_upmu_get_dew_read_test(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_DEW_READ_TEST),
 		(&val),
 		(PMIC_DEW_READ_TEST_MASK),
 		(PMIC_DEW_READ_TEST_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8059,15 +7836,14 @@ unsigned int mt6358_upmu_set_dew_crc_en(
 unsigned int mt6358_upmu_get_dew_crc_val(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_DEW_CRC_VAL),
 		(&val),
 		(PMIC_DEW_CRC_VAL_MASK),
 		(PMIC_DEW_CRC_VAL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8135,15 +7911,14 @@ unsigned int mt6358_upmu_set_dew_cipher_en(
 unsigned int mt6358_upmu_get_dew_cipher_rdy(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_DEW_CIPHER_RDY),
 		(&val),
 		(PMIC_DEW_CIPHER_RDY_MASK),
 		(PMIC_DEW_CIPHER_RDY_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8211,15 +7986,14 @@ unsigned int mt6358_upmu_set_int_type_con0(
 unsigned int mt6358_upmu_get_cpu_int_sta(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_INT_STA),
 		(&val),
 		(PMIC_CPU_INT_STA_MASK),
 		(PMIC_CPU_INT_STA_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8227,15 +8001,14 @@ unsigned int mt6358_upmu_get_cpu_int_sta(
 unsigned int mt6358_upmu_get_md32_int_sta(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_INT_STA),
 		(&val),
 		(PMIC_MD32_INT_STA_MASK),
 		(PMIC_MD32_INT_STA_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8273,15 +8046,14 @@ unsigned int mt6358_upmu_set_rg_srclken_in3_en_smps_test(
 unsigned int mt6358_upmu_get_rg_srclken_in3_en_smps_test(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_RG_SPI_CON1),
 		(&val),
 		(PMIC_RG_SRCLKEN_IN3_EN_SMPS_TEST_MASK),
 		(PMIC_RG_SRCLKEN_IN3_EN_SMPS_TEST_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8319,15 +8091,14 @@ unsigned int mt6358_upmu_set_rg_srclken_in2_en_smps_test(
 unsigned int mt6358_upmu_get_rg_srclken_in2_en_smps_test(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_RG_SPI_CON1),
 		(&val),
 		(PMIC_RG_SRCLKEN_IN2_EN_SMPS_TEST_MASK),
 		(PMIC_RG_SRCLKEN_IN2_EN_SMPS_TEST_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8350,15 +8121,14 @@ unsigned int mt6358_upmu_set_rg_spi_dly_sel(
 unsigned int mt6358_upmu_get_record_cmd0(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_RG_SPI_CON3),
 		(&val),
 		(PMIC_RECORD_CMD0_MASK),
 		(PMIC_RECORD_CMD0_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8366,15 +8136,14 @@ unsigned int mt6358_upmu_get_record_cmd0(
 unsigned int mt6358_upmu_get_record_cmd1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_RG_SPI_CON4),
 		(&val),
 		(PMIC_RECORD_CMD1_MASK),
 		(PMIC_RECORD_CMD1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8382,15 +8151,14 @@ unsigned int mt6358_upmu_get_record_cmd1(
 unsigned int mt6358_upmu_get_record_cmd2(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_RG_SPI_CON5),
 		(&val),
 		(PMIC_RECORD_CMD2_MASK),
 		(PMIC_RECORD_CMD2_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8398,15 +8166,14 @@ unsigned int mt6358_upmu_get_record_cmd2(
 unsigned int mt6358_upmu_get_record_wdata0(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_RG_SPI_CON6),
 		(&val),
 		(PMIC_RECORD_WDATA0_MASK),
 		(PMIC_RECORD_WDATA0_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8414,15 +8181,14 @@ unsigned int mt6358_upmu_get_record_wdata0(
 unsigned int mt6358_upmu_get_record_wdata1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_RG_SPI_CON7),
 		(&val),
 		(PMIC_RECORD_WDATA1_MASK),
 		(PMIC_RECORD_WDATA1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8430,15 +8196,14 @@ unsigned int mt6358_upmu_get_record_wdata1(
 unsigned int mt6358_upmu_get_record_wdata2(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_RG_SPI_CON8),
 		(&val),
 		(PMIC_RECORD_WDATA2_MASK),
 		(PMIC_RECORD_WDATA2_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8566,15 +8331,14 @@ unsigned int mt6358_upmu_set_rg_srclken_in2_en(
 unsigned int mt6358_upmu_get_rg_srclken_in2_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_SPI_CON0),
 		(&val),
 		(PMIC_RG_SRCLKEN_IN2_EN_MASK),
 		(PMIC_RG_SRCLKEN_IN2_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8597,15 +8361,14 @@ unsigned int mt6358_upmu_set_rg_srclken_in3_en(
 unsigned int mt6358_upmu_get_rg_srclken_in3_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_TOP_SPI_CON1),
 		(&val),
 		(PMIC_RG_SRCLKEN_IN3_EN_MASK),
 		(PMIC_RG_SRCLKEN_IN3_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8613,15 +8376,14 @@ unsigned int mt6358_upmu_get_rg_srclken_in3_en(
 unsigned int mt6358_upmu_get_sck_top_ana_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_SCK_TOP_DSN_ID),
 		(&val),
 		(PMIC_SCK_TOP_ANA_ID_MASK),
 		(PMIC_SCK_TOP_ANA_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8629,15 +8391,14 @@ unsigned int mt6358_upmu_get_sck_top_ana_id(
 unsigned int mt6358_upmu_get_sck_top_dig_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_SCK_TOP_DSN_ID),
 		(&val),
 		(PMIC_SCK_TOP_DIG_ID_MASK),
 		(PMIC_SCK_TOP_DIG_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8645,15 +8406,14 @@ unsigned int mt6358_upmu_get_sck_top_dig_id(
 unsigned int mt6358_upmu_get_sck_top_ana_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_SCK_TOP_DSN_REV0),
 		(&val),
 		(PMIC_SCK_TOP_ANA_MINOR_REV_MASK),
 		(PMIC_SCK_TOP_ANA_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8661,15 +8421,14 @@ unsigned int mt6358_upmu_get_sck_top_ana_minor_rev(
 unsigned int mt6358_upmu_get_sck_top_ana_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_SCK_TOP_DSN_REV0),
 		(&val),
 		(PMIC_SCK_TOP_ANA_MAJOR_REV_MASK),
 		(PMIC_SCK_TOP_ANA_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8677,15 +8436,14 @@ unsigned int mt6358_upmu_get_sck_top_ana_major_rev(
 unsigned int mt6358_upmu_get_sck_top_dig_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_SCK_TOP_DSN_REV0),
 		(&val),
 		(PMIC_SCK_TOP_DIG_MINOR_REV_MASK),
 		(PMIC_SCK_TOP_DIG_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8693,15 +8451,14 @@ unsigned int mt6358_upmu_get_sck_top_dig_minor_rev(
 unsigned int mt6358_upmu_get_sck_top_dig_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_SCK_TOP_DSN_REV0),
 		(&val),
 		(PMIC_SCK_TOP_DIG_MAJOR_REV_MASK),
 		(PMIC_SCK_TOP_DIG_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8709,15 +8466,14 @@ unsigned int mt6358_upmu_get_sck_top_dig_major_rev(
 unsigned int mt6358_upmu_get_sck_top_cbs(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_SCK_TOP_DBI),
 		(&val),
 		(PMIC_SCK_TOP_CBS_MASK),
 		(PMIC_SCK_TOP_CBS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8725,15 +8481,14 @@ unsigned int mt6358_upmu_get_sck_top_cbs(
 unsigned int mt6358_upmu_get_sck_top_bix(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_SCK_TOP_DBI),
 		(&val),
 		(PMIC_SCK_TOP_BIX_MASK),
 		(PMIC_SCK_TOP_BIX_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8771,15 +8526,14 @@ unsigned int mt6358_upmu_set_sck_top_reserved(
 unsigned int mt6358_upmu_get_xosc32_enb_det(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_SCK_TOP_CON1),
 		(&val),
 		(PMIC_XOSC32_ENB_DET_MASK),
 		(PMIC_XOSC32_ENB_DET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8787,15 +8541,14 @@ unsigned int mt6358_upmu_get_xosc32_enb_det(
 unsigned int mt6358_upmu_get_sck_top_test_out(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_SCK_TOP_TEST_OUT),
 		(&val),
 		(PMIC_SCK_TOP_TEST_OUT_MASK),
 		(PMIC_SCK_TOP_TEST_OUT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8848,15 +8601,14 @@ unsigned int mt6358_upmu_set_fqmtr_tcksel(
 unsigned int mt6358_upmu_get_fqmtr_busy(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FQMTR_CON0),
 		(&val),
 		(PMIC_FQMTR_BUSY_MASK),
 		(PMIC_FQMTR_BUSY_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -8909,15 +8661,14 @@ unsigned int mt6358_upmu_set_fqmtr_winset(
 unsigned int mt6358_upmu_get_fqmtr_data(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FQMTR_CON2),
 		(&val),
 		(PMIC_FQMTR_DATA_MASK),
 		(PMIC_FQMTR_DATA_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -9330,15 +9081,14 @@ unsigned int mt6358_upmu_set_rg_int_en_rtc(
 unsigned int mt6358_upmu_get_rg_int_en_rtc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_SCK_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_RTC_MASK),
 		(PMIC_RG_INT_EN_RTC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -9361,15 +9111,14 @@ unsigned int mt6358_upmu_set_rg_int_mask_rtc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_rtc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_SCK_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_RTC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_RTC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -9482,15 +9231,14 @@ unsigned int mt6358_upmu_set_eosc_cali_rsv(
 unsigned int mt6358_upmu_get_mix_eosc32_stp_lpdtb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_RTC_MIX_CON0),
 		(&val),
 		(PMIC_MIX_EOSC32_STP_LPDTB_MASK),
 		(PMIC_MIX_EOSC32_STP_LPDTB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -9528,15 +9276,14 @@ unsigned int mt6358_upmu_set_mix_xosc32_stp_pwdb(
 unsigned int mt6358_upmu_get_mix_xosc32_stp_lpdtb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_RTC_MIX_CON0),
 		(&val),
 		(PMIC_MIX_XOSC32_STP_LPDTB_MASK),
 		(PMIC_MIX_XOSC32_STP_LPDTB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -9814,15 +9561,14 @@ unsigned int mt6358_upmu_set_mix_rtc_gpio_oe(
 unsigned int mt6358_upmu_get_mix_rtc_stp_debug_out(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_RTC_MIX_CON2),
 		(&val),
 		(PMIC_MIX_RTC_STP_DEBUG_OUT_MASK),
 		(PMIC_MIX_RTC_STP_DEBUG_OUT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -9890,15 +9636,14 @@ unsigned int mt6358_upmu_set_mix_stp_bbwakeup(
 unsigned int mt6358_upmu_get_mix_stp_rtc_ddlo(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_RTC_MIX_CON2),
 		(&val),
 		(PMIC_MIX_STP_RTC_DDLO_MASK),
 		(PMIC_MIX_STP_RTC_DDLO_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -9906,15 +9651,14 @@ unsigned int mt6358_upmu_get_mix_stp_rtc_ddlo(
 unsigned int mt6358_upmu_get_mix_rtc_xosc32_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_RTC_MIX_CON2),
 		(&val),
 		(PMIC_MIX_RTC_XOSC32_ENB_MASK),
 		(PMIC_MIX_RTC_XOSC32_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -9982,15 +9726,14 @@ unsigned int mt6358_upmu_set_auto(
 unsigned int mt6358_upmu_get_cbusy(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_RTC_BBPU),
 		(&val),
 		(PMIC_CBUSY_MASK),
 		(PMIC_CBUSY_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -9998,15 +9741,14 @@ unsigned int mt6358_upmu_get_cbusy(
 unsigned int mt6358_upmu_get_alsta(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_RTC_IRQ_STA),
 		(&val),
 		(PMIC_ALSTA_MASK),
 		(PMIC_ALSTA_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -10014,15 +9756,14 @@ unsigned int mt6358_upmu_get_alsta(
 unsigned int mt6358_upmu_get_tcsta(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_RTC_IRQ_STA),
 		(&val),
 		(PMIC_TCSTA_MASK),
 		(PMIC_TCSTA_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -10030,15 +9771,14 @@ unsigned int mt6358_upmu_get_tcsta(
 unsigned int mt6358_upmu_get_lpsta(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_RTC_IRQ_STA),
 		(&val),
 		(PMIC_LPSTA_MASK),
 		(PMIC_LPSTA_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -10541,15 +10281,14 @@ unsigned int mt6358_upmu_set_bbpu_2sec_mode(
 unsigned int mt6358_upmu_get_bbpu_2sec_stat_sta(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_RTC_AL_SEC),
 		(&val),
 		(PMIC_BBPU_2SEC_STAT_STA_MASK),
 		(PMIC_BBPU_2SEC_STAT_STA_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -10767,15 +10506,14 @@ unsigned int mt6358_upmu_set_xosccali(
 unsigned int mt6358_upmu_get_rtc_xosc32_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_RTC_OSC32CON),
 		(&val),
 		(PMIC_RTC_XOSC32_ENB_MASK),
 		(PMIC_RTC_XOSC32_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -11023,15 +10761,14 @@ unsigned int mt6358_upmu_set_rtc_diff(
 unsigned int mt6358_upmu_get_power_detected(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_RTC_DIFF),
 		(&val),
 		(PMIC_POWER_DETECTED_MASK),
 		(PMIC_POWER_DETECTED_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -11324,15 +11061,14 @@ unsigned int mt6358_upmu_set_ge8(
 unsigned int mt6358_upmu_get_gpi(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_RTC_CON),
 		(&val),
 		(PMIC_GPI_MASK),
 		(PMIC_GPI_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -11340,15 +11076,14 @@ unsigned int mt6358_upmu_get_gpi(
 unsigned int mt6358_upmu_get_lpsta_raw(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_RTC_CON),
 		(&val),
 		(PMIC_LPSTA_RAW_MASK),
 		(PMIC_LPSTA_RAW_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -11356,15 +11091,14 @@ unsigned int mt6358_upmu_get_lpsta_raw(
 unsigned int mt6358_upmu_get_rtc_int_cnt(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_RTC_INT_CNT),
 		(&val),
 		(PMIC_RTC_INT_CNT_MASK),
 		(PMIC_RTC_INT_CNT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -11537,15 +11271,14 @@ unsigned int mt6358_upmu_set_rtc_sec_ck_pdn(
 unsigned int mt6358_upmu_get_dcxo_dsn_cbs(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_DCXO_DSN_DBI),
 		(&val),
 		(PMIC_DCXO_DSN_CBS_MASK),
 		(PMIC_DCXO_DSN_CBS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -11553,15 +11286,14 @@ unsigned int mt6358_upmu_get_dcxo_dsn_cbs(
 unsigned int mt6358_upmu_get_dcxo_dsn_bix(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_DCXO_DSN_DBI),
 		(&val),
 		(PMIC_DCXO_DSN_BIX_MASK),
 		(PMIC_DCXO_DSN_BIX_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -11569,15 +11301,14 @@ unsigned int mt6358_upmu_get_dcxo_dsn_bix(
 unsigned int mt6358_upmu_get_dcxo_dsn_esp(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_DCXO_DSN_DBI),
 		(&val),
 		(PMIC_DCXO_DSN_ESP_MASK),
 		(PMIC_DCXO_DSN_ESP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -11585,15 +11316,14 @@ unsigned int mt6358_upmu_get_dcxo_dsn_esp(
 unsigned int mt6358_upmu_get_dcxo_dsn_fpi(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_DCXO_DSN_DXI),
 		(&val),
 		(PMIC_DCXO_DSN_FPI_MASK),
 		(PMIC_DCXO_DSN_FPI_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -13506,15 +13236,14 @@ unsigned int mt6358_upmu_set_rg_xo_ldopbuf_encl(
 unsigned int mt6358_upmu_get_rg_xo_ldopbuf_encl(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_DCXO_CW12),
 		(&val),
 		(PMIC_RG_XO_LDOPBUF_ENCL_MASK),
 		(PMIC_RG_XO_LDOPBUF_ENCL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -13597,15 +13326,14 @@ unsigned int mt6358_upmu_set_rg_xo_vow_en(
 unsigned int mt6358_upmu_get_rg_xo_vow_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_DCXO_CW13),
 		(&val),
 		(PMIC_RG_XO_VOW_EN_MASK),
 		(PMIC_RG_XO_VOW_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -13643,15 +13371,14 @@ unsigned int mt6358_upmu_set_rg_xo_bufldo24_encl(
 unsigned int mt6358_upmu_get_rg_xo_bufldo24_encl(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_DCXO_CW13),
 		(&val),
 		(PMIC_RG_XO_BUFLDO24_ENCL_MASK),
 		(PMIC_RG_XO_BUFLDO24_ENCL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -13704,15 +13431,14 @@ unsigned int mt6358_upmu_set_rg_xo_bufldo13_encl(
 unsigned int mt6358_upmu_get_rg_xo_bufldo13_encl(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_DCXO_CW14),
 		(&val),
 		(PMIC_RG_XO_BUFLDO13_ENCL_MASK),
 		(PMIC_RG_XO_BUFLDO13_ENCL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -13780,15 +13506,14 @@ unsigned int mt6358_upmu_set_rg_xo_bufldo67_encl(
 unsigned int mt6358_upmu_get_rg_xo_bufldo67_encl(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_DCXO_CW14),
 		(&val),
 		(PMIC_RG_XO_BUFLDO67_ENCL_MASK),
 		(PMIC_RG_XO_BUFLDO67_ENCL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -14201,15 +13926,14 @@ unsigned int mt6358_upmu_set_rg_xo_tsource_en(
 unsigned int mt6358_upmu_get_rg_xo_tsource_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_DCXO_CW17),
 		(&val),
 		(PMIC_RG_XO_TSOURCE_EN_MASK),
 		(PMIC_RG_XO_TSOURCE_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -14292,15 +14016,14 @@ unsigned int mt6358_upmu_set_xo_auxout_sel(
 unsigned int mt6358_upmu_get_xo_static_auxout(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_DCXO_CW19),
 		(&val),
 		(PMIC_XO_STATIC_AUXOUT_MASK),
 		(PMIC_XO_STATIC_AUXOUT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -14323,15 +14046,14 @@ unsigned int mt6358_upmu_set_rg_xo_pctat_comp_en(
 unsigned int mt6358_upmu_get_rg_xo_pctat_comp_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_DCXO_CW20),
 		(&val),
 		(PMIC_RG_XO_PCTAT_COMP_EN_MASK),
 		(PMIC_RG_XO_PCTAT_COMP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -14369,15 +14091,14 @@ unsigned int mt6358_upmu_set_rg_xo_corner_detect_en(
 unsigned int mt6358_upmu_get_rg_xo_corner_detect_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_DCXO_CW20),
 		(&val),
 		(PMIC_RG_XO_CORNER_DETECT_EN_MASK),
 		(PMIC_RG_XO_CORNER_DETECT_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -14400,15 +14121,14 @@ unsigned int mt6358_upmu_set_rg_xo_corner_detect_en_man(
 unsigned int mt6358_upmu_get_rg_xo_corner_detect_en_man(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_DCXO_CW20),
 		(&val),
 		(PMIC_RG_XO_CORNER_DETECT_EN_MAN_MASK),
 		(PMIC_RG_XO_CORNER_DETECT_EN_MAN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -14461,15 +14181,14 @@ unsigned int mt6358_upmu_set_rg_xo_resrved11(
 unsigned int mt6358_upmu_get_rgs_ad_xo_corner_cal_done(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_DCXO_CW22),
 		(&val),
 		(PMIC_RGS_AD_XO_CORNER_CAL_DONE_MASK),
 		(PMIC_RGS_AD_XO_CORNER_CAL_DONE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -14477,15 +14196,14 @@ unsigned int mt6358_upmu_get_rgs_ad_xo_corner_cal_done(
 unsigned int mt6358_upmu_get_rgs_ad_xo_corner_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_DCXO_CW22),
 		(&val),
 		(PMIC_RGS_AD_XO_CORNER_SEL_MASK),
 		(PMIC_RGS_AD_XO_CORNER_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -14718,15 +14436,14 @@ unsigned int mt6358_upmu_set_rg_xo_resrved12(
 unsigned int mt6358_upmu_get_dcxo_elr_len(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_DCXO_ELR_NUM),
 		(&val),
 		(PMIC_DCXO_ELR_LEN_MASK),
 		(PMIC_DCXO_ELR_LEN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -14779,15 +14496,14 @@ unsigned int mt6358_upmu_set_xo_pwrkey_rstb_sel(
 unsigned int mt6358_upmu_get_psc_top_ana_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_ID),
 		(&val),
 		(PMIC_PSC_TOP_ANA_ID_MASK),
 		(PMIC_PSC_TOP_ANA_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -14795,15 +14511,14 @@ unsigned int mt6358_upmu_get_psc_top_ana_id(
 unsigned int mt6358_upmu_get_psc_top_dig_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_ID),
 		(&val),
 		(PMIC_PSC_TOP_DIG_ID_MASK),
 		(PMIC_PSC_TOP_DIG_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -14811,15 +14526,14 @@ unsigned int mt6358_upmu_get_psc_top_dig_id(
 unsigned int mt6358_upmu_get_psc_top_ana_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_REV0),
 		(&val),
 		(PMIC_PSC_TOP_ANA_MINOR_REV_MASK),
 		(PMIC_PSC_TOP_ANA_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -14827,15 +14541,14 @@ unsigned int mt6358_upmu_get_psc_top_ana_minor_rev(
 unsigned int mt6358_upmu_get_psc_top_ana_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_REV0),
 		(&val),
 		(PMIC_PSC_TOP_ANA_MAJOR_REV_MASK),
 		(PMIC_PSC_TOP_ANA_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -14843,15 +14556,14 @@ unsigned int mt6358_upmu_get_psc_top_ana_major_rev(
 unsigned int mt6358_upmu_get_psc_top_dig_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_REV0),
 		(&val),
 		(PMIC_PSC_TOP_DIG_MINOR_REV_MASK),
 		(PMIC_PSC_TOP_DIG_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -14859,15 +14571,14 @@ unsigned int mt6358_upmu_get_psc_top_dig_minor_rev(
 unsigned int mt6358_upmu_get_psc_top_dig_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_REV0),
 		(&val),
 		(PMIC_PSC_TOP_DIG_MAJOR_REV_MASK),
 		(PMIC_PSC_TOP_DIG_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -14875,15 +14586,14 @@ unsigned int mt6358_upmu_get_psc_top_dig_major_rev(
 unsigned int mt6358_upmu_get_psc_top_cbs(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_DBI),
 		(&val),
 		(PMIC_PSC_TOP_CBS_MASK),
 		(PMIC_PSC_TOP_CBS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -14891,15 +14601,14 @@ unsigned int mt6358_upmu_get_psc_top_cbs(
 unsigned int mt6358_upmu_get_psc_top_bix(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_DBI),
 		(&val),
 		(PMIC_PSC_TOP_BIX_MASK),
 		(PMIC_PSC_TOP_BIX_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -14907,15 +14616,14 @@ unsigned int mt6358_upmu_get_psc_top_bix(
 unsigned int mt6358_upmu_get_psc_top_esp(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_DBI),
 		(&val),
 		(PMIC_PSC_TOP_ESP_MASK),
 		(PMIC_PSC_TOP_ESP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -14923,15 +14631,14 @@ unsigned int mt6358_upmu_get_psc_top_esp(
 unsigned int mt6358_upmu_get_psc_top_fpi(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_DXI),
 		(&val),
 		(PMIC_PSC_TOP_FPI_MASK),
 		(PMIC_PSC_TOP_FPI_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -14939,15 +14646,14 @@ unsigned int mt6358_upmu_get_psc_top_fpi(
 unsigned int mt6358_upmu_get_psc_top_clk_offset(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TPM0),
 		(&val),
 		(PMIC_PSC_TOP_CLK_OFFSET_MASK),
 		(PMIC_PSC_TOP_CLK_OFFSET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -14955,15 +14661,14 @@ unsigned int mt6358_upmu_get_psc_top_clk_offset(
 unsigned int mt6358_upmu_get_psc_top_rst_offset(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TPM0),
 		(&val),
 		(PMIC_PSC_TOP_RST_OFFSET_MASK),
 		(PMIC_PSC_TOP_RST_OFFSET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -14971,15 +14676,14 @@ unsigned int mt6358_upmu_get_psc_top_rst_offset(
 unsigned int mt6358_upmu_get_psc_top_int_offset(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TPM1),
 		(&val),
 		(PMIC_PSC_TOP_INT_OFFSET_MASK),
 		(PMIC_PSC_TOP_INT_OFFSET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -14987,15 +14691,14 @@ unsigned int mt6358_upmu_get_psc_top_int_offset(
 unsigned int mt6358_upmu_get_psc_top_int_len(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TPM1),
 		(&val),
 		(PMIC_PSC_TOP_INT_LEN_MASK),
 		(PMIC_PSC_TOP_INT_LEN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15153,15 +14856,14 @@ unsigned int mt6358_upmu_set_rg_int_en_pwrkey(
 unsigned int mt6358_upmu_get_rg_int_en_pwrkey(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_PWRKEY_MASK),
 		(PMIC_RG_INT_EN_PWRKEY_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15184,15 +14886,14 @@ unsigned int mt6358_upmu_set_rg_int_en_homekey(
 unsigned int mt6358_upmu_get_rg_int_en_homekey(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_HOMEKEY_MASK),
 		(PMIC_RG_INT_EN_HOMEKEY_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15215,15 +14916,14 @@ unsigned int mt6358_upmu_set_rg_int_en_pwrkey_r(
 unsigned int mt6358_upmu_get_rg_int_en_pwrkey_r(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_PWRKEY_R_MASK),
 		(PMIC_RG_INT_EN_PWRKEY_R_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15246,15 +14946,14 @@ unsigned int mt6358_upmu_set_rg_int_en_homekey_r(
 unsigned int mt6358_upmu_get_rg_int_en_homekey_r(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_HOMEKEY_R_MASK),
 		(PMIC_RG_INT_EN_HOMEKEY_R_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15277,15 +14976,14 @@ unsigned int mt6358_upmu_set_rg_int_en_ni_lbat_int(
 unsigned int mt6358_upmu_get_rg_int_en_ni_lbat_int(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_NI_LBAT_INT_MASK),
 		(PMIC_RG_INT_EN_NI_LBAT_INT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15308,15 +15006,14 @@ unsigned int mt6358_upmu_set_rg_int_en_chrdet(
 unsigned int mt6358_upmu_get_rg_int_en_chrdet(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_CHRDET_MASK),
 		(PMIC_RG_INT_EN_CHRDET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15339,15 +15036,14 @@ unsigned int mt6358_upmu_set_rg_int_en_chrdet_edge(
 unsigned int mt6358_upmu_get_rg_int_en_chrdet_edge(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_CHRDET_EDGE_MASK),
 		(PMIC_RG_INT_EN_CHRDET_EDGE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15370,15 +15066,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vcdt_hv_det(
 unsigned int mt6358_upmu_get_rg_int_en_vcdt_hv_det(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VCDT_HV_DET_MASK),
 		(PMIC_RG_INT_EN_VCDT_HV_DET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15506,15 +15201,14 @@ unsigned int mt6358_upmu_set_rg_int_mask_vcdt_hv_det(
 unsigned int mt6358_upmu_get_rg_int_raw_status_pwrkey(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_PWRKEY_MASK),
 		(PMIC_RG_INT_RAW_STATUS_PWRKEY_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15522,15 +15216,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_pwrkey(
 unsigned int mt6358_upmu_get_rg_int_raw_status_homekey(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_HOMEKEY_MASK),
 		(PMIC_RG_INT_RAW_STATUS_HOMEKEY_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15538,15 +15231,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_homekey(
 unsigned int mt6358_upmu_get_rg_int_raw_status_pwrkey_r(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_PWRKEY_R_MASK),
 		(PMIC_RG_INT_RAW_STATUS_PWRKEY_R_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15554,15 +15246,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_pwrkey_r(
 unsigned int mt6358_upmu_get_rg_int_raw_status_homekey_r(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_HOMEKEY_R_MASK),
 		(PMIC_RG_INT_RAW_STATUS_HOMEKEY_R_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15570,15 +15261,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_homekey_r(
 unsigned int mt6358_upmu_get_rg_int_raw_status_ni_lbat_int(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_NI_LBAT_INT_MASK),
 		(PMIC_RG_INT_RAW_STATUS_NI_LBAT_INT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15586,15 +15276,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_ni_lbat_int(
 unsigned int mt6358_upmu_get_rg_int_raw_status_chrdet(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_CHRDET_MASK),
 		(PMIC_RG_INT_RAW_STATUS_CHRDET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15602,15 +15291,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_chrdet(
 unsigned int mt6358_upmu_get_rg_int_raw_status_chrdet_edge(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_CHRDET_EDGE_MASK),
 		(PMIC_RG_INT_RAW_STATUS_CHRDET_EDGE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15618,15 +15306,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_chrdet_edge(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vcdt_hv_det(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSC_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VCDT_HV_DET_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VCDT_HV_DET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15694,15 +15381,14 @@ unsigned int mt6358_upmu_set_rg_psc_mon_grp_sel(
 unsigned int mt6358_upmu_get_strup_ana_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_ID),
 		(&val),
 		(PMIC_STRUP_ANA_ID_MASK),
 		(PMIC_STRUP_ANA_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15710,15 +15396,14 @@ unsigned int mt6358_upmu_get_strup_ana_id(
 unsigned int mt6358_upmu_get_strup_dig_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_ID),
 		(&val),
 		(PMIC_STRUP_DIG_ID_MASK),
 		(PMIC_STRUP_DIG_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15726,15 +15411,14 @@ unsigned int mt6358_upmu_get_strup_dig_id(
 unsigned int mt6358_upmu_get_strup_ana_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_REV0),
 		(&val),
 		(PMIC_STRUP_ANA_MINOR_REV_MASK),
 		(PMIC_STRUP_ANA_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15742,15 +15426,14 @@ unsigned int mt6358_upmu_get_strup_ana_minor_rev(
 unsigned int mt6358_upmu_get_strup_ana_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_REV0),
 		(&val),
 		(PMIC_STRUP_ANA_MAJOR_REV_MASK),
 		(PMIC_STRUP_ANA_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15758,15 +15441,14 @@ unsigned int mt6358_upmu_get_strup_ana_major_rev(
 unsigned int mt6358_upmu_get_strup_dig_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_REV0),
 		(&val),
 		(PMIC_STRUP_DIG_MINOR_REV_MASK),
 		(PMIC_STRUP_DIG_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15774,15 +15456,14 @@ unsigned int mt6358_upmu_get_strup_dig_minor_rev(
 unsigned int mt6358_upmu_get_strup_dig_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_REV0),
 		(&val),
 		(PMIC_STRUP_DIG_MAJOR_REV_MASK),
 		(PMIC_STRUP_DIG_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15790,15 +15471,14 @@ unsigned int mt6358_upmu_get_strup_dig_major_rev(
 unsigned int mt6358_upmu_get_strup_cbs(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_DBI),
 		(&val),
 		(PMIC_STRUP_CBS_MASK),
 		(PMIC_STRUP_CBS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15806,15 +15486,14 @@ unsigned int mt6358_upmu_get_strup_cbs(
 unsigned int mt6358_upmu_get_strup_bix(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_DBI),
 		(&val),
 		(PMIC_STRUP_BIX_MASK),
 		(PMIC_STRUP_BIX_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -15957,15 +15636,14 @@ unsigned int mt6358_upmu_set_rg_pmu_rsv(
 unsigned int mt6358_upmu_get_rgs_ana_chip_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_ANA_CON1),
 		(&val),
 		(PMIC_RGS_ANA_CHIP_ID_MASK),
 		(PMIC_RGS_ANA_CHIP_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -16003,15 +15681,14 @@ unsigned int mt6358_upmu_set_rg_thr_loc_sel(
 unsigned int mt6358_upmu_get_pseq_ana_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSEQ_ID),
 		(&val),
 		(PMIC_PSEQ_ANA_ID_MASK),
 		(PMIC_PSEQ_ANA_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -16019,15 +15696,14 @@ unsigned int mt6358_upmu_get_pseq_ana_id(
 unsigned int mt6358_upmu_get_pseq_dig_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSEQ_ID),
 		(&val),
 		(PMIC_PSEQ_DIG_ID_MASK),
 		(PMIC_PSEQ_DIG_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -16035,15 +15711,14 @@ unsigned int mt6358_upmu_get_pseq_dig_id(
 unsigned int mt6358_upmu_get_pseq_ana_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSEQ_REV0),
 		(&val),
 		(PMIC_PSEQ_ANA_MINOR_REV_MASK),
 		(PMIC_PSEQ_ANA_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -16051,15 +15726,14 @@ unsigned int mt6358_upmu_get_pseq_ana_minor_rev(
 unsigned int mt6358_upmu_get_pseq_ana_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSEQ_REV0),
 		(&val),
 		(PMIC_PSEQ_ANA_MAJOR_REV_MASK),
 		(PMIC_PSEQ_ANA_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -16067,15 +15741,14 @@ unsigned int mt6358_upmu_get_pseq_ana_major_rev(
 unsigned int mt6358_upmu_get_pseq_dig_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSEQ_REV0),
 		(&val),
 		(PMIC_PSEQ_DIG_MAJOR_REV_MASK),
 		(PMIC_PSEQ_DIG_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -16083,15 +15756,14 @@ unsigned int mt6358_upmu_get_pseq_dig_major_rev(
 unsigned int mt6358_upmu_get_pseq_cbs(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSEQ_DBI),
 		(&val),
 		(PMIC_PSEQ_CBS_MASK),
 		(PMIC_PSEQ_CBS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -16099,15 +15771,14 @@ unsigned int mt6358_upmu_get_pseq_cbs(
 unsigned int mt6358_upmu_get_pseq_bix(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSEQ_DBI),
 		(&val),
 		(PMIC_PSEQ_BIX_MASK),
 		(PMIC_PSEQ_BIX_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -16115,15 +15786,14 @@ unsigned int mt6358_upmu_get_pseq_bix(
 unsigned int mt6358_upmu_get_pseq_fpi(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSEQ_DXI),
 		(&val),
 		(PMIC_PSEQ_FPI_MASK),
 		(PMIC_PSEQ_FPI_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -16281,15 +15951,14 @@ unsigned int mt6358_upmu_set_rg_thm_shdn_en(
 unsigned int mt6358_upmu_get_rg_thm_shdn_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PPCCTL2),
 		(&val),
 		(PMIC_RG_THM_SHDN_EN_MASK),
 		(PMIC_RG_THM_SHDN_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -16312,15 +15981,14 @@ unsigned int mt6358_upmu_set_rg_wdtrst_en(
 unsigned int mt6358_upmu_get_rg_wdtrst_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PPCCFG0),
 		(&val),
 		(PMIC_RG_WDTRST_EN_MASK),
 		(PMIC_RG_WDTRST_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -16403,15 +16071,14 @@ unsigned int mt6358_upmu_set_rg_por_flag(
 unsigned int mt6358_upmu_get_usbdl(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON0),
 		(&val),
 		(PMIC_USBDL_MASK),
 		(PMIC_USBDL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -16509,15 +16176,14 @@ unsigned int mt6358_upmu_set_rg_strup_osc_en(
 unsigned int mt6358_upmu_get_rg_strup_osc_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON3),
 		(&val),
 		(PMIC_RG_STRUP_OSC_EN_MASK),
 		(PMIC_RG_STRUP_OSC_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -16540,15 +16206,14 @@ unsigned int mt6358_upmu_set_rg_strup_osc_en_sel(
 unsigned int mt6358_upmu_get_rg_strup_osc_en_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON3),
 		(&val),
 		(PMIC_RG_STRUP_OSC_EN_SEL_MASK),
 		(PMIC_RG_STRUP_OSC_EN_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -16676,15 +16341,14 @@ unsigned int mt6358_upmu_set_rg_rtc_xosc32_enb(
 unsigned int mt6358_upmu_get_rg_rtc_xosc32_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON3),
 		(&val),
 		(PMIC_RG_RTC_XOSC32_ENB_MASK),
 		(PMIC_RG_RTC_XOSC32_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -16707,15 +16371,14 @@ unsigned int mt6358_upmu_set_rg_rtc_xosc32_enb_sel(
 unsigned int mt6358_upmu_get_rg_rtc_xosc32_enb_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON3),
 		(&val),
 		(PMIC_RG_RTC_XOSC32_ENB_SEL_MASK),
 		(PMIC_RG_RTC_XOSC32_ENB_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -16768,15 +16431,14 @@ unsigned int mt6358_upmu_set_clr_just_rst(
 unsigned int mt6358_upmu_get_just_smart_rst(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON4),
 		(&val),
 		(PMIC_JUST_SMART_RST_MASK),
 		(PMIC_JUST_SMART_RST_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -16784,15 +16446,14 @@ unsigned int mt6358_upmu_get_just_smart_rst(
 unsigned int mt6358_upmu_get_just_pwrkey_rst(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON4),
 		(&val),
 		(PMIC_JUST_PWRKEY_RST_MASK),
 		(PMIC_JUST_PWRKEY_RST_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -16800,15 +16461,14 @@ unsigned int mt6358_upmu_get_just_pwrkey_rst(
 unsigned int mt6358_upmu_get_da_qi_osc_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON4),
 		(&val),
 		(PMIC_DA_QI_OSC_EN_MASK),
 		(PMIC_DA_QI_OSC_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -16831,15 +16491,14 @@ unsigned int mt6358_upmu_set_rg_strup_ext_pmic_en(
 unsigned int mt6358_upmu_get_rg_strup_ext_pmic_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON5),
 		(&val),
 		(PMIC_RG_STRUP_EXT_PMIC_EN_MASK),
 		(PMIC_RG_STRUP_EXT_PMIC_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -16862,15 +16521,14 @@ unsigned int mt6358_upmu_set_rg_strup_ext_pmic_sel(
 unsigned int mt6358_upmu_get_da_ext_pmic_en1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON5),
 		(&val),
 		(PMIC_DA_EXT_PMIC_EN1_MASK),
 		(PMIC_DA_EXT_PMIC_EN1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -16878,15 +16536,14 @@ unsigned int mt6358_upmu_get_da_ext_pmic_en1(
 unsigned int mt6358_upmu_get_da_ext_pmic_en2(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON5),
 		(&val),
 		(PMIC_DA_EXT_PMIC_EN2_MASK),
 		(PMIC_DA_EXT_PMIC_EN2_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -17449,15 +17106,14 @@ unsigned int mt6358_upmu_set_rg_uvlo_dec_en(
 unsigned int mt6358_upmu_get_rg_uvlo_dec_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON10),
 		(&val),
 		(PMIC_RG_UVLO_DEC_EN_MASK),
 		(PMIC_RG_UVLO_DEC_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -17525,15 +17181,14 @@ unsigned int mt6358_upmu_set_rg_strup_long_press_ext_en(
 unsigned int mt6358_upmu_get_rg_strup_long_press_ext_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON12),
 		(&val),
 		(PMIC_RG_STRUP_LONG_PRESS_EXT_EN_MASK),
 		(PMIC_RG_STRUP_LONG_PRESS_EXT_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -17616,15 +17271,14 @@ unsigned int mt6358_upmu_set_rg_smart_rst_sdn_en(
 unsigned int mt6358_upmu_get_rg_smart_rst_sdn_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON12),
 		(&val),
 		(PMIC_RG_SMART_RST_SDN_EN_MASK),
 		(PMIC_RG_SMART_RST_SDN_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -17662,15 +17316,14 @@ unsigned int mt6358_upmu_set_rg_strup_envtem(
 unsigned int mt6358_upmu_get_rg_strup_envtem(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON12),
 		(&val),
 		(PMIC_RG_STRUP_ENVTEM_MASK),
 		(PMIC_RG_STRUP_ENVTEM_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -17693,15 +17346,14 @@ unsigned int mt6358_upmu_set_rg_strup_envtem_ctrl(
 unsigned int mt6358_upmu_get_rg_strup_envtem_ctrl(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON12),
 		(&val),
 		(PMIC_RG_STRUP_ENVTEM_CTRL_MASK),
 		(PMIC_RG_STRUP_ENVTEM_CTRL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -17724,15 +17376,14 @@ unsigned int mt6358_upmu_set_rg_strup_pwrkey_count_reset(
 unsigned int mt6358_upmu_get_pup_pkey_release(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PWRKEY_PRESS_STS),
 		(&val),
 		(PMIC_PUP_PKEY_RELEASE_MASK),
 		(PMIC_PUP_PKEY_RELEASE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -17740,15 +17391,14 @@ unsigned int mt6358_upmu_get_pup_pkey_release(
 unsigned int mt6358_upmu_get_pwrkey_long_press_count(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PWRKEY_PRESS_STS),
 		(&val),
 		(PMIC_PWRKEY_LONG_PRESS_COUNT_MASK),
 		(PMIC_PWRKEY_LONG_PRESS_COUNT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -17771,15 +17421,14 @@ unsigned int mt6358_upmu_set_rg_rtc_spar_deb_en(
 unsigned int mt6358_upmu_get_rg_rtc_spar_deb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON19),
 		(&val),
 		(PMIC_RG_RTC_SPAR_DEB_EN_MASK),
 		(PMIC_RG_RTC_SPAR_DEB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -17802,15 +17451,14 @@ unsigned int mt6358_upmu_set_rg_rtc_alarm_deb_en(
 unsigned int mt6358_upmu_get_rg_rtc_alarm_deb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON19),
 		(&val),
 		(PMIC_RG_RTC_ALARM_DEB_EN_MASK),
 		(PMIC_RG_RTC_ALARM_DEB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -17833,15 +17481,14 @@ unsigned int mt6358_upmu_set_rg_strup_vdram2_pg_h2l_en(
 unsigned int mt6358_upmu_get_rg_strup_vdram2_pg_h2l_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON14),
 		(&val),
 		(PMIC_RG_STRUP_VDRAM2_PG_H2L_EN_MASK),
 		(PMIC_RG_STRUP_VDRAM2_PG_H2L_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -17864,15 +17511,14 @@ unsigned int mt6358_upmu_set_rg_strup_vemc_pg_h2l_en(
 unsigned int mt6358_upmu_get_rg_strup_vemc_pg_h2l_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON14),
 		(&val),
 		(PMIC_RG_STRUP_VEMC_PG_H2L_EN_MASK),
 		(PMIC_RG_STRUP_VEMC_PG_H2L_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -17895,15 +17541,14 @@ unsigned int mt6358_upmu_set_rg_strup_vsram_proc12_pg_h2l_en(
 unsigned int mt6358_upmu_get_rg_strup_vsram_proc12_pg_h2l_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON14),
 		(&val),
 		(PMIC_RG_STRUP_VSRAM_PROC12_PG_H2L_EN_MASK),
 		(PMIC_RG_STRUP_VSRAM_PROC12_PG_H2L_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -17926,15 +17571,14 @@ unsigned int mt6358_upmu_set_rg_strup_vsram_proc11_pg_h2l_en(
 unsigned int mt6358_upmu_get_rg_strup_vsram_proc11_pg_h2l_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON14),
 		(&val),
 		(PMIC_RG_STRUP_VSRAM_PROC11_PG_H2L_EN_MASK),
 		(PMIC_RG_STRUP_VSRAM_PROC11_PG_H2L_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -17957,15 +17601,14 @@ unsigned int mt6358_upmu_set_rg_strup_va12_pg_h2l_en(
 unsigned int mt6358_upmu_get_rg_strup_va12_pg_h2l_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON14),
 		(&val),
 		(PMIC_RG_STRUP_VA12_PG_H2L_EN_MASK),
 		(PMIC_RG_STRUP_VA12_PG_H2L_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -17988,15 +17631,14 @@ unsigned int mt6358_upmu_set_rg_strup_vsram_gpu_pg_h2l_en(
 unsigned int mt6358_upmu_get_rg_strup_vsram_gpu_pg_h2l_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON14),
 		(&val),
 		(PMIC_RG_STRUP_VSRAM_GPU_PG_H2L_EN_MASK),
 		(PMIC_RG_STRUP_VSRAM_GPU_PG_H2L_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18019,15 +17661,14 @@ unsigned int mt6358_upmu_set_rg_strup_vsram_others_pg_h2l_en(
 unsigned int mt6358_upmu_get_rg_strup_vsram_others_pg_h2l_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON14),
 		(&val),
 		(PMIC_RG_STRUP_VSRAM_OTHERS_PG_H2L_EN_MASK),
 		(PMIC_RG_STRUP_VSRAM_OTHERS_PG_H2L_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18050,15 +17691,14 @@ unsigned int mt6358_upmu_set_rg_strup_vaux18_pg_h2l_en(
 unsigned int mt6358_upmu_get_rg_strup_vaux18_pg_h2l_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON14),
 		(&val),
 		(PMIC_RG_STRUP_VAUX18_PG_H2L_EN_MASK),
 		(PMIC_RG_STRUP_VAUX18_PG_H2L_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18081,15 +17721,14 @@ unsigned int mt6358_upmu_set_rg_strup_vdram1_pg_h2l_en(
 unsigned int mt6358_upmu_get_rg_strup_vdram1_pg_h2l_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON14),
 		(&val),
 		(PMIC_RG_STRUP_VDRAM1_PG_H2L_EN_MASK),
 		(PMIC_RG_STRUP_VDRAM1_PG_H2L_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18112,15 +17751,14 @@ unsigned int mt6358_upmu_set_rg_strup_vproc12_pg_h2l_en(
 unsigned int mt6358_upmu_get_rg_strup_vproc12_pg_h2l_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON14),
 		(&val),
 		(PMIC_RG_STRUP_VPROC12_PG_H2L_EN_MASK),
 		(PMIC_RG_STRUP_VPROC12_PG_H2L_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18143,15 +17781,14 @@ unsigned int mt6358_upmu_set_rg_strup_vproc11_pg_h2l_en(
 unsigned int mt6358_upmu_get_rg_strup_vproc11_pg_h2l_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON14),
 		(&val),
 		(PMIC_RG_STRUP_VPROC11_PG_H2L_EN_MASK),
 		(PMIC_RG_STRUP_VPROC11_PG_H2L_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18174,15 +17811,14 @@ unsigned int mt6358_upmu_set_rg_strup_vs1_pg_h2l_en(
 unsigned int mt6358_upmu_get_rg_strup_vs1_pg_h2l_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON14),
 		(&val),
 		(PMIC_RG_STRUP_VS1_PG_H2L_EN_MASK),
 		(PMIC_RG_STRUP_VS1_PG_H2L_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18205,15 +17841,14 @@ unsigned int mt6358_upmu_set_rg_strup_vgpu_pg_h2l_en(
 unsigned int mt6358_upmu_get_rg_strup_vgpu_pg_h2l_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON14),
 		(&val),
 		(PMIC_RG_STRUP_VGPU_PG_H2L_EN_MASK),
 		(PMIC_RG_STRUP_VGPU_PG_H2L_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18236,15 +17871,14 @@ unsigned int mt6358_upmu_set_rg_strup_vmodem_pg_h2l_en(
 unsigned int mt6358_upmu_get_rg_strup_vmodem_pg_h2l_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON14),
 		(&val),
 		(PMIC_RG_STRUP_VMODEM_PG_H2L_EN_MASK),
 		(PMIC_RG_STRUP_VMODEM_PG_H2L_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18267,15 +17901,14 @@ unsigned int mt6358_upmu_set_rg_strup_vcore_pg_h2l_en(
 unsigned int mt6358_upmu_get_rg_strup_vcore_pg_h2l_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON14),
 		(&val),
 		(PMIC_RG_STRUP_VCORE_PG_H2L_EN_MASK),
 		(PMIC_RG_STRUP_VCORE_PG_H2L_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18298,15 +17931,14 @@ unsigned int mt6358_upmu_set_rg_strup_vs2_pg_h2l_en(
 unsigned int mt6358_upmu_get_rg_strup_vs2_pg_h2l_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON14),
 		(&val),
 		(PMIC_RG_STRUP_VS2_PG_H2L_EN_MASK),
 		(PMIC_RG_STRUP_VS2_PG_H2L_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18329,15 +17961,14 @@ unsigned int mt6358_upmu_set_rg_strup_rsv_pg_h2l_en(
 unsigned int mt6358_upmu_get_rg_strup_rsv_pg_h2l_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON15),
 		(&val),
 		(PMIC_RG_STRUP_RSV_PG_H2L_EN_MASK),
 		(PMIC_RG_STRUP_RSV_PG_H2L_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18360,15 +17991,14 @@ unsigned int mt6358_upmu_set_rg_strup_vaud28_pg_h2l_en(
 unsigned int mt6358_upmu_get_rg_strup_vaud28_pg_h2l_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON15),
 		(&val),
 		(PMIC_RG_STRUP_VAUD28_PG_H2L_EN_MASK),
 		(PMIC_RG_STRUP_VAUD28_PG_H2L_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18391,15 +18021,14 @@ unsigned int mt6358_upmu_set_rg_strup_vusb_pg_h2l_en(
 unsigned int mt6358_upmu_get_rg_strup_vusb_pg_h2l_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON15),
 		(&val),
 		(PMIC_RG_STRUP_VUSB_PG_H2L_EN_MASK),
 		(PMIC_RG_STRUP_VUSB_PG_H2L_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18422,15 +18051,14 @@ unsigned int mt6358_upmu_set_rg_strup_vio18_pg_enb(
 unsigned int mt6358_upmu_get_rg_strup_vio18_pg_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON16),
 		(&val),
 		(PMIC_RG_STRUP_VIO18_PG_ENB_MASK),
 		(PMIC_RG_STRUP_VIO18_PG_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18453,15 +18081,14 @@ unsigned int mt6358_upmu_set_rg_strup_vsram_proc12_pg_enb(
 unsigned int mt6358_upmu_get_rg_strup_vsram_proc12_pg_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON16),
 		(&val),
 		(PMIC_RG_STRUP_VSRAM_PROC12_PG_ENB_MASK),
 		(PMIC_RG_STRUP_VSRAM_PROC12_PG_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18484,15 +18111,14 @@ unsigned int mt6358_upmu_set_rg_strup_vsram_proc11_pg_enb(
 unsigned int mt6358_upmu_get_rg_strup_vsram_proc11_pg_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON16),
 		(&val),
 		(PMIC_RG_STRUP_VSRAM_PROC11_PG_ENB_MASK),
 		(PMIC_RG_STRUP_VSRAM_PROC11_PG_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18515,15 +18141,14 @@ unsigned int mt6358_upmu_set_rg_strup_va12_pg_enb(
 unsigned int mt6358_upmu_get_rg_strup_va12_pg_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON16),
 		(&val),
 		(PMIC_RG_STRUP_VA12_PG_ENB_MASK),
 		(PMIC_RG_STRUP_VA12_PG_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18546,15 +18171,14 @@ unsigned int mt6358_upmu_set_rg_strup_vsram_gpu_pg_enb(
 unsigned int mt6358_upmu_get_rg_strup_vsram_gpu_pg_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON16),
 		(&val),
 		(PMIC_RG_STRUP_VSRAM_GPU_PG_ENB_MASK),
 		(PMIC_RG_STRUP_VSRAM_GPU_PG_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18577,15 +18201,14 @@ unsigned int mt6358_upmu_set_rg_strup_vsram_others_pg_enb(
 unsigned int mt6358_upmu_get_rg_strup_vsram_others_pg_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON16),
 		(&val),
 		(PMIC_RG_STRUP_VSRAM_OTHERS_PG_ENB_MASK),
 		(PMIC_RG_STRUP_VSRAM_OTHERS_PG_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18608,15 +18231,14 @@ unsigned int mt6358_upmu_set_rg_strup_vaux18_pg_enb(
 unsigned int mt6358_upmu_get_rg_strup_vaux18_pg_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON16),
 		(&val),
 		(PMIC_RG_STRUP_VAUX18_PG_ENB_MASK),
 		(PMIC_RG_STRUP_VAUX18_PG_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18639,15 +18261,14 @@ unsigned int mt6358_upmu_set_rg_strup_vxo22_pg_enb(
 unsigned int mt6358_upmu_get_rg_strup_vxo22_pg_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON16),
 		(&val),
 		(PMIC_RG_STRUP_VXO22_PG_ENB_MASK),
 		(PMIC_RG_STRUP_VXO22_PG_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18670,15 +18291,14 @@ unsigned int mt6358_upmu_set_rg_strup_vdram1_pg_enb(
 unsigned int mt6358_upmu_get_rg_strup_vdram1_pg_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON16),
 		(&val),
 		(PMIC_RG_STRUP_VDRAM1_PG_ENB_MASK),
 		(PMIC_RG_STRUP_VDRAM1_PG_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18701,15 +18321,14 @@ unsigned int mt6358_upmu_set_rg_strup_vproc12_pg_enb(
 unsigned int mt6358_upmu_get_rg_strup_vproc12_pg_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON16),
 		(&val),
 		(PMIC_RG_STRUP_VPROC12_PG_ENB_MASK),
 		(PMIC_RG_STRUP_VPROC12_PG_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18732,15 +18351,14 @@ unsigned int mt6358_upmu_set_rg_strup_vproc11_pg_enb(
 unsigned int mt6358_upmu_get_rg_strup_vproc11_pg_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON16),
 		(&val),
 		(PMIC_RG_STRUP_VPROC11_PG_ENB_MASK),
 		(PMIC_RG_STRUP_VPROC11_PG_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18763,15 +18381,14 @@ unsigned int mt6358_upmu_set_rg_strup_vs1_pg_enb(
 unsigned int mt6358_upmu_get_rg_strup_vs1_pg_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON16),
 		(&val),
 		(PMIC_RG_STRUP_VS1_PG_ENB_MASK),
 		(PMIC_RG_STRUP_VS1_PG_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18794,15 +18411,14 @@ unsigned int mt6358_upmu_set_rg_strup_vgpu_pg_enb(
 unsigned int mt6358_upmu_get_rg_strup_vgpu_pg_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON16),
 		(&val),
 		(PMIC_RG_STRUP_VGPU_PG_ENB_MASK),
 		(PMIC_RG_STRUP_VGPU_PG_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18825,15 +18441,14 @@ unsigned int mt6358_upmu_set_rg_strup_vmodem_pg_enb(
 unsigned int mt6358_upmu_get_rg_strup_vmodem_pg_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON16),
 		(&val),
 		(PMIC_RG_STRUP_VMODEM_PG_ENB_MASK),
 		(PMIC_RG_STRUP_VMODEM_PG_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18856,15 +18471,14 @@ unsigned int mt6358_upmu_set_rg_strup_vcore_pg_enb(
 unsigned int mt6358_upmu_get_rg_strup_vcore_pg_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON16),
 		(&val),
 		(PMIC_RG_STRUP_VCORE_PG_ENB_MASK),
 		(PMIC_RG_STRUP_VCORE_PG_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18887,15 +18501,14 @@ unsigned int mt6358_upmu_set_rg_strup_vs2_pg_enb(
 unsigned int mt6358_upmu_get_rg_strup_vs2_pg_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON16),
 		(&val),
 		(PMIC_RG_STRUP_VS2_PG_ENB_MASK),
 		(PMIC_RG_STRUP_VS2_PG_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18918,15 +18531,14 @@ unsigned int mt6358_upmu_set_rg_strup_rsv_pg_enb(
 unsigned int mt6358_upmu_get_rg_strup_rsv_pg_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON17),
 		(&val),
 		(PMIC_RG_STRUP_RSV_PG_ENB_MASK),
 		(PMIC_RG_STRUP_RSV_PG_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18949,15 +18561,14 @@ unsigned int mt6358_upmu_set_rg_strup_vaud28_pg_enb(
 unsigned int mt6358_upmu_get_rg_strup_vaud28_pg_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON17),
 		(&val),
 		(PMIC_RG_STRUP_VAUD28_PG_ENB_MASK),
 		(PMIC_RG_STRUP_VAUD28_PG_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -18980,15 +18591,14 @@ unsigned int mt6358_upmu_set_rg_strup_vusb_pg_enb(
 unsigned int mt6358_upmu_get_rg_strup_vusb_pg_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON17),
 		(&val),
 		(PMIC_RG_STRUP_VUSB_PG_ENB_MASK),
 		(PMIC_RG_STRUP_VUSB_PG_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -19011,15 +18621,14 @@ unsigned int mt6358_upmu_set_rg_strup_vdram2_pg_enb(
 unsigned int mt6358_upmu_get_rg_strup_vdram2_pg_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON17),
 		(&val),
 		(PMIC_RG_STRUP_VDRAM2_PG_ENB_MASK),
 		(PMIC_RG_STRUP_VDRAM2_PG_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -19042,15 +18651,14 @@ unsigned int mt6358_upmu_set_rg_strup_vio28_pg_enb(
 unsigned int mt6358_upmu_get_rg_strup_vio28_pg_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON17),
 		(&val),
 		(PMIC_RG_STRUP_VIO28_PG_ENB_MASK),
 		(PMIC_RG_STRUP_VIO28_PG_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -19073,15 +18681,14 @@ unsigned int mt6358_upmu_set_rg_strup_vemc_pg_enb(
 unsigned int mt6358_upmu_get_rg_strup_vemc_pg_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON17),
 		(&val),
 		(PMIC_RG_STRUP_VEMC_PG_ENB_MASK),
 		(PMIC_RG_STRUP_VEMC_PG_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -19104,15 +18711,14 @@ unsigned int mt6358_upmu_set_rg_strup_vdram1_oc_enb(
 unsigned int mt6358_upmu_get_rg_strup_vdram1_oc_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON18),
 		(&val),
 		(PMIC_RG_STRUP_VDRAM1_OC_ENB_MASK),
 		(PMIC_RG_STRUP_VDRAM1_OC_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -19135,15 +18741,14 @@ unsigned int mt6358_upmu_set_rg_strup_vproc12_oc_enb(
 unsigned int mt6358_upmu_get_rg_strup_vproc12_oc_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON18),
 		(&val),
 		(PMIC_RG_STRUP_VPROC12_OC_ENB_MASK),
 		(PMIC_RG_STRUP_VPROC12_OC_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -19166,15 +18771,14 @@ unsigned int mt6358_upmu_set_rg_strup_vproc11_oc_enb(
 unsigned int mt6358_upmu_get_rg_strup_vproc11_oc_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON18),
 		(&val),
 		(PMIC_RG_STRUP_VPROC11_OC_ENB_MASK),
 		(PMIC_RG_STRUP_VPROC11_OC_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -19197,15 +18801,14 @@ unsigned int mt6358_upmu_set_rg_strup_vs1_oc_enb(
 unsigned int mt6358_upmu_get_rg_strup_vs1_oc_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON18),
 		(&val),
 		(PMIC_RG_STRUP_VS1_OC_ENB_MASK),
 		(PMIC_RG_STRUP_VS1_OC_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -19228,15 +18831,14 @@ unsigned int mt6358_upmu_set_rg_strup_vgpu_oc_enb(
 unsigned int mt6358_upmu_get_rg_strup_vgpu_oc_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON18),
 		(&val),
 		(PMIC_RG_STRUP_VGPU_OC_ENB_MASK),
 		(PMIC_RG_STRUP_VGPU_OC_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -19259,15 +18861,14 @@ unsigned int mt6358_upmu_set_rg_strup_vmodem_oc_enb(
 unsigned int mt6358_upmu_get_rg_strup_vmodem_oc_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON18),
 		(&val),
 		(PMIC_RG_STRUP_VMODEM_OC_ENB_MASK),
 		(PMIC_RG_STRUP_VMODEM_OC_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -19290,15 +18891,14 @@ unsigned int mt6358_upmu_set_rg_strup_vcore_oc_enb(
 unsigned int mt6358_upmu_get_rg_strup_vcore_oc_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON18),
 		(&val),
 		(PMIC_RG_STRUP_VCORE_OC_ENB_MASK),
 		(PMIC_RG_STRUP_VCORE_OC_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -19321,15 +18921,14 @@ unsigned int mt6358_upmu_set_rg_strup_vs2_oc_enb(
 unsigned int mt6358_upmu_get_rg_strup_vs2_oc_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_STRUP_CON18),
 		(&val),
 		(PMIC_RG_STRUP_VS2_OC_ENB_MASK),
 		(PMIC_RG_STRUP_VS2_OC_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -19337,15 +18936,14 @@ unsigned int mt6358_upmu_get_rg_strup_vs2_oc_enb(
 unsigned int mt6358_upmu_get_pseq_elr_len(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSEQ_ELR_NUM),
 		(&val),
 		(PMIC_PSEQ_ELR_LEN_MASK),
 		(PMIC_PSEQ_ELR_LEN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -19728,15 +19326,14 @@ unsigned int mt6358_upmu_set_rg_bwdt_en(
 unsigned int mt6358_upmu_get_rg_bwdt_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSEQ_ELR10),
 		(&val),
 		(PMIC_RG_BWDT_EN_MASK),
 		(PMIC_RG_BWDT_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -19879,15 +19476,14 @@ unsigned int mt6358_upmu_set_rg_pspg_shdn_en(
 unsigned int mt6358_upmu_get_rg_pspg_shdn_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSEQ_ELR11),
 		(&val),
 		(PMIC_RG_PSPG_SHDN_EN_MASK),
 		(PMIC_RG_PSPG_SHDN_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -19985,15 +19581,14 @@ unsigned int mt6358_upmu_set_rg_cps_s0ext_enb(
 unsigned int mt6358_upmu_get_rg_cps_s0ext_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSEQ_ELR11),
 		(&val),
 		(PMIC_RG_CPS_S0EXT_ENB_MASK),
 		(PMIC_RG_CPS_S0EXT_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -20031,15 +19626,14 @@ unsigned int mt6358_upmu_set_rg_sdn_dly_enb(
 unsigned int mt6358_upmu_get_rg_sdn_dly_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PSEQ_ELR11),
 		(&val),
 		(PMIC_RG_SDN_DLY_ENB_MASK),
 		(PMIC_RG_SDN_DLY_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -20122,15 +19716,14 @@ unsigned int mt6358_upmu_set_rg_ldo_pg_stb_mode(
 unsigned int mt6358_upmu_get_chrdet_ana_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_CHRDET_ID),
 		(&val),
 		(PMIC_CHRDET_ANA_ID_MASK),
 		(PMIC_CHRDET_ANA_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -20138,15 +19731,14 @@ unsigned int mt6358_upmu_get_chrdet_ana_id(
 unsigned int mt6358_upmu_get_chrdet_dig_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_CHRDET_ID),
 		(&val),
 		(PMIC_CHRDET_DIG_ID_MASK),
 		(PMIC_CHRDET_DIG_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -20154,15 +19746,14 @@ unsigned int mt6358_upmu_get_chrdet_dig_id(
 unsigned int mt6358_upmu_get_chrdet_ana_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_CHRDET_REV0),
 		(&val),
 		(PMIC_CHRDET_ANA_MINOR_REV_MASK),
 		(PMIC_CHRDET_ANA_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -20170,15 +19761,14 @@ unsigned int mt6358_upmu_get_chrdet_ana_minor_rev(
 unsigned int mt6358_upmu_get_chrdet_ana_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_CHRDET_REV0),
 		(&val),
 		(PMIC_CHRDET_ANA_MAJOR_REV_MASK),
 		(PMIC_CHRDET_ANA_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -20186,15 +19776,14 @@ unsigned int mt6358_upmu_get_chrdet_ana_major_rev(
 unsigned int mt6358_upmu_get_chrdet_dig_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_CHRDET_REV0),
 		(&val),
 		(PMIC_CHRDET_DIG_MINOR_REV_MASK),
 		(PMIC_CHRDET_DIG_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -20202,15 +19791,14 @@ unsigned int mt6358_upmu_get_chrdet_dig_minor_rev(
 unsigned int mt6358_upmu_get_chrdet_dig_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_CHRDET_REV0),
 		(&val),
 		(PMIC_CHRDET_DIG_MAJOR_REV_MASK),
 		(PMIC_CHRDET_DIG_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -20218,15 +19806,14 @@ unsigned int mt6358_upmu_get_chrdet_dig_major_rev(
 unsigned int mt6358_upmu_get_chrdet_cbs(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_CHRDET_DBI),
 		(&val),
 		(PMIC_CHRDET_CBS_MASK),
 		(PMIC_CHRDET_CBS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -20234,15 +19821,14 @@ unsigned int mt6358_upmu_get_chrdet_cbs(
 unsigned int mt6358_upmu_get_chrdet_bix(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_CHRDET_DBI),
 		(&val),
 		(PMIC_CHRDET_BIX_MASK),
 		(PMIC_CHRDET_BIX_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -20250,15 +19836,14 @@ unsigned int mt6358_upmu_get_chrdet_bix(
 unsigned int mt6358_upmu_get_chrdet_fpi(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_CHRDET_DXI),
 		(&val),
 		(PMIC_CHRDET_FPI_MASK),
 		(PMIC_CHRDET_FPI_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -20296,15 +19881,14 @@ unsigned int mt6358_upmu_set_rg_vcdt_hv_en(
 unsigned int mt6358_upmu_get_rg_vcdt_hv_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_CHR_CON0),
 		(&val),
 		(PMIC_RG_VCDT_HV_EN_MASK),
 		(PMIC_RG_VCDT_HV_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -20342,15 +19926,14 @@ unsigned int mt6358_upmu_set_rg_pchr_ft_ctrl(
 unsigned int mt6358_upmu_get_rgs_chrdet(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_CHR_CON0),
 		(&val),
 		(PMIC_RGS_CHRDET_MASK),
 		(PMIC_RGS_CHRDET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -20358,15 +19941,14 @@ unsigned int mt6358_upmu_get_rgs_chrdet(
 unsigned int mt6358_upmu_get_rgs_vcdt_lv_det(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_CHR_CON0),
 		(&val),
 		(PMIC_RGS_VCDT_LV_DET_MASK),
 		(PMIC_RGS_VCDT_LV_DET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -20374,15 +19956,14 @@ unsigned int mt6358_upmu_get_rgs_vcdt_lv_det(
 unsigned int mt6358_upmu_get_rgs_vcdt_hv_det(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_CHR_CON0),
 		(&val),
 		(PMIC_RGS_VCDT_HV_DET_MASK),
 		(PMIC_RGS_VCDT_HV_DET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -20420,15 +20001,14 @@ unsigned int mt6358_upmu_set_rg_vcdt_hv_vth(
 unsigned int mt6358_upmu_get_rgs_pchr_flag_out(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_CHR_CON2),
 		(&val),
 		(PMIC_RGS_PCHR_FLAG_OUT_MASK),
 		(PMIC_RGS_PCHR_FLAG_OUT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -20451,15 +20031,14 @@ unsigned int mt6358_upmu_set_rg_pchr_flag_en(
 unsigned int mt6358_upmu_get_rg_pchr_flag_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_CHR_CON2),
 		(&val),
 		(PMIC_RG_PCHR_FLAG_EN_MASK),
 		(PMIC_RG_PCHR_FLAG_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -20512,15 +20091,14 @@ unsigned int mt6358_upmu_set_rg_envtem_en(
 unsigned int mt6358_upmu_get_rg_envtem_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_CHR_CON4),
 		(&val),
 		(PMIC_RG_ENVTEM_EN_MASK),
 		(PMIC_RG_ENVTEM_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -20573,15 +20151,14 @@ unsigned int mt6358_upmu_set_rg_bgr_test_en(
 unsigned int mt6358_upmu_get_rg_bgr_test_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PCHR_VREF_ANA_CON0),
 		(&val),
 		(PMIC_RG_BGR_TEST_EN_MASK),
 		(PMIC_RG_BGR_TEST_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -20634,15 +20211,14 @@ unsigned int mt6358_upmu_set_rg_otg_bvalid_en(
 unsigned int mt6358_upmu_get_rg_otg_bvalid_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PCHR_VREF_ANA_CON1),
 		(&val),
 		(PMIC_RG_OTG_BVALID_EN_MASK),
 		(PMIC_RG_OTG_BVALID_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -20695,15 +20271,14 @@ unsigned int mt6358_upmu_set_rg_pchr_rv(
 unsigned int mt6358_upmu_get_rgs_otg_bvalid_det(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PCHR_VREF_ANA_CON3),
 		(&val),
 		(PMIC_RGS_OTG_BVALID_DET_MASK),
 		(PMIC_RGS_OTG_BVALID_DET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -20711,15 +20286,14 @@ unsigned int mt6358_upmu_get_rgs_otg_bvalid_det(
 unsigned int mt6358_upmu_get_rgs_chr_ldo_det(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PCHR_VREF_ANA_CON3),
 		(&val),
 		(PMIC_RGS_CHR_LDO_DET_MASK),
 		(PMIC_RGS_CHR_LDO_DET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -20802,15 +20376,14 @@ unsigned int mt6358_upmu_set_rg_bgr_trim_en(
 unsigned int mt6358_upmu_get_rg_bgr_trim_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_PCHR_VREF_ELR_1),
 		(&val),
 		(PMIC_RG_BGR_TRIM_EN_MASK),
 		(PMIC_RG_BGR_TRIM_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -21313,15 +20886,14 @@ unsigned int mt6358_upmu_set_rg_int_en_fg_bat0_h(
 unsigned int mt6358_upmu_get_rg_int_en_fg_bat0_h(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_FG_BAT0_H_MASK),
 		(PMIC_RG_INT_EN_FG_BAT0_H_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -21344,15 +20916,14 @@ unsigned int mt6358_upmu_set_rg_int_en_fg_bat0_l(
 unsigned int mt6358_upmu_get_rg_int_en_fg_bat0_l(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_FG_BAT0_L_MASK),
 		(PMIC_RG_INT_EN_FG_BAT0_L_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -21375,15 +20946,14 @@ unsigned int mt6358_upmu_set_rg_int_en_fg_cur_h(
 unsigned int mt6358_upmu_get_rg_int_en_fg_cur_h(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_FG_CUR_H_MASK),
 		(PMIC_RG_INT_EN_FG_CUR_H_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -21406,15 +20976,14 @@ unsigned int mt6358_upmu_set_rg_int_en_fg_cur_l(
 unsigned int mt6358_upmu_get_rg_int_en_fg_cur_l(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_FG_CUR_L_MASK),
 		(PMIC_RG_INT_EN_FG_CUR_L_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -21437,15 +21006,14 @@ unsigned int mt6358_upmu_set_rg_int_en_fg_zcv(
 unsigned int mt6358_upmu_get_rg_int_en_fg_zcv(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_FG_ZCV_MASK),
 		(PMIC_RG_INT_EN_FG_ZCV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -21468,15 +21036,14 @@ unsigned int mt6358_upmu_set_rg_int_en_fg_bat1_h(
 unsigned int mt6358_upmu_get_rg_int_en_fg_bat1_h(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_FG_BAT1_H_MASK),
 		(PMIC_RG_INT_EN_FG_BAT1_H_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -21499,15 +21066,14 @@ unsigned int mt6358_upmu_set_rg_int_en_fg_bat1_l(
 unsigned int mt6358_upmu_get_rg_int_en_fg_bat1_l(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_FG_BAT1_L_MASK),
 		(PMIC_RG_INT_EN_FG_BAT1_L_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -21530,15 +21096,14 @@ unsigned int mt6358_upmu_set_rg_int_en_fg_n_charge_l(
 unsigned int mt6358_upmu_get_rg_int_en_fg_n_charge_l(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_FG_N_CHARGE_L_MASK),
 		(PMIC_RG_INT_EN_FG_N_CHARGE_L_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -21561,15 +21126,14 @@ unsigned int mt6358_upmu_set_rg_int_en_fg_iavg_h(
 unsigned int mt6358_upmu_get_rg_int_en_fg_iavg_h(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_FG_IAVG_H_MASK),
 		(PMIC_RG_INT_EN_FG_IAVG_H_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -21592,15 +21156,14 @@ unsigned int mt6358_upmu_set_rg_int_en_fg_iavg_l(
 unsigned int mt6358_upmu_get_rg_int_en_fg_iavg_l(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_FG_IAVG_L_MASK),
 		(PMIC_RG_INT_EN_FG_IAVG_L_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -21623,15 +21186,14 @@ unsigned int mt6358_upmu_set_rg_int_en_fg_time_h(
 unsigned int mt6358_upmu_get_rg_int_en_fg_time_h(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_FG_TIME_H_MASK),
 		(PMIC_RG_INT_EN_FG_TIME_H_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -21654,15 +21216,14 @@ unsigned int mt6358_upmu_set_rg_int_en_fg_discharge(
 unsigned int mt6358_upmu_get_rg_int_en_fg_discharge(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_FG_DISCHARGE_MASK),
 		(PMIC_RG_INT_EN_FG_DISCHARGE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -21685,15 +21246,14 @@ unsigned int mt6358_upmu_set_rg_int_en_fg_charge(
 unsigned int mt6358_upmu_get_rg_int_en_fg_charge(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_FG_CHARGE_MASK),
 		(PMIC_RG_INT_EN_FG_CHARGE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -21716,15 +21276,14 @@ unsigned int mt6358_upmu_set_rg_bm_int_en_con0_rsv(
 unsigned int mt6358_upmu_get_rg_bm_int_en_con0_rsv(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_BM_INT_EN_CON0_RSV_MASK),
 		(PMIC_RG_BM_INT_EN_CON0_RSV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -21747,15 +21306,14 @@ unsigned int mt6358_upmu_set_rg_int_en_baton_lv(
 unsigned int mt6358_upmu_get_rg_int_en_baton_lv(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_CON1),
 		(&val),
 		(PMIC_RG_INT_EN_BATON_LV_MASK),
 		(PMIC_RG_INT_EN_BATON_LV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -21778,15 +21336,14 @@ unsigned int mt6358_upmu_set_rg_int_en_baton_ht(
 unsigned int mt6358_upmu_get_rg_int_en_baton_ht(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_CON1),
 		(&val),
 		(PMIC_RG_INT_EN_BATON_HT_MASK),
 		(PMIC_RG_INT_EN_BATON_HT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -21809,15 +21366,14 @@ unsigned int mt6358_upmu_set_rg_int_en_baton_bat_in(
 unsigned int mt6358_upmu_get_rg_int_en_baton_bat_in(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_CON1),
 		(&val),
 		(PMIC_RG_INT_EN_BATON_BAT_IN_MASK),
 		(PMIC_RG_INT_EN_BATON_BAT_IN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -21840,15 +21396,14 @@ unsigned int mt6358_upmu_set_rg_int_en_baton_bat_out(
 unsigned int mt6358_upmu_get_rg_int_en_baton_bat_out(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_CON1),
 		(&val),
 		(PMIC_RG_INT_EN_BATON_BAT_OUT_MASK),
 		(PMIC_RG_INT_EN_BATON_BAT_OUT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -21871,15 +21426,14 @@ unsigned int mt6358_upmu_set_rg_int_en_bif(
 unsigned int mt6358_upmu_get_rg_int_en_bif(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_CON1),
 		(&val),
 		(PMIC_RG_INT_EN_BIF_MASK),
 		(PMIC_RG_INT_EN_BIF_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -22172,15 +21726,14 @@ unsigned int mt6358_upmu_set_rg_int_mask_bif(
 unsigned int mt6358_upmu_get_rg_int_raw_status_fg_bat0_h(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_FG_BAT0_H_MASK),
 		(PMIC_RG_INT_RAW_STATUS_FG_BAT0_H_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -22188,15 +21741,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_fg_bat0_h(
 unsigned int mt6358_upmu_get_rg_int_raw_status_fg_bat0_l(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_FG_BAT0_L_MASK),
 		(PMIC_RG_INT_RAW_STATUS_FG_BAT0_L_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -22204,15 +21756,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_fg_bat0_l(
 unsigned int mt6358_upmu_get_rg_int_raw_status_fg_cur_h(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_FG_CUR_H_MASK),
 		(PMIC_RG_INT_RAW_STATUS_FG_CUR_H_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -22220,15 +21771,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_fg_cur_h(
 unsigned int mt6358_upmu_get_rg_int_raw_status_fg_cur_l(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_FG_CUR_L_MASK),
 		(PMIC_RG_INT_RAW_STATUS_FG_CUR_L_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -22236,15 +21786,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_fg_cur_l(
 unsigned int mt6358_upmu_get_rg_int_raw_status_fg_zcv(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_FG_ZCV_MASK),
 		(PMIC_RG_INT_RAW_STATUS_FG_ZCV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -22252,15 +21801,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_fg_zcv(
 unsigned int mt6358_upmu_get_rg_int_raw_status_fg_bat1_h(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_FG_BAT1_H_MASK),
 		(PMIC_RG_INT_RAW_STATUS_FG_BAT1_H_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -22268,15 +21816,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_fg_bat1_h(
 unsigned int mt6358_upmu_get_rg_int_raw_status_fg_bat1_l(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_FG_BAT1_L_MASK),
 		(PMIC_RG_INT_RAW_STATUS_FG_BAT1_L_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -22284,15 +21831,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_fg_bat1_l(
 unsigned int mt6358_upmu_get_rg_int_raw_status_fg_n_charge_l(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_FG_N_CHARGE_L_MASK),
 		(PMIC_RG_INT_RAW_STATUS_FG_N_CHARGE_L_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -22300,15 +21846,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_fg_n_charge_l(
 unsigned int mt6358_upmu_get_rg_int_raw_status_fg_iavg_h(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_FG_IAVG_H_MASK),
 		(PMIC_RG_INT_RAW_STATUS_FG_IAVG_H_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -22316,15 +21861,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_fg_iavg_h(
 unsigned int mt6358_upmu_get_rg_int_raw_status_fg_iavg_l(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_FG_IAVG_L_MASK),
 		(PMIC_RG_INT_RAW_STATUS_FG_IAVG_L_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -22332,15 +21876,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_fg_iavg_l(
 unsigned int mt6358_upmu_get_rg_int_raw_status_fg_time_h(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_FG_TIME_H_MASK),
 		(PMIC_RG_INT_RAW_STATUS_FG_TIME_H_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -22348,15 +21891,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_fg_time_h(
 unsigned int mt6358_upmu_get_rg_int_raw_status_fg_discharge(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_FG_DISCHARGE_MASK),
 		(PMIC_RG_INT_RAW_STATUS_FG_DISCHARGE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -22364,15 +21906,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_fg_discharge(
 unsigned int mt6358_upmu_get_rg_int_raw_status_fg_charge(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_FG_CHARGE_MASK),
 		(PMIC_RG_INT_RAW_STATUS_FG_CHARGE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -22380,15 +21921,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_fg_charge(
 unsigned int mt6358_upmu_get_rg_bm_int_raw_status_rsv(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_BM_INT_RAW_STATUS_RSV_MASK),
 		(PMIC_RG_BM_INT_RAW_STATUS_RSV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -22396,15 +21936,14 @@ unsigned int mt6358_upmu_get_rg_bm_int_raw_status_rsv(
 unsigned int mt6358_upmu_get_rg_int_raw_status_baton_lv(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_RAW_STATUS1),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_BATON_LV_MASK),
 		(PMIC_RG_INT_RAW_STATUS_BATON_LV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -22412,15 +21951,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_baton_lv(
 unsigned int mt6358_upmu_get_rg_int_raw_status_baton_ht(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_RAW_STATUS1),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_BATON_HT_MASK),
 		(PMIC_RG_INT_RAW_STATUS_BATON_HT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -22428,15 +21966,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_baton_ht(
 unsigned int mt6358_upmu_get_rg_int_raw_status_baton_bat_in(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_RAW_STATUS1),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_BATON_BAT_IN_MASK),
 		(PMIC_RG_INT_RAW_STATUS_BATON_BAT_IN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -22444,15 +21981,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_baton_bat_in(
 unsigned int mt6358_upmu_get_rg_int_raw_status_baton_bat_out(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_RAW_STATUS1),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_BATON_BAT_OUT_MASK),
 		(PMIC_RG_INT_RAW_STATUS_BATON_BAT_OUT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -22460,15 +21996,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_baton_bat_out(
 unsigned int mt6358_upmu_get_rg_int_raw_status_bif(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BM_TOP_INT_RAW_STATUS1),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_BIF_MASK),
 		(PMIC_RG_INT_RAW_STATUS_BIF_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -22641,15 +22176,14 @@ unsigned int mt6358_upmu_set_fg_rng_en_sw(
 unsigned int mt6358_upmu_get_da_fg_rng_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_ANA_TEST_CON0),
 		(&val),
 		(PMIC_DA_FG_RNG_EN_MASK),
 		(PMIC_DA_FG_RNG_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -22657,15 +22191,14 @@ unsigned int mt6358_upmu_get_da_fg_rng_en(
 unsigned int mt6358_upmu_get_da_fg_rng_bit(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_ANA_TEST_CON0),
 		(&val),
 		(PMIC_DA_FG_RNG_BIT_MASK),
 		(PMIC_DA_FG_RNG_BIT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -22733,15 +22266,14 @@ unsigned int mt6358_upmu_set_fg_dwa_rst_sw(
 unsigned int mt6358_upmu_get_da_dwa_rst(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_ANA_TEST_CON0),
 		(&val),
 		(PMIC_DA_DWA_RST_MASK),
 		(PMIC_DA_DWA_RST_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23034,15 +22566,14 @@ unsigned int mt6358_upmu_set_fg_soff_rst(
 unsigned int mt6358_upmu_get_fg_latchdata_st(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_CON1),
 		(&val),
 		(PMIC_FG_LATCHDATA_ST_MASK),
 		(PMIC_FG_LATCHDATA_ST_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23050,15 +22581,14 @@ unsigned int mt6358_upmu_get_fg_latchdata_st(
 unsigned int mt6358_upmu_get_event_fg_bat0_h(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_CON2),
 		(&val),
 		(PMIC_EVENT_FG_BAT0_H_MASK),
 		(PMIC_EVENT_FG_BAT0_H_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23066,15 +22596,14 @@ unsigned int mt6358_upmu_get_event_fg_bat0_h(
 unsigned int mt6358_upmu_get_event_fg_bat0_l(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_CON2),
 		(&val),
 		(PMIC_EVENT_FG_BAT0_L_MASK),
 		(PMIC_EVENT_FG_BAT0_L_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23082,15 +22611,14 @@ unsigned int mt6358_upmu_get_event_fg_bat0_l(
 unsigned int mt6358_upmu_get_event_fg_cur_h(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_CON2),
 		(&val),
 		(PMIC_EVENT_FG_CUR_H_MASK),
 		(PMIC_EVENT_FG_CUR_H_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23098,15 +22626,14 @@ unsigned int mt6358_upmu_get_event_fg_cur_h(
 unsigned int mt6358_upmu_get_event_fg_cur_l(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_CON2),
 		(&val),
 		(PMIC_EVENT_FG_CUR_L_MASK),
 		(PMIC_EVENT_FG_CUR_L_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23114,15 +22641,14 @@ unsigned int mt6358_upmu_get_event_fg_cur_l(
 unsigned int mt6358_upmu_get_event_fg_zcv(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_CON2),
 		(&val),
 		(PMIC_EVENT_FG_ZCV_MASK),
 		(PMIC_EVENT_FG_ZCV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23130,15 +22656,14 @@ unsigned int mt6358_upmu_get_event_fg_zcv(
 unsigned int mt6358_upmu_get_event_fg_bat1_h(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_CON2),
 		(&val),
 		(PMIC_EVENT_FG_BAT1_H_MASK),
 		(PMIC_EVENT_FG_BAT1_H_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23146,15 +22671,14 @@ unsigned int mt6358_upmu_get_event_fg_bat1_h(
 unsigned int mt6358_upmu_get_event_fg_bat1_l(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_CON2),
 		(&val),
 		(PMIC_EVENT_FG_BAT1_L_MASK),
 		(PMIC_EVENT_FG_BAT1_L_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23162,15 +22686,14 @@ unsigned int mt6358_upmu_get_event_fg_bat1_l(
 unsigned int mt6358_upmu_get_event_fg_n_charge_l(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_CON2),
 		(&val),
 		(PMIC_EVENT_FG_N_CHARGE_L_MASK),
 		(PMIC_EVENT_FG_N_CHARGE_L_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23178,15 +22701,14 @@ unsigned int mt6358_upmu_get_event_fg_n_charge_l(
 unsigned int mt6358_upmu_get_event_fg_iavg_h(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_CON2),
 		(&val),
 		(PMIC_EVENT_FG_IAVG_H_MASK),
 		(PMIC_EVENT_FG_IAVG_H_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23194,15 +22716,14 @@ unsigned int mt6358_upmu_get_event_fg_iavg_h(
 unsigned int mt6358_upmu_get_event_fg_iavg_l(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_CON2),
 		(&val),
 		(PMIC_EVENT_FG_IAVG_L_MASK),
 		(PMIC_EVENT_FG_IAVG_L_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23210,15 +22731,14 @@ unsigned int mt6358_upmu_get_event_fg_iavg_l(
 unsigned int mt6358_upmu_get_event_fg_time_h(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_CON2),
 		(&val),
 		(PMIC_EVENT_FG_TIME_H_MASK),
 		(PMIC_EVENT_FG_TIME_H_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23226,15 +22746,14 @@ unsigned int mt6358_upmu_get_event_fg_time_h(
 unsigned int mt6358_upmu_get_event_fg_discharge(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_CON2),
 		(&val),
 		(PMIC_EVENT_FG_DISCHARGE_MASK),
 		(PMIC_EVENT_FG_DISCHARGE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23242,15 +22761,14 @@ unsigned int mt6358_upmu_get_event_fg_discharge(
 unsigned int mt6358_upmu_get_event_fg_charge(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_CON2),
 		(&val),
 		(PMIC_EVENT_FG_CHARGE_MASK),
 		(PMIC_EVENT_FG_CHARGE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23318,15 +22836,14 @@ unsigned int mt6358_upmu_set_fg_adc_autorst(
 unsigned int mt6358_upmu_get_fg_adc_rstdetect(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_CON4),
 		(&val),
 		(PMIC_FG_ADC_RSTDETECT_MASK),
 		(PMIC_FG_ADC_RSTDETECT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23424,15 +22941,14 @@ unsigned int mt6358_upmu_set_fg_rstb_status(
 unsigned int mt6358_upmu_get_fg_car_15_00(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_CAR_CON0),
 		(&val),
 		(PMIC_FG_CAR_15_00_MASK),
 		(PMIC_FG_CAR_15_00_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23440,15 +22956,14 @@ unsigned int mt6358_upmu_get_fg_car_15_00(
 unsigned int mt6358_upmu_get_fg_car_31_16(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_CAR_CON1),
 		(&val),
 		(PMIC_FG_CAR_31_16_MASK),
 		(PMIC_FG_CAR_31_16_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23576,15 +23091,14 @@ unsigned int mt6358_upmu_set_fg_bat1_hth_31_16(
 unsigned int mt6358_upmu_get_fg_ncar_15_00(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_NCAR_CON0),
 		(&val),
 		(PMIC_FG_NCAR_15_00_MASK),
 		(PMIC_FG_NCAR_15_00_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23592,15 +23106,14 @@ unsigned int mt6358_upmu_get_fg_ncar_15_00(
 unsigned int mt6358_upmu_get_fg_ncar_31_16(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_NCAR_CON1),
 		(&val),
 		(PMIC_FG_NCAR_31_16_MASK),
 		(PMIC_FG_NCAR_31_16_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23638,15 +23151,14 @@ unsigned int mt6358_upmu_set_fg_n_charge_lth_31_16(
 unsigned int mt6358_upmu_get_fg_iavg_15_00(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_IAVG_CON0),
 		(&val),
 		(PMIC_FG_IAVG_15_00_MASK),
 		(PMIC_FG_IAVG_15_00_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23654,15 +23166,14 @@ unsigned int mt6358_upmu_get_fg_iavg_15_00(
 unsigned int mt6358_upmu_get_fg_iavg_27_16(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_IAVG_CON1),
 		(&val),
 		(PMIC_FG_IAVG_27_16_MASK),
 		(PMIC_FG_IAVG_27_16_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23670,15 +23181,14 @@ unsigned int mt6358_upmu_get_fg_iavg_27_16(
 unsigned int mt6358_upmu_get_fg_iavg_vld(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_IAVG_CON1),
 		(&val),
 		(PMIC_FG_IAVG_VLD_MASK),
 		(PMIC_FG_IAVG_VLD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23746,15 +23256,14 @@ unsigned int mt6358_upmu_set_fg_iavg_hth_28_16(
 unsigned int mt6358_upmu_get_fg_nter_15_00(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_NTER_CON0),
 		(&val),
 		(PMIC_FG_NTER_15_00_MASK),
 		(PMIC_FG_NTER_15_00_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23762,15 +23271,14 @@ unsigned int mt6358_upmu_get_fg_nter_15_00(
 unsigned int mt6358_upmu_get_fg_nter_29_16(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_NTER_CON1),
 		(&val),
 		(PMIC_FG_NTER_29_16_MASK),
 		(PMIC_FG_NTER_29_16_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23913,15 +23421,14 @@ unsigned int mt6358_upmu_set_fg_soff_det_time(
 unsigned int mt6358_upmu_get_fg_soff_time_15_00(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_SOFF_CON3),
 		(&val),
 		(PMIC_FG_SOFF_TIME_15_00_MASK),
 		(PMIC_FG_SOFF_TIME_15_00_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23929,15 +23436,14 @@ unsigned int mt6358_upmu_get_fg_soff_time_15_00(
 unsigned int mt6358_upmu_get_fg_soff_time_29_16(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_SOFF_CON4),
 		(&val),
 		(PMIC_FG_SOFF_TIME_29_16_MASK),
 		(PMIC_FG_SOFF_TIME_29_16_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -23945,15 +23451,14 @@ unsigned int mt6358_upmu_get_fg_soff_time_29_16(
 unsigned int mt6358_upmu_get_fg_soff(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_SOFF_CON4),
 		(&val),
 		(PMIC_FG_SOFF_MASK),
 		(PMIC_FG_SOFF_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24021,15 +23526,14 @@ unsigned int mt6358_upmu_set_fg_zcv_det_iv(
 unsigned int mt6358_upmu_get_fg_zcv_curr(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_ZCV_CON1),
 		(&val),
 		(PMIC_FG_ZCV_CURR_MASK),
 		(PMIC_FG_ZCV_CURR_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24037,15 +23541,14 @@ unsigned int mt6358_upmu_get_fg_zcv_curr(
 unsigned int mt6358_upmu_get_fg_zcv_car_15_00(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_ZCV_CON2),
 		(&val),
 		(PMIC_FG_ZCV_CAR_15_00_MASK),
 		(PMIC_FG_ZCV_CAR_15_00_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24053,15 +23556,14 @@ unsigned int mt6358_upmu_get_fg_zcv_car_15_00(
 unsigned int mt6358_upmu_get_fg_zcv_car_31_16(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_ZCV_CON3),
 		(&val),
 		(PMIC_FG_ZCV_CAR_31_16_MASK),
 		(PMIC_FG_ZCV_CAR_31_16_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24099,15 +23601,14 @@ unsigned int mt6358_upmu_set_fg_zcv_car_th_30_16(
 unsigned int mt6358_upmu_get_fg_r_curr(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_R_CON0),
 		(&val),
 		(PMIC_FG_R_CURR_MASK),
 		(PMIC_FG_R_CURR_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24115,15 +23616,14 @@ unsigned int mt6358_upmu_get_fg_r_curr(
 unsigned int mt6358_upmu_get_fg_current_out(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_CUR_CON0),
 		(&val),
 		(PMIC_FG_CURRENT_OUT_MASK),
 		(PMIC_FG_CURRENT_OUT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24161,15 +23661,14 @@ unsigned int mt6358_upmu_set_fg_cur_hth(
 unsigned int mt6358_upmu_get_fg_cic2(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_CUR_CON3),
 		(&val),
 		(PMIC_FG_CIC2_MASK),
 		(PMIC_FG_CIC2_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24177,15 +23676,14 @@ unsigned int mt6358_upmu_get_fg_cic2(
 unsigned int mt6358_upmu_get_fg_offset(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_FGADC_OFFSET_CON0),
 		(&val),
 		(PMIC_FG_OFFSET_MASK),
 		(PMIC_FG_OFFSET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24313,15 +23811,14 @@ unsigned int mt6358_upmu_set_rg_baton_en(
 unsigned int mt6358_upmu_get_rg_baton_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BATON_ANA_CON0),
 		(&val),
 		(PMIC_RG_BATON_EN_MASK),
 		(PMIC_RG_BATON_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24344,15 +23841,14 @@ unsigned int mt6358_upmu_set_rg_bif_batid_sw_en(
 unsigned int mt6358_upmu_get_rg_bif_batid_sw_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BATON_ANA_CON0),
 		(&val),
 		(PMIC_RG_BIF_BATID_SW_EN_MASK),
 		(PMIC_RG_BIF_BATID_SW_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24375,15 +23871,14 @@ unsigned int mt6358_upmu_set_rg_qi_baton_lt_en(
 unsigned int mt6358_upmu_get_rg_qi_baton_lt_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BATON_ANA_CON0),
 		(&val),
 		(PMIC_RG_QI_BATON_LT_EN_MASK),
 		(PMIC_RG_QI_BATON_LT_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24406,15 +23901,14 @@ unsigned int mt6358_upmu_set_rg_baton_ht_en(
 unsigned int mt6358_upmu_get_rg_baton_ht_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BATON_ANA_CON0),
 		(&val),
 		(PMIC_RG_BATON_HT_EN_MASK),
 		(PMIC_RG_BATON_HT_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24482,15 +23976,14 @@ unsigned int mt6358_upmu_set_rg_hw_vth_ctrl(
 unsigned int mt6358_upmu_get_da_baton_ht_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BATON_ANA_MON0),
 		(&val),
 		(PMIC_DA_BATON_HT_EN_MASK),
 		(PMIC_DA_BATON_HT_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24498,15 +23991,14 @@ unsigned int mt6358_upmu_get_da_baton_ht_en(
 unsigned int mt6358_upmu_get_ad_baton_undet(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BATON_ANA_MON0),
 		(&val),
 		(PMIC_AD_BATON_UNDET_MASK),
 		(PMIC_AD_BATON_UNDET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24514,15 +24006,14 @@ unsigned int mt6358_upmu_get_ad_baton_undet(
 unsigned int mt6358_upmu_get_ad_baton_undet_raw(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BATON_ANA_MON0),
 		(&val),
 		(PMIC_AD_BATON_UNDET_RAW_MASK),
 		(PMIC_AD_BATON_UNDET_RAW_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24530,15 +24021,14 @@ unsigned int mt6358_upmu_get_ad_baton_undet_raw(
 unsigned int mt6358_upmu_get_ad_baton_hv(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BATON_ANA_MON0),
 		(&val),
 		(PMIC_AD_BATON_HV_MASK),
 		(PMIC_AD_BATON_HV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24546,15 +24036,14 @@ unsigned int mt6358_upmu_get_ad_baton_hv(
 unsigned int mt6358_upmu_get_da_bif_tx_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_ANA_MON0),
 		(&val),
 		(PMIC_DA_BIF_TX_EN_MASK),
 		(PMIC_DA_BIF_TX_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24562,15 +24051,14 @@ unsigned int mt6358_upmu_get_da_bif_tx_en(
 unsigned int mt6358_upmu_get_da_bif_tx_data(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_ANA_MON0),
 		(&val),
 		(PMIC_DA_BIF_TX_DATA_MASK),
 		(PMIC_DA_BIF_TX_DATA_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24578,15 +24066,14 @@ unsigned int mt6358_upmu_get_da_bif_tx_data(
 unsigned int mt6358_upmu_get_da_bif_rx_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_ANA_MON0),
 		(&val),
 		(PMIC_DA_BIF_RX_EN_MASK),
 		(PMIC_DA_BIF_RX_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24594,15 +24081,14 @@ unsigned int mt6358_upmu_get_da_bif_rx_en(
 unsigned int mt6358_upmu_get_ad_bif_rx_data(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_ANA_MON0),
 		(&val),
 		(PMIC_AD_BIF_RX_DATA_MASK),
 		(PMIC_AD_BIF_RX_DATA_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24865,15 +24351,14 @@ unsigned int mt6358_upmu_set_rg_baton_rsv_sw(
 unsigned int mt6358_upmu_get_baton_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BATON_CON2),
 		(&val),
 		(PMIC_BATON_STATUS_MASK),
 		(PMIC_BATON_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24881,15 +24366,14 @@ unsigned int mt6358_upmu_get_baton_status(
 unsigned int mt6358_upmu_get_baton_auxadc_set(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BATON_CON2),
 		(&val),
 		(PMIC_BATON_AUXADC_SET_MASK),
 		(PMIC_BATON_AUXADC_SET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24897,15 +24381,14 @@ unsigned int mt6358_upmu_get_baton_auxadc_set(
 unsigned int mt6358_upmu_get_baton_deb_valid(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BATON_CON2),
 		(&val),
 		(PMIC_BATON_DEB_VALID_MASK),
 		(PMIC_BATON_DEB_VALID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24913,15 +24396,14 @@ unsigned int mt6358_upmu_get_baton_deb_valid(
 unsigned int mt6358_upmu_get_baton_bif_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BATON_CON2),
 		(&val),
 		(PMIC_BATON_BIF_STATUS_MASK),
 		(PMIC_BATON_BIF_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24929,15 +24411,14 @@ unsigned int mt6358_upmu_get_baton_bif_status(
 unsigned int mt6358_upmu_get_baton_rtc_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BATON_CON2),
 		(&val),
 		(PMIC_BATON_RTC_STATUS_MASK),
 		(PMIC_BATON_RTC_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24945,15 +24426,14 @@ unsigned int mt6358_upmu_get_baton_rtc_status(
 unsigned int mt6358_upmu_get_baton_fgadc_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BATON_CON2),
 		(&val),
 		(PMIC_BATON_FGADC_STATUS_MASK),
 		(PMIC_BATON_FGADC_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24961,15 +24441,14 @@ unsigned int mt6358_upmu_get_baton_fgadc_status(
 unsigned int mt6358_upmu_get_baton_auxadc_trig(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BATON_CON2),
 		(&val),
 		(PMIC_BATON_AUXADC_TRIG_MASK),
 		(PMIC_BATON_AUXADC_TRIG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24977,15 +24456,14 @@ unsigned int mt6358_upmu_get_baton_auxadc_trig(
 unsigned int mt6358_upmu_get_baton_chrdet_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BATON_CON2),
 		(&val),
 		(PMIC_BATON_CHRDET_DEB_MASK),
 		(PMIC_BATON_CHRDET_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -24993,15 +24471,14 @@ unsigned int mt6358_upmu_get_baton_chrdet_deb(
 unsigned int mt6358_upmu_get_baton_ivgen_enb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BATON_CON2),
 		(&val),
 		(PMIC_BATON_IVGEN_ENB_MASK),
 		(PMIC_BATON_IVGEN_ENB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25009,15 +24486,14 @@ unsigned int mt6358_upmu_get_baton_ivgen_enb(
 unsigned int mt6358_upmu_get_baton_vbif28_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BATON_CON2),
 		(&val),
 		(PMIC_BATON_VBIF28_STB_MASK),
 		(PMIC_BATON_VBIF28_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25025,15 +24501,14 @@ unsigned int mt6358_upmu_get_baton_vbif28_stb(
 unsigned int mt6358_upmu_get_baton_vbif28_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BATON_CON2),
 		(&val),
 		(PMIC_BATON_VBIF28_EN_MASK),
 		(PMIC_BATON_VBIF28_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25041,15 +24516,14 @@ unsigned int mt6358_upmu_get_baton_vbif28_en(
 unsigned int mt6358_upmu_get_baton_rsv_0(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BATON_CON2),
 		(&val),
 		(PMIC_BATON_RSV_0_MASK),
 		(PMIC_BATON_RSV_0_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25462,15 +24936,14 @@ unsigned int mt6358_upmu_set_bif_trasact_trigger(
 unsigned int mt6358_upmu_get_bif_data_num(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON19),
 		(&val),
 		(PMIC_BIF_DATA_NUM_MASK),
 		(PMIC_BIF_DATA_NUM_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25478,15 +24951,14 @@ unsigned int mt6358_upmu_get_bif_data_num(
 unsigned int mt6358_upmu_get_bif_response(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON19),
 		(&val),
 		(PMIC_BIF_RESPONSE_MASK),
 		(PMIC_BIF_RESPONSE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25494,15 +24966,14 @@ unsigned int mt6358_upmu_get_bif_response(
 unsigned int mt6358_upmu_get_bif_data_0(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON20),
 		(&val),
 		(PMIC_BIF_DATA_0_MASK),
 		(PMIC_BIF_DATA_0_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25510,15 +24981,14 @@ unsigned int mt6358_upmu_get_bif_data_0(
 unsigned int mt6358_upmu_get_bif_ack_0(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON20),
 		(&val),
 		(PMIC_BIF_ACK_0_MASK),
 		(PMIC_BIF_ACK_0_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25526,15 +24996,14 @@ unsigned int mt6358_upmu_get_bif_ack_0(
 unsigned int mt6358_upmu_get_bif_error_0(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON20),
 		(&val),
 		(PMIC_BIF_ERROR_0_MASK),
 		(PMIC_BIF_ERROR_0_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25542,15 +25011,14 @@ unsigned int mt6358_upmu_get_bif_error_0(
 unsigned int mt6358_upmu_get_bif_data_1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON21),
 		(&val),
 		(PMIC_BIF_DATA_1_MASK),
 		(PMIC_BIF_DATA_1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25558,15 +25026,14 @@ unsigned int mt6358_upmu_get_bif_data_1(
 unsigned int mt6358_upmu_get_bif_ack_1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON21),
 		(&val),
 		(PMIC_BIF_ACK_1_MASK),
 		(PMIC_BIF_ACK_1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25574,15 +25041,14 @@ unsigned int mt6358_upmu_get_bif_ack_1(
 unsigned int mt6358_upmu_get_bif_error_1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON21),
 		(&val),
 		(PMIC_BIF_ERROR_1_MASK),
 		(PMIC_BIF_ERROR_1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25590,15 +25056,14 @@ unsigned int mt6358_upmu_get_bif_error_1(
 unsigned int mt6358_upmu_get_bif_data_2(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON22),
 		(&val),
 		(PMIC_BIF_DATA_2_MASK),
 		(PMIC_BIF_DATA_2_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25606,15 +25071,14 @@ unsigned int mt6358_upmu_get_bif_data_2(
 unsigned int mt6358_upmu_get_bif_ack_2(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON22),
 		(&val),
 		(PMIC_BIF_ACK_2_MASK),
 		(PMIC_BIF_ACK_2_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25622,15 +25086,14 @@ unsigned int mt6358_upmu_get_bif_ack_2(
 unsigned int mt6358_upmu_get_bif_error_2(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON22),
 		(&val),
 		(PMIC_BIF_ERROR_2_MASK),
 		(PMIC_BIF_ERROR_2_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25638,15 +25101,14 @@ unsigned int mt6358_upmu_get_bif_error_2(
 unsigned int mt6358_upmu_get_bif_data_3(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON23),
 		(&val),
 		(PMIC_BIF_DATA_3_MASK),
 		(PMIC_BIF_DATA_3_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25654,15 +25116,14 @@ unsigned int mt6358_upmu_get_bif_data_3(
 unsigned int mt6358_upmu_get_bif_ack_3(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON23),
 		(&val),
 		(PMIC_BIF_ACK_3_MASK),
 		(PMIC_BIF_ACK_3_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25670,15 +25131,14 @@ unsigned int mt6358_upmu_get_bif_ack_3(
 unsigned int mt6358_upmu_get_bif_error_3(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON23),
 		(&val),
 		(PMIC_BIF_ERROR_3_MASK),
 		(PMIC_BIF_ERROR_3_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25686,15 +25146,14 @@ unsigned int mt6358_upmu_get_bif_error_3(
 unsigned int mt6358_upmu_get_bif_data_4(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON24),
 		(&val),
 		(PMIC_BIF_DATA_4_MASK),
 		(PMIC_BIF_DATA_4_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25702,15 +25161,14 @@ unsigned int mt6358_upmu_get_bif_data_4(
 unsigned int mt6358_upmu_get_bif_ack_4(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON24),
 		(&val),
 		(PMIC_BIF_ACK_4_MASK),
 		(PMIC_BIF_ACK_4_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25718,15 +25176,14 @@ unsigned int mt6358_upmu_get_bif_ack_4(
 unsigned int mt6358_upmu_get_bif_error_4(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON24),
 		(&val),
 		(PMIC_BIF_ERROR_4_MASK),
 		(PMIC_BIF_ERROR_4_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25734,15 +25191,14 @@ unsigned int mt6358_upmu_get_bif_error_4(
 unsigned int mt6358_upmu_get_bif_data_5(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON25),
 		(&val),
 		(PMIC_BIF_DATA_5_MASK),
 		(PMIC_BIF_DATA_5_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25750,15 +25206,14 @@ unsigned int mt6358_upmu_get_bif_data_5(
 unsigned int mt6358_upmu_get_bif_ack_5(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON25),
 		(&val),
 		(PMIC_BIF_ACK_5_MASK),
 		(PMIC_BIF_ACK_5_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25766,15 +25221,14 @@ unsigned int mt6358_upmu_get_bif_ack_5(
 unsigned int mt6358_upmu_get_bif_error_5(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON25),
 		(&val),
 		(PMIC_BIF_ERROR_5_MASK),
 		(PMIC_BIF_ERROR_5_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25782,15 +25236,14 @@ unsigned int mt6358_upmu_get_bif_error_5(
 unsigned int mt6358_upmu_get_bif_data_6(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON26),
 		(&val),
 		(PMIC_BIF_DATA_6_MASK),
 		(PMIC_BIF_DATA_6_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25798,15 +25251,14 @@ unsigned int mt6358_upmu_get_bif_data_6(
 unsigned int mt6358_upmu_get_bif_ack_6(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON26),
 		(&val),
 		(PMIC_BIF_ACK_6_MASK),
 		(PMIC_BIF_ACK_6_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25814,15 +25266,14 @@ unsigned int mt6358_upmu_get_bif_ack_6(
 unsigned int mt6358_upmu_get_bif_error_6(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON26),
 		(&val),
 		(PMIC_BIF_ERROR_6_MASK),
 		(PMIC_BIF_ERROR_6_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25830,15 +25281,14 @@ unsigned int mt6358_upmu_get_bif_error_6(
 unsigned int mt6358_upmu_get_bif_data_7(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON27),
 		(&val),
 		(PMIC_BIF_DATA_7_MASK),
 		(PMIC_BIF_DATA_7_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25846,15 +25296,14 @@ unsigned int mt6358_upmu_get_bif_data_7(
 unsigned int mt6358_upmu_get_bif_ack_7(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON27),
 		(&val),
 		(PMIC_BIF_ACK_7_MASK),
 		(PMIC_BIF_ACK_7_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25862,15 +25311,14 @@ unsigned int mt6358_upmu_get_bif_ack_7(
 unsigned int mt6358_upmu_get_bif_error_7(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON27),
 		(&val),
 		(PMIC_BIF_ERROR_7_MASK),
 		(PMIC_BIF_ERROR_7_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25878,15 +25326,14 @@ unsigned int mt6358_upmu_get_bif_error_7(
 unsigned int mt6358_upmu_get_bif_data_8(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON28),
 		(&val),
 		(PMIC_BIF_DATA_8_MASK),
 		(PMIC_BIF_DATA_8_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25894,15 +25341,14 @@ unsigned int mt6358_upmu_get_bif_data_8(
 unsigned int mt6358_upmu_get_bif_ack_8(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON28),
 		(&val),
 		(PMIC_BIF_ACK_8_MASK),
 		(PMIC_BIF_ACK_8_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25910,15 +25356,14 @@ unsigned int mt6358_upmu_get_bif_ack_8(
 unsigned int mt6358_upmu_get_bif_error_8(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON28),
 		(&val),
 		(PMIC_BIF_ERROR_8_MASK),
 		(PMIC_BIF_ERROR_8_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25926,15 +25371,14 @@ unsigned int mt6358_upmu_get_bif_error_8(
 unsigned int mt6358_upmu_get_bif_data_9(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON29),
 		(&val),
 		(PMIC_BIF_DATA_9_MASK),
 		(PMIC_BIF_DATA_9_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25942,15 +25386,14 @@ unsigned int mt6358_upmu_get_bif_data_9(
 unsigned int mt6358_upmu_get_bif_ack_9(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON29),
 		(&val),
 		(PMIC_BIF_ACK_9_MASK),
 		(PMIC_BIF_ACK_9_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -25958,15 +25401,14 @@ unsigned int mt6358_upmu_get_bif_ack_9(
 unsigned int mt6358_upmu_get_bif_error_9(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON29),
 		(&val),
 		(PMIC_BIF_ERROR_9_MASK),
 		(PMIC_BIF_ERROR_9_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26214,15 +25656,14 @@ unsigned int mt6358_upmu_set_bif_irq_clr(
 unsigned int mt6358_upmu_get_bif_irq(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON31),
 		(&val),
 		(PMIC_BIF_IRQ_MASK),
 		(PMIC_BIF_IRQ_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26230,15 +25671,14 @@ unsigned int mt6358_upmu_get_bif_irq(
 unsigned int mt6358_upmu_get_bif_timeout(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON31),
 		(&val),
 		(PMIC_BIF_TIMEOUT_MASK),
 		(PMIC_BIF_TIMEOUT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26246,15 +25686,14 @@ unsigned int mt6358_upmu_get_bif_timeout(
 unsigned int mt6358_upmu_get_bif_bat_undet(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON31),
 		(&val),
 		(PMIC_BIF_BAT_UNDET_MASK),
 		(PMIC_BIF_BAT_UNDET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26262,15 +25701,14 @@ unsigned int mt6358_upmu_get_bif_bat_undet(
 unsigned int mt6358_upmu_get_bif_total_valid(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON31),
 		(&val),
 		(PMIC_BIF_TOTAL_VALID_MASK),
 		(PMIC_BIF_TOTAL_VALID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26278,15 +25716,14 @@ unsigned int mt6358_upmu_get_bif_total_valid(
 unsigned int mt6358_upmu_get_bif_bus_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON31),
 		(&val),
 		(PMIC_BIF_BUS_STATUS_MASK),
 		(PMIC_BIF_BUS_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26324,15 +25761,14 @@ unsigned int mt6358_upmu_set_bif_power_up(
 unsigned int mt6358_upmu_get_bif_rx_error_unknown(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON33),
 		(&val),
 		(PMIC_BIF_RX_ERROR_UNKNOWN_MASK),
 		(PMIC_BIF_RX_ERROR_UNKNOWN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26340,15 +25776,14 @@ unsigned int mt6358_upmu_get_bif_rx_error_unknown(
 unsigned int mt6358_upmu_get_bif_rx_error_insuff(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON33),
 		(&val),
 		(PMIC_BIF_RX_ERROR_INSUFF_MASK),
 		(PMIC_BIF_RX_ERROR_INSUFF_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26356,15 +25791,14 @@ unsigned int mt6358_upmu_get_bif_rx_error_insuff(
 unsigned int mt6358_upmu_get_bif_rx_error_lowphase(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON33),
 		(&val),
 		(PMIC_BIF_RX_ERROR_LOWPHASE_MASK),
 		(PMIC_BIF_RX_ERROR_LOWPHASE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26372,15 +25806,14 @@ unsigned int mt6358_upmu_get_bif_rx_error_lowphase(
 unsigned int mt6358_upmu_get_bif_rx_state(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON33),
 		(&val),
 		(PMIC_BIF_RX_STATE_MASK),
 		(PMIC_BIF_RX_STATE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26388,15 +25821,14 @@ unsigned int mt6358_upmu_get_bif_rx_state(
 unsigned int mt6358_upmu_get_bif_flow_ctl_state(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON33),
 		(&val),
 		(PMIC_BIF_FLOW_CTL_STATE_MASK),
 		(PMIC_BIF_FLOW_CTL_STATE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26404,15 +25836,14 @@ unsigned int mt6358_upmu_get_bif_flow_ctl_state(
 unsigned int mt6358_upmu_get_bif_tx_state(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON33),
 		(&val),
 		(PMIC_BIF_TX_STATE_MASK),
 		(PMIC_BIF_TX_STATE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26420,15 +25851,14 @@ unsigned int mt6358_upmu_get_bif_tx_state(
 unsigned int mt6358_upmu_get_bif_tx_data_fianl(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON34),
 		(&val),
 		(PMIC_BIF_TX_DATA_FIANL_MASK),
 		(PMIC_BIF_TX_DATA_FIANL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26436,15 +25866,14 @@ unsigned int mt6358_upmu_get_bif_tx_data_fianl(
 unsigned int mt6358_upmu_get_bif_rx_data_sampling(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON35),
 		(&val),
 		(PMIC_BIF_RX_DATA_SAMPLING_MASK),
 		(PMIC_BIF_RX_DATA_SAMPLING_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26452,15 +25881,14 @@ unsigned int mt6358_upmu_get_bif_rx_data_sampling(
 unsigned int mt6358_upmu_get_bif_rx_data_recovery(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON36),
 		(&val),
 		(PMIC_BIF_RX_DATA_RECOVERY_MASK),
 		(PMIC_BIF_RX_DATA_RECOVERY_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26483,15 +25911,14 @@ unsigned int mt6358_upmu_set_rg_baton_ht_en_pre(
 unsigned int mt6358_upmu_get_rg_baton_ht_en_pre(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON36),
 		(&val),
 		(PMIC_RG_BATON_HT_EN_PRE_MASK),
 		(PMIC_RG_BATON_HT_EN_PRE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26514,15 +25941,14 @@ unsigned int mt6358_upmu_set_rg_baton_ht_en_dly_time(
 unsigned int mt6358_upmu_get_rg_baton_ht_en_dly_time(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON36),
 		(&val),
 		(PMIC_RG_BATON_HT_EN_DLY_TIME_MASK),
 		(PMIC_RG_BATON_HT_EN_DLY_TIME_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26575,15 +26001,14 @@ unsigned int mt6358_upmu_set_bif_rx_deg_en(
 unsigned int mt6358_upmu_get_bif_rsv1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BIF_CON39),
 		(&val),
 		(PMIC_BIF_RSV1_MASK),
 		(PMIC_BIF_RSV1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26606,15 +26031,14 @@ unsigned int mt6358_upmu_set_bif_rsv0(
 unsigned int mt6358_upmu_get_hk_top_ana_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_ID),
 		(&val),
 		(PMIC_HK_TOP_ANA_ID_MASK),
 		(PMIC_HK_TOP_ANA_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26622,15 +26046,14 @@ unsigned int mt6358_upmu_get_hk_top_ana_id(
 unsigned int mt6358_upmu_get_hk_top_dig_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_ID),
 		(&val),
 		(PMIC_HK_TOP_DIG_ID_MASK),
 		(PMIC_HK_TOP_DIG_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26638,15 +26061,14 @@ unsigned int mt6358_upmu_get_hk_top_dig_id(
 unsigned int mt6358_upmu_get_hk_top_ana_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_REV0),
 		(&val),
 		(PMIC_HK_TOP_ANA_MINOR_REV_MASK),
 		(PMIC_HK_TOP_ANA_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26654,15 +26076,14 @@ unsigned int mt6358_upmu_get_hk_top_ana_minor_rev(
 unsigned int mt6358_upmu_get_hk_top_ana_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_REV0),
 		(&val),
 		(PMIC_HK_TOP_ANA_MAJOR_REV_MASK),
 		(PMIC_HK_TOP_ANA_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26670,15 +26091,14 @@ unsigned int mt6358_upmu_get_hk_top_ana_major_rev(
 unsigned int mt6358_upmu_get_hk_top_dig_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_REV0),
 		(&val),
 		(PMIC_HK_TOP_DIG_MINOR_REV_MASK),
 		(PMIC_HK_TOP_DIG_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26686,15 +26106,14 @@ unsigned int mt6358_upmu_get_hk_top_dig_minor_rev(
 unsigned int mt6358_upmu_get_hk_top_dig_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_REV0),
 		(&val),
 		(PMIC_HK_TOP_DIG_MAJOR_REV_MASK),
 		(PMIC_HK_TOP_DIG_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26702,15 +26121,14 @@ unsigned int mt6358_upmu_get_hk_top_dig_major_rev(
 unsigned int mt6358_upmu_get_hk_top_cbs(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_DBI),
 		(&val),
 		(PMIC_HK_TOP_CBS_MASK),
 		(PMIC_HK_TOP_CBS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26718,15 +26136,14 @@ unsigned int mt6358_upmu_get_hk_top_cbs(
 unsigned int mt6358_upmu_get_hk_top_bix(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_DBI),
 		(&val),
 		(PMIC_HK_TOP_BIX_MASK),
 		(PMIC_HK_TOP_BIX_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26734,15 +26151,14 @@ unsigned int mt6358_upmu_get_hk_top_bix(
 unsigned int mt6358_upmu_get_hk_top_esp(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_DBI),
 		(&val),
 		(PMIC_HK_TOP_ESP_MASK),
 		(PMIC_HK_TOP_ESP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26750,15 +26166,14 @@ unsigned int mt6358_upmu_get_hk_top_esp(
 unsigned int mt6358_upmu_get_hk_top_fpi(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_DXI),
 		(&val),
 		(PMIC_HK_TOP_FPI_MASK),
 		(PMIC_HK_TOP_FPI_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26766,15 +26181,14 @@ unsigned int mt6358_upmu_get_hk_top_fpi(
 unsigned int mt6358_upmu_get_hk_clk_offset(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TPM0),
 		(&val),
 		(PMIC_HK_CLK_OFFSET_MASK),
 		(PMIC_HK_CLK_OFFSET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26782,15 +26196,14 @@ unsigned int mt6358_upmu_get_hk_clk_offset(
 unsigned int mt6358_upmu_get_hk_rst_offset(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TPM0),
 		(&val),
 		(PMIC_HK_RST_OFFSET_MASK),
 		(PMIC_HK_RST_OFFSET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26798,15 +26211,14 @@ unsigned int mt6358_upmu_get_hk_rst_offset(
 unsigned int mt6358_upmu_get_hk_int_offset(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TPM1),
 		(&val),
 		(PMIC_HK_INT_OFFSET_MASK),
 		(PMIC_HK_INT_OFFSET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -26814,15 +26226,14 @@ unsigned int mt6358_upmu_get_hk_int_offset(
 unsigned int mt6358_upmu_get_hk_int_len(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TPM1),
 		(&val),
 		(PMIC_HK_INT_LEN_MASK),
 		(PMIC_HK_INT_LEN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27190,15 +26601,14 @@ unsigned int mt6358_upmu_set_rg_int_en_bat_h(
 unsigned int mt6358_upmu_get_rg_int_en_bat_h(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_BAT_H_MASK),
 		(PMIC_RG_INT_EN_BAT_H_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27221,15 +26631,14 @@ unsigned int mt6358_upmu_set_rg_int_en_bat_l(
 unsigned int mt6358_upmu_get_rg_int_en_bat_l(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_BAT_L_MASK),
 		(PMIC_RG_INT_EN_BAT_L_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27252,15 +26661,14 @@ unsigned int mt6358_upmu_set_rg_int_en_bat2_h(
 unsigned int mt6358_upmu_get_rg_int_en_bat2_h(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_BAT2_H_MASK),
 		(PMIC_RG_INT_EN_BAT2_H_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27283,15 +26691,14 @@ unsigned int mt6358_upmu_set_rg_int_en_bat2_l(
 unsigned int mt6358_upmu_get_rg_int_en_bat2_l(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_BAT2_L_MASK),
 		(PMIC_RG_INT_EN_BAT2_L_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27314,15 +26721,14 @@ unsigned int mt6358_upmu_set_rg_int_en_bat_temp_h(
 unsigned int mt6358_upmu_get_rg_int_en_bat_temp_h(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_BAT_TEMP_H_MASK),
 		(PMIC_RG_INT_EN_BAT_TEMP_H_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27345,15 +26751,14 @@ unsigned int mt6358_upmu_set_rg_int_en_bat_temp_l(
 unsigned int mt6358_upmu_get_rg_int_en_bat_temp_l(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_BAT_TEMP_L_MASK),
 		(PMIC_RG_INT_EN_BAT_TEMP_L_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27376,15 +26781,14 @@ unsigned int mt6358_upmu_set_rg_int_en_auxadc_imp(
 unsigned int mt6358_upmu_get_rg_int_en_auxadc_imp(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_AUXADC_IMP_MASK),
 		(PMIC_RG_INT_EN_AUXADC_IMP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27407,15 +26811,14 @@ unsigned int mt6358_upmu_set_rg_int_en_nag_c_dltv(
 unsigned int mt6358_upmu_get_rg_int_en_nag_c_dltv(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_NAG_C_DLTV_MASK),
 		(PMIC_RG_INT_EN_NAG_C_DLTV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27543,15 +26946,14 @@ unsigned int mt6358_upmu_set_rg_int_mask_nag_c_dltv(
 unsigned int mt6358_upmu_get_rg_int_raw_status_bat_h(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_BAT_H_MASK),
 		(PMIC_RG_INT_RAW_STATUS_BAT_H_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27559,15 +26961,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_bat_h(
 unsigned int mt6358_upmu_get_rg_int_raw_status_bat_l(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_BAT_L_MASK),
 		(PMIC_RG_INT_RAW_STATUS_BAT_L_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27575,15 +26976,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_bat_l(
 unsigned int mt6358_upmu_get_rg_int_raw_status_bat2_h(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_BAT2_H_MASK),
 		(PMIC_RG_INT_RAW_STATUS_BAT2_H_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27591,15 +26991,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_bat2_h(
 unsigned int mt6358_upmu_get_rg_int_raw_status_bat2_l(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_BAT2_L_MASK),
 		(PMIC_RG_INT_RAW_STATUS_BAT2_L_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27607,15 +27006,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_bat2_l(
 unsigned int mt6358_upmu_get_rg_int_raw_status_bat_temp_h(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_BAT_TEMP_H_MASK),
 		(PMIC_RG_INT_RAW_STATUS_BAT_TEMP_H_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27623,15 +27021,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_bat_temp_h(
 unsigned int mt6358_upmu_get_rg_int_raw_status_bat_temp_l(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_BAT_TEMP_L_MASK),
 		(PMIC_RG_INT_RAW_STATUS_BAT_TEMP_L_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27639,15 +27036,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_bat_temp_l(
 unsigned int mt6358_upmu_get_rg_int_raw_status_auxadc_imp(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_AUXADC_IMP_MASK),
 		(PMIC_RG_INT_RAW_STATUS_AUXADC_IMP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27655,15 +27051,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_auxadc_imp(
 unsigned int mt6358_upmu_get_rg_int_raw_status_nag_c_dltv(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_NAG_C_DLTV_MASK),
 		(PMIC_RG_INT_RAW_STATUS_NAG_C_DLTV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27686,15 +27081,14 @@ unsigned int mt6358_upmu_set_rg_clk_mon_flag_en(
 unsigned int mt6358_upmu_get_rg_clk_mon_flag_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_MON_CON0),
 		(&val),
 		(PMIC_RG_CLK_MON_FLAG_EN_MASK),
 		(PMIC_RG_CLK_MON_FLAG_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27732,15 +27126,14 @@ unsigned int mt6358_upmu_set_rg_int_mon_flag_en(
 unsigned int mt6358_upmu_get_rg_int_mon_flag_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_MON_CON1),
 		(&val),
 		(PMIC_RG_INT_MON_FLAG_EN_MASK),
 		(PMIC_RG_INT_MON_FLAG_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27808,15 +27201,14 @@ unsigned int mt6358_upmu_set_rg_adcin_vsen_mux_en(
 unsigned int mt6358_upmu_get_rg_adcin_vsen_mux_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_CHR_CON),
 		(&val),
 		(PMIC_RG_ADCIN_VSEN_MUX_EN_MASK),
 		(PMIC_RG_ADCIN_VSEN_MUX_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27839,15 +27231,14 @@ unsigned int mt6358_upmu_set_rg_baton_tdet_en(
 unsigned int mt6358_upmu_get_rg_baton_tdet_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_CHR_CON),
 		(&val),
 		(PMIC_RG_BATON_TDET_EN_MASK),
 		(PMIC_RG_BATON_TDET_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27870,15 +27261,14 @@ unsigned int mt6358_upmu_set_rg_adcin_vsen_ext_baton_en(
 unsigned int mt6358_upmu_get_rg_adcin_vsen_ext_baton_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_CHR_CON),
 		(&val),
 		(PMIC_RG_ADCIN_VSEN_EXT_BATON_EN_MASK),
 		(PMIC_RG_ADCIN_VSEN_EXT_BATON_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27901,15 +27291,14 @@ unsigned int mt6358_upmu_set_rg_adcin_vbat_en(
 unsigned int mt6358_upmu_get_rg_adcin_vbat_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_CHR_CON),
 		(&val),
 		(PMIC_RG_ADCIN_VBAT_EN_MASK),
 		(PMIC_RG_ADCIN_VBAT_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27932,15 +27321,14 @@ unsigned int mt6358_upmu_set_rg_adcin_vsen_en(
 unsigned int mt6358_upmu_get_rg_adcin_vsen_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_CHR_CON),
 		(&val),
 		(PMIC_RG_ADCIN_VSEN_EN_MASK),
 		(PMIC_RG_ADCIN_VSEN_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27963,15 +27351,14 @@ unsigned int mt6358_upmu_set_rg_adcin_chr_en(
 unsigned int mt6358_upmu_get_rg_adcin_chr_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_CHR_CON),
 		(&val),
 		(PMIC_RG_ADCIN_CHR_EN_MASK),
 		(PMIC_RG_ADCIN_CHR_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27979,15 +27366,14 @@ unsigned int mt6358_upmu_get_rg_adcin_chr_en(
 unsigned int mt6358_upmu_get_da_adcin_vbat_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_AUXADC_ANA),
 		(&val),
 		(PMIC_DA_ADCIN_VBAT_EN_MASK),
 		(PMIC_DA_ADCIN_VBAT_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -27995,15 +27381,14 @@ unsigned int mt6358_upmu_get_da_adcin_vbat_en(
 unsigned int mt6358_upmu_get_da_auxadc_vbat_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_AUXADC_ANA),
 		(&val),
 		(PMIC_DA_AUXADC_VBAT_EN_MASK),
 		(PMIC_DA_AUXADC_VBAT_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28011,15 +27396,14 @@ unsigned int mt6358_upmu_get_da_auxadc_vbat_en(
 unsigned int mt6358_upmu_get_da_adcin_vsen_mux_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_AUXADC_ANA),
 		(&val),
 		(PMIC_DA_ADCIN_VSEN_MUX_EN_MASK),
 		(PMIC_DA_ADCIN_VSEN_MUX_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28027,15 +27411,14 @@ unsigned int mt6358_upmu_get_da_adcin_vsen_mux_en(
 unsigned int mt6358_upmu_get_da_adcin_vsen_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_AUXADC_ANA),
 		(&val),
 		(PMIC_DA_ADCIN_VSEN_EN_MASK),
 		(PMIC_DA_ADCIN_VSEN_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28043,15 +27426,14 @@ unsigned int mt6358_upmu_get_da_adcin_vsen_en(
 unsigned int mt6358_upmu_get_da_adcin_chr_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_AUXADC_ANA),
 		(&val),
 		(PMIC_DA_ADCIN_CHR_EN_MASK),
 		(PMIC_DA_ADCIN_CHR_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28059,15 +27441,14 @@ unsigned int mt6358_upmu_get_da_adcin_chr_en(
 unsigned int mt6358_upmu_get_da_baton_tdet_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_AUXADC_ANA),
 		(&val),
 		(PMIC_DA_BATON_TDET_EN_MASK),
 		(PMIC_DA_BATON_TDET_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28075,15 +27456,14 @@ unsigned int mt6358_upmu_get_da_baton_tdet_en(
 unsigned int mt6358_upmu_get_da_adcin_batid_sw_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_HK_TOP_AUXADC_ANA),
 		(&val),
 		(PMIC_DA_ADCIN_BATID_SW_EN_MASK),
 		(PMIC_DA_ADCIN_BATID_SW_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28091,15 +27471,14 @@ unsigned int mt6358_upmu_get_da_adcin_batid_sw_en(
 unsigned int mt6358_upmu_get_auxadc_ana_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DSN_ID),
 		(&val),
 		(PMIC_AUXADC_ANA_ID_MASK),
 		(PMIC_AUXADC_ANA_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28107,15 +27486,14 @@ unsigned int mt6358_upmu_get_auxadc_ana_id(
 unsigned int mt6358_upmu_get_auxadc_dig_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DSN_ID),
 		(&val),
 		(PMIC_AUXADC_DIG_ID_MASK),
 		(PMIC_AUXADC_DIG_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28123,15 +27501,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_id(
 unsigned int mt6358_upmu_get_auxadc_ana_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DSN_REV0),
 		(&val),
 		(PMIC_AUXADC_ANA_MINOR_REV_MASK),
 		(PMIC_AUXADC_ANA_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28139,15 +27516,14 @@ unsigned int mt6358_upmu_get_auxadc_ana_minor_rev(
 unsigned int mt6358_upmu_get_auxadc_ana_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DSN_REV0),
 		(&val),
 		(PMIC_AUXADC_ANA_MAJOR_REV_MASK),
 		(PMIC_AUXADC_ANA_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28155,15 +27531,14 @@ unsigned int mt6358_upmu_get_auxadc_ana_major_rev(
 unsigned int mt6358_upmu_get_auxadc_dig_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DSN_REV0),
 		(&val),
 		(PMIC_AUXADC_DIG_MINOR_REV_MASK),
 		(PMIC_AUXADC_DIG_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28171,15 +27546,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_minor_rev(
 unsigned int mt6358_upmu_get_auxadc_dig_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DSN_REV0),
 		(&val),
 		(PMIC_AUXADC_DIG_MAJOR_REV_MASK),
 		(PMIC_AUXADC_DIG_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28187,15 +27561,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_major_rev(
 unsigned int mt6358_upmu_get_auxadc_dsn_cbs(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DSN_DBI),
 		(&val),
 		(PMIC_AUXADC_DSN_CBS_MASK),
 		(PMIC_AUXADC_DSN_CBS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28203,15 +27576,14 @@ unsigned int mt6358_upmu_get_auxadc_dsn_cbs(
 unsigned int mt6358_upmu_get_auxadc_dsn_bix(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DSN_DBI),
 		(&val),
 		(PMIC_AUXADC_DSN_BIX_MASK),
 		(PMIC_AUXADC_DSN_BIX_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28294,15 +27666,14 @@ unsigned int mt6358_upmu_set_rg_vbuf_exten(
 unsigned int mt6358_upmu_get_auxadc_dig_1_ana_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_1_DSN_ID),
 		(&val),
 		(PMIC_AUXADC_DIG_1_ANA_ID_MASK),
 		(PMIC_AUXADC_DIG_1_ANA_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28310,15 +27681,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_1_ana_id(
 unsigned int mt6358_upmu_get_auxadc_dig_1_dig_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_1_DSN_ID),
 		(&val),
 		(PMIC_AUXADC_DIG_1_DIG_ID_MASK),
 		(PMIC_AUXADC_DIG_1_DIG_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28326,15 +27696,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_1_dig_id(
 unsigned int mt6358_upmu_get_auxadc_dig_1_ana_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_1_DSN_REV0),
 		(&val),
 		(PMIC_AUXADC_DIG_1_ANA_MINOR_REV_MASK),
 		(PMIC_AUXADC_DIG_1_ANA_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28342,15 +27711,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_1_ana_minor_rev(
 unsigned int mt6358_upmu_get_auxadc_dig_1_ana_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_1_DSN_REV0),
 		(&val),
 		(PMIC_AUXADC_DIG_1_ANA_MAJOR_REV_MASK),
 		(PMIC_AUXADC_DIG_1_ANA_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28358,15 +27726,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_1_ana_major_rev(
 unsigned int mt6358_upmu_get_auxadc_dig_1_dig_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_1_DSN_REV0),
 		(&val),
 		(PMIC_AUXADC_DIG_1_DIG_MINOR_REV_MASK),
 		(PMIC_AUXADC_DIG_1_DIG_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28374,15 +27741,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_1_dig_minor_rev(
 unsigned int mt6358_upmu_get_auxadc_dig_1_dig_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_1_DSN_REV0),
 		(&val),
 		(PMIC_AUXADC_DIG_1_DIG_MAJOR_REV_MASK),
 		(PMIC_AUXADC_DIG_1_DIG_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28390,15 +27756,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_1_dig_major_rev(
 unsigned int mt6358_upmu_get_auxadc_dig_1_dsn_cbs(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_1_DSN_DBI),
 		(&val),
 		(PMIC_AUXADC_DIG_1_DSN_CBS_MASK),
 		(PMIC_AUXADC_DIG_1_DSN_CBS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28406,15 +27771,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_1_dsn_cbs(
 unsigned int mt6358_upmu_get_auxadc_dig_1_dsn_bix(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_1_DSN_DBI),
 		(&val),
 		(PMIC_AUXADC_DIG_1_DSN_BIX_MASK),
 		(PMIC_AUXADC_DIG_1_DSN_BIX_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28422,15 +27786,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_1_dsn_bix(
 unsigned int mt6358_upmu_get_auxadc_dig_1_dsn_esp(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_1_DSN_DBI),
 		(&val),
 		(PMIC_AUXADC_DIG_1_DSN_ESP_MASK),
 		(PMIC_AUXADC_DIG_1_DSN_ESP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28438,15 +27801,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_1_dsn_esp(
 unsigned int mt6358_upmu_get_auxadc_dig_1_dsn_fpi(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_1_DSN_DXI),
 		(&val),
 		(PMIC_AUXADC_DIG_1_DSN_FPI_MASK),
 		(PMIC_AUXADC_DIG_1_DSN_FPI_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28454,15 +27816,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_1_dsn_fpi(
 unsigned int mt6358_upmu_get_auxadc_adc_out_ch0(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC0),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_CH0_MASK),
 		(PMIC_AUXADC_ADC_OUT_CH0_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28470,15 +27831,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_ch0(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch0(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC0),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_CH0_MASK),
 		(PMIC_AUXADC_ADC_RDY_CH0_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28486,15 +27846,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch0(
 unsigned int mt6358_upmu_get_auxadc_adc_out_ch1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC1),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_CH1_MASK),
 		(PMIC_AUXADC_ADC_OUT_CH1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28502,15 +27861,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_ch1(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC1),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_CH1_MASK),
 		(PMIC_AUXADC_ADC_RDY_CH1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28518,15 +27876,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch1(
 unsigned int mt6358_upmu_get_auxadc_adc_out_ch2(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC2),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_CH2_MASK),
 		(PMIC_AUXADC_ADC_OUT_CH2_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28534,15 +27891,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_ch2(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch2(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC2),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_CH2_MASK),
 		(PMIC_AUXADC_ADC_RDY_CH2_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28550,15 +27906,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch2(
 unsigned int mt6358_upmu_get_auxadc_adc_out_ch3(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC3),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_CH3_MASK),
 		(PMIC_AUXADC_ADC_OUT_CH3_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28566,15 +27921,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_ch3(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch3(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC3),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_CH3_MASK),
 		(PMIC_AUXADC_ADC_RDY_CH3_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28582,15 +27936,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch3(
 unsigned int mt6358_upmu_get_auxadc_adc_out_ch4(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC4),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_CH4_MASK),
 		(PMIC_AUXADC_ADC_OUT_CH4_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28598,15 +27951,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_ch4(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch4(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC4),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_CH4_MASK),
 		(PMIC_AUXADC_ADC_RDY_CH4_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28614,15 +27966,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch4(
 unsigned int mt6358_upmu_get_auxadc_adc_out_ch5(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC5),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_CH5_MASK),
 		(PMIC_AUXADC_ADC_OUT_CH5_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28630,15 +27981,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_ch5(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch5(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC5),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_CH5_MASK),
 		(PMIC_AUXADC_ADC_RDY_CH5_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28646,15 +27996,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch5(
 unsigned int mt6358_upmu_get_auxadc_adc_out_ch6(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC6),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_CH6_MASK),
 		(PMIC_AUXADC_ADC_OUT_CH6_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28662,15 +28011,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_ch6(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch6(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC6),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_CH6_MASK),
 		(PMIC_AUXADC_ADC_RDY_CH6_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28678,15 +28026,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch6(
 unsigned int mt6358_upmu_get_auxadc_adc_out_ch7(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC7),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_CH7_MASK),
 		(PMIC_AUXADC_ADC_OUT_CH7_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28694,15 +28041,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_ch7(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch7(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC7),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_CH7_MASK),
 		(PMIC_AUXADC_ADC_RDY_CH7_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28710,15 +28056,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch7(
 unsigned int mt6358_upmu_get_auxadc_adc_out_ch8(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC8),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_CH8_MASK),
 		(PMIC_AUXADC_ADC_OUT_CH8_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28726,15 +28071,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_ch8(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch8(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC8),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_CH8_MASK),
 		(PMIC_AUXADC_ADC_RDY_CH8_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28742,15 +28086,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch8(
 unsigned int mt6358_upmu_get_auxadc_adc_out_ch9(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC9),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_CH9_MASK),
 		(PMIC_AUXADC_ADC_OUT_CH9_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28758,15 +28101,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_ch9(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch9(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC9),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_CH9_MASK),
 		(PMIC_AUXADC_ADC_RDY_CH9_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28774,15 +28116,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch9(
 unsigned int mt6358_upmu_get_auxadc_adc_out_ch10(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC10),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_CH10_MASK),
 		(PMIC_AUXADC_ADC_OUT_CH10_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28790,15 +28131,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_ch10(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch10(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC10),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_CH10_MASK),
 		(PMIC_AUXADC_ADC_RDY_CH10_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28806,15 +28146,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch10(
 unsigned int mt6358_upmu_get_auxadc_adc_out_ch11(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC11),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_CH11_MASK),
 		(PMIC_AUXADC_ADC_OUT_CH11_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28822,15 +28161,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_ch11(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch11(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC11),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_CH11_MASK),
 		(PMIC_AUXADC_ADC_RDY_CH11_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28838,15 +28176,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch11(
 unsigned int mt6358_upmu_get_auxadc_adc_out_ch12_15(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC12),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_CH12_15_MASK),
 		(PMIC_AUXADC_ADC_OUT_CH12_15_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28854,15 +28191,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_ch12_15(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch12_15(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC12),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_CH12_15_MASK),
 		(PMIC_AUXADC_ADC_RDY_CH12_15_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28870,15 +28206,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch12_15(
 unsigned int mt6358_upmu_get_auxadc_adc_out_lbat(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC13),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_LBAT_MASK),
 		(PMIC_AUXADC_ADC_OUT_LBAT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28886,15 +28221,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_lbat(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_lbat(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC13),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_LBAT_MASK),
 		(PMIC_AUXADC_ADC_RDY_LBAT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28902,15 +28236,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_lbat(
 unsigned int mt6358_upmu_get_auxadc_adc_out_lbat2(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC14),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_LBAT2_MASK),
 		(PMIC_AUXADC_ADC_OUT_LBAT2_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28918,15 +28251,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_lbat2(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_lbat2(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC14),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_LBAT2_MASK),
 		(PMIC_AUXADC_ADC_RDY_LBAT2_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28934,15 +28266,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_lbat2(
 unsigned int mt6358_upmu_get_auxadc_adc_out_ch7_by_gps(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC15),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_CH7_BY_GPS_MASK),
 		(PMIC_AUXADC_ADC_OUT_CH7_BY_GPS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28950,15 +28281,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_ch7_by_gps(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch7_by_gps(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC15),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_CH7_BY_GPS_MASK),
 		(PMIC_AUXADC_ADC_RDY_CH7_BY_GPS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28966,15 +28296,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch7_by_gps(
 unsigned int mt6358_upmu_get_auxadc_adc_out_ch7_by_md(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC16),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_CH7_BY_MD_MASK),
 		(PMIC_AUXADC_ADC_OUT_CH7_BY_MD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28982,15 +28311,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_ch7_by_md(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch7_by_md(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC16),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_CH7_BY_MD_MASK),
 		(PMIC_AUXADC_ADC_RDY_CH7_BY_MD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -28998,15 +28326,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch7_by_md(
 unsigned int mt6358_upmu_get_auxadc_adc_out_ch7_by_ap(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC17),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_CH7_BY_AP_MASK),
 		(PMIC_AUXADC_ADC_OUT_CH7_BY_AP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29014,15 +28341,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_ch7_by_ap(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch7_by_ap(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC17),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_CH7_BY_AP_MASK),
 		(PMIC_AUXADC_ADC_RDY_CH7_BY_AP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29030,15 +28356,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch7_by_ap(
 unsigned int mt6358_upmu_get_auxadc_adc_out_ch4_by_md(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC18),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_CH4_BY_MD_MASK),
 		(PMIC_AUXADC_ADC_OUT_CH4_BY_MD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29046,15 +28371,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_ch4_by_md(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch4_by_md(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC18),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_CH4_BY_MD_MASK),
 		(PMIC_AUXADC_ADC_RDY_CH4_BY_MD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29062,15 +28386,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch4_by_md(
 unsigned int mt6358_upmu_get_auxadc_adc_out_pwron_pchr(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC19),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_PWRON_PCHR_MASK),
 		(PMIC_AUXADC_ADC_OUT_PWRON_PCHR_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29078,15 +28401,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_pwron_pchr(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_pwron_pchr(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC19),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_PWRON_PCHR_MASK),
 		(PMIC_AUXADC_ADC_RDY_PWRON_PCHR_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29094,15 +28416,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_pwron_pchr(
 unsigned int mt6358_upmu_get_auxadc_adc_out_wakeup_pchr(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC20),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_WAKEUP_PCHR_MASK),
 		(PMIC_AUXADC_ADC_OUT_WAKEUP_PCHR_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29110,15 +28431,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_wakeup_pchr(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_wakeup_pchr(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC20),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_WAKEUP_PCHR_MASK),
 		(PMIC_AUXADC_ADC_RDY_WAKEUP_PCHR_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29126,15 +28446,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_wakeup_pchr(
 unsigned int mt6358_upmu_get_auxadc_adc_out_ch0_by_md(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC21),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_CH0_BY_MD_MASK),
 		(PMIC_AUXADC_ADC_OUT_CH0_BY_MD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29142,15 +28461,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_ch0_by_md(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch0_by_md(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC21),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_CH0_BY_MD_MASK),
 		(PMIC_AUXADC_ADC_RDY_CH0_BY_MD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29158,15 +28476,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch0_by_md(
 unsigned int mt6358_upmu_get_auxadc_adc_out_ch0_by_ap(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC22),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_CH0_BY_AP_MASK),
 		(PMIC_AUXADC_ADC_OUT_CH0_BY_AP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29174,15 +28491,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_ch0_by_ap(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch0_by_ap(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC22),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_CH0_BY_AP_MASK),
 		(PMIC_AUXADC_ADC_RDY_CH0_BY_AP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29190,15 +28506,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch0_by_ap(
 unsigned int mt6358_upmu_get_auxadc_adc_out_ch1_by_md(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC23),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_CH1_BY_MD_MASK),
 		(PMIC_AUXADC_ADC_OUT_CH1_BY_MD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29206,15 +28521,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_ch1_by_md(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch1_by_md(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC23),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_CH1_BY_MD_MASK),
 		(PMIC_AUXADC_ADC_RDY_CH1_BY_MD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29222,15 +28536,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch1_by_md(
 unsigned int mt6358_upmu_get_auxadc_adc_out_ch1_by_ap(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC24),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_CH1_BY_AP_MASK),
 		(PMIC_AUXADC_ADC_OUT_CH1_BY_AP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29238,15 +28551,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_ch1_by_ap(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch1_by_ap(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC24),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_CH1_BY_AP_MASK),
 		(PMIC_AUXADC_ADC_RDY_CH1_BY_AP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29254,15 +28566,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch1_by_ap(
 unsigned int mt6358_upmu_get_auxadc_adc_out_bat_temp(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC25),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_BAT_TEMP_MASK),
 		(PMIC_AUXADC_ADC_OUT_BAT_TEMP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29270,15 +28581,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_bat_temp(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_bat_temp(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC25),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_BAT_TEMP_MASK),
 		(PMIC_AUXADC_ADC_RDY_BAT_TEMP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29286,15 +28596,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_bat_temp(
 unsigned int mt6358_upmu_get_auxadc_adc_out_fgadc_pchr(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC26),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_FGADC_PCHR_MASK),
 		(PMIC_AUXADC_ADC_OUT_FGADC_PCHR_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29302,15 +28611,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_fgadc_pchr(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_fgadc_pchr(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC26),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_FGADC_PCHR_MASK),
 		(PMIC_AUXADC_ADC_RDY_FGADC_PCHR_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29318,15 +28626,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_fgadc_pchr(
 unsigned int mt6358_upmu_get_auxadc_adc_out_bat_plugin_pchr(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC27),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_BAT_PLUGIN_PCHR_MASK),
 		(PMIC_AUXADC_ADC_OUT_BAT_PLUGIN_PCHR_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29334,15 +28641,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_bat_plugin_pchr(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_bat_plugin_pchr(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC27),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_BAT_PLUGIN_PCHR_MASK),
 		(PMIC_AUXADC_ADC_RDY_BAT_PLUGIN_PCHR_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29350,15 +28656,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_bat_plugin_pchr(
 unsigned int mt6358_upmu_get_auxadc_adc_out_imp(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC28),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_IMP_MASK),
 		(PMIC_AUXADC_ADC_OUT_IMP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29366,15 +28671,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_imp(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_imp(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC28),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_IMP_MASK),
 		(PMIC_AUXADC_ADC_RDY_IMP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29382,15 +28686,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_imp(
 unsigned int mt6358_upmu_get_auxadc_adc_out_imp_avg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC29),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_IMP_AVG_MASK),
 		(PMIC_AUXADC_ADC_OUT_IMP_AVG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29398,15 +28701,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_imp_avg(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_imp_avg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC29),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_IMP_AVG_MASK),
 		(PMIC_AUXADC_ADC_RDY_IMP_AVG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29414,15 +28716,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_imp_avg(
 unsigned int mt6358_upmu_get_auxadc_adc_out_raw(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC30),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_RAW_MASK),
 		(PMIC_AUXADC_ADC_OUT_RAW_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29430,15 +28731,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_raw(
 unsigned int mt6358_upmu_get_auxadc_adc_out_mdrt(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC31),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_MDRT_MASK),
 		(PMIC_AUXADC_ADC_OUT_MDRT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29446,15 +28746,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_mdrt(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_mdrt(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC31),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_MDRT_MASK),
 		(PMIC_AUXADC_ADC_RDY_MDRT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29462,15 +28761,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_mdrt(
 unsigned int mt6358_upmu_get_auxadc_adc_out_dcxo_by_gps(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC32),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_DCXO_BY_GPS_MASK),
 		(PMIC_AUXADC_ADC_OUT_DCXO_BY_GPS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29478,15 +28776,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_dcxo_by_gps(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_dcxo_by_gps(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC32),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_DCXO_BY_GPS_MASK),
 		(PMIC_AUXADC_ADC_RDY_DCXO_BY_GPS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29494,15 +28791,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_dcxo_by_gps(
 unsigned int mt6358_upmu_get_auxadc_adc_out_dcxo_by_md(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC33),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_DCXO_BY_MD_MASK),
 		(PMIC_AUXADC_ADC_OUT_DCXO_BY_MD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29510,15 +28806,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_dcxo_by_md(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_dcxo_by_md(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC33),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_DCXO_BY_MD_MASK),
 		(PMIC_AUXADC_ADC_RDY_DCXO_BY_MD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29526,15 +28821,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_dcxo_by_md(
 unsigned int mt6358_upmu_get_auxadc_adc_out_dcxo_by_ap(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC34),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_DCXO_BY_AP_MASK),
 		(PMIC_AUXADC_ADC_OUT_DCXO_BY_AP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29542,15 +28836,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_dcxo_by_ap(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_dcxo_by_ap(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC34),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_DCXO_BY_AP_MASK),
 		(PMIC_AUXADC_ADC_RDY_DCXO_BY_AP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29558,15 +28851,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_dcxo_by_ap(
 unsigned int mt6358_upmu_get_auxadc_adc_out_dcxo_mdrt(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC35),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_DCXO_MDRT_MASK),
 		(PMIC_AUXADC_ADC_OUT_DCXO_MDRT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29574,15 +28866,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_dcxo_mdrt(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_dcxo_mdrt(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC35),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_DCXO_MDRT_MASK),
 		(PMIC_AUXADC_ADC_RDY_DCXO_MDRT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29590,15 +28881,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_dcxo_mdrt(
 unsigned int mt6358_upmu_get_auxadc_adc_out_nag(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC36),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_NAG_MASK),
 		(PMIC_AUXADC_ADC_OUT_NAG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29606,15 +28896,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_nag(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_nag(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC36),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_NAG_MASK),
 		(PMIC_AUXADC_ADC_RDY_NAG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29622,15 +28911,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_nag(
 unsigned int mt6358_upmu_get_auxadc_adc_out_batid(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC37),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_BATID_MASK),
 		(PMIC_AUXADC_ADC_OUT_BATID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29638,15 +28926,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_batid(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_batid(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC37),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_BATID_MASK),
 		(PMIC_AUXADC_ADC_RDY_BATID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29654,15 +28941,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_batid(
 unsigned int mt6358_upmu_get_auxadc_adc_out_ch4_by_thr1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC38),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_CH4_BY_THR1_MASK),
 		(PMIC_AUXADC_ADC_OUT_CH4_BY_THR1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29670,15 +28956,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_ch4_by_thr1(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch4_by_thr1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC38),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_CH4_BY_THR1_MASK),
 		(PMIC_AUXADC_ADC_RDY_CH4_BY_THR1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29686,15 +28971,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch4_by_thr1(
 unsigned int mt6358_upmu_get_auxadc_adc_out_ch4_by_thr2(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC39),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_CH4_BY_THR2_MASK),
 		(PMIC_AUXADC_ADC_OUT_CH4_BY_THR2_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29702,15 +28986,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_ch4_by_thr2(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch4_by_thr2(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC39),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_CH4_BY_THR2_MASK),
 		(PMIC_AUXADC_ADC_RDY_CH4_BY_THR2_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29718,15 +29001,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch4_by_thr2(
 unsigned int mt6358_upmu_get_auxadc_adc_out_ch4_by_thr3(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC40),
 		(&val),
 		(PMIC_AUXADC_ADC_OUT_CH4_BY_THR3_MASK),
 		(PMIC_AUXADC_ADC_OUT_CH4_BY_THR3_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29734,15 +29016,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_out_ch4_by_thr3(
 unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch4_by_thr3(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_ADC40),
 		(&val),
 		(PMIC_AUXADC_ADC_RDY_CH4_BY_THR3_MASK),
 		(PMIC_AUXADC_ADC_RDY_CH4_BY_THR3_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29750,15 +29031,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_rdy_ch4_by_thr3(
 unsigned int mt6358_upmu_get_auxadc_adc_busy_in(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_STA0),
 		(&val),
 		(PMIC_AUXADC_ADC_BUSY_IN_MASK),
 		(PMIC_AUXADC_ADC_BUSY_IN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29766,15 +29046,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_busy_in(
 unsigned int mt6358_upmu_get_auxadc_adc_busy_in_lbat(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_STA0),
 		(&val),
 		(PMIC_AUXADC_ADC_BUSY_IN_LBAT_MASK),
 		(PMIC_AUXADC_ADC_BUSY_IN_LBAT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29782,15 +29061,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_busy_in_lbat(
 unsigned int mt6358_upmu_get_auxadc_adc_busy_in_lbat2(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_STA0),
 		(&val),
 		(PMIC_AUXADC_ADC_BUSY_IN_LBAT2_MASK),
 		(PMIC_AUXADC_ADC_BUSY_IN_LBAT2_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29798,15 +29076,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_busy_in_lbat2(
 unsigned int mt6358_upmu_get_auxadc_adc_busy_in_bat_temp(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_STA0),
 		(&val),
 		(PMIC_AUXADC_ADC_BUSY_IN_BAT_TEMP_MASK),
 		(PMIC_AUXADC_ADC_BUSY_IN_BAT_TEMP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29814,15 +29091,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_busy_in_bat_temp(
 unsigned int mt6358_upmu_get_auxadc_adc_busy_in_wakeup(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_STA0),
 		(&val),
 		(PMIC_AUXADC_ADC_BUSY_IN_WAKEUP_MASK),
 		(PMIC_AUXADC_ADC_BUSY_IN_WAKEUP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29830,15 +29106,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_busy_in_wakeup(
 unsigned int mt6358_upmu_get_auxadc_adc_busy_in_dcxo_mdrt(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_STA1),
 		(&val),
 		(PMIC_AUXADC_ADC_BUSY_IN_DCXO_MDRT_MASK),
 		(PMIC_AUXADC_ADC_BUSY_IN_DCXO_MDRT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29846,15 +29121,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_busy_in_dcxo_mdrt(
 unsigned int mt6358_upmu_get_auxadc_adc_busy_in_dcxo_gps_ap(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_STA1),
 		(&val),
 		(PMIC_AUXADC_ADC_BUSY_IN_DCXO_GPS_AP_MASK),
 		(PMIC_AUXADC_ADC_BUSY_IN_DCXO_GPS_AP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29862,15 +29136,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_busy_in_dcxo_gps_ap(
 unsigned int mt6358_upmu_get_auxadc_adc_busy_in_dcxo_gps_md(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_STA1),
 		(&val),
 		(PMIC_AUXADC_ADC_BUSY_IN_DCXO_GPS_MD_MASK),
 		(PMIC_AUXADC_ADC_BUSY_IN_DCXO_GPS_MD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29878,15 +29151,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_busy_in_dcxo_gps_md(
 unsigned int mt6358_upmu_get_auxadc_adc_busy_in_dcxo_gps(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_STA1),
 		(&val),
 		(PMIC_AUXADC_ADC_BUSY_IN_DCXO_GPS_MASK),
 		(PMIC_AUXADC_ADC_BUSY_IN_DCXO_GPS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29894,15 +29166,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_busy_in_dcxo_gps(
 unsigned int mt6358_upmu_get_auxadc_adc_busy_in_mdrt(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_STA1),
 		(&val),
 		(PMIC_AUXADC_ADC_BUSY_IN_MDRT_MASK),
 		(PMIC_AUXADC_ADC_BUSY_IN_MDRT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29910,15 +29181,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_busy_in_mdrt(
 unsigned int mt6358_upmu_get_auxadc_adc_busy_in_share(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_STA1),
 		(&val),
 		(PMIC_AUXADC_ADC_BUSY_IN_SHARE_MASK),
 		(PMIC_AUXADC_ADC_BUSY_IN_SHARE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29926,15 +29196,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_busy_in_share(
 unsigned int mt6358_upmu_get_auxadc_adc_busy_in_imp(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_STA1),
 		(&val),
 		(PMIC_AUXADC_ADC_BUSY_IN_IMP_MASK),
 		(PMIC_AUXADC_ADC_BUSY_IN_IMP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29942,15 +29211,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_busy_in_imp(
 unsigned int mt6358_upmu_get_auxadc_adc_busy_in_fgadc_pchr(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_STA1),
 		(&val),
 		(PMIC_AUXADC_ADC_BUSY_IN_FGADC_PCHR_MASK),
 		(PMIC_AUXADC_ADC_BUSY_IN_FGADC_PCHR_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29958,15 +29226,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_busy_in_fgadc_pchr(
 unsigned int mt6358_upmu_get_auxadc_adc_busy_in_gps_ap(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_STA1),
 		(&val),
 		(PMIC_AUXADC_ADC_BUSY_IN_GPS_AP_MASK),
 		(PMIC_AUXADC_ADC_BUSY_IN_GPS_AP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29974,15 +29241,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_busy_in_gps_ap(
 unsigned int mt6358_upmu_get_auxadc_adc_busy_in_gps_md(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_STA1),
 		(&val),
 		(PMIC_AUXADC_ADC_BUSY_IN_GPS_MD_MASK),
 		(PMIC_AUXADC_ADC_BUSY_IN_GPS_MD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -29990,15 +29256,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_busy_in_gps_md(
 unsigned int mt6358_upmu_get_auxadc_adc_busy_in_gps(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_STA1),
 		(&val),
 		(PMIC_AUXADC_ADC_BUSY_IN_GPS_MASK),
 		(PMIC_AUXADC_ADC_BUSY_IN_GPS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30006,15 +29271,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_busy_in_gps(
 unsigned int mt6358_upmu_get_auxadc_adc_busy_in_thr_md(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_STA1),
 		(&val),
 		(PMIC_AUXADC_ADC_BUSY_IN_THR_MD_MASK),
 		(PMIC_AUXADC_ADC_BUSY_IN_THR_MD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30022,15 +29286,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_busy_in_thr_md(
 unsigned int mt6358_upmu_get_auxadc_adc_busy_in_bat_plugin_pchr(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_STA2),
 		(&val),
 		(PMIC_AUXADC_ADC_BUSY_IN_BAT_PLUGIN_PCHR_MASK),
 		(PMIC_AUXADC_ADC_BUSY_IN_BAT_PLUGIN_PCHR_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30038,15 +29301,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_busy_in_bat_plugin_pchr(
 unsigned int mt6358_upmu_get_auxadc_adc_busy_in_batid(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_STA2),
 		(&val),
 		(PMIC_AUXADC_ADC_BUSY_IN_BATID_MASK),
 		(PMIC_AUXADC_ADC_BUSY_IN_BATID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30054,15 +29316,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_busy_in_batid(
 unsigned int mt6358_upmu_get_auxadc_adc_busy_in_pwron(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_STA2),
 		(&val),
 		(PMIC_AUXADC_ADC_BUSY_IN_PWRON_MASK),
 		(PMIC_AUXADC_ADC_BUSY_IN_PWRON_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30070,15 +29331,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_busy_in_pwron(
 unsigned int mt6358_upmu_get_auxadc_adc_busy_in_thr1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_STA2),
 		(&val),
 		(PMIC_AUXADC_ADC_BUSY_IN_THR1_MASK),
 		(PMIC_AUXADC_ADC_BUSY_IN_THR1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30086,15 +29346,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_busy_in_thr1(
 unsigned int mt6358_upmu_get_auxadc_adc_busy_in_thr2(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_STA2),
 		(&val),
 		(PMIC_AUXADC_ADC_BUSY_IN_THR2_MASK),
 		(PMIC_AUXADC_ADC_BUSY_IN_THR2_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30102,15 +29361,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_busy_in_thr2(
 unsigned int mt6358_upmu_get_auxadc_adc_busy_in_thr3(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_STA2),
 		(&val),
 		(PMIC_AUXADC_ADC_BUSY_IN_THR3_MASK),
 		(PMIC_AUXADC_ADC_BUSY_IN_THR3_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30118,15 +29376,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_busy_in_thr3(
 unsigned int mt6358_upmu_get_auxadc_adc_busy_in_nag(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_STA2),
 		(&val),
 		(PMIC_AUXADC_ADC_BUSY_IN_NAG_MASK),
 		(PMIC_AUXADC_ADC_BUSY_IN_NAG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30134,15 +29391,14 @@ unsigned int mt6358_upmu_get_auxadc_adc_busy_in_nag(
 unsigned int mt6358_upmu_get_auxadc_dig_2_ana_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_2_DSN_ID),
 		(&val),
 		(PMIC_AUXADC_DIG_2_ANA_ID_MASK),
 		(PMIC_AUXADC_DIG_2_ANA_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30150,15 +29406,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_2_ana_id(
 unsigned int mt6358_upmu_get_auxadc_dig_2_dig_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_2_DSN_ID),
 		(&val),
 		(PMIC_AUXADC_DIG_2_DIG_ID_MASK),
 		(PMIC_AUXADC_DIG_2_DIG_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30166,15 +29421,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_2_dig_id(
 unsigned int mt6358_upmu_get_auxadc_dig_2_ana_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_2_DSN_REV0),
 		(&val),
 		(PMIC_AUXADC_DIG_2_ANA_MINOR_REV_MASK),
 		(PMIC_AUXADC_DIG_2_ANA_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30182,15 +29436,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_2_ana_minor_rev(
 unsigned int mt6358_upmu_get_auxadc_dig_2_ana_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_2_DSN_REV0),
 		(&val),
 		(PMIC_AUXADC_DIG_2_ANA_MAJOR_REV_MASK),
 		(PMIC_AUXADC_DIG_2_ANA_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30198,15 +29451,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_2_ana_major_rev(
 unsigned int mt6358_upmu_get_auxadc_dig_2_dig_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_2_DSN_REV0),
 		(&val),
 		(PMIC_AUXADC_DIG_2_DIG_MINOR_REV_MASK),
 		(PMIC_AUXADC_DIG_2_DIG_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30214,15 +29466,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_2_dig_minor_rev(
 unsigned int mt6358_upmu_get_auxadc_dig_2_dig_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_2_DSN_REV0),
 		(&val),
 		(PMIC_AUXADC_DIG_2_DIG_MAJOR_REV_MASK),
 		(PMIC_AUXADC_DIG_2_DIG_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30230,15 +29481,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_2_dig_major_rev(
 unsigned int mt6358_upmu_get_auxadc_dig_2_dsn_cbs(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_2_DSN_DBI),
 		(&val),
 		(PMIC_AUXADC_DIG_2_DSN_CBS_MASK),
 		(PMIC_AUXADC_DIG_2_DSN_CBS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30246,15 +29496,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_2_dsn_cbs(
 unsigned int mt6358_upmu_get_auxadc_dig_2_dsn_bix(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_2_DSN_DBI),
 		(&val),
 		(PMIC_AUXADC_DIG_2_DSN_BIX_MASK),
 		(PMIC_AUXADC_DIG_2_DSN_BIX_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30262,15 +29511,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_2_dsn_bix(
 unsigned int mt6358_upmu_get_auxadc_dig_2_dsn_esp(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_2_DSN_DBI),
 		(&val),
 		(PMIC_AUXADC_DIG_2_DSN_ESP_MASK),
 		(PMIC_AUXADC_DIG_2_DSN_ESP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30278,15 +29526,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_2_dsn_esp(
 unsigned int mt6358_upmu_get_auxadc_dig_2_dsn_fpi(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_2_DSN_DXI),
 		(&val),
 		(PMIC_AUXADC_DIG_2_DSN_FPI_MASK),
 		(PMIC_AUXADC_DIG_2_DSN_FPI_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30294,15 +29541,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_2_dsn_fpi(
 unsigned int mt6358_upmu_get_auxadc_dig_3_ana_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_3_DSN_ID),
 		(&val),
 		(PMIC_AUXADC_DIG_3_ANA_ID_MASK),
 		(PMIC_AUXADC_DIG_3_ANA_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30310,15 +29556,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_3_ana_id(
 unsigned int mt6358_upmu_get_auxadc_dig_3_dig_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_3_DSN_ID),
 		(&val),
 		(PMIC_AUXADC_DIG_3_DIG_ID_MASK),
 		(PMIC_AUXADC_DIG_3_DIG_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30326,15 +29571,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_3_dig_id(
 unsigned int mt6358_upmu_get_auxadc_dig_3_ana_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_3_DSN_REV0),
 		(&val),
 		(PMIC_AUXADC_DIG_3_ANA_MINOR_REV_MASK),
 		(PMIC_AUXADC_DIG_3_ANA_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30342,15 +29586,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_3_ana_minor_rev(
 unsigned int mt6358_upmu_get_auxadc_dig_3_ana_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_3_DSN_REV0),
 		(&val),
 		(PMIC_AUXADC_DIG_3_ANA_MAJOR_REV_MASK),
 		(PMIC_AUXADC_DIG_3_ANA_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30358,15 +29601,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_3_ana_major_rev(
 unsigned int mt6358_upmu_get_auxadc_dig_3_dig_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_3_DSN_REV0),
 		(&val),
 		(PMIC_AUXADC_DIG_3_DIG_MINOR_REV_MASK),
 		(PMIC_AUXADC_DIG_3_DIG_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30374,15 +29616,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_3_dig_minor_rev(
 unsigned int mt6358_upmu_get_auxadc_dig_3_dig_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_3_DSN_REV0),
 		(&val),
 		(PMIC_AUXADC_DIG_3_DIG_MAJOR_REV_MASK),
 		(PMIC_AUXADC_DIG_3_DIG_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30390,15 +29631,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_3_dig_major_rev(
 unsigned int mt6358_upmu_get_auxadc_dig_3_dsn_cbs(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_3_DSN_DBI),
 		(&val),
 		(PMIC_AUXADC_DIG_3_DSN_CBS_MASK),
 		(PMIC_AUXADC_DIG_3_DSN_CBS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30406,15 +29646,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_3_dsn_cbs(
 unsigned int mt6358_upmu_get_auxadc_dig_3_dsn_bix(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_3_DSN_DBI),
 		(&val),
 		(PMIC_AUXADC_DIG_3_DSN_BIX_MASK),
 		(PMIC_AUXADC_DIG_3_DSN_BIX_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -30422,15 +29661,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_3_dsn_bix(
 unsigned int mt6358_upmu_get_auxadc_dig_3_dsn_fpi(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_3_DSN_DXI),
 		(&val),
 		(PMIC_AUXADC_DIG_3_DSN_FPI_MASK),
 		(PMIC_AUXADC_DIG_3_DSN_FPI_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -31338,15 +30576,14 @@ unsigned int mt6358_upmu_set_auxadc_da_dac_swctrl(
 unsigned int mt6358_upmu_get_ad_auxadc_comp(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_CON14),
 		(&val),
 		(PMIC_AD_AUXADC_COMP_MASK),
 		(PMIC_AD_AUXADC_COMP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -32404,15 +31641,14 @@ unsigned int mt6358_upmu_set_auxadc_efuse_2rsv0_3(
 unsigned int mt6358_upmu_get_auxadc_dig_4_ana_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_4_DSN_ID),
 		(&val),
 		(PMIC_AUXADC_DIG_4_ANA_ID_MASK),
 		(PMIC_AUXADC_DIG_4_ANA_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -32420,15 +31656,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_4_ana_id(
 unsigned int mt6358_upmu_get_auxadc_dig_4_dig_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_4_DSN_ID),
 		(&val),
 		(PMIC_AUXADC_DIG_4_DIG_ID_MASK),
 		(PMIC_AUXADC_DIG_4_DIG_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -32436,15 +31671,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_4_dig_id(
 unsigned int mt6358_upmu_get_auxadc_dig_4_ana_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_4_DSN_REV0),
 		(&val),
 		(PMIC_AUXADC_DIG_4_ANA_MINOR_REV_MASK),
 		(PMIC_AUXADC_DIG_4_ANA_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -32452,15 +31686,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_4_ana_minor_rev(
 unsigned int mt6358_upmu_get_auxadc_dig_4_ana_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_4_DSN_REV0),
 		(&val),
 		(PMIC_AUXADC_DIG_4_ANA_MAJOR_REV_MASK),
 		(PMIC_AUXADC_DIG_4_ANA_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -32468,15 +31701,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_4_ana_major_rev(
 unsigned int mt6358_upmu_get_auxadc_dig_4_dig_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_4_DSN_REV0),
 		(&val),
 		(PMIC_AUXADC_DIG_4_DIG_MINOR_REV_MASK),
 		(PMIC_AUXADC_DIG_4_DIG_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -32484,15 +31716,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_4_dig_minor_rev(
 unsigned int mt6358_upmu_get_auxadc_dig_4_dig_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_4_DSN_REV0),
 		(&val),
 		(PMIC_AUXADC_DIG_4_DIG_MAJOR_REV_MASK),
 		(PMIC_AUXADC_DIG_4_DIG_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -32500,15 +31731,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_4_dig_major_rev(
 unsigned int mt6358_upmu_get_auxadc_dig_4_dsn_cbs(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_4_DSN_DBI),
 		(&val),
 		(PMIC_AUXADC_DIG_4_DSN_CBS_MASK),
 		(PMIC_AUXADC_DIG_4_DSN_CBS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -32516,15 +31746,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_4_dsn_cbs(
 unsigned int mt6358_upmu_get_auxadc_dig_4_dsn_bix(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_4_DSN_DBI),
 		(&val),
 		(PMIC_AUXADC_DIG_4_DSN_BIX_MASK),
 		(PMIC_AUXADC_DIG_4_DSN_BIX_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -32532,15 +31761,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_4_dsn_bix(
 unsigned int mt6358_upmu_get_auxadc_dig_4_dsn_esp(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_4_DSN_DBI),
 		(&val),
 		(PMIC_AUXADC_DIG_4_DSN_ESP_MASK),
 		(PMIC_AUXADC_DIG_4_DSN_ESP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -32548,15 +31776,14 @@ unsigned int mt6358_upmu_get_auxadc_dig_4_dsn_esp(
 unsigned int mt6358_upmu_get_auxadc_dig_4_dsn_fpi(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_DIG_4_DSN_DXI),
 		(&val),
 		(PMIC_AUXADC_DIG_4_DSN_FPI_MASK),
 		(PMIC_AUXADC_DIG_4_DSN_FPI_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -32609,15 +31836,14 @@ unsigned int mt6358_upmu_set_auxadc_impedance_irq_clr(
 unsigned int mt6358_upmu_get_auxadc_impedance_irq_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_IMP0),
 		(&val),
 		(PMIC_AUXADC_IMPEDANCE_IRQ_STATUS_MASK),
 		(PMIC_AUXADC_IMPEDANCE_IRQ_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -32685,15 +31911,14 @@ unsigned int mt6358_upmu_set_auxadc_imp_autorpt_en(
 unsigned int mt6358_upmu_get_auxadc_imp_cnt(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_IMP2),
 		(&val),
 		(PMIC_AUXADC_IMP_CNT_MASK),
 		(PMIC_AUXADC_IMP_CNT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -32701,15 +31926,14 @@ unsigned int mt6358_upmu_get_auxadc_imp_cnt(
 unsigned int mt6358_upmu_get_auxadc_imp_cnt_stop_state(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_IMP2),
 		(&val),
 		(PMIC_AUXADC_IMP_CNT_STOP_STATE_MASK),
 		(PMIC_AUXADC_IMP_CNT_STOP_STATE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -32822,15 +32046,14 @@ unsigned int mt6358_upmu_set_auxadc_lbat_en_max(
 unsigned int mt6358_upmu_get_auxadc_lbat_max_irq_b(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_LBAT3),
 		(&val),
 		(PMIC_AUXADC_LBAT_MAX_IRQ_B_MASK),
 		(PMIC_AUXADC_LBAT_MAX_IRQ_B_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -32883,15 +32106,14 @@ unsigned int mt6358_upmu_set_auxadc_lbat_en_min(
 unsigned int mt6358_upmu_get_auxadc_lbat_min_irq_b(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_LBAT4),
 		(&val),
 		(PMIC_AUXADC_LBAT_MIN_IRQ_B_MASK),
 		(PMIC_AUXADC_LBAT_MIN_IRQ_B_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -32899,15 +32121,14 @@ unsigned int mt6358_upmu_get_auxadc_lbat_min_irq_b(
 unsigned int mt6358_upmu_get_auxadc_lbat_debounce_count_max(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_LBAT5),
 		(&val),
 		(PMIC_AUXADC_LBAT_DEBOUNCE_COUNT_MAX_MASK),
 		(PMIC_AUXADC_LBAT_DEBOUNCE_COUNT_MAX_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -32915,15 +32136,14 @@ unsigned int mt6358_upmu_get_auxadc_lbat_debounce_count_max(
 unsigned int mt6358_upmu_get_auxadc_lbat_debounce_count_min(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_LBAT6),
 		(&val),
 		(PMIC_AUXADC_LBAT_DEBOUNCE_COUNT_MIN_MASK),
 		(PMIC_AUXADC_LBAT_DEBOUNCE_COUNT_MIN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -33051,15 +32271,14 @@ unsigned int mt6358_upmu_set_auxadc_bat_temp_en_max(
 unsigned int mt6358_upmu_get_auxadc_bat_temp_max_irq_b(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_BAT_TEMP_4),
 		(&val),
 		(PMIC_AUXADC_BAT_TEMP_MAX_IRQ_B_MASK),
 		(PMIC_AUXADC_BAT_TEMP_MAX_IRQ_B_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -33112,15 +32331,14 @@ unsigned int mt6358_upmu_set_auxadc_bat_temp_en_min(
 unsigned int mt6358_upmu_get_auxadc_bat_temp_min_irq_b(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_BAT_TEMP_5),
 		(&val),
 		(PMIC_AUXADC_BAT_TEMP_MIN_IRQ_B_MASK),
 		(PMIC_AUXADC_BAT_TEMP_MIN_IRQ_B_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -33128,15 +32346,14 @@ unsigned int mt6358_upmu_get_auxadc_bat_temp_min_irq_b(
 unsigned int mt6358_upmu_get_auxadc_bat_temp_debounce_count_max(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_BAT_TEMP_6),
 		(&val),
 		(PMIC_AUXADC_BAT_TEMP_DEBOUNCE_COUNT_MAX_MASK),
 		(PMIC_AUXADC_BAT_TEMP_DEBOUNCE_COUNT_MAX_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -33144,15 +32361,14 @@ unsigned int mt6358_upmu_get_auxadc_bat_temp_debounce_count_max(
 unsigned int mt6358_upmu_get_auxadc_bat_temp_debounce_count_min(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_BAT_TEMP_7),
 		(&val),
 		(PMIC_AUXADC_BAT_TEMP_DEBOUNCE_COUNT_MIN_MASK),
 		(PMIC_AUXADC_BAT_TEMP_DEBOUNCE_COUNT_MIN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -33265,15 +32481,14 @@ unsigned int mt6358_upmu_set_auxadc_lbat2_en_max(
 unsigned int mt6358_upmu_get_auxadc_lbat2_max_irq_b(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_LBAT2_4),
 		(&val),
 		(PMIC_AUXADC_LBAT2_MAX_IRQ_B_MASK),
 		(PMIC_AUXADC_LBAT2_MAX_IRQ_B_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -33326,15 +32541,14 @@ unsigned int mt6358_upmu_set_auxadc_lbat2_en_min(
 unsigned int mt6358_upmu_get_auxadc_lbat2_min_irq_b(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_LBAT2_5),
 		(&val),
 		(PMIC_AUXADC_LBAT2_MIN_IRQ_B_MASK),
 		(PMIC_AUXADC_LBAT2_MIN_IRQ_B_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -33342,15 +32556,14 @@ unsigned int mt6358_upmu_get_auxadc_lbat2_min_irq_b(
 unsigned int mt6358_upmu_get_auxadc_lbat2_debounce_count_max(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_LBAT2_6),
 		(&val),
 		(PMIC_AUXADC_LBAT2_DEBOUNCE_COUNT_MAX_MASK),
 		(PMIC_AUXADC_LBAT2_DEBOUNCE_COUNT_MAX_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -33358,15 +32571,14 @@ unsigned int mt6358_upmu_get_auxadc_lbat2_debounce_count_max(
 unsigned int mt6358_upmu_get_auxadc_lbat2_debounce_count_min(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_LBAT2_7),
 		(&val),
 		(PMIC_AUXADC_LBAT2_DEBOUNCE_COUNT_MIN_MASK),
 		(PMIC_AUXADC_LBAT2_DEBOUNCE_COUNT_MIN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -33689,15 +32901,14 @@ unsigned int mt6358_upmu_set_auxadc_nag_irq_en(
 unsigned int mt6358_upmu_get_auxadc_nag_c_dltv_irq(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_NAG_0),
 		(&val),
 		(PMIC_AUXADC_NAG_C_DLTV_IRQ_MASK),
 		(PMIC_AUXADC_NAG_C_DLTV_IRQ_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -33750,15 +32961,14 @@ unsigned int mt6358_upmu_set_auxadc_nag_c_dltv_th_26_16(
 unsigned int mt6358_upmu_get_auxadc_nag_cnt_15_0(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_NAG_4),
 		(&val),
 		(PMIC_AUXADC_NAG_CNT_15_0_MASK),
 		(PMIC_AUXADC_NAG_CNT_15_0_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -33766,15 +32976,14 @@ unsigned int mt6358_upmu_get_auxadc_nag_cnt_15_0(
 unsigned int mt6358_upmu_get_auxadc_nag_cnt_25_16(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_NAG_5),
 		(&val),
 		(PMIC_AUXADC_NAG_CNT_25_16_MASK),
 		(PMIC_AUXADC_NAG_CNT_25_16_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -33782,15 +32991,14 @@ unsigned int mt6358_upmu_get_auxadc_nag_cnt_25_16(
 unsigned int mt6358_upmu_get_auxadc_nag_dltv(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_NAG_6),
 		(&val),
 		(PMIC_AUXADC_NAG_DLTV_MASK),
 		(PMIC_AUXADC_NAG_DLTV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -33798,15 +33006,14 @@ unsigned int mt6358_upmu_get_auxadc_nag_dltv(
 unsigned int mt6358_upmu_get_auxadc_nag_c_dltv_15_0(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_NAG_7),
 		(&val),
 		(PMIC_AUXADC_NAG_C_DLTV_15_0_MASK),
 		(PMIC_AUXADC_NAG_C_DLTV_15_0_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -33814,15 +33021,14 @@ unsigned int mt6358_upmu_get_auxadc_nag_c_dltv_15_0(
 unsigned int mt6358_upmu_get_auxadc_nag_c_dltv_26_16(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_NAG_8),
 		(&val),
 		(PMIC_AUXADC_NAG_C_DLTV_26_16_MASK),
 		(PMIC_AUXADC_NAG_C_DLTV_26_16_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -33830,15 +33036,14 @@ unsigned int mt6358_upmu_get_auxadc_nag_c_dltv_26_16(
 unsigned int mt6358_upmu_get_auxadc_nag_start(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_NAG_9),
 		(&val),
 		(PMIC_AUXADC_NAG_START_MASK),
 		(PMIC_AUXADC_NAG_START_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -33846,15 +33051,14 @@ unsigned int mt6358_upmu_get_auxadc_nag_start(
 unsigned int mt6358_upmu_get_auxadc_nag_ck_on(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_NAG_9),
 		(&val),
 		(PMIC_AUXADC_NAG_CK_ON_MASK),
 		(PMIC_AUXADC_NAG_CK_ON_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -34042,15 +33246,14 @@ unsigned int mt6358_upmu_set_auxadc_nag_ck_sw_en(
 unsigned int mt6358_upmu_get_auxadc_sample_list_15_0(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_SPL_LIST_0),
 		(&val),
 		(PMIC_AUXADC_SAMPLE_LIST_15_0_MASK),
 		(PMIC_AUXADC_SAMPLE_LIST_15_0_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -34058,15 +33261,14 @@ unsigned int mt6358_upmu_get_auxadc_sample_list_15_0(
 unsigned int mt6358_upmu_get_auxadc_sample_list_31_16(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_SPL_LIST_1),
 		(&val),
 		(PMIC_AUXADC_SAMPLE_LIST_31_16_MASK),
 		(PMIC_AUXADC_SAMPLE_LIST_31_16_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -34074,15 +33276,14 @@ unsigned int mt6358_upmu_get_auxadc_sample_list_31_16(
 unsigned int mt6358_upmu_get_auxadc_sample_list_33_32(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUXADC_SPL_LIST_2),
 		(&val),
 		(PMIC_AUXADC_SAMPLE_LIST_33_32_MASK),
 		(PMIC_AUXADC_SAMPLE_LIST_33_32_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -34240,15 +33441,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vproc11_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vproc11_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VPROC11_OC_MASK),
 		(PMIC_RG_INT_EN_VPROC11_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -34271,15 +33471,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vproc12_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vproc12_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VPROC12_OC_MASK),
 		(PMIC_RG_INT_EN_VPROC12_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -34302,15 +33501,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vcore_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vcore_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VCORE_OC_MASK),
 		(PMIC_RG_INT_EN_VCORE_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -34333,15 +33531,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vgpu_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vgpu_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VGPU_OC_MASK),
 		(PMIC_RG_INT_EN_VGPU_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -34364,15 +33561,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vmodem_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vmodem_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VMODEM_OC_MASK),
 		(PMIC_RG_INT_EN_VMODEM_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -34395,15 +33591,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vdram1_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vdram1_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VDRAM1_OC_MASK),
 		(PMIC_RG_INT_EN_VDRAM1_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -34426,15 +33621,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vs1_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vs1_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VS1_OC_MASK),
 		(PMIC_RG_INT_EN_VS1_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -34457,15 +33651,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vs2_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vs2_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VS2_OC_MASK),
 		(PMIC_RG_INT_EN_VS2_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -34488,15 +33681,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vpa_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vpa_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VPA_OC_MASK),
 		(PMIC_RG_INT_EN_VPA_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -34519,15 +33711,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vcore_preoc(
 unsigned int mt6358_upmu_get_rg_int_en_vcore_preoc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VCORE_PREOC_MASK),
 		(PMIC_RG_INT_EN_VCORE_PREOC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -34685,15 +33876,14 @@ unsigned int mt6358_upmu_set_rg_int_mask_vcore_preoc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vproc11_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VPROC11_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VPROC11_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -34701,15 +33891,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vproc11_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vproc12_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VPROC12_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VPROC12_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -34717,15 +33906,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vproc12_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vcore_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VCORE_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VCORE_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -34733,15 +33921,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vcore_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vgpu_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VGPU_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VGPU_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -34749,15 +33936,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vgpu_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vmodem_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VMODEM_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VMODEM_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -34765,15 +33951,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vmodem_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vdram1_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VDRAM1_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VDRAM1_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -34781,15 +33966,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vdram1_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vs1_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VS1_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VS1_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -34797,15 +33981,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vs1_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vs2_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VS2_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VS2_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -34813,15 +33996,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vs2_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vpa_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VPA_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VPA_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -34829,15 +34011,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vpa_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vcore_preoc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VCORE_PREOC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VCORE_PREOC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35040,15 +34221,14 @@ unsigned int mt6358_upmu_set_rg_buck_k_once_en(
 unsigned int mt6358_upmu_get_rg_buck_k_once_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_K_CON0),
 		(&val),
 		(PMIC_RG_BUCK_K_ONCE_EN_MASK),
 		(PMIC_RG_BUCK_K_ONCE_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35116,15 +34296,14 @@ unsigned int mt6358_upmu_set_rg_buck_k_auto_en(
 unsigned int mt6358_upmu_get_rg_buck_k_auto_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_K_CON0),
 		(&val),
 		(PMIC_RG_BUCK_K_AUTO_EN_MASK),
 		(PMIC_RG_BUCK_K_AUTO_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35162,15 +34341,14 @@ unsigned int mt6358_upmu_set_rg_buck_k_ck_en(
 unsigned int mt6358_upmu_get_rg_buck_k_ck_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_K_CON0),
 		(&val),
 		(PMIC_RG_BUCK_K_CK_EN_MASK),
 		(PMIC_RG_BUCK_K_CK_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35178,15 +34356,14 @@ unsigned int mt6358_upmu_get_rg_buck_k_ck_en(
 unsigned int mt6358_upmu_get_buck_k_result(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_K_CON1),
 		(&val),
 		(PMIC_BUCK_K_RESULT_MASK),
 		(PMIC_BUCK_K_RESULT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35194,15 +34371,14 @@ unsigned int mt6358_upmu_get_buck_k_result(
 unsigned int mt6358_upmu_get_buck_k_done(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_K_CON1),
 		(&val),
 		(PMIC_BUCK_K_DONE_MASK),
 		(PMIC_BUCK_K_DONE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35210,15 +34386,14 @@ unsigned int mt6358_upmu_get_buck_k_done(
 unsigned int mt6358_upmu_get_buck_k_control(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_K_CON1),
 		(&val),
 		(PMIC_BUCK_K_CONTROL_MASK),
 		(PMIC_BUCK_K_CONTROL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35226,15 +34401,14 @@ unsigned int mt6358_upmu_get_buck_k_control(
 unsigned int mt6358_upmu_get_da_smps_osc_cal(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_K_CON1),
 		(&val),
 		(PMIC_DA_SMPS_OSC_CAL_MASK),
 		(PMIC_DA_SMPS_OSC_CAL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35257,15 +34431,14 @@ unsigned int mt6358_upmu_set_rg_buck_k_buck_ck_cnt(
 unsigned int mt6358_upmu_get_buck_vproc11_wdtdbg_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_WDTDBG0),
 		(&val),
 		(PMIC_BUCK_VPROC11_WDTDBG_VOSEL_MASK),
 		(PMIC_BUCK_VPROC11_WDTDBG_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35273,15 +34446,14 @@ unsigned int mt6358_upmu_get_buck_vproc11_wdtdbg_vosel(
 unsigned int mt6358_upmu_get_buck_vproc12_wdtdbg_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_WDTDBG0),
 		(&val),
 		(PMIC_BUCK_VPROC12_WDTDBG_VOSEL_MASK),
 		(PMIC_BUCK_VPROC12_WDTDBG_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35289,15 +34461,14 @@ unsigned int mt6358_upmu_get_buck_vproc12_wdtdbg_vosel(
 unsigned int mt6358_upmu_get_buck_vcore_wdtdbg_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_WDTDBG1),
 		(&val),
 		(PMIC_BUCK_VCORE_WDTDBG_VOSEL_MASK),
 		(PMIC_BUCK_VCORE_WDTDBG_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35305,15 +34476,14 @@ unsigned int mt6358_upmu_get_buck_vcore_wdtdbg_vosel(
 unsigned int mt6358_upmu_get_buck_vgpu_wdtdbg_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_WDTDBG1),
 		(&val),
 		(PMIC_BUCK_VGPU_WDTDBG_VOSEL_MASK),
 		(PMIC_BUCK_VGPU_WDTDBG_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35321,15 +34491,14 @@ unsigned int mt6358_upmu_get_buck_vgpu_wdtdbg_vosel(
 unsigned int mt6358_upmu_get_buck_vmodem_wdtdbg_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_WDTDBG2),
 		(&val),
 		(PMIC_BUCK_VMODEM_WDTDBG_VOSEL_MASK),
 		(PMIC_BUCK_VMODEM_WDTDBG_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35337,15 +34506,14 @@ unsigned int mt6358_upmu_get_buck_vmodem_wdtdbg_vosel(
 unsigned int mt6358_upmu_get_buck_vdram1_wdtdbg_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_WDTDBG2),
 		(&val),
 		(PMIC_BUCK_VDRAM1_WDTDBG_VOSEL_MASK),
 		(PMIC_BUCK_VDRAM1_WDTDBG_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35353,15 +34521,14 @@ unsigned int mt6358_upmu_get_buck_vdram1_wdtdbg_vosel(
 unsigned int mt6358_upmu_get_buck_vs1_wdtdbg_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_WDTDBG3),
 		(&val),
 		(PMIC_BUCK_VS1_WDTDBG_VOSEL_MASK),
 		(PMIC_BUCK_VS1_WDTDBG_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35369,15 +34536,14 @@ unsigned int mt6358_upmu_get_buck_vs1_wdtdbg_vosel(
 unsigned int mt6358_upmu_get_buck_vs2_wdtdbg_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_WDTDBG3),
 		(&val),
 		(PMIC_BUCK_VS2_WDTDBG_VOSEL_MASK),
 		(PMIC_BUCK_VS2_WDTDBG_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35385,15 +34551,14 @@ unsigned int mt6358_upmu_get_buck_vs2_wdtdbg_vosel(
 unsigned int mt6358_upmu_get_buck_vpa_wdtdbg_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_WDTDBG4),
 		(&val),
 		(PMIC_BUCK_VPA_WDTDBG_VOSEL_MASK),
 		(PMIC_BUCK_VPA_WDTDBG_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35416,15 +34581,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc11_oc_sdn_en(
 unsigned int mt6358_upmu_get_rg_buck_vproc11_oc_sdn_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_ELR0),
 		(&val),
 		(PMIC_RG_BUCK_VPROC11_OC_SDN_EN_MASK),
 		(PMIC_RG_BUCK_VPROC11_OC_SDN_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35447,15 +34611,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc12_oc_sdn_en(
 unsigned int mt6358_upmu_get_rg_buck_vproc12_oc_sdn_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_ELR0),
 		(&val),
 		(PMIC_RG_BUCK_VPROC12_OC_SDN_EN_MASK),
 		(PMIC_RG_BUCK_VPROC12_OC_SDN_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35478,15 +34641,14 @@ unsigned int mt6358_upmu_set_rg_buck_vcore_oc_sdn_en(
 unsigned int mt6358_upmu_get_rg_buck_vcore_oc_sdn_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_ELR0),
 		(&val),
 		(PMIC_RG_BUCK_VCORE_OC_SDN_EN_MASK),
 		(PMIC_RG_BUCK_VCORE_OC_SDN_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35509,15 +34671,14 @@ unsigned int mt6358_upmu_set_rg_buck_vgpu_oc_sdn_en(
 unsigned int mt6358_upmu_get_rg_buck_vgpu_oc_sdn_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_ELR0),
 		(&val),
 		(PMIC_RG_BUCK_VGPU_OC_SDN_EN_MASK),
 		(PMIC_RG_BUCK_VGPU_OC_SDN_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35540,15 +34701,14 @@ unsigned int mt6358_upmu_set_rg_buck_vmodem_oc_sdn_en(
 unsigned int mt6358_upmu_get_rg_buck_vmodem_oc_sdn_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_ELR0),
 		(&val),
 		(PMIC_RG_BUCK_VMODEM_OC_SDN_EN_MASK),
 		(PMIC_RG_BUCK_VMODEM_OC_SDN_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35571,15 +34731,14 @@ unsigned int mt6358_upmu_set_rg_buck_vdram1_oc_sdn_en(
 unsigned int mt6358_upmu_get_rg_buck_vdram1_oc_sdn_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_ELR0),
 		(&val),
 		(PMIC_RG_BUCK_VDRAM1_OC_SDN_EN_MASK),
 		(PMIC_RG_BUCK_VDRAM1_OC_SDN_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35602,15 +34761,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs1_oc_sdn_en(
 unsigned int mt6358_upmu_get_rg_buck_vs1_oc_sdn_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_ELR0),
 		(&val),
 		(PMIC_RG_BUCK_VS1_OC_SDN_EN_MASK),
 		(PMIC_RG_BUCK_VS1_OC_SDN_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35633,15 +34791,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs2_oc_sdn_en(
 unsigned int mt6358_upmu_get_rg_buck_vs2_oc_sdn_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_ELR0),
 		(&val),
 		(PMIC_RG_BUCK_VS2_OC_SDN_EN_MASK),
 		(PMIC_RG_BUCK_VS2_OC_SDN_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35664,15 +34821,14 @@ unsigned int mt6358_upmu_set_rg_buck_vpa_oc_sdn_en(
 unsigned int mt6358_upmu_get_rg_buck_vpa_oc_sdn_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_ELR0),
 		(&val),
 		(PMIC_RG_BUCK_VPA_OC_SDN_EN_MASK),
 		(PMIC_RG_BUCK_VPA_OC_SDN_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35695,15 +34851,14 @@ unsigned int mt6358_upmu_set_rg_buck_oc_sdn_en_sel(
 unsigned int mt6358_upmu_get_rg_buck_oc_sdn_en_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_ELR0),
 		(&val),
 		(PMIC_RG_BUCK_OC_SDN_EN_SEL_MASK),
 		(PMIC_RG_BUCK_OC_SDN_EN_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35741,15 +34896,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc11_vosel_limit_sel(
 unsigned int mt6358_upmu_get_rg_buck_vproc11_vosel_limit_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_ELR1),
 		(&val),
 		(PMIC_RG_BUCK_VPROC11_VOSEL_LIMIT_SEL_MASK),
 		(PMIC_RG_BUCK_VPROC11_VOSEL_LIMIT_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35772,15 +34926,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc12_vosel_limit_sel(
 unsigned int mt6358_upmu_get_rg_buck_vproc12_vosel_limit_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_ELR1),
 		(&val),
 		(PMIC_RG_BUCK_VPROC12_VOSEL_LIMIT_SEL_MASK),
 		(PMIC_RG_BUCK_VPROC12_VOSEL_LIMIT_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35803,15 +34956,14 @@ unsigned int mt6358_upmu_set_rg_buck_vcore_vosel_limit_sel(
 unsigned int mt6358_upmu_get_rg_buck_vcore_vosel_limit_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_ELR1),
 		(&val),
 		(PMIC_RG_BUCK_VCORE_VOSEL_LIMIT_SEL_MASK),
 		(PMIC_RG_BUCK_VCORE_VOSEL_LIMIT_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35834,15 +34986,14 @@ unsigned int mt6358_upmu_set_rg_buck_vgpu_vosel_limit_sel(
 unsigned int mt6358_upmu_get_rg_buck_vgpu_vosel_limit_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_ELR1),
 		(&val),
 		(PMIC_RG_BUCK_VGPU_VOSEL_LIMIT_SEL_MASK),
 		(PMIC_RG_BUCK_VGPU_VOSEL_LIMIT_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35865,15 +35016,14 @@ unsigned int mt6358_upmu_set_rg_buck_vmodem_vosel_limit_sel(
 unsigned int mt6358_upmu_get_rg_buck_vmodem_vosel_limit_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_ELR1),
 		(&val),
 		(PMIC_RG_BUCK_VMODEM_VOSEL_LIMIT_SEL_MASK),
 		(PMIC_RG_BUCK_VMODEM_VOSEL_LIMIT_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35896,15 +35046,14 @@ unsigned int mt6358_upmu_set_rg_buck_vdram1_vosel_limit_sel(
 unsigned int mt6358_upmu_get_rg_buck_vdram1_vosel_limit_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_ELR1),
 		(&val),
 		(PMIC_RG_BUCK_VDRAM1_VOSEL_LIMIT_SEL_MASK),
 		(PMIC_RG_BUCK_VDRAM1_VOSEL_LIMIT_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35927,15 +35076,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs1_vosel_limit_sel(
 unsigned int mt6358_upmu_get_rg_buck_vs1_vosel_limit_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_ELR1),
 		(&val),
 		(PMIC_RG_BUCK_VS1_VOSEL_LIMIT_SEL_MASK),
 		(PMIC_RG_BUCK_VS1_VOSEL_LIMIT_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35958,15 +35106,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs2_vosel_limit_sel(
 unsigned int mt6358_upmu_get_rg_buck_vs2_vosel_limit_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_ELR1),
 		(&val),
 		(PMIC_RG_BUCK_VS2_VOSEL_LIMIT_SEL_MASK),
 		(PMIC_RG_BUCK_VS2_VOSEL_LIMIT_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -35989,15 +35136,14 @@ unsigned int mt6358_upmu_set_rg_buck_vpa_vosel_limit_sel(
 unsigned int mt6358_upmu_get_rg_buck_vpa_vosel_limit_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_ELR2),
 		(&val),
 		(PMIC_RG_BUCK_VPA_VOSEL_LIMIT_SEL_MASK),
 		(PMIC_RG_BUCK_VPA_VOSEL_LIMIT_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36020,15 +35166,14 @@ unsigned int mt6358_upmu_set_rg_buck_vdram1_vosel_lp3(
 unsigned int mt6358_upmu_get_rg_buck_vdram1_vosel_lp3(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_TOP_ELR3),
 		(&val),
 		(PMIC_RG_BUCK_VDRAM1_VOSEL_LP3_MASK),
 		(PMIC_RG_BUCK_VDRAM1_VOSEL_LP3_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36051,15 +35196,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc11_en(
 unsigned int mt6358_upmu_get_rg_buck_vproc11_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_CON0),
 		(&val),
 		(PMIC_RG_BUCK_VPROC11_EN_MASK),
 		(PMIC_RG_BUCK_VPROC11_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36097,15 +35241,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc11_vosel_sleep(
 unsigned int mt6358_upmu_get_rg_buck_vproc11_vosel_sleep(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_CON1),
 		(&val),
 		(PMIC_RG_BUCK_VPROC11_VOSEL_SLEEP_MASK),
 		(PMIC_RG_BUCK_VPROC11_VOSEL_SLEEP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36188,15 +35331,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc11_dvs_en_td(
 unsigned int mt6358_upmu_get_rg_buck_vproc11_dvs_en_td(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_CFG1),
 		(&val),
 		(PMIC_RG_BUCK_VPROC11_DVS_EN_TD_MASK),
 		(PMIC_RG_BUCK_VPROC11_DVS_EN_TD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36219,15 +35361,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc11_dvs_en_ctrl(
 unsigned int mt6358_upmu_get_rg_buck_vproc11_dvs_en_ctrl(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_CFG1),
 		(&val),
 		(PMIC_RG_BUCK_VPROC11_DVS_EN_CTRL_MASK),
 		(PMIC_RG_BUCK_VPROC11_DVS_EN_CTRL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36250,15 +35391,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc11_dvs_en_once(
 unsigned int mt6358_upmu_get_rg_buck_vproc11_dvs_en_once(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_CFG1),
 		(&val),
 		(PMIC_RG_BUCK_VPROC11_DVS_EN_ONCE_MASK),
 		(PMIC_RG_BUCK_VPROC11_DVS_EN_ONCE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36326,15 +35466,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc11_sw_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vproc11_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VPROC11_SW_OP_EN_MASK),
 		(PMIC_RG_BUCK_VPROC11_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36357,15 +35496,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc11_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vproc11_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VPROC11_HW0_OP_EN_MASK),
 		(PMIC_RG_BUCK_VPROC11_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36388,15 +35526,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc11_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vproc11_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VPROC11_HW1_OP_EN_MASK),
 		(PMIC_RG_BUCK_VPROC11_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36419,15 +35556,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc11_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vproc11_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VPROC11_HW2_OP_EN_MASK),
 		(PMIC_RG_BUCK_VPROC11_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36450,15 +35586,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc11_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_buck_vproc11_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_OP_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VPROC11_HW0_OP_CFG_MASK),
 		(PMIC_RG_BUCK_VPROC11_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36481,15 +35616,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc11_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_buck_vproc11_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_OP_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VPROC11_HW1_OP_CFG_MASK),
 		(PMIC_RG_BUCK_VPROC11_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36512,15 +35646,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc11_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_buck_vproc11_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_OP_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VPROC11_HW2_OP_CFG_MASK),
 		(PMIC_RG_BUCK_VPROC11_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36543,15 +35676,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc11_oc_deg_en(
 unsigned int mt6358_upmu_get_rg_buck_vproc11_oc_deg_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_OC_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VPROC11_OC_DEG_EN_MASK),
 		(PMIC_RG_BUCK_VPROC11_OC_DEG_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36589,15 +35721,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc11_oc_thd(
 unsigned int mt6358_upmu_get_da_vproc11_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_DBG0),
 		(&val),
 		(PMIC_DA_VPROC11_VOSEL_MASK),
 		(PMIC_DA_VPROC11_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36605,15 +35736,14 @@ unsigned int mt6358_upmu_get_da_vproc11_vosel(
 unsigned int mt6358_upmu_get_da_vproc11_vosel_gray(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_DBG0),
 		(&val),
 		(PMIC_DA_VPROC11_VOSEL_GRAY_MASK),
 		(PMIC_DA_VPROC11_VOSEL_GRAY_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36621,15 +35751,14 @@ unsigned int mt6358_upmu_get_da_vproc11_vosel_gray(
 unsigned int mt6358_upmu_get_da_vproc11_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_DBG1),
 		(&val),
 		(PMIC_DA_VPROC11_EN_MASK),
 		(PMIC_DA_VPROC11_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36637,15 +35766,14 @@ unsigned int mt6358_upmu_get_da_vproc11_en(
 unsigned int mt6358_upmu_get_da_vproc11_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_DBG1),
 		(&val),
 		(PMIC_DA_VPROC11_STB_MASK),
 		(PMIC_DA_VPROC11_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36653,15 +35781,14 @@ unsigned int mt6358_upmu_get_da_vproc11_stb(
 unsigned int mt6358_upmu_get_da_vproc11_loop_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_DBG1),
 		(&val),
 		(PMIC_DA_VPROC11_LOOP_SEL_MASK),
 		(PMIC_DA_VPROC11_LOOP_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36669,15 +35796,14 @@ unsigned int mt6358_upmu_get_da_vproc11_loop_sel(
 unsigned int mt6358_upmu_get_da_vproc11_r2r_pdn(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_DBG1),
 		(&val),
 		(PMIC_DA_VPROC11_R2R_PDN_MASK),
 		(PMIC_DA_VPROC11_R2R_PDN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36685,15 +35811,14 @@ unsigned int mt6358_upmu_get_da_vproc11_r2r_pdn(
 unsigned int mt6358_upmu_get_da_vproc11_dvs_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_DBG1),
 		(&val),
 		(PMIC_DA_VPROC11_DVS_EN_MASK),
 		(PMIC_DA_VPROC11_DVS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36701,15 +35826,14 @@ unsigned int mt6358_upmu_get_da_vproc11_dvs_en(
 unsigned int mt6358_upmu_get_da_vproc11_dvs_down(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_DBG1),
 		(&val),
 		(PMIC_DA_VPROC11_DVS_DOWN_MASK),
 		(PMIC_DA_VPROC11_DVS_DOWN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36717,15 +35841,14 @@ unsigned int mt6358_upmu_get_da_vproc11_dvs_down(
 unsigned int mt6358_upmu_get_da_vproc11_ssh(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_DBG1),
 		(&val),
 		(PMIC_DA_VPROC11_SSH_MASK),
 		(PMIC_DA_VPROC11_SSH_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36733,15 +35856,14 @@ unsigned int mt6358_upmu_get_da_vproc11_ssh(
 unsigned int mt6358_upmu_get_da_vproc11_minfreq_discharge(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_DBG1),
 		(&val),
 		(PMIC_DA_VPROC11_MINFREQ_DISCHARGE_MASK),
 		(PMIC_DA_VPROC11_MINFREQ_DISCHARGE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36809,15 +35931,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc11_ck_sw_en(
 unsigned int mt6358_upmu_get_rg_buck_vproc11_ck_sw_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_DBG2),
 		(&val),
 		(PMIC_RG_BUCK_VPROC11_CK_SW_EN_MASK),
 		(PMIC_RG_BUCK_VPROC11_CK_SW_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36840,15 +35961,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc11_vosel(
 unsigned int mt6358_upmu_get_rg_buck_vproc11_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC11_ELR0),
 		(&val),
 		(PMIC_RG_BUCK_VPROC11_VOSEL_MASK),
 		(PMIC_RG_BUCK_VPROC11_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36871,15 +35991,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc12_en(
 unsigned int mt6358_upmu_get_rg_buck_vproc12_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_CON0),
 		(&val),
 		(PMIC_RG_BUCK_VPROC12_EN_MASK),
 		(PMIC_RG_BUCK_VPROC12_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -36917,15 +36036,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc12_vosel_sleep(
 unsigned int mt6358_upmu_get_rg_buck_vproc12_vosel_sleep(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_CON1),
 		(&val),
 		(PMIC_RG_BUCK_VPROC12_VOSEL_SLEEP_MASK),
 		(PMIC_RG_BUCK_VPROC12_VOSEL_SLEEP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37008,15 +36126,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc12_dvs_en_td(
 unsigned int mt6358_upmu_get_rg_buck_vproc12_dvs_en_td(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_CFG1),
 		(&val),
 		(PMIC_RG_BUCK_VPROC12_DVS_EN_TD_MASK),
 		(PMIC_RG_BUCK_VPROC12_DVS_EN_TD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37039,15 +36156,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc12_dvs_en_ctrl(
 unsigned int mt6358_upmu_get_rg_buck_vproc12_dvs_en_ctrl(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_CFG1),
 		(&val),
 		(PMIC_RG_BUCK_VPROC12_DVS_EN_CTRL_MASK),
 		(PMIC_RG_BUCK_VPROC12_DVS_EN_CTRL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37070,15 +36186,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc12_dvs_en_once(
 unsigned int mt6358_upmu_get_rg_buck_vproc12_dvs_en_once(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_CFG1),
 		(&val),
 		(PMIC_RG_BUCK_VPROC12_DVS_EN_ONCE_MASK),
 		(PMIC_RG_BUCK_VPROC12_DVS_EN_ONCE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37146,15 +36261,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc12_sw_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vproc12_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VPROC12_SW_OP_EN_MASK),
 		(PMIC_RG_BUCK_VPROC12_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37177,15 +36291,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc12_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vproc12_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VPROC12_HW0_OP_EN_MASK),
 		(PMIC_RG_BUCK_VPROC12_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37208,15 +36321,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc12_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vproc12_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VPROC12_HW1_OP_EN_MASK),
 		(PMIC_RG_BUCK_VPROC12_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37239,15 +36351,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc12_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vproc12_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VPROC12_HW2_OP_EN_MASK),
 		(PMIC_RG_BUCK_VPROC12_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37270,15 +36381,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc12_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_buck_vproc12_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_OP_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VPROC12_HW0_OP_CFG_MASK),
 		(PMIC_RG_BUCK_VPROC12_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37301,15 +36411,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc12_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_buck_vproc12_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_OP_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VPROC12_HW1_OP_CFG_MASK),
 		(PMIC_RG_BUCK_VPROC12_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37332,15 +36441,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc12_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_buck_vproc12_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_OP_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VPROC12_HW2_OP_CFG_MASK),
 		(PMIC_RG_BUCK_VPROC12_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37363,15 +36471,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc12_oc_deg_en(
 unsigned int mt6358_upmu_get_rg_buck_vproc12_oc_deg_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_OC_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VPROC12_OC_DEG_EN_MASK),
 		(PMIC_RG_BUCK_VPROC12_OC_DEG_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37409,15 +36516,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc12_oc_thd(
 unsigned int mt6358_upmu_get_da_vproc12_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_DBG0),
 		(&val),
 		(PMIC_DA_VPROC12_VOSEL_MASK),
 		(PMIC_DA_VPROC12_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37425,15 +36531,14 @@ unsigned int mt6358_upmu_get_da_vproc12_vosel(
 unsigned int mt6358_upmu_get_da_vproc12_vosel_gray(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_DBG0),
 		(&val),
 		(PMIC_DA_VPROC12_VOSEL_GRAY_MASK),
 		(PMIC_DA_VPROC12_VOSEL_GRAY_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37441,15 +36546,14 @@ unsigned int mt6358_upmu_get_da_vproc12_vosel_gray(
 unsigned int mt6358_upmu_get_da_vproc12_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_DBG1),
 		(&val),
 		(PMIC_DA_VPROC12_EN_MASK),
 		(PMIC_DA_VPROC12_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37457,15 +36561,14 @@ unsigned int mt6358_upmu_get_da_vproc12_en(
 unsigned int mt6358_upmu_get_da_vproc12_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_DBG1),
 		(&val),
 		(PMIC_DA_VPROC12_STB_MASK),
 		(PMIC_DA_VPROC12_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37473,15 +36576,14 @@ unsigned int mt6358_upmu_get_da_vproc12_stb(
 unsigned int mt6358_upmu_get_da_vproc12_loop_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_DBG1),
 		(&val),
 		(PMIC_DA_VPROC12_LOOP_SEL_MASK),
 		(PMIC_DA_VPROC12_LOOP_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37489,15 +36591,14 @@ unsigned int mt6358_upmu_get_da_vproc12_loop_sel(
 unsigned int mt6358_upmu_get_da_vproc12_r2r_pdn(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_DBG1),
 		(&val),
 		(PMIC_DA_VPROC12_R2R_PDN_MASK),
 		(PMIC_DA_VPROC12_R2R_PDN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37505,15 +36606,14 @@ unsigned int mt6358_upmu_get_da_vproc12_r2r_pdn(
 unsigned int mt6358_upmu_get_da_vproc12_dvs_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_DBG1),
 		(&val),
 		(PMIC_DA_VPROC12_DVS_EN_MASK),
 		(PMIC_DA_VPROC12_DVS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37521,15 +36621,14 @@ unsigned int mt6358_upmu_get_da_vproc12_dvs_en(
 unsigned int mt6358_upmu_get_da_vproc12_dvs_down(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_DBG1),
 		(&val),
 		(PMIC_DA_VPROC12_DVS_DOWN_MASK),
 		(PMIC_DA_VPROC12_DVS_DOWN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37537,15 +36636,14 @@ unsigned int mt6358_upmu_get_da_vproc12_dvs_down(
 unsigned int mt6358_upmu_get_da_vproc12_ssh(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_DBG1),
 		(&val),
 		(PMIC_DA_VPROC12_SSH_MASK),
 		(PMIC_DA_VPROC12_SSH_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37553,15 +36651,14 @@ unsigned int mt6358_upmu_get_da_vproc12_ssh(
 unsigned int mt6358_upmu_get_da_vproc12_minfreq_discharge(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_DBG1),
 		(&val),
 		(PMIC_DA_VPROC12_MINFREQ_DISCHARGE_MASK),
 		(PMIC_DA_VPROC12_MINFREQ_DISCHARGE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37629,15 +36726,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc12_ck_sw_en(
 unsigned int mt6358_upmu_get_rg_buck_vproc12_ck_sw_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_DBG2),
 		(&val),
 		(PMIC_RG_BUCK_VPROC12_CK_SW_EN_MASK),
 		(PMIC_RG_BUCK_VPROC12_CK_SW_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37660,15 +36756,14 @@ unsigned int mt6358_upmu_set_rg_buck_vproc12_vosel(
 unsigned int mt6358_upmu_get_rg_buck_vproc12_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPROC12_ELR0),
 		(&val),
 		(PMIC_RG_BUCK_VPROC12_VOSEL_MASK),
 		(PMIC_RG_BUCK_VPROC12_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37691,15 +36786,14 @@ unsigned int mt6358_upmu_set_rg_buck_vcore_en(
 unsigned int mt6358_upmu_get_rg_buck_vcore_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_CON0),
 		(&val),
 		(PMIC_RG_BUCK_VCORE_EN_MASK),
 		(PMIC_RG_BUCK_VCORE_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37737,15 +36831,14 @@ unsigned int mt6358_upmu_set_rg_buck_vcore_vosel_sleep(
 unsigned int mt6358_upmu_get_rg_buck_vcore_vosel_sleep(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_CON1),
 		(&val),
 		(PMIC_RG_BUCK_VCORE_VOSEL_SLEEP_MASK),
 		(PMIC_RG_BUCK_VCORE_VOSEL_SLEEP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37828,15 +36921,14 @@ unsigned int mt6358_upmu_set_rg_buck_vcore_dvs_en_td(
 unsigned int mt6358_upmu_get_rg_buck_vcore_dvs_en_td(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_CFG1),
 		(&val),
 		(PMIC_RG_BUCK_VCORE_DVS_EN_TD_MASK),
 		(PMIC_RG_BUCK_VCORE_DVS_EN_TD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37859,15 +36951,14 @@ unsigned int mt6358_upmu_set_rg_buck_vcore_dvs_en_ctrl(
 unsigned int mt6358_upmu_get_rg_buck_vcore_dvs_en_ctrl(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_CFG1),
 		(&val),
 		(PMIC_RG_BUCK_VCORE_DVS_EN_CTRL_MASK),
 		(PMIC_RG_BUCK_VCORE_DVS_EN_CTRL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37890,15 +36981,14 @@ unsigned int mt6358_upmu_set_rg_buck_vcore_dvs_en_once(
 unsigned int mt6358_upmu_get_rg_buck_vcore_dvs_en_once(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_CFG1),
 		(&val),
 		(PMIC_RG_BUCK_VCORE_DVS_EN_ONCE_MASK),
 		(PMIC_RG_BUCK_VCORE_DVS_EN_ONCE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37966,15 +37056,14 @@ unsigned int mt6358_upmu_set_rg_buck_vcore_sw_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vcore_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VCORE_SW_OP_EN_MASK),
 		(PMIC_RG_BUCK_VCORE_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -37997,15 +37086,14 @@ unsigned int mt6358_upmu_set_rg_buck_vcore_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vcore_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VCORE_HW0_OP_EN_MASK),
 		(PMIC_RG_BUCK_VCORE_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38028,15 +37116,14 @@ unsigned int mt6358_upmu_set_rg_buck_vcore_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vcore_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VCORE_HW1_OP_EN_MASK),
 		(PMIC_RG_BUCK_VCORE_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38059,15 +37146,14 @@ unsigned int mt6358_upmu_set_rg_buck_vcore_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vcore_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VCORE_HW2_OP_EN_MASK),
 		(PMIC_RG_BUCK_VCORE_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38090,15 +37176,14 @@ unsigned int mt6358_upmu_set_rg_buck_vcore_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_buck_vcore_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_OP_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VCORE_HW0_OP_CFG_MASK),
 		(PMIC_RG_BUCK_VCORE_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38121,15 +37206,14 @@ unsigned int mt6358_upmu_set_rg_buck_vcore_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_buck_vcore_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_OP_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VCORE_HW1_OP_CFG_MASK),
 		(PMIC_RG_BUCK_VCORE_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38152,15 +37236,14 @@ unsigned int mt6358_upmu_set_rg_buck_vcore_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_buck_vcore_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_OP_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VCORE_HW2_OP_CFG_MASK),
 		(PMIC_RG_BUCK_VCORE_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38183,15 +37266,14 @@ unsigned int mt6358_upmu_set_rg_buck_vcore_oc_deg_en(
 unsigned int mt6358_upmu_get_rg_buck_vcore_oc_deg_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_OC_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VCORE_OC_DEG_EN_MASK),
 		(PMIC_RG_BUCK_VCORE_OC_DEG_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38229,15 +37311,14 @@ unsigned int mt6358_upmu_set_rg_buck_vcore_oc_thd(
 unsigned int mt6358_upmu_get_da_vcore_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_DBG0),
 		(&val),
 		(PMIC_DA_VCORE_VOSEL_MASK),
 		(PMIC_DA_VCORE_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38245,15 +37326,14 @@ unsigned int mt6358_upmu_get_da_vcore_vosel(
 unsigned int mt6358_upmu_get_da_vcore_vosel_gray(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_DBG0),
 		(&val),
 		(PMIC_DA_VCORE_VOSEL_GRAY_MASK),
 		(PMIC_DA_VCORE_VOSEL_GRAY_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38261,15 +37341,14 @@ unsigned int mt6358_upmu_get_da_vcore_vosel_gray(
 unsigned int mt6358_upmu_get_da_vcore_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_DBG1),
 		(&val),
 		(PMIC_DA_VCORE_EN_MASK),
 		(PMIC_DA_VCORE_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38277,15 +37356,14 @@ unsigned int mt6358_upmu_get_da_vcore_en(
 unsigned int mt6358_upmu_get_da_vcore_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_DBG1),
 		(&val),
 		(PMIC_DA_VCORE_STB_MASK),
 		(PMIC_DA_VCORE_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38293,15 +37371,14 @@ unsigned int mt6358_upmu_get_da_vcore_stb(
 unsigned int mt6358_upmu_get_da_vcore_loop_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_DBG1),
 		(&val),
 		(PMIC_DA_VCORE_LOOP_SEL_MASK),
 		(PMIC_DA_VCORE_LOOP_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38309,15 +37386,14 @@ unsigned int mt6358_upmu_get_da_vcore_loop_sel(
 unsigned int mt6358_upmu_get_da_vcore_r2r_pdn(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_DBG1),
 		(&val),
 		(PMIC_DA_VCORE_R2R_PDN_MASK),
 		(PMIC_DA_VCORE_R2R_PDN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38325,15 +37401,14 @@ unsigned int mt6358_upmu_get_da_vcore_r2r_pdn(
 unsigned int mt6358_upmu_get_da_vcore_dvs_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_DBG1),
 		(&val),
 		(PMIC_DA_VCORE_DVS_EN_MASK),
 		(PMIC_DA_VCORE_DVS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38341,15 +37416,14 @@ unsigned int mt6358_upmu_get_da_vcore_dvs_en(
 unsigned int mt6358_upmu_get_da_vcore_dvs_down(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_DBG1),
 		(&val),
 		(PMIC_DA_VCORE_DVS_DOWN_MASK),
 		(PMIC_DA_VCORE_DVS_DOWN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38357,15 +37431,14 @@ unsigned int mt6358_upmu_get_da_vcore_dvs_down(
 unsigned int mt6358_upmu_get_da_vcore_ssh(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_DBG1),
 		(&val),
 		(PMIC_DA_VCORE_SSH_MASK),
 		(PMIC_DA_VCORE_SSH_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38373,15 +37446,14 @@ unsigned int mt6358_upmu_get_da_vcore_ssh(
 unsigned int mt6358_upmu_get_da_vcore_minfreq_discharge(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_DBG1),
 		(&val),
 		(PMIC_DA_VCORE_MINFREQ_DISCHARGE_MASK),
 		(PMIC_DA_VCORE_MINFREQ_DISCHARGE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38449,15 +37521,14 @@ unsigned int mt6358_upmu_set_rg_buck_vcore_ck_sw_en(
 unsigned int mt6358_upmu_get_rg_buck_vcore_ck_sw_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_DBG2),
 		(&val),
 		(PMIC_RG_BUCK_VCORE_CK_SW_EN_MASK),
 		(PMIC_RG_BUCK_VCORE_CK_SW_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38480,15 +37551,14 @@ unsigned int mt6358_upmu_set_rg_buck_vcore_sshub_en(
 unsigned int mt6358_upmu_get_rg_buck_vcore_sshub_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_SSHUB_CON0),
 		(&val),
 		(PMIC_RG_BUCK_VCORE_SSHUB_EN_MASK),
 		(PMIC_RG_BUCK_VCORE_SSHUB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38511,15 +37581,14 @@ unsigned int mt6358_upmu_set_rg_buck_vcore_sshub_sleep_vosel_en(
 unsigned int mt6358_upmu_get_rg_buck_vcore_sshub_sleep_vosel_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_SSHUB_CON0),
 		(&val),
 		(PMIC_RG_BUCK_VCORE_SSHUB_SLEEP_VOSEL_EN_MASK),
 		(PMIC_RG_BUCK_VCORE_SSHUB_SLEEP_VOSEL_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38542,15 +37611,14 @@ unsigned int mt6358_upmu_set_rg_buck_vcore_sshub_vosel(
 unsigned int mt6358_upmu_get_rg_buck_vcore_sshub_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_SSHUB_CON1),
 		(&val),
 		(PMIC_RG_BUCK_VCORE_SSHUB_VOSEL_MASK),
 		(PMIC_RG_BUCK_VCORE_SSHUB_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38573,15 +37641,14 @@ unsigned int mt6358_upmu_set_rg_buck_vcore_sshub_vosel_sleep(
 unsigned int mt6358_upmu_get_rg_buck_vcore_sshub_vosel_sleep(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_SSHUB_CON1),
 		(&val),
 		(PMIC_RG_BUCK_VCORE_SSHUB_VOSEL_SLEEP_MASK),
 		(PMIC_RG_BUCK_VCORE_SSHUB_VOSEL_SLEEP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38604,15 +37671,14 @@ unsigned int mt6358_upmu_set_rg_buck_vcore_vosel(
 unsigned int mt6358_upmu_get_rg_buck_vcore_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VCORE_ELR0),
 		(&val),
 		(PMIC_RG_BUCK_VCORE_VOSEL_MASK),
 		(PMIC_RG_BUCK_VCORE_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38635,15 +37701,14 @@ unsigned int mt6358_upmu_set_rg_buck_vgpu_en(
 unsigned int mt6358_upmu_get_rg_buck_vgpu_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_CON0),
 		(&val),
 		(PMIC_RG_BUCK_VGPU_EN_MASK),
 		(PMIC_RG_BUCK_VGPU_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38681,15 +37746,14 @@ unsigned int mt6358_upmu_set_rg_buck_vgpu_vosel_sleep(
 unsigned int mt6358_upmu_get_rg_buck_vgpu_vosel_sleep(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_CON1),
 		(&val),
 		(PMIC_RG_BUCK_VGPU_VOSEL_SLEEP_MASK),
 		(PMIC_RG_BUCK_VGPU_VOSEL_SLEEP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38772,15 +37836,14 @@ unsigned int mt6358_upmu_set_rg_buck_vgpu_dvs_en_td(
 unsigned int mt6358_upmu_get_rg_buck_vgpu_dvs_en_td(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_CFG1),
 		(&val),
 		(PMIC_RG_BUCK_VGPU_DVS_EN_TD_MASK),
 		(PMIC_RG_BUCK_VGPU_DVS_EN_TD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38803,15 +37866,14 @@ unsigned int mt6358_upmu_set_rg_buck_vgpu_dvs_en_ctrl(
 unsigned int mt6358_upmu_get_rg_buck_vgpu_dvs_en_ctrl(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_CFG1),
 		(&val),
 		(PMIC_RG_BUCK_VGPU_DVS_EN_CTRL_MASK),
 		(PMIC_RG_BUCK_VGPU_DVS_EN_CTRL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38834,15 +37896,14 @@ unsigned int mt6358_upmu_set_rg_buck_vgpu_dvs_en_once(
 unsigned int mt6358_upmu_get_rg_buck_vgpu_dvs_en_once(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_CFG1),
 		(&val),
 		(PMIC_RG_BUCK_VGPU_DVS_EN_ONCE_MASK),
 		(PMIC_RG_BUCK_VGPU_DVS_EN_ONCE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38910,15 +37971,14 @@ unsigned int mt6358_upmu_set_rg_buck_vgpu_sw_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vgpu_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VGPU_SW_OP_EN_MASK),
 		(PMIC_RG_BUCK_VGPU_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38941,15 +38001,14 @@ unsigned int mt6358_upmu_set_rg_buck_vgpu_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vgpu_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VGPU_HW0_OP_EN_MASK),
 		(PMIC_RG_BUCK_VGPU_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -38972,15 +38031,14 @@ unsigned int mt6358_upmu_set_rg_buck_vgpu_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vgpu_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VGPU_HW1_OP_EN_MASK),
 		(PMIC_RG_BUCK_VGPU_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39003,15 +38061,14 @@ unsigned int mt6358_upmu_set_rg_buck_vgpu_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vgpu_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VGPU_HW2_OP_EN_MASK),
 		(PMIC_RG_BUCK_VGPU_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39034,15 +38091,14 @@ unsigned int mt6358_upmu_set_rg_buck_vgpu_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_buck_vgpu_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_OP_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VGPU_HW0_OP_CFG_MASK),
 		(PMIC_RG_BUCK_VGPU_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39065,15 +38121,14 @@ unsigned int mt6358_upmu_set_rg_buck_vgpu_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_buck_vgpu_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_OP_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VGPU_HW1_OP_CFG_MASK),
 		(PMIC_RG_BUCK_VGPU_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39096,15 +38151,14 @@ unsigned int mt6358_upmu_set_rg_buck_vgpu_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_buck_vgpu_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_OP_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VGPU_HW2_OP_CFG_MASK),
 		(PMIC_RG_BUCK_VGPU_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39127,15 +38181,14 @@ unsigned int mt6358_upmu_set_rg_buck_vgpu_oc_deg_en(
 unsigned int mt6358_upmu_get_rg_buck_vgpu_oc_deg_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_OC_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VGPU_OC_DEG_EN_MASK),
 		(PMIC_RG_BUCK_VGPU_OC_DEG_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39173,15 +38226,14 @@ unsigned int mt6358_upmu_set_rg_buck_vgpu_oc_thd(
 unsigned int mt6358_upmu_get_da_vgpu_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_DBG0),
 		(&val),
 		(PMIC_DA_VGPU_VOSEL_MASK),
 		(PMIC_DA_VGPU_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39189,15 +38241,14 @@ unsigned int mt6358_upmu_get_da_vgpu_vosel(
 unsigned int mt6358_upmu_get_da_vgpu_vosel_gray(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_DBG0),
 		(&val),
 		(PMIC_DA_VGPU_VOSEL_GRAY_MASK),
 		(PMIC_DA_VGPU_VOSEL_GRAY_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39205,15 +38256,14 @@ unsigned int mt6358_upmu_get_da_vgpu_vosel_gray(
 unsigned int mt6358_upmu_get_da_vgpu_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_DBG1),
 		(&val),
 		(PMIC_DA_VGPU_EN_MASK),
 		(PMIC_DA_VGPU_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39221,15 +38271,14 @@ unsigned int mt6358_upmu_get_da_vgpu_en(
 unsigned int mt6358_upmu_get_da_vgpu_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_DBG1),
 		(&val),
 		(PMIC_DA_VGPU_STB_MASK),
 		(PMIC_DA_VGPU_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39237,15 +38286,14 @@ unsigned int mt6358_upmu_get_da_vgpu_stb(
 unsigned int mt6358_upmu_get_da_vgpu_loop_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_DBG1),
 		(&val),
 		(PMIC_DA_VGPU_LOOP_SEL_MASK),
 		(PMIC_DA_VGPU_LOOP_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39253,15 +38301,14 @@ unsigned int mt6358_upmu_get_da_vgpu_loop_sel(
 unsigned int mt6358_upmu_get_da_vgpu_r2r_pdn(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_DBG1),
 		(&val),
 		(PMIC_DA_VGPU_R2R_PDN_MASK),
 		(PMIC_DA_VGPU_R2R_PDN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39269,15 +38316,14 @@ unsigned int mt6358_upmu_get_da_vgpu_r2r_pdn(
 unsigned int mt6358_upmu_get_da_vgpu_dvs_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_DBG1),
 		(&val),
 		(PMIC_DA_VGPU_DVS_EN_MASK),
 		(PMIC_DA_VGPU_DVS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39285,15 +38331,14 @@ unsigned int mt6358_upmu_get_da_vgpu_dvs_en(
 unsigned int mt6358_upmu_get_da_vgpu_dvs_down(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_DBG1),
 		(&val),
 		(PMIC_DA_VGPU_DVS_DOWN_MASK),
 		(PMIC_DA_VGPU_DVS_DOWN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39301,15 +38346,14 @@ unsigned int mt6358_upmu_get_da_vgpu_dvs_down(
 unsigned int mt6358_upmu_get_da_vgpu_ssh(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_DBG1),
 		(&val),
 		(PMIC_DA_VGPU_SSH_MASK),
 		(PMIC_DA_VGPU_SSH_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39317,15 +38361,14 @@ unsigned int mt6358_upmu_get_da_vgpu_ssh(
 unsigned int mt6358_upmu_get_da_vgpu_minfreq_discharge(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_DBG1),
 		(&val),
 		(PMIC_DA_VGPU_MINFREQ_DISCHARGE_MASK),
 		(PMIC_DA_VGPU_MINFREQ_DISCHARGE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39393,15 +38436,14 @@ unsigned int mt6358_upmu_set_rg_buck_vgpu_ck_sw_en(
 unsigned int mt6358_upmu_get_rg_buck_vgpu_ck_sw_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_DBG2),
 		(&val),
 		(PMIC_RG_BUCK_VGPU_CK_SW_EN_MASK),
 		(PMIC_RG_BUCK_VGPU_CK_SW_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39424,15 +38466,14 @@ unsigned int mt6358_upmu_set_rg_buck_vgpu_vosel(
 unsigned int mt6358_upmu_get_rg_buck_vgpu_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VGPU_ELR0),
 		(&val),
 		(PMIC_RG_BUCK_VGPU_VOSEL_MASK),
 		(PMIC_RG_BUCK_VGPU_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39455,15 +38496,14 @@ unsigned int mt6358_upmu_set_rg_buck_vmodem_en(
 unsigned int mt6358_upmu_get_rg_buck_vmodem_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_CON0),
 		(&val),
 		(PMIC_RG_BUCK_VMODEM_EN_MASK),
 		(PMIC_RG_BUCK_VMODEM_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39501,15 +38541,14 @@ unsigned int mt6358_upmu_set_rg_buck_vmodem_vosel_sleep(
 unsigned int mt6358_upmu_get_rg_buck_vmodem_vosel_sleep(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_CON1),
 		(&val),
 		(PMIC_RG_BUCK_VMODEM_VOSEL_SLEEP_MASK),
 		(PMIC_RG_BUCK_VMODEM_VOSEL_SLEEP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39592,15 +38631,14 @@ unsigned int mt6358_upmu_set_rg_buck_vmodem_dvs_en_td(
 unsigned int mt6358_upmu_get_rg_buck_vmodem_dvs_en_td(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_CFG1),
 		(&val),
 		(PMIC_RG_BUCK_VMODEM_DVS_EN_TD_MASK),
 		(PMIC_RG_BUCK_VMODEM_DVS_EN_TD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39623,15 +38661,14 @@ unsigned int mt6358_upmu_set_rg_buck_vmodem_dvs_en_ctrl(
 unsigned int mt6358_upmu_get_rg_buck_vmodem_dvs_en_ctrl(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_CFG1),
 		(&val),
 		(PMIC_RG_BUCK_VMODEM_DVS_EN_CTRL_MASK),
 		(PMIC_RG_BUCK_VMODEM_DVS_EN_CTRL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39654,15 +38691,14 @@ unsigned int mt6358_upmu_set_rg_buck_vmodem_dvs_en_once(
 unsigned int mt6358_upmu_get_rg_buck_vmodem_dvs_en_once(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_CFG1),
 		(&val),
 		(PMIC_RG_BUCK_VMODEM_DVS_EN_ONCE_MASK),
 		(PMIC_RG_BUCK_VMODEM_DVS_EN_ONCE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39730,15 +38766,14 @@ unsigned int mt6358_upmu_set_rg_buck_vmodem_sw_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vmodem_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VMODEM_SW_OP_EN_MASK),
 		(PMIC_RG_BUCK_VMODEM_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39761,15 +38796,14 @@ unsigned int mt6358_upmu_set_rg_buck_vmodem_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vmodem_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VMODEM_HW0_OP_EN_MASK),
 		(PMIC_RG_BUCK_VMODEM_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39792,15 +38826,14 @@ unsigned int mt6358_upmu_set_rg_buck_vmodem_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vmodem_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VMODEM_HW1_OP_EN_MASK),
 		(PMIC_RG_BUCK_VMODEM_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39823,15 +38856,14 @@ unsigned int mt6358_upmu_set_rg_buck_vmodem_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vmodem_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VMODEM_HW2_OP_EN_MASK),
 		(PMIC_RG_BUCK_VMODEM_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39854,15 +38886,14 @@ unsigned int mt6358_upmu_set_rg_buck_vmodem_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_buck_vmodem_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_OP_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VMODEM_HW0_OP_CFG_MASK),
 		(PMIC_RG_BUCK_VMODEM_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39885,15 +38916,14 @@ unsigned int mt6358_upmu_set_rg_buck_vmodem_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_buck_vmodem_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_OP_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VMODEM_HW1_OP_CFG_MASK),
 		(PMIC_RG_BUCK_VMODEM_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39916,15 +38946,14 @@ unsigned int mt6358_upmu_set_rg_buck_vmodem_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_buck_vmodem_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_OP_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VMODEM_HW2_OP_CFG_MASK),
 		(PMIC_RG_BUCK_VMODEM_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39947,15 +38976,14 @@ unsigned int mt6358_upmu_set_rg_buck_vmodem_oc_deg_en(
 unsigned int mt6358_upmu_get_rg_buck_vmodem_oc_deg_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_OC_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VMODEM_OC_DEG_EN_MASK),
 		(PMIC_RG_BUCK_VMODEM_OC_DEG_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -39993,15 +39021,14 @@ unsigned int mt6358_upmu_set_rg_buck_vmodem_oc_thd(
 unsigned int mt6358_upmu_get_da_vmodem_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_DBG0),
 		(&val),
 		(PMIC_DA_VMODEM_VOSEL_MASK),
 		(PMIC_DA_VMODEM_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40009,15 +39036,14 @@ unsigned int mt6358_upmu_get_da_vmodem_vosel(
 unsigned int mt6358_upmu_get_da_vmodem_vosel_gray(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_DBG0),
 		(&val),
 		(PMIC_DA_VMODEM_VOSEL_GRAY_MASK),
 		(PMIC_DA_VMODEM_VOSEL_GRAY_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40025,15 +39051,14 @@ unsigned int mt6358_upmu_get_da_vmodem_vosel_gray(
 unsigned int mt6358_upmu_get_da_vmodem_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_DBG1),
 		(&val),
 		(PMIC_DA_VMODEM_EN_MASK),
 		(PMIC_DA_VMODEM_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40041,15 +39066,14 @@ unsigned int mt6358_upmu_get_da_vmodem_en(
 unsigned int mt6358_upmu_get_da_vmodem_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_DBG1),
 		(&val),
 		(PMIC_DA_VMODEM_STB_MASK),
 		(PMIC_DA_VMODEM_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40057,15 +39081,14 @@ unsigned int mt6358_upmu_get_da_vmodem_stb(
 unsigned int mt6358_upmu_get_da_vmodem_loop_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_DBG1),
 		(&val),
 		(PMIC_DA_VMODEM_LOOP_SEL_MASK),
 		(PMIC_DA_VMODEM_LOOP_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40073,15 +39096,14 @@ unsigned int mt6358_upmu_get_da_vmodem_loop_sel(
 unsigned int mt6358_upmu_get_da_vmodem_r2r_pdn(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_DBG1),
 		(&val),
 		(PMIC_DA_VMODEM_R2R_PDN_MASK),
 		(PMIC_DA_VMODEM_R2R_PDN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40089,15 +39111,14 @@ unsigned int mt6358_upmu_get_da_vmodem_r2r_pdn(
 unsigned int mt6358_upmu_get_da_vmodem_dvs_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_DBG1),
 		(&val),
 		(PMIC_DA_VMODEM_DVS_EN_MASK),
 		(PMIC_DA_VMODEM_DVS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40105,15 +39126,14 @@ unsigned int mt6358_upmu_get_da_vmodem_dvs_en(
 unsigned int mt6358_upmu_get_da_vmodem_dvs_down(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_DBG1),
 		(&val),
 		(PMIC_DA_VMODEM_DVS_DOWN_MASK),
 		(PMIC_DA_VMODEM_DVS_DOWN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40121,15 +39141,14 @@ unsigned int mt6358_upmu_get_da_vmodem_dvs_down(
 unsigned int mt6358_upmu_get_da_vmodem_ssh(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_DBG1),
 		(&val),
 		(PMIC_DA_VMODEM_SSH_MASK),
 		(PMIC_DA_VMODEM_SSH_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40137,15 +39156,14 @@ unsigned int mt6358_upmu_get_da_vmodem_ssh(
 unsigned int mt6358_upmu_get_da_vmodem_minfreq_discharge(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_DBG1),
 		(&val),
 		(PMIC_DA_VMODEM_MINFREQ_DISCHARGE_MASK),
 		(PMIC_DA_VMODEM_MINFREQ_DISCHARGE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40213,15 +39231,14 @@ unsigned int mt6358_upmu_set_rg_buck_vmodem_ck_sw_en(
 unsigned int mt6358_upmu_get_rg_buck_vmodem_ck_sw_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_DBG2),
 		(&val),
 		(PMIC_RG_BUCK_VMODEM_CK_SW_EN_MASK),
 		(PMIC_RG_BUCK_VMODEM_CK_SW_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40244,15 +39261,14 @@ unsigned int mt6358_upmu_set_rg_buck_vmodem_vosel(
 unsigned int mt6358_upmu_get_rg_buck_vmodem_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VMODEM_ELR0),
 		(&val),
 		(PMIC_RG_BUCK_VMODEM_VOSEL_MASK),
 		(PMIC_RG_BUCK_VMODEM_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40275,15 +39291,14 @@ unsigned int mt6358_upmu_set_rg_buck_vdram1_en(
 unsigned int mt6358_upmu_get_rg_buck_vdram1_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_CON0),
 		(&val),
 		(PMIC_RG_BUCK_VDRAM1_EN_MASK),
 		(PMIC_RG_BUCK_VDRAM1_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40321,15 +39336,14 @@ unsigned int mt6358_upmu_set_rg_buck_vdram1_vosel_sleep(
 unsigned int mt6358_upmu_get_rg_buck_vdram1_vosel_sleep(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_CON1),
 		(&val),
 		(PMIC_RG_BUCK_VDRAM1_VOSEL_SLEEP_MASK),
 		(PMIC_RG_BUCK_VDRAM1_VOSEL_SLEEP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40412,15 +39426,14 @@ unsigned int mt6358_upmu_set_rg_buck_vdram1_dvs_en_td(
 unsigned int mt6358_upmu_get_rg_buck_vdram1_dvs_en_td(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_CFG1),
 		(&val),
 		(PMIC_RG_BUCK_VDRAM1_DVS_EN_TD_MASK),
 		(PMIC_RG_BUCK_VDRAM1_DVS_EN_TD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40443,15 +39456,14 @@ unsigned int mt6358_upmu_set_rg_buck_vdram1_dvs_en_ctrl(
 unsigned int mt6358_upmu_get_rg_buck_vdram1_dvs_en_ctrl(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_CFG1),
 		(&val),
 		(PMIC_RG_BUCK_VDRAM1_DVS_EN_CTRL_MASK),
 		(PMIC_RG_BUCK_VDRAM1_DVS_EN_CTRL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40474,15 +39486,14 @@ unsigned int mt6358_upmu_set_rg_buck_vdram1_dvs_en_once(
 unsigned int mt6358_upmu_get_rg_buck_vdram1_dvs_en_once(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_CFG1),
 		(&val),
 		(PMIC_RG_BUCK_VDRAM1_DVS_EN_ONCE_MASK),
 		(PMIC_RG_BUCK_VDRAM1_DVS_EN_ONCE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40550,15 +39561,14 @@ unsigned int mt6358_upmu_set_rg_buck_vdram1_sw_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vdram1_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VDRAM1_SW_OP_EN_MASK),
 		(PMIC_RG_BUCK_VDRAM1_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40581,15 +39591,14 @@ unsigned int mt6358_upmu_set_rg_buck_vdram1_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vdram1_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VDRAM1_HW0_OP_EN_MASK),
 		(PMIC_RG_BUCK_VDRAM1_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40612,15 +39621,14 @@ unsigned int mt6358_upmu_set_rg_buck_vdram1_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vdram1_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VDRAM1_HW1_OP_EN_MASK),
 		(PMIC_RG_BUCK_VDRAM1_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40643,15 +39651,14 @@ unsigned int mt6358_upmu_set_rg_buck_vdram1_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vdram1_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VDRAM1_HW2_OP_EN_MASK),
 		(PMIC_RG_BUCK_VDRAM1_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40674,15 +39681,14 @@ unsigned int mt6358_upmu_set_rg_buck_vdram1_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_buck_vdram1_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_OP_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VDRAM1_HW0_OP_CFG_MASK),
 		(PMIC_RG_BUCK_VDRAM1_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40705,15 +39711,14 @@ unsigned int mt6358_upmu_set_rg_buck_vdram1_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_buck_vdram1_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_OP_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VDRAM1_HW1_OP_CFG_MASK),
 		(PMIC_RG_BUCK_VDRAM1_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40736,15 +39741,14 @@ unsigned int mt6358_upmu_set_rg_buck_vdram1_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_buck_vdram1_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_OP_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VDRAM1_HW2_OP_CFG_MASK),
 		(PMIC_RG_BUCK_VDRAM1_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40767,15 +39771,14 @@ unsigned int mt6358_upmu_set_rg_buck_vdram1_oc_deg_en(
 unsigned int mt6358_upmu_get_rg_buck_vdram1_oc_deg_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_OC_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VDRAM1_OC_DEG_EN_MASK),
 		(PMIC_RG_BUCK_VDRAM1_OC_DEG_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40813,15 +39816,14 @@ unsigned int mt6358_upmu_set_rg_buck_vdram1_oc_thd(
 unsigned int mt6358_upmu_get_da_vdram1_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_DBG0),
 		(&val),
 		(PMIC_DA_VDRAM1_VOSEL_MASK),
 		(PMIC_DA_VDRAM1_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40829,15 +39831,14 @@ unsigned int mt6358_upmu_get_da_vdram1_vosel(
 unsigned int mt6358_upmu_get_da_vdram1_vosel_gray(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_DBG0),
 		(&val),
 		(PMIC_DA_VDRAM1_VOSEL_GRAY_MASK),
 		(PMIC_DA_VDRAM1_VOSEL_GRAY_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40845,15 +39846,14 @@ unsigned int mt6358_upmu_get_da_vdram1_vosel_gray(
 unsigned int mt6358_upmu_get_da_vdram1_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_DBG1),
 		(&val),
 		(PMIC_DA_VDRAM1_EN_MASK),
 		(PMIC_DA_VDRAM1_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40861,15 +39861,14 @@ unsigned int mt6358_upmu_get_da_vdram1_en(
 unsigned int mt6358_upmu_get_da_vdram1_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_DBG1),
 		(&val),
 		(PMIC_DA_VDRAM1_STB_MASK),
 		(PMIC_DA_VDRAM1_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40877,15 +39876,14 @@ unsigned int mt6358_upmu_get_da_vdram1_stb(
 unsigned int mt6358_upmu_get_da_vdram1_loop_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_DBG1),
 		(&val),
 		(PMIC_DA_VDRAM1_LOOP_SEL_MASK),
 		(PMIC_DA_VDRAM1_LOOP_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40893,15 +39891,14 @@ unsigned int mt6358_upmu_get_da_vdram1_loop_sel(
 unsigned int mt6358_upmu_get_da_vdram1_r2r_pdn(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_DBG1),
 		(&val),
 		(PMIC_DA_VDRAM1_R2R_PDN_MASK),
 		(PMIC_DA_VDRAM1_R2R_PDN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40909,15 +39906,14 @@ unsigned int mt6358_upmu_get_da_vdram1_r2r_pdn(
 unsigned int mt6358_upmu_get_da_vdram1_dvs_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_DBG1),
 		(&val),
 		(PMIC_DA_VDRAM1_DVS_EN_MASK),
 		(PMIC_DA_VDRAM1_DVS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40925,15 +39921,14 @@ unsigned int mt6358_upmu_get_da_vdram1_dvs_en(
 unsigned int mt6358_upmu_get_da_vdram1_dvs_down(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_DBG1),
 		(&val),
 		(PMIC_DA_VDRAM1_DVS_DOWN_MASK),
 		(PMIC_DA_VDRAM1_DVS_DOWN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40941,15 +39936,14 @@ unsigned int mt6358_upmu_get_da_vdram1_dvs_down(
 unsigned int mt6358_upmu_get_da_vdram1_ssh(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_DBG1),
 		(&val),
 		(PMIC_DA_VDRAM1_SSH_MASK),
 		(PMIC_DA_VDRAM1_SSH_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -40957,15 +39951,14 @@ unsigned int mt6358_upmu_get_da_vdram1_ssh(
 unsigned int mt6358_upmu_get_da_vdram1_minfreq_discharge(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_DBG1),
 		(&val),
 		(PMIC_DA_VDRAM1_MINFREQ_DISCHARGE_MASK),
 		(PMIC_DA_VDRAM1_MINFREQ_DISCHARGE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41033,15 +40026,14 @@ unsigned int mt6358_upmu_set_rg_buck_vdram1_ck_sw_en(
 unsigned int mt6358_upmu_get_rg_buck_vdram1_ck_sw_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_DBG2),
 		(&val),
 		(PMIC_RG_BUCK_VDRAM1_CK_SW_EN_MASK),
 		(PMIC_RG_BUCK_VDRAM1_CK_SW_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41064,15 +40056,14 @@ unsigned int mt6358_upmu_set_rg_buck_vdram1_vosel(
 unsigned int mt6358_upmu_get_rg_buck_vdram1_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VDRAM1_ELR0),
 		(&val),
 		(PMIC_RG_BUCK_VDRAM1_VOSEL_MASK),
 		(PMIC_RG_BUCK_VDRAM1_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41095,15 +40086,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs1_en(
 unsigned int mt6358_upmu_get_rg_buck_vs1_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_CON0),
 		(&val),
 		(PMIC_RG_BUCK_VS1_EN_MASK),
 		(PMIC_RG_BUCK_VS1_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41141,15 +40131,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs1_vosel_sleep(
 unsigned int mt6358_upmu_get_rg_buck_vs1_vosel_sleep(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_CON1),
 		(&val),
 		(PMIC_RG_BUCK_VS1_VOSEL_SLEEP_MASK),
 		(PMIC_RG_BUCK_VS1_VOSEL_SLEEP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41232,15 +40221,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs1_dvs_en_td(
 unsigned int mt6358_upmu_get_rg_buck_vs1_dvs_en_td(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_CFG1),
 		(&val),
 		(PMIC_RG_BUCK_VS1_DVS_EN_TD_MASK),
 		(PMIC_RG_BUCK_VS1_DVS_EN_TD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41263,15 +40251,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs1_dvs_en_ctrl(
 unsigned int mt6358_upmu_get_rg_buck_vs1_dvs_en_ctrl(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_CFG1),
 		(&val),
 		(PMIC_RG_BUCK_VS1_DVS_EN_CTRL_MASK),
 		(PMIC_RG_BUCK_VS1_DVS_EN_CTRL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41294,15 +40281,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs1_dvs_en_once(
 unsigned int mt6358_upmu_get_rg_buck_vs1_dvs_en_once(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_CFG1),
 		(&val),
 		(PMIC_RG_BUCK_VS1_DVS_EN_ONCE_MASK),
 		(PMIC_RG_BUCK_VS1_DVS_EN_ONCE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41370,15 +40356,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs1_sw_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vs1_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VS1_SW_OP_EN_MASK),
 		(PMIC_RG_BUCK_VS1_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41401,15 +40386,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs1_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vs1_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VS1_HW0_OP_EN_MASK),
 		(PMIC_RG_BUCK_VS1_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41432,15 +40416,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs1_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vs1_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VS1_HW1_OP_EN_MASK),
 		(PMIC_RG_BUCK_VS1_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41463,15 +40446,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs1_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vs1_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VS1_HW2_OP_EN_MASK),
 		(PMIC_RG_BUCK_VS1_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41494,15 +40476,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs1_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_buck_vs1_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_OP_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VS1_HW0_OP_CFG_MASK),
 		(PMIC_RG_BUCK_VS1_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41525,15 +40506,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs1_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_buck_vs1_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_OP_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VS1_HW1_OP_CFG_MASK),
 		(PMIC_RG_BUCK_VS1_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41556,15 +40536,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs1_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_buck_vs1_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_OP_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VS1_HW2_OP_CFG_MASK),
 		(PMIC_RG_BUCK_VS1_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41587,15 +40566,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs1_oc_deg_en(
 unsigned int mt6358_upmu_get_rg_buck_vs1_oc_deg_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_OC_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VS1_OC_DEG_EN_MASK),
 		(PMIC_RG_BUCK_VS1_OC_DEG_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41633,15 +40611,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs1_oc_thd(
 unsigned int mt6358_upmu_get_da_vs1_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_DBG0),
 		(&val),
 		(PMIC_DA_VS1_VOSEL_MASK),
 		(PMIC_DA_VS1_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41649,15 +40626,14 @@ unsigned int mt6358_upmu_get_da_vs1_vosel(
 unsigned int mt6358_upmu_get_da_vs1_vosel_gray(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_DBG0),
 		(&val),
 		(PMIC_DA_VS1_VOSEL_GRAY_MASK),
 		(PMIC_DA_VS1_VOSEL_GRAY_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41665,15 +40641,14 @@ unsigned int mt6358_upmu_get_da_vs1_vosel_gray(
 unsigned int mt6358_upmu_get_da_vs1_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_DBG1),
 		(&val),
 		(PMIC_DA_VS1_EN_MASK),
 		(PMIC_DA_VS1_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41681,15 +40656,14 @@ unsigned int mt6358_upmu_get_da_vs1_en(
 unsigned int mt6358_upmu_get_da_vs1_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_DBG1),
 		(&val),
 		(PMIC_DA_VS1_STB_MASK),
 		(PMIC_DA_VS1_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41697,15 +40671,14 @@ unsigned int mt6358_upmu_get_da_vs1_stb(
 unsigned int mt6358_upmu_get_da_vs1_loop_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_DBG1),
 		(&val),
 		(PMIC_DA_VS1_LOOP_SEL_MASK),
 		(PMIC_DA_VS1_LOOP_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41713,15 +40686,14 @@ unsigned int mt6358_upmu_get_da_vs1_loop_sel(
 unsigned int mt6358_upmu_get_da_vs1_r2r_pdn(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_DBG1),
 		(&val),
 		(PMIC_DA_VS1_R2R_PDN_MASK),
 		(PMIC_DA_VS1_R2R_PDN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41729,15 +40701,14 @@ unsigned int mt6358_upmu_get_da_vs1_r2r_pdn(
 unsigned int mt6358_upmu_get_da_vs1_dvs_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_DBG1),
 		(&val),
 		(PMIC_DA_VS1_DVS_EN_MASK),
 		(PMIC_DA_VS1_DVS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41745,15 +40716,14 @@ unsigned int mt6358_upmu_get_da_vs1_dvs_en(
 unsigned int mt6358_upmu_get_da_vs1_dvs_down(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_DBG1),
 		(&val),
 		(PMIC_DA_VS1_DVS_DOWN_MASK),
 		(PMIC_DA_VS1_DVS_DOWN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41761,15 +40731,14 @@ unsigned int mt6358_upmu_get_da_vs1_dvs_down(
 unsigned int mt6358_upmu_get_da_vs1_ssh(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_DBG1),
 		(&val),
 		(PMIC_DA_VS1_SSH_MASK),
 		(PMIC_DA_VS1_SSH_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41777,15 +40746,14 @@ unsigned int mt6358_upmu_get_da_vs1_ssh(
 unsigned int mt6358_upmu_get_da_vs1_minfreq_discharge(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_DBG1),
 		(&val),
 		(PMIC_DA_VS1_MINFREQ_DISCHARGE_MASK),
 		(PMIC_DA_VS1_MINFREQ_DISCHARGE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41853,15 +40821,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs1_ck_sw_en(
 unsigned int mt6358_upmu_get_rg_buck_vs1_ck_sw_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_DBG2),
 		(&val),
 		(PMIC_RG_BUCK_VS1_CK_SW_EN_MASK),
 		(PMIC_RG_BUCK_VS1_CK_SW_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41884,15 +40851,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs1_voter_en(
 unsigned int mt6358_upmu_get_rg_buck_vs1_voter_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_VOTER),
 		(&val),
 		(PMIC_RG_BUCK_VS1_VOTER_EN_MASK),
 		(PMIC_RG_BUCK_VS1_VOTER_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41915,15 +40881,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs1_voter_vosel(
 unsigned int mt6358_upmu_get_rg_buck_vs1_voter_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_VOTER_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VS1_VOTER_VOSEL_MASK),
 		(PMIC_RG_BUCK_VS1_VOTER_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41946,15 +40911,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs1_vosel(
 unsigned int mt6358_upmu_get_rg_buck_vs1_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS1_ELR0),
 		(&val),
 		(PMIC_RG_BUCK_VS1_VOSEL_MASK),
 		(PMIC_RG_BUCK_VS1_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -41977,15 +40941,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs2_en(
 unsigned int mt6358_upmu_get_rg_buck_vs2_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_CON0),
 		(&val),
 		(PMIC_RG_BUCK_VS2_EN_MASK),
 		(PMIC_RG_BUCK_VS2_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42023,15 +40986,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs2_vosel_sleep(
 unsigned int mt6358_upmu_get_rg_buck_vs2_vosel_sleep(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_CON1),
 		(&val),
 		(PMIC_RG_BUCK_VS2_VOSEL_SLEEP_MASK),
 		(PMIC_RG_BUCK_VS2_VOSEL_SLEEP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42114,15 +41076,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs2_dvs_en_td(
 unsigned int mt6358_upmu_get_rg_buck_vs2_dvs_en_td(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_CFG1),
 		(&val),
 		(PMIC_RG_BUCK_VS2_DVS_EN_TD_MASK),
 		(PMIC_RG_BUCK_VS2_DVS_EN_TD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42145,15 +41106,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs2_dvs_en_ctrl(
 unsigned int mt6358_upmu_get_rg_buck_vs2_dvs_en_ctrl(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_CFG1),
 		(&val),
 		(PMIC_RG_BUCK_VS2_DVS_EN_CTRL_MASK),
 		(PMIC_RG_BUCK_VS2_DVS_EN_CTRL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42176,15 +41136,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs2_dvs_en_once(
 unsigned int mt6358_upmu_get_rg_buck_vs2_dvs_en_once(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_CFG1),
 		(&val),
 		(PMIC_RG_BUCK_VS2_DVS_EN_ONCE_MASK),
 		(PMIC_RG_BUCK_VS2_DVS_EN_ONCE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42252,15 +41211,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs2_sw_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vs2_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VS2_SW_OP_EN_MASK),
 		(PMIC_RG_BUCK_VS2_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42283,15 +41241,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs2_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vs2_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VS2_HW0_OP_EN_MASK),
 		(PMIC_RG_BUCK_VS2_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42314,15 +41271,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs2_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vs2_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VS2_HW1_OP_EN_MASK),
 		(PMIC_RG_BUCK_VS2_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42345,15 +41301,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs2_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_buck_vs2_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_OP_EN),
 		(&val),
 		(PMIC_RG_BUCK_VS2_HW2_OP_EN_MASK),
 		(PMIC_RG_BUCK_VS2_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42376,15 +41331,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs2_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_buck_vs2_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_OP_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VS2_HW0_OP_CFG_MASK),
 		(PMIC_RG_BUCK_VS2_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42407,15 +41361,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs2_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_buck_vs2_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_OP_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VS2_HW1_OP_CFG_MASK),
 		(PMIC_RG_BUCK_VS2_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42438,15 +41391,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs2_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_buck_vs2_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_OP_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VS2_HW2_OP_CFG_MASK),
 		(PMIC_RG_BUCK_VS2_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42469,15 +41421,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs2_oc_deg_en(
 unsigned int mt6358_upmu_get_rg_buck_vs2_oc_deg_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_OC_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VS2_OC_DEG_EN_MASK),
 		(PMIC_RG_BUCK_VS2_OC_DEG_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42515,15 +41466,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs2_oc_thd(
 unsigned int mt6358_upmu_get_da_vs2_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_DBG0),
 		(&val),
 		(PMIC_DA_VS2_VOSEL_MASK),
 		(PMIC_DA_VS2_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42531,15 +41481,14 @@ unsigned int mt6358_upmu_get_da_vs2_vosel(
 unsigned int mt6358_upmu_get_da_vs2_vosel_gray(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_DBG0),
 		(&val),
 		(PMIC_DA_VS2_VOSEL_GRAY_MASK),
 		(PMIC_DA_VS2_VOSEL_GRAY_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42547,15 +41496,14 @@ unsigned int mt6358_upmu_get_da_vs2_vosel_gray(
 unsigned int mt6358_upmu_get_da_vs2_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_DBG1),
 		(&val),
 		(PMIC_DA_VS2_EN_MASK),
 		(PMIC_DA_VS2_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42563,15 +41511,14 @@ unsigned int mt6358_upmu_get_da_vs2_en(
 unsigned int mt6358_upmu_get_da_vs2_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_DBG1),
 		(&val),
 		(PMIC_DA_VS2_STB_MASK),
 		(PMIC_DA_VS2_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42579,15 +41526,14 @@ unsigned int mt6358_upmu_get_da_vs2_stb(
 unsigned int mt6358_upmu_get_da_vs2_loop_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_DBG1),
 		(&val),
 		(PMIC_DA_VS2_LOOP_SEL_MASK),
 		(PMIC_DA_VS2_LOOP_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42595,15 +41541,14 @@ unsigned int mt6358_upmu_get_da_vs2_loop_sel(
 unsigned int mt6358_upmu_get_da_vs2_r2r_pdn(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_DBG1),
 		(&val),
 		(PMIC_DA_VS2_R2R_PDN_MASK),
 		(PMIC_DA_VS2_R2R_PDN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42611,15 +41556,14 @@ unsigned int mt6358_upmu_get_da_vs2_r2r_pdn(
 unsigned int mt6358_upmu_get_da_vs2_dvs_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_DBG1),
 		(&val),
 		(PMIC_DA_VS2_DVS_EN_MASK),
 		(PMIC_DA_VS2_DVS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42627,15 +41571,14 @@ unsigned int mt6358_upmu_get_da_vs2_dvs_en(
 unsigned int mt6358_upmu_get_da_vs2_dvs_down(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_DBG1),
 		(&val),
 		(PMIC_DA_VS2_DVS_DOWN_MASK),
 		(PMIC_DA_VS2_DVS_DOWN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42643,15 +41586,14 @@ unsigned int mt6358_upmu_get_da_vs2_dvs_down(
 unsigned int mt6358_upmu_get_da_vs2_ssh(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_DBG1),
 		(&val),
 		(PMIC_DA_VS2_SSH_MASK),
 		(PMIC_DA_VS2_SSH_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42659,15 +41601,14 @@ unsigned int mt6358_upmu_get_da_vs2_ssh(
 unsigned int mt6358_upmu_get_da_vs2_minfreq_discharge(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_DBG1),
 		(&val),
 		(PMIC_DA_VS2_MINFREQ_DISCHARGE_MASK),
 		(PMIC_DA_VS2_MINFREQ_DISCHARGE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42735,15 +41676,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs2_ck_sw_en(
 unsigned int mt6358_upmu_get_rg_buck_vs2_ck_sw_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_DBG2),
 		(&val),
 		(PMIC_RG_BUCK_VS2_CK_SW_EN_MASK),
 		(PMIC_RG_BUCK_VS2_CK_SW_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42766,15 +41706,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs2_voter_en(
 unsigned int mt6358_upmu_get_rg_buck_vs2_voter_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_VOTER),
 		(&val),
 		(PMIC_RG_BUCK_VS2_VOTER_EN_MASK),
 		(PMIC_RG_BUCK_VS2_VOTER_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42797,15 +41736,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs2_voter_vosel(
 unsigned int mt6358_upmu_get_rg_buck_vs2_voter_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_VOTER_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VS2_VOTER_VOSEL_MASK),
 		(PMIC_RG_BUCK_VS2_VOTER_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42828,15 +41766,14 @@ unsigned int mt6358_upmu_set_rg_buck_vs2_vosel(
 unsigned int mt6358_upmu_get_rg_buck_vs2_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VS2_ELR0),
 		(&val),
 		(PMIC_RG_BUCK_VS2_VOSEL_MASK),
 		(PMIC_RG_BUCK_VS2_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42859,15 +41796,14 @@ unsigned int mt6358_upmu_set_rg_buck_vpa_en(
 unsigned int mt6358_upmu_get_rg_buck_vpa_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPA_CON0),
 		(&val),
 		(PMIC_RG_BUCK_VPA_EN_MASK),
 		(PMIC_RG_BUCK_VPA_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -42890,15 +41826,14 @@ unsigned int mt6358_upmu_set_rg_buck_vpa_vosel(
 unsigned int mt6358_upmu_get_rg_buck_vpa_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPA_CON1),
 		(&val),
 		(PMIC_RG_BUCK_VPA_VOSEL_MASK),
 		(PMIC_RG_BUCK_VPA_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -43071,15 +42006,14 @@ unsigned int mt6358_upmu_set_rg_buck_vpa_oc_deg_en(
 unsigned int mt6358_upmu_get_rg_buck_vpa_oc_deg_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPA_OC_CFG),
 		(&val),
 		(PMIC_RG_BUCK_VPA_OC_DEG_EN_MASK),
 		(PMIC_RG_BUCK_VPA_OC_DEG_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -43117,15 +42051,14 @@ unsigned int mt6358_upmu_set_rg_buck_vpa_oc_thd(
 unsigned int mt6358_upmu_get_da_vpa_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPA_DBG0),
 		(&val),
 		(PMIC_DA_VPA_VOSEL_MASK),
 		(PMIC_DA_VPA_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -43133,15 +42066,14 @@ unsigned int mt6358_upmu_get_da_vpa_vosel(
 unsigned int mt6358_upmu_get_da_vpa_vosel_gray(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPA_DBG0),
 		(&val),
 		(PMIC_DA_VPA_VOSEL_GRAY_MASK),
 		(PMIC_DA_VPA_VOSEL_GRAY_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -43149,15 +42081,14 @@ unsigned int mt6358_upmu_get_da_vpa_vosel_gray(
 unsigned int mt6358_upmu_get_da_vpa_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPA_DBG1),
 		(&val),
 		(PMIC_DA_VPA_EN_MASK),
 		(PMIC_DA_VPA_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -43165,15 +42096,14 @@ unsigned int mt6358_upmu_get_da_vpa_en(
 unsigned int mt6358_upmu_get_da_vpa_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPA_DBG1),
 		(&val),
 		(PMIC_DA_VPA_STB_MASK),
 		(PMIC_DA_VPA_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -43181,15 +42111,14 @@ unsigned int mt6358_upmu_get_da_vpa_stb(
 unsigned int mt6358_upmu_get_da_vpa_dvs_transt(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPA_DBG1),
 		(&val),
 		(PMIC_DA_VPA_DVS_TRANST_MASK),
 		(PMIC_DA_VPA_DVS_TRANST_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -43197,15 +42126,14 @@ unsigned int mt6358_upmu_get_da_vpa_dvs_transt(
 unsigned int mt6358_upmu_get_da_vpa_dvs_bw(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPA_DBG1),
 		(&val),
 		(PMIC_DA_VPA_DVS_BW_MASK),
 		(PMIC_DA_VPA_DVS_BW_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -43273,15 +42201,14 @@ unsigned int mt6358_upmu_set_rg_buck_vpa_ck_sw_en(
 unsigned int mt6358_upmu_get_rg_buck_vpa_ck_sw_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPA_DBG2),
 		(&val),
 		(PMIC_RG_BUCK_VPA_CK_SW_EN_MASK),
 		(PMIC_RG_BUCK_VPA_CK_SW_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -43304,15 +42231,14 @@ unsigned int mt6358_upmu_set_rg_buck_vpa_vosel_dlc011(
 unsigned int mt6358_upmu_get_rg_buck_vpa_vosel_dlc011(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPA_DLC_CON0),
 		(&val),
 		(PMIC_RG_BUCK_VPA_VOSEL_DLC011_MASK),
 		(PMIC_RG_BUCK_VPA_VOSEL_DLC011_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -43335,15 +42261,14 @@ unsigned int mt6358_upmu_set_rg_buck_vpa_vosel_dlc111(
 unsigned int mt6358_upmu_get_rg_buck_vpa_vosel_dlc111(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPA_DLC_CON0),
 		(&val),
 		(PMIC_RG_BUCK_VPA_VOSEL_DLC111_MASK),
 		(PMIC_RG_BUCK_VPA_VOSEL_DLC111_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -43366,15 +42291,14 @@ unsigned int mt6358_upmu_set_rg_buck_vpa_vosel_dlc001(
 unsigned int mt6358_upmu_get_rg_buck_vpa_vosel_dlc001(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPA_DLC_CON1),
 		(&val),
 		(PMIC_RG_BUCK_VPA_VOSEL_DLC001_MASK),
 		(PMIC_RG_BUCK_VPA_VOSEL_DLC001_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -43397,15 +42321,14 @@ unsigned int mt6358_upmu_set_rg_buck_vpa_dlc_map_en(
 unsigned int mt6358_upmu_get_rg_buck_vpa_dlc_map_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPA_DLC_CON2),
 		(&val),
 		(PMIC_RG_BUCK_VPA_DLC_MAP_EN_MASK),
 		(PMIC_RG_BUCK_VPA_DLC_MAP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -43428,15 +42351,14 @@ unsigned int mt6358_upmu_set_rg_buck_vpa_dlc(
 unsigned int mt6358_upmu_get_da_vpa_dlc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPA_DLC_CON2),
 		(&val),
 		(PMIC_DA_VPA_DLC_MASK),
 		(PMIC_DA_VPA_DLC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -43459,15 +42381,14 @@ unsigned int mt6358_upmu_set_rg_buck_vpa_msfg_en(
 unsigned int mt6358_upmu_get_rg_buck_vpa_msfg_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_BUCK_VPA_MSFG_CON0),
 		(&val),
 		(PMIC_RG_BUCK_VPA_MSFG_EN_MASK),
 		(PMIC_RG_BUCK_VPA_MSFG_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -43610,15 +42531,14 @@ unsigned int mt6358_upmu_set_rg_vproc11_ndis_en(
 unsigned int mt6358_upmu_get_rg_vproc11_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VPROC_ANA_CON0),
 		(&val),
 		(PMIC_RG_VPROC11_NDIS_EN_MASK),
 		(PMIC_RG_VPROC11_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -43641,15 +42561,14 @@ unsigned int mt6358_upmu_set_rg_vproc12_ndis_en(
 unsigned int mt6358_upmu_get_rg_vproc12_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VPROC_ANA_CON0),
 		(&val),
 		(PMIC_RG_VPROC12_NDIS_EN_MASK),
 		(PMIC_RG_VPROC12_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -44092,15 +43011,14 @@ unsigned int mt6358_upmu_set_rg_vproc12_pfm_ton(
 unsigned int mt6358_upmu_get_rgs_vproc11_oc_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VPROC_ANA_CON5),
 		(&val),
 		(PMIC_RGS_VPROC11_OC_STATUS_MASK),
 		(PMIC_RGS_VPROC11_OC_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -44108,15 +43026,14 @@ unsigned int mt6358_upmu_get_rgs_vproc11_oc_status(
 unsigned int mt6358_upmu_get_rgs_vproc12_oc_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VPROC_ANA_CON5),
 		(&val),
 		(PMIC_RGS_VPROC12_OC_STATUS_MASK),
 		(PMIC_RGS_VPROC12_OC_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -44124,15 +43041,14 @@ unsigned int mt6358_upmu_get_rgs_vproc12_oc_status(
 unsigned int mt6358_upmu_get_rgs_vproc11_preoc_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VPROC_ANA_CON5),
 		(&val),
 		(PMIC_RGS_VPROC11_PREOC_STATUS_MASK),
 		(PMIC_RGS_VPROC11_PREOC_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -44140,15 +43056,14 @@ unsigned int mt6358_upmu_get_rgs_vproc11_preoc_status(
 unsigned int mt6358_upmu_get_rgs_vproc11_dig_mon(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VPROC_ANA_CON5),
 		(&val),
 		(PMIC_RGS_VPROC11_DIG_MON_MASK),
 		(PMIC_RGS_VPROC11_DIG_MON_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -44156,15 +43071,14 @@ unsigned int mt6358_upmu_get_rgs_vproc11_dig_mon(
 unsigned int mt6358_upmu_get_rgs_vproc11_enpwm_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VPROC_ANA_CON5),
 		(&val),
 		(PMIC_RGS_VPROC11_ENPWM_STATUS_MASK),
 		(PMIC_RGS_VPROC11_ENPWM_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -44172,15 +43086,14 @@ unsigned int mt6358_upmu_get_rgs_vproc11_enpwm_status(
 unsigned int mt6358_upmu_get_rgs_vproc12_enpwm_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VPROC_ANA_CON5),
 		(&val),
 		(PMIC_RGS_VPROC12_ENPWM_STATUS_MASK),
 		(PMIC_RGS_VPROC12_ENPWM_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -44188,15 +43101,14 @@ unsigned int mt6358_upmu_get_rgs_vproc12_enpwm_status(
 unsigned int mt6358_upmu_get_rgs_vproc12_dig_mon(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VPROC_ANA_CON6),
 		(&val),
 		(PMIC_RGS_VPROC12_DIG_MON_MASK),
 		(PMIC_RGS_VPROC12_DIG_MON_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -44429,15 +43341,14 @@ unsigned int mt6358_upmu_set_rg_vproc11vproc12_disautok(
 unsigned int mt6358_upmu_get_rgs_vproc11_pfm_flag(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VPROC_ANA_CON11),
 		(&val),
 		(PMIC_RGS_VPROC11_PFM_FLAG_MASK),
 		(PMIC_RGS_VPROC11_PFM_FLAG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -44445,15 +43356,14 @@ unsigned int mt6358_upmu_get_rgs_vproc11_pfm_flag(
 unsigned int mt6358_upmu_get_rgs_vproc12_pfm_flag(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VPROC_ANA_CON11),
 		(&val),
 		(PMIC_RGS_VPROC12_PFM_FLAG_MASK),
 		(PMIC_RGS_VPROC12_PFM_FLAG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -44476,15 +43386,14 @@ unsigned int mt6358_upmu_set_rg_vproc12_nonaudible_en(
 unsigned int mt6358_upmu_get_rg_vproc12_nonaudible_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VPROC_ANA_CON11),
 		(&val),
 		(PMIC_RG_VPROC12_NONAUDIBLE_EN_MASK),
 		(PMIC_RG_VPROC12_NONAUDIBLE_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -44507,15 +43416,14 @@ unsigned int mt6358_upmu_set_rg_vproc11_nonaudible_en(
 unsigned int mt6358_upmu_get_rg_vproc11_nonaudible_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VPROC_ANA_CON11),
 		(&val),
 		(PMIC_RG_VPROC11_NONAUDIBLE_EN_MASK),
 		(PMIC_RG_VPROC11_NONAUDIBLE_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -44628,15 +43536,14 @@ unsigned int mt6358_upmu_set_rg_vproc11_retention_en(
 unsigned int mt6358_upmu_get_rg_vproc11_retention_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VPROC_ANA_CON13),
 		(&val),
 		(PMIC_RG_VPROC11_RETENTION_EN_MASK),
 		(PMIC_RG_VPROC11_RETENTION_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -44659,15 +43566,14 @@ unsigned int mt6358_upmu_set_rg_vproc12_retention_en(
 unsigned int mt6358_upmu_get_rg_vproc12_retention_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VPROC_ANA_CON13),
 		(&val),
 		(PMIC_RG_VPROC12_RETENTION_EN_MASK),
 		(PMIC_RG_VPROC12_RETENTION_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -44675,15 +43581,14 @@ unsigned int mt6358_upmu_get_rg_vproc12_retention_en(
 unsigned int mt6358_upmu_get_rgs_vproc11vproc12_trimok_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VPROC_ANA_CON13),
 		(&val),
 		(PMIC_RGS_VPROC11VPROC12_TRIMOK_STATUS_MASK),
 		(PMIC_RGS_VPROC11VPROC12_TRIMOK_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -44736,15 +43641,14 @@ unsigned int mt6358_upmu_set_rg_vcore_ndis_en(
 unsigned int mt6358_upmu_get_rg_vcore_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCORE_VGPU_ANA_CON0),
 		(&val),
 		(PMIC_RG_VCORE_NDIS_EN_MASK),
 		(PMIC_RG_VCORE_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -44767,15 +43671,14 @@ unsigned int mt6358_upmu_set_rg_vgpu_ndis_en(
 unsigned int mt6358_upmu_get_rg_vgpu_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCORE_VGPU_ANA_CON0),
 		(&val),
 		(PMIC_RG_VGPU_NDIS_EN_MASK),
 		(PMIC_RG_VGPU_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -45218,15 +44121,14 @@ unsigned int mt6358_upmu_set_rg_vgpu_pfm_ton(
 unsigned int mt6358_upmu_get_rgs_vcore_oc_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCORE_VGPU_ANA_CON5),
 		(&val),
 		(PMIC_RGS_VCORE_OC_STATUS_MASK),
 		(PMIC_RGS_VCORE_OC_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -45234,15 +44136,14 @@ unsigned int mt6358_upmu_get_rgs_vcore_oc_status(
 unsigned int mt6358_upmu_get_rgs_vgpu_oc_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCORE_VGPU_ANA_CON5),
 		(&val),
 		(PMIC_RGS_VGPU_OC_STATUS_MASK),
 		(PMIC_RGS_VGPU_OC_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -45250,15 +44151,14 @@ unsigned int mt6358_upmu_get_rgs_vgpu_oc_status(
 unsigned int mt6358_upmu_get_rgs_vcore_preoc_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCORE_VGPU_ANA_CON5),
 		(&val),
 		(PMIC_RGS_VCORE_PREOC_STATUS_MASK),
 		(PMIC_RGS_VCORE_PREOC_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -45266,15 +44166,14 @@ unsigned int mt6358_upmu_get_rgs_vcore_preoc_status(
 unsigned int mt6358_upmu_get_rgs_vcore_dig_mon(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCORE_VGPU_ANA_CON5),
 		(&val),
 		(PMIC_RGS_VCORE_DIG_MON_MASK),
 		(PMIC_RGS_VCORE_DIG_MON_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -45282,15 +44181,14 @@ unsigned int mt6358_upmu_get_rgs_vcore_dig_mon(
 unsigned int mt6358_upmu_get_rgs_vcore_enpwm_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCORE_VGPU_ANA_CON5),
 		(&val),
 		(PMIC_RGS_VCORE_ENPWM_STATUS_MASK),
 		(PMIC_RGS_VCORE_ENPWM_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -45298,15 +44196,14 @@ unsigned int mt6358_upmu_get_rgs_vcore_enpwm_status(
 unsigned int mt6358_upmu_get_rgs_vgpu_enpwm_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCORE_VGPU_ANA_CON5),
 		(&val),
 		(PMIC_RGS_VGPU_ENPWM_STATUS_MASK),
 		(PMIC_RGS_VGPU_ENPWM_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -45314,15 +44211,14 @@ unsigned int mt6358_upmu_get_rgs_vgpu_enpwm_status(
 unsigned int mt6358_upmu_get_rgs_vgpu_dig_mon(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCORE_VGPU_ANA_CON6),
 		(&val),
 		(PMIC_RGS_VGPU_DIG_MON_MASK),
 		(PMIC_RGS_VGPU_DIG_MON_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -45555,15 +44451,14 @@ unsigned int mt6358_upmu_set_rg_vcorevgpu_disautok(
 unsigned int mt6358_upmu_get_rgs_vcore_pfm_flag(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCORE_VGPU_ANA_CON11),
 		(&val),
 		(PMIC_RGS_VCORE_PFM_FLAG_MASK),
 		(PMIC_RGS_VCORE_PFM_FLAG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -45571,15 +44466,14 @@ unsigned int mt6358_upmu_get_rgs_vcore_pfm_flag(
 unsigned int mt6358_upmu_get_rgs_vgpu_pfm_flag(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCORE_VGPU_ANA_CON11),
 		(&val),
 		(PMIC_RGS_VGPU_PFM_FLAG_MASK),
 		(PMIC_RGS_VGPU_PFM_FLAG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -45602,15 +44496,14 @@ unsigned int mt6358_upmu_set_rg_vgpu_nonaudible_en(
 unsigned int mt6358_upmu_get_rg_vgpu_nonaudible_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCORE_VGPU_ANA_CON11),
 		(&val),
 		(PMIC_RG_VGPU_NONAUDIBLE_EN_MASK),
 		(PMIC_RG_VGPU_NONAUDIBLE_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -45633,15 +44526,14 @@ unsigned int mt6358_upmu_set_rg_vcore_nonaudible_en(
 unsigned int mt6358_upmu_get_rg_vcore_nonaudible_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCORE_VGPU_ANA_CON11),
 		(&val),
 		(PMIC_RG_VCORE_NONAUDIBLE_EN_MASK),
 		(PMIC_RG_VCORE_NONAUDIBLE_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -45754,15 +44646,14 @@ unsigned int mt6358_upmu_set_rg_vcore_retention_en(
 unsigned int mt6358_upmu_get_rg_vcore_retention_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCORE_VGPU_ANA_CON13),
 		(&val),
 		(PMIC_RG_VCORE_RETENTION_EN_MASK),
 		(PMIC_RG_VCORE_RETENTION_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -45785,15 +44676,14 @@ unsigned int mt6358_upmu_set_rg_vgpu_retention_en(
 unsigned int mt6358_upmu_get_rg_vgpu_retention_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCORE_VGPU_ANA_CON13),
 		(&val),
 		(PMIC_RG_VGPU_RETENTION_EN_MASK),
 		(PMIC_RG_VGPU_RETENTION_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -45801,15 +44691,14 @@ unsigned int mt6358_upmu_get_rg_vgpu_retention_en(
 unsigned int mt6358_upmu_get_rgs_vcorevgpu_trimok_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCORE_VGPU_ANA_CON13),
 		(&val),
 		(PMIC_RGS_VCOREVGPU_TRIMOK_STATUS_MASK),
 		(PMIC_RGS_VCOREVGPU_TRIMOK_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -46057,15 +44946,14 @@ unsigned int mt6358_upmu_set_rg_voutdet_en(
 unsigned int mt6358_upmu_get_rg_voutdet_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_SMPS_ELR_4),
 		(&val),
 		(PMIC_RG_VOUTDET_EN_MASK),
 		(PMIC_RG_VOUTDET_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -46838,15 +45726,14 @@ unsigned int mt6358_upmu_set_rg_vmodem_ndis_en(
 unsigned int mt6358_upmu_get_rg_vmodem_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VMODEM_ANA_CON2),
 		(&val),
 		(PMIC_RG_VMODEM_NDIS_EN_MASK),
 		(PMIC_RG_VMODEM_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -46929,15 +45816,14 @@ unsigned int mt6358_upmu_set_rg_vmodem_vdiffpfm_off(
 unsigned int mt6358_upmu_get_rgs_vmodem_oc_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VMODEM_ANA_CON4),
 		(&val),
 		(PMIC_RGS_VMODEM_OC_STATUS_MASK),
 		(PMIC_RGS_VMODEM_OC_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -46945,15 +45831,14 @@ unsigned int mt6358_upmu_get_rgs_vmodem_oc_status(
 unsigned int mt6358_upmu_get_rgs_vmodem_enpwm_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VMODEM_ANA_CON4),
 		(&val),
 		(PMIC_RGS_VMODEM_ENPWM_STATUS_MASK),
 		(PMIC_RGS_VMODEM_ENPWM_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -46976,15 +45861,14 @@ unsigned int mt6358_upmu_set_rg_vmodem_disautok(
 unsigned int mt6358_upmu_get_rgs_vmodem_trimok_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VMODEM_ANA_CON4),
 		(&val),
 		(PMIC_RGS_VMODEM_TRIMOK_STATUS_MASK),
 		(PMIC_RGS_VMODEM_TRIMOK_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -46992,15 +45876,14 @@ unsigned int mt6358_upmu_get_rgs_vmodem_trimok_status(
 unsigned int mt6358_upmu_get_rgs_vmodem_dig_mon(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VMODEM_ANA_CON4),
 		(&val),
 		(PMIC_RGS_VMODEM_DIG_MON_MASK),
 		(PMIC_RGS_VMODEM_DIG_MON_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -47023,15 +45906,14 @@ unsigned int mt6358_upmu_set_rg_vmodem_nonaudible_en(
 unsigned int mt6358_upmu_get_rg_vmodem_nonaudible_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VMODEM_ANA_CON4),
 		(&val),
 		(PMIC_RG_VMODEM_NONAUDIBLE_EN_MASK),
 		(PMIC_RG_VMODEM_NONAUDIBLE_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -47039,15 +45921,14 @@ unsigned int mt6358_upmu_get_rg_vmodem_nonaudible_en(
 unsigned int mt6358_upmu_get_rgs_vmodem_pfm_flag(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VMODEM_ANA_CON5),
 		(&val),
 		(PMIC_RGS_VMODEM_PFM_FLAG_MASK),
 		(PMIC_RGS_VMODEM_PFM_FLAG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -47115,15 +45996,14 @@ unsigned int mt6358_upmu_set_rg_vmodem_retention_en(
 unsigned int mt6358_upmu_get_rg_vmodem_retention_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VMODEM_ANA_CON6),
 		(&val),
 		(PMIC_RG_VMODEM_RETENTION_EN_MASK),
 		(PMIC_RG_VMODEM_RETENTION_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -47401,15 +46281,14 @@ unsigned int mt6358_upmu_set_rg_vdram1_ndis_en(
 unsigned int mt6358_upmu_get_rg_vdram1_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VDRAM1_ANA_CON2),
 		(&val),
 		(PMIC_RG_VDRAM1_NDIS_EN_MASK),
 		(PMIC_RG_VDRAM1_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -47492,15 +46371,14 @@ unsigned int mt6358_upmu_set_rg_vdram1_vdiffpfm_off(
 unsigned int mt6358_upmu_get_rgs_vdram1_oc_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VDRAM1_ANA_CON4),
 		(&val),
 		(PMIC_RGS_VDRAM1_OC_STATUS_MASK),
 		(PMIC_RGS_VDRAM1_OC_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -47508,15 +46386,14 @@ unsigned int mt6358_upmu_get_rgs_vdram1_oc_status(
 unsigned int mt6358_upmu_get_rgs_vdram1_enpwm_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VDRAM1_ANA_CON4),
 		(&val),
 		(PMIC_RGS_VDRAM1_ENPWM_STATUS_MASK),
 		(PMIC_RGS_VDRAM1_ENPWM_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -47539,15 +46416,14 @@ unsigned int mt6358_upmu_set_rg_vdram1_disautok(
 unsigned int mt6358_upmu_get_rgs_vdram1_trimok_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VDRAM1_ANA_CON4),
 		(&val),
 		(PMIC_RGS_VDRAM1_TRIMOK_STATUS_MASK),
 		(PMIC_RGS_VDRAM1_TRIMOK_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -47555,15 +46431,14 @@ unsigned int mt6358_upmu_get_rgs_vdram1_trimok_status(
 unsigned int mt6358_upmu_get_rgs_vdram1_dig_mon(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VDRAM1_ANA_CON4),
 		(&val),
 		(PMIC_RGS_VDRAM1_DIG_MON_MASK),
 		(PMIC_RGS_VDRAM1_DIG_MON_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -47586,15 +46461,14 @@ unsigned int mt6358_upmu_set_rg_vdram1_nonaudible_en(
 unsigned int mt6358_upmu_get_rg_vdram1_nonaudible_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VDRAM1_ANA_CON4),
 		(&val),
 		(PMIC_RG_VDRAM1_NONAUDIBLE_EN_MASK),
 		(PMIC_RG_VDRAM1_NONAUDIBLE_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -47632,15 +46506,14 @@ unsigned int mt6358_upmu_set_rg_vdram1_csn(
 unsigned int mt6358_upmu_get_rgs_vdram1_pfm_flag(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VDRAM1_ANA_CON5),
 		(&val),
 		(PMIC_RGS_VDRAM1_PFM_FLAG_MASK),
 		(PMIC_RGS_VDRAM1_PFM_FLAG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -47678,15 +46551,14 @@ unsigned int mt6358_upmu_set_rg_vdram1_retention_en(
 unsigned int mt6358_upmu_get_rg_vdram1_retention_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VDRAM1_ANA_CON5),
 		(&val),
 		(PMIC_RG_VDRAM1_RETENTION_EN_MASK),
 		(PMIC_RG_VDRAM1_RETENTION_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -47964,15 +46836,14 @@ unsigned int mt6358_upmu_set_rg_vs1_ndis_en(
 unsigned int mt6358_upmu_get_rg_vs1_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VS1_ANA_CON2),
 		(&val),
 		(PMIC_RG_VS1_NDIS_EN_MASK),
 		(PMIC_RG_VS1_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -48055,15 +46926,14 @@ unsigned int mt6358_upmu_set_rg_vs1_vdiffpfm_off(
 unsigned int mt6358_upmu_get_rgs_vs1_oc_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VS1_ANA_CON4),
 		(&val),
 		(PMIC_RGS_VS1_OC_STATUS_MASK),
 		(PMIC_RGS_VS1_OC_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -48071,15 +46941,14 @@ unsigned int mt6358_upmu_get_rgs_vs1_oc_status(
 unsigned int mt6358_upmu_get_rgs_vs1_enpwm_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VS1_ANA_CON4),
 		(&val),
 		(PMIC_RGS_VS1_ENPWM_STATUS_MASK),
 		(PMIC_RGS_VS1_ENPWM_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -48102,15 +46971,14 @@ unsigned int mt6358_upmu_set_rg_vs1_disautok(
 unsigned int mt6358_upmu_get_rgs_vs1_trimok_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VS1_ANA_CON4),
 		(&val),
 		(PMIC_RGS_VS1_TRIMOK_STATUS_MASK),
 		(PMIC_RGS_VS1_TRIMOK_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -48118,15 +46986,14 @@ unsigned int mt6358_upmu_get_rgs_vs1_trimok_status(
 unsigned int mt6358_upmu_get_rgs_vs1_dig_mon(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VS1_ANA_CON4),
 		(&val),
 		(PMIC_RGS_VS1_DIG_MON_MASK),
 		(PMIC_RGS_VS1_DIG_MON_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -48149,15 +47016,14 @@ unsigned int mt6358_upmu_set_rg_vs1_nonaudible_en(
 unsigned int mt6358_upmu_get_rg_vs1_nonaudible_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VS1_ANA_CON4),
 		(&val),
 		(PMIC_RG_VS1_NONAUDIBLE_EN_MASK),
 		(PMIC_RG_VS1_NONAUDIBLE_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -48195,15 +47061,14 @@ unsigned int mt6358_upmu_set_rg_vs1_csn(
 unsigned int mt6358_upmu_get_rgs_vs1_pfm_flag(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VS1_ANA_CON5),
 		(&val),
 		(PMIC_RGS_VS1_PFM_FLAG_MASK),
 		(PMIC_RGS_VS1_PFM_FLAG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -48241,15 +47106,14 @@ unsigned int mt6358_upmu_set_rg_vs1_retention_en(
 unsigned int mt6358_upmu_get_rg_vs1_retention_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VS1_ANA_CON5),
 		(&val),
 		(PMIC_RG_VS1_RETENTION_EN_MASK),
 		(PMIC_RG_VS1_RETENTION_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -48527,15 +47391,14 @@ unsigned int mt6358_upmu_set_rg_vs2_ndis_en(
 unsigned int mt6358_upmu_get_rg_vs2_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VS2_ANA_CON2),
 		(&val),
 		(PMIC_RG_VS2_NDIS_EN_MASK),
 		(PMIC_RG_VS2_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -48618,15 +47481,14 @@ unsigned int mt6358_upmu_set_rg_vs2_vdiffpfm_off(
 unsigned int mt6358_upmu_get_rgs_vs2_oc_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VS2_ANA_CON4),
 		(&val),
 		(PMIC_RGS_VS2_OC_STATUS_MASK),
 		(PMIC_RGS_VS2_OC_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -48634,15 +47496,14 @@ unsigned int mt6358_upmu_get_rgs_vs2_oc_status(
 unsigned int mt6358_upmu_get_rgs_vs2_enpwm_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VS2_ANA_CON4),
 		(&val),
 		(PMIC_RGS_VS2_ENPWM_STATUS_MASK),
 		(PMIC_RGS_VS2_ENPWM_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -48665,15 +47526,14 @@ unsigned int mt6358_upmu_set_rg_vs2_disautok(
 unsigned int mt6358_upmu_get_rgs_vs2_trimok_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VS2_ANA_CON4),
 		(&val),
 		(PMIC_RGS_VS2_TRIMOK_STATUS_MASK),
 		(PMIC_RGS_VS2_TRIMOK_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -48681,15 +47541,14 @@ unsigned int mt6358_upmu_get_rgs_vs2_trimok_status(
 unsigned int mt6358_upmu_get_rgs_vs2_dig_mon(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VS2_ANA_CON4),
 		(&val),
 		(PMIC_RGS_VS2_DIG_MON_MASK),
 		(PMIC_RGS_VS2_DIG_MON_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -48712,15 +47571,14 @@ unsigned int mt6358_upmu_set_rg_vs2_nonaudible_en(
 unsigned int mt6358_upmu_get_rg_vs2_nonaudible_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VS2_ANA_CON4),
 		(&val),
 		(PMIC_RG_VS2_NONAUDIBLE_EN_MASK),
 		(PMIC_RG_VS2_NONAUDIBLE_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -48758,15 +47616,14 @@ unsigned int mt6358_upmu_set_rg_vs2_csn(
 unsigned int mt6358_upmu_get_rgs_vs2_pfm_flag(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VS2_ANA_CON5),
 		(&val),
 		(PMIC_RGS_VS2_PFM_FLAG_MASK),
 		(PMIC_RGS_VS2_PFM_FLAG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -48804,15 +47661,14 @@ unsigned int mt6358_upmu_set_rg_vs2_retention_en(
 unsigned int mt6358_upmu_get_rg_vs2_retention_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VS2_ANA_CON5),
 		(&val),
 		(PMIC_RG_VS2_RETENTION_EN_MASK),
 		(PMIC_RG_VS2_RETENTION_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -48835,15 +47691,14 @@ unsigned int mt6358_upmu_set_rg_vpa_ndis_en(
 unsigned int mt6358_upmu_get_rg_vpa_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VPA_ANA_CON0),
 		(&val),
 		(PMIC_RG_VPA_NDIS_EN_MASK),
 		(PMIC_RG_VPA_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -48956,15 +47811,14 @@ unsigned int mt6358_upmu_set_rg_vpa_azc_en(
 unsigned int mt6358_upmu_get_rg_vpa_azc_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VPA_ANA_CON1),
 		(&val),
 		(PMIC_RG_VPA_AZC_EN_MASK),
 		(PMIC_RG_VPA_AZC_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -49107,15 +47961,14 @@ unsigned int mt6358_upmu_set_rg_vpa_vbat_del(
 unsigned int mt6358_upmu_get_rgs_vpa_azc_vos_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VPA_ANA_CON3),
 		(&val),
 		(PMIC_RGS_VPA_AZC_VOS_SEL_MASK),
 		(PMIC_RGS_VPA_AZC_VOS_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -49168,15 +48021,14 @@ unsigned int mt6358_upmu_set_rg_vpa_rsv2(
 unsigned int mt6358_upmu_get_rgs_vpa_oc_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VPA_ANA_CON5),
 		(&val),
 		(PMIC_RGS_VPA_OC_STATUS_MASK),
 		(PMIC_RGS_VPA_OC_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -49184,15 +48036,14 @@ unsigned int mt6358_upmu_get_rgs_vpa_oc_status(
 unsigned int mt6358_upmu_get_rgs_vpa_azc_zx(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VPA_ANA_CON5),
 		(&val),
 		(PMIC_RGS_VPA_AZC_ZX_MASK),
 		(PMIC_RGS_VPA_AZC_ZX_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -49200,15 +48051,14 @@ unsigned int mt6358_upmu_get_rgs_vpa_azc_zx(
 unsigned int mt6358_upmu_get_rgs_vpa_dig_mon(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VPA_ANA_CON5),
 		(&val),
 		(PMIC_RGS_VPA_DIG_MON_MASK),
 		(PMIC_RGS_VPA_DIG_MON_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50221,15 +49071,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vfe28_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vfe28_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VFE28_OC_MASK),
 		(PMIC_RG_INT_EN_VFE28_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50252,15 +49101,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vxo22_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vxo22_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VXO22_OC_MASK),
 		(PMIC_RG_INT_EN_VXO22_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50283,15 +49131,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vrf18_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vrf18_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VRF18_OC_MASK),
 		(PMIC_RG_INT_EN_VRF18_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50314,15 +49161,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vrf12_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vrf12_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VRF12_OC_MASK),
 		(PMIC_RG_INT_EN_VRF12_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50345,15 +49191,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vefuse_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vefuse_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VEFUSE_OC_MASK),
 		(PMIC_RG_INT_EN_VEFUSE_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50376,15 +49221,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vcn33_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vcn33_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VCN33_OC_MASK),
 		(PMIC_RG_INT_EN_VCN33_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50407,15 +49251,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vcn28_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vcn28_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VCN28_OC_MASK),
 		(PMIC_RG_INT_EN_VCN28_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50438,15 +49281,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vcn18_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vcn18_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VCN18_OC_MASK),
 		(PMIC_RG_INT_EN_VCN18_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50469,15 +49311,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vcama1_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vcama1_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VCAMA1_OC_MASK),
 		(PMIC_RG_INT_EN_VCAMA1_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50500,15 +49341,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vcama2_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vcama2_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VCAMA2_OC_MASK),
 		(PMIC_RG_INT_EN_VCAMA2_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50531,15 +49371,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vcamd_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vcamd_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VCAMD_OC_MASK),
 		(PMIC_RG_INT_EN_VCAMD_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50562,15 +49401,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vcamio_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vcamio_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VCAMIO_OC_MASK),
 		(PMIC_RG_INT_EN_VCAMIO_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50593,15 +49431,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vldo28_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vldo28_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VLDO28_OC_MASK),
 		(PMIC_RG_INT_EN_VLDO28_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50624,15 +49461,14 @@ unsigned int mt6358_upmu_set_rg_int_en_va12_oc(
 unsigned int mt6358_upmu_get_rg_int_en_va12_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VA12_OC_MASK),
 		(PMIC_RG_INT_EN_VA12_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50655,15 +49491,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vaux18_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vaux18_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VAUX18_OC_MASK),
 		(PMIC_RG_INT_EN_VAUX18_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50686,15 +49521,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vaud28_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vaud28_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_VAUD28_OC_MASK),
 		(PMIC_RG_INT_EN_VAUD28_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50717,15 +49551,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vio28_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vio28_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON1),
 		(&val),
 		(PMIC_RG_INT_EN_VIO28_OC_MASK),
 		(PMIC_RG_INT_EN_VIO28_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50748,15 +49581,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vio18_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vio18_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON1),
 		(&val),
 		(PMIC_RG_INT_EN_VIO18_OC_MASK),
 		(PMIC_RG_INT_EN_VIO18_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50779,15 +49611,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vsram_proc11_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vsram_proc11_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON1),
 		(&val),
 		(PMIC_RG_INT_EN_VSRAM_PROC11_OC_MASK),
 		(PMIC_RG_INT_EN_VSRAM_PROC11_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50810,15 +49641,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vsram_proc12_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vsram_proc12_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON1),
 		(&val),
 		(PMIC_RG_INT_EN_VSRAM_PROC12_OC_MASK),
 		(PMIC_RG_INT_EN_VSRAM_PROC12_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50841,15 +49671,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vsram_others_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vsram_others_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON1),
 		(&val),
 		(PMIC_RG_INT_EN_VSRAM_OTHERS_OC_MASK),
 		(PMIC_RG_INT_EN_VSRAM_OTHERS_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50872,15 +49701,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vsram_gpu_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vsram_gpu_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON1),
 		(&val),
 		(PMIC_RG_INT_EN_VSRAM_GPU_OC_MASK),
 		(PMIC_RG_INT_EN_VSRAM_GPU_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50903,15 +49731,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vdram2_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vdram2_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON1),
 		(&val),
 		(PMIC_RG_INT_EN_VDRAM2_OC_MASK),
 		(PMIC_RG_INT_EN_VDRAM2_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50934,15 +49761,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vmc_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vmc_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON1),
 		(&val),
 		(PMIC_RG_INT_EN_VMC_OC_MASK),
 		(PMIC_RG_INT_EN_VMC_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50965,15 +49791,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vmch_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vmch_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON1),
 		(&val),
 		(PMIC_RG_INT_EN_VMCH_OC_MASK),
 		(PMIC_RG_INT_EN_VMCH_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -50996,15 +49821,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vemc_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vemc_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON1),
 		(&val),
 		(PMIC_RG_INT_EN_VEMC_OC_MASK),
 		(PMIC_RG_INT_EN_VEMC_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51027,15 +49851,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vsim1_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vsim1_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON1),
 		(&val),
 		(PMIC_RG_INT_EN_VSIM1_OC_MASK),
 		(PMIC_RG_INT_EN_VSIM1_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51058,15 +49881,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vsim2_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vsim2_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON1),
 		(&val),
 		(PMIC_RG_INT_EN_VSIM2_OC_MASK),
 		(PMIC_RG_INT_EN_VSIM2_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51089,15 +49911,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vibr_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vibr_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON1),
 		(&val),
 		(PMIC_RG_INT_EN_VIBR_OC_MASK),
 		(PMIC_RG_INT_EN_VIBR_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51120,15 +49941,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vusb_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vusb_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON1),
 		(&val),
 		(PMIC_RG_INT_EN_VUSB_OC_MASK),
 		(PMIC_RG_INT_EN_VUSB_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51151,15 +49971,14 @@ unsigned int mt6358_upmu_set_rg_int_en_vbif28_oc(
 unsigned int mt6358_upmu_get_rg_int_en_vbif28_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_CON1),
 		(&val),
 		(PMIC_RG_INT_EN_VBIF28_OC_MASK),
 		(PMIC_RG_INT_EN_VBIF28_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51632,15 +50451,14 @@ unsigned int mt6358_upmu_set_rg_int_mask_vbif28_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vfe28_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VFE28_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VFE28_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51648,15 +50466,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vfe28_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vxo22_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VXO22_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VXO22_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51664,15 +50481,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vxo22_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vrf18_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VRF18_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VRF18_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51680,15 +50496,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vrf18_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vrf12_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VRF12_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VRF12_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51696,15 +50511,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vrf12_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vefuse_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VEFUSE_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VEFUSE_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51712,15 +50526,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vefuse_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vcn33_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VCN33_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VCN33_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51728,15 +50541,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vcn33_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vcn28_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VCN28_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VCN28_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51744,15 +50556,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vcn28_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vcn18_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VCN18_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VCN18_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51760,15 +50571,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vcn18_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vcama1_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VCAMA1_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VCAMA1_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51776,15 +50586,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vcama1_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vcama2_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VCAMA2_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VCAMA2_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51792,15 +50601,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vcama2_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vcamd_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VCAMD_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VCAMD_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51808,15 +50616,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vcamd_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vcamio_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VCAMIO_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VCAMIO_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51824,15 +50631,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vcamio_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vldo28_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VLDO28_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VLDO28_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51840,15 +50646,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vldo28_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_va12_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VA12_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VA12_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51856,15 +50661,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_va12_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vaux18_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VAUX18_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VAUX18_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51872,15 +50676,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vaux18_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vaud28_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VAUD28_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VAUD28_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51888,15 +50691,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vaud28_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vio28_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS1),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VIO28_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VIO28_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51904,15 +50706,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vio28_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vio18_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS1),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VIO18_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VIO18_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51920,15 +50721,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vio18_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vsram_proc11_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS1),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VSRAM_PROC11_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VSRAM_PROC11_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51936,15 +50736,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vsram_proc11_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vsram_proc12_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS1),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VSRAM_PROC12_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VSRAM_PROC12_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51952,15 +50751,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vsram_proc12_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vsram_others_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS1),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VSRAM_OTHERS_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VSRAM_OTHERS_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51968,15 +50766,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vsram_others_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vsram_gpu_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS1),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VSRAM_GPU_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VSRAM_GPU_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -51984,15 +50781,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vsram_gpu_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vdram2_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS1),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VDRAM2_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VDRAM2_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52000,15 +50796,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vdram2_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vmc_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS1),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VMC_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VMC_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52016,15 +50811,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vmc_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vmch_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS1),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VMCH_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VMCH_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52032,15 +50826,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vmch_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vemc_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS1),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VEMC_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VEMC_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52048,15 +50841,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vemc_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vsim1_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS1),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VSIM1_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VSIM1_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52064,15 +50856,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vsim1_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vsim2_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS1),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VSIM2_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VSIM2_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52080,15 +50871,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vsim2_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vibr_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS1),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VIBR_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VIBR_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52096,15 +50886,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vibr_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vusb_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS1),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VUSB_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VUSB_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52112,15 +50901,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_vusb_oc(
 unsigned int mt6358_upmu_get_rg_int_raw_status_vbif28_oc(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TOP_INT_RAW_STATUS1),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_VBIF28_OC_MASK),
 		(PMIC_RG_INT_RAW_STATUS_VBIF28_OC_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52158,15 +50946,14 @@ unsigned int mt6358_upmu_set_rg_ldo_int_flag_en(
 unsigned int mt6358_upmu_get_rg_ldo_int_flag_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_TEST_CON0),
 		(&val),
 		(PMIC_RG_LDO_INT_FLAG_EN_MASK),
 		(PMIC_RG_LDO_INT_FLAG_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52294,15 +51081,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vxo22_en(
 unsigned int mt6358_upmu_get_rg_ldo_vxo22_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VXO22_CON0),
 		(&val),
 		(PMIC_RG_LDO_VXO22_EN_MASK),
 		(PMIC_RG_LDO_VXO22_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52340,15 +51126,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vxo22_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vxo22_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VXO22_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VXO22_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VXO22_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52371,15 +51156,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vxo22_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vxo22_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VXO22_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VXO22_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VXO22_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52402,15 +51186,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vxo22_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vxo22_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VXO22_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VXO22_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VXO22_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52433,15 +51216,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vxo22_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vxo22_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VXO22_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VXO22_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VXO22_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52464,15 +51246,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vxo22_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vxo22_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VXO22_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VXO22_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VXO22_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52495,15 +51276,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vxo22_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vxo22_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VXO22_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VXO22_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VXO22_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52526,15 +51306,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vxo22_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vxo22_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VXO22_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VXO22_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VXO22_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52542,15 +51321,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vxo22_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vxo22_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VXO22_CON1),
 		(&val),
 		(PMIC_DA_VXO22_MODE_MASK),
 		(PMIC_DA_VXO22_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52573,15 +51351,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vxo22_stbtd(
 unsigned int mt6358_upmu_get_da_vxo22_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VXO22_CON1),
 		(&val),
 		(PMIC_DA_VXO22_STB_MASK),
 		(PMIC_DA_VXO22_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52589,15 +51366,14 @@ unsigned int mt6358_upmu_get_da_vxo22_stb(
 unsigned int mt6358_upmu_get_da_vxo22_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VXO22_CON1),
 		(&val),
 		(PMIC_DA_VXO22_EN_MASK),
 		(PMIC_DA_VXO22_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52620,15 +51396,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vxo22_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vxo22_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VXO22_CON2),
 		(&val),
 		(PMIC_RG_LDO_VXO22_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VXO22_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52636,15 +51411,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vxo22_ocfb_en(
 unsigned int mt6358_upmu_get_da_vxo22_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VXO22_CON2),
 		(&val),
 		(PMIC_DA_VXO22_OCFB_EN_MASK),
 		(PMIC_DA_VXO22_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52667,15 +51441,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vxo22_dummy_load(
 unsigned int mt6358_upmu_get_da_vxo22_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VXO22_CON3),
 		(&val),
 		(PMIC_DA_VXO22_DUMMY_LOAD_MASK),
 		(PMIC_DA_VXO22_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52698,15 +51471,14 @@ unsigned int mt6358_upmu_set_rg_ldo_va12_en(
 unsigned int mt6358_upmu_get_rg_ldo_va12_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VA12_CON0),
 		(&val),
 		(PMIC_RG_LDO_VA12_EN_MASK),
 		(PMIC_RG_LDO_VA12_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52744,15 +51516,14 @@ unsigned int mt6358_upmu_set_rg_ldo_va12_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_va12_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VA12_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VA12_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VA12_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52775,15 +51546,14 @@ unsigned int mt6358_upmu_set_rg_ldo_va12_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_va12_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VA12_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VA12_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VA12_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52806,15 +51576,14 @@ unsigned int mt6358_upmu_set_rg_ldo_va12_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_va12_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VA12_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VA12_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VA12_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52837,15 +51606,14 @@ unsigned int mt6358_upmu_set_rg_ldo_va12_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_va12_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VA12_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VA12_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VA12_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52868,15 +51636,14 @@ unsigned int mt6358_upmu_set_rg_ldo_va12_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_va12_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VA12_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VA12_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VA12_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52899,15 +51666,14 @@ unsigned int mt6358_upmu_set_rg_ldo_va12_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_va12_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VA12_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VA12_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VA12_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52930,15 +51696,14 @@ unsigned int mt6358_upmu_set_rg_ldo_va12_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_va12_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VA12_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VA12_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VA12_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52946,15 +51711,14 @@ unsigned int mt6358_upmu_get_rg_ldo_va12_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_va12_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VA12_CON1),
 		(&val),
 		(PMIC_DA_VA12_MODE_MASK),
 		(PMIC_DA_VA12_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52977,15 +51741,14 @@ unsigned int mt6358_upmu_set_rg_ldo_va12_stbtd(
 unsigned int mt6358_upmu_get_da_va12_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VA12_CON1),
 		(&val),
 		(PMIC_DA_VA12_STB_MASK),
 		(PMIC_DA_VA12_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -52993,15 +51756,14 @@ unsigned int mt6358_upmu_get_da_va12_stb(
 unsigned int mt6358_upmu_get_da_va12_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VA12_CON1),
 		(&val),
 		(PMIC_DA_VA12_EN_MASK),
 		(PMIC_DA_VA12_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53024,15 +51786,14 @@ unsigned int mt6358_upmu_set_rg_ldo_va12_auxadc_pwdb_en(
 unsigned int mt6358_upmu_get_rg_ldo_va12_auxadc_pwdb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VA12_CON2),
 		(&val),
 		(PMIC_RG_LDO_VA12_AUXADC_PWDB_EN_MASK),
 		(PMIC_RG_LDO_VA12_AUXADC_PWDB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53055,15 +51816,14 @@ unsigned int mt6358_upmu_set_rg_ldo_va12_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_va12_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VA12_CON2),
 		(&val),
 		(PMIC_RG_LDO_VA12_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VA12_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53071,15 +51831,14 @@ unsigned int mt6358_upmu_get_rg_ldo_va12_ocfb_en(
 unsigned int mt6358_upmu_get_da_va12_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VA12_CON2),
 		(&val),
 		(PMIC_DA_VA12_OCFB_EN_MASK),
 		(PMIC_DA_VA12_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53102,15 +51861,14 @@ unsigned int mt6358_upmu_set_rg_ldo_va12_dummy_load(
 unsigned int mt6358_upmu_get_da_va12_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VA12_CON3),
 		(&val),
 		(PMIC_DA_VA12_DUMMY_LOAD_MASK),
 		(PMIC_DA_VA12_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53133,15 +51891,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vaux18_en(
 unsigned int mt6358_upmu_get_rg_ldo_vaux18_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUX18_CON0),
 		(&val),
 		(PMIC_RG_LDO_VAUX18_EN_MASK),
 		(PMIC_RG_LDO_VAUX18_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53179,15 +51936,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vaux18_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vaux18_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUX18_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VAUX18_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VAUX18_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53210,15 +51966,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vaux18_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vaux18_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUX18_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VAUX18_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VAUX18_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53241,15 +51996,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vaux18_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vaux18_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUX18_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VAUX18_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VAUX18_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53272,15 +52026,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vaux18_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vaux18_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUX18_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VAUX18_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VAUX18_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53303,15 +52056,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vaux18_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vaux18_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUX18_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VAUX18_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VAUX18_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53334,15 +52086,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vaux18_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vaux18_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUX18_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VAUX18_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VAUX18_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53365,15 +52116,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vaux18_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vaux18_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUX18_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VAUX18_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VAUX18_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53381,15 +52131,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vaux18_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vaux18_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUX18_CON1),
 		(&val),
 		(PMIC_DA_VAUX18_MODE_MASK),
 		(PMIC_DA_VAUX18_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53412,15 +52161,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vaux18_stbtd(
 unsigned int mt6358_upmu_get_da_vaux18_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUX18_CON1),
 		(&val),
 		(PMIC_DA_VAUX18_STB_MASK),
 		(PMIC_DA_VAUX18_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53428,15 +52176,14 @@ unsigned int mt6358_upmu_get_da_vaux18_stb(
 unsigned int mt6358_upmu_get_da_vaux18_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUX18_CON1),
 		(&val),
 		(PMIC_DA_VAUX18_EN_MASK),
 		(PMIC_DA_VAUX18_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53459,15 +52206,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vaux18_auxadc_pwdb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vaux18_auxadc_pwdb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUX18_CON2),
 		(&val),
 		(PMIC_RG_LDO_VAUX18_AUXADC_PWDB_EN_MASK),
 		(PMIC_RG_LDO_VAUX18_AUXADC_PWDB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53490,15 +52236,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vaux18_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vaux18_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUX18_CON2),
 		(&val),
 		(PMIC_RG_LDO_VAUX18_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VAUX18_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53506,15 +52251,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vaux18_ocfb_en(
 unsigned int mt6358_upmu_get_da_vaux18_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUX18_CON2),
 		(&val),
 		(PMIC_DA_VAUX18_OCFB_EN_MASK),
 		(PMIC_DA_VAUX18_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53537,15 +52281,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vaux18_dummy_load(
 unsigned int mt6358_upmu_get_da_vaux18_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUX18_CON3),
 		(&val),
 		(PMIC_DA_VAUX18_DUMMY_LOAD_MASK),
 		(PMIC_DA_VAUX18_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53568,15 +52311,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vaud28_en(
 unsigned int mt6358_upmu_get_rg_ldo_vaud28_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUD28_CON0),
 		(&val),
 		(PMIC_RG_LDO_VAUD28_EN_MASK),
 		(PMIC_RG_LDO_VAUD28_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53614,15 +52356,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vaud28_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vaud28_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUD28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VAUD28_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VAUD28_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53645,15 +52386,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vaud28_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vaud28_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUD28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VAUD28_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VAUD28_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53676,15 +52416,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vaud28_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vaud28_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUD28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VAUD28_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VAUD28_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53707,15 +52446,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vaud28_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vaud28_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUD28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VAUD28_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VAUD28_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53738,15 +52476,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vaud28_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vaud28_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUD28_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VAUD28_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VAUD28_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53769,15 +52506,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vaud28_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vaud28_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUD28_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VAUD28_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VAUD28_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53800,15 +52536,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vaud28_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vaud28_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUD28_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VAUD28_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VAUD28_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53816,15 +52551,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vaud28_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vaud28_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUD28_CON1),
 		(&val),
 		(PMIC_DA_VAUD28_MODE_MASK),
 		(PMIC_DA_VAUD28_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53847,15 +52581,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vaud28_stbtd(
 unsigned int mt6358_upmu_get_da_vaud28_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUD28_CON1),
 		(&val),
 		(PMIC_DA_VAUD28_STB_MASK),
 		(PMIC_DA_VAUD28_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53863,15 +52596,14 @@ unsigned int mt6358_upmu_get_da_vaud28_stb(
 unsigned int mt6358_upmu_get_da_vaud28_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUD28_CON1),
 		(&val),
 		(PMIC_DA_VAUD28_EN_MASK),
 		(PMIC_DA_VAUD28_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53894,15 +52626,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vaud28_auxadc_pwdb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vaud28_auxadc_pwdb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUD28_CON2),
 		(&val),
 		(PMIC_RG_LDO_VAUD28_AUXADC_PWDB_EN_MASK),
 		(PMIC_RG_LDO_VAUD28_AUXADC_PWDB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53925,15 +52656,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vaud28_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vaud28_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUD28_CON2),
 		(&val),
 		(PMIC_RG_LDO_VAUD28_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VAUD28_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53941,15 +52671,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vaud28_ocfb_en(
 unsigned int mt6358_upmu_get_da_vaud28_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUD28_CON2),
 		(&val),
 		(PMIC_DA_VAUD28_OCFB_EN_MASK),
 		(PMIC_DA_VAUD28_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -53972,15 +52701,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vaud28_dummy_load(
 unsigned int mt6358_upmu_get_da_vaud28_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VAUD28_CON3),
 		(&val),
 		(PMIC_DA_VAUD28_DUMMY_LOAD_MASK),
 		(PMIC_DA_VAUD28_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54003,15 +52731,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vio28_en(
 unsigned int mt6358_upmu_get_rg_ldo_vio28_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO28_CON0),
 		(&val),
 		(PMIC_RG_LDO_VIO28_EN_MASK),
 		(PMIC_RG_LDO_VIO28_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54049,15 +52776,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vio28_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vio28_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VIO28_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VIO28_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54080,15 +52806,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vio28_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vio28_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VIO28_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VIO28_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54111,15 +52836,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vio28_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vio28_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VIO28_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VIO28_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54142,15 +52866,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vio28_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vio28_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VIO28_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VIO28_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54173,15 +52896,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vio28_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vio28_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO28_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VIO28_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VIO28_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54204,15 +52926,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vio28_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vio28_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO28_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VIO28_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VIO28_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54235,15 +52956,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vio28_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vio28_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO28_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VIO28_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VIO28_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54251,15 +52971,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vio28_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vio28_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO28_CON1),
 		(&val),
 		(PMIC_DA_VIO28_MODE_MASK),
 		(PMIC_DA_VIO28_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54282,15 +53001,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vio28_stbtd(
 unsigned int mt6358_upmu_get_da_vio28_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO28_CON1),
 		(&val),
 		(PMIC_DA_VIO28_STB_MASK),
 		(PMIC_DA_VIO28_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54298,15 +53016,14 @@ unsigned int mt6358_upmu_get_da_vio28_stb(
 unsigned int mt6358_upmu_get_da_vio28_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO28_CON1),
 		(&val),
 		(PMIC_DA_VIO28_EN_MASK),
 		(PMIC_DA_VIO28_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54329,15 +53046,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vio28_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vio28_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO28_CON2),
 		(&val),
 		(PMIC_RG_LDO_VIO28_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VIO28_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54345,15 +53061,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vio28_ocfb_en(
 unsigned int mt6358_upmu_get_da_vio28_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO28_CON2),
 		(&val),
 		(PMIC_DA_VIO28_OCFB_EN_MASK),
 		(PMIC_DA_VIO28_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54376,15 +53091,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vio28_dummy_load(
 unsigned int mt6358_upmu_get_da_vio28_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO28_CON3),
 		(&val),
 		(PMIC_DA_VIO28_DUMMY_LOAD_MASK),
 		(PMIC_DA_VIO28_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54407,15 +53121,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vio18_en(
 unsigned int mt6358_upmu_get_rg_ldo_vio18_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO18_CON0),
 		(&val),
 		(PMIC_RG_LDO_VIO18_EN_MASK),
 		(PMIC_RG_LDO_VIO18_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54453,15 +53166,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vio18_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vio18_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO18_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VIO18_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VIO18_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54484,15 +53196,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vio18_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vio18_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO18_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VIO18_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VIO18_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54515,15 +53226,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vio18_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vio18_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO18_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VIO18_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VIO18_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54546,15 +53256,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vio18_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vio18_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO18_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VIO18_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VIO18_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54577,15 +53286,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vio18_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vio18_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO18_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VIO18_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VIO18_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54608,15 +53316,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vio18_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vio18_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO18_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VIO18_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VIO18_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54639,15 +53346,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vio18_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vio18_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO18_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VIO18_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VIO18_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54655,15 +53361,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vio18_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vio18_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO18_CON1),
 		(&val),
 		(PMIC_DA_VIO18_MODE_MASK),
 		(PMIC_DA_VIO18_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54686,15 +53391,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vio18_stbtd(
 unsigned int mt6358_upmu_get_da_vio18_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO18_CON1),
 		(&val),
 		(PMIC_DA_VIO18_STB_MASK),
 		(PMIC_DA_VIO18_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54702,15 +53406,14 @@ unsigned int mt6358_upmu_get_da_vio18_stb(
 unsigned int mt6358_upmu_get_da_vio18_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO18_CON1),
 		(&val),
 		(PMIC_DA_VIO18_EN_MASK),
 		(PMIC_DA_VIO18_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54733,15 +53436,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vio18_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vio18_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO18_CON2),
 		(&val),
 		(PMIC_RG_LDO_VIO18_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VIO18_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54749,15 +53451,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vio18_ocfb_en(
 unsigned int mt6358_upmu_get_da_vio18_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO18_CON2),
 		(&val),
 		(PMIC_DA_VIO18_OCFB_EN_MASK),
 		(PMIC_DA_VIO18_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54780,15 +53481,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vio18_dummy_load(
 unsigned int mt6358_upmu_get_da_vio18_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIO18_CON3),
 		(&val),
 		(PMIC_DA_VIO18_DUMMY_LOAD_MASK),
 		(PMIC_DA_VIO18_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54811,15 +53511,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vdram2_en(
 unsigned int mt6358_upmu_get_rg_ldo_vdram2_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VDRAM2_CON0),
 		(&val),
 		(PMIC_RG_LDO_VDRAM2_EN_MASK),
 		(PMIC_RG_LDO_VDRAM2_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54857,15 +53556,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vdram2_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vdram2_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VDRAM2_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VDRAM2_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VDRAM2_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54888,15 +53586,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vdram2_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vdram2_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VDRAM2_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VDRAM2_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VDRAM2_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54919,15 +53616,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vdram2_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vdram2_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VDRAM2_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VDRAM2_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VDRAM2_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54950,15 +53646,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vdram2_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vdram2_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VDRAM2_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VDRAM2_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VDRAM2_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -54981,15 +53676,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vdram2_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vdram2_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VDRAM2_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VDRAM2_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VDRAM2_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55012,15 +53706,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vdram2_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vdram2_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VDRAM2_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VDRAM2_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VDRAM2_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55043,15 +53736,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vdram2_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vdram2_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VDRAM2_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VDRAM2_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VDRAM2_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55059,15 +53751,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vdram2_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vdram2_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VDRAM2_CON1),
 		(&val),
 		(PMIC_DA_VDRAM2_MODE_MASK),
 		(PMIC_DA_VDRAM2_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55090,15 +53781,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vdram2_stbtd(
 unsigned int mt6358_upmu_get_da_vdram2_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VDRAM2_CON1),
 		(&val),
 		(PMIC_DA_VDRAM2_STB_MASK),
 		(PMIC_DA_VDRAM2_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55106,15 +53796,14 @@ unsigned int mt6358_upmu_get_da_vdram2_stb(
 unsigned int mt6358_upmu_get_da_vdram2_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VDRAM2_CON1),
 		(&val),
 		(PMIC_DA_VDRAM2_EN_MASK),
 		(PMIC_DA_VDRAM2_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55137,15 +53826,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vdram2_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vdram2_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VDRAM2_CON2),
 		(&val),
 		(PMIC_RG_LDO_VDRAM2_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VDRAM2_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55153,15 +53841,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vdram2_ocfb_en(
 unsigned int mt6358_upmu_get_da_vdram2_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VDRAM2_CON2),
 		(&val),
 		(PMIC_DA_VDRAM2_OCFB_EN_MASK),
 		(PMIC_DA_VDRAM2_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55184,15 +53871,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vdram2_dummy_load(
 unsigned int mt6358_upmu_get_da_vdram2_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VDRAM2_CON3),
 		(&val),
 		(PMIC_DA_VDRAM2_DUMMY_LOAD_MASK),
 		(PMIC_DA_VDRAM2_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55215,15 +53901,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vemc_en(
 unsigned int mt6358_upmu_get_rg_ldo_vemc_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEMC_CON0),
 		(&val),
 		(PMIC_RG_LDO_VEMC_EN_MASK),
 		(PMIC_RG_LDO_VEMC_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55261,15 +53946,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vemc_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vemc_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEMC_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VEMC_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VEMC_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55292,15 +53976,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vemc_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vemc_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEMC_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VEMC_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VEMC_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55323,15 +54006,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vemc_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vemc_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEMC_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VEMC_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VEMC_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55354,15 +54036,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vemc_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vemc_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEMC_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VEMC_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VEMC_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55385,15 +54066,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vemc_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vemc_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEMC_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VEMC_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VEMC_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55416,15 +54096,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vemc_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vemc_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEMC_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VEMC_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VEMC_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55447,15 +54126,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vemc_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vemc_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEMC_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VEMC_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VEMC_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55463,15 +54141,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vemc_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vemc_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEMC_CON1),
 		(&val),
 		(PMIC_DA_VEMC_MODE_MASK),
 		(PMIC_DA_VEMC_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55494,15 +54171,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vemc_stbtd(
 unsigned int mt6358_upmu_get_da_vemc_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEMC_CON1),
 		(&val),
 		(PMIC_DA_VEMC_STB_MASK),
 		(PMIC_DA_VEMC_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55510,15 +54186,14 @@ unsigned int mt6358_upmu_get_da_vemc_stb(
 unsigned int mt6358_upmu_get_da_vemc_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEMC_CON1),
 		(&val),
 		(PMIC_DA_VEMC_EN_MASK),
 		(PMIC_DA_VEMC_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55541,15 +54216,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vemc_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vemc_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEMC_CON2),
 		(&val),
 		(PMIC_RG_LDO_VEMC_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VEMC_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55557,15 +54231,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vemc_ocfb_en(
 unsigned int mt6358_upmu_get_da_vemc_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEMC_CON2),
 		(&val),
 		(PMIC_DA_VEMC_OCFB_EN_MASK),
 		(PMIC_DA_VEMC_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55588,15 +54261,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vemc_dummy_load(
 unsigned int mt6358_upmu_get_da_vemc_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEMC_CON3),
 		(&val),
 		(PMIC_DA_VEMC_DUMMY_LOAD_MASK),
 		(PMIC_DA_VEMC_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55619,15 +54291,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vusb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vusb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VUSB_CON0_0),
 		(&val),
 		(PMIC_RG_LDO_VUSB_EN_0_MASK),
 		(PMIC_RG_LDO_VUSB_EN_0_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55665,15 +54336,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vusb_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vusb_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VUSB_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VUSB_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VUSB_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55696,15 +54366,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vusb_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vusb_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VUSB_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VUSB_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VUSB_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55727,15 +54396,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vusb_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vusb_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VUSB_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VUSB_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VUSB_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55758,15 +54426,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vusb_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vusb_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VUSB_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VUSB_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VUSB_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55789,15 +54456,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vusb_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vusb_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VUSB_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VUSB_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VUSB_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55820,15 +54486,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vusb_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vusb_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VUSB_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VUSB_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VUSB_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55851,15 +54516,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vusb_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vusb_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VUSB_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VUSB_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VUSB_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55867,15 +54531,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vusb_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vusb_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VUSB_CON1),
 		(&val),
 		(PMIC_DA_VUSB_MODE_MASK),
 		(PMIC_DA_VUSB_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55898,15 +54561,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vusb_stbtd(
 unsigned int mt6358_upmu_get_da_vusb_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VUSB_CON1),
 		(&val),
 		(PMIC_DA_VUSB_STB_MASK),
 		(PMIC_DA_VUSB_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55914,15 +54576,14 @@ unsigned int mt6358_upmu_get_da_vusb_stb(
 unsigned int mt6358_upmu_get_da_vusb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VUSB_CON1),
 		(&val),
 		(PMIC_DA_VUSB_EN_MASK),
 		(PMIC_DA_VUSB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55945,15 +54606,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vusb_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vusb_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VUSB_CON2),
 		(&val),
 		(PMIC_RG_LDO_VUSB_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VUSB_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55961,15 +54621,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vusb_ocfb_en(
 unsigned int mt6358_upmu_get_da_vusb_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VUSB_CON2),
 		(&val),
 		(PMIC_DA_VUSB_OCFB_EN_MASK),
 		(PMIC_DA_VUSB_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -55992,15 +54651,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vusb_dummy_load(
 unsigned int mt6358_upmu_get_da_vusb_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VUSB_CON3),
 		(&val),
 		(PMIC_DA_VUSB_DUMMY_LOAD_MASK),
 		(PMIC_DA_VUSB_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56023,15 +54681,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc11_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc11_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_CON0),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC11_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC11_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56069,15 +54726,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc11_vosel_sleep(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc11_vosel_sleep(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_CON2),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC11_VOSEL_SLEEP_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC11_VOSEL_SLEEP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56205,15 +54861,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc11_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc11_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC11_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC11_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56236,15 +54891,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc11_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc11_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC11_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC11_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56267,15 +54921,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc11_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc11_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC11_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC11_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56298,15 +54951,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc11_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc11_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC11_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC11_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56329,15 +54981,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc11_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc11_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC11_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC11_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56360,15 +55011,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc11_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc11_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC11_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC11_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56391,15 +55041,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc11_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc11_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC11_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC11_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56407,15 +55056,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vsram_proc11_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vsram_proc11_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_CON3),
 		(&val),
 		(PMIC_DA_VSRAM_PROC11_MODE_MASK),
 		(PMIC_DA_VSRAM_PROC11_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56453,15 +55101,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc11_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc11_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_CON4),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC11_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC11_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56469,15 +55116,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vsram_proc11_ocfb_en(
 unsigned int mt6358_upmu_get_da_vsram_proc11_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_CON4),
 		(&val),
 		(PMIC_DA_VSRAM_PROC11_OCFB_EN_MASK),
 		(PMIC_DA_VSRAM_PROC11_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56500,15 +55146,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc11_dummy_load(
 unsigned int mt6358_upmu_get_da_vsram_proc11_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_CON5),
 		(&val),
 		(PMIC_DA_VSRAM_PROC11_DUMMY_LOAD_MASK),
 		(PMIC_DA_VSRAM_PROC11_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56516,15 +55161,14 @@ unsigned int mt6358_upmu_get_da_vsram_proc11_dummy_load(
 unsigned int mt6358_upmu_get_da_vsram_proc11_vosel_gray(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_DBG0),
 		(&val),
 		(PMIC_DA_VSRAM_PROC11_VOSEL_GRAY_MASK),
 		(PMIC_DA_VSRAM_PROC11_VOSEL_GRAY_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56532,15 +55176,14 @@ unsigned int mt6358_upmu_get_da_vsram_proc11_vosel_gray(
 unsigned int mt6358_upmu_get_da_vsram_proc11_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_DBG0),
 		(&val),
 		(PMIC_DA_VSRAM_PROC11_VOSEL_MASK),
 		(PMIC_DA_VSRAM_PROC11_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56548,15 +55191,14 @@ unsigned int mt6358_upmu_get_da_vsram_proc11_vosel(
 unsigned int mt6358_upmu_get_da_vsram_proc11_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_DBG1),
 		(&val),
 		(PMIC_DA_VSRAM_PROC11_EN_MASK),
 		(PMIC_DA_VSRAM_PROC11_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56564,15 +55206,14 @@ unsigned int mt6358_upmu_get_da_vsram_proc11_en(
 unsigned int mt6358_upmu_get_da_vsram_proc11_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_DBG1),
 		(&val),
 		(PMIC_DA_VSRAM_PROC11_STB_MASK),
 		(PMIC_DA_VSRAM_PROC11_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56580,15 +55221,14 @@ unsigned int mt6358_upmu_get_da_vsram_proc11_stb(
 unsigned int mt6358_upmu_get_da_vsram_proc11_vsleep_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_DBG1),
 		(&val),
 		(PMIC_DA_VSRAM_PROC11_VSLEEP_SEL_MASK),
 		(PMIC_DA_VSRAM_PROC11_VSLEEP_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56596,15 +55236,14 @@ unsigned int mt6358_upmu_get_da_vsram_proc11_vsleep_sel(
 unsigned int mt6358_upmu_get_da_vsram_proc11_r2r_pdn(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_DBG1),
 		(&val),
 		(PMIC_DA_VSRAM_PROC11_R2R_PDN_MASK),
 		(PMIC_DA_VSRAM_PROC11_R2R_PDN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56612,15 +55251,14 @@ unsigned int mt6358_upmu_get_da_vsram_proc11_r2r_pdn(
 unsigned int mt6358_upmu_get_da_vsram_proc11_track_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_DBG1),
 		(&val),
 		(PMIC_DA_VSRAM_PROC11_TRACK_NDIS_EN_MASK),
 		(PMIC_DA_VSRAM_PROC11_TRACK_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56688,15 +55326,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc11_vosel_delta(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc11_vosel_delta(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_TRACKING_CON1),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC11_VOSEL_DELTA_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC11_VOSEL_DELTA_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56719,15 +55356,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc11_vosel_offset(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc11_vosel_offset(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_TRACKING_CON1),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC11_VOSEL_OFFSET_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC11_VOSEL_OFFSET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56750,15 +55386,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc11_vosel_on_lb(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc11_vosel_on_lb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_TRACKING_CON2),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC11_VOSEL_ON_LB_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC11_VOSEL_ON_LB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56781,15 +55416,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc11_vosel_on_hb(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc11_vosel_on_hb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_TRACKING_CON2),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC11_VOSEL_ON_HB_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC11_VOSEL_ON_HB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56812,15 +55446,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc11_vosel_sleep_lb(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc11_vosel_sleep_lb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC11_TRACKING_CON3),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC11_VOSEL_SLEEP_LB_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC11_VOSEL_SLEEP_LB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56888,15 +55521,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc12_vosel_delta(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc12_vosel_delta(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_TRACKING_CON1),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC12_VOSEL_DELTA_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC12_VOSEL_DELTA_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56919,15 +55551,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc12_vosel_offset(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc12_vosel_offset(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_TRACKING_CON1),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC12_VOSEL_OFFSET_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC12_VOSEL_OFFSET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56950,15 +55581,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc12_vosel_on_lb(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc12_vosel_on_lb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_TRACKING_CON2),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC12_VOSEL_ON_LB_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC12_VOSEL_ON_LB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -56981,15 +55611,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc12_vosel_on_hb(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc12_vosel_on_hb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_TRACKING_CON2),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC12_VOSEL_ON_HB_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC12_VOSEL_ON_HB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57012,15 +55641,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc12_vosel_sleep_lb(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc12_vosel_sleep_lb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_TRACKING_CON3),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC12_VOSEL_SLEEP_LB_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC12_VOSEL_SLEEP_LB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57055,14 +55683,13 @@ unsigned int mt6358_upmu_set_rg_vdram2_vosel(unsigned int val)
 
 unsigned int mt6358_upmu_get_rg_vdram2_vosel(void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		PMIC_RG_LDO_VDRAM2_VOSEL_1_ADDR,
 		&val,
 		PMIC_RG_LDO_VDRAM2_VOSEL_1_MASK,
-		PMIC_RG_LDO_VDRAM2_VOSEL_1_SHIFT);
+		PMIC_RG_LDO_VDRAM2_VOSEL_1_SHIFT));
 
 	return val;
 }
@@ -57084,15 +55711,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vdram2_vosel_1(
 unsigned int mt6358_upmu_get_rg_ldo_vdram2_vosel_1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		PMIC_RG_LDO_VDRAM2_VOSEL_1_ADDR,
 		(&val),
 		(PMIC_RG_LDO_VDRAM2_VOSEL_1_MASK),
 		(PMIC_RG_LDO_VDRAM2_VOSEL_1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57115,15 +55741,14 @@ unsigned int mt6358_upmu_set_rg_ldo_from_strup_en(
 unsigned int mt6358_upmu_get_rg_ldo_from_strup_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_STRUP_ELR0),
 		(&val),
 		(PMIC_RG_LDO_FROM_STRUP_EN_MASK),
 		(PMIC_RG_LDO_FROM_STRUP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57146,15 +55771,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc12_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc12_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_CON0),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC12_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC12_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57192,15 +55816,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc12_vosel_sleep(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc12_vosel_sleep(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_CON2),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC12_VOSEL_SLEEP_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC12_VOSEL_SLEEP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57328,15 +55951,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc12_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc12_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC12_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC12_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57359,15 +55981,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc12_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc12_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC12_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC12_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57390,15 +56011,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc12_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc12_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC12_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC12_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57421,15 +56041,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc12_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc12_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC12_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC12_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57452,15 +56071,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc12_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc12_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC12_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC12_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57483,15 +56101,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc12_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc12_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC12_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC12_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57514,15 +56131,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc12_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc12_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC12_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC12_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57530,15 +56146,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vsram_proc12_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vsram_proc12_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_CON3),
 		(&val),
 		(PMIC_DA_VSRAM_PROC12_MODE_MASK),
 		(PMIC_DA_VSRAM_PROC12_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57576,15 +56191,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc12_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc12_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_CON4),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC12_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC12_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57592,15 +56206,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vsram_proc12_ocfb_en(
 unsigned int mt6358_upmu_get_da_vsram_proc12_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_CON4),
 		(&val),
 		(PMIC_DA_VSRAM_PROC12_OCFB_EN_MASK),
 		(PMIC_DA_VSRAM_PROC12_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57623,15 +56236,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc12_dummy_load(
 unsigned int mt6358_upmu_get_da_vsram_proc12_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_CON5),
 		(&val),
 		(PMIC_DA_VSRAM_PROC12_DUMMY_LOAD_MASK),
 		(PMIC_DA_VSRAM_PROC12_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57639,15 +56251,14 @@ unsigned int mt6358_upmu_get_da_vsram_proc12_dummy_load(
 unsigned int mt6358_upmu_get_da_vsram_proc12_vosel_gray(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_DBG0),
 		(&val),
 		(PMIC_DA_VSRAM_PROC12_VOSEL_GRAY_MASK),
 		(PMIC_DA_VSRAM_PROC12_VOSEL_GRAY_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57655,15 +56266,14 @@ unsigned int mt6358_upmu_get_da_vsram_proc12_vosel_gray(
 unsigned int mt6358_upmu_get_da_vsram_proc12_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_DBG0),
 		(&val),
 		(PMIC_DA_VSRAM_PROC12_VOSEL_MASK),
 		(PMIC_DA_VSRAM_PROC12_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57671,15 +56281,14 @@ unsigned int mt6358_upmu_get_da_vsram_proc12_vosel(
 unsigned int mt6358_upmu_get_da_vsram_proc12_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_DBG1),
 		(&val),
 		(PMIC_DA_VSRAM_PROC12_EN_MASK),
 		(PMIC_DA_VSRAM_PROC12_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57687,15 +56296,14 @@ unsigned int mt6358_upmu_get_da_vsram_proc12_en(
 unsigned int mt6358_upmu_get_da_vsram_proc12_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_DBG1),
 		(&val),
 		(PMIC_DA_VSRAM_PROC12_STB_MASK),
 		(PMIC_DA_VSRAM_PROC12_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57703,15 +56311,14 @@ unsigned int mt6358_upmu_get_da_vsram_proc12_stb(
 unsigned int mt6358_upmu_get_da_vsram_proc12_vsleep_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_DBG1),
 		(&val),
 		(PMIC_DA_VSRAM_PROC12_VSLEEP_SEL_MASK),
 		(PMIC_DA_VSRAM_PROC12_VSLEEP_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57719,15 +56326,14 @@ unsigned int mt6358_upmu_get_da_vsram_proc12_vsleep_sel(
 unsigned int mt6358_upmu_get_da_vsram_proc12_r2r_pdn(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_DBG1),
 		(&val),
 		(PMIC_DA_VSRAM_PROC12_R2R_PDN_MASK),
 		(PMIC_DA_VSRAM_PROC12_R2R_PDN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57735,15 +56341,14 @@ unsigned int mt6358_upmu_get_da_vsram_proc12_r2r_pdn(
 unsigned int mt6358_upmu_get_da_vsram_proc12_track_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_PROC12_DBG1),
 		(&val),
 		(PMIC_DA_VSRAM_PROC12_TRACK_NDIS_EN_MASK),
 		(PMIC_DA_VSRAM_PROC12_TRACK_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57766,15 +56371,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_others_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_others_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_OTHERS_CON0),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_OTHERS_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_OTHERS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57812,15 +56416,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_others_vosel_sleep(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_others_vosel_sleep(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_OTHERS_CON2),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_OTHERS_VOSEL_SLEEP_MASK),
 		(PMIC_RG_LDO_VSRAM_OTHERS_VOSEL_SLEEP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57948,15 +56551,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_others_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_others_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_OTHERS_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_OTHERS_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_OTHERS_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -57979,15 +56581,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_others_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_others_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_OTHERS_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_OTHERS_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_OTHERS_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58010,15 +56611,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_others_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_others_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_OTHERS_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_OTHERS_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_OTHERS_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58041,15 +56641,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_others_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_others_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_OTHERS_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_OTHERS_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_OTHERS_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58072,15 +56671,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_others_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_others_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_OTHERS_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_OTHERS_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VSRAM_OTHERS_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58103,15 +56701,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_others_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_others_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_OTHERS_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_OTHERS_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VSRAM_OTHERS_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58134,15 +56731,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_others_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_others_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_OTHERS_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_OTHERS_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VSRAM_OTHERS_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58150,15 +56746,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vsram_others_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vsram_others_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_OTHERS_CON3),
 		(&val),
 		(PMIC_DA_VSRAM_OTHERS_MODE_MASK),
 		(PMIC_DA_VSRAM_OTHERS_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58196,15 +56791,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_others_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_others_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_OTHERS_CON4),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_OTHERS_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_OTHERS_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58212,15 +56806,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vsram_others_ocfb_en(
 unsigned int mt6358_upmu_get_da_vsram_others_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_OTHERS_CON4),
 		(&val),
 		(PMIC_DA_VSRAM_OTHERS_OCFB_EN_MASK),
 		(PMIC_DA_VSRAM_OTHERS_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58243,15 +56836,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_others_dummy_load(
 unsigned int mt6358_upmu_get_da_vsram_others_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_OTHERS_CON5),
 		(&val),
 		(PMIC_DA_VSRAM_OTHERS_DUMMY_LOAD_MASK),
 		(PMIC_DA_VSRAM_OTHERS_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58259,15 +56851,14 @@ unsigned int mt6358_upmu_get_da_vsram_others_dummy_load(
 unsigned int mt6358_upmu_get_da_vsram_others_vosel_gray(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_OTHERS_DBG0),
 		(&val),
 		(PMIC_DA_VSRAM_OTHERS_VOSEL_GRAY_MASK),
 		(PMIC_DA_VSRAM_OTHERS_VOSEL_GRAY_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58275,15 +56866,14 @@ unsigned int mt6358_upmu_get_da_vsram_others_vosel_gray(
 unsigned int mt6358_upmu_get_da_vsram_others_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_OTHERS_DBG0),
 		(&val),
 		(PMIC_DA_VSRAM_OTHERS_VOSEL_MASK),
 		(PMIC_DA_VSRAM_OTHERS_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58291,15 +56881,14 @@ unsigned int mt6358_upmu_get_da_vsram_others_vosel(
 unsigned int mt6358_upmu_get_da_vsram_others_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_OTHERS_DBG1),
 		(&val),
 		(PMIC_DA_VSRAM_OTHERS_EN_MASK),
 		(PMIC_DA_VSRAM_OTHERS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58307,15 +56896,14 @@ unsigned int mt6358_upmu_get_da_vsram_others_en(
 unsigned int mt6358_upmu_get_da_vsram_others_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_OTHERS_DBG1),
 		(&val),
 		(PMIC_DA_VSRAM_OTHERS_STB_MASK),
 		(PMIC_DA_VSRAM_OTHERS_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58323,15 +56911,14 @@ unsigned int mt6358_upmu_get_da_vsram_others_stb(
 unsigned int mt6358_upmu_get_da_vsram_others_vsleep_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_OTHERS_DBG1),
 		(&val),
 		(PMIC_DA_VSRAM_OTHERS_VSLEEP_SEL_MASK),
 		(PMIC_DA_VSRAM_OTHERS_VSLEEP_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58339,15 +56926,14 @@ unsigned int mt6358_upmu_get_da_vsram_others_vsleep_sel(
 unsigned int mt6358_upmu_get_da_vsram_others_r2r_pdn(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_OTHERS_DBG1),
 		(&val),
 		(PMIC_DA_VSRAM_OTHERS_R2R_PDN_MASK),
 		(PMIC_DA_VSRAM_OTHERS_R2R_PDN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58355,15 +56941,14 @@ unsigned int mt6358_upmu_get_da_vsram_others_r2r_pdn(
 unsigned int mt6358_upmu_get_da_vsram_others_track_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_OTHERS_DBG1),
 		(&val),
 		(PMIC_DA_VSRAM_OTHERS_TRACK_NDIS_EN_MASK),
 		(PMIC_DA_VSRAM_OTHERS_TRACK_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58386,15 +56971,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_others_sshub_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_others_sshub_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_OTHERS_SSHUB_CON0),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_OTHERS_SSHUB_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_OTHERS_SSHUB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58417,15 +57001,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_others_sshub_sleep_vosel_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_others_sshub_sleep_vosel_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_OTHERS_SSHUB_CON0),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_OTHERS_SSHUB_SLEEP_VOSEL_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_OTHERS_SSHUB_SLEEP_VOSEL_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58448,15 +57031,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_others_sshub_vosel(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_others_sshub_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_OTHERS_SSHUB_CON1),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_OTHERS_SSHUB_VOSEL_MASK),
 		(PMIC_RG_LDO_VSRAM_OTHERS_SSHUB_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58479,15 +57061,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_others_sshub_vosel_sleep(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_others_sshub_vosel_sleep(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_OTHERS_SSHUB_CON1),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_OTHERS_SSHUB_VOSEL_SLEEP_MASK),
 		(PMIC_RG_LDO_VSRAM_OTHERS_SSHUB_VOSEL_SLEEP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58510,15 +57091,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_gpu_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_gpu_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_GPU_CON0),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_GPU_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_GPU_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58556,15 +57136,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_gpu_vosel_sleep(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_gpu_vosel_sleep(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_GPU_CON2),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_GPU_VOSEL_SLEEP_MASK),
 		(PMIC_RG_LDO_VSRAM_GPU_VOSEL_SLEEP_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58692,15 +57271,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_gpu_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_gpu_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_GPU_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_GPU_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_GPU_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58723,15 +57301,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_gpu_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_gpu_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_GPU_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_GPU_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_GPU_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58754,15 +57331,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_gpu_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_gpu_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_GPU_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_GPU_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_GPU_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58785,15 +57361,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_gpu_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_gpu_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_GPU_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_GPU_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_GPU_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58816,15 +57391,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_gpu_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_gpu_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_GPU_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_GPU_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VSRAM_GPU_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58847,15 +57421,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_gpu_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_gpu_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_GPU_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_GPU_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VSRAM_GPU_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58878,15 +57451,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_gpu_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_gpu_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_GPU_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_GPU_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VSRAM_GPU_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58894,15 +57466,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vsram_gpu_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vsram_gpu_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_GPU_CON3),
 		(&val),
 		(PMIC_DA_VSRAM_GPU_MODE_MASK),
 		(PMIC_DA_VSRAM_GPU_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58940,15 +57511,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_gpu_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_gpu_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_GPU_CON4),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_GPU_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VSRAM_GPU_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58956,15 +57526,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vsram_gpu_ocfb_en(
 unsigned int mt6358_upmu_get_da_vsram_gpu_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_GPU_CON4),
 		(&val),
 		(PMIC_DA_VSRAM_GPU_OCFB_EN_MASK),
 		(PMIC_DA_VSRAM_GPU_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -58987,15 +57556,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_gpu_dummy_load(
 unsigned int mt6358_upmu_get_da_vsram_gpu_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_GPU_CON5),
 		(&val),
 		(PMIC_DA_VSRAM_GPU_DUMMY_LOAD_MASK),
 		(PMIC_DA_VSRAM_GPU_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59003,15 +57571,14 @@ unsigned int mt6358_upmu_get_da_vsram_gpu_dummy_load(
 unsigned int mt6358_upmu_get_da_vsram_gpu_vosel_gray(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_GPU_DBG0),
 		(&val),
 		(PMIC_DA_VSRAM_GPU_VOSEL_GRAY_MASK),
 		(PMIC_DA_VSRAM_GPU_VOSEL_GRAY_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59019,15 +57586,14 @@ unsigned int mt6358_upmu_get_da_vsram_gpu_vosel_gray(
 unsigned int mt6358_upmu_get_da_vsram_gpu_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_GPU_DBG0),
 		(&val),
 		(PMIC_DA_VSRAM_GPU_VOSEL_MASK),
 		(PMIC_DA_VSRAM_GPU_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59035,15 +57601,14 @@ unsigned int mt6358_upmu_get_da_vsram_gpu_vosel(
 unsigned int mt6358_upmu_get_da_vsram_gpu_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_GPU_DBG1),
 		(&val),
 		(PMIC_DA_VSRAM_GPU_EN_MASK),
 		(PMIC_DA_VSRAM_GPU_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59051,15 +57616,14 @@ unsigned int mt6358_upmu_get_da_vsram_gpu_en(
 unsigned int mt6358_upmu_get_da_vsram_gpu_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_GPU_DBG1),
 		(&val),
 		(PMIC_DA_VSRAM_GPU_STB_MASK),
 		(PMIC_DA_VSRAM_GPU_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59067,15 +57631,14 @@ unsigned int mt6358_upmu_get_da_vsram_gpu_stb(
 unsigned int mt6358_upmu_get_da_vsram_gpu_vsleep_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_GPU_DBG1),
 		(&val),
 		(PMIC_DA_VSRAM_GPU_VSLEEP_SEL_MASK),
 		(PMIC_DA_VSRAM_GPU_VSLEEP_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59083,15 +57646,14 @@ unsigned int mt6358_upmu_get_da_vsram_gpu_vsleep_sel(
 unsigned int mt6358_upmu_get_da_vsram_gpu_r2r_pdn(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_GPU_DBG1),
 		(&val),
 		(PMIC_DA_VSRAM_GPU_R2R_PDN_MASK),
 		(PMIC_DA_VSRAM_GPU_R2R_PDN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59099,15 +57661,14 @@ unsigned int mt6358_upmu_get_da_vsram_gpu_r2r_pdn(
 unsigned int mt6358_upmu_get_da_vsram_gpu_track_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_GPU_DBG1),
 		(&val),
 		(PMIC_DA_VSRAM_GPU_TRACK_NDIS_EN_MASK),
 		(PMIC_DA_VSRAM_GPU_TRACK_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59175,15 +57736,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_gpu_r2r_pdn_dis(
 unsigned int mt6358_upmu_get_ldo_vsram_proc11_wdtdbg_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_WDT_DBG0),
 		(&val),
 		(PMIC_LDO_VSRAM_PROC11_WDTDBG_VOSEL_MASK),
 		(PMIC_LDO_VSRAM_PROC11_WDTDBG_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59191,15 +57751,14 @@ unsigned int mt6358_upmu_get_ldo_vsram_proc11_wdtdbg_vosel(
 unsigned int mt6358_upmu_get_ldo_vsram_proc12_wdtdbg_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_WDT_DBG0),
 		(&val),
 		(PMIC_LDO_VSRAM_PROC12_WDTDBG_VOSEL_MASK),
 		(PMIC_LDO_VSRAM_PROC12_WDTDBG_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59207,15 +57766,14 @@ unsigned int mt6358_upmu_get_ldo_vsram_proc12_wdtdbg_vosel(
 unsigned int mt6358_upmu_get_ldo_vsram_others_wdtdbg_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_WDT_DBG1),
 		(&val),
 		(PMIC_LDO_VSRAM_OTHERS_WDTDBG_VOSEL_MASK),
 		(PMIC_LDO_VSRAM_OTHERS_WDTDBG_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59223,15 +57781,14 @@ unsigned int mt6358_upmu_get_ldo_vsram_others_wdtdbg_vosel(
 unsigned int mt6358_upmu_get_ldo_vsram_gpu_wdtdbg_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_WDT_DBG1),
 		(&val),
 		(PMIC_LDO_VSRAM_GPU_WDTDBG_VOSEL_MASK),
 		(PMIC_LDO_VSRAM_GPU_WDTDBG_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59254,15 +57811,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc11_vosel(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc11_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_CON0),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC11_VOSEL_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC11_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59285,15 +57841,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc12_vosel(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc12_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_CON1),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC12_VOSEL_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC12_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59316,15 +57871,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_others_vosel(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_others_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_CON2),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_OTHERS_VOSEL_MASK),
 		(PMIC_RG_LDO_VSRAM_OTHERS_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59347,15 +57901,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_gpu_vosel(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_gpu_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_CON3),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_GPU_VOSEL_MASK),
 		(PMIC_RG_LDO_VSRAM_GPU_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59378,15 +57931,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc11_vosel_limit_sel(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc11_vosel_limit_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_CON4),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC11_VOSEL_LIMIT_SEL_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC11_VOSEL_LIMIT_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59409,15 +57961,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_proc12_vosel_limit_sel(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_proc12_vosel_limit_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_CON4),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_PROC12_VOSEL_LIMIT_SEL_MASK),
 		(PMIC_RG_LDO_VSRAM_PROC12_VOSEL_LIMIT_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59440,15 +57991,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_others_vosel_limit_sel(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_others_vosel_limit_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_CON4),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_OTHERS_VOSEL_LIMIT_SEL_MASK),
 		(PMIC_RG_LDO_VSRAM_OTHERS_VOSEL_LIMIT_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59471,15 +58021,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsram_gpu_vosel_limit_sel(
 unsigned int mt6358_upmu_get_rg_ldo_vsram_gpu_vosel_limit_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSRAM_CON4),
 		(&val),
 		(PMIC_RG_LDO_VSRAM_GPU_VOSEL_LIMIT_SEL_MASK),
 		(PMIC_RG_LDO_VSRAM_GPU_VOSEL_LIMIT_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59502,15 +58051,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vfe28_en(
 unsigned int mt6358_upmu_get_rg_ldo_vfe28_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VFE28_CON0),
 		(&val),
 		(PMIC_RG_LDO_VFE28_EN_MASK),
 		(PMIC_RG_LDO_VFE28_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59548,15 +58096,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vfe28_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vfe28_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VFE28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VFE28_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VFE28_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59579,15 +58126,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vfe28_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vfe28_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VFE28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VFE28_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VFE28_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59610,15 +58156,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vfe28_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vfe28_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VFE28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VFE28_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VFE28_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59641,15 +58186,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vfe28_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vfe28_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VFE28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VFE28_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VFE28_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59672,15 +58216,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vfe28_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vfe28_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VFE28_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VFE28_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VFE28_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59703,15 +58246,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vfe28_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vfe28_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VFE28_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VFE28_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VFE28_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59734,15 +58276,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vfe28_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vfe28_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VFE28_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VFE28_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VFE28_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59780,15 +58321,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vfe28_lp_op(
 unsigned int mt6358_upmu_get_da_vfe28_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VFE28_CON1),
 		(&val),
 		(PMIC_DA_VFE28_MODE_MASK),
 		(PMIC_DA_VFE28_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59811,15 +58351,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vfe28_stbtd(
 unsigned int mt6358_upmu_get_da_vfe28_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VFE28_CON1),
 		(&val),
 		(PMIC_DA_VFE28_STB_MASK),
 		(PMIC_DA_VFE28_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59827,15 +58366,14 @@ unsigned int mt6358_upmu_get_da_vfe28_stb(
 unsigned int mt6358_upmu_get_da_vfe28_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VFE28_CON1),
 		(&val),
 		(PMIC_DA_VFE28_EN_MASK),
 		(PMIC_DA_VFE28_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59858,15 +58396,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vfe28_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vfe28_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VFE28_CON2),
 		(&val),
 		(PMIC_RG_LDO_VFE28_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VFE28_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59874,15 +58411,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vfe28_ocfb_en(
 unsigned int mt6358_upmu_get_da_vfe28_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VFE28_CON2),
 		(&val),
 		(PMIC_DA_VFE28_OCFB_EN_MASK),
 		(PMIC_DA_VFE28_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59905,15 +58441,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vfe28_dummy_load(
 unsigned int mt6358_upmu_get_da_vfe28_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VFE28_CON3),
 		(&val),
 		(PMIC_DA_VFE28_DUMMY_LOAD_MASK),
 		(PMIC_DA_VFE28_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59936,15 +58471,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vrf18_en(
 unsigned int mt6358_upmu_get_rg_ldo_vrf18_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF18_CON0),
 		(&val),
 		(PMIC_RG_LDO_VRF18_EN_MASK),
 		(PMIC_RG_LDO_VRF18_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -59982,15 +58516,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vrf18_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vrf18_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF18_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VRF18_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VRF18_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60013,15 +58546,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vrf18_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vrf18_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF18_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VRF18_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VRF18_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60044,15 +58576,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vrf18_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vrf18_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF18_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VRF18_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VRF18_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60075,15 +58606,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vrf18_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vrf18_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF18_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VRF18_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VRF18_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60106,15 +58636,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vrf18_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vrf18_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF18_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VRF18_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VRF18_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60137,15 +58666,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vrf18_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vrf18_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF18_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VRF18_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VRF18_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60168,15 +58696,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vrf18_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vrf18_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF18_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VRF18_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VRF18_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60184,15 +58711,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vrf18_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vrf18_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF18_CON1),
 		(&val),
 		(PMIC_DA_VRF18_MODE_MASK),
 		(PMIC_DA_VRF18_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60215,15 +58741,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vrf18_stbtd(
 unsigned int mt6358_upmu_get_da_vrf18_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF18_CON1),
 		(&val),
 		(PMIC_DA_VRF18_STB_MASK),
 		(PMIC_DA_VRF18_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60231,15 +58756,14 @@ unsigned int mt6358_upmu_get_da_vrf18_stb(
 unsigned int mt6358_upmu_get_da_vrf18_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF18_CON1),
 		(&val),
 		(PMIC_DA_VRF18_EN_MASK),
 		(PMIC_DA_VRF18_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60262,15 +58786,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vrf18_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vrf18_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF18_CON2),
 		(&val),
 		(PMIC_RG_LDO_VRF18_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VRF18_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60278,15 +58801,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vrf18_ocfb_en(
 unsigned int mt6358_upmu_get_da_vrf18_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF18_CON2),
 		(&val),
 		(PMIC_DA_VRF18_OCFB_EN_MASK),
 		(PMIC_DA_VRF18_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60309,15 +58831,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vrf18_dummy_load(
 unsigned int mt6358_upmu_get_da_vrf18_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF18_CON3),
 		(&val),
 		(PMIC_DA_VRF18_DUMMY_LOAD_MASK),
 		(PMIC_DA_VRF18_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60340,15 +58861,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vrf12_en(
 unsigned int mt6358_upmu_get_rg_ldo_vrf12_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF12_CON0),
 		(&val),
 		(PMIC_RG_LDO_VRF12_EN_MASK),
 		(PMIC_RG_LDO_VRF12_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60386,15 +58906,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vrf12_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vrf12_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF12_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VRF12_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VRF12_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60417,15 +58936,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vrf12_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vrf12_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF12_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VRF12_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VRF12_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60448,15 +58966,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vrf12_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vrf12_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF12_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VRF12_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VRF12_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60479,15 +58996,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vrf12_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vrf12_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF12_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VRF12_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VRF12_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60510,15 +59026,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vrf12_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vrf12_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF12_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VRF12_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VRF12_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60541,15 +59056,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vrf12_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vrf12_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF12_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VRF12_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VRF12_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60572,15 +59086,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vrf12_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vrf12_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF12_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VRF12_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VRF12_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60588,15 +59101,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vrf12_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vrf12_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF12_CON1),
 		(&val),
 		(PMIC_DA_VRF12_MODE_MASK),
 		(PMIC_DA_VRF12_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60619,15 +59131,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vrf12_stbtd(
 unsigned int mt6358_upmu_get_da_vrf12_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF12_CON1),
 		(&val),
 		(PMIC_DA_VRF12_STB_MASK),
 		(PMIC_DA_VRF12_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60635,15 +59146,14 @@ unsigned int mt6358_upmu_get_da_vrf12_stb(
 unsigned int mt6358_upmu_get_da_vrf12_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF12_CON1),
 		(&val),
 		(PMIC_DA_VRF12_EN_MASK),
 		(PMIC_DA_VRF12_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60666,15 +59176,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vrf12_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vrf12_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF12_CON2),
 		(&val),
 		(PMIC_RG_LDO_VRF12_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VRF12_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60682,15 +59191,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vrf12_ocfb_en(
 unsigned int mt6358_upmu_get_da_vrf12_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF12_CON2),
 		(&val),
 		(PMIC_DA_VRF12_OCFB_EN_MASK),
 		(PMIC_DA_VRF12_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60713,15 +59221,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vrf12_dummy_load(
 unsigned int mt6358_upmu_get_da_vrf12_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VRF12_CON3),
 		(&val),
 		(PMIC_DA_VRF12_DUMMY_LOAD_MASK),
 		(PMIC_DA_VRF12_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60744,15 +59251,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vefuse_en(
 unsigned int mt6358_upmu_get_rg_ldo_vefuse_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEFUSE_CON0),
 		(&val),
 		(PMIC_RG_LDO_VEFUSE_EN_MASK),
 		(PMIC_RG_LDO_VEFUSE_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60790,15 +59296,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vefuse_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vefuse_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEFUSE_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VEFUSE_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VEFUSE_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60821,15 +59326,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vefuse_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vefuse_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEFUSE_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VEFUSE_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VEFUSE_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60852,15 +59356,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vefuse_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vefuse_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEFUSE_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VEFUSE_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VEFUSE_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60883,15 +59386,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vefuse_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vefuse_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEFUSE_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VEFUSE_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VEFUSE_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60914,15 +59416,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vefuse_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vefuse_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEFUSE_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VEFUSE_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VEFUSE_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60945,15 +59446,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vefuse_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vefuse_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEFUSE_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VEFUSE_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VEFUSE_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60976,15 +59476,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vefuse_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vefuse_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEFUSE_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VEFUSE_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VEFUSE_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -60992,15 +59491,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vefuse_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vefuse_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEFUSE_CON1),
 		(&val),
 		(PMIC_DA_VEFUSE_MODE_MASK),
 		(PMIC_DA_VEFUSE_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61023,15 +59521,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vefuse_stbtd(
 unsigned int mt6358_upmu_get_da_vefuse_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEFUSE_CON1),
 		(&val),
 		(PMIC_DA_VEFUSE_STB_MASK),
 		(PMIC_DA_VEFUSE_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61039,15 +59536,14 @@ unsigned int mt6358_upmu_get_da_vefuse_stb(
 unsigned int mt6358_upmu_get_da_vefuse_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEFUSE_CON1),
 		(&val),
 		(PMIC_DA_VEFUSE_EN_MASK),
 		(PMIC_DA_VEFUSE_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61070,15 +59566,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vefuse_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vefuse_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEFUSE_CON2),
 		(&val),
 		(PMIC_RG_LDO_VEFUSE_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VEFUSE_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61086,15 +59581,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vefuse_ocfb_en(
 unsigned int mt6358_upmu_get_da_vefuse_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEFUSE_CON2),
 		(&val),
 		(PMIC_DA_VEFUSE_OCFB_EN_MASK),
 		(PMIC_DA_VEFUSE_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61117,15 +59611,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vefuse_dummy_load(
 unsigned int mt6358_upmu_get_da_vefuse_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VEFUSE_CON3),
 		(&val),
 		(PMIC_DA_VEFUSE_DUMMY_LOAD_MASK),
 		(PMIC_DA_VEFUSE_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61148,15 +59641,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn18_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcn18_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN18_CON0),
 		(&val),
 		(PMIC_RG_LDO_VCN18_EN_MASK),
 		(PMIC_RG_LDO_VCN18_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61194,15 +59686,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn18_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcn18_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN18_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCN18_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VCN18_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61225,15 +59716,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn18_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcn18_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN18_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCN18_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VCN18_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61256,15 +59746,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn18_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcn18_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN18_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCN18_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VCN18_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61287,15 +59776,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn18_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcn18_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN18_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCN18_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VCN18_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61318,15 +59806,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn18_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vcn18_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN18_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VCN18_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VCN18_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61349,15 +59836,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn18_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vcn18_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN18_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VCN18_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VCN18_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61380,15 +59866,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn18_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vcn18_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN18_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VCN18_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VCN18_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61396,15 +59881,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vcn18_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vcn18_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN18_CON1),
 		(&val),
 		(PMIC_DA_VCN18_MODE_MASK),
 		(PMIC_DA_VCN18_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61427,15 +59911,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn18_stbtd(
 unsigned int mt6358_upmu_get_da_vcn18_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN18_CON1),
 		(&val),
 		(PMIC_DA_VCN18_STB_MASK),
 		(PMIC_DA_VCN18_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61443,15 +59926,14 @@ unsigned int mt6358_upmu_get_da_vcn18_stb(
 unsigned int mt6358_upmu_get_da_vcn18_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN18_CON1),
 		(&val),
 		(PMIC_DA_VCN18_EN_MASK),
 		(PMIC_DA_VCN18_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61474,15 +59956,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn18_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcn18_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN18_CON2),
 		(&val),
 		(PMIC_RG_LDO_VCN18_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VCN18_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61490,15 +59971,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vcn18_ocfb_en(
 unsigned int mt6358_upmu_get_da_vcn18_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN18_CON2),
 		(&val),
 		(PMIC_DA_VCN18_OCFB_EN_MASK),
 		(PMIC_DA_VCN18_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61521,15 +60001,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn18_dummy_load(
 unsigned int mt6358_upmu_get_da_vcn18_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN18_CON3),
 		(&val),
 		(PMIC_DA_VCN18_DUMMY_LOAD_MASK),
 		(PMIC_DA_VCN18_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61552,15 +60031,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcama1_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcama1_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA1_CON0),
 		(&val),
 		(PMIC_RG_LDO_VCAMA1_EN_MASK),
 		(PMIC_RG_LDO_VCAMA1_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61598,15 +60076,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcama1_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcama1_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA1_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCAMA1_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VCAMA1_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61629,15 +60106,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcama1_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcama1_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA1_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCAMA1_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VCAMA1_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61660,15 +60136,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcama1_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcama1_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA1_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCAMA1_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VCAMA1_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61691,15 +60166,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcama1_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcama1_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA1_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCAMA1_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VCAMA1_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61722,15 +60196,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcama1_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vcama1_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA1_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VCAMA1_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VCAMA1_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61753,15 +60226,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcama1_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vcama1_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA1_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VCAMA1_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VCAMA1_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61784,15 +60256,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcama1_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vcama1_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA1_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VCAMA1_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VCAMA1_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61800,15 +60271,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vcama1_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vcama1_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA1_CON1),
 		(&val),
 		(PMIC_DA_VCAMA1_MODE_MASK),
 		(PMIC_DA_VCAMA1_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61831,15 +60301,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcama1_stbtd(
 unsigned int mt6358_upmu_get_da_vcama1_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA1_CON1),
 		(&val),
 		(PMIC_DA_VCAMA1_STB_MASK),
 		(PMIC_DA_VCAMA1_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61847,15 +60316,14 @@ unsigned int mt6358_upmu_get_da_vcama1_stb(
 unsigned int mt6358_upmu_get_da_vcama1_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA1_CON1),
 		(&val),
 		(PMIC_DA_VCAMA1_EN_MASK),
 		(PMIC_DA_VCAMA1_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61878,15 +60346,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcama1_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcama1_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA1_CON2),
 		(&val),
 		(PMIC_RG_LDO_VCAMA1_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VCAMA1_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61894,15 +60361,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vcama1_ocfb_en(
 unsigned int mt6358_upmu_get_da_vcama1_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA1_CON2),
 		(&val),
 		(PMIC_DA_VCAMA1_OCFB_EN_MASK),
 		(PMIC_DA_VCAMA1_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61925,15 +60391,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcama1_dummy_load(
 unsigned int mt6358_upmu_get_da_vcama1_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA1_CON3),
 		(&val),
 		(PMIC_DA_VCAMA1_DUMMY_LOAD_MASK),
 		(PMIC_DA_VCAMA1_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -61956,15 +60421,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcama2_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcama2_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA2_CON0),
 		(&val),
 		(PMIC_RG_LDO_VCAMA2_EN_MASK),
 		(PMIC_RG_LDO_VCAMA2_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62002,15 +60466,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcama2_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcama2_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA2_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCAMA2_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VCAMA2_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62033,15 +60496,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcama2_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcama2_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA2_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCAMA2_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VCAMA2_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62064,15 +60526,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcama2_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcama2_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA2_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCAMA2_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VCAMA2_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62095,15 +60556,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcama2_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcama2_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA2_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCAMA2_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VCAMA2_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62126,15 +60586,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcama2_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vcama2_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA2_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VCAMA2_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VCAMA2_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62157,15 +60616,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcama2_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vcama2_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA2_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VCAMA2_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VCAMA2_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62188,15 +60646,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcama2_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vcama2_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA2_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VCAMA2_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VCAMA2_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62204,15 +60661,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vcama2_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vcama2_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA2_CON1),
 		(&val),
 		(PMIC_DA_VCAMA2_MODE_MASK),
 		(PMIC_DA_VCAMA2_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62235,15 +60691,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcama2_stbtd(
 unsigned int mt6358_upmu_get_da_vcama2_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA2_CON1),
 		(&val),
 		(PMIC_DA_VCAMA2_STB_MASK),
 		(PMIC_DA_VCAMA2_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62251,15 +60706,14 @@ unsigned int mt6358_upmu_get_da_vcama2_stb(
 unsigned int mt6358_upmu_get_da_vcama2_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA2_CON1),
 		(&val),
 		(PMIC_DA_VCAMA2_EN_MASK),
 		(PMIC_DA_VCAMA2_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62282,15 +60736,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcama2_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcama2_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA2_CON2),
 		(&val),
 		(PMIC_RG_LDO_VCAMA2_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VCAMA2_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62298,15 +60751,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vcama2_ocfb_en(
 unsigned int mt6358_upmu_get_da_vcama2_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA2_CON2),
 		(&val),
 		(PMIC_DA_VCAMA2_OCFB_EN_MASK),
 		(PMIC_DA_VCAMA2_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62329,15 +60781,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcama2_dummy_load(
 unsigned int mt6358_upmu_get_da_vcama2_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMA2_CON3),
 		(&val),
 		(PMIC_DA_VCAMA2_DUMMY_LOAD_MASK),
 		(PMIC_DA_VCAMA2_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62360,15 +60811,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcamd_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcamd_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMD_CON0),
 		(&val),
 		(PMIC_RG_LDO_VCAMD_EN_MASK),
 		(PMIC_RG_LDO_VCAMD_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62406,15 +60856,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcamd_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcamd_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMD_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCAMD_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VCAMD_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62437,15 +60886,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcamd_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcamd_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMD_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCAMD_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VCAMD_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62468,15 +60916,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcamd_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcamd_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMD_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCAMD_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VCAMD_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62499,15 +60946,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcamd_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcamd_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMD_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCAMD_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VCAMD_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62530,15 +60976,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcamd_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vcamd_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMD_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VCAMD_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VCAMD_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62561,15 +61006,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcamd_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vcamd_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMD_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VCAMD_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VCAMD_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62592,15 +61036,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcamd_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vcamd_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMD_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VCAMD_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VCAMD_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62608,15 +61051,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vcamd_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vcamd_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMD_CON1),
 		(&val),
 		(PMIC_DA_VCAMD_MODE_MASK),
 		(PMIC_DA_VCAMD_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62639,15 +61081,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcamd_stbtd(
 unsigned int mt6358_upmu_get_da_vcamd_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMD_CON1),
 		(&val),
 		(PMIC_DA_VCAMD_STB_MASK),
 		(PMIC_DA_VCAMD_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62655,15 +61096,14 @@ unsigned int mt6358_upmu_get_da_vcamd_stb(
 unsigned int mt6358_upmu_get_da_vcamd_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMD_CON1),
 		(&val),
 		(PMIC_DA_VCAMD_EN_MASK),
 		(PMIC_DA_VCAMD_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62686,15 +61126,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcamd_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcamd_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMD_CON2),
 		(&val),
 		(PMIC_RG_LDO_VCAMD_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VCAMD_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62702,15 +61141,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vcamd_ocfb_en(
 unsigned int mt6358_upmu_get_da_vcamd_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMD_CON2),
 		(&val),
 		(PMIC_DA_VCAMD_OCFB_EN_MASK),
 		(PMIC_DA_VCAMD_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62733,15 +61171,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcamd_dummy_load(
 unsigned int mt6358_upmu_get_da_vcamd_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMD_CON3),
 		(&val),
 		(PMIC_DA_VCAMD_DUMMY_LOAD_MASK),
 		(PMIC_DA_VCAMD_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62764,15 +61201,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcamio_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcamio_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMIO_CON0),
 		(&val),
 		(PMIC_RG_LDO_VCAMIO_EN_MASK),
 		(PMIC_RG_LDO_VCAMIO_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62810,15 +61246,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcamio_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcamio_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMIO_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCAMIO_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VCAMIO_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62841,15 +61276,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcamio_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcamio_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMIO_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCAMIO_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VCAMIO_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62872,15 +61306,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcamio_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcamio_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMIO_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCAMIO_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VCAMIO_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62903,15 +61336,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcamio_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcamio_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMIO_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCAMIO_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VCAMIO_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62934,15 +61366,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcamio_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vcamio_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMIO_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VCAMIO_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VCAMIO_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62965,15 +61396,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcamio_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vcamio_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMIO_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VCAMIO_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VCAMIO_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -62996,15 +61426,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcamio_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vcamio_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMIO_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VCAMIO_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VCAMIO_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63012,15 +61441,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vcamio_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vcamio_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMIO_CON1),
 		(&val),
 		(PMIC_DA_VCAMIO_MODE_MASK),
 		(PMIC_DA_VCAMIO_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63043,15 +61471,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcamio_stbtd(
 unsigned int mt6358_upmu_get_da_vcamio_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMIO_CON1),
 		(&val),
 		(PMIC_DA_VCAMIO_STB_MASK),
 		(PMIC_DA_VCAMIO_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63059,15 +61486,14 @@ unsigned int mt6358_upmu_get_da_vcamio_stb(
 unsigned int mt6358_upmu_get_da_vcamio_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMIO_CON1),
 		(&val),
 		(PMIC_DA_VCAMIO_EN_MASK),
 		(PMIC_DA_VCAMIO_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63090,15 +61516,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcamio_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcamio_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMIO_CON2),
 		(&val),
 		(PMIC_RG_LDO_VCAMIO_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VCAMIO_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63106,15 +61531,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vcamio_ocfb_en(
 unsigned int mt6358_upmu_get_da_vcamio_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMIO_CON2),
 		(&val),
 		(PMIC_DA_VCAMIO_OCFB_EN_MASK),
 		(PMIC_DA_VCAMIO_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63137,15 +61561,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcamio_dummy_load(
 unsigned int mt6358_upmu_get_da_vcamio_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCAMIO_CON3),
 		(&val),
 		(PMIC_DA_VCAMIO_DUMMY_LOAD_MASK),
 		(PMIC_DA_VCAMIO_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63168,15 +61591,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vmc_en(
 unsigned int mt6358_upmu_get_rg_ldo_vmc_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMC_CON0),
 		(&val),
 		(PMIC_RG_LDO_VMC_EN_MASK),
 		(PMIC_RG_LDO_VMC_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63214,15 +61636,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vmc_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vmc_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMC_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VMC_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VMC_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63245,15 +61666,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vmc_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vmc_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMC_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VMC_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VMC_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63276,15 +61696,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vmc_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vmc_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMC_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VMC_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VMC_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63307,15 +61726,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vmc_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vmc_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMC_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VMC_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VMC_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63338,15 +61756,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vmc_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vmc_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMC_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VMC_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VMC_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63369,15 +61786,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vmc_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vmc_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMC_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VMC_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VMC_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63400,15 +61816,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vmc_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vmc_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMC_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VMC_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VMC_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63416,15 +61831,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vmc_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vmc_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMC_CON1),
 		(&val),
 		(PMIC_DA_VMC_MODE_MASK),
 		(PMIC_DA_VMC_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63447,15 +61861,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vmc_stbtd(
 unsigned int mt6358_upmu_get_da_vmc_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMC_CON1),
 		(&val),
 		(PMIC_DA_VMC_STB_MASK),
 		(PMIC_DA_VMC_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63463,15 +61876,14 @@ unsigned int mt6358_upmu_get_da_vmc_stb(
 unsigned int mt6358_upmu_get_da_vmc_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMC_CON1),
 		(&val),
 		(PMIC_DA_VMC_EN_MASK),
 		(PMIC_DA_VMC_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63494,15 +61906,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vmc_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vmc_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMC_CON2),
 		(&val),
 		(PMIC_RG_LDO_VMC_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VMC_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63510,15 +61921,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vmc_ocfb_en(
 unsigned int mt6358_upmu_get_da_vmc_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMC_CON2),
 		(&val),
 		(PMIC_DA_VMC_OCFB_EN_MASK),
 		(PMIC_DA_VMC_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63541,15 +61951,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vmc_dummy_load(
 unsigned int mt6358_upmu_get_da_vmc_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMC_CON3),
 		(&val),
 		(PMIC_DA_VMC_DUMMY_LOAD_MASK),
 		(PMIC_DA_VMC_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63572,15 +61981,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vmch_en(
 unsigned int mt6358_upmu_get_rg_ldo_vmch_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMCH_CON0),
 		(&val),
 		(PMIC_RG_LDO_VMCH_EN_MASK),
 		(PMIC_RG_LDO_VMCH_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63618,15 +62026,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vmch_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vmch_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMCH_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VMCH_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VMCH_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63649,15 +62056,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vmch_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vmch_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMCH_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VMCH_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VMCH_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63680,15 +62086,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vmch_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vmch_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMCH_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VMCH_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VMCH_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63711,15 +62116,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vmch_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vmch_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMCH_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VMCH_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VMCH_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63742,15 +62146,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vmch_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vmch_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMCH_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VMCH_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VMCH_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63773,15 +62176,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vmch_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vmch_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMCH_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VMCH_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VMCH_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63804,15 +62206,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vmch_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vmch_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMCH_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VMCH_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VMCH_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63820,15 +62221,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vmch_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vmch_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMCH_CON1),
 		(&val),
 		(PMIC_DA_VMCH_MODE_MASK),
 		(PMIC_DA_VMCH_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63851,15 +62251,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vmch_stbtd(
 unsigned int mt6358_upmu_get_da_vmch_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMCH_CON1),
 		(&val),
 		(PMIC_DA_VMCH_STB_MASK),
 		(PMIC_DA_VMCH_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63867,15 +62266,14 @@ unsigned int mt6358_upmu_get_da_vmch_stb(
 unsigned int mt6358_upmu_get_da_vmch_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMCH_CON1),
 		(&val),
 		(PMIC_DA_VMCH_EN_MASK),
 		(PMIC_DA_VMCH_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63898,15 +62296,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vmch_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vmch_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMCH_CON2),
 		(&val),
 		(PMIC_RG_LDO_VMCH_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VMCH_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63914,15 +62311,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vmch_ocfb_en(
 unsigned int mt6358_upmu_get_da_vmch_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMCH_CON2),
 		(&val),
 		(PMIC_DA_VMCH_OCFB_EN_MASK),
 		(PMIC_DA_VMCH_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63945,15 +62341,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vmch_dummy_load(
 unsigned int mt6358_upmu_get_da_vmch_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMCH_CON3),
 		(&val),
 		(PMIC_DA_VMCH_DUMMY_LOAD_MASK),
 		(PMIC_DA_VMCH_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -63976,15 +62371,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vibr_en(
 unsigned int mt6358_upmu_get_rg_ldo_vibr_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIBR_CON0),
 		(&val),
 		(PMIC_RG_LDO_VIBR_EN_MASK),
 		(PMIC_RG_LDO_VIBR_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64022,15 +62416,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vibr_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vibr_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIBR_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VIBR_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VIBR_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64053,15 +62446,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vibr_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vibr_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIBR_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VIBR_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VIBR_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64084,15 +62476,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vibr_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vibr_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIBR_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VIBR_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VIBR_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64115,15 +62506,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vibr_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vibr_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIBR_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VIBR_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VIBR_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64146,15 +62536,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vibr_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vibr_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIBR_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VIBR_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VIBR_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64177,15 +62566,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vibr_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vibr_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIBR_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VIBR_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VIBR_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64208,15 +62596,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vibr_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vibr_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIBR_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VIBR_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VIBR_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64224,15 +62611,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vibr_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vibr_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIBR_CON1),
 		(&val),
 		(PMIC_DA_VIBR_MODE_MASK),
 		(PMIC_DA_VIBR_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64255,15 +62641,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vibr_stbtd(
 unsigned int mt6358_upmu_get_da_vibr_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIBR_CON1),
 		(&val),
 		(PMIC_DA_VIBR_STB_MASK),
 		(PMIC_DA_VIBR_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64271,15 +62656,14 @@ unsigned int mt6358_upmu_get_da_vibr_stb(
 unsigned int mt6358_upmu_get_da_vibr_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIBR_CON1),
 		(&val),
 		(PMIC_DA_VIBR_EN_MASK),
 		(PMIC_DA_VIBR_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64302,15 +62686,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vibr_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vibr_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIBR_CON2),
 		(&val),
 		(PMIC_RG_LDO_VIBR_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VIBR_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64318,15 +62701,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vibr_ocfb_en(
 unsigned int mt6358_upmu_get_da_vibr_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIBR_CON2),
 		(&val),
 		(PMIC_DA_VIBR_OCFB_EN_MASK),
 		(PMIC_DA_VIBR_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64349,15 +62731,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vibr_dummy_load(
 unsigned int mt6358_upmu_get_da_vibr_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VIBR_CON3),
 		(&val),
 		(PMIC_DA_VIBR_DUMMY_LOAD_MASK),
 		(PMIC_DA_VIBR_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64380,15 +62761,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn33_bt_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcn33_bt_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN33_CON0_0),
 		(&val),
 		(PMIC_RG_LDO_VCN33_EN_0_MASK),
 		(PMIC_RG_LDO_VCN33_EN_0_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64426,15 +62806,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn33_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcn33_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN33_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCN33_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VCN33_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64457,15 +62836,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn33_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcn33_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN33_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCN33_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VCN33_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64488,15 +62866,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn33_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcn33_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN33_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCN33_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VCN33_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64519,15 +62896,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn33_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcn33_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN33_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCN33_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VCN33_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64550,15 +62926,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn33_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vcn33_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN33_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VCN33_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VCN33_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64581,15 +62956,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn33_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vcn33_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN33_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VCN33_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VCN33_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64612,15 +62986,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn33_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vcn33_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN33_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VCN33_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VCN33_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64643,15 +63016,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn33_wifi_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcn33_wifi_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN33_CON0_1),
 		(&val),
 		(PMIC_RG_LDO_VCN33_EN_1_MASK),
 		(PMIC_RG_LDO_VCN33_EN_1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64659,15 +63031,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vcn33_wifi_en(
 unsigned int mt6358_upmu_get_da_vcn33_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN33_CON1),
 		(&val),
 		(PMIC_DA_VCN33_MODE_MASK),
 		(PMIC_DA_VCN33_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64690,15 +63061,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn33_stbtd(
 unsigned int mt6358_upmu_get_da_vcn33_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN33_CON1),
 		(&val),
 		(PMIC_DA_VCN33_STB_MASK),
 		(PMIC_DA_VCN33_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64706,15 +63076,14 @@ unsigned int mt6358_upmu_get_da_vcn33_stb(
 unsigned int mt6358_upmu_get_da_vcn33_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN33_CON1),
 		(&val),
 		(PMIC_DA_VCN33_EN_MASK),
 		(PMIC_DA_VCN33_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64737,15 +63106,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn33_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcn33_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN33_CON2),
 		(&val),
 		(PMIC_RG_LDO_VCN33_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VCN33_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64753,15 +63121,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vcn33_ocfb_en(
 unsigned int mt6358_upmu_get_da_vcn33_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN33_CON2),
 		(&val),
 		(PMIC_DA_VCN33_OCFB_EN_MASK),
 		(PMIC_DA_VCN33_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64784,15 +63151,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn33_dummy_load(
 unsigned int mt6358_upmu_get_da_vcn33_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN33_CON3),
 		(&val),
 		(PMIC_DA_VCN33_DUMMY_LOAD_MASK),
 		(PMIC_DA_VCN33_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64815,15 +63181,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vldo28_en(
 unsigned int mt6358_upmu_get_rg_ldo_vldo28_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VLDO28_CON0_0),
 		(&val),
 		(PMIC_RG_LDO_VLDO28_EN_0_MASK),
 		(PMIC_RG_LDO_VLDO28_EN_0_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64861,15 +63226,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vldo28_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vldo28_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VLDO28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VLDO28_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VLDO28_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64892,15 +63256,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vldo28_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vldo28_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VLDO28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VLDO28_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VLDO28_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64923,15 +63286,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vldo28_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vldo28_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VLDO28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VLDO28_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VLDO28_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64954,15 +63316,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vldo28_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vldo28_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VLDO28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VLDO28_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VLDO28_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -64985,15 +63346,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vldo28_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vldo28_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VLDO28_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VLDO28_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VLDO28_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65016,15 +63376,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vldo28_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vldo28_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VLDO28_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VLDO28_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VLDO28_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65047,15 +63406,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vldo28_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vldo28_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VLDO28_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VLDO28_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VLDO28_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65078,15 +63436,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vldo28_1_en(
 unsigned int mt6358_upmu_get_rg_ldo_vldo28_1_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VLDO28_CON0_1),
 		(&val),
 		(PMIC_RG_LDO_VLDO28_EN_1_MASK),
 		(PMIC_RG_LDO_VLDO28_EN_1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65094,15 +63451,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vldo28_1_en(
 unsigned int mt6358_upmu_get_da_vldo28_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VLDO28_CON1),
 		(&val),
 		(PMIC_DA_VLDO28_MODE_MASK),
 		(PMIC_DA_VLDO28_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65125,15 +63481,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vldo28_stbtd(
 unsigned int mt6358_upmu_get_da_vldo28_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VLDO28_CON1),
 		(&val),
 		(PMIC_DA_VLDO28_STB_MASK),
 		(PMIC_DA_VLDO28_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65141,15 +63496,14 @@ unsigned int mt6358_upmu_get_da_vldo28_stb(
 unsigned int mt6358_upmu_get_da_vldo28_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VLDO28_CON1),
 		(&val),
 		(PMIC_DA_VLDO28_EN_MASK),
 		(PMIC_DA_VLDO28_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65172,15 +63526,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vldo28_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vldo28_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VLDO28_CON2),
 		(&val),
 		(PMIC_RG_LDO_VLDO28_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VLDO28_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65188,15 +63541,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vldo28_ocfb_en(
 unsigned int mt6358_upmu_get_da_vldo28_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VLDO28_CON2),
 		(&val),
 		(PMIC_DA_VLDO28_OCFB_EN_MASK),
 		(PMIC_DA_VLDO28_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65219,15 +63571,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vldo28_dummy_load(
 unsigned int mt6358_upmu_get_da_vldo28_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VLDO28_CON3),
 		(&val),
 		(PMIC_DA_VLDO28_DUMMY_LOAD_MASK),
 		(PMIC_DA_VLDO28_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65250,15 +63601,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsim1_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsim1_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM1_CON0),
 		(&val),
 		(PMIC_RG_LDO_VSIM1_EN_MASK),
 		(PMIC_RG_LDO_VSIM1_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65296,15 +63646,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsim1_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsim1_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM1_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VSIM1_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VSIM1_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65327,15 +63676,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsim1_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsim1_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM1_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VSIM1_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VSIM1_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65358,15 +63706,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsim1_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsim1_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM1_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VSIM1_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VSIM1_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65389,15 +63736,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsim1_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsim1_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM1_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VSIM1_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VSIM1_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65420,15 +63766,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsim1_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vsim1_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM1_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VSIM1_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VSIM1_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65451,15 +63796,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsim1_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vsim1_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM1_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VSIM1_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VSIM1_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65482,15 +63826,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsim1_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vsim1_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM1_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VSIM1_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VSIM1_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65498,15 +63841,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vsim1_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vsim1_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM1_CON1),
 		(&val),
 		(PMIC_DA_VSIM1_MODE_MASK),
 		(PMIC_DA_VSIM1_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65529,15 +63871,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsim1_stbtd(
 unsigned int mt6358_upmu_get_da_vsim1_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM1_CON1),
 		(&val),
 		(PMIC_DA_VSIM1_STB_MASK),
 		(PMIC_DA_VSIM1_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65545,15 +63886,14 @@ unsigned int mt6358_upmu_get_da_vsim1_stb(
 unsigned int mt6358_upmu_get_da_vsim1_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM1_CON1),
 		(&val),
 		(PMIC_DA_VSIM1_EN_MASK),
 		(PMIC_DA_VSIM1_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65576,15 +63916,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsim1_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsim1_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM1_CON2),
 		(&val),
 		(PMIC_RG_LDO_VSIM1_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VSIM1_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65592,15 +63931,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vsim1_ocfb_en(
 unsigned int mt6358_upmu_get_da_vsim1_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM1_CON2),
 		(&val),
 		(PMIC_DA_VSIM1_OCFB_EN_MASK),
 		(PMIC_DA_VSIM1_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65623,15 +63961,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsim1_dummy_load(
 unsigned int mt6358_upmu_get_da_vsim1_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM1_CON3),
 		(&val),
 		(PMIC_DA_VSIM1_DUMMY_LOAD_MASK),
 		(PMIC_DA_VSIM1_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65654,15 +63991,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsim2_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsim2_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM2_CON0),
 		(&val),
 		(PMIC_RG_LDO_VSIM2_EN_MASK),
 		(PMIC_RG_LDO_VSIM2_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65700,15 +64036,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsim2_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsim2_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM2_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VSIM2_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VSIM2_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65731,15 +64066,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsim2_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsim2_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM2_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VSIM2_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VSIM2_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65762,15 +64096,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsim2_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsim2_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM2_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VSIM2_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VSIM2_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65793,15 +64126,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsim2_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsim2_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM2_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VSIM2_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VSIM2_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65824,15 +64156,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsim2_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vsim2_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM2_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VSIM2_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VSIM2_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65855,15 +64186,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsim2_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vsim2_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM2_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VSIM2_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VSIM2_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65886,15 +64216,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsim2_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vsim2_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM2_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VSIM2_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VSIM2_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65902,15 +64231,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vsim2_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vsim2_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM2_CON1),
 		(&val),
 		(PMIC_DA_VSIM2_MODE_MASK),
 		(PMIC_DA_VSIM2_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65933,15 +64261,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsim2_stbtd(
 unsigned int mt6358_upmu_get_da_vsim2_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM2_CON1),
 		(&val),
 		(PMIC_DA_VSIM2_STB_MASK),
 		(PMIC_DA_VSIM2_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65949,15 +64276,14 @@ unsigned int mt6358_upmu_get_da_vsim2_stb(
 unsigned int mt6358_upmu_get_da_vsim2_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM2_CON1),
 		(&val),
 		(PMIC_DA_VSIM2_EN_MASK),
 		(PMIC_DA_VSIM2_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65980,15 +64306,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsim2_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsim2_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM2_CON2),
 		(&val),
 		(PMIC_RG_LDO_VSIM2_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VSIM2_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -65996,15 +64321,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vsim2_ocfb_en(
 unsigned int mt6358_upmu_get_da_vsim2_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM2_CON2),
 		(&val),
 		(PMIC_DA_VSIM2_OCFB_EN_MASK),
 		(PMIC_DA_VSIM2_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66027,15 +64351,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsim2_dummy_load(
 unsigned int mt6358_upmu_get_da_vsim2_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM2_CON3),
 		(&val),
 		(PMIC_DA_VSIM2_DUMMY_LOAD_MASK),
 		(PMIC_DA_VSIM2_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66058,15 +64381,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vmch_sd_en(
 unsigned int mt6358_upmu_get_rg_ldo_vmch_sd_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VMCH_EINT_SD_CFG),
 		(&val),
 		(PMIC_RG_LDO_VMCH_SD_EN_MASK),
 		(PMIC_RG_LDO_VMCH_SD_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66119,15 +64441,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsim1_sd_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsim1_sd_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM1_EINT_SD_CFG),
 		(&val),
 		(PMIC_RG_LDO_VSIM1_SD_EN_MASK),
 		(PMIC_RG_LDO_VSIM1_SD_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66180,15 +64501,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vsim2_sd_en(
 unsigned int mt6358_upmu_get_rg_ldo_vsim2_sd_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VSIM2_EINT_SD_CFG),
 		(&val),
 		(PMIC_RG_LDO_VSIM2_SD_EN_MASK),
 		(PMIC_RG_LDO_VSIM2_SD_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66271,15 +64591,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn28_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcn28_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN28_CON0),
 		(&val),
 		(PMIC_RG_LDO_VCN28_EN_MASK),
 		(PMIC_RG_LDO_VCN28_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66317,15 +64636,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn28_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcn28_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCN28_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VCN28_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66348,15 +64666,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn28_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcn28_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCN28_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VCN28_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66379,15 +64696,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn28_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcn28_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCN28_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VCN28_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66410,15 +64726,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn28_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcn28_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCN28_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VCN28_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66441,15 +64756,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn28_hw3_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcn28_hw3_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VCN28_HW3_OP_EN_MASK),
 		(PMIC_RG_LDO_VCN28_HW3_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66472,15 +64786,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn28_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vcn28_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN28_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VCN28_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VCN28_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66503,15 +64816,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn28_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vcn28_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN28_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VCN28_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VCN28_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66534,15 +64846,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn28_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vcn28_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN28_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VCN28_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VCN28_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66565,15 +64876,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn28_hw3_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vcn28_hw3_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN28_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VCN28_HW3_OP_CFG_MASK),
 		(PMIC_RG_LDO_VCN28_HW3_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66581,15 +64891,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vcn28_hw3_op_cfg(
 unsigned int mt6358_upmu_get_da_vcn28_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN28_CON1),
 		(&val),
 		(PMIC_DA_VCN28_MODE_MASK),
 		(PMIC_DA_VCN28_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66612,15 +64921,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn28_stbtd(
 unsigned int mt6358_upmu_get_da_vcn28_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN28_CON1),
 		(&val),
 		(PMIC_DA_VCN28_STB_MASK),
 		(PMIC_DA_VCN28_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66628,15 +64936,14 @@ unsigned int mt6358_upmu_get_da_vcn28_stb(
 unsigned int mt6358_upmu_get_da_vcn28_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN28_CON1),
 		(&val),
 		(PMIC_DA_VCN28_EN_MASK),
 		(PMIC_DA_VCN28_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66659,15 +64966,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn28_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vcn28_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN28_CON2),
 		(&val),
 		(PMIC_RG_LDO_VCN28_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VCN28_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66675,15 +64981,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vcn28_ocfb_en(
 unsigned int mt6358_upmu_get_da_vcn28_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN28_CON2),
 		(&val),
 		(PMIC_DA_VCN28_OCFB_EN_MASK),
 		(PMIC_DA_VCN28_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66706,15 +65011,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vcn28_dummy_load(
 unsigned int mt6358_upmu_get_da_vcn28_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VCN28_CON3),
 		(&val),
 		(PMIC_DA_VCN28_DUMMY_LOAD_MASK),
 		(PMIC_DA_VCN28_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66737,15 +65041,14 @@ unsigned int mt6358_upmu_set_rg_vrtc28_en(
 unsigned int mt6358_upmu_get_rg_vrtc28_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VRTC28_CON0),
 		(&val),
 		(PMIC_RG_VRTC28_EN_MASK),
 		(PMIC_RG_VRTC28_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66753,15 +65056,14 @@ unsigned int mt6358_upmu_get_rg_vrtc28_en(
 unsigned int mt6358_upmu_get_da_vrtc28_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VRTC28_CON0),
 		(&val),
 		(PMIC_DA_VRTC28_EN_MASK),
 		(PMIC_DA_VRTC28_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66784,15 +65086,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vbif28_en(
 unsigned int mt6358_upmu_get_rg_ldo_vbif28_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VBIF28_CON0),
 		(&val),
 		(PMIC_RG_LDO_VBIF28_EN_MASK),
 		(PMIC_RG_LDO_VBIF28_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66830,15 +65131,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vbif28_sw_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vbif28_sw_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VBIF28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VBIF28_SW_OP_EN_MASK),
 		(PMIC_RG_LDO_VBIF28_SW_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66861,15 +65161,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vbif28_hw0_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vbif28_hw0_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VBIF28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VBIF28_HW0_OP_EN_MASK),
 		(PMIC_RG_LDO_VBIF28_HW0_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66892,15 +65191,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vbif28_hw1_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vbif28_hw1_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VBIF28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VBIF28_HW1_OP_EN_MASK),
 		(PMIC_RG_LDO_VBIF28_HW1_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66923,15 +65221,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vbif28_hw2_op_en(
 unsigned int mt6358_upmu_get_rg_ldo_vbif28_hw2_op_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VBIF28_OP_EN),
 		(&val),
 		(PMIC_RG_LDO_VBIF28_HW2_OP_EN_MASK),
 		(PMIC_RG_LDO_VBIF28_HW2_OP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66954,15 +65251,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vbif28_hw0_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vbif28_hw0_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VBIF28_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VBIF28_HW0_OP_CFG_MASK),
 		(PMIC_RG_LDO_VBIF28_HW0_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -66985,15 +65281,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vbif28_hw1_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vbif28_hw1_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VBIF28_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VBIF28_HW1_OP_CFG_MASK),
 		(PMIC_RG_LDO_VBIF28_HW1_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -67016,15 +65311,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vbif28_hw2_op_cfg(
 unsigned int mt6358_upmu_get_rg_ldo_vbif28_hw2_op_cfg(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VBIF28_OP_CFG),
 		(&val),
 		(PMIC_RG_LDO_VBIF28_HW2_OP_CFG_MASK),
 		(PMIC_RG_LDO_VBIF28_HW2_OP_CFG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -67032,15 +65326,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vbif28_hw2_op_cfg(
 unsigned int mt6358_upmu_get_da_vbif28_mode(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VBIF28_CON1),
 		(&val),
 		(PMIC_DA_VBIF28_MODE_MASK),
 		(PMIC_DA_VBIF28_MODE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -67063,15 +65356,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vbif28_stbtd(
 unsigned int mt6358_upmu_get_da_vbif28_stb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VBIF28_CON1),
 		(&val),
 		(PMIC_DA_VBIF28_STB_MASK),
 		(PMIC_DA_VBIF28_STB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -67079,15 +65371,14 @@ unsigned int mt6358_upmu_get_da_vbif28_stb(
 unsigned int mt6358_upmu_get_da_vbif28_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VBIF28_CON1),
 		(&val),
 		(PMIC_DA_VBIF28_EN_MASK),
 		(PMIC_DA_VBIF28_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -67110,15 +65401,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vbif28_ocfb_en(
 unsigned int mt6358_upmu_get_rg_ldo_vbif28_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VBIF28_CON2),
 		(&val),
 		(PMIC_RG_LDO_VBIF28_OCFB_EN_MASK),
 		(PMIC_RG_LDO_VBIF28_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -67126,15 +65416,14 @@ unsigned int mt6358_upmu_get_rg_ldo_vbif28_ocfb_en(
 unsigned int mt6358_upmu_get_da_vbif28_ocfb_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VBIF28_CON2),
 		(&val),
 		(PMIC_DA_VBIF28_OCFB_EN_MASK),
 		(PMIC_DA_VBIF28_OCFB_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -67157,15 +65446,14 @@ unsigned int mt6358_upmu_set_rg_ldo_vbif28_dummy_load(
 unsigned int mt6358_upmu_get_da_vbif28_dummy_load(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_LDO_VBIF28_CON3),
 		(&val),
 		(PMIC_DA_VBIF28_DUMMY_LOAD_MASK),
 		(PMIC_DA_VBIF28_DUMMY_LOAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -67233,15 +65521,14 @@ unsigned int mt6358_upmu_set_rg_vcama1_vosel(
 unsigned int mt6358_upmu_get_rg_vcama1_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCAMA1_ANA_CON0),
 		(&val),
 		(PMIC_RG_VCAMA1_VOSEL_MASK),
 		(PMIC_RG_VCAMA1_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -67264,15 +65551,14 @@ unsigned int mt6358_upmu_set_rg_vcama1_ndis_en(
 unsigned int mt6358_upmu_get_rg_vcama1_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCAMA1_ANA_CON1),
 		(&val),
 		(PMIC_RG_VCAMA1_NDIS_EN_MASK),
 		(PMIC_RG_VCAMA1_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -67325,15 +65611,14 @@ unsigned int mt6358_upmu_set_rg_vcama2_vosel(
 unsigned int mt6358_upmu_get_rg_vcama2_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCAMA2_ANA_CON0),
 		(&val),
 		(PMIC_RG_VCAMA2_VOSEL_MASK),
 		(PMIC_RG_VCAMA2_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -67356,15 +65641,14 @@ unsigned int mt6358_upmu_set_rg_vcama2_ndis_en(
 unsigned int mt6358_upmu_get_rg_vcama2_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCAMA2_ANA_CON1),
 		(&val),
 		(PMIC_RG_VCAMA2_NDIS_EN_MASK),
 		(PMIC_RG_VCAMA2_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -67417,15 +65701,14 @@ unsigned int mt6358_upmu_set_rg_vfe28_ndis_en(
 unsigned int mt6358_upmu_get_rg_vfe28_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VFE28_ANA_CON1),
 		(&val),
 		(PMIC_RG_VFE28_NDIS_EN_MASK),
 		(PMIC_RG_VFE28_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -67478,15 +65761,14 @@ unsigned int mt6358_upmu_set_rg_vcn28_ndis_en(
 unsigned int mt6358_upmu_get_rg_vcn28_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCN28_ANA_CON1),
 		(&val),
 		(PMIC_RG_VCN28_NDIS_EN_MASK),
 		(PMIC_RG_VCN28_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -67539,15 +65821,14 @@ unsigned int mt6358_upmu_set_rg_vbif28_ndis_en(
 unsigned int mt6358_upmu_get_rg_vbif28_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VBIF28_ANA_CON1),
 		(&val),
 		(PMIC_RG_VBIF28_NDIS_EN_MASK),
 		(PMIC_RG_VBIF28_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -67600,15 +65881,14 @@ unsigned int mt6358_upmu_set_rg_vaud28_ndis_en(
 unsigned int mt6358_upmu_get_rg_vaud28_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VAUD28_ANA_CON1),
 		(&val),
 		(PMIC_RG_VAUD28_NDIS_EN_MASK),
 		(PMIC_RG_VAUD28_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -67661,15 +65941,14 @@ unsigned int mt6358_upmu_set_rg_vaux18_ndis_en(
 unsigned int mt6358_upmu_get_rg_vaux18_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VAUX18_ANA_CON1),
 		(&val),
 		(PMIC_RG_VAUX18_NDIS_EN_MASK),
 		(PMIC_RG_VAUX18_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -67722,15 +66001,14 @@ unsigned int mt6358_upmu_set_rg_vxo22_vosel(
 unsigned int mt6358_upmu_get_rg_vxo22_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VXO22_ANA_CON0),
 		(&val),
 		(PMIC_RG_VXO22_VOSEL_MASK),
 		(PMIC_RG_VXO22_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -67753,15 +66031,14 @@ unsigned int mt6358_upmu_set_rg_vxo22_ndis_en(
 unsigned int mt6358_upmu_get_rg_vxo22_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VXO22_ANA_CON1),
 		(&val),
 		(PMIC_RG_VXO22_NDIS_EN_MASK),
 		(PMIC_RG_VXO22_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -67814,15 +66091,14 @@ unsigned int mt6358_upmu_set_rg_vcn33_vosel(
 unsigned int mt6358_upmu_get_rg_vcn33_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCN33_ANA_CON0),
 		(&val),
 		(PMIC_RG_VCN33_VOSEL_MASK),
 		(PMIC_RG_VCN33_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -67845,15 +66121,14 @@ unsigned int mt6358_upmu_set_rg_vcn33_ndis_en(
 unsigned int mt6358_upmu_get_rg_vcn33_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCN33_ANA_CON1),
 		(&val),
 		(PMIC_RG_VCN33_NDIS_EN_MASK),
 		(PMIC_RG_VCN33_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -67906,15 +66181,14 @@ unsigned int mt6358_upmu_set_rg_vsim1_vosel(
 unsigned int mt6358_upmu_get_rg_vsim1_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VSIM1_ANA_CON0),
 		(&val),
 		(PMIC_RG_VSIM1_VOSEL_MASK),
 		(PMIC_RG_VSIM1_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -67937,15 +66211,14 @@ unsigned int mt6358_upmu_set_rg_vsim1_ndis_en(
 unsigned int mt6358_upmu_get_rg_vsim1_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VSIM1_ANA_CON1),
 		(&val),
 		(PMIC_RG_VSIM1_NDIS_EN_MASK),
 		(PMIC_RG_VSIM1_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -67998,15 +66271,14 @@ unsigned int mt6358_upmu_set_rg_vsim2_vosel(
 unsigned int mt6358_upmu_get_rg_vsim2_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VSIM2_ANA_CON0),
 		(&val),
 		(PMIC_RG_VSIM2_VOSEL_MASK),
 		(PMIC_RG_VSIM2_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -68029,15 +66301,14 @@ unsigned int mt6358_upmu_set_rg_vsim2_ndis_en(
 unsigned int mt6358_upmu_get_rg_vsim2_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VSIM2_ANA_CON1),
 		(&val),
 		(PMIC_RG_VSIM2_NDIS_EN_MASK),
 		(PMIC_RG_VSIM2_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -68090,15 +66361,14 @@ unsigned int mt6358_upmu_set_rg_vusb_vosel(
 unsigned int mt6358_upmu_get_rg_vusb_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VUSB_ANA_CON0),
 		(&val),
 		(PMIC_RG_VUSB_VOSEL_MASK),
 		(PMIC_RG_VUSB_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -68121,15 +66391,14 @@ unsigned int mt6358_upmu_set_rg_vusb_ndis_en(
 unsigned int mt6358_upmu_get_rg_vusb_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VUSB_ANA_CON1),
 		(&val),
 		(PMIC_RG_VUSB_NDIS_EN_MASK),
 		(PMIC_RG_VUSB_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -68182,15 +66451,14 @@ unsigned int mt6358_upmu_set_rg_vemc_vosel(
 unsigned int mt6358_upmu_get_rg_vemc_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VEMC_ANA_CON0),
 		(&val),
 		(PMIC_RG_VEMC_VOSEL_MASK),
 		(PMIC_RG_VEMC_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -68213,15 +66481,14 @@ unsigned int mt6358_upmu_set_rg_vemc_ndis_en(
 unsigned int mt6358_upmu_get_rg_vemc_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VEMC_ANA_CON1),
 		(&val),
 		(PMIC_RG_VEMC_NDIS_EN_MASK),
 		(PMIC_RG_VEMC_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -68274,15 +66541,14 @@ unsigned int mt6358_upmu_set_rg_vldo28_vosel(
 unsigned int mt6358_upmu_get_rg_vldo28_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VLDO28_ANA_CON0),
 		(&val),
 		(PMIC_RG_VLDO28_VOSEL_MASK),
 		(PMIC_RG_VLDO28_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -68305,15 +66571,14 @@ unsigned int mt6358_upmu_set_rg_vldo28_ndis_en(
 unsigned int mt6358_upmu_get_rg_vldo28_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VLDO28_ANA_CON1),
 		(&val),
 		(PMIC_RG_VLDO28_NDIS_EN_MASK),
 		(PMIC_RG_VLDO28_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -68366,15 +66631,14 @@ unsigned int mt6358_upmu_set_rg_vio28_ndis_en(
 unsigned int mt6358_upmu_get_rg_vio28_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VIO28_ANA_CON1),
 		(&val),
 		(PMIC_RG_VIO28_NDIS_EN_MASK),
 		(PMIC_RG_VIO28_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -68427,15 +66691,14 @@ unsigned int mt6358_upmu_set_rg_vibr_vosel(
 unsigned int mt6358_upmu_get_rg_vibr_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VIBR_ANA_CON0),
 		(&val),
 		(PMIC_RG_VIBR_VOSEL_MASK),
 		(PMIC_RG_VIBR_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -68458,15 +66721,14 @@ unsigned int mt6358_upmu_set_rg_vibr_ndis_en(
 unsigned int mt6358_upmu_get_rg_vibr_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VIBR_ANA_CON1),
 		(&val),
 		(PMIC_RG_VIBR_NDIS_EN_MASK),
 		(PMIC_RG_VIBR_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -68519,15 +66781,14 @@ unsigned int mt6358_upmu_set_rg_vmch_vosel(
 unsigned int mt6358_upmu_get_rg_vmch_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VMCH_ANA_CON0),
 		(&val),
 		(PMIC_RG_VMCH_VOSEL_MASK),
 		(PMIC_RG_VMCH_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -68550,15 +66811,14 @@ unsigned int mt6358_upmu_set_rg_vmch_ndis_en(
 unsigned int mt6358_upmu_get_rg_vmch_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VMCH_ANA_CON1),
 		(&val),
 		(PMIC_RG_VMCH_NDIS_EN_MASK),
 		(PMIC_RG_VMCH_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -68626,15 +66886,14 @@ unsigned int mt6358_upmu_set_rg_vmc_vosel(
 unsigned int mt6358_upmu_get_rg_vmc_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VMC_ANA_CON0),
 		(&val),
 		(PMIC_RG_VMC_VOSEL_MASK),
 		(PMIC_RG_VMC_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -68657,15 +66916,14 @@ unsigned int mt6358_upmu_set_rg_vmc_ndis_en(
 unsigned int mt6358_upmu_get_rg_vmc_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VMC_ANA_CON1),
 		(&val),
 		(PMIC_RG_VMC_NDIS_EN_MASK),
 		(PMIC_RG_VMC_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -69048,15 +67306,14 @@ unsigned int mt6358_upmu_set_rg_vrf18_ndis_en(
 unsigned int mt6358_upmu_get_rg_vrf18_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VRF18_ANA_CON1),
 		(&val),
 		(PMIC_RG_VRF18_NDIS_EN_MASK),
 		(PMIC_RG_VRF18_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -69109,15 +67366,14 @@ unsigned int mt6358_upmu_set_rg_vcn18_ndis_en(
 unsigned int mt6358_upmu_get_rg_vcn18_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCN18_ANA_CON1),
 		(&val),
 		(PMIC_RG_VCN18_NDIS_EN_MASK),
 		(PMIC_RG_VCN18_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -69170,15 +67426,14 @@ unsigned int mt6358_upmu_set_rg_vcamio_ndis_en(
 unsigned int mt6358_upmu_get_rg_vcamio_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCAMIO_ANA_CON1),
 		(&val),
 		(PMIC_RG_VCAMIO_NDIS_EN_MASK),
 		(PMIC_RG_VCAMIO_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -69231,15 +67486,14 @@ unsigned int mt6358_upmu_set_rg_vio18_ndis_en(
 unsigned int mt6358_upmu_get_rg_vio18_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VIO18_ANA_CON1),
 		(&val),
 		(PMIC_RG_VIO18_NDIS_EN_MASK),
 		(PMIC_RG_VIO18_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -69292,15 +67546,14 @@ unsigned int mt6358_upmu_set_rg_vefuse_vosel(
 unsigned int mt6358_upmu_get_rg_vefuse_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VEFUSE_ANA_CON0),
 		(&val),
 		(PMIC_RG_VEFUSE_VOSEL_MASK),
 		(PMIC_RG_VEFUSE_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -69323,15 +67576,14 @@ unsigned int mt6358_upmu_set_rg_vefuse_ndis_en(
 unsigned int mt6358_upmu_get_rg_vefuse_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VEFUSE_ANA_CON1),
 		(&val),
 		(PMIC_RG_VEFUSE_NDIS_EN_MASK),
 		(PMIC_RG_VEFUSE_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -69384,15 +67636,14 @@ unsigned int mt6358_upmu_set_rg_vrf12_ndis_en(
 unsigned int mt6358_upmu_get_rg_vrf12_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VRF12_ANA_CON1),
 		(&val),
 		(PMIC_RG_VRF12_NDIS_EN_MASK),
 		(PMIC_RG_VRF12_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -69445,15 +67696,14 @@ unsigned int mt6358_upmu_set_rg_vsram_proc11_ndis_en(
 unsigned int mt6358_upmu_get_rg_vsram_proc11_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VSRAM_PROC11_ANA_CON0),
 		(&val),
 		(PMIC_RG_VSRAM_PROC11_NDIS_EN_MASK),
 		(PMIC_RG_VSRAM_PROC11_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -69491,15 +67741,14 @@ unsigned int mt6358_upmu_set_rg_vsram_proc11_plcur_en(
 unsigned int mt6358_upmu_get_rg_vsram_proc11_plcur_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VSRAM_PROC11_ANA_CON0),
 		(&val),
 		(PMIC_RG_VSRAM_PROC11_PLCUR_EN_MASK),
 		(PMIC_RG_VSRAM_PROC11_PLCUR_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -69522,15 +67771,14 @@ unsigned int mt6358_upmu_set_rg_vsram_proc11_lpoc_en(
 unsigned int mt6358_upmu_get_rg_vsram_proc11_lpoc_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VSRAM_PROC11_ANA_CON0),
 		(&val),
 		(PMIC_RG_VSRAM_PROC11_LPOC_EN_MASK),
 		(PMIC_RG_VSRAM_PROC11_LPOC_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -69613,15 +67861,14 @@ unsigned int mt6358_upmu_set_rg_vsram_proc12_ndis_en(
 unsigned int mt6358_upmu_get_rg_vsram_proc12_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VSRAM_PROC12_ANA_CON0),
 		(&val),
 		(PMIC_RG_VSRAM_PROC12_NDIS_EN_MASK),
 		(PMIC_RG_VSRAM_PROC12_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -69659,15 +67906,14 @@ unsigned int mt6358_upmu_set_rg_vsram_proc12_plcur_en(
 unsigned int mt6358_upmu_get_rg_vsram_proc12_plcur_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VSRAM_PROC12_ANA_CON0),
 		(&val),
 		(PMIC_RG_VSRAM_PROC12_PLCUR_EN_MASK),
 		(PMIC_RG_VSRAM_PROC12_PLCUR_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -69690,15 +67936,14 @@ unsigned int mt6358_upmu_set_rg_vsram_proc12_lpoc_en(
 unsigned int mt6358_upmu_get_rg_vsram_proc12_lpoc_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VSRAM_PROC12_ANA_CON0),
 		(&val),
 		(PMIC_RG_VSRAM_PROC12_LPOC_EN_MASK),
 		(PMIC_RG_VSRAM_PROC12_LPOC_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -69766,15 +68011,14 @@ unsigned int mt6358_upmu_set_rg_vsram_others_ndis_en(
 unsigned int mt6358_upmu_get_rg_vsram_others_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VSRAM_OTHERS_ANA_CON0),
 		(&val),
 		(PMIC_RG_VSRAM_OTHERS_NDIS_EN_MASK),
 		(PMIC_RG_VSRAM_OTHERS_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -69812,15 +68056,14 @@ unsigned int mt6358_upmu_set_rg_vsram_others_plcur_en(
 unsigned int mt6358_upmu_get_rg_vsram_others_plcur_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VSRAM_OTHERS_ANA_CON0),
 		(&val),
 		(PMIC_RG_VSRAM_OTHERS_PLCUR_EN_MASK),
 		(PMIC_RG_VSRAM_OTHERS_PLCUR_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -69843,15 +68086,14 @@ unsigned int mt6358_upmu_set_rg_vsram_others_lpoc_en(
 unsigned int mt6358_upmu_get_rg_vsram_others_lpoc_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VSRAM_OTHERS_ANA_CON0),
 		(&val),
 		(PMIC_RG_VSRAM_OTHERS_LPOC_EN_MASK),
 		(PMIC_RG_VSRAM_OTHERS_LPOC_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -69919,15 +68161,14 @@ unsigned int mt6358_upmu_set_rg_vsram_gpu_ndis_en(
 unsigned int mt6358_upmu_get_rg_vsram_gpu_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VSRAM_GPU_ANA_CON0),
 		(&val),
 		(PMIC_RG_VSRAM_GPU_NDIS_EN_MASK),
 		(PMIC_RG_VSRAM_GPU_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -69965,15 +68206,14 @@ unsigned int mt6358_upmu_set_rg_vsram_gpu_plcur_en(
 unsigned int mt6358_upmu_get_rg_vsram_gpu_plcur_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VSRAM_GPU_ANA_CON0),
 		(&val),
 		(PMIC_RG_VSRAM_GPU_PLCUR_EN_MASK),
 		(PMIC_RG_VSRAM_GPU_PLCUR_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -69996,15 +68236,14 @@ unsigned int mt6358_upmu_set_rg_vsram_gpu_lpoc_en(
 unsigned int mt6358_upmu_get_rg_vsram_gpu_lpoc_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VSRAM_GPU_ANA_CON0),
 		(&val),
 		(PMIC_RG_VSRAM_GPU_LPOC_EN_MASK),
 		(PMIC_RG_VSRAM_GPU_LPOC_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -70072,15 +68311,14 @@ unsigned int mt6358_upmu_set_rg_vdram2_ndis_en(
 unsigned int mt6358_upmu_get_rg_vdram2_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VDRAM2_ANA_CON1),
 		(&val),
 		(PMIC_RG_VDRAM2_NDIS_EN_MASK),
 		(PMIC_RG_VDRAM2_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -70133,15 +68371,14 @@ unsigned int mt6358_upmu_set_rg_vcamd_vosel(
 unsigned int mt6358_upmu_get_rg_vcamd_vosel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCAMD_ANA_CON0),
 		(&val),
 		(PMIC_RG_VCAMD_VOSEL_MASK),
 		(PMIC_RG_VCAMD_VOSEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -70164,15 +68401,14 @@ unsigned int mt6358_upmu_set_rg_vcamd_ndis_en(
 unsigned int mt6358_upmu_get_rg_vcamd_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VCAMD_ANA_CON1),
 		(&val),
 		(PMIC_RG_VCAMD_NDIS_EN_MASK),
 		(PMIC_RG_VCAMD_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -70225,15 +68461,14 @@ unsigned int mt6358_upmu_set_rg_va12_ndis_en(
 unsigned int mt6358_upmu_get_rg_va12_ndis_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_VA12_ANA_CON1),
 		(&val),
 		(PMIC_RG_VA12_NDIS_EN_MASK),
 		(PMIC_RG_VA12_NDIS_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -70421,15 +68656,14 @@ unsigned int mt6358_upmu_set_rg_isink_trim_en(
 unsigned int mt6358_upmu_get_rg_isink_trim_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_DUMMYLOAD_ANA_CON0),
 		(&val),
 		(PMIC_RG_ISINK_TRIM_EN_MASK),
 		(PMIC_RG_ISINK_TRIM_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -70482,15 +68716,14 @@ unsigned int mt6358_upmu_set_rg_isink0_chop_en(
 unsigned int mt6358_upmu_get_rg_isink0_chop_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_DUMMYLOAD_ANA_CON0),
 		(&val),
 		(PMIC_RG_ISINK0_CHOP_EN_MASK),
 		(PMIC_RG_ISINK0_CHOP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -70513,15 +68746,14 @@ unsigned int mt6358_upmu_set_rg_isink1_chop_en(
 unsigned int mt6358_upmu_get_rg_isink1_chop_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_DUMMYLOAD_ANA_CON0),
 		(&val),
 		(PMIC_RG_ISINK1_CHOP_EN_MASK),
 		(PMIC_RG_ISINK1_CHOP_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -70649,15 +68881,14 @@ unsigned int mt6358_upmu_set_isink_ch1_step(
 unsigned int mt6358_upmu_get_ad_isink0_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ISINK_ANA1_SMPL),
 		(&val),
 		(PMIC_AD_ISINK0_STATUS_MASK),
 		(PMIC_AD_ISINK0_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -70665,15 +68896,14 @@ unsigned int mt6358_upmu_get_ad_isink0_status(
 unsigned int mt6358_upmu_get_ad_isink1_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ISINK_ANA1_SMPL),
 		(&val),
 		(PMIC_AD_ISINK1_STATUS_MASK),
 		(PMIC_AD_ISINK1_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -70786,15 +69016,14 @@ unsigned int mt6358_upmu_set_rg_isink_trim_bias(
 unsigned int mt6358_upmu_get_aud_top_ana_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUD_TOP_ID),
 		(&val),
 		(PMIC_AUD_TOP_ANA_ID_MASK),
 		(PMIC_AUD_TOP_ANA_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -70802,15 +69031,14 @@ unsigned int mt6358_upmu_get_aud_top_ana_id(
 unsigned int mt6358_upmu_get_aud_top_dig_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUD_TOP_ID),
 		(&val),
 		(PMIC_AUD_TOP_DIG_ID_MASK),
 		(PMIC_AUD_TOP_DIG_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -70818,15 +69046,14 @@ unsigned int mt6358_upmu_get_aud_top_dig_id(
 unsigned int mt6358_upmu_get_aud_top_ana_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUD_TOP_REV0),
 		(&val),
 		(PMIC_AUD_TOP_ANA_MINOR_REV_MASK),
 		(PMIC_AUD_TOP_ANA_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -70834,15 +69061,14 @@ unsigned int mt6358_upmu_get_aud_top_ana_minor_rev(
 unsigned int mt6358_upmu_get_aud_top_ana_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUD_TOP_REV0),
 		(&val),
 		(PMIC_AUD_TOP_ANA_MAJOR_REV_MASK),
 		(PMIC_AUD_TOP_ANA_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -70850,15 +69076,14 @@ unsigned int mt6358_upmu_get_aud_top_ana_major_rev(
 unsigned int mt6358_upmu_get_aud_top_dig_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUD_TOP_REV0),
 		(&val),
 		(PMIC_AUD_TOP_DIG_MINOR_REV_MASK),
 		(PMIC_AUD_TOP_DIG_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -70866,15 +69091,14 @@ unsigned int mt6358_upmu_get_aud_top_dig_minor_rev(
 unsigned int mt6358_upmu_get_aud_top_dig_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUD_TOP_REV0),
 		(&val),
 		(PMIC_AUD_TOP_DIG_MAJOR_REV_MASK),
 		(PMIC_AUD_TOP_DIG_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -70882,15 +69106,14 @@ unsigned int mt6358_upmu_get_aud_top_dig_major_rev(
 unsigned int mt6358_upmu_get_aud_top_clk_offset(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUD_TOP_CKPDN_TPM0),
 		(&val),
 		(PMIC_AUD_TOP_CLK_OFFSET_MASK),
 		(PMIC_AUD_TOP_CLK_OFFSET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -70898,15 +69121,14 @@ unsigned int mt6358_upmu_get_aud_top_clk_offset(
 unsigned int mt6358_upmu_get_aud_top_rst_offset(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUD_TOP_CKPDN_TPM0),
 		(&val),
 		(PMIC_AUD_TOP_RST_OFFSET_MASK),
 		(PMIC_AUD_TOP_RST_OFFSET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -70914,15 +69136,14 @@ unsigned int mt6358_upmu_get_aud_top_rst_offset(
 unsigned int mt6358_upmu_get_aud_top_int_offset(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUD_TOP_CKPDN_TPM1),
 		(&val),
 		(PMIC_AUD_TOP_INT_OFFSET_MASK),
 		(PMIC_AUD_TOP_INT_OFFSET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -70930,15 +69151,14 @@ unsigned int mt6358_upmu_get_aud_top_int_offset(
 unsigned int mt6358_upmu_get_aud_top_int_len(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUD_TOP_CKPDN_TPM1),
 		(&val),
 		(PMIC_AUD_TOP_INT_LEN_MASK),
 		(PMIC_AUD_TOP_INT_LEN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -71336,15 +69556,14 @@ unsigned int mt6358_upmu_set_rg_int_en_audio(
 unsigned int mt6358_upmu_get_rg_int_en_audio(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUD_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_AUDIO_MASK),
 		(PMIC_RG_INT_EN_AUDIO_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -71367,15 +69586,14 @@ unsigned int mt6358_upmu_set_rg_int_en_accdet(
 unsigned int mt6358_upmu_get_rg_int_en_accdet(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUD_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_ACCDET_MASK),
 		(PMIC_RG_INT_EN_ACCDET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -71398,15 +69616,14 @@ unsigned int mt6358_upmu_set_rg_int_en_accdet_eint0(
 unsigned int mt6358_upmu_get_rg_int_en_accdet_eint0(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUD_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_ACCDET_EINT0_MASK),
 		(PMIC_RG_INT_EN_ACCDET_EINT0_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -71429,15 +69646,14 @@ unsigned int mt6358_upmu_set_rg_int_en_accdet_eint1(
 unsigned int mt6358_upmu_get_rg_int_en_accdet_eint1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUD_TOP_INT_CON0),
 		(&val),
 		(PMIC_RG_INT_EN_ACCDET_EINT1_MASK),
 		(PMIC_RG_INT_EN_ACCDET_EINT1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -71505,15 +69721,14 @@ unsigned int mt6358_upmu_set_rg_int_mask_accdet_eint1(
 unsigned int mt6358_upmu_get_rg_int_raw_status_audio(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUD_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_AUDIO_MASK),
 		(PMIC_RG_INT_RAW_STATUS_AUDIO_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -71521,15 +69736,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_audio(
 unsigned int mt6358_upmu_get_rg_int_raw_status_accdet(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUD_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_ACCDET_MASK),
 		(PMIC_RG_INT_RAW_STATUS_ACCDET_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -71537,15 +69751,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_accdet(
 unsigned int mt6358_upmu_get_rg_int_raw_status_accdet_eint0(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUD_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_ACCDET_EINT0_MASK),
 		(PMIC_RG_INT_RAW_STATUS_ACCDET_EINT0_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -71553,15 +69766,14 @@ unsigned int mt6358_upmu_get_rg_int_raw_status_accdet_eint0(
 unsigned int mt6358_upmu_get_rg_int_raw_status_accdet_eint1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUD_TOP_INT_RAW_STATUS0),
 		(&val),
 		(PMIC_RG_INT_RAW_STATUS_ACCDET_EINT1_MASK),
 		(PMIC_RG_INT_RAW_STATUS_ACCDET_EINT1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -71704,15 +69916,14 @@ unsigned int mt6358_upmu_set_rg_aud_clk_int_mon_flag_en(
 unsigned int mt6358_upmu_get_rg_aud_clk_int_mon_flag_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUD_TOP_MON_CON0),
 		(&val),
 		(PMIC_RG_AUD_CLK_INT_MON_FLAG_EN_MASK),
 		(PMIC_RG_AUD_CLK_INT_MON_FLAG_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -71720,15 +69931,14 @@ unsigned int mt6358_upmu_get_rg_aud_clk_int_mon_flag_en(
 unsigned int mt6358_upmu_get_audio_dig_ana_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDIO_DIG_DSN_ID),
 		(&val),
 		(PMIC_AUDIO_DIG_ANA_ID_MASK),
 		(PMIC_AUDIO_DIG_ANA_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -71736,15 +69946,14 @@ unsigned int mt6358_upmu_get_audio_dig_ana_id(
 unsigned int mt6358_upmu_get_audio_dig_dig_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDIO_DIG_DSN_ID),
 		(&val),
 		(PMIC_AUDIO_DIG_DIG_ID_MASK),
 		(PMIC_AUDIO_DIG_DIG_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -71752,15 +69961,14 @@ unsigned int mt6358_upmu_get_audio_dig_dig_id(
 unsigned int mt6358_upmu_get_audio_dig_ana_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDIO_DIG_DSN_REV0),
 		(&val),
 		(PMIC_AUDIO_DIG_ANA_MINOR_REV_MASK),
 		(PMIC_AUDIO_DIG_ANA_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -71768,15 +69976,14 @@ unsigned int mt6358_upmu_get_audio_dig_ana_minor_rev(
 unsigned int mt6358_upmu_get_audio_dig_ana_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDIO_DIG_DSN_REV0),
 		(&val),
 		(PMIC_AUDIO_DIG_ANA_MAJOR_REV_MASK),
 		(PMIC_AUDIO_DIG_ANA_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -71784,15 +69991,14 @@ unsigned int mt6358_upmu_get_audio_dig_ana_major_rev(
 unsigned int mt6358_upmu_get_audio_dig_dig_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDIO_DIG_DSN_REV0),
 		(&val),
 		(PMIC_AUDIO_DIG_DIG_MINOR_REV_MASK),
 		(PMIC_AUDIO_DIG_DIG_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -71800,15 +70006,14 @@ unsigned int mt6358_upmu_get_audio_dig_dig_minor_rev(
 unsigned int mt6358_upmu_get_audio_dig_dig_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDIO_DIG_DSN_REV0),
 		(&val),
 		(PMIC_AUDIO_DIG_DIG_MAJOR_REV_MASK),
 		(PMIC_AUDIO_DIG_DIG_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -72821,15 +71026,14 @@ unsigned int mt6358_upmu_set_r_aud_dac_pos_small_mono(
 unsigned int mt6358_upmu_get_aud_scr_out_r(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFUNC_AUD_MON0),
 		(&val),
 		(PMIC_AUD_SCR_OUT_R_MASK),
 		(PMIC_AUD_SCR_OUT_R_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -72837,15 +71041,14 @@ unsigned int mt6358_upmu_get_aud_scr_out_r(
 unsigned int mt6358_upmu_get_aud_scr_out_l(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFUNC_AUD_MON0),
 		(&val),
 		(PMIC_AUD_SCR_OUT_L_MASK),
 		(PMIC_AUD_SCR_OUT_L_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -72883,15 +71086,14 @@ unsigned int mt6358_upmu_set_afe_reserved(
 unsigned int mt6358_upmu_get_mtkaif_rxif_rd_empty_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_ADDA_MTKAIF_FIFO_LOG_MON1),
 		(&val),
 		(PMIC_MTKAIF_RXIF_RD_EMPTY_STATUS_MASK),
 		(PMIC_MTKAIF_RXIF_RD_EMPTY_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -72899,15 +71101,14 @@ unsigned int mt6358_upmu_get_mtkaif_rxif_rd_empty_status(
 unsigned int mt6358_upmu_get_mtkaif_rxif_wr_full_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_ADDA_MTKAIF_FIFO_LOG_MON1),
 		(&val),
 		(PMIC_MTKAIF_RXIF_WR_FULL_STATUS_MASK),
 		(PMIC_MTKAIF_RXIF_WR_FULL_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -72915,15 +71116,14 @@ unsigned int mt6358_upmu_get_mtkaif_rxif_wr_full_status(
 unsigned int mt6358_upmu_get_mtkaif_rxif_fifo_status(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_ADDA_MTKAIF_MON0),
 		(&val),
 		(PMIC_MTKAIF_RXIF_FIFO_STATUS_MASK),
 		(PMIC_MTKAIF_RXIF_FIFO_STATUS_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -72931,15 +71131,14 @@ unsigned int mt6358_upmu_get_mtkaif_rxif_fifo_status(
 unsigned int mt6358_upmu_get_mtkaiftx_v3_sdata_out1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_ADDA_MTKAIF_MON0),
 		(&val),
 		(PMIC_MTKAIFTX_V3_SDATA_OUT1_MASK),
 		(PMIC_MTKAIFTX_V3_SDATA_OUT1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -72947,15 +71146,14 @@ unsigned int mt6358_upmu_get_mtkaiftx_v3_sdata_out1(
 unsigned int mt6358_upmu_get_mtkaiftx_v3_sdata_out2(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_ADDA_MTKAIF_MON0),
 		(&val),
 		(PMIC_MTKAIFTX_V3_SDATA_OUT2_MASK),
 		(PMIC_MTKAIFTX_V3_SDATA_OUT2_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -72963,15 +71161,14 @@ unsigned int mt6358_upmu_get_mtkaiftx_v3_sdata_out2(
 unsigned int mt6358_upmu_get_mtkaiftx_v3_sync_out(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_ADDA_MTKAIF_MON0),
 		(&val),
 		(PMIC_MTKAIFTX_V3_SYNC_OUT_MASK),
 		(PMIC_MTKAIFTX_V3_SYNC_OUT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -72979,15 +71176,14 @@ unsigned int mt6358_upmu_get_mtkaiftx_v3_sync_out(
 unsigned int mt6358_upmu_get_mtkaif_rxif_invalid_cycle(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_ADDA_MTKAIF_MON1),
 		(&val),
 		(PMIC_MTKAIF_RXIF_INVALID_CYCLE_MASK),
 		(PMIC_MTKAIF_RXIF_INVALID_CYCLE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -72995,15 +71191,14 @@ unsigned int mt6358_upmu_get_mtkaif_rxif_invalid_cycle(
 unsigned int mt6358_upmu_get_mtkaif_rxif_invalid_flag(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_ADDA_MTKAIF_MON1),
 		(&val),
 		(PMIC_MTKAIF_RXIF_INVALID_FLAG_MASK),
 		(PMIC_MTKAIF_RXIF_INVALID_FLAG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -73011,15 +71206,14 @@ unsigned int mt6358_upmu_get_mtkaif_rxif_invalid_flag(
 unsigned int mt6358_upmu_get_mtkaif_rxif_search_fail_flag(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_ADDA_MTKAIF_MON1),
 		(&val),
 		(PMIC_MTKAIF_RXIF_SEARCH_FAIL_FLAG_MASK),
 		(PMIC_MTKAIF_RXIF_SEARCH_FAIL_FLAG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -73027,15 +71221,14 @@ unsigned int mt6358_upmu_get_mtkaif_rxif_search_fail_flag(
 unsigned int mt6358_upmu_get_mtkaifrx_v3_sdata_in1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_ADDA_MTKAIF_MON1),
 		(&val),
 		(PMIC_MTKAIFRX_V3_SDATA_IN1_MASK),
 		(PMIC_MTKAIFRX_V3_SDATA_IN1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -73043,15 +71236,14 @@ unsigned int mt6358_upmu_get_mtkaifrx_v3_sdata_in1(
 unsigned int mt6358_upmu_get_mtkaifrx_v3_sdata_in2(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_ADDA_MTKAIF_MON1),
 		(&val),
 		(PMIC_MTKAIFRX_V3_SDATA_IN2_MASK),
 		(PMIC_MTKAIFRX_V3_SDATA_IN2_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -73059,15 +71251,14 @@ unsigned int mt6358_upmu_get_mtkaifrx_v3_sdata_in2(
 unsigned int mt6358_upmu_get_mtkaifrx_v3_sync_in(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_ADDA_MTKAIF_MON1),
 		(&val),
 		(PMIC_MTKAIFRX_V3_SYNC_IN_MASK),
 		(PMIC_MTKAIFRX_V3_SYNC_IN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -73075,15 +71266,14 @@ unsigned int mt6358_upmu_get_mtkaifrx_v3_sync_in(
 unsigned int mt6358_upmu_get_mtkaif_txif_in_ch1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_ADDA_MTKAIF_MON2),
 		(&val),
 		(PMIC_MTKAIF_TXIF_IN_CH1_MASK),
 		(PMIC_MTKAIF_TXIF_IN_CH1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -73091,15 +71281,14 @@ unsigned int mt6358_upmu_get_mtkaif_txif_in_ch1(
 unsigned int mt6358_upmu_get_mtkaif_txif_in_ch2(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_ADDA_MTKAIF_MON2),
 		(&val),
 		(PMIC_MTKAIF_TXIF_IN_CH2_MASK),
 		(PMIC_MTKAIF_TXIF_IN_CH2_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -73107,15 +71296,14 @@ unsigned int mt6358_upmu_get_mtkaif_txif_in_ch2(
 unsigned int mt6358_upmu_get_mtkaif_rxif_out_ch1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_ADDA_MTKAIF_MON3),
 		(&val),
 		(PMIC_MTKAIF_RXIF_OUT_CH1_MASK),
 		(PMIC_MTKAIF_RXIF_OUT_CH1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -73123,15 +71311,14 @@ unsigned int mt6358_upmu_get_mtkaif_rxif_out_ch1(
 unsigned int mt6358_upmu_get_mtkaif_rxif_out_ch2(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_ADDA_MTKAIF_MON3),
 		(&val),
 		(PMIC_MTKAIF_RXIF_OUT_CH2_MASK),
 		(PMIC_MTKAIF_RXIF_OUT_CH2_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -73664,15 +71851,14 @@ unsigned int mt6358_upmu_set_rg_ul_async_fifo_soft_rst_en(
 unsigned int mt6358_upmu_get_rg_ul_async_fifo_soft_rst_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_ADC_ASYNC_FIFO_CFG),
 		(&val),
 		(PMIC_RG_UL_ASYNC_FIFO_SOFT_RST_EN_MASK),
 		(PMIC_RG_UL_ASYNC_FIFO_SOFT_RST_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -73905,15 +72091,14 @@ unsigned int mt6358_upmu_set_rg_aud_pad_top_tx_fifo_rsp(
 unsigned int mt6358_upmu_get_adda_aud_pad_top_mon(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_AUD_PAD_TOP_MON),
 		(&val),
 		(PMIC_ADDA_AUD_PAD_TOP_MON_MASK),
 		(PMIC_ADDA_AUD_PAD_TOP_MON_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -73921,15 +72106,14 @@ unsigned int mt6358_upmu_get_adda_aud_pad_top_mon(
 unsigned int mt6358_upmu_get_adda_aud_pad_top_mon1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_AUD_PAD_TOP_MON1),
 		(&val),
 		(PMIC_ADDA_AUD_PAD_TOP_MON1_MASK),
 		(PMIC_ADDA_AUD_PAD_TOP_MON1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -74027,15 +72211,14 @@ unsigned int mt6358_upmu_set_nle_rch_hpgain_sel(
 unsigned int mt6358_upmu_get_nle_monitor(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_DL_NLE_MON),
 		(&val),
 		(PMIC_NLE_MONITOR_MASK),
 		(PMIC_NLE_MONITOR_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -74043,15 +72226,14 @@ unsigned int mt6358_upmu_get_nle_monitor(
 unsigned int mt6358_upmu_get_ck_cg_en_mon(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_CG_EN_MON),
 		(&val),
 		(PMIC_CK_CG_EN_MON_MASK),
 		(PMIC_CK_CG_EN_MON_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -74059,15 +72241,14 @@ unsigned int mt6358_upmu_get_ck_cg_en_mon(
 unsigned int mt6358_upmu_get_audio_dig_2nd_ana_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDIO_DIG_2ND_DSN_ID),
 		(&val),
 		(PMIC_AUDIO_DIG_2ND_ANA_ID_MASK),
 		(PMIC_AUDIO_DIG_2ND_ANA_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -74075,15 +72256,14 @@ unsigned int mt6358_upmu_get_audio_dig_2nd_ana_id(
 unsigned int mt6358_upmu_get_audio_dig_2nd_dig_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDIO_DIG_2ND_DSN_ID),
 		(&val),
 		(PMIC_AUDIO_DIG_2ND_DIG_ID_MASK),
 		(PMIC_AUDIO_DIG_2ND_DIG_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -74091,15 +72271,14 @@ unsigned int mt6358_upmu_get_audio_dig_2nd_dig_id(
 unsigned int mt6358_upmu_get_audio_dig_2nd_ana_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDIO_DIG_2ND_DSN_REV0),
 		(&val),
 		(PMIC_AUDIO_DIG_2ND_ANA_MINOR_REV_MASK),
 		(PMIC_AUDIO_DIG_2ND_ANA_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -74107,15 +72286,14 @@ unsigned int mt6358_upmu_get_audio_dig_2nd_ana_minor_rev(
 unsigned int mt6358_upmu_get_audio_dig_2nd_ana_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDIO_DIG_2ND_DSN_REV0),
 		(&val),
 		(PMIC_AUDIO_DIG_2ND_ANA_MAJOR_REV_MASK),
 		(PMIC_AUDIO_DIG_2ND_ANA_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -74123,15 +72301,14 @@ unsigned int mt6358_upmu_get_audio_dig_2nd_ana_major_rev(
 unsigned int mt6358_upmu_get_audio_dig_2nd_dig_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDIO_DIG_2ND_DSN_REV0),
 		(&val),
 		(PMIC_AUDIO_DIG_2ND_DIG_MINOR_REV_MASK),
 		(PMIC_AUDIO_DIG_2ND_DIG_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -74139,15 +72316,14 @@ unsigned int mt6358_upmu_get_audio_dig_2nd_dig_minor_rev(
 unsigned int mt6358_upmu_get_audio_dig_2nd_dig_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDIO_DIG_2ND_DSN_REV0),
 		(&val),
 		(PMIC_AUDIO_DIG_2ND_DIG_MAJOR_REV_MASK),
 		(PMIC_AUDIO_DIG_2ND_DIG_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -74170,15 +72346,14 @@ unsigned int mt6358_upmu_set_rg_up8x_sync_word(
 unsigned int mt6358_upmu_get_vow_intr_flag(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_VOW_TOP),
 		(&val),
 		(PMIC_VOW_INTR_FLAG_MASK),
 		(PMIC_VOW_INTR_FLAG_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -74741,15 +72916,14 @@ unsigned int mt6358_upmu_set_rg_window_size_sel(
 unsigned int mt6358_upmu_get_vow_downcnt(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_VOW_MON0),
 		(&val),
 		(PMIC_VOW_DOWNCNT_MASK),
 		(PMIC_VOW_DOWNCNT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -74757,15 +72931,14 @@ unsigned int mt6358_upmu_get_vow_downcnt(
 unsigned int mt6358_upmu_get_second_cnt_start(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_VOW_MON1),
 		(&val),
 		(PMIC_SECOND_CNT_START_MASK),
 		(PMIC_SECOND_CNT_START_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -74773,15 +72946,14 @@ unsigned int mt6358_upmu_get_second_cnt_start(
 unsigned int mt6358_upmu_get_vow_a(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_VOW_MON1),
 		(&val),
 		(PMIC_VOW_A_MASK),
 		(PMIC_VOW_A_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -74789,15 +72961,14 @@ unsigned int mt6358_upmu_get_vow_a(
 unsigned int mt6358_upmu_get_vow_b(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_VOW_MON1),
 		(&val),
 		(PMIC_VOW_B_MASK),
 		(PMIC_VOW_B_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -74805,15 +72976,14 @@ unsigned int mt6358_upmu_get_vow_b(
 unsigned int mt6358_upmu_get_slt_counter_mon(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_VOW_MON1),
 		(&val),
 		(PMIC_SLT_COUNTER_MON_MASK),
 		(PMIC_SLT_COUNTER_MON_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -74821,15 +72991,14 @@ unsigned int mt6358_upmu_get_slt_counter_mon(
 unsigned int mt6358_upmu_get_k_tmp_mon(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_VOW_MON1),
 		(&val),
 		(PMIC_K_TMP_MON_MASK),
 		(PMIC_K_TMP_MON_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -74837,15 +73006,14 @@ unsigned int mt6358_upmu_get_k_tmp_mon(
 unsigned int mt6358_upmu_get_vow_s_l(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_VOW_MON2),
 		(&val),
 		(PMIC_VOW_S_L_MASK),
 		(PMIC_VOW_S_L_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -74853,15 +73021,14 @@ unsigned int mt6358_upmu_get_vow_s_l(
 unsigned int mt6358_upmu_get_vow_s_h(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_VOW_MON3),
 		(&val),
 		(PMIC_VOW_S_H_MASK),
 		(PMIC_VOW_S_H_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -74869,15 +73036,14 @@ unsigned int mt6358_upmu_get_vow_s_h(
 unsigned int mt6358_upmu_get_vow_n_l(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_VOW_MON4),
 		(&val),
 		(PMIC_VOW_N_L_MASK),
 		(PMIC_VOW_N_L_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -74885,15 +73051,14 @@ unsigned int mt6358_upmu_get_vow_n_l(
 unsigned int mt6358_upmu_get_vow_n_h(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_VOW_MON5),
 		(&val),
 		(PMIC_VOW_N_H_MASK),
 		(PMIC_VOW_N_H_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -75066,15 +73231,14 @@ unsigned int mt6358_upmu_set_rg_a1p6m_en_sel(
 unsigned int mt6358_upmu_get_rg_a1p6m_en_sel(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_VOW_POSDIV_CFG0),
 		(&val),
 		(PMIC_RG_A1P6M_EN_SEL_MASK),
 		(PMIC_RG_A1P6M_EN_SEL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -75112,15 +73276,14 @@ unsigned int mt6358_upmu_set_vow_32k_mode(
 unsigned int mt6358_upmu_get_buck_dvfs_done(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_VOW_POSDIV_CFG0),
 		(&val),
 		(PMIC_BUCK_DVFS_DONE_MASK),
 		(PMIC_BUCK_DVFS_DONE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -75293,15 +73456,14 @@ unsigned int mt6358_upmu_set_rg_periodic_en(
 unsigned int mt6358_upmu_get_rg_periodic_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_VOW_PERIODIC_CFG0),
 		(&val),
 		(PMIC_RG_PERIODIC_EN_MASK),
 		(PMIC_RG_PERIODIC_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -76059,15 +74221,14 @@ unsigned int mt6358_upmu_set_dmic_on_periodic_off_cycle(
 unsigned int mt6358_upmu_get_vow_periodic_mon(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_VOW_PERIODIC_MON0),
 		(&val),
 		(PMIC_VOW_PERIODIC_MON_MASK),
 		(PMIC_VOW_PERIODIC_MON_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -76075,15 +74236,14 @@ unsigned int mt6358_upmu_get_vow_periodic_mon(
 unsigned int mt6358_upmu_get_vow_periodic_count_mon(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AFE_VOW_PERIODIC_MON1),
 		(&val),
 		(PMIC_VOW_PERIODIC_COUNT_MON_MASK),
 		(PMIC_VOW_PERIODIC_COUNT_MON_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -76091,15 +74251,14 @@ unsigned int mt6358_upmu_get_vow_periodic_count_mon(
 unsigned int mt6358_upmu_get_audenc_ana_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDENC_DSN_ID),
 		(&val),
 		(PMIC_AUDENC_ANA_ID_MASK),
 		(PMIC_AUDENC_ANA_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -76107,15 +74266,14 @@ unsigned int mt6358_upmu_get_audenc_ana_id(
 unsigned int mt6358_upmu_get_audenc_dig_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDENC_DSN_ID),
 		(&val),
 		(PMIC_AUDENC_DIG_ID_MASK),
 		(PMIC_AUDENC_DIG_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -76123,15 +74281,14 @@ unsigned int mt6358_upmu_get_audenc_dig_id(
 unsigned int mt6358_upmu_get_audenc_ana_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDENC_DSN_REV0),
 		(&val),
 		(PMIC_AUDENC_ANA_MINOR_REV_MASK),
 		(PMIC_AUDENC_ANA_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -76139,15 +74296,14 @@ unsigned int mt6358_upmu_get_audenc_ana_minor_rev(
 unsigned int mt6358_upmu_get_audenc_ana_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDENC_DSN_REV0),
 		(&val),
 		(PMIC_AUDENC_ANA_MAJOR_REV_MASK),
 		(PMIC_AUDENC_ANA_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -76155,15 +74311,14 @@ unsigned int mt6358_upmu_get_audenc_ana_major_rev(
 unsigned int mt6358_upmu_get_audenc_dig_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDENC_DSN_REV0),
 		(&val),
 		(PMIC_AUDENC_DIG_MINOR_REV_MASK),
 		(PMIC_AUDENC_DIG_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -76171,15 +74326,14 @@ unsigned int mt6358_upmu_get_audenc_dig_minor_rev(
 unsigned int mt6358_upmu_get_audenc_dig_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDENC_DSN_REV0),
 		(&val),
 		(PMIC_AUDENC_DIG_MAJOR_REV_MASK),
 		(PMIC_AUDENC_DIG_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -76442,15 +74596,14 @@ unsigned int mt6358_upmu_set_rg_audio_vow_en(
 unsigned int mt6358_upmu_get_rg_audio_vow_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDENC_ANA_CON1),
 		(&val),
 		(PMIC_RG_AUDIO_VOW_EN_MASK),
 		(PMIC_RG_AUDIO_VOW_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -76503,15 +74656,14 @@ unsigned int mt6358_upmu_set_rg_clksq_en_vow(
 unsigned int mt6358_upmu_get_rg_clksq_en_vow(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDENC_ANA_CON1),
 		(&val),
 		(PMIC_RG_CLKSQ_EN_VOW_MASK),
 		(PMIC_RG_CLKSQ_EN_VOW_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -77074,15 +75226,14 @@ unsigned int mt6358_upmu_set_rg_clksq_en(
 unsigned int mt6358_upmu_get_rg_clksq_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDENC_ANA_CON6),
 		(&val),
 		(PMIC_RG_CLKSQ_EN_MASK),
 		(PMIC_RG_CLKSQ_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -77555,15 +75706,14 @@ unsigned int mt6358_upmu_set_rg_mtest_en(
 unsigned int mt6358_upmu_get_rg_mtest_en(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDENC_ANA_CON10),
 		(&val),
 		(PMIC_RG_MTEST_EN_MASK),
 		(PMIC_RG_MTEST_EN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -77826,15 +75976,14 @@ unsigned int mt6358_upmu_set_rg_accdet2auxswen(
 unsigned int mt6358_upmu_get_rgs_audrctunelread(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDENC_ANA_CON12),
 		(&val),
 		(PMIC_RGS_AUDRCTUNELREAD_MASK),
 		(PMIC_RGS_AUDRCTUNELREAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -77842,15 +75991,14 @@ unsigned int mt6358_upmu_get_rgs_audrctunelread(
 unsigned int mt6358_upmu_get_rgs_audrctunerread(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDENC_ANA_CON12),
 		(&val),
 		(PMIC_RGS_AUDRCTUNERREAD_MASK),
 		(PMIC_RGS_AUDRCTUNERREAD_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -77858,15 +76006,14 @@ unsigned int mt6358_upmu_get_rgs_audrctunerread(
 unsigned int mt6358_upmu_get_auddec_ana_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_DSN_ID),
 		(&val),
 		(PMIC_AUDDEC_ANA_ID_MASK),
 		(PMIC_AUDDEC_ANA_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -77874,15 +76021,14 @@ unsigned int mt6358_upmu_get_auddec_ana_id(
 unsigned int mt6358_upmu_get_auddec_dig_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_DSN_ID),
 		(&val),
 		(PMIC_AUDDEC_DIG_ID_MASK),
 		(PMIC_AUDDEC_DIG_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -77890,15 +76036,14 @@ unsigned int mt6358_upmu_get_auddec_dig_id(
 unsigned int mt6358_upmu_get_auddec_ana_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_DSN_REV0),
 		(&val),
 		(PMIC_AUDDEC_ANA_MINOR_REV_MASK),
 		(PMIC_AUDDEC_ANA_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -77906,15 +76051,14 @@ unsigned int mt6358_upmu_get_auddec_ana_minor_rev(
 unsigned int mt6358_upmu_get_auddec_ana_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_DSN_REV0),
 		(&val),
 		(PMIC_AUDDEC_ANA_MAJOR_REV_MASK),
 		(PMIC_AUDDEC_ANA_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -77922,15 +76066,14 @@ unsigned int mt6358_upmu_get_auddec_ana_major_rev(
 unsigned int mt6358_upmu_get_auddec_dig_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_DSN_REV0),
 		(&val),
 		(PMIC_AUDDEC_DIG_MINOR_REV_MASK),
 		(PMIC_AUDDEC_DIG_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -77938,15 +76081,14 @@ unsigned int mt6358_upmu_get_auddec_dig_minor_rev(
 unsigned int mt6358_upmu_get_auddec_dig_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_DSN_REV0),
 		(&val),
 		(PMIC_AUDDEC_DIG_MAJOR_REV_MASK),
 		(PMIC_AUDDEC_DIG_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -78239,15 +76381,14 @@ unsigned int mt6358_upmu_set_rg_hplauxfbrsw_en_vaudp15(
 unsigned int mt6358_upmu_get_rg_hplauxfbrsw_en_vaudp15(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_ANA_CON1),
 		(&val),
 		(PMIC_RG_HPLAUXFBRSW_EN_VAUDP15_MASK),
 		(PMIC_RG_HPLAUXFBRSW_EN_VAUDP15_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -78270,15 +76411,14 @@ unsigned int mt6358_upmu_set_rg_hprauxfbrsw_en_vaudp15(
 unsigned int mt6358_upmu_get_rg_hprauxfbrsw_en_vaudp15(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_ANA_CON1),
 		(&val),
 		(PMIC_RG_HPRAUXFBRSW_EN_VAUDP15_MASK),
 		(PMIC_RG_HPRAUXFBRSW_EN_VAUDP15_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -78301,15 +76441,14 @@ unsigned int mt6358_upmu_set_rg_hplshort2hplaux_en_vaudp15(
 unsigned int mt6358_upmu_get_rg_hplshort2hplaux_en_vaudp15(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_ANA_CON1),
 		(&val),
 		(PMIC_RG_HPLSHORT2HPLAUX_EN_VAUDP15_MASK),
 		(PMIC_RG_HPLSHORT2HPLAUX_EN_VAUDP15_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -78332,15 +76471,14 @@ unsigned int mt6358_upmu_set_rg_hprshort2hpraux_en_vaudp15(
 unsigned int mt6358_upmu_get_rg_hprshort2hpraux_en_vaudp15(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_ANA_CON1),
 		(&val),
 		(PMIC_RG_HPRSHORT2HPRAUX_EN_VAUDP15_MASK),
 		(PMIC_RG_HPRSHORT2HPRAUX_EN_VAUDP15_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -78438,15 +76576,14 @@ unsigned int mt6358_upmu_set_rg_audrefn_deres_en_vaudp15(
 unsigned int mt6358_upmu_get_rg_audrefn_deres_en_vaudp15(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_ANA_CON2),
 		(&val),
 		(PMIC_RG_AUDREFN_DERES_EN_VAUDP15_MASK),
 		(PMIC_RG_AUDREFN_DERES_EN_VAUDP15_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -78934,15 +77071,14 @@ unsigned int mt6358_upmu_set_rg_audtrimbuf_en_vaudp15(
 unsigned int mt6358_upmu_get_rg_audtrimbuf_en_vaudp15(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_ANA_CON8),
 		(&val),
 		(PMIC_RG_AUDTRIMBUF_EN_VAUDP15_MASK),
 		(PMIC_RG_AUDTRIMBUF_EN_VAUDP15_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -78995,15 +77131,14 @@ unsigned int mt6358_upmu_set_rg_audhpspkdet_en_vaudp15(
 unsigned int mt6358_upmu_get_rg_audhpspkdet_en_vaudp15(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_ANA_CON8),
 		(&val),
 		(PMIC_RG_AUDHPSPKDET_EN_VAUDP15_MASK),
 		(PMIC_RG_AUDHPSPKDET_EN_VAUDP15_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -79221,15 +77356,14 @@ unsigned int mt6358_upmu_set_rg_rstb_encoder_va28(
 unsigned int mt6358_upmu_get_rg_rstb_encoder_va28(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_ANA_CON13),
 		(&val),
 		(PMIC_RG_RSTB_ENCODER_VA28_MASK),
 		(PMIC_RG_RSTB_ENCODER_VA28_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -79252,15 +77386,14 @@ unsigned int mt6358_upmu_set_rg_sel_encoder_96k_va28(
 unsigned int mt6358_upmu_get_rg_sel_encoder_96k_va28(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_ANA_CON13),
 		(&val),
 		(PMIC_RG_SEL_ENCODER_96K_VA28_MASK),
 		(PMIC_RG_SEL_ENCODER_96K_VA28_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -79283,15 +77416,14 @@ unsigned int mt6358_upmu_set_rg_hcldo_en_va18(
 unsigned int mt6358_upmu_get_rg_hcldo_en_va18(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_ANA_CON14),
 		(&val),
 		(PMIC_RG_HCLDO_EN_VA18_MASK),
 		(PMIC_RG_HCLDO_EN_VA18_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -79314,15 +77446,14 @@ unsigned int mt6358_upmu_set_rg_hcldo_pddis_en_va18(
 unsigned int mt6358_upmu_get_rg_hcldo_pddis_en_va18(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_ANA_CON14),
 		(&val),
 		(PMIC_RG_HCLDO_PDDIS_EN_VA18_MASK),
 		(PMIC_RG_HCLDO_PDDIS_EN_VA18_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -79360,15 +77491,14 @@ unsigned int mt6358_upmu_set_rg_lcldo_en_va18(
 unsigned int mt6358_upmu_get_rg_lcldo_en_va18(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_ANA_CON14),
 		(&val),
 		(PMIC_RG_LCLDO_EN_VA18_MASK),
 		(PMIC_RG_LCLDO_EN_VA18_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -79391,15 +77521,14 @@ unsigned int mt6358_upmu_set_rg_lcldo_pddis_en_va18(
 unsigned int mt6358_upmu_get_rg_lcldo_pddis_en_va18(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_ANA_CON14),
 		(&val),
 		(PMIC_RG_LCLDO_PDDIS_EN_VA18_MASK),
 		(PMIC_RG_LCLDO_PDDIS_EN_VA18_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -79437,15 +77566,14 @@ unsigned int mt6358_upmu_set_rg_lcldo_enc_en_va28(
 unsigned int mt6358_upmu_get_rg_lcldo_enc_en_va28(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_ANA_CON14),
 		(&val),
 		(PMIC_RG_LCLDO_ENC_EN_VA28_MASK),
 		(PMIC_RG_LCLDO_ENC_EN_VA28_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -79468,15 +77596,14 @@ unsigned int mt6358_upmu_set_rg_lcldo_enc_pddis_en_va28(
 unsigned int mt6358_upmu_get_rg_lcldo_enc_pddis_en_va28(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_ANA_CON14),
 		(&val),
 		(PMIC_RG_LCLDO_ENC_PDDIS_EN_VA28_MASK),
 		(PMIC_RG_LCLDO_ENC_PDDIS_EN_VA28_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -79499,15 +77626,14 @@ unsigned int mt6358_upmu_set_rg_lcldo_enc_remote_sense_va28(
 unsigned int mt6358_upmu_get_rg_lcldo_enc_remote_sense_va28(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_ANA_CON14),
 		(&val),
 		(PMIC_RG_LCLDO_ENC_REMOTE_SENSE_VA28_MASK),
 		(PMIC_RG_LCLDO_ENC_REMOTE_SENSE_VA28_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -79530,15 +77656,14 @@ unsigned int mt6358_upmu_set_rg_va33refgen_en_va18(
 unsigned int mt6358_upmu_get_rg_va33refgen_en_va18(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_ANA_CON14),
 		(&val),
 		(PMIC_RG_VA33REFGEN_EN_VA18_MASK),
 		(PMIC_RG_VA33REFGEN_EN_VA18_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -79561,15 +77686,14 @@ unsigned int mt6358_upmu_set_rg_va28refgen_en_va28(
 unsigned int mt6358_upmu_get_rg_va28refgen_en_va28(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_ANA_CON14),
 		(&val),
 		(PMIC_RG_VA28REFGEN_EN_VA28_MASK),
 		(PMIC_RG_VA28REFGEN_EN_VA28_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -79592,15 +77716,14 @@ unsigned int mt6358_upmu_set_rg_hcldo_vosel_va18(
 unsigned int mt6358_upmu_get_rg_hcldo_vosel_va18(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_ANA_CON14),
 		(&val),
 		(PMIC_RG_HCLDO_VOSEL_VA18_MASK),
 		(PMIC_RG_HCLDO_VOSEL_VA18_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -79623,15 +77746,14 @@ unsigned int mt6358_upmu_set_rg_lcldo_vosel_va18(
 unsigned int mt6358_upmu_get_rg_lcldo_vosel_va18(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_ANA_CON14),
 		(&val),
 		(PMIC_RG_LCLDO_VOSEL_VA18_MASK),
 		(PMIC_RG_LCLDO_VOSEL_VA18_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -79654,15 +77776,14 @@ unsigned int mt6358_upmu_set_rg_nvreg_en_vaudp15(
 unsigned int mt6358_upmu_get_rg_nvreg_en_vaudp15(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_ANA_CON15),
 		(&val),
 		(PMIC_RG_NVREG_EN_VAUDP15_MASK),
 		(PMIC_RG_NVREG_EN_VAUDP15_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -79805,15 +77926,14 @@ unsigned int mt6358_upmu_set_rg_audhptrim_en_vaudp15(
 unsigned int mt6358_upmu_get_rg_audhptrim_en_vaudp15(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDDEC_ELR_0),
 		(&val),
 		(PMIC_RG_AUDHPTRIM_EN_VAUDP15_MASK),
 		(PMIC_RG_AUDHPTRIM_EN_VAUDP15_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -79821,15 +77941,14 @@ unsigned int mt6358_upmu_get_rg_audhptrim_en_vaudp15(
 unsigned int mt6358_upmu_get_audzcd_ana_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDZCD_DSN_ID),
 		(&val),
 		(PMIC_AUDZCD_ANA_ID_MASK),
 		(PMIC_AUDZCD_ANA_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -79837,15 +77956,14 @@ unsigned int mt6358_upmu_get_audzcd_ana_id(
 unsigned int mt6358_upmu_get_audzcd_dig_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDZCD_DSN_ID),
 		(&val),
 		(PMIC_AUDZCD_DIG_ID_MASK),
 		(PMIC_AUDZCD_DIG_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -79853,15 +77971,14 @@ unsigned int mt6358_upmu_get_audzcd_dig_id(
 unsigned int mt6358_upmu_get_audzcd_ana_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDZCD_DSN_REV0),
 		(&val),
 		(PMIC_AUDZCD_ANA_MINOR_REV_MASK),
 		(PMIC_AUDZCD_ANA_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -79869,15 +77986,14 @@ unsigned int mt6358_upmu_get_audzcd_ana_minor_rev(
 unsigned int mt6358_upmu_get_audzcd_ana_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDZCD_DSN_REV0),
 		(&val),
 		(PMIC_AUDZCD_ANA_MAJOR_REV_MASK),
 		(PMIC_AUDZCD_ANA_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -79885,15 +78001,14 @@ unsigned int mt6358_upmu_get_audzcd_ana_major_rev(
 unsigned int mt6358_upmu_get_audzcd_dig_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDZCD_DSN_REV0),
 		(&val),
 		(PMIC_AUDZCD_DIG_MINOR_REV_MASK),
 		(PMIC_AUDZCD_DIG_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -79901,15 +78016,14 @@ unsigned int mt6358_upmu_get_audzcd_dig_minor_rev(
 unsigned int mt6358_upmu_get_audzcd_dig_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_AUDZCD_DSN_REV0),
 		(&val),
 		(PMIC_AUDZCD_DIG_MAJOR_REV_MASK),
 		(PMIC_AUDZCD_DIG_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -80082,15 +78196,14 @@ unsigned int mt6358_upmu_set_rg_audivrgain(
 unsigned int mt6358_upmu_get_rg_audintgain1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ZCD_CON5),
 		(&val),
 		(PMIC_RG_AUDINTGAIN1_MASK),
 		(PMIC_RG_AUDINTGAIN1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -80098,15 +78211,14 @@ unsigned int mt6358_upmu_get_rg_audintgain1(
 unsigned int mt6358_upmu_get_rg_audintgain2(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ZCD_CON5),
 		(&val),
 		(PMIC_RG_AUDINTGAIN2_MASK),
 		(PMIC_RG_AUDINTGAIN2_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -80114,15 +78226,14 @@ unsigned int mt6358_upmu_get_rg_audintgain2(
 unsigned int mt6358_upmu_get_accdet_ana_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_DSN_DIG_ID),
 		(&val),
 		(PMIC_ACCDET_ANA_ID_MASK),
 		(PMIC_ACCDET_ANA_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -80130,15 +78241,14 @@ unsigned int mt6358_upmu_get_accdet_ana_id(
 unsigned int mt6358_upmu_get_accdet_dig_id(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_DSN_DIG_ID),
 		(&val),
 		(PMIC_ACCDET_DIG_ID_MASK),
 		(PMIC_ACCDET_DIG_ID_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -80146,15 +78256,14 @@ unsigned int mt6358_upmu_get_accdet_dig_id(
 unsigned int mt6358_upmu_get_accdet_ana_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_DSN_DIG_REV0),
 		(&val),
 		(PMIC_ACCDET_ANA_MINOR_REV_MASK),
 		(PMIC_ACCDET_ANA_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -80162,15 +78271,14 @@ unsigned int mt6358_upmu_get_accdet_ana_minor_rev(
 unsigned int mt6358_upmu_get_accdet_ana_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_DSN_DIG_REV0),
 		(&val),
 		(PMIC_ACCDET_ANA_MAJOR_REV_MASK),
 		(PMIC_ACCDET_ANA_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -80178,15 +78286,14 @@ unsigned int mt6358_upmu_get_accdet_ana_major_rev(
 unsigned int mt6358_upmu_get_accdet_dig_minor_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_DSN_DIG_REV0),
 		(&val),
 		(PMIC_ACCDET_DIG_MINOR_REV_MASK),
 		(PMIC_ACCDET_DIG_MINOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -80194,15 +78301,14 @@ unsigned int mt6358_upmu_get_accdet_dig_minor_rev(
 unsigned int mt6358_upmu_get_accdet_dig_major_rev(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_DSN_DIG_REV0),
 		(&val),
 		(PMIC_ACCDET_DIG_MAJOR_REV_MASK),
 		(PMIC_ACCDET_DIG_MAJOR_REV_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -80825,15 +78931,14 @@ unsigned int mt6358_upmu_set_accdet_eint1_ival_sel(
 unsigned int mt6358_upmu_get_accdet_irq(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON12),
 		(&val),
 		(PMIC_ACCDET_IRQ_MASK),
 		(PMIC_ACCDET_IRQ_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -80841,15 +78946,14 @@ unsigned int mt6358_upmu_get_accdet_irq(
 unsigned int mt6358_upmu_get_accdet_eint0_irq(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON12),
 		(&val),
 		(PMIC_ACCDET_EINT0_IRQ_MASK),
 		(PMIC_ACCDET_EINT0_IRQ_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -80857,15 +78961,14 @@ unsigned int mt6358_upmu_get_accdet_eint0_irq(
 unsigned int mt6358_upmu_get_accdet_eint1_irq(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON12),
 		(&val),
 		(PMIC_ACCDET_EINT1_IRQ_MASK),
 		(PMIC_ACCDET_EINT1_IRQ_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81128,15 +79231,14 @@ unsigned int mt6358_upmu_set_accdet_pwm_en_sw(
 unsigned int mt6358_upmu_get_accdet_in(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON14),
 		(&val),
 		(PMIC_ACCDET_IN_MASK),
 		(PMIC_ACCDET_IN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81144,15 +79246,14 @@ unsigned int mt6358_upmu_get_accdet_in(
 unsigned int mt6358_upmu_get_accdet_cur_in(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON14),
 		(&val),
 		(PMIC_ACCDET_CUR_IN_MASK),
 		(PMIC_ACCDET_CUR_IN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81160,15 +79261,14 @@ unsigned int mt6358_upmu_get_accdet_cur_in(
 unsigned int mt6358_upmu_get_accdet_sam_in(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON14),
 		(&val),
 		(PMIC_ACCDET_SAM_IN_MASK),
 		(PMIC_ACCDET_SAM_IN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81176,15 +79276,14 @@ unsigned int mt6358_upmu_get_accdet_sam_in(
 unsigned int mt6358_upmu_get_accdet_mem_in(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON14),
 		(&val),
 		(PMIC_ACCDET_MEM_IN_MASK),
 		(PMIC_ACCDET_MEM_IN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81192,15 +79291,14 @@ unsigned int mt6358_upmu_get_accdet_mem_in(
 unsigned int mt6358_upmu_get_accdet_state(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON14),
 		(&val),
 		(PMIC_ACCDET_STATE_MASK),
 		(PMIC_ACCDET_STATE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81208,15 +79306,14 @@ unsigned int mt6358_upmu_get_accdet_state(
 unsigned int mt6358_upmu_get_accdet_mbias_clk(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON14),
 		(&val),
 		(PMIC_ACCDET_MBIAS_CLK_MASK),
 		(PMIC_ACCDET_MBIAS_CLK_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81224,15 +79321,14 @@ unsigned int mt6358_upmu_get_accdet_mbias_clk(
 unsigned int mt6358_upmu_get_accdet_vth_clk(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON14),
 		(&val),
 		(PMIC_ACCDET_VTH_CLK_MASK),
 		(PMIC_ACCDET_VTH_CLK_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81240,15 +79336,14 @@ unsigned int mt6358_upmu_get_accdet_vth_clk(
 unsigned int mt6358_upmu_get_accdet_cmp_clk(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON14),
 		(&val),
 		(PMIC_ACCDET_CMP_CLK_MASK),
 		(PMIC_ACCDET_CMP_CLK_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81256,15 +79351,14 @@ unsigned int mt6358_upmu_get_accdet_cmp_clk(
 unsigned int mt6358_upmu_get_da_audaccdetauxadcswctrl(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON14),
 		(&val),
 		(PMIC_DA_AUDACCDETAUXADCSWCTRL_MASK),
 		(PMIC_DA_AUDACCDETAUXADCSWCTRL_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81527,15 +79621,14 @@ unsigned int mt6358_upmu_set_accdet_eint1_cmp_en_sw(
 unsigned int mt6358_upmu_get_accdet_eint0_state(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON18),
 		(&val),
 		(PMIC_ACCDET_EINT0_STATE_MASK),
 		(PMIC_ACCDET_EINT0_STATE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81543,15 +79636,14 @@ unsigned int mt6358_upmu_get_accdet_eint0_state(
 unsigned int mt6358_upmu_get_accdet_auxadc_debounce_end(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON18),
 		(&val),
 		(PMIC_ACCDET_AUXADC_DEBOUNCE_END_MASK),
 		(PMIC_ACCDET_AUXADC_DEBOUNCE_END_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81559,15 +79651,14 @@ unsigned int mt6358_upmu_get_accdet_auxadc_debounce_end(
 unsigned int mt6358_upmu_get_accdet_auxadc_connect_pre(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON18),
 		(&val),
 		(PMIC_ACCDET_AUXADC_CONNECT_PRE_MASK),
 		(PMIC_ACCDET_AUXADC_CONNECT_PRE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81575,15 +79666,14 @@ unsigned int mt6358_upmu_get_accdet_auxadc_connect_pre(
 unsigned int mt6358_upmu_get_accdet_eint0_cur_in(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON18),
 		(&val),
 		(PMIC_ACCDET_EINT0_CUR_IN_MASK),
 		(PMIC_ACCDET_EINT0_CUR_IN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81591,15 +79681,14 @@ unsigned int mt6358_upmu_get_accdet_eint0_cur_in(
 unsigned int mt6358_upmu_get_accdet_eint0_sam_in(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON18),
 		(&val),
 		(PMIC_ACCDET_EINT0_SAM_IN_MASK),
 		(PMIC_ACCDET_EINT0_SAM_IN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81607,15 +79696,14 @@ unsigned int mt6358_upmu_get_accdet_eint0_sam_in(
 unsigned int mt6358_upmu_get_accdet_eint0_mem_in(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON18),
 		(&val),
 		(PMIC_ACCDET_EINT0_MEM_IN_MASK),
 		(PMIC_ACCDET_EINT0_MEM_IN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81623,15 +79711,14 @@ unsigned int mt6358_upmu_get_accdet_eint0_mem_in(
 unsigned int mt6358_upmu_get_ad_eint0cmpout(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON18),
 		(&val),
 		(PMIC_AD_EINT0CMPOUT_MASK),
 		(PMIC_AD_EINT0CMPOUT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81639,15 +79726,14 @@ unsigned int mt6358_upmu_get_ad_eint0cmpout(
 unsigned int mt6358_upmu_get_da_ni_eint0cmpen(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON18),
 		(&val),
 		(PMIC_DA_NI_EINT0CMPEN_MASK),
 		(PMIC_DA_NI_EINT0CMPEN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81655,15 +79741,14 @@ unsigned int mt6358_upmu_get_da_ni_eint0cmpen(
 unsigned int mt6358_upmu_get_accdet_cur_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON19),
 		(&val),
 		(PMIC_ACCDET_CUR_DEB_MASK),
 		(PMIC_ACCDET_CUR_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81671,15 +79756,14 @@ unsigned int mt6358_upmu_get_accdet_cur_deb(
 unsigned int mt6358_upmu_get_accdet_eint0_cur_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON20),
 		(&val),
 		(PMIC_ACCDET_EINT0_CUR_DEB_MASK),
 		(PMIC_ACCDET_EINT0_CUR_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81717,15 +79801,14 @@ unsigned int mt6358_upmu_set_accdet_mon_flag_sel(
 unsigned int mt6358_upmu_get_accdet_rsv_con1(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON22),
 		(&val),
 		(PMIC_ACCDET_RSV_CON1_MASK),
 		(PMIC_ACCDET_RSV_CON1_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81928,15 +80011,14 @@ unsigned int mt6358_upmu_set_accdet_eint1_pwm_rise_delay(
 unsigned int mt6358_upmu_get_accdet_eint1_state(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON27),
 		(&val),
 		(PMIC_ACCDET_EINT1_STATE_MASK),
 		(PMIC_ACCDET_EINT1_STATE_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81944,15 +80026,14 @@ unsigned int mt6358_upmu_get_accdet_eint1_state(
 unsigned int mt6358_upmu_get_accdet_eint1_cur_in(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON27),
 		(&val),
 		(PMIC_ACCDET_EINT1_CUR_IN_MASK),
 		(PMIC_ACCDET_EINT1_CUR_IN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81960,15 +80041,14 @@ unsigned int mt6358_upmu_get_accdet_eint1_cur_in(
 unsigned int mt6358_upmu_get_accdet_eint1_sam_in(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON27),
 		(&val),
 		(PMIC_ACCDET_EINT1_SAM_IN_MASK),
 		(PMIC_ACCDET_EINT1_SAM_IN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81976,15 +80056,14 @@ unsigned int mt6358_upmu_get_accdet_eint1_sam_in(
 unsigned int mt6358_upmu_get_accdet_eint1_mem_in(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON27),
 		(&val),
 		(PMIC_ACCDET_EINT1_MEM_IN_MASK),
 		(PMIC_ACCDET_EINT1_MEM_IN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -81992,15 +80071,14 @@ unsigned int mt6358_upmu_get_accdet_eint1_mem_in(
 unsigned int mt6358_upmu_get_ad_eint1cmpout(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON27),
 		(&val),
 		(PMIC_AD_EINT1CMPOUT_MASK),
 		(PMIC_AD_EINT1CMPOUT_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -82008,15 +80086,14 @@ unsigned int mt6358_upmu_get_ad_eint1cmpout(
 unsigned int mt6358_upmu_get_da_ni_eint1cmpen(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON27),
 		(&val),
 		(PMIC_DA_NI_EINT1CMPEN_MASK),
 		(PMIC_DA_NI_EINT1CMPEN_SHIFT)
-		);
+		));
 
 	return val;
 }
@@ -82024,15 +80101,14 @@ unsigned int mt6358_upmu_get_da_ni_eint1cmpen(
 unsigned int mt6358_upmu_get_accdet_eint1_cur_deb(
 	void)
 {
-	unsigned int ret = 0;
 	unsigned int val = 0;
 
-	ret = pmic_read_interface(
+	(void)(pmic_read_interface(
 		(MT6358_ACCDET_CON28),
 		(&val),
 		(PMIC_ACCDET_EINT1_CUR_DEB_MASK),
 		(PMIC_ACCDET_EINT1_CUR_DEB_SHIFT)
-		);
+		));
 
 	return val;
 }

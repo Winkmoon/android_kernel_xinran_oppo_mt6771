@@ -46,7 +46,7 @@
 #include <mtk_platform_debug.h>
 #endif
 
-static int crashing_cpu;
+
 
 /* note_buf_t defined in linux/crash_core.h included by linux/kexec.h */
 static note_buf_t __percpu *crash_notes;
@@ -257,7 +257,7 @@ void __mrdump_create_oops_dump(enum AEE_REBOOT_MODE reboot_mode,
 
 		cpu = get_HW_cpuid();
 		if (cpu >= 0 && cpu < AEE_MTK_CPU_NUMS) {
-			crashing_cpu = cpu;
+			
 			/* null regs, no register dump */
 			if (regs) {
 				crash_save_cpu(regs, cpu);

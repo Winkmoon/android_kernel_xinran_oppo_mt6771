@@ -4118,14 +4118,13 @@ EXIT:
  ******************************************************************************/
 static signed int DPE_release(struct inode *pInode, struct file *pFile)
 {
-	struct DPE_USER_INFO_STRUCT *pUserInfo;
 	/*unsigned int Reg;*/
 
 	LOG_DBG("- E. UserCount: %d.", DPEInfo.UserCount);
 
 	/*  */
 	if (pFile->private_data != NULL) {
-		pUserInfo = (struct DPE_USER_INFO_STRUCT *) pFile->private_data;
+		
 		kfree(pFile->private_data);
 		pFile->private_data = NULL;
 	}
@@ -4505,7 +4504,7 @@ static signed int DPE_remove(struct platform_device *pDev)
 /******************************************************************************
  *
  ******************************************************************************/
-static signed int bPass1_On_In_Resume_TG1;
+static signed int bPass1_On_In_Resume_TG1 __maybe_unused;
 
 static signed int DPE_suspend(struct platform_device *pDev, pm_message_t Mesg)
 {

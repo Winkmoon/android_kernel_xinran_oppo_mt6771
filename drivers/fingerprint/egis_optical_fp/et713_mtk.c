@@ -229,7 +229,6 @@ static struct notifier_block egis_noti_block = {
 int Interrupt_Init(struct egistec_data *egistec, int int_mode, int detect_period, int detect_threshold)
 {
     int err = 0;
-    int status = 0;
     struct device_node *node = NULL;
     DEBUG_PRINT("EGISTEC   %s mode = %d period = %d threshold = %d\n", __func__, int_mode, detect_period, detect_threshold);
     DEBUG_PRINT("EGISTEC   %s request_irq_done = %d gpio_irq = %d  pin = %d  \n", __func__, request_irq_done, gpio_irq, egistec->irqPin);
@@ -249,7 +248,7 @@ int Interrupt_Init(struct egistec_data *egistec, int int_mode, int detect_period
         }
         if (gpio_irq < 0) {
             DEBUG_PRINT("EGISTEC %s gpio_to_irq failed\n", __func__);
-            status = gpio_irq;
+            
             goto done;
         }
 

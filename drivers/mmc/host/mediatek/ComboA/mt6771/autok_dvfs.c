@@ -672,7 +672,7 @@ void sdio_plus_set_device_rx(struct msdc_host *host)
 #ifdef DEVICE_RX_READ_DEBUG
 	unsigned char data;
 #endif
-	int ret = 0;
+	int ret __maybe_unused = 0;
 
 	msdc_cfg = MSDC_READ32(MSDC_CFG);
 	MSDC_SET_FIELD(MSDC_CFG, MSDC_CFG_CKMOD_HS400, 0);

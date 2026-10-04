@@ -141,15 +141,12 @@ static int initAF(void)
 	LOG_INF("+\n");
 
 	if (*g_pAF_Opened == 1) {
-
-		//int i4RetValue = 0;
-		int ret = 0;
 		//int cnt = 0;
 		unsigned char Temp;
 
 		s4AF_ReadReg(0x00, &Temp);  //ic info
 		LOG_INF("Check HW version: 0x00 is %x\n", Temp);
-		ret = s4AF_WriteReg(0, 0x02, 0x00); //CONTROL
+		(void)(s4AF_WriteReg(0, 0x02, 0x00)); //CONTROL
 
 
 

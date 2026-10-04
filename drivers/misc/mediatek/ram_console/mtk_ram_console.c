@@ -40,7 +40,7 @@
 #define THERMAL_RESERVED_TZS (25)
 static int thermal_num = THERMAL_RESERVED_TZS;
 
-static int mtk_cpu_num;
+static int mtk_cpu_num __maybe_unused;
 
 #define ARRAY_LEN_4 4
 #define ARRAY_LEN_8 8
@@ -239,7 +239,7 @@ struct ram_console_buffer {
 };
 
 #define REBOOT_REASON_SIG (0x43474244)	/* DBRR */
-static int FIQ_log_size = sizeof(struct ram_console_buffer);
+static int FIQ_log_size __maybe_unused = sizeof(struct ram_console_buffer);
 
 static struct ram_console_buffer *ram_console_buffer;
 static struct ram_console_buffer *ram_console_old;

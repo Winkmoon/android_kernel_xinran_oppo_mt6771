@@ -64,7 +64,7 @@
 static struct afe_mem_control_t *pMemControl;
 static struct snd_dma_buffer *FMTX_Playback_dma_buf;
 static unsigned int mPlaybackDramState;
-static struct device *mDev;
+
 
 /*
  *    function implementation
@@ -408,7 +408,7 @@ static int mtk_fmtx_probe(struct platform_device *pdev)
 #if defined(FMTX_DEBUG_LOG)
 	pr_debug("%s: dev name %s\n", __func__, dev_name(&pdev->dev));
 #endif
-	mDev = &pdev->dev;
+	(void)(&pdev->dev);
 
 	return snd_soc_register_platform(&pdev->dev, &mtk_fmtx_soc_platform);
 }

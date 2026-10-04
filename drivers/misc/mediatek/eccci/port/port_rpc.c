@@ -1351,7 +1351,6 @@ static const struct file_operations rpc_dev_fops = {
 static int port_rpc_init(struct port_t *port)
 {
 	struct cdev *dev;
-	int ret = 0;
 	static int first_init = 1;
 
 	CCCI_DEBUG_LOG(port->md_id, RPC,
@@ -1368,10 +1367,10 @@ static int port_rpc_init(struct port_t *port)
 		}
 		cdev_init(dev, &rpc_dev_fops);
 		dev->owner = THIS_MODULE;
-		ret = cdev_add(dev, MKDEV(port->major,
-			port->minor_base + port->minor), 1);
-		ret = ccci_register_dev_node(port->name, port->major,
-			port->minor_base + port->minor);
+		(void)(cdev_add(dev, MKDEV(port->major,
+			port->minor_base + port->minor), 1));
+		(void)(ccci_register_dev_node(port->name, port->major,
+			port->minor_base + port->minor));
 		port->flags |= PORT_F_ADJUST_HEADER;
 	} else {
 		port->skb_handler = &rpc_msg_handler;

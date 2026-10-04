@@ -33,7 +33,6 @@
 static struct dentry *emi_mbw_dir;
 static struct dentry *dump_buf;
 static void __iomem *mbw_dram_buf;
-static bool elm_enabled;
 
 static ssize_t dump_buf_read
 	(struct file *file, char __user *data, size_t len, loff_t *ppos)
@@ -83,7 +82,7 @@ void elm_init(struct platform_driver *emi_ctrl, struct platform_device *pdev)
 		return;
 	}
 
-	elm_enabled = false;
+	
 	if (readl(IOMEM(LAST_EMI_DECS_CTRL)) == 0xDECDDECD) {
 		mbw_buf_l = readl(IOMEM(LAST_EMI_MBW_BUF_L));
 		mbw_buf_h = readl(IOMEM(LAST_EMI_MBW_BUF_H));
@@ -93,7 +92,7 @@ void elm_init(struct platform_driver *emi_ctrl, struct platform_device *pdev)
 		mbw_buf_start = (phys_addr_t)mbw_buf_l;
 #endif
 		mbw_dram_buf = ioremap_wc(mbw_buf_start, MBW_BUF_LEN);
-		elm_enabled = true;
+		
 		pr_info("[ELM] enable mbw_buf dump\n");
 	}
 

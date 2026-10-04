@@ -31,7 +31,7 @@ short int func_PROGRAM_DOWNLOAD(void)
 
 	if ((sts & 0x0004) == 0x0004) {
 		/* ==> RHM_HT 2013/07/10        Added */
-		unsigned short int u16_dat;
+		unsigned short int u16_dat __maybe_unused;
 
 		u16_dat = I2C_OIS_mem__read(_M_FIRMVER);
 
@@ -59,7 +59,7 @@ void func_COEF_DOWNLOAD(unsigned short int u16_coef_type)
 	download(1, u16_coef_type); /* COEF Download */
 
 	{
-		unsigned short int u16_dat;
+		unsigned short int u16_dat __maybe_unused;
 
 		/* Coef type */
 		u16_dat = I2C_OIS_mem__read(_M_CEFTYP);

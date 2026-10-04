@@ -2156,7 +2156,6 @@ void rsnCheckPmkidCache(IN struct ADAPTER *prAdapter, IN struct BSS_DESC *prBss,
 	IN uint8_t ucBssIndex)
 {
 	struct BSS_INFO *prAisBssInfo;
-	struct AIS_SPECIFIC_BSS_INFO *prAisSpecBssInfo;
 	struct CONNECTION_SETTINGS *prConnSettings;
 
 	if (!prBss)
@@ -2164,8 +2163,7 @@ void rsnCheckPmkidCache(IN struct ADAPTER *prAdapter, IN struct BSS_DESC *prBss,
 
 	prConnSettings = aisGetConnSettings(prAdapter, ucBssIndex);
 	prAisBssInfo = aisGetAisBssInfo(prAdapter, ucBssIndex);
-	prAisSpecBssInfo =
-		aisGetAisSpecBssInfo(prAdapter, ucBssIndex);
+	(void)(aisGetAisSpecBssInfo(prAdapter, ucBssIndex));
 
 	/* Generate pmkid candidate indications for other APs which are
 	 * also belong to the same SSID with the current connected AP or
@@ -2945,11 +2943,9 @@ u_int8_t rsnCheckSecurityModeChanged(
 void rsnGenerateWSCIEForAssocRsp(struct ADAPTER *prAdapter,
 				 struct MSDU_INFO *prMsduInfo)
 {
-	struct WIFI_VAR *prWifiVar = NULL;
 	struct BSS_INFO *prP2pBssInfo = (struct BSS_INFO *)NULL;
-	uint16_t u2IELen = 0;
 
-	prWifiVar = &(prAdapter->rWifiVar);
+	
 
 	DBGLOG(RSN, TRACE, "WPS: Building WPS IE for (Re)Association Response");
 	prP2pBssInfo = GET_BSS_INFO_BY_INDEX(prAdapter, prMsduInfo->ucBssIndex);
@@ -2957,8 +2953,8 @@ void rsnGenerateWSCIEForAssocRsp(struct ADAPTER *prAdapter,
 	if (prP2pBssInfo->eNetworkType != NETWORK_TYPE_P2P)
 		return;
 
-	u2IELen = kalP2PCalWSC_IELen(prAdapter->prGlueInfo, 3,
-				     (uint8_t) prP2pBssInfo->u4PrivateData);
+	(void)(kalP2PCalWSC_IELen(prAdapter->prGlueInfo, 3,
+				     (uint8_t) prP2pBssInfo->u4PrivateData));
 
 	kalP2PGenWSC_IE(prAdapter->prGlueInfo,
 			3,

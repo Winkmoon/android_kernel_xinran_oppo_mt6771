@@ -1186,7 +1186,6 @@ static INT32 mtk_wcn_soc_sw_init(P_WMT_HIF_CONF pWmtHifConf)
 	INT32 iRet = -1;
 	unsigned long ctrlPa1;
 	unsigned long ctrlPa2;
-	UINT32 hw_ver;
 	WMT_CTRL_DATA ctrlData;
 	UINT32 chipid = 0;
 #ifdef CFG_WMT_READ_EFUSE_VCN33
@@ -1216,7 +1215,7 @@ static INT32 mtk_wcn_soc_sw_init(P_WMT_HIF_CONF pWmtHifConf)
 		return -1;
 	}
 
-	hw_ver = gp_soc_info->u4HwVer;
+	
 
 	/* 4 <3.2> start init for BTIF */
 	if (pWmtHifConf->hifType == WMT_HIF_BTIF) {
@@ -4026,7 +4025,6 @@ get_calibration:
 
 static INT32 mtk_wcn_soc_calibration(void)
 {
-	INT32 iRet = -1;
 	INT32 iCalRet = -1;
 	unsigned long ctrlPa1;
 	unsigned long ctrlPa2;
@@ -4034,10 +4032,10 @@ static INT32 mtk_wcn_soc_calibration(void)
 	/* Turn on BT/Wi-Fi */
 	ctrlPa1 = BT_PALDO;
 	ctrlPa2 = PALDO_ON;
-	iRet = wmt_core_ctrl(WMT_CTRL_SOC_PALDO_CTRL, &ctrlPa1, &ctrlPa2);
+	(void)(wmt_core_ctrl(WMT_CTRL_SOC_PALDO_CTRL, &ctrlPa1, &ctrlPa2));
 	ctrlPa1 = WIFI_PALDO;
 	ctrlPa2 = PALDO_ON;
-	iRet = wmt_core_ctrl(WMT_CTRL_SOC_PALDO_CTRL, &ctrlPa1, &ctrlPa2);
+	(void)(wmt_core_ctrl(WMT_CTRL_SOC_PALDO_CTRL, &ctrlPa1, &ctrlPa2));
 
 	WMT_INFO_FUNC("mtk_wcn_soc_do_calibration start\n");
 	iCalRet = mtk_wcn_soc_do_calibration();
@@ -4046,10 +4044,10 @@ static INT32 mtk_wcn_soc_calibration(void)
 	/* Turn off BT/Wi-Fi */
 	ctrlPa1 = BT_PALDO;
 	ctrlPa2 = PALDO_OFF;
-	iRet = wmt_core_ctrl(WMT_CTRL_SOC_PALDO_CTRL, &ctrlPa1, &ctrlPa2);
+	(void)(wmt_core_ctrl(WMT_CTRL_SOC_PALDO_CTRL, &ctrlPa1, &ctrlPa2));
 	ctrlPa1 = WIFI_PALDO;
 	ctrlPa2 = PALDO_OFF;
-	iRet = wmt_core_ctrl(WMT_CTRL_SOC_PALDO_CTRL, &ctrlPa1, &ctrlPa2);
+	(void)(wmt_core_ctrl(WMT_CTRL_SOC_PALDO_CTRL, &ctrlPa1, &ctrlPa2));
 
 	if (iCalRet) {
 		/* pwrap_read(0x0210,&ctrlPa1); */

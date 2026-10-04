@@ -142,7 +142,6 @@ __weak void plat_debug_api_init(void)
 static int emi_probe(struct platform_device *pdev)
 {
 	struct resource *res;
-	struct proc_dir_entry *proc_entry;
 	int i;
 
 	pr_info("[EMI] module probe.\n");
@@ -190,7 +189,7 @@ static int emi_probe(struct platform_device *pdev)
 		pr_info("[EMI] get CH%d_EMI_BASE @ %p\n",
 			i, mt_chn_emi_base_get(i));
 
-	proc_entry = proc_create("ddr_info", 0444, NULL, &ddr_info_proc_fops);
+	(void)(proc_create("ddr_info", 0444, NULL, &ddr_info_proc_fops));
 
 #if ENABLE_BWL
 	bwl_init(&emi_ctrl);

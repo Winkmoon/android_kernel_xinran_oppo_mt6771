@@ -148,8 +148,8 @@ static struct subsys_ops VPU_CORE2_SHUTDOWN_sys_ops;
 static void __iomem *infracfg_base;/*infracfg_ao*/
 static void __iomem *spm_base;
 static void __iomem *infra_base;/*infracfg*/
-static void __iomem *ckgen_base;/*ckgen*/
-static void __iomem *smi_larb6_base;
+static void __iomem *ckgen_base __maybe_unused;/*ckgen*/
+static void __iomem *smi_larb6_base __maybe_unused;
 static void __iomem *smi_common_base;
 
 #define INFRACFG_REG(offset)		(infracfg_base + offset)

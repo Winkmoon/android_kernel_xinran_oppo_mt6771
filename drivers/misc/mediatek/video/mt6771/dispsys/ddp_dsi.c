@@ -197,7 +197,6 @@ extern bool oplus_display_panelnum_continue_support;
 extern bool oplus_display_aod_ramless_support;
 #endif /* OPLUS_BUG_STABILITY */
 static int dsi_currect_mode;
-static int dsi_force_config;
 static int dsi0_te_enable = 1;
 static struct LCM_UTIL_FUNCS lcm_utils_dsi0;
 static struct LCM_UTIL_FUNCS lcm_utils_dsi1;
@@ -935,7 +934,6 @@ void DSI_Config_VDO_Timing(enum DISP_MODULE_ENUM module,
 			   struct LCM_DSI_PARAMS *dsi_params)
 {
 	int i = 0;
-	unsigned int line_byte;
 	unsigned int horizontal_sync_active_byte;
 	unsigned int horizontal_backporch_byte;
 	unsigned int horizontal_frontporch_byte;
@@ -957,11 +955,7 @@ void DSI_Config_VDO_Timing(enum DISP_MODULE_ENUM module,
 		DSI_OUTREG32(cmdq, &DSI_REG[i]->DSI_VACT_NL,
 			     dsi_params->vertical_active_line);
 
-		line_byte = (dsi_params->horizontal_sync_active +
-				dsi_params->horizontal_backporch +
-				dsi_params->horizontal_frontporch +
-				dsi_params->horizontal_active_pixel) *
-				dsiTmpBufBpp;
+		
 		horizontal_sync_active_byte =
 					(dsi_params->horizontal_sync_active *
 					dsiTmpBufBpp - 4);
@@ -1305,7 +1299,6 @@ static void _DSI_PHY_clk_setting(enum DISP_MODULE_ENUM module,
 			dsi_params->data_rate : dsi_params->PLL_CLOCK * 2;
 	unsigned int pcw_ratio = 0;
 	unsigned int posdiv = 0;
-	unsigned int prediv = 0;
 	unsigned int delta1 = 2; /* Delta1 is SSC range, default is 0%~-5% */
 	unsigned int pdelta1 = 0;
 	unsigned long addr = 0;
@@ -1491,23 +1484,23 @@ static void _DSI_PHY_clk_setting(enum DISP_MODULE_ENUM module,
 			} else if (data_Rate >= 2000) { /* 2G ~ 2.5G */
 				pcw_ratio = 1;
 				posdiv    = 0;
-				prediv    = 0;
+				
 			} else if (data_Rate >= 1000) { /* 1G ~ 2G */
 				pcw_ratio = 2;
 				posdiv    = 1;
-				prediv    = 0;
+				
 			} else if (data_Rate >= 500) { /* 500M ~ 1G */
 				pcw_ratio = 4;
 				posdiv    = 2;
-				prediv    = 0;
+				
 			} else if (data_Rate > 250) { /* 250M ~ 500M */
 				pcw_ratio = 8;
 				posdiv    = 3;
-				prediv    = 0;
+				
 			} else if (data_Rate >= 125) { /* 125M ~ 250M */
 				pcw_ratio = 16;
 				posdiv    = 4;
-				prediv    = 0;
+				
 			} else {
 				DDPPR_ERR("dataRate is too low(%d)\n",
 						data_Rate);
@@ -1599,7 +1592,6 @@ static void _dsi_phy_clk_setting_gce(enum DISP_MODULE_ENUM module,
 		dsi_params->data_rate : dsi_params->PLL_CLOCK * 2;
 	unsigned int pcw_ratio = 0;
 	unsigned int posdiv = 0;
-	unsigned int prediv = 0;
 	unsigned int delta1 = 2; /* Delta1 is SSC range, default is 0%~-5% */
 	unsigned int pdelta1 = 0;
 	unsigned long addr = 0;
@@ -1782,23 +1774,23 @@ static void _dsi_phy_clk_setting_gce(enum DISP_MODULE_ENUM module,
 		} else if (data_Rate >= 2000) { /* 2G ~ 2.5G */
 			pcw_ratio = 1;
 			posdiv    = 0;
-			prediv    = 0;
+			
 		} else if (data_Rate >= 1000) { /* 1G ~ 2G */
 			pcw_ratio = 2;
 			posdiv    = 1;
-			prediv    = 0;
+			
 		} else if (data_Rate >= 500) { /* 500M ~ 1G */
 			pcw_ratio = 4;
 			posdiv    = 2;
-			prediv    = 0;
+			
 		} else if (data_Rate > 250) { /* 250M ~ 500M */
 			pcw_ratio = 8;
 			posdiv    = 3;
-			prediv    = 0;
+			
 		} else if (data_Rate >= 125) { /* 125M ~ 250M */
 			pcw_ratio = 16;
 			posdiv    = 4;
-			prediv    = 0;
+			
 		} else {
 			DISPERR("dataRate is too low(%d)\n", data_Rate);
 			ASSERT(0);
@@ -1882,7 +1874,6 @@ void DSI_MIPI_clk_change(enum DISP_MODULE_ENUM module, int clk)
 	unsigned int chg_status = 0;
 	unsigned int pcw_ratio = 0;
 	unsigned int posdiv    = 0;
-	unsigned int prediv    = 0;
 	unsigned int i = DSI_MODULE_to_ID(module);
 	unsigned int tmp = 0;
 
@@ -1897,23 +1888,23 @@ void DSI_MIPI_clk_change(enum DISP_MODULE_ENUM module, int clk)
 	} else if (clk >= 2000) { /* 2G ~ 2.5G */
 		pcw_ratio = 1;
 		posdiv    = 0;
-		prediv    = 0;
+		
 	} else if (clk >= 1000) { /* 1G ~ 2G */
 		pcw_ratio = 2;
 		posdiv    = 1;
-		prediv    = 0;
+		
 	} else if (clk >= 500) { /* 500M ~ 1G */
 		pcw_ratio = 4;
 		posdiv    = 2;
-		prediv    = 0;
+		
 	} else if (clk > 250) { /* 250M ~ 500M */
 		pcw_ratio = 8;
 		posdiv    = 3;
-		prediv    = 0;
+		
 	} else if (clk >= 125) { /* 125M ~ 250M */
 		pcw_ratio = 16;
 		posdiv    = 4;
-		prediv    = 0;
+		
 	} else {
 		DISPERR("dataRate is too low(%d)\n", clk);
 		ASSERT(0);
@@ -6649,7 +6640,7 @@ void DSI_ForceConfig(int forceconfig)
 	if (lcm_mode_status == 0)
 		return;
 
-	dsi_force_config = forceconfig;
+	
 	/* cv switch by resume */
 	if (_dsi_context[0].dsi_params.PLL_CK_CMD == 0)
 		_dsi_context[0].dsi_params.PLL_CK_CMD =

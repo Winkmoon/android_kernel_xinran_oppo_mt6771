@@ -33,7 +33,7 @@
 #include <tlspi_Api.h>
 #endif
 
-static struct spi_device *spi_test;
+
 u32 speed = 10000000;
 
 struct mtk_spi {
@@ -337,12 +337,11 @@ EXPORT_SYMBOL(mt_spi_disable_master_clk);
 
 void mt_spi_enable_master_clk(struct spi_device *spidev)
 {
-	int ret;
 	struct mtk_spi *ms;
 
 	ms = spi_master_get_devdata(spidev->master);
 
-	ret = clk_prepare_enable(ms->spi_clk);
+	(void)(clk_prepare_enable(ms->spi_clk));
 }
 EXPORT_SYMBOL(mt_spi_enable_master_clk);
 
@@ -762,7 +761,7 @@ static int spi_test_remove(struct spi_device *spi)
 static int spi_test_probe(struct spi_device *spi)
 {
 	pr_info("%s() enter.\n", __func__);
-	spi_test = spi;
+	
 	spi->mode = SPI_MODE_3;
 	spi->bits_per_word = 8;
 	spi->controller_data = (void *)&mtk_test_chip_info;

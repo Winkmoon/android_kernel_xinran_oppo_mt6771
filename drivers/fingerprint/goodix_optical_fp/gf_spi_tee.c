@@ -81,7 +81,7 @@
 
 #define N_SPI_MINORS		32	/* ... up to 256 */
 
-static struct fp_underscreen_info fp_tpinfo;
+
 static unsigned int lasttouchmode = 0;
 
 static int SPIDEV_MAJOR;
@@ -827,7 +827,7 @@ static struct notifier_block goodix_noti_block = {
 static int gf_opticalfp_irq_handler(struct fp_underscreen_info *tp_info)
 {
     char msg = 0;
-    fp_tpinfo = *tp_info;
+    
     if(tp_info->touch_state== lasttouchmode){
         pr_info("%s touch_state is lasttouchmode \n", __func__);
         return IRQ_HANDLED;

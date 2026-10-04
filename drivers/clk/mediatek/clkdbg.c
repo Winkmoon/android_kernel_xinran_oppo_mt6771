@@ -710,14 +710,13 @@ static int clkdbg_clkop_int_ckname(int (*clkop)(struct clk *clk),
 {
 	char cmd[sizeof(last_cmd)];
 	char *c = cmd;
-	char *ign;
 	char *clk_name;
 	int r = 0;
 
 	strncpy(cmd, last_cmd, sizeof(cmd));
 	cmd[sizeof(cmd) - 1UL] = '\0';
 
-	ign = strsep(&c, " ");
+	(void)(strsep(&c, " "));
 	clk_name = strsep(&c, " ");
 
 	if (clk_name == NULL)
@@ -766,13 +765,12 @@ static int clkdbg_clkop_void_ckname(void (*clkop)(struct clk *clk),
 {
 	char cmd[sizeof(last_cmd)];
 	char *c = cmd;
-	char *ign;
 	char *clk_name;
 
 	strncpy(cmd, last_cmd, sizeof(cmd));
 	cmd[sizeof(cmd) - 1UL] = '\0';
 
-	ign = strsep(&c, " ");
+	(void)(strsep(&c, " "));
 	clk_name = strsep(&c, " ");
 
 	if (clk_name == NULL)
@@ -866,13 +864,12 @@ static void clkpvdop(void (*pvdop)(const char *), const char *clkpvdop_name,
 {
 	char cmd[sizeof(last_cmd)];
 	char *c = cmd;
-	char *ign;
 	char *pvd_name;
 
 	strncpy(cmd, last_cmd, sizeof(cmd));
 	cmd[sizeof(cmd) - 1UL] = '\0';
 
-	ign = strsep(&c, " ");
+	(void)(strsep(&c, " "));
 	pvd_name = strsep(&c, " ");
 
 	if (pvd_name == NULL)
@@ -898,7 +895,6 @@ static int clkdbg_set_parent(struct seq_file *s, void *v)
 {
 	char cmd[sizeof(last_cmd)];
 	char *c = cmd;
-	char *ign;
 	char *clk_name;
 	char *parent_name;
 	struct clk *clk;
@@ -908,7 +904,7 @@ static int clkdbg_set_parent(struct seq_file *s, void *v)
 	strncpy(cmd, last_cmd, sizeof(cmd));
 	cmd[sizeof(cmd) - 1UL] = '\0';
 
-	ign = strsep(&c, " ");
+	(void)(strsep(&c, " "));
 	clk_name = strsep(&c, " ");
 	parent_name = strsep(&c, " ");
 
@@ -947,7 +943,6 @@ static int clkdbg_set_rate(struct seq_file *s, void *v)
 {
 	char cmd[sizeof(last_cmd)];
 	char *c = cmd;
-	char *ign;
 	char *clk_name;
 	char *rate_str;
 	struct clk *clk;
@@ -957,7 +952,7 @@ static int clkdbg_set_rate(struct seq_file *s, void *v)
 	strncpy(cmd, last_cmd, sizeof(cmd));
 	cmd[sizeof(cmd) - 1UL] = '\0';
 
-	ign = strsep(&c, " ");
+	(void)(strsep(&c, " "));
 	clk_name = strsep(&c, " ");
 	rate_str = strsep(&c, " ");
 
@@ -1038,7 +1033,6 @@ static int parse_reg_val_from_cmd(void __iomem **preg, unsigned long *pval)
 {
 	char cmd[sizeof(last_cmd)];
 	char *c = cmd;
-	char *ign;
 	char *reg_str;
 	char *val_str;
 	int r = 0;
@@ -1046,7 +1040,7 @@ static int parse_reg_val_from_cmd(void __iomem **preg, unsigned long *pval)
 	strncpy(cmd, last_cmd, sizeof(cmd));
 	cmd[sizeof(cmd) - 1UL] = '\0';
 
-	ign = strsep(&c, " ");
+	(void)(strsep(&c, " "));
 	reg_str = strsep(&c, " ");
 	val_str = strsep(&c, " ");
 
@@ -1133,14 +1127,13 @@ static int parse_val_from_cmd(unsigned long *pval)
 {
 	char cmd[sizeof(last_cmd)];
 	char *c = cmd;
-	char *ign;
 	char *val_str;
 	int r = 0;
 
 	strncpy(cmd, last_cmd, sizeof(cmd));
 	cmd[sizeof(cmd) - 1UL] = '\0';
 
-	ign = strsep(&c, " ");
+	(void)(strsep(&c, " "));
 	val_str = strsep(&c, " ");
 
 	if (pval != NULL && val_str != NULL && kstrtoul(val_str, 0, pval) == 0)

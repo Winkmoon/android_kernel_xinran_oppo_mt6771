@@ -145,9 +145,8 @@ static ssize_t oplus_display_get_brightness(struct device *dev,
 static ssize_t oplus_display_set_brightness(struct device *dev,
 		struct device_attribute *attr, const char *buf, size_t num)
 {
-	int ret;
 
-	ret = kstrtouint(buf, 10, &oplus_set_brightness);
+	(void)(kstrtouint(buf, 10, &oplus_set_brightness));
 
 	printk("%s %d\n", __func__, oplus_set_brightness);
 
@@ -183,10 +182,9 @@ static ssize_t oplus_set_aod_light_mode(struct device *dev,
 		struct device_attribute *attr,
 		const char *buf, size_t count) {
 	unsigned int temp_save = 0;
-	int ret = 0;
 
 	if (oplus_display_aodlight_support) {
-		ret = kstrtouint(buf, 10, &temp_save);
+		(void)(kstrtouint(buf, 10, &temp_save));
 		if(oplus_display_aod_ramless_support) {
 			printk(KERN_INFO "oplus_set_aod_light_mode = %d return on hbm\n",temp_save);
 			return count;
@@ -197,7 +195,7 @@ static ssize_t oplus_set_aod_light_mode(struct device *dev,
 			return count;
 		}
 		aod_light_mode = temp_save;
-		ret = primary_display_aod_backlight(aod_light_mode);
+		(void)(primary_display_aod_backlight(aod_light_mode));
 		printk(KERN_INFO "oplus_set_aod_light_mode = %d\n",temp_save);
         }
 
@@ -361,14 +359,12 @@ static ssize_t LCM_HBM_show(struct device *dev,
 static ssize_t LCM_HBM_store(struct device *dev,
 		struct device_attribute *attr, const char *buf, size_t num)
 {
-	int ret;
-	unsigned char payload[100] = "";
 	printk("oplus_display_hbm_support = %d\n", oplus_display_hbm_support);
 	if (oplus_display_hbm_support) {
 		HBM_pre_mode = HBM_mode;
-		ret = kstrtoul(buf, 10, &HBM_mode);
+		(void)(kstrtoul(buf, 10, &HBM_mode));
 		printk("%s HBM_mode=%ld\n", __func__, HBM_mode);
-		ret = primary_display_set_hbm_mode((unsigned int)HBM_mode);
+		(void)(primary_display_set_hbm_mode((unsigned int)HBM_mode));
 		/*if (HBM_mode == 8) {
 			get_monotonic_boottime(&hbm_time_on);
 			hbm_on_start = hbm_time_on.tv_sec;
@@ -430,8 +426,7 @@ static ssize_t lcm_id_info_show(struct device *dev,
 static ssize_t lcm_id_info_store(struct device *dev,
 		struct device_attribute *attr, const char *buf, size_t num)
 {
-	int ret;
-	ret = kstrtou8(buf, 0, &lcm_id_addr);
+	(void)(kstrtou8(buf, 0, &lcm_id_addr));
 	printk("%s lcm_id_addr = 0x%x\n", __func__, lcm_id_addr);
 	return num;
 }
@@ -510,8 +505,7 @@ static ssize_t silence_show(struct device *dev,
 static ssize_t silence_store(struct device *dev,
 		struct device_attribute *attr, const char *buf, size_t num)
 {
-	int ret;
-	ret = kstrtoul(buf, 10, &oplus_silence_mode);
+	(void)(kstrtoul(buf, 10, &oplus_silence_mode));
 	printk("%s oplus_silence_mode=%ld\n", __func__, oplus_silence_mode);
 	return num;
 }
@@ -577,9 +571,8 @@ static ssize_t LCM_CABC_show(struct device *dev,
 static ssize_t LCM_CABC_store(struct device *dev,
         struct device_attribute *attr, const char *buf, size_t num)
 {
-    int ret = 0;
 
-    ret = kstrtoul(buf, 10, &CABC_mode);
+    (void)(kstrtoul(buf, 10, &CABC_mode));
     if( CABC_mode > 3 ){
         CABC_mode = 3;
     }
@@ -598,7 +591,7 @@ static ssize_t LCM_CABC_store(struct device *dev,
     * modify for oled not need set cabc
     */
     if (oplus_display_cabc_support || oplus_display_cabc_cmdq_support) {
-        ret = primary_display_set_cabc_mode((unsigned int)CABC_mode);
+        (void)(primary_display_set_cabc_mode((unsigned int)CABC_mode));
     }
 
     return num;

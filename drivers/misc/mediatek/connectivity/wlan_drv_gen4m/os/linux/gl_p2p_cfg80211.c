@@ -857,7 +857,6 @@ mtk_p2p_cfg80211_set_default_key(struct wiphy *wiphy,
 	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	int32_t i4Rst = -EINVAL;
 	uint32_t u4BufLen = 0;
-	u_int8_t fgDef = FALSE, fgMgtDef = FALSE;
 
 	ASSERT(wiphy);
 
@@ -886,10 +885,10 @@ mtk_p2p_cfg80211_set_default_key(struct wiphy *wiphy,
 		return WLAN_STATUS_SUCCESS;
 
 	if (rDefaultKey.ucUnicast && rDefaultKey.ucMulticast)
-		fgDef = TRUE;
+		(void)(TRUE);
 
 	if (!rDefaultKey.ucUnicast && rDefaultKey.ucMulticast)
-		fgMgtDef = TRUE;
+		(void)(TRUE);
 
 	rStatus = kalIoctl(prGlueInfo,
 		wlanoidSetDefaultKey,
@@ -1047,7 +1046,6 @@ int mtk_p2p_cfg80211_scan(struct wiphy *wiphy,
 		(struct RF_CHANNEL_INFO *) NULL;
 	struct P2P_SSID_STRUCT *prSsidStruct = (struct P2P_SSID_STRUCT *) NULL;
 	struct ieee80211_channel *prChannel = NULL;
-	struct cfg80211_ssid *prSsid = NULL;
 	uint8_t ucBssIdx = 0;
 	u_int8_t fgIsFullChanScan = FALSE;
 
@@ -1160,7 +1158,6 @@ int mtk_p2p_cfg80211_scan(struct wiphy *wiphy,
 		DBGLOG(P2P, TRACE, "Finish channel list.\n");
 
 		/* SSID */
-		prSsid = request->ssids;
 		prSsidStruct = (struct P2P_SSID_STRUCT *) prRfChannelInfo;
 		if (request->n_ssids) {
 			ASSERT((unsigned long) prSsidStruct
@@ -1177,7 +1174,6 @@ int mtk_p2p_cfg80211_scan(struct wiphy *wiphy,
 				  request->ssids->ssid_len);
 
 			prSsidStruct++;
-			prSsid++;
 		}
 
 		prMsgScanRequest->i4SsidNum = request->n_ssids;
@@ -2347,7 +2343,6 @@ int mtk_p2p_cfg80211_cancel_remain_on_channel(struct wiphy *wiphy,
 {
 	int32_t i4Rslt = -EINVAL;
 	struct GLUE_INFO *prGlueInfo = (struct GLUE_INFO *) NULL;
-	struct GL_P2P_INFO *prGlueP2pInfo = (struct GL_P2P_INFO *) NULL;
 	struct MSG_P2P_CHNL_ABORT *prMsgChnlAbort =
 		(struct MSG_P2P_CHNL_ABORT *) NULL;
 
@@ -2357,7 +2352,7 @@ int mtk_p2p_cfg80211_cancel_remain_on_channel(struct wiphy *wiphy,
 
 		P2P_WIPHY_PRIV(wiphy, prGlueInfo);
 
-		prGlueP2pInfo = prGlueInfo->prP2PInfo[0];
+		
 
 		prMsgChnlAbort = cnmMemAlloc(prGlueInfo->prAdapter,
 			RAM_TYPE_MSG, sizeof(struct MSG_P2P_CHNL_ABORT));
@@ -3646,10 +3641,6 @@ int mtk_p2p_cfg80211_testmode_p2p_sigma_pre_cmd(IN struct wiphy *wiphy,
 	struct NL80211_DRIVER_TEST_PRE_PARAMS rParams;
 	struct P2P_SPECIFIC_BSS_INFO *prP2pSpecificBssInfo =
 		(struct P2P_SPECIFIC_BSS_INFO *) NULL;
-	/* P_P2P_CONNECTION_SETTINGS_T prP2pConnSettings =
-	 * (P_P2P_CONNECTION_SETTINGS_T)NULL;
-	 */
-	uint32_t index_mode;
 	uint32_t index;
 	int32_t value;
 	int status = 0;
@@ -3683,7 +3674,7 @@ int mtk_p2p_cfg80211_testmode_p2p_sigma_pre_cmd(IN struct wiphy *wiphy,
 		rParams.idx,
 		rParams.value);
 
-	index_mode = rParams.idx_mode;
+	
 	index = rParams.idx;
 	value = rParams.value;
 

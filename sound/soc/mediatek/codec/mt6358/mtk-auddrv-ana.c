@@ -72,7 +72,7 @@ unsigned int Ana_Get_Reg(unsigned int offset)
 	/* get pmic register */
 	unsigned int Rdata = 0;
 #ifdef AUDIO_USING_WRAP_DRIVER
-	int ret = 0;
+	int ret __maybe_unused = 0;
 
 	ret = pwrap_read(offset, &Rdata);
 #endif
@@ -86,7 +86,7 @@ void Ana_Set_Reg(unsigned int offset, unsigned int value, unsigned int mask)
 	/* set pmic register or analog CONTROL_IFACE_PATH */
 
 #ifdef AUDIO_USING_WRAP_DRIVER
-	int ret = 0;
+	int ret __maybe_unused = 0;
 	unsigned int Reg_Value;
 	unsigned long flags = 0;
 

@@ -409,7 +409,6 @@ void check_cm_mgr_status_internal(void)
 	}
 
 	if (spin_trylock_irqsave(&cm_mgr_lock, flags)) {
-		int ret;
 		int max_ratio_idx[CM_MGR_CPU_CLUSTER];
 #if defined(LIGHT_LOAD) && defined(CONFIG_MTK_SCHED_RQAVG_US)
 		unsigned int cpu;
@@ -468,39 +467,39 @@ void check_cm_mgr_status_internal(void)
 
 #ifdef USE_NEW_CPU_OPP
 #ifdef USE_SINGLE_CLUSTER
-		ret = cm_mgr_check_stall_ratio(
+		(void)(cm_mgr_check_stall_ratio(
 				prev_freq[0] / 1000,
-				0);
+				0));
 #else
-		ret = cm_mgr_check_stall_ratio(
+		(void)(cm_mgr_check_stall_ratio(
 				prev_freq[0] / 1000,
-				prev_freq[1] / 1000);
+				prev_freq[1] / 1000));
 #endif /* USE_SINGLE_CLUSTER */
 #else
 #ifdef CONFIG_MTK_CPU_FREQ
 #ifdef USE_AVG_PMU
 #ifdef USE_SINGLE_CLUSTER
-		ret = cm_mgr_check_stall_ratio(
+		(void)(cm_mgr_check_stall_ratio(
 				mt_cpufreq_get_cur_phy_freq_no_lock(0) / 1000,
-				0);
+				0));
 #else
-		ret = cm_mgr_check_stall_ratio(
+		(void)(cm_mgr_check_stall_ratio(
 				mt_cpufreq_get_cur_phy_freq_no_lock(0) / 1000,
-				mt_cpufreq_get_cur_phy_freq_no_lock(1) / 1000);
+				mt_cpufreq_get_cur_phy_freq_no_lock(1) / 1000));
 #endif /* USE_SINGLE_CLUSTER */
 #else
 #ifdef USE_SINGLE_CLUSTER
-		ret = cm_mgr_check_stall_ratio(
+		(void)(cm_mgr_check_stall_ratio(
 				mt_cpufreq_get_cur_freq(0) / 1000,
-				0);
+				0));
 #else
-		ret = cm_mgr_check_stall_ratio(
+		(void)(cm_mgr_check_stall_ratio(
 				mt_cpufreq_get_cur_freq(0) / 1000,
-				mt_cpufreq_get_cur_freq(1) / 1000);
+				mt_cpufreq_get_cur_freq(1) / 1000));
 #endif /* USE_SINGLE_CLUSTER */
 #endif /* USE_AVG_PMU */
 #else
-		ret = 0;
+		(void)(0);
 #endif /* CONFIG_MTK_CPU_FREQ */
 #endif /* USE_NEW_CPU_OPP */
 		total_bw = cm_mgr_get_bw() / 512;

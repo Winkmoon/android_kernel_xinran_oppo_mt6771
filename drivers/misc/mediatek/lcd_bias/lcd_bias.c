@@ -39,7 +39,7 @@
 #ifdef BUILD_LK
 static struct mt_i2c_t lcd_bias_i2c;
 #else
-static struct i2c_client *lcd_bias_i2c_client;
+static struct i2c_client *lcd_bias_i2c_client __maybe_unused;
 static struct pinctrl *lcd_bias_pctrl; /* static pinctrl instance */
 
 /*****************************************************************************

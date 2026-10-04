@@ -551,7 +551,6 @@ static struct dma_async_tx_descriptor *mtk_dma_prep_slave_sg(
 	enum dma_transfer_direction dir, unsigned long tx_flags, void *context)
 {
 	struct mtk_chan *c = to_mtk_dma_chan(chan);
-	enum dma_slave_buswidth dev_width;
 	struct scatterlist *sgent;
 	struct mtk_dma_desc *d;
 	dma_addr_t dev_addr;
@@ -561,10 +560,10 @@ static struct dma_async_tx_descriptor *mtk_dma_prep_slave_sg(
 
 	if (dir == DMA_DEV_TO_MEM) {
 		dev_addr = c->cfg.src_addr;
-		dev_width = c->cfg.src_addr_width;
+		
 	} else if (dir == DMA_MEM_TO_DEV) {
 		dev_addr = c->cfg.dst_addr;
-		dev_width = c->cfg.dst_addr_width;
+		
 	} else {
 		pr_err("%s: bad direction?\n", __func__);
 		return NULL;
@@ -597,7 +596,6 @@ static struct dma_async_tx_descriptor *mtk_dma_prep_slave_sg(
 static void mtk_dma_issue_pending(struct dma_chan *chan)
 {
 	struct mtk_chan *c = to_mtk_dma_chan(chan);
-	struct mtk_dmadev *mtkd;
 	struct virt_dma_desc *vd;
 	dma_cookie_t cookie;
 	unsigned long flags;
@@ -605,7 +603,7 @@ static void mtk_dma_issue_pending(struct dma_chan *chan)
 	spin_lock_irqsave(&c->vc.lock, flags);
 	if (c->cfg.direction == DMA_DEV_TO_MEM) {
 		cookie = c->vc.chan.cookie;
-		mtkd = to_mtk_dma_dev(chan->device);
+		(void)(to_mtk_dma_dev(chan->device));
 		if (vchan_issue_pending(&c->vc) && (c->desc == NULL)) {
 			vd = vchan_find_desc(&c->vc, cookie);
 			c->desc = to_mtk_dma_desc(&vd->tx);

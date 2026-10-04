@@ -1264,7 +1264,9 @@ static int jpeg_enc_ioctl(unsigned int cmd, unsigned long arg,
 	unsigned int file_size, enc_result_code;
 
 	/* unsigned int _jpeg_enc_int_status; */
+#ifdef FPGA_VERSION
 	unsigned int jpeg_enc_wait_timeout = 0;
+#endif
 	unsigned int cycle_count;
 	unsigned int ret;
 	/* No spec, considering [picture size] x [target fps] */
@@ -1524,7 +1526,9 @@ static int jpeg_enc_ioctl(unsigned int cmd, unsigned long arg,
 
 		/* TODO:    ENC_DONE in REG_JPEG_ENC_INTERRUPT_STATUS*/
 		/*need to set to 0 after read. */
+#ifdef FPGA_VERSION
 		jpeg_enc_wait_timeout = 0xFFFFFF;
+#endif
 
 	#ifdef FPGA_VERSION
 		do {

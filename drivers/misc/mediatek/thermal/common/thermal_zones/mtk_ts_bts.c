@@ -153,7 +153,6 @@ static int g_TAP_over_critical_low = BTS_TAP_OVER_CRITICAL_LOW;
 static int g_RAP_pull_up_voltage = BTS_RAP_PULL_UP_VOLTAGE;
 static int g_RAP_ntc_table = BTS_RAP_NTC_TABLE;
 static int g_RAP_ADC_channel = BTS_RAP_ADC_CHANNEL;
-static int g_AP_TemperatureR;
 /* BTS_TEMPERATURE BTS_Temperature_Table[] = {0}; */
 
 static struct BTS_TEMPERATURE *BTS_Temperature_Table;
@@ -609,7 +608,7 @@ static __s16 mtk_ts_bts_volt_to_temp(__u32 dwVolt)
 					(g_RAP_pull_up_voltage - dwVolt);
 	}
 	/* ------------------------------------------------------------------ */
-	g_AP_TemperatureR = TRes;
+	
 
 	/* convert register to temperature */
 	BTS_TMP = mtkts_bts_thermistor_conver_temp(TRes);

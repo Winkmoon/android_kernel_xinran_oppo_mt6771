@@ -371,7 +371,7 @@ static void test_loops(int id)
 static ssize_t attr_store(struct device *dev, struct device_attribute *attr,
 				  const char *buf, size_t count)
 {
-	int i, ret, idx = -1;
+	int i, idx = -1;
 	long tmp;
 
 	for (i = 0; i < _TYPE_MAXID; i++) {
@@ -389,7 +389,7 @@ static ssize_t attr_store(struct device *dev, struct device_attribute *attr,
 		goto exit;
 	}
 
-	ret = kstrtol(buf, 0, &tmp);
+	(void)(kstrtol(buf, 0, &tmp));
 
 	switch (idx) {
 	/* normal usage */

@@ -873,7 +873,6 @@ static void _mt_cpufreq_set(struct cpufreq_policy *policy,
 	enum mt_cpu_dvfs_action_id action)
 {
 	unsigned int target_freq;
-	int ret = -1;
 	int log = 0;
 
 	FUNC_ENTER(FUNC_LV_LOCAL);
@@ -905,9 +904,9 @@ static void _mt_cpufreq_set(struct cpufreq_policy *policy,
 	aee_record_cpu_dvfs_in(p);
 
 #ifdef CONFIG_HYBRID_CPU_DVFS
-	ret = _cpufreq_set_locked_secure(policy, p, target_freq, log);
+	(void)(_cpufreq_set_locked_secure(policy, p, target_freq, log));
 #else
-	ret = _cpufreq_set_locked(policy, p, target_freq, log);
+	(void)(_cpufreq_set_locked(policy, p, target_freq, log));
 #endif
 
 	aee_record_cpu_dvfs_out(p);

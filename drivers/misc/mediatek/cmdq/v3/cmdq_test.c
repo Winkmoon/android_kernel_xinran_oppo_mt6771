@@ -232,7 +232,6 @@ static void _testcase_sync_token_timer_loop_func(struct timer_list *t)
 static void testcase_sync_token(void)
 {
 	struct cmdqRecStruct *hRec;
-	s32 ret = 0;
 
 	CMDQ_LOG("%s\n", __func__);
 
@@ -253,7 +252,7 @@ static void testcase_sync_token(void)
 		cmdq_op_wait(hRec, CMDQ_SYNC_TOKEN_USER_0);
 
 		CMDQ_MSG("start waiting\n");
-		ret = cmdq_task_flush(hRec);
+		(void)(cmdq_task_flush(hRec));
 		CMDQ_MSG("waiting done\n");
 
 		/* clear token */
@@ -273,7 +272,7 @@ static void testcase_sync_token(void)
 		cmdq_op_wait(hRec, CMDQ_SYNC_TOKEN_USER_0);
 
 		CMDQ_MSG("start waiting\n");
-		ret = cmdq_task_flush(hRec);
+		(void)(cmdq_task_flush(hRec));
 		CMDQ_MSG("waiting done\n");
 
 		/* clear token */
@@ -664,7 +663,6 @@ static void testcase_sync_token_threaded(void)
 		CMDQ_SCENARIO_JPEG_DEC,		/* normal prio */
 		CMDQ_SCENARIO_TRIGGER_LOOP	/* normal prio */
 	};
-	s32 ret = 0;
 	int i = 0;
 	u32 token = 0;
 	struct cmdq_test_timer timers[ARRAY_SIZE(scn)];
@@ -691,14 +689,14 @@ static void testcase_sync_token_threaded(void)
 		cmdq_op_finalize_command(handles[i], false);
 
 		CMDQ_MSG("TEST: SUBMIT scneario %d\n", scn[i]);
-		ret = _test_flush_async(handles[i]);
+		(void)(_test_flush_async(handles[i]));
 	}
 
 
 	/* wait for task completion */
 	msleep_interruptible(1000);
 	for (i = 0; i < ARRAY_SIZE(scn); i++)
-		ret = cmdq_pkt_wait_flush_ex_result(handles[i]);
+		(void)(cmdq_pkt_wait_flush_ex_result(handles[i]));
 
 	/* clear token */
 	for (i = 0; i < ARRAY_SIZE(scn); ++i) {
@@ -724,7 +722,6 @@ static void _testcase_loop_timer_func(struct timer_list *t)
 
 static void testcase_loop(void)
 {
-	int status = 0;
 
 	CMDQ_LOG("%s\n", __func__);
 
@@ -741,13 +738,13 @@ static void testcase_loop(void)
 	g_loopIter = 0;
 
 	/* should success */
-	status = cmdq_task_start_loop(hLoopReq);
+	(void)(cmdq_task_start_loop(hLoopReq));
 
 	/* should fail because already started */
 	CMDQ_LOG("%s start loop thread:%d handle:0x%p pkt:0x%p\n",
 		__func__, hLoopReq->thread,
 		hLoopReq, hLoopReq->pkt);
-	status = cmdq_task_start_loop(hLoopReq);
+	(void)(cmdq_task_start_loop(hLoopReq));
 
 	cmdq_pkt_dump_command(hLoopReq);
 
@@ -788,7 +785,6 @@ static void testcase_trigger_thread(void)
 {
 	struct cmdqRecStruct *trigger;
 	struct cmdqRecStruct *config;
-	s32 ret = 0;
 	int index = 0;
 
 	CMDQ_LOG("%s\n", __func__);
@@ -818,7 +814,7 @@ static void testcase_trigger_thread(void)
 	/* RUN forever but each IRQ trigger is bypass
 	 * to my_irq_callback
 	 */
-	ret = cmdq_task_start_loop(trigger);
+	(void)(cmdq_task_start_loop(trigger));
 
 	/* THREAD 2, config thread */
 	cmdq_task_create(CMDQ_SCENARIO_JPEG_DEC, &config);
@@ -829,7 +825,7 @@ static void testcase_trigger_thread(void)
 	for (index = 0; index < 10; index++)
 		cmdq_append_command(config, CMDQ_CODE_MOVE, 0, 0x1, 0, 0);
 
-	ret = cmdq_task_flush(config);
+	(void)(cmdq_task_flush(config));
 	CMDQ_MSG("flush 0\n");
 
 	cmdq_task_reset(config);
@@ -838,7 +834,7 @@ static void testcase_trigger_thread(void)
 	for (index = 0; index < 10; index++)
 		cmdq_append_command(config, CMDQ_CODE_MOVE, 0, 0x1, 0, 0);
 
-	ret = cmdq_task_flush(config);
+	(void)(cmdq_task_flush(config));
 	CMDQ_MSG("flush 1\n");
 
 	cmdq_task_reset(config);
@@ -847,7 +843,7 @@ static void testcase_trigger_thread(void)
 	for (index = 0; index < 500; index++)
 		cmdq_append_command(config, CMDQ_CODE_MOVE, 0, 0x1, 0, 0);
 
-	ret = cmdq_task_flush(config);
+	(void)(cmdq_task_flush(config));
 	CMDQ_MSG("flush 2\n");
 
 	/* WAIT */
@@ -867,7 +863,6 @@ static void testcase_prefetch_scenarios(void)
 	/* make sure both prefetch and non-prefetch cases */
 	/* handle 248+ instructions properly */
 	struct cmdqRecStruct *hConfig;
-	s32 ret = 0;
 	int index = 0, scn = 0;
 	const int INSTRUCTION_COUNT = 500;
 
@@ -887,7 +882,7 @@ static void testcase_prefetch_scenarios(void)
 			cmdq_append_command(hConfig, CMDQ_CODE_MOVE, 0, 0x1,
 				0, 0);
 
-		ret = _test_flush_task(hConfig);
+		(void)(_test_flush_task(hConfig));
 		cmdq_task_destroy(hConfig);
 	}
 
@@ -1899,7 +1894,6 @@ static void testcase_backup_register(void)
 {
 #ifdef CMDQ_GPR_SUPPORT
 	struct cmdqRecStruct *handle = NULL;
-	int ret = 0;
 	u32 regAddr[3] = { CMDQ_TEST_GCE_DUMMY_PA,
 		CMDQ_THR_CURR_ADDR_PA(5),
 		CMDQ_THR_END_ADDR_PA(5)
@@ -1915,7 +1909,7 @@ static void testcase_backup_register(void)
 	cmdq_task_create(CMDQ_SCENARIO_DEBUG, &handle);
 	cmdq_task_reset(handle);
 	cmdq_task_set_secure(handle, gCmdqTestSecure);
-	ret = cmdq_task_flush_and_read_register(handle, 3, regAddr, regValue);
+	(void)(cmdq_task_flush_and_read_register(handle, 3, regAddr, regValue));
 	cmdq_task_destroy(handle);
 
 	if (regValue[0] != 0xAAAAAAAA) {
@@ -2450,7 +2444,6 @@ void testcase_prefetch_multiple_command(void)
 #define TEST_PREFETCH_MARKER_LOOP 2
 
 	s32 i;
-	s32 ret;
 	struct cmdqRecStruct *handle[TEST_PREFETCH_MARKER_LOOP] = { 0 };
 
 	/* clear token */
@@ -2477,7 +2470,7 @@ void testcase_prefetch_multiple_command(void)
 		cmdq_op_finalize_command(handle[i], false);
 		cmdq_pkt_dump_command(handle[i]);
 
-		ret = _test_flush_async(handle[i]);
+		(void)(_test_flush_async(handle[i]));
 	}
 
 	for (i = 0; i < TEST_PREFETCH_MARKER_LOOP; i++) {
@@ -2490,7 +2483,7 @@ void testcase_prefetch_multiple_command(void)
 		msleep_interruptible(100);
 
 		CMDQ_MSG("wait 0x%p i:%2d========\n", handle[i], i);
-		ret = cmdq_pkt_wait_flush_ex_result(handle[i]);
+		(void)(cmdq_pkt_wait_flush_ex_result(handle[i]));
 		cmdq_task_destroy(handle[i]);
 	}
 
@@ -3415,7 +3408,6 @@ void testcase_prefetch_round_impl(struct cmdqRecStruct *handle,
 	u32 cmdCount, bool withMask, bool withWait, s32 i)
 {
 	s32 cmd_idx;
-	s32 ret;
 
 	cmdq_task_create(CMDQ_SCENARIO_DEBUG_PREFETCH, &handle);
 	cmdq_task_reset(handle);
@@ -3447,7 +3439,7 @@ void testcase_prefetch_round_impl(struct cmdqRecStruct *handle,
 	cmdq_op_profile_marker(handle, "ANA_END");
 	cmdq_op_finalize_command(handle, false);
 
-	ret = _test_flush_async(handle);
+	(void)(_test_flush_async(handle));
 
 	if (withWait) {
 		msleep_interruptible(500);
@@ -3455,7 +3447,7 @@ void testcase_prefetch_round_impl(struct cmdqRecStruct *handle,
 	}
 
 	CMDQ_MSG("wait 0x%p i:%2d========\n", handle, i);
-	ret = cmdq_pkt_wait_flush_ex_result(handle);
+	(void)(cmdq_pkt_wait_flush_ex_result(handle));
 	cmdq_task_destroy(handle);
 }
 
@@ -6925,7 +6917,6 @@ void testmbox_loop(void)
 		TESTMBOX_CLT_IDX_LOOP);
 	struct cmdq_pkt *pkt = NULL;
 	struct cmdq_thread *thread = (struct cmdq_thread *)clt->chan->con_priv;
-	s32 err;
 
 	CMDQ_LOG("%s\n", __func__);
 
@@ -6945,7 +6936,7 @@ void testmbox_loop(void)
 	/* should success */
 	CMDQ_LOG("%s start loop thread:%d pkt:0x%p\n",
 		__func__, thread->idx, pkt);
-	err = cmdq_pkt_flush_async(pkt, NULL, 0);
+	(void)(cmdq_pkt_flush_async(pkt, NULL, 0));
 
 	/* WAIT */
 	while (g_loopIter < 20)
@@ -7239,7 +7230,6 @@ void testmbox_verify_cpr(void)
 	struct cmdq_base *clt_base = cmdq_helper_mbox_base();
 	struct cmdq_pkt *pkt = NULL;
 	u32 dummy_pa;
-	unsigned long dummy_va;
 	const u32 pattern = 0xdeadabcd;
 	const u16 var_reg_idx = CMDQ_THR_SPR_IDX3;
 	struct cmdq_pkt_buffer *buf;
@@ -7249,10 +7239,10 @@ void testmbox_verify_cpr(void)
 	CMDQ_LOG("%s END\n", __func__);
 
 	if (gCmdqTestSecure) {
-		dummy_va = CMDQ_TEST_MMSYS_DUMMY_VA;
+		
 		dummy_pa = CMDQ_TEST_MMSYS_DUMMY_PA;
 	} else {
-		dummy_va = CMDQ_TEST_GCE_DUMMY_VA;
+		
 		dummy_pa = CMDQ_TEST_GCE_DUMMY_PA;
 	}
 

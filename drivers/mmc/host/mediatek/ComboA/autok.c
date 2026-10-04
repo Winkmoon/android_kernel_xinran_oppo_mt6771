@@ -432,7 +432,6 @@ static int autok_send_tune_cmd(struct msdc_host *host, unsigned int opcode,
 	unsigned int wints = 0;
 	unsigned long tmo = 0;
 	unsigned long write_tmo = 0;
-	unsigned int left = 0;
 	unsigned int fifo_have = 0;
 	unsigned int fifo_1k_cnt = 0;
 	unsigned int i = 0;
@@ -512,7 +511,7 @@ static int autok_send_tune_cmd(struct msdc_host *host, unsigned int opcode,
 		arg = (0 << 16) | (2);
 		break;
 	case MMC_READ_SINGLE_BLOCK:
-		left = 512;
+		(void)(512);
 		rawcmd = (512 << 16) | (0 << 13)
 			| (1 << 11) | (1 << 7) | (17);
 		arg = 0;
@@ -522,7 +521,7 @@ static int autok_send_tune_cmd(struct msdc_host *host, unsigned int opcode,
 			MSDC_WRITE32(SDC_BLK_NUM, 1);
 		break;
 	case MMC_SEND_TUNING_BLOCK:
-		left = 64;
+		(void)(64);
 		rawcmd = (64 << 16) | (0 << 13)
 			| (1 << 11) | (1 << 7) | (19);
 		arg = 0;
@@ -534,12 +533,12 @@ static int autok_send_tune_cmd(struct msdc_host *host, unsigned int opcode,
 	case MMC_SEND_TUNING_BLOCK_HS200:
 		MSDC_GET_FIELD(SDC_CFG, SDC_CFG_BUSWIDTH, bus_width);
 		if (bus_width == 2) {
-			left = 128;
+			
 			rawcmd = (128 << 16) | (0 << 13)
 				| (1 << 11) | (1 << 7) | (21);
 			arg = 0;
 		} else if (bus_width == 1) {
-			left = 64;
+			
 			rawcmd = (64 << 16) | (0 << 13)
 				| (1 << 11) | (1 << 7) | (21);
 			arg = 0;
@@ -1317,10 +1316,6 @@ static int autok_pad_dly_sel(struct AUTOK_REF_INFO *pInfo)
 	int uBD_width = 3;
 	int uDlySel_F = 0;
 	int uDlySel_R = 0;
-	/* for falling edge margin compress */
-	int uMgLost_F = 0;
-	/* for rising edge margin compress */
-	int uMgLost_R = 0;
 	unsigned int ret = 0;
 	unsigned int i;
 	int corner_res = 0;
@@ -1367,34 +1362,32 @@ static int autok_pad_dly_sel(struct AUTOK_REF_INFO *pInfo)
 			/* delay count sel at rising edge */
 			if (uBD_mid_prev >= cycle_cnt / 2) {
 				uDlySel_R = uBD_mid_prev - cycle_cnt / 2;
-				uMgLost_R = 0;
+				
 			} else if ((cycle_cnt / 2 -
 			    uBD_mid_prev) >
 			    AUTOK_MARGIN_THOLD) {
 				uDlySel_R = uBD_mid_prev + cycle_cnt / 2;
-				uMgLost_R = 0;
+				
 			} else {
 				uDlySel_R = 0;
-				uMgLost_R = cycle_cnt / 2 - uBD_mid_prev;
+				
 			}
 			/* delay count sel at falling edge */
 			pBdTmp = &(pBdInfo_R->bd_info[0]);
 			if (pBdTmp->is_fullbound) {
 				/* ooooxxxooooooxxxooo */
 				uDlySel_F = uBD_mid_prev;
-				uMgLost_F = 0;
+				
 			} else {
 				/* xooooooxxxoooooooxxxoo */
 				if (pBdTmp->Bound_End > uBD_width / 2) {
 					uDlySel_F =
 					    (pBdTmp->Bound_End) -
 					    (uBD_width / 2);
-					uMgLost_F = 0;
+					
 				} else {
 					uDlySel_F = 0;
-					uMgLost_F =
-					    (uBD_width / 2) -
-					    (pBdTmp->Bound_End);
+					
 				}
 			}
 		} else {
@@ -1432,24 +1425,22 @@ static int autok_pad_dly_sel(struct AUTOK_REF_INFO *pInfo)
 					    (pBdPrev->Bound_Start +
 					    pBdPrev->Bound_End) / 2;
 					uDlySel_F = uBD_mid_prev;
-					uMgLost_F = 0;
+					
 					if (uBD_mid_prev >= cycle_cnt / 2) {
 						uDlySel_R =
 						    uBD_mid_prev -
 						    cycle_cnt / 2;
-						uMgLost_R = 0;
+						
 					} else if ((cycle_cnt / 2 -
 						    uBD_mid_prev) >
 						   AUTOK_MARGIN_THOLD) {
 						uDlySel_R =
 						    uBD_mid_prev +
 						    cycle_cnt / 2;
-						uMgLost_R = 0;
+						
 					} else {
 						uDlySel_R = 0;
-						uMgLost_R =
-						    cycle_cnt / 2 -
-						    uBD_mid_prev;
+						
 					}
 				} else {
 					/* first boundary not full boudary */
@@ -1458,18 +1449,16 @@ static int autok_pad_dly_sel(struct AUTOK_REF_INFO *pInfo)
 					    pBdNext->Bound_End) / 2;
 					uDlySel_R =
 					    uBD_mid_next - cycle_cnt / 2;
-					uMgLost_R = 0;
+					
 					if (pBdPrev->Bound_End >
 						uBD_width / 2) {
 						uDlySel_F =
 						    (pBdPrev->Bound_End) -
 						    (uBD_width / 2);
-						uMgLost_F = 0;
+						
 					} else {
 						uDlySel_F = 0;
-						uMgLost_F =
-						    (uBD_width / 2) -
-						    (pBdPrev->Bound_End);
+						
 					}
 				}
 			} else {
@@ -1512,39 +1501,33 @@ static int autok_pad_dly_sel(struct AUTOK_REF_INFO *pInfo)
 			}
 
 			uDlySel_F = uBD_mid_prev;
-			uMgLost_F = 0;
+			
 
 			if (uBD_mid_prev >= cycle_cnt / 2) {
 				/* case 1 */
 				uDlySel_R = uBD_mid_prev - cycle_cnt / 2;
-				uMgLost_R = 0;
+				
 			} else if (cycle_cnt / 2 -
 			    uBD_mid_prev <=
 			    AUTOK_MARGIN_THOLD) {
 				/* case 2 */
 				uDlySel_R = 0;
-				uMgLost_R =
-				    cycle_cnt / 2 -
-				    uBD_mid_prev;
+				
 			} else if (cycle_cnt / 2
 			    + uBD_mid_prev <= 63) {
 				/* case 3 */
 				uDlySel_R = cycle_cnt / 2 + uBD_mid_prev;
-				uMgLost_R = 0;
+				
 			} else if (32 -
 			    uBD_mid_prev <=
 			    AUTOK_MARGIN_THOLD) {
 				/* case 4 */
 				uDlySel_R = 0;
-				uMgLost_R =
-				    cycle_cnt / 2 -
-				    uBD_mid_prev;
+				
 			} else {
 				/* case 5 */
 				uDlySel_R = 63;
-				uMgLost_R =
-				    uBD_mid_prev +
-				    cycle_cnt / 2 - 63;
+				
 			}
 		} else {
 			/* mode_4: falling edge no boundary found
@@ -1567,10 +1550,10 @@ static int autok_pad_dly_sel(struct AUTOK_REF_INFO *pInfo)
 
 			uDlySel_R = 0xFF;
 			/* Margin enough donot care margin lost */
-			uMgLost_R = 0xFF;
+			
 			uDlySel_F = uBD_mid_prev;
 			/* Margin enough donot care margin lost */
-			uMgLost_F = 0xFF;
+			
 
 			AUTOK_RAWPRINT("[AUTOK]Warn: 1T > %d\r\n",
 				cycle_cnt);
@@ -1596,16 +1579,14 @@ static int autok_pad_dly_sel(struct AUTOK_REF_INFO *pInfo)
 				    (pBdNext->Bound_Start +
 				    pBdNext->Bound_End) / 2;
 				uDlySel_R = uBD_mid_next;
-				uMgLost_R = 0;
+				
 				if (pBdPrev->Bound_End >= uBD_width / 2) {
 					uDlySel_F =
 					    pBdPrev->Bound_End - uBD_width / 2;
-					uMgLost_F = 0;
+					
 				} else {
 					uDlySel_F = 0;
-					uMgLost_F =
-					    uBD_width / 2 -
-					    pBdPrev->Bound_End;
+					
 				}
 			} else {
 				/* for falling edge there must be
@@ -1733,12 +1714,10 @@ static int autok_pad_dly_sel(struct AUTOK_REF_INFO *pInfo)
 						uDlySel_F =
 							pBdPrev->Bound_End -
 							uBD_width / 2;
-						uMgLost_F = 0;
+						
 					} else {
 						uDlySel_F = 0;
-						uMgLost_F =
-							uBD_width / 2 -
-							pBdPrev->Bound_End;
+						
 					}
 
 					/* rising edge sel */
@@ -1746,16 +1725,13 @@ static int autok_pad_dly_sel(struct AUTOK_REF_INFO *pInfo)
 						uBD_width / 2 +
 						cycle_cnt / 2 > 63) {
 						uDlySel_R = 63;
-						uMgLost_R =
-						    pBdPrev->Bound_End -
-						    uBD_width / 2 +
-						    cycle_cnt / 2 - 63;
+						
 					} else {
 						uDlySel_R =
 						    pBdPrev->Bound_End -
 						    uBD_width / 2 +
 						    cycle_cnt / 2;
-						uMgLost_R = 0;
+						
 					}
 				} else if (pBdPrev->Bound_End == 63) {
 					/* falling edge sel */
@@ -1764,12 +1740,10 @@ static int autok_pad_dly_sel(struct AUTOK_REF_INFO *pInfo)
 						uDlySel_F =
 						    pBdPrev->Bound_Start +
 						    uBD_width / 2;
-						uMgLost_F = 0;
+						
 					} else {
 						uDlySel_F = 63;
-						uMgLost_F =
-						    pBdPrev->Bound_Start +
-						    uBD_width / 2 - 63;
+						
 					}
 
 					/* rising edge sel */
@@ -1777,16 +1751,13 @@ static int autok_pad_dly_sel(struct AUTOK_REF_INFO *pInfo)
 						uBD_width / 2 -
 						cycle_cnt / 2 < 0) {
 						uDlySel_R = 0;
-						uMgLost_R =
-						    cycle_cnt / 2 -
-						    (pBdPrev->Bound_Start +
-							uBD_width / 2);
+						
 					} else {
 						uDlySel_R =
 						    pBdPrev->Bound_Start +
 						    uBD_width / 2 -
 						    cycle_cnt / 2;
-						uMgLost_R = 0;
+						
 					}
 				} else {
 					return -1;
@@ -1806,8 +1777,8 @@ static int autok_pad_dly_sel(struct AUTOK_REF_INFO *pInfo)
 				} else {
 					return -1;
 				}
-				uMgLost_F = 0xFF;
-				uMgLost_R = 0xFF;
+				
+				
 
 				AUTOK_RAWPRINT("[AUTOK]Warn: 1T > %d\r\n",
 				    cycle_cnt);
@@ -1855,18 +1826,18 @@ static int autok_pad_dly_sel(struct AUTOK_REF_INFO *pInfo)
 						    (64 - pBdPrev->Bound_Start);
 
 					uDlySel_R = uBD_mid_prev;
-					uMgLost_R = 0xFF;
+					
 					uDlySel_F = 0xFF;
-					uMgLost_F = 0xFF;
+					
 				} else {
 					cycle_cnt = 128;
 
 					uDlySel_R =
 					    (pBdPrev->Bound_Start ==
 					    0) ? 0 : 63;
-					uMgLost_R = 0xFF;
+					
 					uDlySel_F = 0xFF;
-					uMgLost_F = 0xFF;
+					
 				}
 
 				AUTOK_RAWPRINT("[AUTOK]Warning: 1T > %d\r\n",
@@ -1877,9 +1848,9 @@ static int autok_pad_dly_sel(struct AUTOK_REF_INFO *pInfo)
 				 */
 				cycle_cnt = 128;
 				uDlySel_F = 0;
-				uMgLost_F = 0xFF;
+				
 				uDlySel_R = 0;
-				uMgLost_R = 0xFF;
+				
 				AUTOK_RAWPRINT("[AUTOK]Warn: 1T > %d\r\n",
 						    cycle_cnt);
 			}
@@ -2926,13 +2897,12 @@ static int autok_register_dump(struct msdc_host *host)
 
 void autok_tuning_parameter_init(struct msdc_host *host, u8 *res)
 {
-	unsigned int ret = 0;
 	/* void __iomem *base = host->base; */
 
 	/* MSDC_SET_FIELD(MSDC_PATCH_BIT2, 7<<29, 2); */
 	/* MSDC_SET_FIELD(MSDC_PATCH_BIT2, 7<<16, 4); */
 
-	ret = autok_param_apply(host, res);
+	(void)(autok_param_apply(host, res));
 }
 
 /*******************************************************
@@ -3525,7 +3495,7 @@ int execute_online_tuning_hs400(struct msdc_host *host, u8 *res)
 	unsigned int uCmdEdge = 0;
 	u64 RawData64 = 0LL;
 	unsigned int score = 0;
-	unsigned int j, k, cycle_value;
+	unsigned int j, k;
 	struct AUTOK_REF_INFO *pBdInfo;
 	struct AUTOK_REF_INFO_NEW *pInfo;
 	char tune_result_str64[65];
@@ -3631,7 +3601,7 @@ int execute_online_tuning_hs400(struct msdc_host *host, u8 *res)
 
 	/* DLY3 keep default value 20 */
 	p_autok_tune_res[EMMC50_DS_ZDLY_DLY] = platform_para_rx.ds_dly3_hs400;
-	cycle_value = pBdInfo->cycle_cnt;
+	
 	/* Step2 : Tuning DS Clk Path-ZCLK only tune DLY1 */
 #ifdef CMDQ
 	opcode = MMC_SEND_EXT_CSD; /* can also use MMC_READ_SINGLE_BLOCK */
@@ -5470,7 +5440,6 @@ int autok_offline_tuning_clk_TX(struct msdc_host *host, unsigned int opcode)
 {
 	int ret = 0;
 	void __iomem *base = host->base;
-	unsigned int response;
 	unsigned int data_pin_status = 0xff;
 	unsigned int tune_tx_value;
 	unsigned char tune_cnt;
@@ -5553,7 +5522,7 @@ int autok_offline_tuning_clk_TX(struct msdc_host *host, unsigned int opcode)
 			/* send cmd24 write one block data */
 			ret = autok_send_tune_cmd(host, opcode, TUNE_DATA,
 			    &autok_host_para);
-			response = MSDC_READ32(SDC_RESP0);
+			(void)(MSDC_READ32(SDC_RESP0));
 			if ((ret & (E_RES_RSP_CRC | E_RES_CMD_TMO)) != 0) {
 				autok_msdc_reset();
 				msdc_clear_fifo();
@@ -5638,7 +5607,6 @@ static int autok_tune_data_tx(struct msdc_host *host,
 {
 	int ret = 0;
 	void __iomem *base = host->base;
-	unsigned int response;
 	unsigned char tune_cnt;
 
 	for (tune_cnt = 0; tune_cnt < TUNE_TX_CNT; tune_cnt++) {
@@ -5648,7 +5616,7 @@ static int autok_tune_data_tx(struct msdc_host *host,
 
 			ret = autok_send_tune_cmd(host, opcode, TUNE_DATA,
 				host_para);
-			response = MSDC_READ32(SDC_RESP0);
+			(void)(MSDC_READ32(SDC_RESP0));
 		} else {
 			/* send cmd53 write data */
 			opcode = SD_IO_RW_EXTENDED;

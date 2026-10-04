@@ -1040,9 +1040,10 @@ int dma_map_sg_within_reserved_iova(struct device *dev, struct scatterlist *sg,
 	struct iommu_domain *domain = iommu_get_domain_for_dev(dev);
 	struct iommu_dma_cookie *cookie;
 	struct iova_domain *iovad;
-	struct scatterlist *s, *prev = NULL;
-	size_t iova_len = 0;
-	size_t map_len = 0;
+	struct scatterlist *s;
+#ifdef CONFIG_ARM64
+	size_t iova_len __maybe_unused = 0;
+#endif
 	int i;
 
 	if (!domain)
@@ -1061,10 +1062,10 @@ int dma_map_sg_within_reserved_iova(struct device *dev, struct scatterlist *sg,
 		s->length = s_length;
 
 		iova_len += s_length;
-		prev = s;
+		
 	}
 
-	map_len = iommu_map_sg(domain, dma_addr, sg, nents, prot);
+	(void)(iommu_map_sg(domain, dma_addr, sg, nents, prot));
 
 	return __finalise_sg(dev, sg, nents, dma_addr);
 }

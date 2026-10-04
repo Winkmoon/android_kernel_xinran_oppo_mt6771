@@ -1890,9 +1890,8 @@ void disp_spm_enter_power_down_mode(void)
 
 void _cmdq_start_trigger_loop(void)
 {
-	int ret = 0;
 
-	ret = cmdqRecStartLoop(pgc->cmdq_handle_trigger);
+	(void)(cmdqRecStartLoop(pgc->cmdq_handle_trigger));
 	if (!primary_display_is_video_mode()) {
 		if (need_wait_esd_eof()) {
 			/*
@@ -1916,13 +1915,12 @@ void _cmdq_start_trigger_loop(void)
 
 void _cmdq_stop_trigger_loop(void)
 {
-	int ret = 0;
 
 	/*
 	 * this should be called only once because
 	 * trigger loop will never stop
 	 */
-	ret = cmdqRecStopLoop(pgc->cmdq_handle_trigger);
+	(void)(cmdqRecStopLoop(pgc->cmdq_handle_trigger));
 	DISPDBG("primary display STOP cmdq trigger loop finished\n");
 }
 
@@ -2323,10 +2321,9 @@ static int init_sec_buf(void)
 
 static int deinit_sec_buf(void)
 {
-	int ret  = 0;
 
 	if (sec_mva) {
-		ret  = sec_buf_ion_free();
+		(void)(sec_buf_ion_free());
 		sec_mva = 0;
 		/* DISPMSG("deinit_sec_mva 0x%x\n", sec_mva); */
 	}
@@ -2937,12 +2934,11 @@ static int _DC_switch_to_DL_sw_only(void)
 {
 	int ret = 0;
 	int layer = 0;
-	struct disp_ddp_path_config *data_config_dc = NULL;
 	struct disp_ddp_path_config *data_config_dl = NULL;
 	enum DDP_SCENARIO_ENUM old_scenario, new_scenario;
 
 	/* 3.destroy ovl->mem path. */
-	data_config_dc = dpmgr_path_get_last_config(pgc->ovl2mem_path_handle);
+	(void)(dpmgr_path_get_last_config(pgc->ovl2mem_path_handle));
 	data_config_dl = dpmgr_path_get_last_config(pgc->dpmgr_handle);
 
 	dpmgr_destroy_path_handle(pgc->ovl2mem_path_handle);
@@ -3237,7 +3233,6 @@ static int rdma_mode_switch_to_DC(struct cmdqRecStruct *handle, int block)
 
 static int DC_switch_to_OVL_DCM(struct cmdqRecStruct *handle, int block)
 {
-	int ret = 0;
 	enum DDP_SCENARIO_ENUM old_scn, new_scn;
 	struct RDMA_CONFIG_STRUCT rdma_config = decouple_rdma_config;
 	struct disp_ddp_path_config *data_config_dl = NULL;
@@ -3307,8 +3302,8 @@ static int DC_switch_to_OVL_DCM(struct cmdqRecStruct *handle, int block)
 	data_config_dl->rdma_dirty = 1;
 	data_config_dl->dst_dirty = 1;
 
-	ret = dpmgr_path_config(pgc->dpmgr_handle, data_config_dl,
-			pgc->cmdq_handle_config);
+	(void)(dpmgr_path_config(pgc->dpmgr_handle, data_config_dl,
+			pgc->cmdq_handle_config));
 
 	screen_logger_add_message("sess_mode", MESSAGE_REPLACE,
 		(char *)session_mode_str(DISP_SESSION_DECOUPLE_MODE));
@@ -3707,7 +3702,6 @@ static unsigned int _need_lfr_check(void)
 
 static int __primary_check_trigger(void)
 {
-	int ret = 0;
 
 	mmprofile_log_ex(ddp_mmp_get_events()->primary_display_aalod_trigger,
 			 MMPROFILE_FLAG_START, 0, 0);
@@ -3725,8 +3719,8 @@ static int __primary_check_trigger(void)
 		struct disp_ddp_path_config *data_config = NULL;
 
 		if (!handle)
-			ret = cmdqRecCreate(CMDQ_SCENARIO_PRIMARY_DISP,
-					    &handle);
+			(void)(cmdqRecCreate(CMDQ_SCENARIO_PRIMARY_DISP,
+					    &handle));
 		cmdqRecReset(handle);
 
 		primary_display_idlemgr_kick((char *)__func__, 0);
@@ -6455,7 +6449,6 @@ done:
 */
 int primary_display_aod_backlight(int level)
 {
-	int ret;
 
 	/*
 	 * add for change aod mode brightness
@@ -6547,7 +6540,7 @@ int primary_display_aod_backlight(int level)
 
 		data_config->dst_dirty = 1;
 
-		ret = dpmgr_path_config(pgc->dpmgr_handle, data_config, NULL);
+		(void)(dpmgr_path_config(pgc->dpmgr_handle, data_config, NULL));
 		data_config->dst_dirty = 0;
 	}
 
@@ -6563,7 +6556,7 @@ int primary_display_aod_backlight(int level)
 		mmprofile_log_ex(ddp_mmp_get_events()->primary_resume,
 			 MMPROFILE_FLAG_PULSE, 1, 4);
 		DISPPR_ERROR("didn't start display path but it's busy\n");
-		ret = -1;
+		
 		/* goto done; */
 	}
 
@@ -6573,7 +6566,7 @@ int primary_display_aod_backlight(int level)
 		mmprofile_log_ex(ddp_mmp_get_events()->primary_resume,
 			MMPROFILE_FLAG_PULSE, 1, 6);
 		DISPPR_ERROR("didn't trigger display path but it's busy\n");
-		ret = -1;
+		
 		/* goto done; */
 	}
 
@@ -6609,7 +6602,7 @@ skip_resume:
 				mmprofile_log_ex(ddp_mmp_get_events()->primary_suspend,
 					 MMPROFILE_FLAG_PULSE, 3, 2);
 				primary_display_diagnose();
-				ret = -1;
+				
 			}
 		}
 		DISPCHECK("%s stop trig loop\n", __func__);
@@ -6622,7 +6615,7 @@ skip_resume:
 				 MMPROFILE_FLAG_PULSE, 1, 4);
 			DISPPR_ERROR("[POWER]stop display path failed, still busy\n");
 			dpmgr_path_reset(pgc->dpmgr_handle, CMDQ_DISABLE);
-			ret = -1;
+			
 			/*
 			 * even path is busy(stop fail), we still need to
 			 * continue power off other module/devices
@@ -7755,7 +7748,7 @@ static int _config_ovl_input(struct disp_frame_cfg_t *cfg,
 	int max_layer_id_configed = 0;
 	int total_en_layer = 0;
 	int bypass = 0, bypass_layer_id = 0;
-	int hrt_level, wrot_sram;
+	int hrt_level;
 	int dc_request, o_mode, n_mode;
 	struct disp_rect total_dirty_roi = {0, 0, 0, 0};
 	static long long total_ori;
@@ -7853,7 +7846,7 @@ static int _config_ovl_input(struct disp_frame_cfg_t *cfg,
 	}
 
 	hrt_level = HRT_GET_DVFS_LEVEL(cfg->overlap_layer_num);
-	wrot_sram = HRT_GET_WROT_SRAM_FLAG(cfg->overlap_layer_num);
+	(void)(HRT_GET_WROT_SRAM_FLAG(cfg->overlap_layer_num));
 	pconfig->overlap_layer_num = hrt_level;
 
 #if 0
@@ -10028,9 +10021,8 @@ int primary_display_set_hbm_mode(unsigned int level)
 
 static int fpd_notify_worker_kthread(void *data)
 {
-	int ret = 0;
 	while (1) {
-		ret = wait_event_interruptible(fpd_notify_task_wq, atomic_read(&fpd_task_task_wakeup));
+		(void)(wait_event_interruptible(fpd_notify_task_wq, atomic_read(&fpd_task_task_wakeup)));
 		atomic_set(&fpd_task_task_wakeup, 0);
 
 		if (doze_rec_fpd || ds_rec_fpd) {
@@ -10074,9 +10066,8 @@ void fpd_notify(void)
 
 static int hbm_notify_worker_kthread(void *data)
 {
-	int ret = 0;
 	while (1) {
-		ret = wait_event_interruptible(hbm_notify_task_wq, atomic_read(&hbm_task_task_wakeup));
+		(void)(wait_event_interruptible(hbm_notify_task_wq, atomic_read(&hbm_task_task_wakeup)));
 		atomic_set(&hbm_task_task_wakeup, 0);
 		primary_display_set_hbm_wait_ramless(false);
 		mdelay(5);
@@ -11138,7 +11129,6 @@ int Panel_Master_dsi_config_entry(const char *name, void *config_value)
 	int ret = 0;
 	int force_trigger_path = 0;
 	UINT32 *config_dsi = (UINT32 *)config_value;
-	struct LCM_PARAMS *lcm_param = NULL;
 	struct LCM_DRIVER *pLcm_drv = DISP_GetLcmDrv();
 
 	DISPFUNC();
@@ -11150,7 +11140,7 @@ int Panel_Master_dsi_config_entry(const char *name, void *config_value)
 
 	_primary_path_lock(__func__);
 
-	lcm_param = disp_lcm_get_params(pgc->plcm);
+	(void)(disp_lcm_get_params(pgc->plcm));
 	if (pgc->state == DISP_SLEPT) {
 		DISPCHECK("[Pmaster]Panel_Master: primary display path is slept??\n");
 		goto done;

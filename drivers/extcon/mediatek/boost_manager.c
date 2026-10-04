@@ -73,7 +73,7 @@ static void usbotg_alarm_start_timer(struct usbotg_boost *info)
 	alarm_start(&info->otg_timer, ktime);
 }
 
-static void enable_boost_polling(bool poll_en)
+static void __maybe_unused enable_boost_polling(bool poll_en)
 {
 	if (g_info) {
 		if (poll_en) {

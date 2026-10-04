@@ -480,12 +480,7 @@ static unsigned int g_dip1sterr = DIP_GCE_EVENT_NONE;
 struct S_START_T {
 	unsigned int sec;
 	unsigned int usec;
-};
-
-/* QQ, remove later */
-/* record remain node count(success/fail) */
-/* excludes head when enque/deque control */
-static unsigned int g_regScen = 0xa5a5a5a5; /* remove later */
+}; /* remove later */
 
 
 static /*volatile*/ wait_queue_head_t P2WaitQueueHead_WaitDeque;
@@ -610,8 +605,6 @@ struct DIP_IRQ_ERR_WAN_CNT_STRUCT {
 	unsigned int m_warn_int_mark[DIP_IRQ_TYPE_AMOUNT];
 	unsigned long m_int_usec[DIP_IRQ_TYPE_AMOUNT];
 };
-
-static signed int FirstUnusedIrqUserKey = 1;
 #define USERKEY_STR_LEN 128
 
 struct UserKeyInfo {
@@ -4092,7 +4085,7 @@ static signed int DIP_open(
 	/* do wait queue head init when re-enter in camera */
 	/*  */
 	for (i = 0; i < IRQ_USER_NUM_MAX; i++) {
-		FirstUnusedIrqUserKey = 1;
+		
 		strncpy((void *)IrqUserKey_UserInfo[i].userName,
 			"DefaultUserNametoAllocMem",
 			USERKEY_STR_LEN);
@@ -4126,7 +4119,7 @@ static signed int DIP_open(
 
 	/*  */
 	spin_lock((spinlock_t *)(&SpinLockRegScen));
-	g_regScen = 0xa5a5a5a5;
+	
 	spin_unlock((spinlock_t *)(&SpinLockRegScen));
 	/*  */
 	g_dip1sterr = DIP_GCE_EVENT_NONE;
@@ -4250,7 +4243,6 @@ EXIT:
 static signed int DIP_release(
 	struct inode *pInode, struct file *pFile)
 {
-	struct DIP_USER_INFO_STRUCT *pUserInfo;
 	unsigned int i = 0;
 
 	LOG_DBG("- E. UserCount: %d.\n", IspInfo.UserCount);
@@ -4261,7 +4253,7 @@ static signed int DIP_release(
 	/* LOG_DBG("UserCount(%d)",IspInfo.UserCount); */
 	/*  */
 	if (pFile->private_data != NULL) {
-		pUserInfo = (struct DIP_USER_INFO_STRUCT *)pFile->private_data;
+		
 		kfree(pFile->private_data);
 		pFile->private_data = NULL;
 	}
@@ -4305,7 +4297,7 @@ static signed int DIP_release(
 	/* reset */
 	/*      */
 	for (i = 0; i < IRQ_USER_NUM_MAX; i++) {
-		FirstUnusedIrqUserKey = 1;
+		
 		strncpy((void *)IrqUserKey_UserInfo[i].userName,
 			"DefaultUserNametoAllocMem",
 			USERKEY_STR_LEN);
@@ -5235,7 +5227,7 @@ static signed int __init DIP_Init(void)
 #if 0
 	struct device_node *node = NULL;
 #endif
-	struct proc_dir_entry *proc_entry;
+	struct proc_dir_entry *proc_entry __maybe_unused;
 	struct proc_dir_entry *dip_p2_dir;
 
 	int i;
@@ -5565,8 +5557,6 @@ irqreturn_t DIP_Irq_DIP_A(signed int  Irq, void *DeviceId)
 {
 	int i = 0;
 	unsigned int IrqINTStatus = 0x0;
-	unsigned int IrqCQStatus = 0x0;
-	unsigned int IrqCQLDStatus = 0x0;
 
 	/*LOG_DBG("DIP_Irq_DIP_A:%d\n", Irq);*/
 
@@ -5579,8 +5569,8 @@ irqreturn_t DIP_Irq_DIP_A(signed int  Irq, void *DeviceId)
 	/* DIP_A_REG_CTL_INT_STATUS */
 	IrqINTStatus = DIP_RD32(DIP_A_BASE + 0x030);
 	/* DIP_A_REG_CTL_CQ_INT_STATUS */
-	IrqCQStatus = DIP_RD32(DIP_A_BASE + 0x034);
-	IrqCQLDStatus = DIP_RD32(DIP_A_BASE + 0x038);
+	(void)(DIP_RD32(DIP_A_BASE + 0x034));
+	(void)(DIP_RD32(DIP_A_BASE + 0x038));
 
 	for (i = 0; i < IRQ_USER_NUM_MAX; i++)
 		IspInfo.IrqInfo.Status[DIP_IRQ_TYPE_INT_DIP_A_ST][i]

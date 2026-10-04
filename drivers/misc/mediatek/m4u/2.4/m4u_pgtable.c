@@ -472,7 +472,7 @@ int m4u_clean_pte(struct m4u_domain *domain,
 		pgd = imu_pgd_offset(domain, tmp_mva);
 
 		if (F_PGD_TYPE_IS_PAGE(*pgd)) {
-			struct imu_pte_t *pte, *pte_end;
+			struct imu_pte_t *pte, *pte_end __maybe_unused;
 			unsigned long long next_mva, sync_entry_nr;
 
 			pte = imu_pte_offset_map(pgd, tmp_mva);

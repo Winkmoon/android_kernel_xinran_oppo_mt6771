@@ -761,7 +761,6 @@ static ssize_t enable_store(struct device *pdev, struct device_attribute *attr,
 	struct usb_composite_dev *cdev = dev->cdev;
 	struct android_usb_function *f;
 	int enabled = 0;
-	int ret;
 
 	if (!cdev)
 		return -ENODEV;
@@ -770,7 +769,7 @@ static ssize_t enable_store(struct device *pdev, struct device_attribute *attr,
 
 	pr_notice("[USB]%s: %d %d\n", __func__, enabled, dev->enabled);
 
-	ret = kstrtoint(buff, 0, &enabled);
+	(void)(kstrtoint(buff, 0, &enabled));
 
 	if (enabled && !dev->enabled) {
 		/* ALPS01770952

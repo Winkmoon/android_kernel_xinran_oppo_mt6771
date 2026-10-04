@@ -261,7 +261,7 @@ int register_device_proc(char *name, char *version, char *vendor)
 static ssize_t fork_para_monitor_read_proc(struct file *file, char __user *buf,
                 size_t count, loff_t *off)
 {
-        char page[256] = {0};
+        char __maybe_unused page[256] = {0};
         int ret = 0;
         //ret = snprintf(page, 255, " times:%d\n father pid:%d\n child pid:%d\n", happend_times, fork_pid_father, fork_pid_child);
 

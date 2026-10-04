@@ -1564,7 +1564,6 @@ int m4u_mva_map_kernel(unsigned int mva,
 	struct page **pages;
 	unsigned int page_num;
 	void *kernel_va;
-	unsigned int kernel_size;
 
 	pMvaInfo = mva_get_priv(mva);
 
@@ -1619,7 +1618,7 @@ get_pages_done:
 	}
 
 	kernel_va = 0;
-	kernel_size = 0;
+	
 	kernel_va = vmap(pages, page_num, VM_MAP, PAGE_KERNEL);
 	if (kernel_va == 0 || (unsigned long)kernel_va & M4U_PAGE_MASK) {
 		M4UMSG(
@@ -1883,7 +1882,9 @@ int m4u_sec_init(void)
 	M4UINFO("tz_m4u: open DCI session returned: %d\n", mcRet);
 #endif
 	{
-		int i, j;
+#ifdef M4U_TEE_SERVICE_ENABLE
+		int i, j __maybe_unused;
+#endif
 
 		for (i = 0; i < 10000000; i++)
 			j++;

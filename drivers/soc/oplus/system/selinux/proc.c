@@ -85,11 +85,10 @@ static const struct file_operations proc_selinux_denied_fops = {
 
 int init_denied_proc(void)
 {
-	struct proc_dir_entry *denied_entry;
 
 	denied_procdir = proc_mkdir("fs/selinux", NULL);
-	denied_entry = proc_create_data("enable_audit", 664, denied_procdir,
-				&proc_selinux_denied_fops, NULL);
+	(void)(proc_create_data("enable_audit", 664, denied_procdir,
+				&proc_selinux_denied_fops, NULL));
 
 	return 0;
 }

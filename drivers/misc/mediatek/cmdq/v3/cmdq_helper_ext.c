@@ -2887,7 +2887,7 @@ static void cmdq_core_parse_handle_error(const struct cmdqRecStruct *handle,
 	u32 thread, const char **moduleName, s32 *flag,
 	u32 *insts, u32 size, u32 **pc_va)
 {
-	u32 op, arg_a, arg_b;
+	u32 op, arg_a;
 	s32 eventENUM;
 	u32 addr = 0;
 	const char *module = NULL;
@@ -2933,7 +2933,7 @@ static void cmdq_core_parse_handle_error(const struct cmdqRecStruct *handle,
 
 		op = (insts[1] & 0xFF000000) >> 24;
 		arg_a = insts[1] & (~0xFF000000);
-		arg_b = insts[0];
+		
 
 		/* quick exam by hwflag first */
 		module = cmdq_get_func()->parseHandleErrorModule(handle);
@@ -3352,7 +3352,7 @@ static void cmdq_core_dump_error_handle(const struct cmdqRecStruct *handle,
 	u32 thread, u32 **pc_out)
 {
 	u32 *hwPC = NULL;
-	u64 printEngineFlag = 0;
+	u64 printEngineFlag __maybe_unused = 0;
 
 	cmdq_core_dump_thread(handle, thread, true, "ERR");
 
@@ -4313,7 +4313,6 @@ s32 cmdq_core_suspend(void)
 {
 	s32 ref_count;
 	u32 exec_thread = 0;
-	bool kill_task = false;
 
 	ref_count = atomic_read(&cmdq_thread_usage);
 	if (ref_count)
@@ -4325,12 +4324,12 @@ s32 cmdq_core_suspend(void)
 		CMDQ_ERR(
 			"[SUSPEND] MDP running, kill tasks. threads:0x%08x ref:%d\n",
 			exec_thread, ref_count);
-		kill_task = true;
+		
 	} else if ((ref_count > 0) || (0x80000000 & exec_thread)) {
 		CMDQ_ERR(
 			"[SUSPEND] other running, kill tasks. threads:0x%08x ref:%d\n",
 			exec_thread, ref_count);
-		kill_task = true;
+		
 	}
 
 	atomic_set(&cmdq_sec_dbg_ctrl, 0);
@@ -4358,7 +4357,6 @@ EXPORT_SYMBOL(cmdq_core_resume);
 
 s32 cmdq_core_resume_notifier(void)
 {
-	s32 ref_count;
 
 	CMDQ_LOG("%s\n", __func__);
 
@@ -4372,7 +4370,7 @@ s32 cmdq_core_resume_notifier(void)
 	 * ensure M4U driver had restore M4U port security setting
 	 */
 
-	ref_count = atomic_read(&cmdq_thread_usage);
+	(void)(atomic_read(&cmdq_thread_usage));
 
 	cmdq_mdp_resume();
 
@@ -4854,7 +4852,6 @@ static void cmdq_pkt_err_dump_handler(struct cmdq_cb_data data)
 static void cmdq_pkt_flush_handler(struct cmdq_cb_data data)
 {
 	struct cmdqRecStruct *handle = (struct cmdqRecStruct *)data.data;
-	struct cmdq_client *client = NULL;
 
 	if (!handle)
 		return;
@@ -4888,7 +4885,7 @@ static void cmdq_pkt_flush_handler(struct cmdq_cb_data data)
 	}
 
 	if (handle->pkt->loop) {
-		s32 loop_ret = 0;
+		s32 loop_ret __maybe_unused = 0;
 
 		if (handle->loop_cb) {
 			/* for loop task only callback and no need to do more */
@@ -4908,7 +4905,7 @@ static void cmdq_pkt_flush_handler(struct cmdq_cb_data data)
 		return;
 	}
 
-	client = cmdq_clients[(u32)handle->thread];
+	
 
 	if (data.err == -ETIMEDOUT) {
 		/* error dump may processed on error handler */

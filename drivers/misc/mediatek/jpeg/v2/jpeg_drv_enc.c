@@ -156,14 +156,14 @@ void jpeg_drv_enc_start(void)
 /* workaround for jpeg odd read operation at cg gating state */
 void jpeg_drv_enc_verify_state_and_reset(void)
 {
-	unsigned int temp, value;
+	unsigned int value;
 
 	IMG_REG_WRITE((0), REG_ADDR_JPEG_ENC_RSTB);
 	IMG_REG_WRITE((0), REG_ADDR_JPEG_ENC_RSTB);
 	IMG_REG_WRITE((1), REG_ADDR_JPEG_ENC_RSTB);
 	IMG_REG_WRITE((1), REG_ADDR_JPEG_ENC_RSTB);
 
-	temp = IMG_REG_READ(REG_ADDR_JPEG_ENC_ULTRA_THRES);
+	(void)(IMG_REG_READ(REG_ADDR_JPEG_ENC_ULTRA_THRES));
 	value = IMG_REG_READ(REG_ADDR_JPEG_ENC_DMA_ADDR0);
 
 	/* issue happen, need to do 1 read at cg gating state */

@@ -528,11 +528,15 @@ void jbd2_journal_write_revoke_records(transaction_t *transaction,
 	struct jbd2_revoke_record_s *record;
 	struct jbd2_revoke_table_s *revoke;
 	struct list_head *hash_list;
-	int i, offset, count;
+#ifdef __KERNEL__
+	int i, offset, count __maybe_unused;
+#endif
 
 	descriptor = NULL;
 	offset = 0;
+#ifdef __KERNEL__
 	count = 0;
+#endif
 
 	/* select revoke table for committing transaction */
 	revoke = journal->j_revoke == journal->j_revoke_table[0] ?

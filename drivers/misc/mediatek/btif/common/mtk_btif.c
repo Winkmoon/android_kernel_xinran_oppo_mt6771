@@ -465,7 +465,9 @@ static struct semaphore wr_mtx;
 static struct semaphore rd_mtx;
 unsigned char wr_buf[2048];
 unsigned char rd_buf[2048];
+#if 0
 static int rx_notify_flag;
+#endif
 static DECLARE_WAIT_QUEUE_HEAD(btif_wq);
 static int btif_file_open(struct inode *pinode, struct file *pfile);
 static int btif_file_release(struct inode *pinode, struct file *pfile);
@@ -549,7 +551,9 @@ static int btif_chrdev_init(void)
 void btif_rx_notify_cb(void)
 {
 	BTIF_DBG_FUNC("++\n");
+#if 0
 	rx_notify_flag = 1;
+#endif
 	wake_up(&btif_wq);
 	wake_up_interruptible(&btif_read_inq);
 	BTIF_DBG_FUNC("--\n");
@@ -658,7 +662,9 @@ static ssize_t btif_file_read(struct file *pfile,
 			break;
 
 		wait_event(btif_wq, rx_notify_flag != 0);
+#if 0
 		rx_notify_flag = 0;
+#endif
 		rd_len =
 		    btif_bbs_read(&(g_btif[0].btif_buf), rd_buf,
 				  sizeof(rd_buf));
@@ -801,7 +807,6 @@ static ssize_t driver_flag_set(struct device_driver *drv,
 	long x = 0;
 	long y = 0;
 	long z = 0;
-	int result = 0;
 	char *p_token = NULL;
 	char *p_delimiter = " \t";
 #if BTIF_DBG_SUPPORT
@@ -821,7 +826,7 @@ static ssize_t driver_flag_set(struct device_driver *drv,
 
 	p_token = strsep(&p_buf, p_delimiter);
 	if (p_token != NULL) {
-		result = kstrtol(p_token, 16, &x);
+		(void)(kstrtol(p_token, 16, &x));
 		BTIF_INFO_FUNC("x = 0x%08lx\n\r", x);
 	} else
 		x = 0;
@@ -829,14 +834,14 @@ static ssize_t driver_flag_set(struct device_driver *drv,
 
 	p_token = strsep(&p_buf, "\t\n ");
 	if (p_token != NULL) {
-		result = kstrtol(p_token, 16, &y);
+		(void)(kstrtol(p_token, 16, &y));
 		BTIF_INFO_FUNC("y = 0x%08lx\n\r", y);
 	} else
 		y = 0;
 
 	p_token = strsep(&p_buf, "\t\n ");
 	if (p_token != NULL)
-		result = kstrtol(p_token, 16, &z);
+		(void)(kstrtol(p_token, 16, &z));
 	else
 		z = 0;
 
@@ -3139,7 +3144,6 @@ static void btif_log_buf_dmp_out_work(struct work_struct *work)
 	struct _btif_log_queue_t_ *p_log_que = container_of(work,
 		struct _btif_log_queue_t_, dump_work);
 	struct _btif_log_buf_t_ *p_log_buf = NULL;
-	unsigned char *p_buf = NULL;
 	unsigned int len = 0;
 	unsigned int pkt_count = 0;
 	unsigned char *p_dir = NULL;
@@ -3158,7 +3162,7 @@ static void btif_log_buf_dmp_out_work(struct work_struct *work)
 	for (i = 0; i < p_log_que->dump_size; i++) {
 		p_log_buf = p_log_que->p_dump_queue + i;
 		len = p_log_buf->len;
-		p_buf = p_log_buf->buffer;
+		
 		p_timer = &p_log_buf->timer;
 		p_ts = &p_log_buf->ts;
 		len = len > BTIF_LOG_SZ ? BTIF_LOG_SZ : len;

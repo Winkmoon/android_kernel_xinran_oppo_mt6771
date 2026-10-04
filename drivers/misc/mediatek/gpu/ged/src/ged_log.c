@@ -833,13 +833,12 @@ EXPORT_SYMBOL(ged_log_buf_free);
 GED_ERROR ged_log_buf_print(GED_LOG_BUF_HANDLE hLogBuf, const char *fmt, ...)
 {
 	va_list args;
-	GED_ERROR err;
 	struct GED_LOG_BUF *psGEDLogBuf = ged_log_buf_from_handle(hLogBuf);
 
 	if (psGEDLogBuf) {
 		va_start(args, fmt);
-		err = __ged_log_buf_vprint(psGEDLogBuf,
-			fmt, args, psGEDLogBuf->attrs);
+		(void)(__ged_log_buf_vprint(psGEDLogBuf,
+			fmt, args, psGEDLogBuf->attrs));
 		va_end(args);
 	}
 
@@ -851,7 +850,6 @@ GED_ERROR ged_log_buf_print2(GED_LOG_BUF_HANDLE hLogBuf,
 	int i32LogAttrs, const char *fmt, ...)
 {
 	va_list args;
-	GED_ERROR err;
 	struct GED_LOG_BUF *psGEDLogBuf = ged_log_buf_from_handle(hLogBuf);
 
 	if (psGEDLogBuf) {
@@ -859,8 +857,8 @@ GED_ERROR ged_log_buf_print2(GED_LOG_BUF_HANDLE hLogBuf,
 		i32LogAttrs &= ~0xff;
 
 		va_start(args, fmt);
-		err = __ged_log_buf_vprint(psGEDLogBuf, fmt,
-			args, psGEDLogBuf->attrs | i32LogAttrs);
+		(void)(__ged_log_buf_vprint(psGEDLogBuf, fmt,
+			args, psGEDLogBuf->attrs | i32LogAttrs));
 		va_end(args);
 	}
 

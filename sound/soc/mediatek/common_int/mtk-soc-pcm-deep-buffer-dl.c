@@ -83,7 +83,6 @@ static int deep_buffer_dl_hdoutput;
 static bool mPrepareDone;
 static const void *irq_user_id;
 static unsigned int irq_cnt;
-static struct device *mDev;
 
 static int deep_buffer_mem_blk;
 static int deep_buffer_mem_blk_io;
@@ -609,7 +608,7 @@ static int mtk_deep_buffer_dl_probe(struct platform_device *pdev)
 
 	pr_debug("%s: dev name %s\n", __func__, dev_name(&pdev->dev));
 
-	mDev = &pdev->dev;
+	
 
 	return snd_soc_register_platform(&pdev->dev,
 					 &mtk_deep_buffer_dl_soc_platform);

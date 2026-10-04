@@ -756,7 +756,7 @@ static void ext_id_adjustment_and_retry(struct disp_layer_info *info,
 
 static int ext_id_tuning(struct disp_layer_info *info, int disp)
 {
-	int ovl_tb, l_tb, phy_ovl_cnt, i;
+	int l_tb, phy_ovl_cnt, i;
 	int ext_cnt = 0, cur_phy_cnt = 0;
 	struct layer_config *layer_info;
 #ifdef CONFIG_MTK_ROUND_CORNER_SUPPORT
@@ -776,7 +776,7 @@ static int ext_id_tuning(struct disp_layer_info *info, int disp)
 		phy_ovl_cnt = MAX_PHY_OVL_CNT;
 	}
 
-	ovl_tb = l_rule_ops->get_mapping_table(DISP_HW_OVL_TB, 0);
+	(void)(l_rule_ops->get_mapping_table(DISP_HW_OVL_TB, 0));
 	l_tb = l_rule_ops->get_mapping_table(DISP_HW_LAYER_TB, phy_ovl_cnt - 1);
 	if (l_rule_info->dal_enable) {
 		l_tb = l_rule_ops->get_mapping_table(DISP_HW_LAYER_TB,
@@ -1193,7 +1193,7 @@ static int _calc_hrt_num(struct disp_layer_info *disp_info, int disp,
 			 int hrt_type, bool force_scan_y, bool has_dal_layer)
 {
 	int i, sum_overlap_w, overlap_l_bound, layer_map;
-	int overlap_w, layer_idx, phy_layer_idx, ovl_cnt;
+	int overlap_w, layer_idx, ovl_cnt;
 	bool has_gles = false;
 	struct layer_config *layer_info;
 
@@ -1236,7 +1236,7 @@ static int _calc_hrt_num(struct disp_layer_info *disp_info, int disp,
 				else if (!is_extended_layer(layer_info))
 					layer_idx++;
 
-				phy_layer_idx = get_phy_ovl_index(layer_idx);
+				(void)(get_phy_ovl_index(layer_idx));
 				ovl_idx = get_ovl_by_phy(layer_map, layer_idx);
 				if (get_larb_by_ovl(ovl_idx, disp) != hrt_type)
 					continue;
@@ -1252,7 +1252,7 @@ static int _calc_hrt_num(struct disp_layer_info *disp_info, int disp,
 				else if (!is_extended_layer(layer_info))
 					layer_idx++;
 
-				phy_layer_idx = get_phy_ovl_index(layer_idx);
+				(void)(get_phy_ovl_index(layer_idx));
 				ovl_idx = get_ovl_by_phy(layer_map, layer_idx);
 
 				if (get_larb_by_ovl(ovl_idx, disp) != hrt_type)
@@ -1396,7 +1396,7 @@ static int ext_layer_grouping(struct disp_layer_info *disp_info)
 {
 	int cont_ext_layer_cnt = 0, ext_idx = 0;
 	int is_ext_layer, disp_idx, i;
-	struct layer_config *src_info, *dst_info;
+	struct layer_config *dst_info;
 	int available_layers = 0, phy_layer_cnt = 0;
 
 	for (disp_idx = 0 ; disp_idx < 2 ; disp_idx++) {
@@ -1424,7 +1424,7 @@ static int ext_layer_grouping(struct disp_layer_info *disp_info)
 
 		for (i = 1 ; i < disp_info->layer_num[disp_idx]; i++) {
 			dst_info = &disp_info->input_config[disp_idx][i];
-			src_info = &disp_info->input_config[disp_idx][i-1];
+			
 			/* skip other GPU layers */
 			if (is_gles_layer(disp_info, disp_idx, i) ||
 			    is_gles_layer(disp_info, disp_idx, i - 1)) {
@@ -1532,15 +1532,14 @@ static int _dispatch_ovl_id(struct disp_layer_info *disp_info, int layer_map,
 static int dispatch_ovl_id(struct disp_layer_info *disp_info)
 {
 	int disp_idx;
-	bool has_second_disp;
 
 	if (disp_info->layer_num[0] <= 0 && disp_info->layer_num[1] <= 0)
 		return 0;
 
 	if (disp_info->layer_num[1] > 0)
-		has_second_disp = true;
+		(void)(true);
 	else
-		has_second_disp = false;
+		(void)(false);
 
 	/* Dispatch gles range if necessary */
 	if (disp_info->hrt_num > HRT_LEVEL_NUM - 1) {
@@ -1573,7 +1572,7 @@ static int dispatch_ovl_id(struct disp_layer_info *disp_info)
 
 	/* Dispatch OVL id */
 	for (disp_idx = 0 ; disp_idx < 2 ; disp_idx++) {
-		int ovl_cnt, layer_map, layer_idx, ext_cnt, gles_cnt;
+		int ovl_cnt, layer_map;
 
 		if (disp_info->layer_num[disp_idx] <= 0)
 			continue;
@@ -1586,9 +1585,9 @@ static int dispatch_ovl_id(struct disp_layer_info *disp_info)
 			layer_map &= HRT_AEE_LAYER_MASK;
 		}
 
-		layer_idx = 0;
-		ext_cnt = 0;
-		gles_cnt = 0;
+		
+		
+		
 
 		if (disp_idx == 0)
 			layer_map &= 0x0000FFFF;
@@ -1985,7 +1984,7 @@ static int load_hrt_test_data(struct disp_layer_info *disp_info)
 	char *tok = NULL;
 	struct file *filp = NULL;
 	mm_segment_t oldfs = 0;
-	int ret = 0, pos = 0, i = 0;
+	int pos = 0, i = 0;
 	long int disp_id = 0, test_case = 0;
 	bool is_end = false, is_test_pass = false;
 	struct layer_config *input_config = NULL;
@@ -2009,10 +2008,10 @@ static int load_hrt_test_data(struct disp_layer_info *disp_info)
 	}
 
 	while (1) {
-		ret = filp->f_op->llseek(filp, filp->f_pos, pos);
+		(void)(filp->f_op->llseek(filp, filp->f_pos, pos));
 		memset(line_buf, 0x0, sizeof(line_buf));
-		ret = filp->f_op->read(filp, line_buf, sizeof(line_buf),
-			&filp->f_pos);
+		(void)(filp->f_op->read(filp, line_buf, sizeof(line_buf),
+			&filp->f_pos));
 		tok = strchr(line_buf, '\n');
 		if (tok != NULL)
 			*tok = '\0';

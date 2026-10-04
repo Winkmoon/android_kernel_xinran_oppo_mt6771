@@ -104,7 +104,7 @@ static void spm_wdt_init(void);
 static DEFINE_SPINLOCK(rgu_reg_operation_spinlock);
 static int wdt_last_timeout_val;
 static int wdt_enable = 1;
-static bool wdt_intr_has_trigger; /* For test use */
+ /* For test use */
 
 struct wdt_kick_info_t {
 	int cpu;
@@ -1230,7 +1230,7 @@ static irqreturn_t mtk_wdt_isr(int irq, void *dev_id)
 	pr_info("%s\n", __func__);
 
 #ifndef __USING_DUMMY_WDT_DRV__ /* FPGA will set this flag */
-	wdt_intr_has_trigger = 1;
+	(void)(1);
 	wdt_report_info();
 	WARN_ON(1);
 #endif

@@ -447,7 +447,6 @@ mtk_cfg80211_set_default_key(struct wiphy *wiphy,
 	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	int32_t i4Rst = -EINVAL;
 	uint32_t u4BufLen = 0;
-	u_int8_t fgDef = FALSE, fgMgtDef = FALSE;
 	uint8_t ucBssIndex = 0;
 
 	prGlueInfo = (struct GLUE_INFO *) wiphy_priv(wiphy);
@@ -471,10 +470,10 @@ mtk_cfg80211_set_default_key(struct wiphy *wiphy,
 		return WLAN_STATUS_SUCCESS;
 
 	if (rDefaultKey.ucUnicast && rDefaultKey.ucMulticast)
-		fgDef = TRUE;
+		(void)(TRUE);
 
 	if (!rDefaultKey.ucUnicast && rDefaultKey.ucMulticast)
-		fgMgtDef = TRUE;
+		(void)(TRUE);
 
 	rDefaultKey.ucBssIdx = ucBssIndex;
 
@@ -956,7 +955,6 @@ int mtk_cfg80211_scan(struct wiphy *wiphy,
 	uint32_t i, j, u4BufLen;
 	struct PARAM_SCAN_REQUEST_ADV *prScanRequest;
 	uint32_t num_ssid = 0;
-	uint32_t old_num_ssid = 0;
 	uint32_t u4ValidIdx = 0;
 	uint32_t wildcard_flag = 0;
 #if (CFG_SUPPORT_QA_TOOL == 1) || (CFG_SUPPORT_LOWLATENCY_MODE == 1)
@@ -1050,7 +1048,7 @@ int mtk_cfg80211_scan(struct wiphy *wiphy,
 	} else if ((request->ssids) && (request->n_ssids > 0)
 		   && (request->n_ssids <= (SCN_SSID_MAX_NUM + 1))) {
 		num_ssid = (uint32_t)request->n_ssids;
-		old_num_ssid = (uint32_t)request->n_ssids;
+		
 		u4ValidIdx = 0;
 		for (i = 0; i < request->n_ssids; i++) {
 			if ((request->ssids[i].ssid[0] == 0)
@@ -4255,7 +4253,6 @@ int mtk_cfg80211_add_station(struct wiphy *wiphy,
 	/* from supplicant -- wpa_supplicant_tdls_peer_addset() */
 	struct GLUE_INFO *prGlueInfo = NULL;
 	struct CMD_PEER_ADD rCmdCreate;
-	struct ADAPTER *prAdapter;
 	uint32_t rStatus;
 	uint32_t u4BufLen;
 	uint8_t ucBssIndex = 0;
@@ -4269,7 +4266,7 @@ int mtk_cfg80211_add_station(struct wiphy *wiphy,
 
 	/* make up command */
 
-	prAdapter = prGlueInfo->prAdapter;
+	
 
 	/* init */
 	kalMemZero(&rCmdCreate, sizeof(rCmdCreate));
@@ -4638,7 +4635,6 @@ int mtk_cfg80211_tdls_oper(struct wiphy *wiphy,
 
 	struct GLUE_INFO *prGlueInfo = NULL;
 	uint32_t u4BufLen;
-	struct ADAPTER *prAdapter;
 	struct TDLS_CMD_LINK_OPER rCmdOper;
 	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	uint8_t ucBssIndex = 0;
@@ -4653,7 +4649,7 @@ int mtk_cfg80211_tdls_oper(struct wiphy *wiphy,
 		ucBssIndex, oper);
 
 	ASSERT(prGlueInfo);
-	prAdapter = prGlueInfo->prAdapter;
+	
 
 	kalMemZero(&rCmdOper, sizeof(rCmdOper));
 	kalMemCopy(rCmdOper.aucPeerMac, peer, 6);
@@ -6385,7 +6381,6 @@ int mtk_cfg_change_iface(struct wiphy *wiphy,
 {
 	struct GLUE_INFO *prGlueInfo = NULL;
 	struct ADAPTER *prAdapter = NULL;
-	struct NETDEV_PRIVATE_GLUE_INFO *prNetdevPriv = NULL;
 	struct P2P_INFO *prP2pInfo = NULL;
 #if KERNEL_VERSION(4, 12, 0) <= CFG80211_VERSION_CODE
 	u32 *flags = NULL;
@@ -6406,8 +6401,8 @@ int mtk_cfg_change_iface(struct wiphy *wiphy,
 		return -EINVAL;
 	}
 
-	prNetdevPriv = (struct NETDEV_PRIVATE_GLUE_INFO *)
-		       netdev_priv(ndev);
+	(void)((struct NETDEV_PRIVATE_GLUE_INFO *)
+		       netdev_priv(ndev));
 
 #if (CFG_ENABLE_WIFI_DIRECT_CFG_80211)
 	/* for p2p0(GO/GC) & ap0(SAP): mtk_p2p_cfg80211_change_iface

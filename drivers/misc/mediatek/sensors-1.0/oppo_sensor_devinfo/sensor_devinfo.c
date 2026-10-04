@@ -51,7 +51,7 @@ extern int mtk_nanohub_cfg_to_hub(uint8_t sensor_id, uint8_t *data, uint8_t coun
 #define DEVINFO_LOG(fmt, args...)   pr_err(DEV_TAG"%s %d : "fmt, __func__, __LINE__, ##args)
 
 #define UINT2Ptr(n)     (uint32_t *)(n)
-#define Ptr2UINT32(p)   (uint32_t)(p)
+#define Ptr2UINT32(p)   (uint32_t)(unsigned long)(p)
 
 #define IS_SUPPROT_HWCALI           (0x01)
 #define IS_IN_FACTORY_MODE          (0x02)
@@ -635,7 +635,6 @@ static ssize_t als_cali_write(struct file *filp, const char *ubuf, size_t cnt, l
     char buf[64] = {0};
     void* buf_str = buf;
     long val = 0;
-    int ret = 0;
     struct seq_file *s = filp->private_data;
     void *p = s->private;
     int node = Ptr2UINT32(p);
@@ -648,7 +647,7 @@ static ssize_t als_cali_write(struct file *filp, const char *ubuf, size_t cnt, l
         }
     }
 
-    ret = kstrtoul(buf, 0, (unsigned long *)&val);
+    (void)(kstrtoul(buf, 0, (unsigned long *)&val));
     DEVINFO_LOG("node1 = %d,val = %d\n", node, val);
 
     switch (node) {
@@ -927,7 +926,6 @@ int get_msensor_parameter(int num)
     int len = 0;
     int para_len = 0;
     int index = 0;
-    int float_num = 0;
     int para_num = 0;
     uint32_t *data_addr = NULL;
     uint32_t temp_data;
@@ -1001,7 +999,7 @@ int get_msensor_parameter(int num)
     }
 
     if (!strcmp(libname, "mmc") || !strcmp(libname, "mxg")) { /*Memsic parameter need analyze*/
-        float_num = fdt32_to_cpu(*data_addr);
+        (void)(fdt32_to_cpu(*data_addr));
         for (index = 0; index < 9; index++) {
             temp_data = fdt32_to_cpu(*(data_addr + (2 * index)));
             sprintf(float_buf, "%c%d.%d%d%d%d", fdt32_to_cpu(*(data_addr + 2 * index + 1)) ? '-' : ' ',

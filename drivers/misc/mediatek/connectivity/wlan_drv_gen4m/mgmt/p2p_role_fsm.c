@@ -1433,7 +1433,6 @@ void p2pRoleFsmRunEventDelIface(IN struct ADAPTER *prAdapter,
 		(struct MSG_P2P_DEL_IFACE *) NULL;
 	struct GLUE_INFO *prGlueInfo = (struct GLUE_INFO *) NULL;
 	uint8_t ucRoleIdx;
-	struct GL_P2P_INFO *prP2pInfo = (struct GL_P2P_INFO *) NULL;
 
 
 	DBGLOG(P2P, INFO, "p2pRoleFsmRunEventDelIface\n");
@@ -1447,7 +1446,7 @@ void p2pRoleFsmRunEventDelIface(IN struct ADAPTER *prAdapter,
 	prP2pDelIfaceMsg = (struct MSG_P2P_DEL_IFACE *) prMsgHdr;
 	ucRoleIdx = prP2pDelIfaceMsg->ucRoleIdx;
 	prAdapter = prGlueInfo->prAdapter;
-	prP2pInfo = prGlueInfo->prP2PInfo[ucRoleIdx];
+	
 	prP2pRoleFsmInfo = P2P_ROLE_INDEX_2_ROLE_FSM_INFO(prAdapter, ucRoleIdx);
 	if (!prP2pRoleFsmInfo) {
 		DBGLOG(P2P, ERROR,
@@ -1759,7 +1758,6 @@ void p2pRoleFsmRunEventSetNewChannel(IN struct ADAPTER *prAdapter,
 {
 	struct P2P_ROLE_FSM_INFO *prP2pRoleFsmInfo =
 		(struct P2P_ROLE_FSM_INFO *) NULL;
-	struct BSS_INFO *prP2pBssInfo = (struct BSS_INFO *) NULL;
 	struct MSG_P2P_SET_NEW_CHANNEL *prMsgP2pSetNewChannelMsg;
 
 
@@ -1767,8 +1765,8 @@ void p2pRoleFsmRunEventSetNewChannel(IN struct ADAPTER *prAdapter,
 
 	prMsgP2pSetNewChannelMsg = (struct MSG_P2P_SET_NEW_CHANNEL *) prMsgHdr;
 
-	prP2pBssInfo = GET_BSS_INFO_BY_INDEX(prAdapter,
-		prMsgP2pSetNewChannelMsg->ucBssIndex);
+	(void)(GET_BSS_INFO_BY_INDEX(prAdapter,
+		prMsgP2pSetNewChannelMsg->ucBssIndex));
 
 	prP2pRoleFsmInfo =
 		P2P_ROLE_INDEX_2_ROLE_FSM_INFO(prAdapter,
@@ -1801,12 +1799,10 @@ error:
 void p2pRoleFsmRunEventCsaDone(IN struct ADAPTER *prAdapter,
 		IN struct MSG_HDR *prMsgHdr)
 {
-	struct GLUE_INFO *prGlueInfo;
 	struct P2P_ROLE_FSM_INFO *prP2pRoleFsmInfo =
 		(struct P2P_ROLE_FSM_INFO *) NULL;
 	struct BSS_INFO *prP2pBssInfo = (struct BSS_INFO *) NULL;
 	struct MSG_P2P_CSA_DONE *prMsgP2pCsaDoneMsg;
-	uint8_t role_idx = 0;
 	struct BSS_INFO *prAisBssInfo;
 	struct GL_P2P_INFO *prP2PInfo = (struct GL_P2P_INFO *) NULL;
 
@@ -1845,8 +1841,8 @@ void p2pRoleFsmRunEventCsaDone(IN struct ADAPTER *prAdapter,
 			prP2pRoleFsmInfo,
 			P2P_ROLE_STATE_SWITCH_CHANNEL);
 	} else {
-		prGlueInfo = prAdapter->prGlueInfo;
-		role_idx = prP2pRoleFsmInfo->ucRoleIndex;
+		
+		
 		/* Skip channel request/abort for STA+SAP/MCC concurrent case */
 		if (prAisBssInfo &&
 			(prAisBssInfo->ucPrimaryChannel !=

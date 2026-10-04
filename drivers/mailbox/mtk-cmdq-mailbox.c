@@ -1183,7 +1183,7 @@ void cmdq_thread_dump(struct mbox_chan *chan, struct cmdq_pkt *cl_pkt,
 
 	struct cmdq_pkt *pkt = NULL;
 	u32 warn_rst, en, suspend, status, irq, irq_en, curr_pa, end_pa, cnt,
-		wait_token, cfg, prefetch, pri = 0;
+		wait_token, cfg, pri = 0;
 	size_t size = 0;
 	u64 *end_va, *curr_va = NULL, inst = 0, last_inst[2] = {0};
 	void *va_base = NULL;
@@ -1212,7 +1212,7 @@ void cmdq_thread_dump(struct mbox_chan *chan, struct cmdq_pkt *cl_pkt,
 	cnt = readl(thread->base + CMDQ_THR_CNT);
 	wait_token = readl(thread->base + CMDQ_THR_WAIT_TOKEN);
 	cfg = readl(thread->base + CMDQ_THR_CFG);
-	prefetch = readl(thread->base + CMDQ_THR_PREFETCH);
+	(void)(readl(thread->base + CMDQ_THR_PREFETCH));
 
 	list_for_each_entry(task, &thread->task_busy_list, list_entry) {
 		empty = false;
@@ -2112,7 +2112,7 @@ s32 cmdq_task_get_pkt_from_thread(struct mbox_chan *chan,
 	struct cmdq_thread *thread;
 	struct cmdq_task *task;
 	u32 pkt_num = 0;
-	u32 tmp_num = 0;
+	u32 tmp_num __maybe_unused = 0;
 	unsigned long flags;
 
 	if (!chan || !pkt_list_out || !pkt_count_out) {

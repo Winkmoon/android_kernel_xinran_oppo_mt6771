@@ -1464,7 +1464,6 @@ void hx83112a_nf_mcu_firmware_update_0f(const struct firmware *fw_entry)
 {
     int retry = 0;
     int crc = -1;
-    int ret = 0;
     uint8_t temp_addr[4];
     uint8_t temp_data[4];
     struct firmware *request_fw_headfile = NULL;
@@ -1510,7 +1509,7 @@ fw_reload:
     }
 
     if ((int)tmp_fw_entry->size > HX64K) {
-        ret = hx83112a_nf_nf_zf_part_info(tmp_fw_entry);
+        (void)(hx83112a_nf_nf_zf_part_info(tmp_fw_entry));
     } else {
         hx83112a_nf_register_write(hx83112a_nf_pzf_op->addr_system_reset, 4, hx83112a_nf_pzf_op->data_system_reset, false);
         hx83112a_nf_enter_safe_mode();
@@ -5381,8 +5380,6 @@ static size_t hx83112a_nf_proc_diag_read(struct file *file, char *buff, size_t l
     size_t ret = 0;
     char *temp_buf;
     uint16_t mutual_num;
-    uint16_t self_num;
-    uint16_t width;
     int dsram_type = 0;
     int data_type = 0;
     int i = 0;
@@ -5402,8 +5399,8 @@ static size_t hx83112a_nf_proc_diag_read(struct file *file, char *buff, size_t l
         data_type = hx83112a_nf_diag_command % 10;
 
         mutual_num = chip_info->hw_res->TX_NUM * chip_info->hw_res->RX_NUM;
-        self_num = chip_info->hw_res->TX_NUM + chip_info->hw_res->RX_NUM; //don't add KEY_COUNT
-        width = chip_info->hw_res->RX_NUM;
+         //don't add KEY_COUNT
+        
         ret += snprintf(temp_buf + ret, len - ret, "ChannelStart (rx tx) : %4d, %4d\n\n", chip_info->hw_res->RX_NUM, chip_info->hw_res->TX_NUM);
 
         // start to show out the raw data in adb shell
@@ -6001,7 +5998,6 @@ static int hx83112a_nf_get_touch_points(void *chip_data, struct point_info *poin
     int ret = 0;
     int check_sum_cal;
     int ts_status = HX_REPORT_COORD;
-    int hx_point_num;
     uint8_t hx_state_info_pos;
 
     if (!hx83112a_nf_touch_data) {
@@ -6065,9 +6061,9 @@ static int hx83112a_nf_get_touch_points(void *chip_data, struct point_info *poin
     }
 
     if (hx83112a_nf_touch_data->hx_coord_buf[HX83112A_NF_TOUCH_INFO_POINT_CNT] == 0xff)//HX83112A_NF_TOUCH_INFO_POINT_CNT buf???????
-        hx_point_num = 0;
+        (void)(0);
     else
-        hx_point_num = hx83112a_nf_touch_data->hx_coord_buf[HX83112A_NF_TOUCH_INFO_POINT_CNT] & 0x0f;
+        (void)(hx83112a_nf_touch_data->hx_coord_buf[HX83112A_NF_TOUCH_INFO_POINT_CNT] & 0x0f);
 
 
     for (i = 0; i < 10; i++) {
@@ -7181,7 +7177,6 @@ static int hx83112a_nf_int_pin_test(struct seq_file *s, void *chip_data, struct 
 static void hx83112a_nf_auto_test(struct seq_file *s, void *chip_data, struct syna_testdata *syna_testdata)
 {
     int error_count = 0;
-    int ret = THP_AFE_INSPECT_OK;
     struct chip_data_hx83112a_nf *chip_info = (struct chip_data_hx83112a_nf *)chip_data;
 
     char *p_node = NULL;
@@ -7205,7 +7200,7 @@ static void hx83112a_nf_auto_test(struct seq_file *s, void *chip_data, struct sy
     }
 
     /*init criteria data*/
-    ret = hx83112a_nf_self_test_data_init(chip_info);
+    (void)(hx83112a_nf_self_test_data_init(chip_info));
     /*init criteria data*/
 
     /*Init Log Data */
@@ -7252,7 +7247,7 @@ static void hx83112a_nf_auto_test(struct seq_file *s, void *chip_data, struct sy
     hx83112a_nf_sense_on(0x00);
     hx83112a_nf_read_OPPO_FW_ver(chip_info);
 
-    ret = hx83112a_nf_enable_interrupt(chip_info, false);
+    (void)(hx83112a_nf_enable_interrupt(chip_info, false));
 
     error_count += hx83112a_nf_int_pin_test(s, chip_info, syna_testdata, g_Test_list_log);
     error_count += hx83112a_nf_chip_self_test(s, chip_info, g_Test_list_log);
@@ -7340,8 +7335,6 @@ RET_OUT:
 static void hx83112a_nf_read_debug_data(struct seq_file *s, void *chip_data, int debug_data_type)
 {
     uint16_t mutual_num;
-    uint16_t self_num;
-    uint16_t width;
     int i = 0;
     int j = 0;
     int k = 0;
@@ -7359,8 +7352,8 @@ static void hx83112a_nf_read_debug_data(struct seq_file *s, void *chip_data, int
     }
 
     mutual_num = chip_info->hw_res->TX_NUM * chip_info->hw_res->RX_NUM;
-    self_num = chip_info->hw_res->TX_NUM + chip_info->hw_res->RX_NUM; //don't add KEY_COUNT
-    width = chip_info->hw_res->RX_NUM;
+     //don't add KEY_COUNT
+    
     seq_printf(s, "ChannelStart (rx tx) : %4d, %4d\n\n", chip_info->hw_res->RX_NUM, chip_info->hw_res->TX_NUM);
 
     //start to show debug data
@@ -7465,8 +7458,10 @@ static void hx83112a_nf_baseline_read(struct seq_file *s, void *chip_data)
 static void hx83112a_nf_delta_read(struct seq_file *s, void *chip_data)
 {
 
-    struct chip_data_hx83112a_nf *chip_info;
+    struct chip_data_hx83112a_nf *chip_info __maybe_unused;
+#ifdef CONFIG_OPPO_TP_APK
     chip_info = (struct chip_data_hx83112a_nf *)chip_data;
+#endif
     hx83112a_nf_read_debug_data(s, chip_data, DEBUG_DATA_DELTA);
 #ifdef CONFIG_OPPO_TP_APK
     if (chip_info->debug_mode_sta) {

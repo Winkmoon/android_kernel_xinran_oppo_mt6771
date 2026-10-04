@@ -84,7 +84,6 @@ extern void oppo_init_sensor_state(struct SensorState *mSensorState);
 
 static int sensor_send_timestamp_to_hub(void);
 static int SCP_sensorHub_server_dispatch_data(uint32_t *currWp);
-static int SCP_sensorHub_init_flag = -1;
 static uint8_t rtc_compensation_suspend;
 struct curr_wp_queue {
 	spinlock_t buffer_lock;
@@ -1154,8 +1153,6 @@ static int SCP_sensorHub_server_dispatch_data(uint32_t *currWp)
 	uint32_t wp_copy;
 	int err = 0;
 
-	int64_t scp_time = 0;
-
 	memset(&event, 0, sizeof(struct data_unit_t));
 	pStart = (char *)READ_ONCE(obj->SCP_sensorFIFO) +
 		offsetof(struct sensorFIFO, data);
@@ -1183,7 +1180,7 @@ static int SCP_sensorHub_server_dispatch_data(uint32_t *currWp)
 		while (rp < wp) {
 			memcpy_fromio(&event, rp, SENSOR_DATA_SIZE);
 
-			scp_time = event.time_stamp;
+			
 			event.time_stamp +=
 				get_filter_output(&moving_average_algo);
 
@@ -1204,7 +1201,7 @@ static int SCP_sensorHub_server_dispatch_data(uint32_t *currWp)
 	} else if (rp > wp) {
 		while (rp < pEnd) {
 			memcpy_fromio(&event, rp, SENSOR_DATA_SIZE);
-			scp_time = event.time_stamp;
+			
 			event.time_stamp +=
 				get_filter_output(&moving_average_algo);
 
@@ -1225,7 +1222,7 @@ static int SCP_sensorHub_server_dispatch_data(uint32_t *currWp)
 		rp = pStart;
 		while (rp < wp) {
 			memcpy_fromio(&event, rp, SENSOR_DATA_SIZE);
-			scp_time = event.time_stamp;
+			
 			event.time_stamp +=
 				get_filter_output(&moving_average_algo);
 
@@ -2367,7 +2364,7 @@ static int sensorHub_probe(struct platform_device *pdev)
 		goto exit;
 	}
 
-	SCP_sensorHub_init_flag = 0;
+	
 	pr_debug("init done, data_unit_t size: %d,SCP_SENSOR_HUB_DATA size:%d\n",
 		(int)sizeof(struct data_unit_t),
 		(int)sizeof(union SCP_SENSOR_HUB_DATA));
@@ -2376,7 +2373,7 @@ static int sensorHub_probe(struct platform_device *pdev)
 	return 0;
 exit:
 	pr_err("%s: err = %d\n", __func__, err);
-	SCP_sensorHub_init_flag = -1;
+	
 	return err;
 }
 

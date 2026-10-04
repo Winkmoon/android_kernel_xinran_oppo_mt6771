@@ -75,7 +75,7 @@ static int nfc_read_func(struct seq_file *s, void *v)
 {
 	void *p = s->private;
 
-	switch((uint32_t)(p)) {
+	switch((uint32_t)(unsigned long)(p)) {
 	case NFC_CHIPSET_VERSION:
 		seq_printf(s, "%s", current_chipset);
 		break;
@@ -101,7 +101,6 @@ static const struct file_operations nfc_info_fops = {
 
 static int oppo_nfc_probe(struct platform_device *pdev)
 {
-	struct device_node *np;
 	struct device* dev;
 	unsigned int project;
 	unsigned int operator;
@@ -129,7 +128,7 @@ static int oppo_nfc_probe(struct platform_device *pdev)
 		pr_err("%s, prop_project to be read = %s", __func__, prop_project);
 		readRet = of_property_read_string(dev->of_node, prop_project, &chipset_node);
 	}
-	np = dev->of_node;
+	
 	if (readRet != 0)
 	{
 		sprintf(current_chipset, "NULL");

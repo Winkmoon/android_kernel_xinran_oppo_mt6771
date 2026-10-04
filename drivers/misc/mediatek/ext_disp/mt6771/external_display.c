@@ -478,9 +478,8 @@ static void _cmdq_build_trigger_loop(void)
 
 static void _cmdq_start_extd_trigger_loop(void)
 {
-	int ret = 0;
 
-	ret = cmdqRecStartLoop(pgc->cmdq_handle_trigger);
+	(void)(cmdqRecStartLoop(pgc->cmdq_handle_trigger));
 	if (!ext_disp_is_video_mode())
 		cmdqCoreSetEvent(CMDQ_SYNC_TOKEN_STREAM_EOF);
 
@@ -489,9 +488,8 @@ static void _cmdq_start_extd_trigger_loop(void)
 
 static void _cmdq_stop_extd_trigger_loop(void)
 {
-	int ret = 0;
 
-	ret = cmdqRecStopLoop(pgc->cmdq_handle_trigger);
+	(void)(cmdqRecStopLoop(pgc->cmdq_handle_trigger));
 
 	EXT_DISP_LOG("ext display STOP cmdq trigger loop finished\n");
 }

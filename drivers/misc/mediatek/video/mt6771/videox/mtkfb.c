@@ -86,13 +86,11 @@ static u32 MTK_FB_XRES;
 static u32 MTK_FB_YRES;
 static u32 MTK_FB_BPP;
 static u32 MTK_FB_PAGES;
-static u32 fb_xres_update;
-static u32 fb_yres_update;
 static size_t mtkfb_log_on = true;
 
-static int sem_flipping_cnt = 1;
-static int sem_early_suspend_cnt = 1;
-static int vsync_cnt;
+static int sem_flipping_cnt __maybe_unused = 1;
+static int sem_early_suspend_cnt __maybe_unused = 1;
+static int vsync_cnt __maybe_unused;
 static const struct timeval FRAME_INTERVAL = { 0, 30000 };	/* 33ms */
 static bool no_update;
 static struct disp_session_input_config session_input;
@@ -621,7 +619,7 @@ static int mtkfb_pan_display_impl(struct fb_var_screeninfo *var,
 {
 	UINT32 offset = 0;
 	UINT32 paStart = 0;
-	char *vaStart = NULL, *vaEnd = NULL;
+	char *vaStart = NULL;
 	int ret = 0;
 	/* int wait_ret = 0; */
 	/* unsigned int layerpitch = 0; */
@@ -644,7 +642,7 @@ static int mtkfb_pan_display_impl(struct fb_var_screeninfo *var,
 	offset = var->yoffset * info->fix.line_length;
 	paStart = fb_mva + offset;
 	vaStart = info->screen_base + offset;
-	vaEnd = vaStart + info->var.yres * info->fix.line_length;
+	
 
 	DISPCHECK("fb dump: 0x%08x, 0x%08x, 0x%08x, 0x%08x\n",
 		  *(unsigned int *)vaStart, *(unsigned int *)(vaStart+4),
@@ -2701,8 +2699,8 @@ static int mtkfb_probe(struct platform_device *pdev)
 	init_state++; /* 1 */
 	MTK_FB_XRES = DISP_GetScreenWidth();
 	MTK_FB_YRES = DISP_GetScreenHeight();
-	fb_xres_update = MTK_FB_XRES;
-	fb_yres_update = MTK_FB_YRES;
+	
+	
 
 	MTK_FB_BPP = DISP_GetScreenBpp();
 	MTK_FB_PAGES = DISP_GetPages();
@@ -2731,18 +2729,13 @@ static int mtkfb_probe(struct platform_device *pdev)
 	DISPMSG("mtkfb_fbinfo_init done\n");
 
 	if (disp_helper_get_stage() == DISP_HELPER_STAGE_NORMAL) {
-		/*
-		 * dal_init should after mtkfb_fbinfo_init, otherwise layer
-		 * 3 will show dal background color
-		 */
-		enum DAL_STATUS ret;
 		unsigned long fbVA = (unsigned long)(fbdev->fb_va_base);
 		unsigned long fbMVA = fb_mva;
 
 		/* DAL init here */
 		fbVA += DISP_GetFBRamSize();
 		fbMVA += DISP_GetFBRamSize();
-		ret = DAL_Init(fbVA, fbMVA);
+		(void)(DAL_Init(fbVA, fbMVA));
 		DISPMSG("DAL_Init done\n");
 	}
 

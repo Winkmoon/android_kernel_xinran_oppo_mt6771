@@ -995,13 +995,12 @@ static void tp_btnkey_handle(struct touchpanel_data *ts)
 
 static void tp_config_handle(struct touchpanel_data *ts)
 {
-    int ret = 0;
     if (!ts->ts_ops->fw_handle) {
         TPD_INFO("not support ts->ts_ops->fw_handle callback\n");
         return;
     }
 
-    ret = ts->ts_ops->fw_handle(ts->chip_data);
+    (void)(ts->ts_ops->fw_handle(ts->chip_data));
 }
 
 static void health_monitor_handle(struct touchpanel_data *ts)

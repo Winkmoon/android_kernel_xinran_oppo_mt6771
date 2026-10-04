@@ -116,7 +116,7 @@ const struct ieee80211_regdomain __rcu *cfg80211_regdomain;
  * that support cellular base station regulatory hints
  * (protected by RTNL)
  */
-static int reg_num_devs_support_basehint;
+static int reg_num_devs_support_basehint __maybe_unused;
 
 /*
  * State variable indicating if the platform on which the devices

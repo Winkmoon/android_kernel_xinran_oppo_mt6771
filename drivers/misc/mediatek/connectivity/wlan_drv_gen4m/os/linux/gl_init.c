@@ -3428,7 +3428,6 @@ uint32_t wlanDownloadBufferBin(struct ADAPTER *prAdapter)
 	uint16_t u2InitAddr = EFUSE_CONTENT_BUFFER_START;
 #endif
 	uint32_t u4BufLen = 0;
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	struct PARAM_CUSTOM_EFUSE_BUFFER_MODE *prSetEfuseBufModeInfo
 			= NULL;
 	uint32_t u4ContentLen;
@@ -3529,10 +3528,10 @@ uint32_t wlanDownloadBufferBin(struct ADAPTER *prAdapter)
 		prSetEfuseBufModeInfo->ucCount   =
 			0xFF; /* ucCmdType 1 don't care the ucCount */
 
-		rStatus = kalIoctl(prGlueInfo, wlanoidSetEfusBufferMode,
+		(void)(kalIoctl(prGlueInfo, wlanoidSetEfusBufferMode,
 				(void *)prSetEfuseBufModeInfo,
 				sizeof(struct PARAM_CUSTOM_EFUSE_BUFFER_MODE),
-				FALSE, TRUE, TRUE, &u4BufLen);
+				FALSE, TRUE, TRUE, &u4BufLen));
 	}
 
 	retWlanStat = WLAN_STATUS_SUCCESS;
@@ -3566,7 +3565,6 @@ uint32_t wlanConnacDownloadBufferBin(struct ADAPTER
 {
 	struct GLUE_INFO *prGlueInfo = NULL;
 	uint32_t u4BufLen = 0;
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	struct PARAM_CUSTOM_EFUSE_BUFFER_MODE_CONNAC_T
 		*prSetEfuseBufModeInfo = NULL;
 	uint32_t u4ContentLen;
@@ -3663,11 +3661,11 @@ uint32_t wlanConnacDownloadBufferBin(struct ADAPTER
 			(prAdapter->rWifiVar.ucCalTimingCtrl << 4);
 	prSetEfuseBufModeInfo->u2Count = u4ContentLen;
 
-	rStatus = kalIoctl(prGlueInfo, wlanoidConnacSetEfusBufferMode,
+	(void)(kalIoctl(prGlueInfo, wlanoidConnacSetEfusBufferMode,
 		(void *)prSetEfuseBufModeInfo,
 		OFFSET_OF(struct PARAM_CUSTOM_EFUSE_BUFFER_MODE_CONNAC_T,
 		aBinContent) + u4ContentLen,
-		FALSE, TRUE, TRUE, &u4BufLen);
+		FALSE, TRUE, TRUE, &u4BufLen));
 
 	retWlanStat = WLAN_STATUS_SUCCESS;
 
@@ -4801,7 +4799,6 @@ static int32_t wlanProbe(void *pvData, void *pvDriverData)
 		FAIL_BY_RESET,
 		FAIL_REASON_NUM
 	} eFailReason;
-	struct WLANDEV_INFO *prWlandevInfo = NULL;
 	int32_t i4DevIdx = 0;
 	struct GLUE_INFO *prGlueInfo = NULL;
 	struct ADAPTER *prAdapter = NULL;
@@ -4876,7 +4873,7 @@ static int32_t wlanProbe(void *pvData, void *pvDriverData)
 		gPrDev = prGlueInfo->prDevHandler;
 
 		/* 4 <4> Setup IRQ */
-		prWlandevInfo = &arWlanDevInfo[i4DevIdx];
+		
 
 		i4Status = glBusSetIrq(prWdev->netdev, NULL, prGlueInfo);
 
@@ -5112,7 +5109,6 @@ wlanOffNotifyCfg80211Disconnect(IN struct GLUE_INFO *prGlueInfo)
 static void wlanRemove(void)
 {
 	struct net_device *prDev = NULL;
-	struct WLANDEV_INFO *prWlandevInfo = NULL;
 	struct GLUE_INFO *prGlueInfo = NULL;
 	struct ADAPTER *prAdapter = NULL;
 	u_int8_t fgResult = FALSE;
@@ -5156,7 +5152,7 @@ static void wlanRemove(void)
 	if (u4WlanDevNum > 0
 	    && u4WlanDevNum <= CFG_MAX_WLAN_DEVICES) {
 		prDev = arWlanDevInfo[u4WlanDevNum - 1].prDev;
-		prWlandevInfo = &arWlanDevInfo[u4WlanDevNum - 1];
+		
 	}
 
 	ASSERT(prDev);

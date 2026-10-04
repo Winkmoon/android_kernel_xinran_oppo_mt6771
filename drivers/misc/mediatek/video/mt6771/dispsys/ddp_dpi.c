@@ -109,8 +109,9 @@ static unsigned char s_isDpiPowerOn;
 static unsigned char s_isDpiStart;
 static unsigned char s_isDpiConfig;
 
+#if ENABLE_DPI_INTERRUPT
 static int dpi_vsync_irq_count;
-static int dpi_undflow_irq_count;
+#endif
 
 /*static DPI_REGS regBackup;*/
 struct DPI_REGS *DPI_REG;
@@ -685,8 +686,10 @@ int ddp_dpi_stop(enum DISP_MODULE_ENUM module, void *cmdq_handle)
 
 	s_isDpiStart = FALSE;
 	s_isDpiConfig = FALSE;
+#if ENABLE_DPI_INTERRUPT
 	dpi_vsync_irq_count = 0;
-	dpi_undflow_irq_count = 0;
+#endif
+	
 
 	return 0;
 }
@@ -714,7 +717,9 @@ irqreturn_t _DPI_InterruptHandler(int irq, void *dev_id)
 
 		dpi_vsync_irq_count++;
 		if (dpi_vsync_irq_count > 30)
+#if ENABLE_DPI_INTERRUPT
 			dpi_vsync_irq_count = 0;
+#endif
 	} else if ((status >> 1) & 0x01) {
 		/*DDPMSG("status.VDE  interrupt coming\n");*/
 	} else if ((status >> 2) & 0x01) {

@@ -66,7 +66,7 @@ static struct pinctrl *mdcldma_pinctrl;
 
 unsigned int devapc_check_flag;
 
-static void __iomem *md_sram_pd_psmcusys_base;
+static void __iomem *md_sram_pd_psmcusys_base __maybe_unused;
 static void __iomem *md_cldma_misc_base;
 
 #define TAG "mcd"

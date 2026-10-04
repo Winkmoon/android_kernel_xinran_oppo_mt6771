@@ -144,7 +144,6 @@ static __s32 g_adc_cali_en_t;
 static __s32 g_o_slope;
 static __s32 g_o_slope_sign;
 static __s32 g_id;
-static __s32 g_ts_offset;
 
 static __s32 g_ge;
 static __s32 g_oe;
@@ -480,7 +479,7 @@ void tscpu_thermal_cal_prepare(void)
 	g_id = ((temp0 & _BIT_(9)) >> 9);
 
 	/*TS_OFFSET*/
-	g_ts_offset = ((temp2 & _BIT_(4)) >> 4);
+	(void)(((temp2 & _BIT_(4)) >> 4));
 
 	/*
 	 *   Check ID bit

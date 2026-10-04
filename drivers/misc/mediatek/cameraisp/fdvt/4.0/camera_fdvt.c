@@ -1764,7 +1764,6 @@ static int FDVT_probe(struct platform_device *dev)
 	int ret;
 	int i = 0;
 	int new_count;
-	struct class_device *class_dev = NULL;
 	struct fdvt_device *tempFdvt;
 #ifdef CONFIG_OF
 	struct fdvt_device *fdvt_dev;
@@ -1912,12 +1911,12 @@ static int FDVT_probe(struct platform_device *dev)
 #endif
 
 	FDVT_class = class_create(THIS_MODULE, FDVT_DEVNAME);
-	class_dev = (struct class_device *)device_create(FDVT_class,
+	(void)((struct class_device *)device_create(FDVT_class,
 							NULL,
 							FDVT_devno,
 							NULL,
 							FDVT_DEVNAME
-							);
+							));
 	/* Initialize waitqueue */
 	init_waitqueue_head(&g_FDVTWQ);
 

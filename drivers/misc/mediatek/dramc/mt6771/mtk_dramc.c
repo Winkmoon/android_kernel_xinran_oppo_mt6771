@@ -116,7 +116,7 @@ static int __init dt_scan_dram_info(unsigned long node,
 const char *uname, int depth, void *data)
 {
 	char *type = (char *)of_get_flat_dt_prop(node, "device_type", NULL);
-	const __be32 *reg, *endp;
+	const __be32 *reg;
 	unsigned long l;
 
 	/* We are scanning "memory" nodes only */
@@ -133,7 +133,7 @@ const char *uname, int depth, void *data)
 	if (reg == NULL)
 		return 0;
 
-	endp = reg + (l / sizeof(__be32));
+	(void)(reg + (l / sizeof(__be32)));
 	if (node) {
 		get_dram_info =
 		(struct dram_info *)of_get_flat_dt_prop(node,
@@ -1237,9 +1237,8 @@ unsigned int get_dram_data_rate(void)
 {
 	unsigned int u4ShuLevel, u4SDM_PCW, u4PREDIV, u4POSDIV;
 	unsigned int u4CKDIV4, u4VCOFreq, u4DataRate = 0;
-	int channels;
 
-	channels = get_emi_ch_num();
+	(void)(get_emi_ch_num());
 	u4ShuLevel = get_shuffle_status();
 
 	u4SDM_PCW = readl(
@@ -1331,9 +1330,8 @@ EXPORT_SYMBOL(get_emi_ch_num);
 int dram_steps_freq(unsigned int step)
 {
 	int freq = -1;
-	int channels;
 
-	channels = get_emi_ch_num();
+	(void)(get_emi_ch_num());
 
 	switch (step) {
 	case 0:

@@ -1934,7 +1934,6 @@ uint32_t wlanProcessCommandQueue(IN struct ADAPTER
 uint32_t wlanSendCommand(IN struct ADAPTER *prAdapter,
 			 IN struct CMD_INFO *prCmdInfo)
 {
-	struct TX_CTRL *prTxCtrl;
 	uint8_t ucTC;		/* "Traffic Class" SW(Driver) resource
 				 * classification
 				 */
@@ -1942,7 +1941,7 @@ uint32_t wlanSendCommand(IN struct ADAPTER *prAdapter,
 
 	ASSERT(prAdapter);
 	ASSERT(prCmdInfo);
-	prTxCtrl = &prAdapter->rTxCtrl;
+	
 
 	do {
 		/* <0> card removal check */
@@ -2001,7 +2000,6 @@ uint32_t wlanSendCommand(IN struct ADAPTER *prAdapter,
 uint32_t wlanSendCommandMthread(IN struct ADAPTER
 				*prAdapter, IN struct CMD_INFO *prCmdInfo)
 {
-	struct TX_CTRL *prTxCtrl;
 	uint8_t ucTC;		/* "Traffic Class" SW(Driver) resource
 				 * classification
 				 */
@@ -2018,7 +2016,7 @@ uint32_t wlanSendCommandMthread(IN struct ADAPTER
 
 	ASSERT(prAdapter);
 	ASSERT(prCmdInfo);
-	prTxCtrl = &prAdapter->rTxCtrl;
+	
 
 #if CFG_DBG_MGT_BUF
 	if (prCmdInfo->pucInfoBuffer &&
@@ -3169,13 +3167,12 @@ uint32_t wlanSendDummyCmd(IN struct ADAPTER *prAdapter,
 			  IN u_int8_t fgIsReqTxRsrc)
 {
 	uint32_t status = WLAN_STATUS_SUCCESS;
-	struct GLUE_INFO *prGlueInfo;
 	struct CMD_INFO *prCmdInfo;
 	struct mt66xx_chip_info *prChipInfo;
 
 	ASSERT(prAdapter);
 
-	prGlueInfo = prAdapter->prGlueInfo;
+	
 	prChipInfo = prAdapter->chip_info;
 
 	prCmdInfo = cmdBufAllocateCmdInfo(prAdapter,
@@ -3239,7 +3236,6 @@ uint32_t wlanSendNicPowerCtrlCmd(IN struct ADAPTER
 				 *prAdapter, IN uint8_t ucPowerMode)
 {
 	uint32_t status = WLAN_STATUS_SUCCESS;
-	struct GLUE_INFO *prGlueInfo;
 	struct CMD_INFO *prCmdInfo;
 	uint8_t ucTC;
 	struct CMD_NIC_POWER_CTRL *pNicPwrCtrl;
@@ -3248,7 +3244,7 @@ uint32_t wlanSendNicPowerCtrlCmd(IN struct ADAPTER
 
 	ASSERT(prAdapter);
 
-	prGlueInfo = prAdapter->prGlueInfo;
+	
 	prChipInfo = prAdapter->chip_info;
 
 	/* 1. Prepare CMD */
@@ -3657,15 +3653,18 @@ uint32_t wlanProcessQueuedSwRfb(IN struct ADAPTER
 				*prAdapter, IN struct SW_RFB *prSwRfbListHead)
 {
 	struct SW_RFB *prSwRfb, *prNextSwRfb;
-	struct TX_CTRL *prTxCtrl;
+#if CFG_HIF_RX_STARVATION_WARNING
 	struct RX_CTRL *prRxCtrl;
+#endif
 	struct STA_RECORD *prStaRec;
 
 	ASSERT(prAdapter);
 	ASSERT(prSwRfbListHead);
 
-	prTxCtrl = &prAdapter->rTxCtrl;
+	
+#if CFG_HIF_RX_STARVATION_WARNING
 	prRxCtrl = &prAdapter->rRxCtrl;
+#endif
 
 	prSwRfb = prSwRfbListHead;
 
@@ -3999,14 +3998,13 @@ u_int8_t wlanProcessTxFrame(IN struct ADAPTER *prAdapter,
 
 		if (rTxPacketInfo.u2Flag) {
 			if (rTxPacketInfo.u2Flag & BIT(ENUM_PKT_1X)) {
-				struct STA_RECORD *prStaRec;
 
 				DBGLOG(RSN, INFO, "T1X len=%d\n",
 				       rTxPacketInfo.u4PacketLen);
 
-				prStaRec = cnmGetStaRecByAddress(prAdapter,
+				(void)(cnmGetStaRecByAddress(prAdapter,
 						GLUE_GET_PKT_BSS_IDX(prPacket),
-						rTxPacketInfo.aucEthDestAddr);
+						rTxPacketInfo.aucEthDestAddr));
 
 				GLUE_SET_PKT_FLAG(prPacket, ENUM_PKT_1X);
 				/*
@@ -5376,12 +5374,11 @@ uint32_t wlanProcessMboxMessage(IN struct ADAPTER
 uint32_t wlanEnqueueTxPacket(IN struct ADAPTER *prAdapter,
 			     IN void *prNativePacket)
 {
-	struct TX_CTRL *prTxCtrl;
 	struct MSDU_INFO *prMsduInfo;
 
 	ASSERT(prAdapter);
 
-	prTxCtrl = &prAdapter->rTxCtrl;
+	
 
 	prMsduInfo = cnmPktAlloc(prAdapter, 0);
 
@@ -5696,7 +5693,7 @@ uint32_t wlanCheckSystemConfiguration(IN struct ADAPTER
 #if (CFG_NVRAM_EXISTENCE_CHECK == 1) || (CFG_SW_NVRAM_VERSION_CHECK == 1)
 	const uint8_t aucZeroMacAddr[] = NULL_MAC_ADDR;
 	u_int8_t fgIsConfExist = TRUE;
-	u_int8_t fgGenErrMsg = FALSE;
+	u_int8_t fgGenErrMsg __maybe_unused = FALSE;
 	struct REG_INFO *prRegInfo = NULL;
 #if 0
 	const uint8_t aucBCAddr[] = BC_MAC_ADDR;
@@ -7796,7 +7793,6 @@ void wlanCfgSetSwCtrl(IN struct ADAPTER *prAdapter)
 	uint32_t au4Values[2] = {};
 	uint32_t u4TokenCount = 0;
 	uint32_t u4BufLen = 0;
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	struct GLUE_INFO *prGlueInfo = prAdapter->prGlueInfo;
 	struct PARAM_CUSTOM_SW_CTRL_STRUCT rSwCtrlInfo;
 	int32_t u4Ret = 0;
@@ -7843,9 +7839,9 @@ void wlanCfgSetSwCtrl(IN struct ADAPTER *prAdapter)
 		rSwCtrlInfo.u4Id = au4Values[0];
 		rSwCtrlInfo.u4Data = au4Values[1];
 
-		rStatus = kalIoctl(prGlueInfo, wlanoidSetSwCtrlWrite,
+		(void)(kalIoctl(prGlueInfo, wlanoidSetSwCtrlWrite,
 				   &rSwCtrlInfo, sizeof(rSwCtrlInfo),
-				   FALSE, FALSE, TRUE, &u4BufLen);
+				   FALSE, FALSE, TRUE, &u4BufLen));
 
 	}
 }
@@ -7857,7 +7853,6 @@ void wlanCfgSetChip(IN struct ADAPTER *prAdapter)
 	int8_t aucValue[WLAN_CFG_VALUE_LEN_MAX];
 
 	uint32_t u4BufLen = 0;
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	struct GLUE_INFO *prGlueInfo = prAdapter->prGlueInfo;
 	struct PARAM_CUSTOM_CHIP_CONFIG_STRUCT rChipConfigInfo;
 
@@ -7881,9 +7876,9 @@ void wlanCfgSetChip(IN struct ADAPTER *prAdapter)
 		kalStrnCpy(rChipConfigInfo.aucCmd, aucValue,
 			   CHIP_CONFIG_RESP_SIZE);
 
-		rStatus = kalIoctl(prGlueInfo, wlanoidSetChipConfig,
+		(void)(kalIoctl(prGlueInfo, wlanoidSetChipConfig,
 				   &rChipConfigInfo, sizeof(rChipConfigInfo),
-				   FALSE, FALSE, TRUE, &u4BufLen);
+				   FALSE, FALSE, TRUE, &u4BufLen));
 	}
 }
 
@@ -8178,10 +8173,9 @@ uint32_t wlanCfgGet(IN struct ADAPTER *prAdapter,
 void wlanCfgRecordValue(IN struct ADAPTER *prAdapter,
 			const int8_t *pucKey, uint32_t u4Value)
 {
-	struct WLAN_CFG_ENTRY *prWlanCfgEntry;
 	uint8_t aucBuf[WLAN_CFG_VALUE_LEN_MAX];
 
-	prWlanCfgEntry = wlanCfgGetEntry(prAdapter, pucKey, WLAN_CFG_REC);
+	(void)(wlanCfgGetEntry(prAdapter, pucKey, WLAN_CFG_REC));
 
 	kalMemZero(aucBuf, sizeof(aucBuf));
 
@@ -12047,7 +12041,7 @@ int wlanGetRxRate(IN struct GLUE_INFO *prGlueInfo,
 {
 	struct ADAPTER *prAdapter;
 	uint32_t rxmode = 0, rate = 0, frmode = 0, sgi = 0, nsts = 0;
-	uint32_t groupid = 0, mu = 0;
+	uint32_t groupid = 0;
 	uint32_t u4RxVector0 = 0, u4RxVector1 = 0;
 	uint8_t ucWlanIdx, ucStaIdx;
 	int rv;
@@ -12086,9 +12080,9 @@ int wlanGetRxRate(IN struct GLUE_INFO *prGlueInfo,
 	sgi = u4RxVector0 & RX_VT_SHORT_GI;
 	groupid = (u4RxVector1 & RX_VT_GROUP_ID_MASK) >> RX_VT_GROUP_ID_OFFSET;
 	if (groupid && groupid != 63) {
-		mu = 1;
+		
 	} else {
-		mu = 0;
+		
 		nsts += 1;
 	}
 	sgi = (sgi == 0) ? 0 : 1;

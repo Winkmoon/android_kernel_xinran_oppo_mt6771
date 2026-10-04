@@ -141,8 +141,6 @@ static int initAF(void)
 	LOG_INF("+\n");
 
 	if (*g_pAF_Opened == 1) {
-
-		int i4RetValue = 0;
 		int ret = 0;
 		int cnt = 0;
 		unsigned char Temp;
@@ -157,7 +155,7 @@ static int initAF(void)
 				ret = s4AF_ReadReg(0xB3, &Temp);
 				LOG_INF("Check LSI wake up or not: %x\n", Temp);
 				if (Temp == 0 && ret == 0) {
-					i4RetValue = 1;
+					
 					break;
 				}
 

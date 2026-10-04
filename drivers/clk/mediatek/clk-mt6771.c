@@ -2442,7 +2442,7 @@ void mipi_26m_en(unsigned int module_idx, int en)
 unsigned int mt_get_ckgen_freq(unsigned int ID)
 {
 	int output = 0, i = 0;
-	unsigned int temp, clk_dbg_cfg, clk_misc_cfg_0, clk26cali_1 = 0;
+	unsigned int temp, clk_dbg_cfg, clk_misc_cfg_0;
 
 	clk_dbg_cfg = clk_readl(CLK_DBG_CFG);
 	clk_writel(CLK_DBG_CFG, (clk_dbg_cfg & 0xFFFFC0FC)|(ID << 8)|(0x1));
@@ -2450,7 +2450,7 @@ unsigned int mt_get_ckgen_freq(unsigned int ID)
 	clk_misc_cfg_0 = clk_readl(CLK_MISC_CFG_0);
 	clk_writel(CLK_MISC_CFG_0, (clk_misc_cfg_0 & 0x00FFFFFF));
 
-	clk26cali_1 = clk_readl(CLK26CALI_1);
+	(void)(clk_readl(CLK26CALI_1));
 	clk_writel(CLK26CALI_0, 0x1000);
 	clk_writel(CLK26CALI_0, 0x1010);
 
@@ -2482,7 +2482,7 @@ unsigned int mt_get_ckgen_freq(unsigned int ID)
 unsigned int mt_get_abist_freq(unsigned int ID)
 {
 	int output = 0, i = 0;
-	unsigned int temp, clk_dbg_cfg, clk_misc_cfg_0, clk26cali_1 = 0;
+	unsigned int temp, clk_dbg_cfg, clk_misc_cfg_0;
 
 	clk_dbg_cfg = clk_readl(CLK_DBG_CFG);
 	clk_writel(CLK_DBG_CFG, (clk_dbg_cfg & 0xFFC0FFFC)|(ID << 16));
@@ -2490,7 +2490,7 @@ unsigned int mt_get_abist_freq(unsigned int ID)
 	clk_misc_cfg_0 = clk_readl(CLK_MISC_CFG_0);
 	clk_writel(CLK_MISC_CFG_0, (clk_misc_cfg_0 & 0x00FFFFFF) | (1 << 24));
 
-	clk26cali_1 = clk_readl(CLK26CALI_1);
+	(void)(clk_readl(CLK26CALI_1));
 
 	clk_writel(CLK26CALI_0, 0x1000);
 	clk_writel(CLK26CALI_0, 0x1010);

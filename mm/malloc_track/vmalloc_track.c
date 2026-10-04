@@ -306,7 +306,7 @@ static inline char *dump_vmalloc_debug_info(unsigned int inlen, unsigned int *ou
 	int ret;
 	unsigned int len = 0;
 	struct stack_trace trace;
-	unsigned int add_record_cnt = 0;
+	unsigned int add_record_cnt __maybe_unused = 0;
 
 	record.data = vmalloc((sizeof(vmalloc_debug_list) * vmalloc_entry_count));
 	if (!record.data) {

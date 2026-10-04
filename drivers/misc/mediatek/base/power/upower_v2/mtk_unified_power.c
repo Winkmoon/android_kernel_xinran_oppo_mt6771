@@ -847,7 +847,7 @@ static int create_procfs(void)
 
 static int __init upower_init(void)
 {
-	int turn;
+	int turn __maybe_unused;
 #ifdef UPOWER_NOT_READY
 	return 0;
 #endif

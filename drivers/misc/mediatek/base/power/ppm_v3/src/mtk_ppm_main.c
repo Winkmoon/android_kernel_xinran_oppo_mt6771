@@ -47,7 +47,6 @@ static unsigned int log_cnt;
 static unsigned int filter_cnt;
 /* force update limit to HPS since it's not ready at previous round */
 static bool force_update_to_hps;
-static bool is_in_game;
 
 /*==============================================================*/
 /* Local function declarition					*/
@@ -575,7 +574,7 @@ end:
 
 void ppm_game_mode_change_cb(int is_game_mode)
 {
-	is_in_game = 0;
+	
 }
 
 static void ppm_main_log_print(unsigned int policy_mask,

@@ -80,8 +80,6 @@ static bool mPrepareDone;
 static const void *irq_user_id;
 static unsigned int irq1_cnt;
 
-static struct device *mDev;
-
 const char *const I2S0dl1_HD_output[] = {"Off", "On"};
 
 static const struct soc_enum Audio_I2S0dl1_Enum[] = {
@@ -558,7 +556,7 @@ static int mtk_I2S0dl1_probe(struct platform_device *pdev)
 
 	pr_debug("%s: dev name %s\n", __func__, dev_name(&pdev->dev));
 
-	mDev = &pdev->dev;
+	
 
 	return snd_soc_register_platform(&pdev->dev, &mtk_I2S0dl1_soc_platform);
 }

@@ -2382,7 +2382,6 @@ static int32_t HQA_WriteEEPROM(struct net_device *prNetDev,
 	uint32_t u4BufLen = 0;
 	uint8_t  u4Index = 0;
 	uint16_t Offset;
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	struct GLUE_INFO *prGlueInfo = NULL;
 	struct PARAM_CUSTOM_ACCESS_EFUSE rAccessEfuseInfoWrite;
 
@@ -2399,11 +2398,11 @@ static int32_t HQA_WriteEEPROM(struct net_device *prNetDev,
 		  sizeof(struct PARAM_CUSTOM_ACCESS_EFUSE));
 	rAccessEfuseInfoRead.u4Address = (Offset / EFUSE_BLOCK_SIZE)
 					 * EFUSE_BLOCK_SIZE;
-	rStatus = kalIoctl(prGlueInfo,
+	(void)(kalIoctl(prGlueInfo,
 			   wlanoidQueryProcessAccessEfuseRead,
 			   &rAccessEfuseInfoRead,
 			   sizeof(struct PARAM_CUSTOM_ACCESS_EFUSE),
-			   FALSE, FALSE, TRUE, &u4BufLen);
+			   FALSE, FALSE, TRUE, &u4BufLen));
 #endif
 
 	/* Write */
@@ -2429,11 +2428,11 @@ static int32_t HQA_WriteEEPROM(struct net_device *prNetDev,
 		rAccessEfuseInfoWrite.u4Address =
 				(Offset / EFUSE_BLOCK_SIZE) * EFUSE_BLOCK_SIZE;
 
-		rStatus = kalIoctl(prGlueInfo,
+		(void)(kalIoctl(prGlueInfo,
 				   wlanoidQueryProcessAccessEfuseWrite,
 				   &rAccessEfuseInfoWrite,
 				   sizeof(struct PARAM_CUSTOM_ACCESS_EFUSE),
-				   FALSE, FALSE, TRUE, &u4BufLen);
+				   FALSE, FALSE, TRUE, &u4BufLen));
 	}
 #endif
 
@@ -2471,7 +2470,6 @@ static int32_t HQA_ReadBulkEEPROM(struct net_device
 	struct GLUE_INFO *prGlueInfo = NULL;
 	struct ADAPTER *prAdapter = NULL;
 	uint32_t rStatus = WLAN_STATUS_SUCCESS;
-	uint8_t tmp = 0;
 
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
 	prAdapter = prGlueInfo->prAdapter;
@@ -2494,7 +2492,7 @@ static int32_t HQA_ReadBulkEEPROM(struct net_device
 	Offset = ntohs(Offset);
 	memcpy(&Len, HqaCmdFrame->Data + 2 * 1, 2);
 	Len = ntohs(Len);
-	tmp = Offset;
+	
 	DBGLOG(INIT, INFO,
 	       "QA_AGENT HQA_ReadBulkEEPROM Offset : %d\n", Offset);
 	DBGLOG(INIT, INFO, "QA_AGENT HQA_ReadBulkEEPROM Len : %d\n",
@@ -2632,7 +2630,7 @@ static int32_t HQA_WriteBulkEEPROM(struct net_device
 	uint32_t u4BufLen = 0;
 	struct PARAM_CUSTOM_ACCESS_EFUSE rAccessEfuseInfoRead,
 		       rAccessEfuseInfoWrite;
-	uint16_t testBuffer1, testBuffer2, testBuffer;
+	uint16_t testBuffer1, testBuffer;
 	uint16_t	*Buffer = NULL;
 	struct GLUE_INFO *prGlueInfo = NULL;
 	uint32_t rStatus = WLAN_STATUS_SUCCESS;
@@ -2657,7 +2655,7 @@ static int32_t HQA_WriteBulkEEPROM(struct net_device
 	Len = ntohs(Len);
 
 	memcpy(&testBuffer1, HqaCmdFrame->Data + 2 * 2, Len);
-	testBuffer2 = ntohs(testBuffer1);
+	(void)(ntohs(testBuffer1));
 	testBuffer = ntohs(testBuffer1);
 
 	DBGLOG(INIT, INFO, "Offset : %x, Len : %u\n", Offset, Len);
@@ -2798,7 +2796,6 @@ static int32_t HQA_WriteBulkEEPROM(struct net_device
 				uint16_t u2InitAddr = Offset;
 				uint32_t j = 0;
 				uint32_t u4BufLen = 0;
-				uint32_t rStatus = WLAN_STATUS_SUCCESS;
 				struct GLUE_INFO *prGlueInfo = NULL;
 				struct PARAM_CUSTOM_EFUSE_BUFFER_MODE
 					*prSetEfuseBufModeInfo = NULL;
@@ -2833,11 +2830,11 @@ static int32_t HQA_WriteBulkEEPROM(struct net_device
 				prSetEfuseBufModeInfo->ucSourceMode = 1;
 				prSetEfuseBufModeInfo->ucCount =
 							EFUSE_CONTENT_SIZE;
-				rStatus = kalIoctl(prGlueInfo,
+				(void)(kalIoctl(prGlueInfo,
 					wlanoidSetEfusBufferMode,
 					(void *)prSetEfuseBufModeInfo, sizeof(
 					struct PARAM_CUSTOM_EFUSE_BUFFER_MODE),
-					FALSE, FALSE, TRUE, &u4BufLen);
+					FALSE, FALSE, TRUE, &u4BufLen));
 
 				kalMemFree(prSetEfuseBufModeInfo, VIR_MEM_TYPE,
 					sizeof(
@@ -2909,7 +2906,6 @@ static int32_t HQA_GetFreeEfuseBlock(struct net_device
 
 #if (CFG_EEPROM_PAGE_ACCESS == 1)
 	struct PARAM_CUSTOM_EFUSE_FREE_BLOCK rEfuseFreeBlock;
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	uint32_t u4BufLen = 0;
 	struct GLUE_INFO *prGlueInfo = NULL;
 #endif
@@ -2925,11 +2921,11 @@ static int32_t HQA_GetFreeEfuseBlock(struct net_device
 			  sizeof(struct PARAM_CUSTOM_EFUSE_FREE_BLOCK));
 
 
-		rStatus = kalIoctl(prGlueInfo,
+		(void)(kalIoctl(prGlueInfo,
 				   wlanoidQueryEfuseFreeBlock,
 				   &rEfuseFreeBlock,
 				   sizeof(struct PARAM_CUSTOM_EFUSE_FREE_BLOCK),
-				   TRUE, TRUE, TRUE, &u4BufLen);
+				   TRUE, TRUE, TRUE, &u4BufLen));
 
 		u4FreeBlockCount = prGlueInfo->prAdapter->u4FreeBlockNum;
 		u4FreeBlockCount = ntohl(u4FreeBlockCount);
@@ -3017,7 +3013,6 @@ static int32_t HQA_GetTxPower(struct net_device *prNetDev,
 
 #if (CFG_EEPROM_PAGE_ACCESS == 1)
 	struct PARAM_CUSTOM_GET_TX_POWER rGetTxPower;
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	uint32_t u4BufLen = 0;
 	struct GLUE_INFO *prGlueInfo = NULL;
 #endif
@@ -3042,11 +3037,11 @@ static int32_t HQA_GetTxPower(struct net_device *prNetDev,
 		rGetTxPower.ucBand = u4Band;
 		rGetTxPower.ucDbdcIdx = u4Ch_Band;
 
-		rStatus = kalIoctl(prGlueInfo,
+		(void)(kalIoctl(prGlueInfo,
 				   wlanoidQueryGetTxPower,
 				   &rGetTxPower,
 				   sizeof(struct PARAM_CUSTOM_GET_TX_POWER),
-				   TRUE, TRUE, TRUE, &u4BufLen);
+				   TRUE, TRUE, TRUE, &u4BufLen));
 
 		u4TxTargetPower = prGlueInfo->prAdapter->u4GetTxPower;
 		u4TxTargetPower = ntohl(u4TxTargetPower);
@@ -4365,10 +4360,14 @@ static int32_t HQA_WriteBufferDone(struct net_device
 	 * UINT_32 u4BufLen = 0;
 	 */
 	/* WLAN_STATUS rStatus = WLAN_STATUS_SUCCESS; */
+#if 0
 	struct GLUE_INFO *prGlueInfo = NULL;
+#endif
 	/* PARAM_CUSTOM_EFUSE_BUFFER_MODE_T rSetEfuseBufModeInfo; */
 
+#if 0
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
+#endif
 
 	memcpy(&Value, HqaCmdFrame->Data + 4 * 0, 4);
 	Value = ntohl(Value);
@@ -8225,7 +8224,6 @@ int32_t connacSetICapStart(struct GLUE_INFO *prGlueInfo,
 	struct PARAM_MTK_WIFI_TEST_STRUCT_EXT_T rRfATInfo;
 	struct RBIST_CAP_START_T *prICapInfo = NULL;
 	uint32_t u4BufLen = 0, u4IQArrayLen = 0;
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 
 	if (u4Trigger) {
 		if (prGlueInfo->prAdapter->rIcapInfo.eIcapState
@@ -8325,14 +8323,14 @@ int32_t connacSetICapStart(struct GLUE_INFO *prGlueInfo,
 	       prICapInfo->u4SourceAddressLSB,
 	       prICapInfo->u4SourceAddressMSB, prICapInfo->u4BandIdx);
 
-	rStatus = kalIoctl(prGlueInfo,	/* prGlueInfo */
+	(void)(kalIoctl(prGlueInfo,	/* prGlueInfo */
 			   wlanoidExtRfTestICapStart,	/* pfnOidHandler */
 			   &rRfATInfo,	/* pvInfoBuf */
 			   sizeof(rRfATInfo),	/* u4InfoBufLen */
 			   FALSE,	/* fgRead */
 			   FALSE,	/* fgWaitResp */
 			   TRUE,	/* fgCmd */
-			   &u4BufLen);	/* pu4QryInfoLen */
+			   &u4BufLen));	/* pu4QryInfoLen */
 	return 0;
 }
 
@@ -8341,7 +8339,6 @@ int32_t connacGetICapStatus(struct GLUE_INFO *prGlueInfo)
 	struct ADAPTER *prAdapter;
 	struct PARAM_MTK_WIFI_TEST_STRUCT_EXT_T rRfATInfo;
 	uint32_t u4BufLen = 0;
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	enum ENUM_ICAP_STATE eIcapState = ICAP_STATE_INIT;
 
 
@@ -8359,14 +8356,14 @@ int32_t connacGetICapStatus(struct GLUE_INFO *prGlueInfo)
 	}
 
 	if (eIcapState != ICAP_STATE_FW_DUMPING) {
-		rStatus = kalIoctl(prGlueInfo,	/* prGlueInfo */
+		(void)(kalIoctl(prGlueInfo,	/* prGlueInfo */
 				   wlanoidExtRfTestICapStatus,
 				   &rRfATInfo,	/* pvInfoBuf */
 				   sizeof(rRfATInfo),	/* u4InfoBufLen */
 				   FALSE,	/* fgRead */
 				   FALSE,	/* fgWaitResp */
 				   TRUE,	/* fgCmd */
-				   &u4BufLen);	/* pu4QryInfoLen */
+				   &u4BufLen));	/* pu4QryInfoLen */
 	}
 
 	DBGLOG(RFTEST, INFO, "QA_AGENT HQA_CapWiFiSpectrum Wait!!!!!!!!!!!!\n");
@@ -8622,7 +8619,6 @@ static int32_t hqa_set_txcontent_ext(struct net_device
 				     struct HQA_CMD_FRAME *HqaCmdFrame)
 {
 	int32_t i4Ret = 0;
-	uint32_t u4Len = 0;
 	uint32_t u4Ext_id = 0;
 	uint32_t u4Param_num = 0;
 	uint32_t u4Band_idx = 0;
@@ -8637,7 +8633,7 @@ static int32_t hqa_set_txcontent_ext(struct net_device
 	uint8_t ucAddr3[MAC_ADDR_LEN];
 	uint32_t ucPayload = 0;
 
-	u4Len = ntohs(HqaCmdFrame->Length);
+	(void)(ntohs(HqaCmdFrame->Length));
 
 	memcpy(&u4Ext_id, HqaCmdFrame->Data + 4 * 0, 4);
 	u4Ext_id = ntohl(u4Ext_id);
@@ -9565,7 +9561,7 @@ int priv_qa_agent(IN struct net_device *prNetDev,
 {
 	int32_t i4Status = 0;
 	struct HQA_CMD_FRAME *HqaCmdFrame;
-	uint32_t u4ATEMagicNum, u4ATEId, u4ATEData;
+	uint32_t u4ATEMagicNum, u4ATEData;
 	struct GLUE_INFO *prGlueInfo = NULL;
 #if (CONFIG_WLAN_SERVICE == 1)
 	struct hqa_frame_ctrl local_hqa;
@@ -9598,7 +9594,7 @@ int priv_qa_agent(IN struct net_device *prNetDev,
 	}
 
 	u4ATEMagicNum = ntohl(HqaCmdFrame->MagicNo);
-	u4ATEId = ntohs(HqaCmdFrame->Id);
+	(void)(ntohs(HqaCmdFrame->Id));
 	memcpy((uint8_t *)&u4ATEData, HqaCmdFrame->Data, 4);
 	u4ATEData = ntohl(u4ATEData);
 

@@ -47,7 +47,6 @@ struct boot_log_struct {
 static int boot_log_count;
 static DEFINE_MUTEX(op_bootprof_lock);
 static bool op_bootprof_enabled;
-static int boot_finish = 0;
 char boot_from[BOOT_FROM_SIZE]={'\0'};
 
 #define MSG_SIZE 128
@@ -128,7 +127,7 @@ static void op_bootprof_switch(int on)
 			op_bootprof_enabled = 1;
 		} else {
 			/* boot up complete */
-			boot_finish = 1;
+			
 		}
 	}
 	mutex_unlock(&op_bootprof_lock);

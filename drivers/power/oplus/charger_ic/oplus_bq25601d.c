@@ -1364,7 +1364,6 @@ extern unsigned int upmu_get_rgs_chrdet(void);
 
 enum charger_type mt_charger_type_detection_bq25601d(void)
 {
-	int rc = 0;
 	int chgr_type_addr = 0;
 	int val_buf = 0;
 	int count = 0;
@@ -1400,11 +1399,11 @@ enum charger_type mt_charger_type_detection_bq25601d(void)
 			REG07_BQ25601D_IINDET_EN_FORCE_DET, REG07_BQ25601D_IINDET_EN_MASE);
 	bq25601d_dump_registers();
 
-	rc = bq25601d_read_reg(charger_ic, REG07_BQ25601D_ADDRESS, &val_buf);
+	(void)(bq25601d_read_reg(charger_ic, REG07_BQ25601D_ADDRESS, &val_buf));
 	val_buf &= REG07_BQ25601D_IINDET_EN_MASE;
 	while (val_buf == REG07_BQ25601D_IINDET_EN_FORCE_DET && count < 20) {
 		count++;
-		rc = bq25601d_read_reg(charger_ic, REG07_BQ25601D_ADDRESS, &val_buf);
+		(void)(bq25601d_read_reg(charger_ic, REG07_BQ25601D_ADDRESS, &val_buf));
 		val_buf &= REG07_BQ25601D_IINDET_EN_MASE;
 		usleep_range(50000, 50200);
 		if (!upmu_get_rgs_chrdet()) {
@@ -1419,7 +1418,7 @@ enum charger_type mt_charger_type_detection_bq25601d(void)
 		return MTK_CHR_Type_num;
 	}
 
-	rc = bq25601d_read_reg(charger_ic, chgr_type_addr, &val_buf);
+	(void)(bq25601d_read_reg(charger_ic, chgr_type_addr, &val_buf));
 	bq25601d_dump_registers();
 	val_buf = val_buf & REG08_BQ25601D_VBUS_STAT_MASK;
 	printk("mt_charger_type_detection3, val_buf=[0x%x]\n", val_buf);
@@ -1445,12 +1444,12 @@ enum charger_type mt_charger_type_detection_bq25601d(void)
 				REG07_BQ25601D_IINDET_EN_FORCE_DET, REG07_BQ25601D_IINDET_EN_MASE);
 		bq25601d_dump_registers();
 
-		rc = bq25601d_read_reg(charger_ic, REG07_BQ25601D_ADDRESS, &val_buf);
+		(void)(bq25601d_read_reg(charger_ic, REG07_BQ25601D_ADDRESS, &val_buf));
 		val_buf &= REG07_BQ25601D_IINDET_EN_MASE;
 		count = 0;
 		while (val_buf == REG07_BQ25601D_IINDET_EN_FORCE_DET && count < 20) {
 			count++;
-			rc = bq25601d_read_reg(charger_ic, REG07_BQ25601D_ADDRESS, &val_buf);
+			(void)(bq25601d_read_reg(charger_ic, REG07_BQ25601D_ADDRESS, &val_buf));
 			val_buf &= REG07_BQ25601D_IINDET_EN_MASE;
 			usleep_range(50000, 50200);
 			if (!upmu_get_rgs_chrdet()) {
@@ -1465,7 +1464,7 @@ enum charger_type mt_charger_type_detection_bq25601d(void)
 			return MTK_CHR_Type_num;
 		}
 
-		rc = bq25601d_read_reg(charger_ic, chgr_type_addr, &val_buf);
+		(void)(bq25601d_read_reg(charger_ic, chgr_type_addr, &val_buf));
 		bq25601d_dump_registers();
 		val_buf = val_buf & REG08_BQ25601D_VBUS_STAT_MASK;
 		printk("mt_charger_type_detection: 2nd, val_buf=[0x%x]\n", val_buf);

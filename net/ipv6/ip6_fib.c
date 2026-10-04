@@ -1429,7 +1429,7 @@ static struct fib6_node *fib6_repair_tree(struct net *net,
 	int nstate;
 	struct fib6_node *child, *pn;
 	struct fib6_walker *w;
-	int iter = 0;
+	int iter __maybe_unused = 0;
 
 	for (;;) {
 		RT6_TRACE("fixing tree: plen=%d iter=%d\n", fn->fn_bit, iter);

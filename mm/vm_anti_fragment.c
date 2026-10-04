@@ -84,7 +84,7 @@ void trigger_cpu_oom_event(unsigned long len)
 	char *svm_oom_msg = NULL;
 	struct mm_struct *mm = current->mm;
 	struct vm_area_struct *vma = NULL;
-	unsigned long gap_start = 0, gap_end = 0, chunk_start = 0, chunk_start_reserve = 0;
+	unsigned long gap_start = 0, gap_end = 0;
 
 	if (!cpu_oom_event_enable || !mm)
 		return;
@@ -107,7 +107,7 @@ void trigger_cpu_oom_event(unsigned long len)
 
 		if (chunk < tmp) {
 			chunk = tmp;
-			chunk_start = gap_end;
+			
 		}
 		gap_end = vma->vm_end;
 		vma = vma->vm_next;
@@ -138,7 +138,7 @@ void trigger_cpu_oom_event(unsigned long len)
 
 			if (chunk_reserve < tmp) {
 				chunk_reserve = tmp;
-				chunk_start_reserve = gap_end;
+				
 			}
 			rest_reserve += tmp;
 			if (tmp >= len) {

@@ -112,7 +112,7 @@ void PMIC_CUST_SETTING(void)
 {
 	struct device_node *np;
 	int i, idx = 0;
-	unsigned int reg_value[4] = {0}, ret;
+	unsigned int reg_value[4] = {0};
 
 	/* check customer setting */
 	np = of_find_compatible_node(NULL, NULL,
@@ -130,10 +130,10 @@ void PMIC_CUST_SETTING(void)
 				break;
 
 			if (i == 3)
-				ret = pmic_config_interface(reg_value[0],
+				(void)(pmic_config_interface(reg_value[0],
 							    reg_value[1],
 							    reg_value[2],
-							    reg_value[3]);
+							    reg_value[3]));
 		}
 	}
 	of_node_put(np);

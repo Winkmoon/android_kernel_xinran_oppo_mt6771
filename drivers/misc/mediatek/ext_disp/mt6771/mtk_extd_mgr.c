@@ -350,7 +350,6 @@ static int mtk_extd_mgr_probe(struct platform_device *pdev)
 {
 	int ret = 0;
 	int i = 0;
-	struct class_device *class_dev = NULL;
 
 	EXT_MGR_LOG("%s+\n", __func__);
 
@@ -368,8 +367,8 @@ static int mtk_extd_mgr_probe(struct platform_device *pdev)
 
 	extd_class = class_create(THIS_MODULE, EXTD_DEVNAME);
 	/* mknod /dev/hdmitx */
-	class_dev = (struct class_device *)
-		device_create(extd_class, NULL, extd_devno, NULL, EXTD_DEVNAME);
+	(void)((struct class_device *)
+		device_create(extd_class, NULL, extd_devno, NULL, EXTD_DEVNAME));
 	ext_dev_context = (struct device *)&(pdev->dev);
 	/*HDMI add 'extcon' for audio Framework,
 	 *Since Android Q, Audio Framework detect HDMI event through 'extcon'

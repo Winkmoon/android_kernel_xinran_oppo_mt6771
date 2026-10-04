@@ -87,7 +87,7 @@ static enum IMGSENSOR_RETURN Eeprom_WriteProtectEnable(kal_uint16 enable, kal_ui
 static enum IMGSENSOR_RETURN Eeprom_WriteInfomatch(
                 ACDK_SENSOR_ENGMODE_STEREO_STRUCT *pStereoData)
 {
-    kal_uint16 data_base, data_length;
+    kal_uint16 data_base __maybe_unused, data_length __maybe_unused;
     kal_uint32 uSensorId;
     if(pStereoData == NULL) {
         pr_debug("SET_SENSOR_OTP pStereoData is NULL!");
@@ -303,7 +303,7 @@ enum IMGSENSOR_RETURN Eeprom_CallWriteService(ACDK_SENSOR_ENGMODE_STEREO_STRUCT 
 void Eeprom_CamInfoDataRead(enum IMGSENSOR_SENSOR_IDX sensor_idx, kal_uint16 slaveAddr)
 {
     kal_uint8 module_id = 0xFF;
-    kal_uint16 dataLens = 2, dataAddr = 0xFFFF, i = 0;
+    kal_uint16 dataAddr = 0xFFFF, i = 0;
     struct CAMERA_DEVICE_INFO *pCamDeviceObj = &gImgEepromInfo;
 
     /*Read Module Info Low-2bytes*/
@@ -318,7 +318,7 @@ void Eeprom_CamInfoDataRead(enum IMGSENSOR_SENSOR_IDX sensor_idx, kal_uint16 sla
                                     module_id);
     /*Read Module Info High-6bytes*/
     dataAddr = pCamDeviceObj->pCamModuleInfo[sensor_idx].i4CamInfoAddr[1];
-    dataLens = 6;
+    
     for (i = 0; i < 6; i ++) {
         pCamDeviceObj->camNormdata[sensor_idx][2+i] =
             (kal_uint8)Eeprom_1ByteDataRead(dataAddr+i, slaveAddr);

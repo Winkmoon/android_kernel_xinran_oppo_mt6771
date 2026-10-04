@@ -1761,11 +1761,10 @@ assocBuildReAssocRespFrameCommonIEs(IN struct ADAPTER *prAdapter,
 				    IN struct BSS_INFO *prBssInfo)
 {
 	uint8_t *pucBuffer;
-	struct STA_RECORD *prStaRec;
 	uint8_t ucSupRatesLen;
 	uint8_t ucExtSupRatesLen;
 
-	prStaRec = cnmGetStaRecByIndex(prAdapter, prMsduInfo->ucStaRecIndex);
+	(void)(cnmGetStaRecByIndex(prAdapter, prMsduInfo->ucStaRecIndex));
 	pucBuffer =
 	    (uint8_t *) ((unsigned long)prMsduInfo->prPacket +
 			 (unsigned long)prMsduInfo->u2FrameLength);
@@ -1903,11 +1902,10 @@ uint32_t assocSendReAssocRespFrame(IN struct ADAPTER *prAdapter,
 	uint16_t u2PayloadLen;
 	uint16_t u2EstimatedFrameLen;
 	uint16_t u2EstimatedExtraIELen;
-	u_int8_t fgIsReAssoc;
 	uint32_t i;
 
 	/* 4 <1> Allocate a PKT_INFO_T for Authentication Frame */
-	fgIsReAssoc = prStaRec->fgIsReAssoc;
+	
 
 	/* Init with MGMT Header Length + Length of Fixed Fields
 	 * + Common IE Length

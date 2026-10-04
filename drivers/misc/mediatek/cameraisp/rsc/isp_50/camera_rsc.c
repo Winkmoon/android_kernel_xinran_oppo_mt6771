@@ -868,7 +868,9 @@ signed int rsc_enque_cb(struct frame *frames, void *req)
 	unsigned int f, fcnt;
 	/*TODO: define engine request struct */
 	struct RSC_Request *_req;
+#if 0
 	struct RSC_Config *pRscConfig;
+#endif
 
 	_req = (struct RSC_Request *) req;
 
@@ -881,7 +883,9 @@ signed int rsc_enque_cb(struct frame *frames, void *req)
 		memcpy(frames[f].data, &_req->m_pRscConfig[f],
 						sizeof(struct RSC_Config));
 
+#if 0
 		pRscConfig = &_req->m_pRscConfig[f];
+#endif
 #if 0
 		LOG_ERR("[%s] request queued with  frame(%d)", __func__, f);
 		LOG_DBG("[%s] RSC_CTRL_REG:0x%x!\n", __func__,
@@ -922,7 +926,9 @@ signed int rsc_deque_cb(struct frame *frames, void *req)
 {
 	unsigned int f, fcnt;
 	struct RSC_Request *_req;
+#if 0
 	struct RSC_Config *pRscConfig;
+#endif
 
 	_req = (struct RSC_Request *) req;
 
@@ -937,7 +943,9 @@ signed int rsc_deque_cb(struct frame *frames, void *req)
 		LOG_DBG("[%s]request dequeued frame(%d/%d).", __func__, f,
 									fcnt);
 
+#if 0
 		pRscConfig = &_req->m_pRscConfig[f];
+#endif
 #if 0
 		LOG_ERR(
 		"[%s] request queued with  frame(%d)", __func__, f);
@@ -1738,7 +1746,6 @@ static long RSC_ioctl(struct file *pFile, unsigned int Cmd, unsigned long Param)
 	struct RSC_CLEAR_IRQ_STRUCT ClearIrq;
 	struct RSC_Config rsc_RscConfig;
 	struct RSC_Request rsc_RscReq;
-	signed int enqnum;
 	struct RSC_USER_INFO_STRUCT *pUserInfo;
 	int enqueNum;
 	int dequeNum;
@@ -2061,8 +2068,8 @@ static long RSC_ioctl(struct file *pFile, unsigned int Cmd, unsigned long Param)
 				kRscReq.m_ReqNum = rsc_RscReq.m_ReqNum;
 				kRscReq.m_pRscConfig =
 					g_RscEnqueReq_Struct.RscFrameConfig;
-				enqnum = enque_request(&rsc_reqs,
-				kRscReq.m_ReqNum, &kRscReq, pUserInfo->Pid);
+				(void)(enque_request(&rsc_reqs,
+				kRscReq.m_ReqNum, &kRscReq, pUserInfo->Pid));
 
 				spin_unlock_irqrestore(
 				&(RSCInfo.SpinLockIrq[RSC_IRQ_TYPE_INT_RSC_ST]),
@@ -2606,15 +2613,13 @@ EXIT:
  ******************************************************************************/
 static signed int RSC_release(struct inode *pInode, struct file *pFile)
 {
-	struct RSC_USER_INFO_STRUCT *pUserInfo;
 	/*unsigned int Reg;*/
 
 	LOG_DBG("- E. UserCount: %d.", RSCInfo.UserCount);
 
 	/*  */
 	if (pFile->private_data != NULL) {
-		pUserInfo =
-			(struct  RSC_USER_INFO_STRUCT *) pFile->private_data;
+		
 		kfree(pFile->private_data);
 		pFile->private_data = NULL;
 	}
@@ -3040,7 +3045,7 @@ static signed int RSC_remove(struct platform_device *pDev)
 /*******************************************************************************
  *
  ******************************************************************************/
-static signed int bPass1_On_In_Resume_TG1;
+static signed int bPass1_On_In_Resume_TG1 __maybe_unused;
 
 static signed int RSC_suspend(struct platform_device *pDev, pm_message_t Mesg)
 {

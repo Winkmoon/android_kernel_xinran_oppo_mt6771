@@ -248,7 +248,6 @@ int nanohub_ipi_probe(struct platform_device *pdev)
 {
 	struct nanohub_ipi_data *ipi_data;
 	struct iio_dev *iio_dev;
-	enum scp_ipi_status status;
 
 	iio_dev = iio_device_alloc(sizeof(struct nanohub_ipi_data));
 	if (!iio_dev)
@@ -260,8 +259,8 @@ int nanohub_ipi_probe(struct platform_device *pdev)
 
 	nanohub_ipi_comms_init(ipi_data);
 	init_completion(&nanohub_ipi_rx.isr_comp);
-	status = scp_ipi_registration(IPI_CHRE,
-				      scp_to_ap_ipi_handler, "chre_ap_rx");
+	(void)(scp_ipi_registration(IPI_CHRE,
+				      scp_to_ap_ipi_handler, "chre_ap_rx"));
 	/*init nano scp ipi status*/
 	WRITE_ONCE(scp_nano_ipi_status, 1);
 	scp_power_monitor_register(&nano_ipi_notifier);

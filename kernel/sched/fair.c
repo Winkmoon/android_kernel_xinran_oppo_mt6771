@@ -7684,7 +7684,6 @@ static inline int find_best_target(struct task_struct *p, int *backup_cpu,
 	unsigned long min_wake_util = ULONG_MAX;
 	unsigned long target_max_spare_cap = 0;
 	unsigned long target_orig_max_spare_cap = 0;
-	unsigned long target_util = ULONG_MAX;
 	unsigned long best_active_util = ULONG_MAX;
 	unsigned long max_capacity = cluster_max_capacity();
 	unsigned long min_cpu_util = ULONG_MAX;
@@ -8064,7 +8063,7 @@ static inline int find_best_target(struct task_struct *p, int *backup_cpu,
 				target_max_spare_cap = spare_cap;
 				target_orig_max_spare_cap = real_spare_cap;
 				target_capacity = capacity_orig;
-				target_util = new_util;
+				
 				target_cpu = i;
 			}
 		}
@@ -9013,6 +9012,7 @@ simple:
 	p = task_of(se);
 
 #ifdef OPLUS_FEATURE_SPECIALOPT
+	{
 		struct task_struct *pos;
 		pos = list_first_entry(&rq->cfs_tasks, typeof(*pos), se.group_node);
 		if (sysctl_cpu_multi_thread && is_heavy_load_task(pos) && p != pos) {
@@ -9022,6 +9022,7 @@ simple:
 		for_each_sched_entity(se) {
 			set_next_entity(cfs_rq_of(se), se);
 		}
+	}
 #endif
 
 	if (hrtick_enabled(rq))
@@ -10838,7 +10839,9 @@ static struct sched_group *find_busiest_group(struct lb_env *env)
 	struct sg_lb_stats *local, *busiest;
 	struct sd_lb_stats sds;
 	int local_cpu = 0, busiest_cpu = 0, intra = 0;
-	struct cpumask *busiest_cpumask;
+#ifdef CONFIG_SMP
+	struct cpumask *busiest_cpumask __maybe_unused;
+#endif
 
 	init_sd_lb_stats(&sds);
 
@@ -10851,7 +10854,9 @@ static struct sched_group *find_busiest_group(struct lb_env *env)
 	update_system_overutilized(env);
 
 	if (sds.busiest) {
+#ifdef CONFIG_SMP
 		busiest_cpumask = sched_group_span(sds.busiest);
+#endif
 		local_cpu = env->dst_cpu;
 		busiest_cpu = group_first_cpu(sds.busiest);
 
@@ -11353,6 +11358,7 @@ more_balance:
 #endif
 
 #ifdef CONFIG_SCHED_HMP
+		{
 			/*
 			 * If cpu_util + new task_util is overutil,
 			 * we don't migrate this task.
@@ -11366,6 +11372,7 @@ more_balance:
 				env.flags |= LBF_ALL_PINNED;
 				goto out_one_pinned;
 			}
+		}
 #endif
 
 			/*
@@ -12338,7 +12345,6 @@ void check_for_migration(struct rq *rq, struct task_struct *p)
 {
 	int new_cpu;
 	int cpu = task_cpu(p);
-	int force = 0;
 	int i, heavy_task = 0;
 	struct task_rotate_reset_uclamp_work *wr = NULL;
 
@@ -12377,7 +12383,7 @@ void check_for_migration(struct rq *rq, struct task_struct *p)
 #if defined(CONFIG_SCHED_HMP) || defined(CONFIG_MTK_IDLE_BALANCE_ENHANCEMENT)
 			raw_spin_unlock(&migration_lock);
 			get_task_struct(p);
-			force = migrate_running_task(new_cpu, p, rq);
+			(void)(migrate_running_task(new_cpu, p, rq));
 			put_task_struct(p);
 			return;
 #endif

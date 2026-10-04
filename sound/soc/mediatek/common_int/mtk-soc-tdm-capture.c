@@ -72,7 +72,6 @@
 /* information about */
 struct afe_mem_control_t *TDM_VUL_Control_context;
 static struct snd_dma_buffer *Capture_dma_buf;
-static struct audio_digital_i2s *mAudioDigitalI2S;
 static bool mCaptureUseSram;
 
 /*
@@ -395,8 +394,7 @@ static int mtk_afe_capture_probe(struct snd_soc_platform *platform)
 	AudDrv_Allocate_mem_Buffer(platform->dev, Soc_Aud_Digital_Block_MEM_VUL,
 				   UL1_MAX_BUFFER_SIZE);
 	Capture_dma_buf = Get_Mem_Buffer(Soc_Aud_Digital_Block_MEM_VUL);
-	mAudioDigitalI2S =
-		kzalloc(sizeof(struct audio_digital_i2s), GFP_KERNEL);
+	(void)(kzalloc(sizeof(struct audio_digital_i2s), GFP_KERNEL));
 	return 0;
 }
 

@@ -172,7 +172,6 @@ static int gyrohub_ReadGyroData(char *buf, int bufsize)
 {
 	struct gyrohub_ipi_data *obj = obj_ipi_data;
 	struct data_unit_t data;
-	uint64_t time_stamp = 0;
 	int gyro[GYROHUB_AXES_NUM];
 	int err = 0;
 	int status = 0;
@@ -189,7 +188,7 @@ static int gyrohub_ReadGyroData(char *buf, int bufsize)
 		return err;
 	}
 
-	time_stamp				= data.time_stamp;
+	
 	gyro[GYROHUB_AXIS_X]	= data.gyroscope_t.x;
 	gyro[GYROHUB_AXIS_Y]	= data.gyroscope_t.y;
 	gyro[GYROHUB_AXIS_Z]	= data.gyroscope_t.z;

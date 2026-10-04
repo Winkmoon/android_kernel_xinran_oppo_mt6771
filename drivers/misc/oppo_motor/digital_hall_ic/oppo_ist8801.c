@@ -826,7 +826,7 @@ static void ist8801_set_sensitivity(unsigned int id, char *value)
 	struct oppo_dhall_chip *chip = g_chip[id];
 	struct hall_srs *srs = NULL,*ist8801_ranges = NULL;
 	int len1 = 0,len2 = 0,len = 0;
-	uint8_t temp_opf,err;
+	uint8_t temp_opf;
 
 	MOTOR_LOG("ist8801_set_sensitivity, id=%d\n",id);
 	if ((id >= DHALL_NUM) || (g_chip[id] == NULL)) {
@@ -861,14 +861,14 @@ static void ist8801_set_sensitivity(unsigned int id, char *value)
 	}
 	//backup the data of IST8801_REG_OPF
 	temp_opf = 0x00;
-	err = ist8801_i2c_read_block(chip, IST8801_REG_OPF, &temp_opf,1);
+	(void)(ist8801_i2c_read_block(chip, IST8801_REG_OPF, &temp_opf,1));
 
 	//write IST8801_REG_OPF to 0x00
 	rwdata = 0x00;
 	ist8801_i2c_write_block(chip, IST8801_REG_OPF, &rwdata, 1);
 
 	//mask 0x40 reg with 0x04
-	err = ist8801_i2c_read_block(chip, IST8801_REG_IFCNTL, &rwdata,1);
+	(void)(ist8801_i2c_read_block(chip, IST8801_REG_IFCNTL, &rwdata,1));
 	rwdata |= 0x04;
 	ist8801_i2c_write_block(chip, IST8801_REG_IFCNTL, &rwdata, 1);
 
@@ -894,7 +894,7 @@ static void ist8801_set_sensitivity(unsigned int id, char *value)
 
 	//check data is correct
 	rwdata = 0;
-	err = ist8801_i2c_read_block(chip, IST8801_REG_GAINCNTL, &rwdata,1);
+	(void)(ist8801_i2c_read_block(chip, IST8801_REG_GAINCNTL, &rwdata,1));
 
 	MOTOR_LOG("get sensitivity IST8801_REG_GAINCNTL = %d \n",rwdata);
 
@@ -1162,12 +1162,11 @@ static int ist8801_i2c_remove(struct i2c_client *client)
 
 static int ist8801_i2c_suspend(struct device *dev)
 {
-	int ret = 0 ;
 	int i   = 0 ;
 
 	for (i =0 ; i < DHALL_NUM ; i++) {
 		if (g_chip[i] != NULL ) {
-			ret = ist8801_set_operation_mode(g_chip[i],OPERATION_MODE_SUSPEND);
+			(void)(ist8801_set_operation_mode(g_chip[i],OPERATION_MODE_SUSPEND));
 		}
 	}
 
@@ -1176,12 +1175,11 @@ static int ist8801_i2c_suspend(struct device *dev)
 
 static int ist8801_i2c_resume(struct device *dev)
 {
-	int ret = 0 ;
 	int i = 0 ;
 
 	for (i =0 ; i < DHALL_NUM ; i++) {
 		if (g_chip[i] != NULL ) {
-			ret = ist8801_set_operation_mode(g_chip[i],OPERATION_MODE_MEASUREMENT);
+			(void)(ist8801_set_operation_mode(g_chip[i],OPERATION_MODE_MEASUREMENT));
 		}
 	}
 

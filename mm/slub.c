@@ -513,7 +513,9 @@ static int slub_debug = DEBUG_DEFAULT_FLAGS;
 static int slub_debug;
 #endif
 
+#ifdef CONFIG_SLUB_DEBUG
 static char *slub_debug_slabs;
+#endif
 static int disable_higher_order_debug;
 
 /*
@@ -1342,7 +1344,9 @@ static int __init setup_slub_debug(char *str)
 
 check_slabs:
 	if (*str == ',')
+#ifdef CONFIG_SLUB_DEBUG
 		slub_debug_slabs = str + 1;
+#endif
 out:
 	if ((static_branch_unlikely(&init_on_alloc) ||
 	     static_branch_unlikely(&init_on_free)) &&

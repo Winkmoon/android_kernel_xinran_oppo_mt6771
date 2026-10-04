@@ -765,7 +765,6 @@ static ssize_t _mtkthermal_tz_write
 	int len = 0;
 	char desc[128];
 	char trailing[128] = { 0 };
-	int check = 0;
 	struct thermal_zone_device *tz;
 	char arg_name[32] = { 0 };
 	int arg_val = 0;
@@ -818,10 +817,10 @@ static ssize_t _mtkthermal_tz_write
 			tzdata->ma_lens[1] = tzdata->ma_lens[2] =
 					tzdata->ma_lens[3] = 1;
 
-			check = sscanf(trailing, "%ld,%d;%ld,%d;%ld,%d;",
+			(void)(sscanf(trailing, "%ld,%d;%ld,%d;%ld,%d;",
 				&tzdata->msma_ht[0], &tzdata->ma_lens[1],
 				&tzdata->msma_ht[1], &tzdata->ma_lens[2],
-				&tzdata->msma_ht[2], &tzdata->ma_lens[3]);
+				&tzdata->msma_ht[2], &tzdata->ma_lens[3]));
 
 			/* THRML_ERROR_LOG(
 			 * "%s %s (%ld, %d), (%ld, %d), (%ld, %d)\n", __func__,

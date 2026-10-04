@@ -27,7 +27,6 @@ static void step_c_work_func(struct work_struct *work)
 	uint32_t counter_floor_c;
 	/* hwm_sensor_data sensor_data; */
 	int status;
-	int64_t nt;
 	struct timespec time;
 	int err = 0;
 
@@ -43,7 +42,7 @@ static void step_c_work_func(struct work_struct *work)
 	counter = 0;
 	time.tv_sec = time.tv_nsec = 0;
 	time = get_monotonic_coarse();
-	nt = time.tv_sec * 1000000000LL + time.tv_nsec;
+	
 
 	/* add wake lock to make sure data can be read before system suspend */
 	if ((cxt->is_active_data == true) &&
@@ -148,12 +147,11 @@ static struct step_c_context *step_c_context_alloc_object(void)
 int step_notify_t(enum STEP_NOTIFY_TYPE type, int64_t time_stamp)
 {
 	int err = 0;
-	struct step_c_context *cxt = NULL;
 	struct sensor_event event;
 
 	memset(&event, 0, sizeof(struct sensor_event));
 
-	cxt = step_c_context_obj;
+	
 	event.time_stamp = time_stamp;
 
 	if (type == TYPE_STEP_DETECTOR) {

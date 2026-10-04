@@ -2032,7 +2032,7 @@ static bool cmdq_sec_thread_timeout_excceed(struct cmdq_sec_thread *thread)
 	struct cmdq_task *task = NULL;
 	struct cmdqRecStruct *handle;
 	u64 duration, now, timeout;
-	s32 i, last_idx;
+	s32 i;
 	CMDQ_TIME last_trigger = 0;
 
 	for (i = CMDQ_MAX_TASK_IN_SECURE_THREAD - 1; i >= 0; i--) {
@@ -2043,7 +2043,7 @@ static bool cmdq_sec_thread_timeout_excceed(struct cmdq_sec_thread *thread)
 			last_trigger)
 			break;
 
-		last_idx = i;
+		
 		task = thread->task_list[i];
 		last_trigger = thread->task_list[i]->handle->trigger;
 	}

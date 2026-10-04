@@ -214,7 +214,7 @@ static ssize_t dvfsrc_debug_store(struct device *dev,
 				  struct device_attribute *attr,
 				  const char *buf, size_t count)
 {
-	int val, val2, r = 0;
+	int val, val2;
 	char cmd[32];
 	struct helio_dvfsrc *dvfsrc;
 
@@ -240,7 +240,7 @@ static ssize_t dvfsrc_debug_store(struct device *dev,
 	else if (!strcmp(cmd, "log_mask"))
 		dvfsrc->log_mask = val;
 	else
-		r = -EPERM;
+		(void)(-EPERM);
 
 	return count;
 }

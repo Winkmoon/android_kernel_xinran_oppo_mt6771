@@ -394,7 +394,6 @@ u_int8_t wapiPerformPolicySelection(IN struct ADAPTER *prAdapter,
 	uint32_t u4GroupCipher = 0;
 	uint32_t u4AkmSuite = 0;
 	struct WAPI_INFO *prBssWapiInfo;
-	struct WLAN_INFO *prWlanInfo;
 	struct CONNECTION_SETTINGS *prConnSettings;
 
 	DEBUGFUNC("wapiPerformPolicySelection");
@@ -402,7 +401,7 @@ u_int8_t wapiPerformPolicySelection(IN struct ADAPTER *prAdapter,
 	/* Notice!!!! WAPI AP not set the privacy bit for WAI
 	 * and WAI-PSK at WZC configuration mode
 	 */
-	prWlanInfo = &prAdapter->rWlanInfo;
+	
 
 	prConnSettings =
 		aisGetConnSettings(prAdapter, ucBssIndex);

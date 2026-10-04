@@ -237,7 +237,7 @@ INT32 mtk_wcn_cmb_hw_pwr_on(VOID)
 
 INT32 mtk_wcn_cmb_hw_rst(VOID)
 {
-	INT32 iRet = 0;
+	INT32 iRet __maybe_unused = 0;
 	UINT32 chip_id = 0x0;
 
 	WMT_INFO_FUNC("CMB-HW, hw_rst start, eirq should be disabled before this step\n");

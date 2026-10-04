@@ -509,7 +509,6 @@ wlanoidQueryBssidList(IN struct ADAPTER *prAdapter,
 		      OUT void *pvQueryBuffer, IN uint32_t u4QueryBufferLen,
 		      OUT uint32_t *pu4QueryInfoLen)
 {
-	struct GLUE_INFO *prGlueInfo;
 	uint32_t i, u4BssidListExLen;
 	struct PARAM_BSSID_LIST_EX *prList;
 	struct PARAM_BSSID_EX *prBssidEx;
@@ -527,7 +526,7 @@ wlanoidQueryBssidList(IN struct ADAPTER *prAdapter,
 			return WLAN_STATUS_INVALID_DATA;
 	}
 
-	prGlueInfo = prAdapter->prGlueInfo;
+	
 
 	if (prAdapter->rAcpiState == ACPI_STATE_D3) {
 		DBGLOG(REQ, WARN,
@@ -900,7 +899,6 @@ wlanoidSetBssid(IN struct ADAPTER *prAdapter,
 	struct GLUE_INFO *prGlueInfo;
 	uint8_t *pAddr;
 	uint32_t i;
-	int32_t i4Idx = -1;
 	struct MSG_AIS_ABORT *prAisAbortMsg;
 	uint8_t ucReasonOfDisconnect;
 	struct CONNECTION_SETTINGS *prConnSettings;
@@ -960,7 +958,7 @@ wlanoidSetBssid(IN struct ADAPTER *prAdapter,
 	for (i = 0; i < prAdapter->rWlanInfo.u4ScanResultNum; i++) {
 		if (EQUAL_MAC_ADDR(
 		    prAdapter->rWlanInfo.arScanResult[i].arMacAddress, pAddr)) {
-			i4Idx = (int32_t) i;
+			
 			break;
 		}
 	}
@@ -1036,7 +1034,7 @@ wlanoidSetSsid(IN struct ADAPTER *prAdapter,
 	struct GLUE_INFO *prGlueInfo;
 	struct PARAM_SSID *pParamSsid;
 	uint32_t i;
-	int32_t i4Idx = -1, i4MaxRSSI = INT_MIN;
+	int32_t i4MaxRSSI = INT_MIN;
 	struct MSG_AIS_ABORT *prAisAbortMsg;
 	u_int8_t fgIsValidSsid = TRUE;
 	struct CONNECTION_SETTINGS *prConnSettings;
@@ -1103,7 +1101,7 @@ wlanoidSetSsid(IN struct ADAPTER *prAdapter,
 		if (EQUAL_SSID(aucSsid, ucSsidLength, pParamSsid->aucSsid,
 			       pParamSsid->u4SsidLen) &&
 		    i4RSSI >= i4MaxRSSI) {
-			i4Idx = (int32_t) i;
+			
 			i4MaxRSSI = i4RSSI;
 		}
 	}
@@ -1215,7 +1213,6 @@ wlanoidSetConnect(IN struct ADAPTER *prAdapter,
 	struct CONNECTION_SETTINGS *prConnSettings;
 	uint32_t i;
 	struct MSG_AIS_ABORT *prAisAbortMsg;
-	u_int8_t fgIsValidSsid = TRUE;
 	u_int8_t fgEqualSsid = FALSE;
 	u_int8_t fgEqualBssid = FALSE;
 	const uint8_t aucZeroMacAddr[] = NULL_MAC_ADDR;
@@ -1400,13 +1397,13 @@ wlanoidSetConnect(IN struct ADAPTER *prAdapter,
 
 	if (prAdapter->rWifiVar.fgSupportWZCDisassociation) {
 		if (pParamConn->u4SsidLen == ELEM_MAX_LEN_SSID) {
-			fgIsValidSsid = FALSE;
+			
 
 			if (pParamConn->pucSsid) {
 				for (i = 0; i < ELEM_MAX_LEN_SSID; i++) {
 					if (!((pParamConn->pucSsid[i] > 0) &&
 					    (pParamConn->pucSsid[i] <= 0x1F))) {
-						fgIsValidSsid = TRUE;
+						
 						break;
 					}
 				}
@@ -1599,7 +1596,6 @@ wlanoidSetInfrastructureMode(IN struct ADAPTER *prAdapter,
 			     IN void *pvSetBuffer, IN uint32_t u4SetBufferLen,
 			     OUT uint32_t *pu4SetInfoLen)
 {
-	struct GLUE_INFO *prGlueInfo;
 	struct PARAM_OP_MODE *pOpMode;
 	enum ENUM_PARAM_OP_MODE eOpMode;
 	/* P_WLAN_TABLE_T       prWlanTable; */
@@ -1617,7 +1613,7 @@ wlanoidSetInfrastructureMode(IN struct ADAPTER *prAdapter,
 	ASSERT(pvSetBuffer);
 	ASSERT(pu4SetInfoLen);
 
-	prGlueInfo = prAdapter->prGlueInfo;
+	
 
 	if (u4SetBufferLen < sizeof(struct PARAM_OP_MODE))
 		return WLAN_STATUS_BUFFER_TOO_SHORT;
@@ -1805,7 +1801,6 @@ wlanoidSetAuthMode(IN struct ADAPTER *prAdapter,
 		   IN void *pvSetBuffer, IN uint32_t u4SetBufferLen,
 		   OUT uint32_t *pu4SetInfoLen)
 {
-	struct GLUE_INFO *prGlueInfo;
 	/* UINT_32       i, u4AkmSuite; */
 	/* P_DOT11_RSNA_CONFIG_AUTHENTICATION_SUITES_ENTRY prEntry; */
 	struct CONNECTION_SETTINGS *prConnSettings;
@@ -1817,7 +1812,7 @@ wlanoidSetAuthMode(IN struct ADAPTER *prAdapter,
 	ASSERT(pu4SetInfoLen);
 	ASSERT(pvSetBuffer);
 
-	prGlueInfo = prAdapter->prGlueInfo;
+	
 
 	ucBssIndex = GET_IOCTL_BSSIDX(prAdapter);
 
@@ -3081,7 +3076,6 @@ wlanoidSetRemoveKey(IN struct ADAPTER *prAdapter,
 	struct CMD_INFO *prCmdInfo;
 	struct PARAM_REMOVE_KEY *prRemovedKey;
 	struct CMD_802_11_KEY *prCmdKey;
-	struct WLAN_TABLE *prWlanTable;
 	struct STA_RECORD *prStaRec = NULL;
 	struct BSS_INFO *prBssInfo;
 	/*	UINT_8 i = 0;	*/
@@ -3203,7 +3197,7 @@ wlanoidSetRemoveKey(IN struct ADAPTER *prAdapter,
 		return WLAN_STATUS_FAILURE;
 	}
 
-	prWlanTable = prAdapter->rWifiVar.arWtbl;
+	
 	prBssInfo = GET_BSS_INFO_BY_INDEX(prAdapter,
 					  prRemovedKey->ucBssIdx);
 
@@ -3535,7 +3529,6 @@ uint32_t
 wlanoidSetEncryptionStatus(IN struct ADAPTER *prAdapter,
 			   IN void *pvSetBuffer, IN uint32_t u4SetBufferLen,
 			   OUT uint32_t *pu4SetInfoLen) {
-	struct GLUE_INFO *prGlueInfo;
 	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	enum ENUM_WEP_STATUS eEewEncrypt;
 	struct CONNECTION_SETTINGS *prConnSettings;
@@ -3547,7 +3540,7 @@ wlanoidSetEncryptionStatus(IN struct ADAPTER *prAdapter,
 	ASSERT(pvSetBuffer);
 	ASSERT(pu4SetInfoLen);
 
-	prGlueInfo = prAdapter->prGlueInfo;
+	
 
 	ucBssIndex = GET_IOCTL_BSSIDX(prAdapter);
 
@@ -5200,8 +5193,6 @@ uint32_t
 wlanoidQueryEfuseFreeBlock(IN struct ADAPTER *prAdapter,
 			   IN void *pvSetBuffer, IN uint32_t u4SetBufferLen,
 			   OUT uint32_t *pu4SetInfoLen) {
-	struct PARAM_CUSTOM_EFUSE_FREE_BLOCK
-		*prGetEfuseFreeBlockInfo;
 	struct CMD_EFUSE_FREE_BLOCK rCmdGetEfuseFreeBlock;
 	uint32_t rWlanStatus = WLAN_STATUS_SUCCESS;
 
@@ -5219,8 +5210,7 @@ wlanoidQueryEfuseFreeBlock(IN struct ADAPTER *prAdapter,
 
 	ASSERT(pvSetBuffer);
 
-	prGetEfuseFreeBlockInfo = (struct
-				   PARAM_CUSTOM_EFUSE_FREE_BLOCK *) pvSetBuffer;
+	
 
 	kalMemSet(&rCmdGetEfuseFreeBlock, 0,
 		  sizeof(struct CMD_EFUSE_FREE_BLOCK));
@@ -8425,7 +8415,6 @@ wlanoidSetDisassociate(IN struct ADAPTER *prAdapter,
 		       OUT uint32_t *pu4SetInfoLen) {
 	struct MSG_AIS_ABORT *prAisAbortMsg;
 	uint32_t u4DisconnectReason;
-	struct CONNECTION_SETTINGS *prConnSettings;
 	uint8_t ucBssIndex = 0;
 	struct AIS_FSM_INFO *prAisFsmInfo = NULL;
 
@@ -8447,8 +8436,7 @@ wlanoidSetDisassociate(IN struct ADAPTER *prAdapter,
 
 	DBGLOG(REQ, LOUD, "ucBssIndex %d\n", ucBssIndex);
 
-	prConnSettings =
-		aisGetConnSettings(prAdapter, ucBssIndex);
+	(void)(aisGetConnSettings(prAdapter, ucBssIndex));
 
 	/* Send AIS Abort Message */
 	prAisAbortMsg = (struct MSG_AIS_ABORT *) cnmMemAlloc(
@@ -9855,7 +9843,6 @@ void wlanoidRfTestICapRawDataProc(IN struct ADAPTER *
 	struct PARAM_MTK_WIFI_TEST_STRUCT_EXT_T *prRfATInfo;
 	uint32_t u4SetBufferLen = 0;
 	void *pvSetBuffer = NULL;
-	int32_t rStatus;
 
 	ASSERT(prAdapter);
 
@@ -9868,7 +9855,7 @@ void wlanoidRfTestICapRawDataProc(IN struct ADAPTER *
 	prRfATInfo->Data.rICapDump.u4Bank = 1;
 	prRfATInfo->Data.rICapDump.u4BankSize = u4TotalBufferSize;
 
-	rStatus = wlanSendSetQueryExtCmd(prAdapter,
+	(void)(wlanSendSetQueryExtCmd(prAdapter,
 				 CMD_ID_LAYER_0_EXT_MAGIC_NUM,
 				 EXT_CMD_ID_RF_TEST,
 				 FALSE, /* Query Bit: True->write False->read */
@@ -9878,7 +9865,7 @@ void wlanoidRfTestICapRawDataProc(IN struct ADAPTER *
 				 nicOidCmdTimeoutCommon,
 				 sizeof(struct CMD_TEST_CTRL_EXT_T),
 				 (uint8_t *)(&rCmdTestCtrl),
-				 pvSetBuffer, u4SetBufferLen);
+				 pvSetBuffer, u4SetBufferLen));
 
 }
 
@@ -10393,7 +10380,6 @@ wlanoidSetWapiKey(IN struct ADAPTER *prAdapter,
 	struct CMD_INFO *prCmdInfo;
 	struct PARAM_WPI_KEY *prNewKey;
 	struct CMD_802_11_KEY *prCmdKey;
-	uint8_t *pc;
 	struct STA_RECORD *prStaRec;
 	struct BSS_INFO *prBssInfo;
 	struct mt66xx_chip_info *prChipInfo;
@@ -10420,7 +10406,7 @@ wlanoidSetWapiKey(IN struct ADAPTER *prAdapter,
 	DBGLOG(REQ, LOUD, "ucBssIndex %d\n", ucBssIndex);
 
 	DBGLOG_MEM8(REQ, TRACE, (uint8_t *) pvSetBuffer, 560);
-	pc = (uint8_t *) pvSetBuffer;
+	
 
 	*pu4SetInfoLen = u4SetBufferLen;
 
@@ -16063,7 +16049,6 @@ uint32_t wlanoidSetAmsduSize(IN struct ADAPTER *prAdapter,
 			     IN uint32_t u4SetBufferLen,
 			     OUT uint32_t *pu4SetInfoLen)
 {
-	struct mt66xx_chip_info *prChipInfo = NULL;
 	struct WIFI_VAR *prWifiVar = NULL;
 
 	ASSERT(prAdapter);
@@ -16071,7 +16056,7 @@ uint32_t wlanoidSetAmsduSize(IN struct ADAPTER *prAdapter,
 		ASSERT(pvSetBuffer);
 	ASSERT(pu4SetInfoLen);
 
-	prChipInfo = prAdapter->chip_info;
+	
 	prWifiVar = &prAdapter->rWifiVar;
 	prWifiVar->u4TxMaxAmsduInAmpduLen = *((uint32_t *)pvSetBuffer);
 	DBGLOG(OID, INFO, "Set SW AMSDU max Size: %d\n",

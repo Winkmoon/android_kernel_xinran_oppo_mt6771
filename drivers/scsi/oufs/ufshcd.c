@@ -9569,11 +9569,11 @@ static int ufshcd_resume(struct ufs_hba *hba, enum ufs_pm_op pm_op)
 {
 	int ret;
 	enum uic_link_state old_link_state;
+	enum ufs_dev_pwr_mode old_pwr_mode;
 	int retry = 3;
 
 	/* MTK PATCH: Lock deepidle/SODI @enter UFS resume callback */
 	ufshcd_vops_deepidle_lock(hba, true);
-	enum ufs_dev_pwr_mode old_pwr_mode;
 
 	hba->pm_op_in_progress = 1;
 	old_link_state = hba->uic_link_state;

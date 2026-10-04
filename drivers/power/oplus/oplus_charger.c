@@ -138,7 +138,9 @@ MODULE_PARM_DESC(chgr_dbg_total_time, "debug charger total time");
 static int reset_mcu_delay = 0;
 static bool suspend_charger = false;
 static bool vbatt_higherthan_4180mv = false;
+#ifdef CONFIG_OPLUS_RTC_DET_SUPPORT
 static bool vbatt_lowerthan_3300mv = false;
+#endif
 
 enum power_supply_property oplus_usb_props[] = {
 	POWER_SUPPLY_PROP_ONLINE,
@@ -269,13 +271,12 @@ int oplus_usb_get_property(struct power_supply *psy,
 int oplus_usb_property_is_writeable(struct power_supply *psy,
 		enum power_supply_property psp)
 {
-	int ret = 0;
 	switch (psp) {
 		case POWER_SUPPLY_PROP_OTG_SWITCH:
 			return 1;
 		default:
 			pr_err("writeable prop %d is not supported in usb\n", psp);
-			ret = -EINVAL;
+			
 			break;
 	}
 	return 0;
@@ -1627,13 +1628,12 @@ static const struct file_operations proc_charger_passedchg_reset_count_ops =
 
 static int init_charger_proc(struct oplus_chg_chip *chip)
 {
-	int ret = 0;
 	struct proc_dir_entry *prEntry_da = NULL;
 	struct proc_dir_entry *prEntry_tmp = NULL;
 
 	prEntry_da = proc_mkdir("charger", NULL);
 	if (prEntry_da == NULL) {
-		ret = -1;
+		
 		chg_debug("%s: Couldn't create charger proc entry\n",
 			  __func__);
 	}
@@ -1641,7 +1641,7 @@ static int init_charger_proc(struct oplus_chg_chip *chip)
 	prEntry_tmp = proc_create_data("charger_factorymode_test", 0666, prEntry_da,
 				       &proc_charger_factorymode_test_ops, chip);
 	if (prEntry_tmp == NULL) {
-		ret = -1;
+		
 		chg_debug("%s: Couldn't create proc entry, %d\n", __func__,
 			  __LINE__);
 	}
@@ -1649,7 +1649,7 @@ static int init_charger_proc(struct oplus_chg_chip *chip)
 	prEntry_tmp = proc_create_data("hmac", 0666, prEntry_da,
 				       &hmac_proc_fops, chip);
 	if (prEntry_tmp == NULL) {
-		ret = -1;
+		
 		chg_debug("%s: Couldn't create hmac proc entry, %d\n", __func__,
 			  __LINE__);
 	}
@@ -1693,7 +1693,6 @@ static ssize_t proc_ui_soc_decimal_read(struct file *filp,
 	char page[256] = {0};
 	char read_data[128] = {0};
 	int len = 0;
-	int schedule_work = 0;
 	int val;
 	bool svooc_is_control_by_vooc;
 	struct oplus_chg_chip *chip = g_charger_chip;
@@ -1708,7 +1707,7 @@ static ssize_t proc_ui_soc_decimal_read(struct file *filp,
 				&&  chip->boot_completed != false && chip->calculate_decimal_time == 0 && oplus_chg_show_vooc_logo_ornot() == true) {
 			cancel_delayed_work_sync(&chip->ui_soc_decimal_work);
 			oplus_chg_ui_soc_decimal_init();
-			schedule_work = mod_delayed_work(system_wq, &chip->ui_soc_decimal_work, 0);
+			(void)(mod_delayed_work(system_wq, &chip->ui_soc_decimal_work, 0));
 		}
 
 		val = (chip->ui_soc_integer + chip->ui_soc_decimal) / 10;
@@ -1744,13 +1743,12 @@ static const struct file_operations ui_soc_decimal_ops =
 
 static int init_ui_soc_decimal_proc(struct oplus_chg_chip *chip)
 {
-	int ret = 0;
 	struct proc_dir_entry *prEntry_tmp = NULL;
 
 	prEntry_tmp = proc_create_data("ui_soc_decimal", 0666, NULL,
 				       &ui_soc_decimal_ops, chip);
 	if (prEntry_tmp == NULL) {
-		ret = -1;
+		
 		chg_debug("%s: Couldn't create proc entry, %d\n", __func__,
 			  __LINE__);
 	}
@@ -6120,10 +6118,11 @@ static void oplus_chg_update_ui_soc(struct oplus_chg_chip *chip)
 	static int cnt = 0;
 	int soc_down_limit = 0;
 	int soc_up_limit = 0;
-	unsigned long sleep_tm = 0;
 	unsigned long soc_reduce_margin = 0;
 	bool vbatt_too_low = false;
+#ifdef CONFIG_OPLUS_RTC_DET_SUPPORT
 	vbatt_lowerthan_3300mv = false;
+#endif
 
 	if (chip->ui_soc == 100) {
 		soc_down_limit = SOC_SYNC_DOWN_RATE_300S;
@@ -6141,7 +6140,9 @@ static void oplus_chg_update_ui_soc(struct oplus_chg_chip *chip)
 			&& (chip->batt_volt_min > 2500)) {
 		soc_down_limit = SOC_SYNC_DOWN_RATE_15S;
 		vbatt_too_low = true;
+#ifdef CONFIG_OPLUS_RTC_DET_SUPPORT
 		vbatt_lowerthan_3300mv = true;
+#endif
 		charger_xlog_printk(CHG_LOG_CRTI,
 			"batt_volt:%d, batt_volt_min:%d, vbatt_too_low:%d\n",
 			chip->batt_volt, chip->batt_volt_min, vbatt_too_low);
@@ -6255,7 +6256,7 @@ static void oplus_chg_update_ui_soc(struct oplus_chg_chip *chip)
 			} else {
 				soc_down_count++;
 			}
-			sleep_tm = chip->sleep_tm_sec;
+			
 			if (chip->sleep_tm_sec > 0) {
 				soc_reduce_margin = chip->sleep_tm_sec / TEN_MINUTES;
 				if (soc_reduce_margin == 0) {
@@ -7543,13 +7544,12 @@ void oplus_chg_restart_update_work(void)
 }
 bool oplus_chg_wake_update_work(void)
 {
-	int shedule_work = 0;
 
 	if (!g_charger_chip) {
 		chg_err(" g_charger_chip NULL,return\n");
 		return true;
 	}
-	shedule_work = mod_delayed_work(system_wq, &g_charger_chip->update_work, 0);
+	(void)(mod_delayed_work(system_wq, &g_charger_chip->update_work, 0));
 	return true;
 }
 
@@ -7980,7 +7980,7 @@ int oplus_chg_get_shell_temp(void) {
 
 void oplus_smart_charge_by_shell_temp(struct oplus_chg_chip *chip, int val) {
 	union power_supply_propval pval = {0, };
-	int subtype = 0, rc = -EINVAL;
+	int rc = -EINVAL;
 
 	if (!chip) {
 		return;
@@ -8023,7 +8023,7 @@ void oplus_smart_charge_by_shell_temp(struct oplus_chg_chip *chip, int val) {
 		pr_err("Failed to read charging subtype\n");
 		return;
 	}
-	subtype = pval.intval;
+	
 	charger_xlog_printk(CHG_LOG_CRTI, "get subtype pval->intval = [%d]\n", pval.intval);
 	switch(pval.intval) {
 	case CHARGER_SUBTYPE_DEFAULT:

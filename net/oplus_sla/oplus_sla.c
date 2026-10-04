@@ -3842,7 +3842,6 @@ static void enable_to_user_time_out(struct timeval tv)
 
 static void send_speed_and_rtt_to_user(void)
 {
-	int ret = 0;
 
 	if (oplus_sla_info[MAIN_WLAN].if_up || oplus_sla_info[MAIN_WLAN].need_up ||
 			oplus_sla_info[CELL_INDEX].if_up) {
@@ -3871,8 +3870,8 @@ static void send_speed_and_rtt_to_user(void)
 		memcpy(total_payload, payload, sizeof(payload));
 		memcpy(total_payload + sizeof(payload), tcp_tx_rx, sizeof(tcp_tx_rx));
 
-		ret = oplus_sla_send_to_user(SLA_NOTIFY_SPEED_RTT, (char *) total_payload,
-					     sizeof(total_payload));
+		(void)(oplus_sla_send_to_user(SLA_NOTIFY_SPEED_RTT, (char *) total_payload,
+					     sizeof(total_payload)));
 
 		if (oplus_sla_debug) {
 			printk("oplus_sla:send_speed_and_rtt_to_user wlan0:max_speed=%d, avg_rtt=%d  "

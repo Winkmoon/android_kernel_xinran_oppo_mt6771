@@ -302,7 +302,7 @@ struct kbase_context *kbase_ctx_sched_as_to_ctx(struct kbase_device *kbdev,
 bool kbase_ctx_sched_inc_refcount_nolock(struct kbase_context *kctx)
 {
 	bool result = false;
-	int as_nr;
+	int as_nr __maybe_unused;
 
 	if (WARN_ON(kctx == NULL))
 		return result;

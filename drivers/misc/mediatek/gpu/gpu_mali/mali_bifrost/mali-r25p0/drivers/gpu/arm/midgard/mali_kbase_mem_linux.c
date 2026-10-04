@@ -1005,7 +1005,9 @@ int kbase_mem_do_sync_imported(struct kbase_context *kctx,
 		struct kbase_va_region *reg, enum kbase_sync_type sync_fn)
 {
 	int ret = -EINVAL;
+#if KERNEL_VERSION(4, 6, 0) > LINUX_VERSION_CODE && !defined(CONFIG_CHROMEOS)
 	struct dma_buf *dma_buf;
+#endif
 	enum dma_data_direction dir = DMA_BIDIRECTIONAL;
 
 	lockdep_assert_held(&kctx->reg_lock);
@@ -1032,7 +1034,9 @@ int kbase_mem_do_sync_imported(struct kbase_context *kctx,
 	    !reg->gpu_alloc->imported.umm.current_mapping_usage_count)
 		return ret;
 
+#if KERNEL_VERSION(4, 6, 0) > LINUX_VERSION_CODE && !defined(CONFIG_CHROMEOS)
 	dma_buf = reg->gpu_alloc->imported.umm.dma_buf;
+#endif
 
 	switch (sync_fn) {
 	case KBASE_SYNC_TO_DEVICE:

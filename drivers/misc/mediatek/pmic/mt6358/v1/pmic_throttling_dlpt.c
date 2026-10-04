@@ -1216,7 +1216,6 @@ static ssize_t store_low_battery_protect_ut(
 		struct device *dev, struct device_attribute *attr,
 		const char *buf, size_t size)
 {
-	int ret = 0;
 	char *pvalue = NULL;
 	unsigned int val = 0;
 	unsigned int thd;
@@ -1227,7 +1226,7 @@ static ssize_t store_low_battery_protect_ut(
 		pr_info("[%s] buf is %s and size is %zu\n",
 			__func__, buf, size);
 		pvalue = (char *)buf;
-		ret = kstrtou32(pvalue, 16, (unsigned int *)&val);
+		(void)(kstrtou32(pvalue, 16, (unsigned int *)&val));
 		if (val <= 2) {
 			if (val == LOW_BATTERY_LEVEL_0)
 				thd = POWER_INT0_VOLT;
@@ -1262,7 +1261,6 @@ static ssize_t show_low_battery_protect_stop(
 static ssize_t store_low_battery_protect_stop(struct device *dev,
 		struct device_attribute *attr, const char *buf, size_t size)
 {
-	int ret = 0;
 	char *pvalue = NULL;
 	unsigned int val = 0;
 
@@ -1272,7 +1270,7 @@ static ssize_t store_low_battery_protect_stop(struct device *dev,
 		pr_info("[%s] buf is %s and size is %zu\n",
 			__func__, buf, size);
 		pvalue = (char *)buf;
-		ret = kstrtou32(pvalue, 16, (unsigned int *)&val);
+		(void)(kstrtou32(pvalue, 16, (unsigned int *)&val));
 		if ((val != 0) && (val != 1))
 			val = 0;
 		g_low_battery_stop = val;
@@ -1327,7 +1325,6 @@ static ssize_t store_battery_oc_protect_ut(
 		struct device *dev, struct device_attribute *attr,
 		const char *buf, size_t size)
 {
-	int ret = 0;
 	char *pvalue = NULL;
 	unsigned int val = 0;
 
@@ -1337,7 +1334,7 @@ static ssize_t store_battery_oc_protect_ut(
 		pr_info("[%s] buf is %s and size is %zu\n",
 			__func__, buf, size);
 		pvalue = (char *)buf;
-		ret = kstrtou32(pvalue, 16, (unsigned int *)&val);
+		(void)(kstrtou32(pvalue, 16, (unsigned int *)&val));
 		if (val <= 1) {
 			pr_info("[%s] your input is %d\n", __func__, val);
 			exec_battery_oc_callback(val);
@@ -1367,7 +1364,6 @@ static ssize_t store_battery_oc_protect_stop(
 		struct device *dev, struct device_attribute *attr,
 		const char *buf, size_t size)
 {
-	int ret = 0;
 	char *pvalue = NULL;
 	unsigned int val = 0;
 
@@ -1377,7 +1373,7 @@ static ssize_t store_battery_oc_protect_stop(
 		pr_info("[%s] buf is %s and size is %zu\n",
 			__func__, buf, size);
 		pvalue = (char *)buf;
-		ret = kstrtou32(pvalue, 16, (unsigned int *)&val);
+		(void)(kstrtou32(pvalue, 16, (unsigned int *)&val));
 		if ((val != 0) && (val != 1))
 			val = 0;
 		g_battery_oc_stop = val;
@@ -1475,7 +1471,6 @@ static ssize_t store_battery_percent_ut(
 		struct device *dev, struct device_attribute *attr,
 		const char *buf, size_t size)
 {
-	int ret = 0;
 	char *pvalue = NULL;
 	unsigned int val = 0;
 	/*store_battery_percent_protect_ut*/
@@ -1485,7 +1480,7 @@ static ssize_t store_battery_percent_ut(
 		pr_info("[%s] buf is %s and size is %zu\n",
 			__func__, buf, size);
 		pvalue = (char *)buf;
-		ret = kstrtou32(pvalue, 16, (unsigned int *)&val);
+		(void)(kstrtou32(pvalue, 16, (unsigned int *)&val));
 		if (val <= 1) {
 			pr_info("[%s] your input is %d\n", __func__, val);
 			exec_battery_percent_callback(val);
@@ -1516,7 +1511,6 @@ static ssize_t store_battery_percent_stop(
 		struct device *dev, struct device_attribute *attr,
 		const char *buf, size_t size)
 {
-	int ret = 0;
 	char *pvalue = NULL;
 	unsigned int val = 0;
 	/*store_battery_percent_protect_stop */
@@ -1526,7 +1520,7 @@ static ssize_t store_battery_percent_stop(
 		pr_info("[%s] buf is %s and size is %zu\n",
 			__func__, buf, size);
 		pvalue = (char *)buf;
-		ret = kstrtou32(pvalue, 16, (unsigned int *)&val);
+		(void)(kstrtou32(pvalue, 16, (unsigned int *)&val));
 		if ((val != 0) && (val != 1))
 			val = 0;
 		g_battery_percent_stop = val;
@@ -1583,7 +1577,6 @@ static ssize_t store_dlpt_ut(struct device *dev, struct device_attribute *attr,
 {
 	char *pvalue = NULL;
 	unsigned int val = 0;
-	int ret = 0;
 
 	pr_info("[%s]\n", __func__);
 
@@ -1591,7 +1584,7 @@ static ssize_t store_dlpt_ut(struct device *dev, struct device_attribute *attr,
 		pr_info("[%s] buf is %s and size is %zu\n", __func__,
 			buf, size);
 		pvalue = (char *)buf;
-		ret = kstrtou32(pvalue, 10, (unsigned int *)&val);
+		(void)(kstrtou32(pvalue, 10, (unsigned int *)&val));
 
 		pr_info("[%s] your input is %d\n", __func__, val);
 		exec_dlpt_callback(val);
@@ -1617,7 +1610,6 @@ static ssize_t store_dlpt_stop(
 {
 	char *pvalue = NULL;
 	unsigned int val = 0;
-	int ret = 0;
 
 	pr_info("[%s]\n", __func__);
 
@@ -1625,7 +1617,7 @@ static ssize_t store_dlpt_stop(
 		pr_info("[%s] buf is %s and size is %zu\n", __func__
 			, buf, size);
 		pvalue = (char *)buf;
-		ret = kstrtou32(pvalue, 16, (unsigned int *)&val);
+		(void)(kstrtou32(pvalue, 16, (unsigned int *)&val));
 		if ((val != 0) && (val != 1))
 			val = 0;
 		g_dlpt_stop = val;

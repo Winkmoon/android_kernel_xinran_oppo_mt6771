@@ -1201,15 +1201,14 @@ static int cmdq_create_debug_entries(void)
 
 	debugDirEntry = proc_mkdir(CMDQ_DRIVER_DEVICE_NAME "_debug", NULL);
 	if (debugDirEntry) {
-		struct proc_dir_entry *entry = NULL;
 
-		entry = proc_create("status", 0440, debugDirEntry,
-			&cmdqDebugStatusOp);
-		entry = proc_create("record", 0440, debugDirEntry,
-			&cmdqDebugRecordOp);
+		(void)(proc_create("status", 0440, debugDirEntry,
+			&cmdqDebugStatusOp));
+		(void)(proc_create("record", 0440, debugDirEntry,
+			&cmdqDebugRecordOp));
 #ifdef CMDQ_INSTRUCTION_COUNT
-		entry = proc_create("instructionCount", 0440, debugDirEntry,
-			&cmdqDebugInstructionCountOp);
+		(void)(proc_create("instructionCount", 0440, debugDirEntry,
+			&cmdqDebugInstructionCountOp));
 #endif
 	}
 
@@ -1219,7 +1218,6 @@ static int cmdq_create_debug_entries(void)
 static int cmdq_probe(struct platform_device *pDevice)
 {
 	int status;
-	struct device *object;
 
 	CMDQ_LOG("CMDQ driver probe begin\n");
 
@@ -1258,8 +1256,8 @@ static int cmdq_probe(struct platform_device *pDevice)
 	status = cdev_add(gCmdqCDev, gCmdqDevNo, 1);
 
 	gCMDQClass = class_create(THIS_MODULE, CMDQ_DRIVER_DEVICE_NAME);
-	object = device_create(gCMDQClass, NULL, gCmdqDevNo, NULL,
-		CMDQ_DRIVER_DEVICE_NAME);
+	(void)(device_create(gCMDQClass, NULL, gCmdqDevNo, NULL,
+		CMDQ_DRIVER_DEVICE_NAME));
 
 	/* mtk-cmdq-mailbox will register the irq */
 
@@ -1347,10 +1345,9 @@ static struct platform_driver gCmdqDriver = {
 
 static int __init mdp_late_init(void)
 {
-	int status;
 
 	CMDQ_LOG("%s begin\n", __func__);
-	status = mdp_limit_late_init();
+	(void)(mdp_limit_late_init());
 	CMDQ_LOG("%s end\n", __func__);
 
 	return 0;

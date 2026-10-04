@@ -97,7 +97,6 @@ static ssize_t store_pmic_access(struct device *dev,
 				 const char *buf,
 				 size_t size)
 {
-	int ret = 0;
 	char *pvalue = NULL, *addr = NULL, *val = NULL;
 	unsigned int reg_value = 0;
 	unsigned int reg_address = 0;
@@ -111,17 +110,17 @@ static ssize_t store_pmic_access(struct device *dev,
 		addr = strsep(&pvalue, " ");
 		val = strsep(&pvalue, " ");
 		if (addr)
-			ret = kstrtou32(addr, 16, (unsigned int *)&reg_address);
+			(void)(kstrtou32(addr, 16, (unsigned int *)&reg_address));
 		if (val) {
-			ret = kstrtou32(val, 16, (unsigned int *)&reg_value);
+			(void)(kstrtou32(val, 16, (unsigned int *)&reg_value));
 
 			pr_info("[%s] write PMU reg 0x%x with value 0x%x !\n"
 				, __func__, reg_address, reg_value);
-			ret = pmic_config_interface(
-					reg_address, reg_value, 0xFFFF, 0x0);
+			(void)(pmic_config_interface(
+					reg_address, reg_value, 0xFFFF, 0x0));
 		} else {
-			ret = pmic_read_interface(
-					reg_address, &g_reg_value, 0xFFFF, 0x0);
+			(void)(pmic_read_interface(
+					reg_address, &g_reg_value, 0xFFFF, 0x0));
 			pr_info("[%s] read PMU reg 0x%x with value 0x%x !\n"
 				, __func__, reg_address, g_reg_value);
 			pr_info("[%s] use \"cat pmic_access\" to get value\n"
@@ -272,7 +271,6 @@ int __attribute__ ((weak)) pmic_irq_debug_init(struct dentry *debug_dir)
 int pmic_debug_init(struct platform_device *dev)
 {
 	struct dentry *mtk_pmic_dir;
-	int ret_device_file = 0;
 
 	mtk_pmic_dir = debugfs_create_dir("mtk_pmic", NULL);
 	if (!mtk_pmic_dir) {
@@ -305,8 +303,8 @@ int pmic_debug_init(struct platform_device *dev)
 	PMICLOG("%s debugfs done\n", __func__);
 
 	/*--/sys/devices/platform/mt-pmic/ --*/
-	ret_device_file = device_create_file(&(dev->dev),
-					     &dev_attr_pmic_access);
+	(void)(device_create_file(&(dev->dev),
+					     &dev_attr_pmic_access));
 	PMICLOG("%s dev attr done\n", __func__);
 
 	return 0;

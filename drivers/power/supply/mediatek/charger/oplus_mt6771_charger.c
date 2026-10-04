@@ -1151,7 +1151,6 @@ static int battery_set_property(struct power_supply *psy,
 static int battery_get_property(struct power_supply *psy,
 	enum power_supply_property psp, union power_supply_propval *val)
 {
-	int rc = 0;
 
 	switch (psp) {
 	case POWER_SUPPLY_PROP_CAPACITY_LEVEL:
@@ -1170,7 +1169,7 @@ static int battery_get_property(struct power_supply *psy,
 		val->intval = 0;
 		break;
 	default:
-		rc = oplus_battery_get_property(psy, psp, val);
+		(void)(oplus_battery_get_property(psy, psp, val));
 		break;
 	}
 
@@ -1463,7 +1462,7 @@ EXPORT_SYMBOL(oplus_chg_get_mmi_status);
 static int oplus_charger_probe(struct platform_device *pdev)
 {
 #ifdef VENDOR_EDIT
-        int ret = 0;
+        int ret __maybe_unused = 0;
         struct oplus_chg_chip *oplus_chip = NULL;
         //struct mt_charger *mt_chg = NULL;
         printk("oplus_charger_probe\n");

@@ -521,7 +521,6 @@ asmlinkage void aee_save_excp_regs(struct pt_regs *regs)
 asmlinkage void aee_stop_nested_panic(struct pt_regs *regs)
 {
 	struct thread_info *thread = current_thread_info();
-	int len = 0;
 	int timeout = 1000000;
 	int cpu;
 #ifdef CONFIG_MTK_WATCHDOG
@@ -583,7 +582,7 @@ asmlinkage void aee_stop_nested_panic(struct pt_regs *regs)
 		/*Dump first panic stack */
 		aee_nested_printf("Previous\n");
 		if (excp_regs) {
-			len = aee_nested_save_stack(excp_regs);
+			(void)(aee_nested_save_stack(excp_regs));
 			aee_nested_printf("\nbacktrace:");
 			aee_print_bt(excp_regs);
 		}
@@ -591,7 +590,7 @@ asmlinkage void aee_stop_nested_panic(struct pt_regs *regs)
 		/*Dump second panic stack */
 		aee_nested_printf("Current\n");
 		if (mrdump_virt_addr_valid(regs)) {
-			len = aee_nested_save_stack(regs);
+			(void)(aee_nested_save_stack(regs));
 			aee_nested_printf("\nbacktrace:");
 			aee_print_bt(regs);
 		}

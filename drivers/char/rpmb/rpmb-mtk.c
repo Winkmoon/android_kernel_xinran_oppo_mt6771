@@ -2127,7 +2127,6 @@ static int rpmb_execute_ufs(u32 cmdId)
 
 static int rpmb_gp_execute_ufs(u32 cmdId)
 {
-	int ret;
 
 	switch (cmdId) {
 
@@ -2135,8 +2134,8 @@ static int rpmb_gp_execute_ufs(u32 cmdId)
 
 		MSG(DBG_INFO, "%s: DCI_RPMB_CMD_READ_DATA\n", __func__);
 
-		ret = rpmb_req_read_data_ufs(rpmb_gp_dci->request.frame,
-						rpmb_gp_dci->request.blks);
+		(void)(rpmb_req_read_data_ufs(rpmb_gp_dci->request.frame,
+						rpmb_gp_dci->request.blks));
 
 		break;
 
@@ -2144,8 +2143,8 @@ static int rpmb_gp_execute_ufs(u32 cmdId)
 
 		MSG(DBG_INFO, "%s: DCI_RPMB_CMD_GET_WCNT\n", __func__);
 
-		ret = rpmb_req_get_wc_ufs(NULL, NULL,
-						rpmb_gp_dci->request.frame);
+		(void)(rpmb_req_get_wc_ufs(NULL, NULL,
+						rpmb_gp_dci->request.frame));
 
 		break;
 
@@ -2153,8 +2152,8 @@ static int rpmb_gp_execute_ufs(u32 cmdId)
 
 		MSG(DBG_INFO, "%s: DCI_RPMB_CMD_WRITE_DATA\n", __func__);
 
-		ret = rpmb_req_write_data_ufs(rpmb_gp_dci->request.frame,
-						rpmb_gp_dci->request.blks);
+		(void)(rpmb_req_write_data_ufs(rpmb_gp_dci->request.frame,
+						rpmb_gp_dci->request.blks));
 
 		break;
 
@@ -2163,7 +2162,7 @@ static int rpmb_gp_execute_ufs(u32 cmdId)
 		MSG(INFO, "%s: DCI_RPMB_CMD_PROGRAM_KEY.\n", __func__);
 		rpmb_dump_frame(rpmb_gp_dci->request.frame);
 
-		ret = rpmb_req_program_key_ufs(rpmb_gp_dci->request.frame, 1);
+		(void)(rpmb_req_program_key_ufs(rpmb_gp_dci->request.frame, 1));
 
 		break;
 #endif
@@ -2864,7 +2863,7 @@ long rpmb_ioctl_emmc(struct file *file, unsigned int cmd, unsigned long arg)
 #if defined(RPMB_IOCTL_UT) || defined(CONFIG_MICROTRUST_TEE_SUPPORT)
 	int err = 0;
 #endif
-	struct mmc_card *card;
+	struct mmc_card *card __maybe_unused;
 	int ret = 0;
 #if defined(RPMB_IOCTL_UT)
 	struct rpmb_ioc_param param;

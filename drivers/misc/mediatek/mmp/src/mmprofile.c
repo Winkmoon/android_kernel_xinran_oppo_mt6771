@@ -202,7 +202,6 @@ void mmprofile_get_dump_buffer(unsigned int start, unsigned long *p_addr,
 	unsigned int region_pos;
 	unsigned int block_pos = 0;
 	unsigned int region_base = 0;
-	unsigned int copy_size;
 	*p_addr = (unsigned long)mmprofile_dump_block;
 	*p_size = MMPROFILE_DUMP_BLOCK_SIZE;
 	if (!bmmprofile_init_buffer) {
@@ -213,12 +212,11 @@ void mmprofile_get_dump_buffer(unsigned int start, unsigned long *p_addr,
 	if (total_pos < (region_base + sizeof(struct mmprofile_global_t))) {
 		/* Global structure */
 		region_pos = total_pos;
-		copy_size =
-			mmprofile_fill_dump_block(&mmprofile_globals,
+		(void)(mmprofile_fill_dump_block(&mmprofile_globals,
 			mmprofile_dump_block,
 			&region_pos, &block_pos,
 			sizeof(struct mmprofile_global_t),
-			MMPROFILE_DUMP_BLOCK_SIZE);
+			MMPROFILE_DUMP_BLOCK_SIZE));
 		if (block_pos == MMPROFILE_DUMP_BLOCK_SIZE)
 			return;
 		total_pos = region_base + sizeof(struct mmprofile_global_t);
@@ -233,7 +231,7 @@ void mmprofile_get_dump_buffer(unsigned int start, unsigned long *p_addr,
 	    (region_base + sizeof(struct mmprofile_eventinfo_t) *
 	    (mmprofile_globals.reg_event_index + 1))) {
 		/* Register table */
-		mmp_event index;
+		mmp_event index __maybe_unused;
 		struct mmprofile_regtable_t *p_regtable;
 		struct mmprofile_eventinfo_t event_info_dummy = { 0, "" };
 		unsigned int src_pos;
@@ -250,12 +248,11 @@ void mmprofile_get_dump_buffer(unsigned int start, unsigned long *p_addr,
 				src_pos = region_pos - pos;
 			else
 				src_pos = 0;
-			copy_size =
-			    mmprofile_fill_dump_block(&event_info_dummy,
+			(void)(mmprofile_fill_dump_block(&event_info_dummy,
 			    mmprofile_dump_block, &src_pos,
 				&block_pos,
 				sizeof(struct mmprofile_eventinfo_t),
-				MMPROFILE_DUMP_BLOCK_SIZE);
+				MMPROFILE_DUMP_BLOCK_SIZE));
 			if (block_pos == MMPROFILE_DUMP_BLOCK_SIZE) {
 				mutex_unlock(&mmprofile_regtable_mutex);
 				return;
@@ -280,13 +277,12 @@ void mmprofile_get_dump_buffer(unsigned int start, unsigned long *p_addr,
 						region_pos, block_pos);
 					return;
 				}
-				copy_size =
-				    mmprofile_fill_dump_block(
+				(void)(mmprofile_fill_dump_block(
 				    &(p_regtable->event_info),
 					mmprofile_dump_block,
 					&src_pos, &block_pos,
 					sizeof(struct mmprofile_eventinfo_t),
-					MMPROFILE_DUMP_BLOCK_SIZE);
+					MMPROFILE_DUMP_BLOCK_SIZE));
 				if (block_pos == MMPROFILE_DUMP_BLOCK_SIZE) {
 					mutex_unlock(&mmprofile_regtable_mutex);
 					return;
@@ -305,11 +301,10 @@ void mmprofile_get_dump_buffer(unsigned int start, unsigned long *p_addr,
 	if (total_pos < (region_base + mmprofile_globals.buffer_size_bytes)) {
 		/* Primary buffer */
 		region_pos = total_pos - region_base;
-		copy_size =
-		    mmprofile_fill_dump_block(p_mmprofile_ring_buffer,
+		(void)(mmprofile_fill_dump_block(p_mmprofile_ring_buffer,
 			    mmprofile_dump_block, &region_pos, &block_pos,
 			    mmprofile_globals.buffer_size_bytes,
-				MMPROFILE_DUMP_BLOCK_SIZE);
+				MMPROFILE_DUMP_BLOCK_SIZE));
 		if (block_pos == MMPROFILE_DUMP_BLOCK_SIZE)
 			return;
 	} else {
@@ -1967,7 +1962,6 @@ static long mmprofile_ioctl_compat(struct file *file, unsigned int cmd,
 	unsigned long arg)
 {
 	long ret = 0;
-	unsigned long retn;
 
 	switch (cmd) {
 	case MMP_IOC_ENABLE:
@@ -2003,14 +1997,14 @@ static long mmprofile_ioctl_compat(struct file *file, unsigned int cmd,
 
 		p_event_info_user = compat_ptr(arg);
 
-		retn = copy_from_user(&event_info, p_event_info_user,
-			sizeof(struct mmprofile_eventinfo_t));
+		(void)(copy_from_user(&event_info, p_event_info_user,
+			sizeof(struct mmprofile_eventinfo_t)));
 		event_info.name[MMPROFILE_EVENT_NAME_MAX_LEN] = 0;
 		event_info.parent_id =
 		    mmprofile_register_event(event_info.parent_id,
 		    event_info.name);
-		retn = copy_to_user(p_event_info_user, &event_info,
-		    sizeof(struct mmprofile_eventinfo_t));
+		(void)(copy_to_user(p_event_info_user, &event_info,
+		    sizeof(struct mmprofile_eventinfo_t)));
 	}
 	break;
 	case MMP_IOC_FINDEVENT:
@@ -2020,16 +2014,16 @@ static long mmprofile_ioctl_compat(struct file *file, unsigned int cmd,
 
 		p_event_info_user = compat_ptr(arg);
 
-		retn = copy_from_user(&event_info, p_event_info_user,
-		    sizeof(struct mmprofile_eventinfo_t));
+		(void)(copy_from_user(&event_info, p_event_info_user,
+		    sizeof(struct mmprofile_eventinfo_t)));
 		event_info.name[MMPROFILE_EVENT_NAME_MAX_LEN] = 0;
 		mutex_lock(&mmprofile_regtable_mutex);
 		event_info.parent_id =
 		    mmprofile_find_event_int(event_info.parent_id,
 		    event_info.name);
 		mutex_unlock(&mmprofile_regtable_mutex);
-		retn = copy_to_user(p_event_info_user, &event_info,
-		    sizeof(struct mmprofile_eventinfo_t));
+		(void)(copy_to_user(p_event_info_user, &event_info,
+		    sizeof(struct mmprofile_eventinfo_t)));
 	}
 	break;
 	case MMP_IOC_ENABLEEVENT:
@@ -2083,22 +2077,21 @@ static long mmprofile_ioctl_compat(struct file *file, unsigned int cmd,
 
 		mmprofile_register_static_events(1);
 		mutex_lock(&mmprofile_regtable_mutex);
-		retn =
-		    copy_to_user(p_event_info_user, &event_info_dummy,
-				 sizeof(struct mmprofile_eventinfo_t));
+		(void)(copy_to_user(p_event_info_user, &event_info_dummy,
+				 sizeof(struct mmprofile_eventinfo_t)));
 		index = MMP_ROOT_EVENT;
 		list_for_each_entry(p_regtable,
 			&(mmprofile_regtable.list), list) {
 
-			retn = copy_to_user(&p_event_info_user[index],
+			(void)(copy_to_user(&p_event_info_user[index],
 				&(p_regtable->event_info),
-				sizeof(struct mmprofile_eventinfo_t));
+				sizeof(struct mmprofile_eventinfo_t)));
 			index++;
 		}
 		for (; index < MMPROFILE_MAX_EVENT_COUNT; index++) {
-			retn = copy_to_user(&p_event_info_user[index],
+			(void)(copy_to_user(&p_event_info_user[index],
 				&event_info_dummy,
-				sizeof(struct mmprofile_eventinfo_t));
+				sizeof(struct mmprofile_eventinfo_t)));
 		}
 		mutex_unlock(&mmprofile_regtable_mutex);
 	}
@@ -2190,22 +2183,19 @@ static long mmprofile_ioctl_compat(struct file *file, unsigned int cmd,
 				    (unsigned long)
 						(p_meta_data_block->meta_data);
 				p_user = compat_ptr(arg + offset);
-				retn =
-				    copy_to_user(p_user,
+				(void)(copy_to_user(p_user,
 						 p_meta_data_block->meta_data,
-						 left_size);
+						 left_size));
 				p_user = compat_ptr(arg + offset + left_size);
-				retn =
-				    copy_to_user(p_user,
+				(void)(copy_to_user(p_user,
 						 p_mmprofile_meta_buffer,
 						 p_meta_data_block->data_size -
-						 left_size);
+						 left_size));
 			} else {
 				p_user = compat_ptr(arg + offset);
-				retn =
-					copy_to_user(p_user,
+				(void)(copy_to_user(p_user,
 						p_meta_data_block->meta_data,
-						p_meta_data_block->data_size);
+						p_meta_data_block->data_size));
 			}
 			offset = (offset + p_meta_data_block->data_size
 				+ 3) & (~3);

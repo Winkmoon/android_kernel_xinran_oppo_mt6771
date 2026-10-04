@@ -137,12 +137,11 @@ static int proc_free_area_show(struct seq_file *m, void *p)
 static ssize_t proc_free_area_write(struct file *file, const char __user *buff, size_t len, loff_t *ppos)
 {
     char write_data[16] = {0};
-    int ret = 0;
 
     if (copy_from_user(&write_data, buff, len)) {
         return -EFAULT;
     }
-    ret = kstrtouint(write_data, 10, &show_order);
+    (void)(kstrtouint(write_data, 10, &show_order));
 
     return len;
 }

@@ -364,9 +364,7 @@ uint32_t TdlsexLinkOper(struct ADAPTER *prAdapter,
 uint32_t TdlsFrameGeneralIeAppend(struct ADAPTER *prAdapter,
 				  struct STA_RECORD *prStaRec, uint8_t *pPkt)
 {
-	struct GLUE_INFO *prGlueInfo;
 	struct BSS_INFO *prBssInfo;
-	struct PM_PROFILE_SETUP_INFO *prPmProfSetupInfo;
 	uint16_t u2SupportedRateSet;
 	uint8_t aucAllSupportedRates[RATE_NUM_SW] = { 0 };
 	uint8_t ucAllSupportedRatesLen;
@@ -375,7 +373,7 @@ uint32_t TdlsFrameGeneralIeAppend(struct ADAPTER *prAdapter,
 	uint32_t u4PktLen, u4IeLen;
 
 	/* init */
-	prGlueInfo = (struct GLUE_INFO *) prAdapter->prGlueInfo;
+	
 	prBssInfo = GET_BSS_INFO_BY_INDEX(prAdapter,
 		prStaRec->ucBssIndex);
 	if (prBssInfo == NULL) {
@@ -384,7 +382,7 @@ uint32_t TdlsFrameGeneralIeAppend(struct ADAPTER *prAdapter,
 		return 0;
 	}
 
-	prPmProfSetupInfo = &prBssInfo->rPmProfSetupInfo;
+	
 	u4PktLen = 0;
 
 	/* 3. Frame Formation - (5) Supported Rates element */
@@ -474,7 +472,6 @@ TdlsDataFrameSend_TearDown(struct ADAPTER *prAdapter,
 
 	struct GLUE_INFO *prGlueInfo;
 	struct BSS_INFO *prBssInfo;
-	struct PM_PROFILE_SETUP_INFO *prPmProfSetupInfo;
 	struct sk_buff *prMsduInfo;
 	uint8_t *pPkt;
 	uint32_t u4PktLen, u4IeLen;
@@ -490,7 +487,7 @@ TdlsDataFrameSend_TearDown(struct ADAPTER *prAdapter,
 		return 0;
 	}
 
-	prPmProfSetupInfo = &prBssInfo->rPmProfSetupInfo;
+	
 	u4PktLen = 0;
 
 	prMsduInfo = kalPacketAllocWithHeadroom(prGlueInfo, 1600,
@@ -605,7 +602,6 @@ TdlsDataFrameSend_SETUP_REQ(struct ADAPTER *prAdapter,
 
 	struct GLUE_INFO *prGlueInfo;
 	struct BSS_INFO *prBssInfo;
-	struct PM_PROFILE_SETUP_INFO *prPmProfSetupInfo;
 	struct sk_buff *prMsduInfo;
 	uint8_t *pPkt;
 	uint32_t u4PktLen, u4IeLen;
@@ -621,7 +617,7 @@ TdlsDataFrameSend_SETUP_REQ(struct ADAPTER *prAdapter,
 		return 0;
 	}
 
-	prPmProfSetupInfo = &prBssInfo->rPmProfSetupInfo;
+	
 	u4PktLen = 0;
 
 	prMsduInfo = kalPacketAllocWithHeadroom(prGlueInfo, 512, &pPkt);
@@ -796,7 +792,6 @@ TdlsDataFrameSend_SETUP_RSP(struct ADAPTER *prAdapter,
 {
 	struct GLUE_INFO *prGlueInfo;
 	struct BSS_INFO *prBssInfo;
-	struct PM_PROFILE_SETUP_INFO *prPmProfSetupInfo;
 	struct sk_buff *prMsduInfo;
 	uint8_t *pPkt;
 	uint32_t u4PktLen, u4IeLen;
@@ -811,7 +806,7 @@ TdlsDataFrameSend_SETUP_RSP(struct ADAPTER *prAdapter,
 			, prStaRec->ucBssIndex);
 		return 0;
 	}
-	prPmProfSetupInfo = &prBssInfo->rPmProfSetupInfo;
+	
 	u4PktLen = 0;
 
 	prMsduInfo = kalPacketAllocWithHeadroom(prGlueInfo, 512, &pPkt);
@@ -998,7 +993,6 @@ TdlsDataFrameSend_CONFIRM(struct ADAPTER *prAdapter,
 
 	struct GLUE_INFO *prGlueInfo;
 	struct BSS_INFO *prBssInfo;
-	struct PM_PROFILE_SETUP_INFO *prPmProfSetupInfo;
 	struct sk_buff *prMsduInfo;
 	uint8_t *pPkt;
 	uint32_t u4PktLen, u4IeLen;
@@ -1013,7 +1007,7 @@ TdlsDataFrameSend_CONFIRM(struct ADAPTER *prAdapter,
 		return 0;
 	}
 
-	prPmProfSetupInfo = &prBssInfo->rPmProfSetupInfo;
+	
 	u4PktLen = 0;
 
 	prMsduInfo = kalPacketAllocWithHeadroom(prGlueInfo, 512, &pPkt);
@@ -1137,9 +1131,7 @@ TdlsDataFrameSend_DISCOVERY_REQ(struct ADAPTER *prAdapter,
 {
 	struct GLUE_INFO *prGlueInfo;
 	struct BSS_INFO *prBssInfo;
-	struct PM_PROFILE_SETUP_INFO *prPmProfSetupInfo;
 	struct sk_buff *prMsduInfo;
-	struct MSDU_INFO *prMsduInfoMgmt;
 	uint8_t *pPkt, *pucInitiator, *pucResponder;
 	uint32_t u4PktLen, u4IeLen;
 
@@ -1157,10 +1149,10 @@ TdlsDataFrameSend_DISCOVERY_REQ(struct ADAPTER *prAdapter,
 		return TDLS_STATUS_FAIL;
 
 	/* allocate/init packet */
-	prPmProfSetupInfo = &prBssInfo->rPmProfSetupInfo;
+	
 	u4PktLen = 0;
 	prMsduInfo = NULL;
-	prMsduInfoMgmt = NULL;
+	
 
 	/* make up frame content */
 	prMsduInfo = kalPacketAllocWithHeadroom(prGlueInfo, 512, &pPkt);
@@ -1235,16 +1227,14 @@ TdlsDataFrameSend_DISCOVERY_RSP(struct ADAPTER *prAdapter,
 				uint8_t ucDialogToken, uint16_t u2StatusCode,
 				uint8_t *pAppendIe, uint32_t AppendIeLen)
 {
-	struct GLUE_INFO *prGlueInfo;
 	struct BSS_INFO *prBssInfo;
-	struct PM_PROFILE_SETUP_INFO *prPmProfSetupInfo;
 	struct MSDU_INFO *prMsduInfoMgmt;
-	uint8_t *pPkt, *pucInitiator, *pucResponder;
+	uint8_t *pPkt;
 	uint32_t u4PktLen, u4IeLen;
 	uint16_t u2CapInfo;
 	struct WLAN_MAC_HEADER *prHdr;
 
-	prGlueInfo = (struct GLUE_INFO *) prAdapter->prGlueInfo;
+	
 
 	/* sanity check */
 	if (prStaRec != NULL) {
@@ -1259,7 +1249,7 @@ TdlsDataFrameSend_DISCOVERY_RSP(struct ADAPTER *prAdapter,
 		return TDLS_STATUS_FAIL;
 
 	/* allocate/init packet */
-	prPmProfSetupInfo = &prBssInfo->rPmProfSetupInfo;
+	
 	u4PktLen = 0;
 	prMsduInfoMgmt = NULL;
 
@@ -1397,8 +1387,8 @@ TdlsDataFrameSend_DISCOVERY_RSP(struct ADAPTER *prAdapter,
 
 	u4IeLen = IE_SIZE(pPkt);
 	LR_TDLS_FME_FIELD_FILL(u4IeLen);
-	pucInitiator = pPeerMac;
-	pucResponder = prBssInfo->aucOwnMacAddr;
+	
+	
 	if (prStaRec != NULL)
 		prStaRec->flgTdlsIsInitiator = FALSE;
 
@@ -1479,13 +1469,13 @@ void TdlsEventTearDown(struct GLUE_INFO *prGlueInfo,
 	struct STA_RECORD *prStaRec;
 	uint16_t u2ReasonCode = TDLS_REASON_CODE_NONE;
 	uint32_t u4TearDownSubId;
-	uint8_t *pMac, aucZeroMac[6];
+	uint8_t aucZeroMac[6];
 	struct net_device *prDev = NULL;
 
 	/* init */
 	u4TearDownSubId = *(uint32_t *) prInBuf;
 	kalMemZero(aucZeroMac, sizeof(aucZeroMac));
-	pMac = aucZeroMac;
+	
 
 	prStaRec = cnmGetStaRecByIndex(prGlueInfo->prAdapter,
 				       *(prInBuf + 4));
@@ -1494,7 +1484,7 @@ void TdlsEventTearDown(struct GLUE_INFO *prGlueInfo,
 	if (prStaRec == NULL)
 		return;
 
-	pMac = prStaRec->aucMacAddr;
+	
 
 	if (fgIsPtiTimeoutSkip == TRUE) {
 		/* skip PTI timeout event */

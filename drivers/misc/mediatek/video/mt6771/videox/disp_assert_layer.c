@@ -93,9 +93,6 @@ inline enum DISP_STATUS DAL_CHECK_DISP_RET(enum DISP_STATUS expr)
 static MFC_HANDLE mfc_handle;
 static void *dal_fb_addr;
 static unsigned long dal_fb_pa;
-
-/* static BOOL dal_enable_when_resume = FALSE; */
-static bool dal_disable_when_resume;
 static unsigned int dal_fg_color = RGB888_To_RGB565(DAL_COLOR_WHITE);
 static unsigned int dal_bg_color = RGB888_To_RGB565(DAL_COLOR_RED);
 static char dal_print_buffer[1024];
@@ -247,7 +244,7 @@ enum DAL_STATUS DAL_Clean(void)
 	}
 
 	dal_shown = false;
-	dal_disable_when_resume = false;
+	
 
 	primary_display_trigger(0, NULL, 0);
 

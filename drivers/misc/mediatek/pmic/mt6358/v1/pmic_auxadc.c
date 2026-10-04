@@ -337,7 +337,7 @@ static void wk_auxadc_dbg_dump(void)
 /* BAT_TEMP filter Maxima and minima then average */
 static int bat_temp_filter(int *arr, unsigned short size)
 {
-	unsigned char i, i_max, i_min = 0;
+	unsigned char i;
 	int arr_max = 0, arr_min = arr[0];
 	int sum = 0;
 
@@ -345,10 +345,10 @@ static int bat_temp_filter(int *arr, unsigned short size)
 		sum += arr[i];
 		if (arr[i] > arr_max) {
 			arr_max = arr[i];
-			i_max = i;
+			
 		} else if (arr[i] < arr_min) {
 			arr_min = arr[i];
-			i_min = i;
+			
 		}
 	}
 	sum = sum - arr_max - arr_min;
@@ -696,7 +696,7 @@ static int auxadc_bat_temp_cali(int bat_temp, int precision_factor)
 {
 	static int bat_temp_prev;
 	static unsigned int dbg_count;
-	static unsigned int aee_count;
+	static unsigned int aee_count __maybe_unused;
 
 	if (bat_temp == -1 && precision_factor == -1) {
 		bat_temp_prev = 0;

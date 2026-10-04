@@ -500,8 +500,7 @@ static long ion_sys_cache_sync(struct ion_client *client,
 	int ret = 0;
 	unsigned long kernel_va = 0;
 	unsigned long kernel_size = 0;
-	struct sg_table *table;
-	struct ion_heap *heap = NULL;
+	struct sg_table *table __maybe_unused;
 	int is_kernel_addr = from_kernel;
 
 	/* Get kernel handle
@@ -613,7 +612,7 @@ static long ion_sys_cache_sync(struct ion_client *client,
 		m4u_mva_unmap_kernel((unsigned long)param->va,
 				     sync_size, sync_va);
 #else
-		m4u_mva_unmap_kernel((unsigned int)param->va,
+		m4u_mva_unmap_kernel((unsigned int)(unsigned long)param->va,
 				     (unsigned int)sync_size, sync_va);
 #endif
 	} else if (ion_need_unmap_flag) {
@@ -654,16 +653,14 @@ static long ion_sys_ioctl(struct ion_client *client, unsigned int cmd,
 {
 	struct ion_sys_data param;
 	long ret = 0;
-	unsigned long ret_copy = 0;
 	ion_phys_addr_t phy_addr;
 
 	ION_FUNC_ENTER;
 	if (from_kernel)
 		param = *(struct ion_sys_data *)arg;
 	else
-		ret_copy =
-		    copy_from_user(&param, (void __user *)arg,
-				   sizeof(struct ion_sys_data));
+		(void)(copy_from_user(&param, (void __user *)arg,
+				   sizeof(struct ion_sys_data)));
 
 	switch (param.sys_cmd) {
 	case ION_SYS_CACHE_SYNC:
@@ -717,9 +714,8 @@ static long ion_sys_ioctl(struct ion_client *client, unsigned int cmd,
 	if (from_kernel)
 		*(struct ion_sys_data *)arg = param;
 	else
-		ret_copy =
-		    copy_to_user((void __user *)arg, &param,
-				 sizeof(struct ion_sys_data));
+		(void)(copy_to_user((void __user *)arg, &param,
+				 sizeof(struct ion_sys_data)));
 	ION_FUNC_LEAVE;
 	return ret;
 }

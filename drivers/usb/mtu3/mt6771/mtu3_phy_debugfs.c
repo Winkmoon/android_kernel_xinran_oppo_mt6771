@@ -189,9 +189,9 @@ static void usb20_phy_debugfs_write_width3(struct phy *phy, u8 offset, u8 shift,
 
 static u8 usb20_phy_debugfs_read_val(u32 val, u8 width, char *str)
 {
-	int i, temp;
+	int i;
 
-	temp = val;
+	
 	str[width] = '\0';
 	for (i = (width - 1); i >= 0; i--) {
 		if (val % 2)

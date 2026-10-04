@@ -197,7 +197,7 @@ static void unpack_shadow(void *shadow, int *memcgidp, pg_data_t **pgdat,
 			  unsigned long *evictionp, bool *workingsetp)
 {
 	unsigned long entry = (unsigned long)shadow;
-	int memcgid, nid;
+	int memcgid, nid __maybe_unused;
 	bool workingset;
 
 	entry >>= RADIX_TREE_EXCEPTIONAL_SHIFT;

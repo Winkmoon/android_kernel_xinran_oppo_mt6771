@@ -890,11 +890,10 @@ static int goodix_ftm_process(void *chip_data)
 
 static int goodix_get_vendor(void *chip_data, struct panel_info *panel_data)
 {
-    int len = 0;
     char manu_temp[MAX_DEVICE_MANU_LENGTH] = "HD_";
     struct chip_data_gt9886 *chip_info = (struct chip_data_gt9886 *)chip_data;
 
-    len = strlen(panel_data->fw_name);
+    (void)(strlen(panel_data->fw_name));
     chip_info->tp_type = panel_data->tp_type;
     chip_info->p_tp_fw = panel_data->manufacture_info.version;
     strlcat(manu_temp, panel_data->manufacture_info.manufacture, MAX_DEVICE_MANU_LENGTH);
@@ -1696,7 +1695,6 @@ static int gtx8_parse_cfg_data(const struct firmware *cfg_bin, char *cfg_type, u
 
     u8 bin_group_num = 0, bin_cfg_num = 0;
     u16 cfg_checksum = 0, checksum = 0;
-    u8 sid_is_exist = GTX8_NOT_EXIST;
     u16 cfg_offset = 0;
 
     TPD_DEBUG("%s run,sensor id:%d\n", __func__, sid);
@@ -1751,7 +1749,7 @@ static int gtx8_parse_cfg_data(const struct firmware *cfg_bin, char *cfg_type, u
         /* find cfg's sid in cfg.bin */
         one_cfg_count = getU16(&cfg_bin->data[CFG_HEAD_BYTES + 2 + i * CFG_INFO_BLOCK_BYTES]);
         if (sid == (cfg_bin->data[CFG_HEAD_BYTES + i * CFG_INFO_BLOCK_BYTES])) {
-            sid_is_exist = GTX8_EXIST;
+            
             if (config_status == (cfg_bin->data[CFG_HEAD_BYTES + 1 + i * CFG_INFO_BLOCK_BYTES])) {
                 memcpy(cfg, &cfg_bin->data[cfg_offset], one_cfg_count);
                 *cfg_len = one_cfg_count;
@@ -2203,7 +2201,7 @@ IGNORE_IDLETOACTIVE_IRQ:
 
 static int goodix_get_touch_points(void *chip_data, struct point_info *points, int max_num)
 {
-    int ret, i;
+    int i;
     int touch_map = 0;
     struct chip_data_gt9886 *chip_info = (struct chip_data_gt9886 *)chip_data;
     u8 touch_num = 0;
@@ -2247,7 +2245,7 @@ static int goodix_get_touch_points(void *chip_data, struct point_info *points, i
         }
     }
 END_TOUCH:
-    ret = goodix_clear_irq(chip_info);
+    (void)(goodix_clear_irq(chip_info));
     return touch_map;
 }
 
@@ -2693,14 +2691,13 @@ static int goodix_esd_handle(void *chip_data) //Jarvis:have not finished
 
 static void goodix_enable_fingerprint_underscreen(void *chip_data, uint32_t enable)
 {
-    int ret = 0;
     struct chip_data_gt9886 *chip_info = (struct chip_data_gt9886 *)chip_data;
 
     TPD_INFO("%s, enable = %d\n", __func__, enable);
     if (enable) {
-        ret = goodix_send_cmd(chip_info, GTP_CMD_FOD_FINGER_PRINT, 0);
+        (void)(goodix_send_cmd(chip_info, GTP_CMD_FOD_FINGER_PRINT, 0));
     } else {
-        ret = goodix_send_cmd(chip_info, GTP_CMD_FOD_FINGER_PRINT, 1);
+        (void)(goodix_send_cmd(chip_info, GTP_CMD_FOD_FINGER_PRINT, 1));
     }
 
     return;
@@ -2708,14 +2705,13 @@ static void goodix_enable_fingerprint_underscreen(void *chip_data, uint32_t enab
 
 static void goodix_enable_gesture_mask(void *chip_data, uint32_t enable)
 {
-    int ret = -1;
     struct chip_data_gt9886 *chip_info = (struct chip_data_gt9886 *)chip_data;
 
     TPD_INFO("%s, enable = %d\n", __func__, enable);
     if (enable) {
-        ret = goodix_send_cmd(chip_info, GTP_CMD_GESTURE_MASK, 1);/* enable all gesture */
+        (void)(goodix_send_cmd(chip_info, GTP_CMD_GESTURE_MASK, 1));/* enable all gesture */
     } else {
-        ret = goodix_send_cmd(chip_info, GTP_CMD_GESTURE_MASK, 0);/* mask all gesture */
+        (void)(goodix_send_cmd(chip_info, GTP_CMD_GESTURE_MASK, 0));/* mask all gesture */
     }
 
     return;
@@ -3459,7 +3455,6 @@ static int gtx8_get_cfg_value(u8 *config, u8 *buf, u8 len, u8 sub_bag_num, u8 of
 static void cfg_update_chksum(u8 *config, u16 cfg_len)
 {
     u16 pack_map_len_arr[100];
-    u16 packNum = 0;
     u16 pack_len_tmp = 0;
     u16 pack_id_tmp = 0;
     u16 i = 0, j = 0;
@@ -3469,7 +3464,7 @@ static void cfg_update_chksum(u8 *config, u16 cfg_len)
     if (cfg_len < 4) return;
     /* Head:4 bytes    |byte0:version|byte1:config refresh|byte2:package total num|byte3:check sum|*/
     pack_map_len_arr[pack_id_tmp] = 4;
-    packNum = config[2];
+    
     for (i = 4; i < cfg_len;) {
         pack_id_tmp++;
         pack_len_tmp = config[i + 1] + 3;
@@ -4690,11 +4685,11 @@ static int gtx8_check_resistance_to_gnd(struct ts_test_params *test_params,
 static u32 gtx8_short_resistance_calc(struct gtx8_ts_test *ts_test,
                                       struct short_record *r_data, u16 self_capdata, u8 flag)
 {
-    u16 lineDrvNum = 0, lineSenNum = 0;
+    u16 lineSenNum = 0;
     u8 DieNumber1 = 0, DieNumber2 = 0;
     long r = 0;
 
-    lineDrvNum = ts_test->test_params.max_drv_num;
+    
     lineSenNum = ts_test->test_params.max_sen_num;
 
     if (flag == 0) {

@@ -64,7 +64,7 @@
 static struct afe_mem_control_t *pdl1btMemControl;
 static struct snd_dma_buffer *dl1bt_Playback_dma_buf;
 static unsigned int mPlaybackDramState;
-static struct device *mDev;
+
 
 static int bt_dl_mem_blk = Soc_Aud_Digital_Block_MEM_DL2;
 static int bt_dl_mem_blk_io = Soc_Aud_AFE_IO_Block_MEM_DL2;
@@ -398,7 +398,7 @@ static int mtk_dl1bt_probe(struct platform_device *pdev)
 #if defined(AUD_DEBUG_LOG)
 	pr_debug("%s: dev name %s\n", __func__, dev_name(&pdev->dev));
 #endif
-	mDev = &pdev->dev;
+	(void)(&pdev->dev);
 
 	return snd_soc_register_platform(&pdev->dev, &mtk_soc_dl1bt_platform);
 }

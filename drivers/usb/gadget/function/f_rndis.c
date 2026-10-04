@@ -521,7 +521,6 @@ out:
 static void rndis_command_complete(struct usb_ep *ep, struct usb_request *req)
 {
 	struct f_rndis			*rndis;
-	struct usb_composite_dev	*cdev;
 	int				status;
 	rndis_init_msg_type		*buf;
 
@@ -539,7 +538,7 @@ static void rndis_command_complete(struct usb_ep *ep, struct usb_request *req)
 		return;
 	}
 
-	cdev = rndis->port.func.config->cdev;
+	
 
 	/* received RNDIS command from USB_CDC_SEND_ENCAPSULATED_COMMAND */
 //	spin_lock(&dev->lock);
@@ -614,7 +613,6 @@ rndis_setup(struct usb_function *f, const struct usb_ctrlrequest *ctrl)
 		else {
 			u8 *buf;
 			u32 n;
-			u32 MsgType, MsgLength, MsgID;
 			__le32 *tmp;
 
 			/* return the result */
@@ -625,9 +623,9 @@ rndis_setup(struct usb_function *f, const struct usb_ctrlrequest *ctrl)
 				req->context = rndis;
 
 				tmp = (__le32 *)buf;
-				MsgType   = get_unaligned_le32(tmp++);
-				MsgLength = get_unaligned_le32(tmp++);
-				MsgID = get_unaligned_le32(tmp++);
+				(void)(get_unaligned_le32(tmp++));
+				(void)(get_unaligned_le32(tmp++));
+				(void)(get_unaligned_le32(tmp++));
 
 				rndis_free_response(rndis->params, buf);
 				value = n;

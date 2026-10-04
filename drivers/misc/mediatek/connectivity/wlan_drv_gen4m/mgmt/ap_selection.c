@@ -907,8 +907,6 @@ struct BSS_DESC *scanSearchBssDescByScoreForAis(struct ADAPTER *prAdapter,
 	enum ENUM_ROAMING_REASON eRoamReason, uint8_t ucBssIndex)
 {
 	struct AIS_SPECIFIC_BSS_INFO *prAisSpecificBssInfo = NULL;
-	struct ROAMING_INFO *prRoamingFsmInfo = NULL;
-	struct BSS_INFO *prAisBssInfo = NULL;
 	struct LINK *prEssLink = NULL;
 	struct CONNECTION_SETTINGS *prConnSettings = NULL;
 	struct BSS_DESC *prBssDesc = NULL;
@@ -922,7 +920,6 @@ struct BSS_DESC *scanSearchBssDescByScoreForAis(struct ADAPTER *prAdapter,
 	enum ENUM_BAND eBand = BAND_2G4;
 	uint8_t ucChannel = 0;
 	enum ENUM_PARAM_CONNECTION_POLICY policy;
-	struct ROAMING_INFO *roam;
 	enum ROAM_TYPE eRoamType;
 
 	if (!prAdapter ||
@@ -934,9 +931,9 @@ struct BSS_DESC *scanSearchBssDescByScoreForAis(struct ADAPTER *prAdapter,
 	prAisSpecificBssInfo = aisGetAisSpecBssInfo(prAdapter, ucBssIndex);
 	prConnSettings = aisGetConnSettings(prAdapter, ucBssIndex);
 	prEssLink = &prAisSpecificBssInfo->rCurEssLink;
-	prRoamingFsmInfo = aisGetRoamingInfo(prAdapter, ucBssIndex);
-	prAisBssInfo = aisGetAisBssInfo(prAdapter, ucBssIndex);
-	roam = aisGetRoamingInfo(prAdapter, ucBssIndex);
+	(void)(aisGetRoamingInfo(prAdapter, ucBssIndex));
+	(void)(aisGetAisBssInfo(prAdapter, ucBssIndex));
+	(void)(aisGetRoamingInfo(prAdapter, ucBssIndex));
 	eRoamType = mtk_reason_to_type[eRoamReason];
 #if CFG_SUPPORT_CHNL_CONFLICT_REVISE
 	fgIsFixedChnl =	cnmAisDetectP2PChannel(prAdapter, &eBand, &ucChannel);
@@ -1276,12 +1273,11 @@ uint8_t scanCheckNeedDriverRoaming(
 {
 	struct ROAMING_INFO *roam;
 	struct AIS_FSM_INFO *ais;
-	struct CONNECTION_SETTINGS *setting;
 	int8_t rssi;
 
 	roam = aisGetRoamingInfo(prAdapter, ucBssIndex);
 	ais = aisGetAisFsmInfo(prAdapter, ucBssIndex);
-	setting = aisGetConnSettings(prAdapter, ucBssIndex);
+	(void)(aisGetConnSettings(prAdapter, ucBssIndex));
 	rssi = prAdapter->rLinkQuality.rLq[ucBssIndex].cRssi;
 
 	GET_CURRENT_SYSTIME(&roam->rRoamingDiscoveryUpdateTime);

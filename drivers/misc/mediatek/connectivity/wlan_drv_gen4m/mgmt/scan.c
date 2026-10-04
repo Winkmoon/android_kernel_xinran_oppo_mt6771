@@ -2874,8 +2874,6 @@ struct BSS_DESC *scanSearchBssDescByPolicy(
 	struct BSS_DESC *prCandidateBssDesc = (struct BSS_DESC *) NULL;
 
 	struct STA_RECORD *prStaRec = (struct STA_RECORD *) NULL;
-	struct STA_RECORD *prPrimaryStaRec;
-	struct STA_RECORD *prCandidateStaRec = (struct STA_RECORD *) NULL;
 
 	OS_SYSTIME rCurrentTime;
 
@@ -2883,7 +2881,6 @@ struct BSS_DESC *scanSearchBssDescByPolicy(
 	u_int8_t fgIsFindFirst = (u_int8_t) FALSE;
 
 	u_int8_t fgIsFindBestRSSI = (u_int8_t) FALSE;
-	u_int8_t fgIsFindBestEncryptionLevel = (u_int8_t) FALSE;
 	/* u_int8_t fgIsFindMinChannelLoad = (u_int8_t) FALSE; */
 
 	/* TODO(Kevin): Support Min Channel Load */
@@ -3261,7 +3258,7 @@ struct BSS_DESC *scanSearchBssDescByPolicy(
 		if (rsnPerformPolicySelection(prPrimaryBssDesc)) {
 
 			if (prPrimaryBssDesc->ucEncLevel > 0) {
-				fgIsFindBestEncryptionLevel = TRUE;
+				
 
 				fgIsFindFirst = FALSE;
 			}
@@ -3398,7 +3395,7 @@ struct BSS_DESC *scanSearchBssDescByPolicy(
 				}
 
 				if (prPrimaryBssDesc->ucEncLevel > 0) {
-					fgIsFindBestEncryptionLevel = TRUE;
+					
 
 					fgIsFindFirst = FALSE;
 				}
@@ -3413,12 +3410,12 @@ struct BSS_DESC *scanSearchBssDescByPolicy(
 			/* Todo:: P2P and BOW Policy Selection */
 		}
 
-		prPrimaryStaRec = prStaRec;
+		
 
 		/* 4 <8> Compare the Candidate and the Primary Scan Record. */
 		if (!prCandidateBssDesc) {
 			prCandidateBssDesc = prPrimaryBssDesc;
-			prCandidateStaRec = prPrimaryStaRec;
+			
 
 			/* 4 <8.1> Condition - Get the first matched one. */
 			if (fgIsFindFirst)
@@ -3430,7 +3427,7 @@ struct BSS_DESC *scanSearchBssDescByPolicy(
 					/* The non Hidden SSID win. */
 					prCandidateBssDesc = prPrimaryBssDesc;
 
-					prCandidateStaRec = prPrimaryStaRec;
+					
 					continue;
 				}
 			} else {
@@ -3511,8 +3508,7 @@ SCN_BSS_JOIN_FAIL_RESET_STEP
 
 						prCandidateBssDesc
 							= prPrimaryBssDesc;
-						prCandidateStaRec
-							= prPrimaryStaRec;
+						
 						continue;
 					}
 				} else if (prPrimaryBssDesc->fgIsConnected) {
@@ -3525,8 +3521,7 @@ SCN_BSS_JOIN_FAIL_RESET_STEP
 
 						prCandidateBssDesc
 							= prPrimaryBssDesc;
-						prCandidateStaRec
-							= prPrimaryStaRec;
+						
 						continue;
 					}
 				} else if (prPrimaryBssDesc
@@ -3540,7 +3535,7 @@ SCN_BSS_JOIN_FAIL_RESET_STEP
 					 < prPrimaryBssDesc->ucRCPI) {
 
 					prCandidateBssDesc = prPrimaryBssDesc;
-					prCandidateStaRec = prPrimaryStaRec;
+					
 					continue;
 				}
 			}

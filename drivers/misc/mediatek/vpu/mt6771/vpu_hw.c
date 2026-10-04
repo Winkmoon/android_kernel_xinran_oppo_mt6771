@@ -2832,7 +2832,6 @@ static void vpu_sdsp_routine(struct work_struct *work)
 int vpu_init_hw(int core, struct vpu_device *device)
 {
 	int ret, i;
-	int param;
 
 	struct vpu_shared_memory_param mem_param;
 
@@ -2945,7 +2944,7 @@ int vpu_init_hw(int core, struct vpu_device *device)
 				vpu_service_cores[i].vpu_service_task = kmalloc(
 				    sizeof(struct task_struct), GFP_KERNEL);
 			if (vpu_service_cores[i].vpu_service_task != NULL) {
-				param = i;
+				
 				vpu_service_cores[i].thread_variable = i;
 				if (i == 0) {
 					vpu_service_cores[i].vpu_service_task =
@@ -3319,7 +3318,7 @@ int vpu_hw_boot_sequence(int core)
 	uint64_t ptr_reset;
 	uint64_t ptr_axi_0;
 	uint64_t ptr_axi_1;
-	unsigned int reg_value = 0;
+	unsigned int reg_value __maybe_unused = 0;
 
 	vpu_trace_begin("vpu_hw_boot_sequence");
 	LOG_INF("[vpu_%d] boot-seq core(%d)\n", core, core);

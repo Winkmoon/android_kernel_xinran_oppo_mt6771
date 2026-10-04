@@ -413,14 +413,14 @@ void hal_rtc_set_alarm(struct rtc_time *tm)
 
 void hal_rtc_clear_alarm(struct rtc_time *tm)
 {
-	u16 irqsta, irqen, pdn2;
+	u16 irqen, pdn2;
 
 	irqen = rtc_read(RTC_IRQ_EN) & ~RTC_IRQ_EN_AL;
 	pdn2 = rtc_read(RTC_PDN2) & ~RTC_PDN2_PWRON_ALARM;
 	rtc_write(RTC_IRQ_EN, irqen);
 	rtc_write(RTC_PDN2, pdn2);
 	rtc_write_trigger();
-	irqsta = rtc_read(RTC_IRQ_STA);	/* read clear */
+	(void)(rtc_read(RTC_IRQ_STA));	/* read clear */
 
 	hal_rtc_set_alarm_time(tm);
 }

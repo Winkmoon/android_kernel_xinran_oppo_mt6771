@@ -1622,7 +1622,6 @@ wlanoidSetP2pSupplicantVersion(IN struct ADAPTER *prAdapter,
 		OUT uint32_t *pu4SetInfoLen)
 {
 	uint32_t rResult = WLAN_STATUS_FAILURE;
-	uint8_t ucVersionNum;
 
 	do {
 		if ((prAdapter == NULL) || (pu4SetInfoLen == NULL)) {
@@ -1643,7 +1642,7 @@ wlanoidSetP2pSupplicantVersion(IN struct ADAPTER *prAdapter,
 			break;
 		}
 
-		ucVersionNum = *((uint8_t *) pvSetBuffer);
+		
 
 		rResult = WLAN_STATUS_SUCCESS;
 	} while (FALSE);

@@ -4913,15 +4913,13 @@ EXIT:
  ***********************************************************************/
 static signed int WPE_release(struct inode *pInode, struct file *pFile)
 {
-	struct WPE_USER_INFO_STRUCT *pUserInfo;
 	/*MUINT32 Reg; */
 
 	LOG_DBG("- E. UserCount: %d.", WPEInfo.UserCount);
 
 	/*  */
 	if (pFile->private_data != NULL) {
-		pUserInfo =
-			(struct WPE_USER_INFO_STRUCT *) pFile->private_data;
+		
 
 		kfree(pFile->private_data);
 		pFile->private_data = NULL;

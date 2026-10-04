@@ -325,7 +325,7 @@ void kbase_instr_hwcnt_sample_done(struct kbase_device *kbdev)
 			kbdev->hwcnt.backend.triggered = 1;
 			wake_up(&kbdev->hwcnt.backend.wait);
 		} else {
-			int ret;
+			int ret __maybe_unused;
 			/* Always clean and invalidate the cache after a successful dump
 			 */
 			kbdev->hwcnt.backend.state = KBASE_INSTR_STATE_REQUEST_CLEAN;

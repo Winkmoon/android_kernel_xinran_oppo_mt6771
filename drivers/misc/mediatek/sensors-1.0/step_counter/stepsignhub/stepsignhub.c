@@ -229,14 +229,13 @@ static int step_counter_get_data(uint32_t *counter, int *status)
 {
 	int err = 0;
 	struct data_unit_t data;
-	uint64_t time_stamp = 0;
 
 	err = sensor_get_data_from_hub(ID_STEP_COUNTER, &data);
 	if (err < 0) {
 		pr_err("sensor_get_data_from_hub fail!!\n");
 		return -1;
 	}
-	time_stamp = data.time_stamp;
+	
 	*counter = data.step_counter_t.accumulated_step_count;
 	return 0;
 }
@@ -267,14 +266,13 @@ static int floor_counter_get_data(uint32_t *counter, int *status)
 {
 	int err = 0;
 	struct data_unit_t data;
-	uint64_t time_stamp = 0;
 
 	err = sensor_get_data_from_hub(ID_FLOOR_COUNTER, &data);
 	if (err < 0) {
 		pr_err("%s fail!!\n", __func__);
 		return -1;
 	}
-	time_stamp = data.time_stamp;
+	
 	*counter = data.floor_counter_t.accumulated_floor_count;
 	return 0;
 }

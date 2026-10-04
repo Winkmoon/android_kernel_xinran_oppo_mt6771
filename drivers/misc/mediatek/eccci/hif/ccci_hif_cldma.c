@@ -586,8 +586,8 @@ static int cldma_gpd_rx_collect(struct md_cd_queue *queue,
 #endif
 	struct sk_buff *skb = NULL;
 	struct sk_buff *new_skb = NULL;
-	int ret = 0, count = 0, rxbytes = 0;
-	int over_budget = 0, skb_handled = 0, retry = 0;
+	int ret = 0, count = 0, rxbytes __maybe_unused = 0;
+	int over_budget __maybe_unused = 0, skb_handled __maybe_unused = 0, retry = 0;
 	unsigned long long skb_bytes = 0;
 	unsigned long flags;
 	char is_net_queue = IS_NET_QUE(md_ctrl->md_id, queue->index);
@@ -923,7 +923,7 @@ static int cldma_net_rx_push_thread(void *arg)
 	struct ccci_per_md *per_md_data =
 		ccci_get_per_md_data(md_ctrl->md_id);
 #endif
-	int count = 0;
+	int count __maybe_unused = 0;
 	int ret;
 
 	while (1) {
@@ -966,7 +966,7 @@ static void cldma_rx_done(struct work_struct *work)
 
 	struct md_cd_ctrl *md_ctrl =
 		(struct md_cd_ctrl *)ccci_hif_get_by_id(queue->hif_id);
-	int ret;
+	int ret __maybe_unused;
 
 	md_ctrl->traffic_info.latest_q_rx_time[queue->index]
 		= local_clock();

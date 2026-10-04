@@ -1336,9 +1336,8 @@ static void pwm_dump_reg(enum DISP_MODULE_ENUM module)
 
 static void pwm_dump_analysis(enum DISP_MODULE_ENUM module)
 {
-	unsigned int reg_base = 0;
 
-	reg_base = DISPSYS_PWM0_BASE;
+	
 
 	DDPDUMP("== DISP %s ANALYSIS ==\n", ddp_get_module_name(module));
 #if 0 /* TODO: clk reg?? */
@@ -1406,13 +1405,12 @@ static void ccorr_dump_analyze(enum DISP_MODULE_ENUM module)
 
 static void dither_dump_reg(enum DISP_MODULE_ENUM module)
 {
-	int i;
 	unsigned long module_base = DISPSYS_DITHER0_BASE;
 
 	if (module == DISP_MODULE_DITHER0)
-		i = 0;
+		(void)(0);
 	else
-		i = 1;
+		(void)(1);
 
 	DDPDUMP("== DISP %s REGS ==\n", ddp_get_module_name(module));
 	if (!disp_helper_get_option(DISP_OPT_PQ_REG_DUMP))

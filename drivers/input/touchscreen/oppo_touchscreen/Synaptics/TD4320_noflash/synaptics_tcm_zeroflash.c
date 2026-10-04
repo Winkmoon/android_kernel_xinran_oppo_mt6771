@@ -857,7 +857,7 @@ int zeroflash_download_firmware_directly(void *chip_data, const struct firmware 
     struct rmi_f35_data data;
     struct syna_tcm_hcd *tcm_hcd = (struct syna_tcm_hcd *)chip_data;
     struct touchpanel_data *ts = spi_get_drvdata(tcm_hcd->s_client);
-    static unsigned int retry_count;
+    static unsigned int retry_count __maybe_unused;
     struct firmware *request_fw_headfile = NULL;
     int reload = 0;
 

@@ -90,7 +90,7 @@ static unsigned long cirq_pattern_list;
  *    0: this cirq is umasked
  *    -1: cirq num is out of range
  */
-static int mt_cirq_get_mask(unsigned int cirq_num)
+static int __maybe_unused mt_cirq_get_mask(unsigned int cirq_num)
 {
 	unsigned int st;
 	unsigned int bit = 1 << (cirq_num % 32);
@@ -215,7 +215,7 @@ static int mt_cirq_unmask(unsigned int cirq_num)
  *    0: this cirq is MT_EDGE_SENSITIVE
  *   -1: cirq num is out of range
  */
-static int mt_cirq_get_sens(unsigned int cirq_num)
+static int __maybe_unused mt_cirq_get_sens(unsigned int cirq_num)
 {
 	unsigned int st;
 	unsigned int bit = 1 << (cirq_num % 32);
@@ -271,7 +271,7 @@ static int mt_cirq_set_sens(unsigned int cirq_num, unsigned int sens)
  *    0: this cirq is MT_CIRQ_POL_NEG
  *   -1: cirq num is out of range
  */
-static int mt_cirq_get_pol(unsigned int cirq_num)
+static int __maybe_unused mt_cirq_get_pol(unsigned int cirq_num)
 {
 	unsigned int st;
 	unsigned int bit = 1 << (cirq_num % 32);
@@ -897,9 +897,8 @@ static ssize_t cirq_clone_flush_check_store(struct device_driver *driver,
 {
 	char *p = (char *)buf;
 	unsigned long value;
-	int rc;
 
-	rc = kstrtoul(p, 10, (unsigned long *)&value);
+	(void)(kstrtoul(p, 10, (unsigned long *)&value));
 	cirq_clone_flush_check_val = value;
 	return count;
 }
@@ -926,9 +925,8 @@ static ssize_t cirq_pattern_clone_flush_check_store(struct device_driver
 {
 	char *p = (char *)buf;
 	unsigned long value;
-	int rc;
 
-	rc = kstrtoul(p, 10, (unsigned long *)&value);
+	(void)(kstrtoul(p, 10, (unsigned long *)&value));
 	cirq_pattern_clone_flush_check_val = value;
 	return count;
 }
@@ -952,9 +950,8 @@ static ssize_t cirq_pattern_list_store(struct device_driver *driver,
 {
 	char *p = (char *)buf;
 	unsigned long value;
-	int rc;
 
-	rc = kstrtoul(p, 10, (unsigned long *)&value);
+	(void)(kstrtoul(p, 10, (unsigned long *)&value));
 	cirq_pattern_list = value;
 	return count;
 }
@@ -989,8 +986,12 @@ struct __check_irq_type __check_irq_type[] = {
 void mt_cirq_dump_reg(void)
 {
 	int cirq_num;
+#if defined(__CHECK_IRQ_TYPE)
 	int pol, sens, mask;
+#endif
+#if defined(__CHECK_IRQ_TYPE)
 	int pen;
+#endif
 #if defined(__CHECK_IRQ_TYPE)
 	int irq_iter;
 	unsigned char pass = 1;
@@ -998,10 +999,18 @@ void mt_cirq_dump_reg(void)
 
 	pr_debug("[CIRQ] IRQ:\tPOL\tSENS\tMASK\tGIC_PENDING\n");
 	for (cirq_num = 0; cirq_num < CIRQ_IRQ_NUM; cirq_num++) {
+#if defined(__CHECK_IRQ_TYPE)
 		pol = mt_cirq_get_pol(cirq_num);
+#endif
+#if defined(__CHECK_IRQ_TYPE)
 		sens = mt_cirq_get_sens(cirq_num);
+#endif
+#if defined(__CHECK_IRQ_TYPE)
 		mask = mt_cirq_get_mask(cirq_num);
+#endif
+#if defined(__CHECK_IRQ_TYPE)
 		pen =  mt_irq_get_pending_hw(CIRQ_TO_IRQ_NUM(cirq_num));
+#endif
 #if defined(__CHECK_IRQ_TYPE)
 		if (mask == 0) {
 			pr_debug("[CIRQ] IRQ:%d\t%d\t%d\t%d\t%d\n",

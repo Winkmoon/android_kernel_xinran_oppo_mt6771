@@ -420,7 +420,6 @@ void fpsgo_notify_nn_job_end(int pid, int tid, unsigned long long mid,
 	int num_step, __s32 *boost, __s32 *device, __u64 *exec_time)
 {
 	struct FPSGO_NOTIFIER_PUSH_TAG *vpPush;
-	int size;
 
 	if (!fpsgo_is_enable())
 		return;
@@ -440,7 +439,7 @@ void fpsgo_notify_nn_job_end(int pid, int tid, unsigned long long mid,
 		return;
 	}
 
-	size = num_step * MAX_DEVICE;
+	
 	vpPush->ePushType = FPSGO_NOTIFIER_NN_JOB_END;
 	vpPush->nn_pid = pid;
 	vpPush->nn_tid = tid;

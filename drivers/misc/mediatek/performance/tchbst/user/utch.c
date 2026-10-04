@@ -301,9 +301,9 @@ static ssize_t mt_usrdebug_write(struct file *filp, const char *ubuf,
 		size_t cnt, loff_t *data)
 {
 	char buf[32];
-	int arg, ret, val;
+	int ret, val;
 
-	arg = 0;
+	
 
 	if (cnt >= sizeof(buf))
 		return -EINVAL;

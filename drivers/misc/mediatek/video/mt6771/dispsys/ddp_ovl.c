@@ -1499,7 +1499,6 @@ static int ovl_config_l(enum DISP_MODULE_ENUM module,
 int ovl_build_cmdq(enum DISP_MODULE_ENUM module, void *cmdq_trigger_handle,
 		   enum CMDQ_STATE state)
 {
-	int ret = 0;
 	/* int reg_pa = DISP_REG_OVL_FLOW_CTRL_DBG & 0x1fffffff; */
 
 	if (!cmdq_trigger_handle) {
@@ -1509,8 +1508,8 @@ int ovl_build_cmdq(enum DISP_MODULE_ENUM module, void *cmdq_trigger_handle,
 
 	if (state == CMDQ_CHECK_IDLE_AFTER_STREAM_EOF) {
 		if (module == DISP_MODULE_OVL0) {
-			ret = cmdqRecPoll(cmdq_trigger_handle, 0x14007240, 2,
-					  0x3f);
+			(void)(cmdqRecPoll(cmdq_trigger_handle, 0x14007240, 2,
+					  0x3f));
 		} else {
 			DDPPR_ERR("wrong module: %s\n",
 				ddp_get_module_name(module));
@@ -2110,7 +2109,6 @@ static int ovl_golden_setting(enum DISP_MODULE_ENUM module,
 	unsigned long ovl_base = ovl_base_addr(module);
 	unsigned int regval;
 	int i, layer_num;
-	int is_large_resolution = 0;
 	unsigned int layer_greq_num;
 	unsigned int dst_w, dst_h;
 	int ddr_type = get_ddr_type();
@@ -2123,10 +2121,10 @@ static int ovl_golden_setting(enum DISP_MODULE_ENUM module,
 
 	if (dst_w > 1260 && dst_h > 2240) {
 		/* WQHD */
-		is_large_resolution = 1;
+		
 	} else {
 		/* FHD */
-		is_large_resolution = 0;
+		
 	}
 
 	/* DISP_REG_OVL_RDMA0_MEM_GMC_SETTING */

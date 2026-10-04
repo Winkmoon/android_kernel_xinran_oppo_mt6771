@@ -92,7 +92,7 @@ static struct clk *dapc_infra_clk;
 static struct cdev *g_devapc_ctrl;
 static unsigned int devapc_infra_irq;
 static void __iomem *devapc_pd_infra_base;
-static void __iomem *devapc_ao_infra_base;
+static void __iomem *devapc_ao_infra_base __maybe_unused;
 
 #if defined(CONFIG_MTK_AEE_FEATURE) && defined(DEVAPC_ENABLE_AEE)
 unsigned int devapc_vio_current_aee_trigger_times;

@@ -140,7 +140,6 @@ void parse_log_content(unsigned int *local_buf, int idx)
 }
 
 spinlock_t cpudvfs_lock;
-static struct task_struct *Ripi_cpu_dvfs_task;
 #ifndef CONFIG_MTK_TINYSYS_MCUPM_SUPPORT
 struct ipi_action cpufreq_act;
 #else
@@ -277,7 +276,7 @@ int Ripi_cpu_dvfs_thread(void *data)
 				/* p->mt_policy->governor_enabled && */
 				(p->mt_policy->cpu < 10) &&
 				(p->mt_policy->cpu >= 0)) {
-				int cid;
+				int cid __maybe_unused;
 
 				previous_limit = p->idx_opp_ppm_limit;
 				previous_base = p->idx_opp_ppm_base;
@@ -1765,8 +1764,8 @@ int cpuhvfs_module_init(void)
 
 	/* SW Governor Report */
 	spin_lock_init(&cpudvfs_lock);
-	Ripi_cpu_dvfs_task = kthread_run(Ripi_cpu_dvfs_thread, NULL,
-						"ipi_cpu_dvfs_rtask");
+	(void)(kthread_run(Ripi_cpu_dvfs_thread, NULL,
+						"ipi_cpu_dvfs_rtask"));
 
 	return 0;
 }

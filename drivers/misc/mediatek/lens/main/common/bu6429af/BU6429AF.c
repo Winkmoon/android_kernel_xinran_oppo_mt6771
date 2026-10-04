@@ -121,7 +121,7 @@ static int initAF(void)
 	if (*g_pAF_Opened == 1) {
 
 #ifdef USE_ISRC_MODE_IMX386_SENSOR
-		int ret = 0;
+		int ret __maybe_unused = 0;
 		char puSendCmd[2];
 
 		puSendCmd[0] = (char)(0xD0);

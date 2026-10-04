@@ -345,7 +345,6 @@ int init_ktch(struct proc_dir_entry *parent)
 {
 	struct proc_dir_entry *ktch_root = NULL;
 	struct proc_dir_entry *tbe_dir, *tbc_dir, *tbf_dir, *tbclstr_dir;
-	int handle;
 
 	pr_debug("init_ktch_touch\n");
 
@@ -385,7 +384,7 @@ int init_ktch(struct proc_dir_entry *parent)
 	if (IS_ERR(ktchboost.thread))
 		return -EINVAL;
 
-	handle = input_register_handler(&dbs_input_handler);
+	(void)(input_register_handler(&dbs_input_handler));
 
 	return 0;
 }

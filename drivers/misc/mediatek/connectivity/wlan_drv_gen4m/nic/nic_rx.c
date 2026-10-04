@@ -567,7 +567,6 @@ struct SW_RFB *nicRxDefragMPDU(IN struct ADAPTER *prAdapter,
 {
 
 	struct SW_RFB *prOutputSwRfb = (struct SW_RFB *) NULL;
-	struct RX_CTRL *prRxCtrl;
 	struct FRAG_INFO *prFragInfo;
 	uint32_t i = 0, j;
 	uint16_t u2SeqCtrl, u2FrameCtrl;
@@ -588,7 +587,7 @@ struct SW_RFB *nicRxDefragMPDU(IN struct ADAPTER *prAdapter,
 
 	ASSERT(prSWRfb);
 
-	prRxCtrl = &prAdapter->rRxCtrl;
+	
 
 	prRxStatus = prSWRfb->prRxStatus;
 	ASSERT(prRxStatus);
@@ -1060,7 +1059,9 @@ void nicRxProcessPktWithoutReorder(IN struct ADAPTER
 	struct RX_CTRL *prRxCtrl;
 	struct TX_CTRL *prTxCtrl;
 	u_int8_t fgIsRetained = FALSE;
+#ifndef LINUX
 	uint32_t u4CurrentRxBufferCount;
+#endif
 	/* P_STA_RECORD_T prStaRec = (P_STA_RECORD_T)NULL; */
 
 	DEBUGFUNC("nicRxProcessPktWithoutReorder");
@@ -1075,7 +1076,9 @@ void nicRxProcessPktWithoutReorder(IN struct ADAPTER
 	prTxCtrl = &prAdapter->rTxCtrl;
 	ASSERT(prTxCtrl);
 
+#ifndef LINUX
 	u4CurrentRxBufferCount = prRxCtrl->rFreeSwRfbList.u4NumElem;
+#endif
 	/* QM USED = $A, AVAILABLE COUNT = $B, INDICATED TO OS = $C
 	 * TOTAL = $A + $B + $C
 	 *
@@ -1331,7 +1334,6 @@ void nicRxProcessGOBroadcastPkt(IN struct ADAPTER
 				*prAdapter, IN struct SW_RFB *prSwRfb)
 {
 	struct SW_RFB *prSwRfbDuplicated;
-	struct TX_CTRL *prTxCtrl;
 	struct RX_CTRL *prRxCtrl;
 
 	KAL_SPIN_LOCK_DECLARATION();
@@ -1341,7 +1343,7 @@ void nicRxProcessGOBroadcastPkt(IN struct ADAPTER
 	ASSERT(prAdapter);
 	ASSERT(prSwRfb);
 
-	prTxCtrl = &prAdapter->rTxCtrl;
+	
 	prRxCtrl = &prAdapter->rRxCtrl;
 
 	ASSERT(CFG_NUM_OF_QM_RX_PKT_NUM >= 16);

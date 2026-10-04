@@ -258,7 +258,7 @@ KBASE_EXPORT_TEST_API(kbasep_get_cl_js1_utilization)
 
 void kbase_pm_get_dvfs_action(struct kbase_device *kbdev)
 {
-	int utilisation, util_gl_share;
+	int utilisation __maybe_unused, util_gl_share __maybe_unused;
 	int util_cl_share[2];
 	int busy;
 	struct kbasep_pm_metrics *diff;

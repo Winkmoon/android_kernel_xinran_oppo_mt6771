@@ -320,7 +320,6 @@ u_int8_t kalDevPortRead(IN struct GLUE_INFO *prGlueInfo,
 	IN uint16_t u2Port, IN uint32_t u4Len,
 	OUT uint8_t *pucBuf, IN uint32_t u4ValidOutBufSize)
 {
-	struct ADAPTER *prAdapter = NULL;
 	struct GL_HIF_INFO *prHifInfo = NULL;
 	struct HIF_MEM_OPS *prMemOps;
 	struct RTMP_RX_RING *prRxRing;
@@ -334,7 +333,7 @@ u_int8_t kalDevPortRead(IN struct GLUE_INFO *prGlueInfo,
 	ASSERT(pucBuf);
 	ASSERT(u4Len <= u4ValidOutBufSize);
 
-	prAdapter = prGlueInfo->prAdapter;
+	
 	prHifInfo = &prGlueInfo->rHifInfo;
 	prMemOps = &prHifInfo->rMemOps;
 	prRxRing = &prHifInfo->RxRing[u2Port];
@@ -525,10 +524,9 @@ void kalDevReadIntStatus(IN struct ADAPTER *prAdapter,
 enum ENUM_CMD_TX_RESULT kalDevWriteCmd(IN struct GLUE_INFO *prGlueInfo,
 	IN struct CMD_INFO *prCmdInfo, IN uint8_t ucTC)
 {
-	struct GL_HIF_INFO *prHifInfo = NULL;
 
 	ASSERT(prGlueInfo);
-	prHifInfo = &prGlueInfo->rHifInfo;
+	
 
 	if (nicSerIsTxStop(prGlueInfo->prAdapter))
 		return kalDevWriteCmdByQueue(prGlueInfo, prCmdInfo, ucTC);
@@ -622,12 +620,11 @@ static uint8_t kalGetSwAmsduNum(struct GLUE_INFO *prGlueInfo,
 u_int8_t kalDevWriteData(IN struct GLUE_INFO *prGlueInfo,
 	IN struct MSDU_INFO *prMsduInfo)
 {
-	struct GL_HIF_INFO *prHifInfo = NULL;
 	struct mt66xx_chip_info *prChipInfo;
 
 	ASSERT(prGlueInfo);
 
-	prHifInfo = &prGlueInfo->rHifInfo;
+	
 	prChipInfo = prGlueInfo->prAdapter->chip_info;
 
 	if (nicSerIsTxStop(prGlueInfo->prAdapter) ||
@@ -715,7 +712,6 @@ static uint16_t kalGetMoreSizeForAmsdu(uint32_t u4TxdDW1)
 static bool kalDevKickMsduData(struct GLUE_INFO *prGlueInfo)
 {
 	struct GL_HIF_INFO *prHifInfo = NULL;
-	struct BUS_INFO *prBusInfo = NULL;
 	struct list_head *prCur, *prNext;
 	struct TX_DATA_REQ *prTxReq;
 	struct MSDU_INFO *prMsduInfo;
@@ -724,7 +720,7 @@ static bool kalDevKickMsduData(struct GLUE_INFO *prGlueInfo)
 	ASSERT(prGlueInfo);
 
 	prHifInfo = &prGlueInfo->rHifInfo;
-	prBusInfo = prGlueInfo->prAdapter->chip_info->bus_info;
+	
 
 	list_for_each_safe(prCur, prNext, &prHifInfo->rTxDataQ) {
 		prTxReq = list_entry(prCur, struct TX_DATA_REQ, list);
@@ -832,7 +828,6 @@ static uint32_t kalGetNumOfAmsdu(struct GLUE_INFO *prGlueInfo,
 static bool kalDevKickAmsduData(struct GLUE_INFO *prGlueInfo)
 {
 	struct GL_HIF_INFO *prHifInfo = NULL;
-	struct BUS_INFO *prBusInfo = NULL;
 	struct list_head *prHead, *prCur, *prNext;
 	struct TX_DATA_REQ *prTxReq;
 	struct MSDU_INFO *prMsduInfo;
@@ -843,7 +838,7 @@ static bool kalDevKickAmsduData(struct GLUE_INFO *prGlueInfo)
 	ASSERT(prGlueInfo);
 
 	prHifInfo = &prGlueInfo->rHifInfo;
-	prBusInfo = prGlueInfo->prAdapter->chip_info->bus_info;
+	
 
 	prHead = &prHifInfo->rTxDataQ;
 	list_for_each_safe(prCur, prNext, prHead) {
@@ -881,7 +876,6 @@ static bool kalDevKickAmsduData(struct GLUE_INFO *prGlueInfo)
 bool kalDevReadData(struct GLUE_INFO *prGlueInfo, uint16_t u2Port,
 		    struct SW_RFB *prSwRfb)
 {
-	struct ADAPTER *prAdapter = NULL;
 	struct GL_HIF_INFO *prHifInfo = NULL;
 	struct HIF_MEM_OPS *prMemOps;
 	struct RXD_STRUCT *pRxD;
@@ -893,7 +887,7 @@ bool kalDevReadData(struct GLUE_INFO *prGlueInfo, uint16_t u2Port,
 
 	ASSERT(prGlueInfo);
 
-	prAdapter = prGlueInfo->prAdapter;
+	
 	prHifInfo = &prGlueInfo->rHifInfo;
 	prMemOps = &prHifInfo->rMemOps;
 	prRxRing = &prHifInfo->RxRing[u2Port];

@@ -151,7 +151,6 @@ static int fgauge_set_info(
 	struct gauge_device *gauge_dev,
 	enum gauge_info ginfo, int value)
 {
-	int ret = 0;
 
 	if (ginfo == GAUGE_2SEC_REBOOT)
 		pmic_config_interface(
@@ -176,7 +175,7 @@ static int fgauge_set_info(
 		pmic_config_interface(
 			PMIC_RG_SYSTEM_INFO_CON0_ADDR, value, 0x007F, 0x9);
 	} else
-		ret = -1;
+		(void)(-1);
 
 	return 0;
 }
@@ -186,7 +185,6 @@ static int fgauge_get_info(
 	enum gauge_info ginfo,
 	int *value)
 {
-	int ret = 0;
 
 	if (ginfo == GAUGE_2SEC_REBOOT)
 		pmic_read_interface(
@@ -210,18 +208,17 @@ static int fgauge_get_info(
 		pmic_read_interface(
 			PMIC_RG_SYSTEM_INFO_CON0_ADDR, value, 0x007F, 0x9);
 	else
-		ret = -1;
+		(void)(-1);
 
 	return 0;
 }
 
 static unsigned int fg_get_data_ready_status(void)
 {
-	unsigned int ret = 0;
 	unsigned int temp_val = 0;
 
-	ret = pmic_read_interface(
-			PMIC_FG_LATCHDATA_ST_ADDR, &temp_val, 0xFFFF, 0x0);
+	(void)(pmic_read_interface(
+			PMIC_FG_LATCHDATA_ST_ADDR, &temp_val, 0xFFFF, 0x0));
 
 	temp_val =
 	(temp_val & (PMIC_FG_LATCHDATA_ST_MASK << PMIC_FG_LATCHDATA_ST_SHIFT))
@@ -394,11 +391,10 @@ static signed int fg_get_current_iavg(
 	int fg_iavg_reg_27_16 = 0;
 	int fg_iavg_reg_15_00 = 0;
 	int sign_bit = 0;
-	int is_bat_charging;
-	int ret, m;
+	int m;
 
 	/* Set Read Latchdata */
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0001, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0001, 0x000F, 0x0));
 	m = 0;
 		while (fg_get_data_ready_status() == 0) {
 			m++;
@@ -431,9 +427,9 @@ static signed int fg_get_current_iavg(
 		}
 
 		if (sign_bit == 1)
-			is_bat_charging = 0;	/* discharge */
+			(void)(0);	/* discharge */
 		else
-			is_bat_charging = 1;	/* charge */
+			(void)(1);	/* charge */
 
 		fg_iavg_ma = fg_iavg_reg * UNIT_FG_IAVG *
 			gauge_dev->fg_cust_data->car_tune_value;
@@ -483,7 +479,7 @@ static signed int fg_get_current_iavg(
 	}
 
 	/* recover read */
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0008, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0008, 0x000F, 0x0));
 	m = 0;
 		while (fg_get_data_ready_status() != 0) {
 			m++;
@@ -494,7 +490,7 @@ static signed int fg_get_current_iavg(
 				break;
 			}
 		}
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0000, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0000, 0x000F, 0x0));
 
 	*data = gauge_dev->fg_hw_info.current_avg;
 
@@ -567,7 +563,6 @@ void iavg_check(struct gauge_device *gauge_dev,
 	unsigned short iavg_reg = 0, offset_reg = 0;
 	signed int cic2 = 0, offset = 0;
 	int m = 0;
-	unsigned int ret = 0;
 
 	long long fg_iavg_reg = 0;
 	long long fg_iavg_reg_tmp = 0;
@@ -575,7 +570,6 @@ void iavg_check(struct gauge_device *gauge_dev,
 	int fg_iavg_reg_27_16 = 0;
 	int fg_iavg_reg_15_00 = 0;
 	int sign_bit = 0;
-	int is_bat_charging;
 	int valid_bit;
 
 	int iavg;
@@ -583,7 +577,7 @@ void iavg_check(struct gauge_device *gauge_dev,
 	/* Read HW Raw Data
 	 *(1)	 Set READ command
 	 */
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0001, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0001, 0x000F, 0x0));
 	/*(2)	  Keep i2c read when status = 1 (0x06) */
 	m = 0;
 		while (fg_get_data_ready_status() == 0) {
@@ -600,7 +594,7 @@ void iavg_check(struct gauge_device *gauge_dev,
 	 *(5)	 (Read other data)
 	 *(6)	 Clear status to 0
 	 */
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0008, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0008, 0x000F, 0x0));
 	/*
 	 *(7)	 Keep i2c read when status = 0 (0x08)
 	 * while ( fg_get_sw_clear_status() != 0 )
@@ -616,7 +610,7 @@ void iavg_check(struct gauge_device *gauge_dev,
 			}
 		}
 	/*(8)	 Recover original settings */
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0000, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0000, 0x000F, 0x0));
 
 	iavg_reg = pmic_get_register_value(PMIC_FG_CIC2);
 	offset_reg = pmic_get_register_value(PMIC_FG_OFFSET);
@@ -648,9 +642,9 @@ void iavg_check(struct gauge_device *gauge_dev,
 		}
 
 		if (sign_bit)
-			is_bat_charging = 0;	/* discharge */
+			(void)(0);	/* discharge */
 		else
-			is_bat_charging = 1;	/* charge */
+			(void)(1);	/* charge */
 
 		fg_iavg_ma = fg_iavg_reg * UNIT_FG_IAVG *
 			gauge_dev->fg_cust_data->car_tune_value;
@@ -699,7 +693,6 @@ static signed int fg_set_iavg_intr(struct gauge_device *gauge_dev, void *data)
 	int iavg_gap = *(unsigned int *) (data);
 	int iavg;
 	long long iavg_ht, iavg_lt;
-	int ret;
 	int sign_bit_ht, sign_bit_lt;
 	long long fg_iavg_reg_ht, fg_iavg_reg_lt;
 	int fg_iavg_lth_28_16, fg_iavg_lth_15_00;
@@ -708,7 +701,7 @@ static signed int fg_set_iavg_intr(struct gauge_device *gauge_dev, void *data)
 /* fg_iavg_ma = fg_iavg_reg * UNIT_FG_IAVG * fg_cust_data.car_tune_value */
 /* fg_iavg_ma = fg_iavg_ma / 1000 / 1000 / fg_cust_data.r_fg_value; */
 
-	ret = fg_get_current_iavg(gauge_dev, &iavg);
+	(void)(fg_get_current_iavg(gauge_dev, &iavg));
 
 	iavg_ht = abs(iavg) + iavg_gap;
 	iavg_lt = abs(iavg) - iavg_gap;
@@ -852,7 +845,7 @@ void read_fg_hw_info_ncar(struct gauge_device *gauge_dev)
 }
 
 
-static int gspare0_reg, gspare3_reg;
+static int gspare3_reg;
 static int rtc_invalid;
 static int is_bat_plugout;
 static int bat_plug_out_time;
@@ -867,7 +860,7 @@ static void fgauge_read_RTC_boot_status(void)
 
 	spare0_reg = get_rtc_spare0_fg_value();
 	spare3_reg = get_rtc_spare_fg_value();
-	gspare0_reg = spare0_reg;
+	
 	gspare3_reg = spare3_reg;
 	spare3_reg_valid = (spare3_reg & 0x80) >> 7;
 
@@ -961,12 +954,11 @@ static int fgauge_read_current(
 	signed int dvalue = 0;
 	int m = 0;
 	long long Temp_Value = 0;
-	unsigned int ret = 0;
 
 	/* Read HW Raw Data
 	 *(1)    Set READ command
 	 */
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0001, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0001, 0x000F, 0x0));
 	/*(2)     Keep i2c read when status = 1 (0x06) */
 	m = 0;
 		while (fg_get_data_ready_status() == 0) {
@@ -990,7 +982,7 @@ static int fgauge_read_current(
 	 *(5)    (Read other data)
 	 *(6)    Clear status to 0
 	 */
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0008, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0008, 0x000F, 0x0));
 	/*
 	 *(7)    Keep i2c read when status = 0 (0x08)
 	 * while ( fg_get_sw_clear_status() != 0 )
@@ -1006,7 +998,7 @@ static int fgauge_read_current(
 			}
 		}
 	/*(8)    Recover original settings */
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0000, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0000, 0x000F, 0x0));
 
 	/*calculate the real world data    */
 	dvalue = (unsigned int) uvalue16;
@@ -1077,11 +1069,10 @@ static int fgauge_get_average_current(
 	int fg_iavg_reg_27_16 = 0;
 	int fg_iavg_reg_15_00 = 0;
 	int sign_bit = 0;
-	int is_bat_charging;
-	int ret, m;
+	int m;
 
 	/* Set Read Latchdata */
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0001, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0001, 0x000F, 0x0));
 	m = 0;
 		while (fg_get_data_ready_status() == 0) {
 			m++;
@@ -1112,9 +1103,9 @@ static int fgauge_get_average_current(
 		}
 
 		if (sign_bit == 1)
-			is_bat_charging = 0;	/* discharge */
+			(void)(0);	/* discharge */
 		else
-			is_bat_charging = 1;	/* charge */
+			(void)(1);	/* charge */
 
 		fg_iavg_ma = fg_iavg_reg * UNIT_FG_IAVG *
 			gauge_dev->fg_cust_data->car_tune_value;
@@ -1160,7 +1151,7 @@ static int fgauge_get_average_current(
 	}
 
 	/* recover read */
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0008, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0008, 0x000F, 0x0));
 	m = 0;
 		while (fg_get_data_ready_status() != 0) {
 			m++;
@@ -1170,7 +1161,7 @@ static int fgauge_get_average_current(
 				break;
 			}
 		}
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0000, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0000, 0x000F, 0x0));
 
 	*data = gauge_dev->fg_hw_info.current_avg;
 
@@ -1193,17 +1184,16 @@ static int fgauge_get_coulomb(struct gauge_device *gauge_dev, int *data)
 	signed int dvalue_CAR = 0;
 	int m = 0;
 	long long Temp_Value = 0;
-	unsigned int ret = 0;
 	int reset = 0;
 
 	/*fg_dump_register();*/
 
 	if (reset == 0)
-		ret = pmic_config_interface(
-			MT6358_FGADC_CON1, 0x0001, 0x1F05, 0x0);
+		(void)(pmic_config_interface(
+			MT6358_FGADC_CON1, 0x0001, 0x1F05, 0x0));
 	else {
-		ret = pmic_config_interface(
-			MT6358_FGADC_CON1, 0x0705, 0x1F05, 0x0);
+		(void)(pmic_config_interface(
+			MT6358_FGADC_CON1, 0x0705, 0x1F05, 0x0));
 		bm_err("[fgauge_read_columb_internal] reset fgadc 0x0705\n");
 	}
 
@@ -1235,7 +1225,7 @@ static int fgauge_get_coulomb(struct gauge_device *gauge_dev, int *data)
 		 "[fgauge_read_columb_internal] uvalue32_CAR_MSB = 0x%x\r\n",
 		 uvalue32_CAR_MSB);
 
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0008, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0008, 0x000F, 0x0));
 
 	m = 0;
 	while (fg_get_data_ready_status() != 0) {
@@ -1247,7 +1237,7 @@ static int fgauge_get_coulomb(struct gauge_device *gauge_dev, int *data)
 		}
 	}
 	/*(8)    Recover original settings */
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0000, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0000, 0x000F, 0x0));
 
 /*calculate the real world data    */
 	dvalue_CAR = (signed int) uvalue32_CAR;
@@ -1317,13 +1307,12 @@ static int fgauge_reset_hw(struct gauge_device *gauge_dev)
 {
 	unsigned int val_car = 1;
 	unsigned int val_car_temp = 1;
-	unsigned int ret = 0;
 
 	bm_trace("[fgauge_hw_reset] : Start \r\n");
 
 	while (val_car != 0x0) {
-		ret = pmic_config_interface(
-			MT6358_FGADC_CON1, 0x0600, 0x1F00, 0x0);
+		(void)(pmic_config_interface(
+			MT6358_FGADC_CON1, 0x0600, 0x1F00, 0x0));
 		bm_err("[fgauge_hw_reset] reset fgadc 0x0600\n");
 
 		fgauge_get_coulomb(gauge_dev, &val_car_temp);
@@ -1584,7 +1573,6 @@ int fgauge_set_coulomb_interrupt1_ht(
 	signed int upperbound_31_16 = 0, upperbound_15_00 = 0;
 	int reset = 0;
 	signed short m;
-	unsigned int ret = 0;
 	signed int value32_CAR;
 	long long car = car_value;
 
@@ -1595,11 +1583,11 @@ int fgauge_set_coulomb_interrupt1_ht(
 	}
 
 	if (reset == 0) {
-		ret = pmic_config_interface(
-			MT6358_FGADC_CON1, 0x0001, 0x1F0F, 0x0);
+		(void)(pmic_config_interface(
+			MT6358_FGADC_CON1, 0x0001, 0x1F0F, 0x0));
 	} else {
-		ret = pmic_config_interface(
-			MT6358_FGADC_CON1, 0x1F05, 0xFF0F, 0x0);
+		(void)(pmic_config_interface(
+			MT6358_FGADC_CON1, 0x1F05, 0xFF0F, 0x0));
 		bm_err("[%s]reset fgadc 0x1F05\n", __func__);
 	}
 
@@ -1627,7 +1615,7 @@ int fgauge_set_coulomb_interrupt1_ht(
 		(pmic_get_register_value(PMIC_FG_CAR_15_00)),
 		(pmic_get_register_value(PMIC_FG_CAR_31_16)));
 
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0008, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0008, 0x000F, 0x0));
 	m = 0;
 	while (fg_get_data_ready_status() != 0) {
 		m++;
@@ -1639,7 +1627,7 @@ int fgauge_set_coulomb_interrupt1_ht(
 		}
 	}
 	/*(8)	 Recover original settings */
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0000, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0000, 0x000F, 0x0));
 
 
 	/* gap to register-base */
@@ -1713,7 +1701,6 @@ int fgauge_set_coulomb_interrupt1_lt(
 	signed int lowbound_31_16 = 0, lowbound_15_00 = 0;
 	int reset = 0;
 	signed short m;
-	unsigned int ret = 0;
 	signed int value32_CAR;
 	long long car = car_value;
 
@@ -1724,11 +1711,11 @@ int fgauge_set_coulomb_interrupt1_lt(
 	}
 
 	if (reset == 0) {
-		ret = pmic_config_interface(
-			MT6358_FGADC_CON1, 0x0001, 0x1F0F, 0x0);
+		(void)(pmic_config_interface(
+			MT6358_FGADC_CON1, 0x0001, 0x1F0F, 0x0));
 	} else {
-		ret = pmic_config_interface(
-			MT6358_FGADC_CON1, 0x1F05, 0xFF0F, 0x0);
+		(void)(pmic_config_interface(
+			MT6358_FGADC_CON1, 0x1F05, 0xFF0F, 0x0));
 		bm_err("[%s] reset fgadc 0x1F05\n",
 			__func__);
 	}
@@ -1758,7 +1745,7 @@ int fgauge_set_coulomb_interrupt1_lt(
 		(pmic_get_register_value(PMIC_FG_CAR_15_00)),
 		(pmic_get_register_value(PMIC_FG_CAR_31_16)));
 
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0008, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0008, 0x000F, 0x0));
 	m = 0;
 	while (fg_get_data_ready_status() != 0) {
 		m++;
@@ -1770,7 +1757,7 @@ int fgauge_set_coulomb_interrupt1_lt(
 		}
 	}
 	/*(8)	 Recover original settings */
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0000, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0000, 0x000F, 0x0));
 
 
 	/* gap to register-base */
@@ -2007,11 +1994,10 @@ static int fgauge_set_gauge_initialized(
 
 static int fgauge_reset_shutdown_time(struct gauge_device *gauge_dev)
 {
-	int ret;
 
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x1000, 0x1000, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x1000, 0x1000, 0x0));
 	mdelay(1);
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0000, 0x1000, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0000, 0x1000, 0x0));
 
 	return 0;
 }
@@ -2387,10 +2373,9 @@ int fgauge_get_time(struct gauge_device *gauge_dev, unsigned int *ptime)
 {
 	unsigned int time_29_16, time_15_00, ret_time;
 	int m = 0;
-	unsigned int ret = 0;
 	long long time = 0;
 
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0001, 0x1F05, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0001, 0x1F05, 0x0));
 	/*(2)	 Keep i2c read when status = 1 (0x06) */
 	m = 0;
 	while (fg_get_data_ready_status() == 0) {
@@ -2421,7 +2406,7 @@ int fgauge_get_time(struct gauge_device *gauge_dev, unsigned int *ptime)
 		 time_15_00, time_29_16, time, ret_time);
 
 
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0008, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0008, 0x000F, 0x0));
 
 	m = 0;
 	while (fg_get_data_ready_status() != 0) {
@@ -2434,7 +2419,7 @@ int fgauge_get_time(struct gauge_device *gauge_dev, unsigned int *ptime)
 		}
 	}
 	/*(8)	 Recover original settings */
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0000, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0000, 0x000F, 0x0));
 
 	*ptime = ret_time;
 
@@ -2445,7 +2430,6 @@ int fgauge_set_time_interrupt(struct gauge_device *gauge_dev, int threshold)
 {
 	unsigned int time_29_16, time_15_00;
 	int m = 0;
-	unsigned int ret = 0;
 	long long time = 0, time2;
 	long long now;
 	unsigned int offsetTime = threshold;
@@ -2456,7 +2440,7 @@ int fgauge_set_time_interrupt(struct gauge_device *gauge_dev, int threshold)
 	}
 
 	do {
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0001, 0x1F05, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0001, 0x1F05, 0x0));
 	/*(2)	 Keep i2c read when status = 1 (0x06) */
 	m = 0;
 	while (fg_get_data_ready_status() == 0) {
@@ -2484,7 +2468,7 @@ int fgauge_set_time_interrupt(struct gauge_device *gauge_dev, int threshold)
 	bm_debug("[%s] now:%lld time:%lld\r\n",
 		__func__,
 		now/2, time/2);
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0008, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0008, 0x000F, 0x0));
 
 	m = 0;
 	while (fg_get_data_ready_status() != 0) {
@@ -2497,7 +2481,7 @@ int fgauge_set_time_interrupt(struct gauge_device *gauge_dev, int threshold)
 		}
 	}
 	/*(8)	 Recover original settings */
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0000, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0000, 0x000F, 0x0));
 
 	gauge_enable_interrupt(FG_TIME_NO, 0);
 	pmic_set_register_value(PMIC_FG_TIME_HTH_15_00, (time & 0xffff));
@@ -2507,8 +2491,8 @@ int fgauge_set_time_interrupt(struct gauge_device *gauge_dev, int threshold)
 
 
 		/*read again to confirm */
-		ret = pmic_config_interface(
-			MT6358_FGADC_CON1, 0x0001, 0x1F05, 0x0);
+		(void)(pmic_config_interface(
+			MT6358_FGADC_CON1, 0x0001, 0x1F05, 0x0));
 		/*(2)	 Keep i2c read when status = 1 (0x06) */
 		m = 0;
 		while (fg_get_data_ready_status() == 0) {
@@ -2530,8 +2514,8 @@ int fgauge_set_time_interrupt(struct gauge_device *gauge_dev, int threshold)
 			 "[%s] now:%lld time:%lld\r\n",
 			 __func__,
 			 time2/2, time/2);
-		ret = pmic_config_interface(
-			MT6358_FGADC_CON1, 0x0008, 0x000F, 0x0);
+		(void)(pmic_config_interface(
+			MT6358_FGADC_CON1, 0x0008, 0x000F, 0x0));
 
 		m = 0;
 		while (fg_get_data_ready_status() != 0) {
@@ -2544,8 +2528,8 @@ int fgauge_set_time_interrupt(struct gauge_device *gauge_dev, int threshold)
 			}
 		}
 		/*(8)	 Recover original settings */
-		ret = pmic_config_interface(
-			MT6358_FGADC_CON1, 0x0000, 0x000F, 0x0);
+		(void)(pmic_config_interface(
+			MT6358_FGADC_CON1, 0x0000, 0x000F, 0x0));
 
 		bm_trace(
 			 "[%s] low:0x%x high:0x%x time:%lld %lld\r\n",
@@ -2678,7 +2662,7 @@ int fgauge_get_hw_status(
 	struct gauge_hw_status *gauge_status,
 	int intr_no)
 {
-	int ret, m;
+	int m;
 	char intr_name[32];
 	int is_iavg_valid;
 	int iavg_th;
@@ -2687,7 +2671,7 @@ int fgauge_get_hw_status(
 	Intr_Number_to_Name(intr_name, intr_no);
 
 	/* Set Read Latchdata */
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0001, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0001, 0x000F, 0x0));
 	m = 0;
 		while (fg_get_data_ready_status() == 0) {
 			m++;
@@ -2711,7 +2695,7 @@ int fgauge_get_hw_status(
 			is_iavg_valid, gauge_status->iavg_intr_flag);
 		gauge_status->iavg_intr_flag = 1;
 		iavg_th = gauge_dev->fg_cust_data->diff_iavg_th;
-		ret = fg_set_iavg_intr(gauge_dev, &iavg_th);
+		(void)(fg_set_iavg_intr(gauge_dev, &iavg_th));
 	} else if (is_iavg_valid == 0) {
 		gauge_status->iavg_intr_flag = 0;
 		gauge_enable_interrupt(FG_IAVG_H_NO, 0);
@@ -2727,7 +2711,7 @@ int fgauge_get_hw_status(
 	read_fg_hw_info_ncar(gauge_dev);
 
 	/* recover read */
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0008, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0008, 0x000F, 0x0));
 	m = 0;
 		while (fg_get_data_ready_status() != 0) {
 			m++;
@@ -2737,7 +2721,7 @@ int fgauge_get_hw_status(
 				break;
 			}
 		}
-	ret = pmic_config_interface(MT6358_FGADC_CON1, 0x0000, 0x000F, 0x0);
+	(void)(pmic_config_interface(MT6358_FGADC_CON1, 0x0000, 0x000F, 0x0));
 
 
 	fgauge_get_coulomb(gauge_dev, &gauge_dev->fg_hw_info.car);

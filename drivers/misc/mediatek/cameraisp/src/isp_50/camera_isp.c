@@ -2090,7 +2090,7 @@ static int ISP_WaitIrq(struct ISP_WAIT_IRQ_STRUCT *WaitIrq)
 	int idx = my_get_pow_idx(WaitIrq->EventInfo.Status);
 	struct timeval time_getrequest;
 	struct timeval time_ready2return;
-	bool freeze_passbysigcnt = false;
+	bool freeze_passbysigcnt __maybe_unused = false;
 	unsigned long long  sec = 0;
 	unsigned long       usec = 0;
 
@@ -4723,7 +4723,6 @@ static int ISP_release(
 	struct inode *pInode,
 	struct file *pFile)
 {
-	struct ISP_USER_INFO_STRUCT *pUserInfo;
 	unsigned int Reg;
 	unsigned int i = 0;
 
@@ -4733,7 +4732,7 @@ static int ISP_release(
 	/* LOG_DBG("UserCount(%d)",IspInfo.UserCount); */
 	/*  */
 	if (pFile->private_data != NULL) {
-		pUserInfo = (struct ISP_USER_INFO_STRUCT *)pFile->private_data;
+		
 		kfree(pFile->private_data);
 		pFile->private_data = NULL;
 	}

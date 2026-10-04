@@ -1492,7 +1492,9 @@ static int
 select_task_rq_rt(struct task_struct *p, int cpu, int sd_flag, int flags,
 		  int sibling_count_hint)
 {
-	struct task_struct *curr;
+#ifdef CONFIG_MTK_SCHED_INTEROP
+	struct task_struct *curr __maybe_unused;
+#endif
 	struct rq *rq;
 
 	/* For anything but wake ups, just return the task_cpu */
@@ -1503,7 +1505,9 @@ select_task_rq_rt(struct task_struct *p, int cpu, int sd_flag, int flags,
 	rq = cpu_rq(cpu);
 
 	rcu_read_lock();
+#ifdef CONFIG_MTK_SCHED_INTEROP
 	curr = READ_ONCE(rq->curr); /* unlocked access */
+#endif
 
 	/*
 	 * If the current task on @p's runqueue is an RT task, then
@@ -1779,7 +1783,9 @@ static int mt_sched_interop_rt(int cpu, struct cpumask *lowest_mask)
 			return cpu;
 
 		rq = cpu_rq(cpu);
+#ifdef CONFIG_MTK_SCHED_INTEROP
 		curr = rq->curr;
+#endif
 		if ((curr->sched_class == &fair_sched_class)
 				&& (curr->prio > lowest_prio)) {
 			lowest_prio = curr->prio;

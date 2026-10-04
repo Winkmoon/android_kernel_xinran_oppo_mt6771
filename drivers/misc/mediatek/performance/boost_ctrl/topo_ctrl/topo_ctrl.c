@@ -108,7 +108,7 @@ static void topo_platform_init(void)
 static void calc_min_cpucap(void)
 {
 
-	int i, cpu_num = 0, min = INT_MAX, max = 0;
+	int i, cpu_num __maybe_unused = 0, min = INT_MAX, max = 0;
 	struct cpumask cpus;
 	struct cpumask cpu_online_cpumask;
 

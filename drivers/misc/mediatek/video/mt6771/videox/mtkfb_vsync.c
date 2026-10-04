@@ -166,7 +166,6 @@ static const struct file_operations mtkfb_vsync_fops = {
 static int mtkfb_vsync_probe(struct platform_device *pdev)
 {
 	struct class_device;
-	struct class_device *class_dev = NULL;
 	int ret = -1;
 
 	pr_info("\n=== MTKFB_VSYNC probe ===\n");
@@ -191,9 +190,9 @@ static int mtkfb_vsync_probe(struct platform_device *pdev)
 	}
 
 	mtkfb_vsync_class = class_create(THIS_MODULE, MTKFB_VSYNC_DEVNAME);
-	class_dev = (struct class_device *)device_create(mtkfb_vsync_class,
+	(void)((struct class_device *)device_create(mtkfb_vsync_class,
 						NULL, mtkfb_vsync_devno, NULL,
-						MTKFB_VSYNC_DEVNAME);
+						MTKFB_VSYNC_DEVNAME));
 
 	VSYNC_INF("probe is done\n");
 	return 0;

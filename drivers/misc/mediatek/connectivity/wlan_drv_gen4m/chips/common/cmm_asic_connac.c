@@ -145,13 +145,17 @@ void asicCapInit(IN struct ADAPTER *prAdapter)
 {
 	struct GLUE_INFO *prGlueInfo;
 	struct mt66xx_chip_info *prChipInfo;
+#if defined(_HIF_USB)
 	struct BUS_INFO *prBusInfo = NULL;
+#endif
 
 	ASSERT(prAdapter);
 
 	prGlueInfo = prAdapter->prGlueInfo;
 	prChipInfo = prAdapter->chip_info;
+#if defined(_HIF_USB)
 	prBusInfo = prChipInfo->bus_info;
+#endif
 
 	prChipInfo->u2HifTxdSize = 0;
 	prChipInfo->u2TxInitCmdPort = 0;
@@ -1752,7 +1756,7 @@ void asicRxPerfIndProcessRXV(IN struct ADAPTER *prAdapter,
 	uint8_t ucRxMode;
 	uint8_t ucMcs;
 	uint8_t ucFrMode;
-	uint8_t ucShortGI, ucGroupid, ucMu, ucNsts = 1;
+	uint8_t ucShortGI, ucGroupid, ucNsts = 1;
 	uint32_t u4PhyRate;
 	uint8_t ucRCPI0 = 0, ucRCPI1 = 0;
 	/* Rate
@@ -1799,9 +1803,9 @@ void asicRxPerfIndProcessRXV(IN struct ADAPTER *prAdapter,
 			ucNsts = 1;
 
 		if (ucGroupid && ucGroupid != 63)
-			ucMu = 1;
+			(void)(1);
 		else {
-			ucMu = 0;
+			
 			ucNsts += 1;
 		}
 

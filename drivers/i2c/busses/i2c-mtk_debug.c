@@ -384,7 +384,6 @@ static ssize_t set_config(struct device *dev, struct device_attribute *attr,
 	int wr_number = 0;
 	int rd_number = 0;
 	unsigned int speedhz = 0;
-	char *buf_test;
 
 	int length = 0;
 	void *vir_addr_wr = NULL;
@@ -472,7 +471,7 @@ static ssize_t set_config(struct device *dev, struct device_attribute *attr,
 						     vir_addr_wr, vir_addr_rd,
 						     operation, wr_number,
 						     rd_number, speedhz);
-				buf_test = (char *)vir_addr_rd;
+				
 
 				t6 = sched_clock();
 		/* pr_info("test i2c :hw time=%llu,total=%llu\n",

@@ -46,7 +46,7 @@ static unsigned long g_u4AF_MACRO = 1023;
 static unsigned long g_u4TargetPosition;
 static unsigned long g_u4CurrPosition = 0;
 
-static int g_SR = 3;
+
 
 static int i2c_read(u8 a_u2Addr , u8 * a_puBuff)
 {
@@ -185,7 +185,7 @@ static inline int moveAF(unsigned long a_u4Position)
 
     spin_lock(g_pAF_SpinLock);
     g_u4TargetPosition = a_u4Position;
-    g_SR = 3;
+    
     spin_unlock(g_pAF_SpinLock);
 
     /* LOG_INF("move [curr] %d [target] %d\n", g_u4CurrPosition, g_u4TargetPosition); */
@@ -305,7 +305,7 @@ int FP5516AF_Release(struct inode *a_pstInode, struct file *a_pstFile)
         msleep(20);
         LOG_INF("[FP5516AF]Move to ini pos\n");
     #else
-        g_SR = 5;
+        (void)(5);
         #ifndef OPLUS_FEATURE_CAMERA_COMMON
         s4AF_WriteReg(200);
         msleep(20);

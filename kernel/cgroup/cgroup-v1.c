@@ -942,7 +942,7 @@ static int parse_cgroupfs_options(char *data, struct cgroup_sb_opts *opts)
 	bool all_ss = false, one_ss = false;
 	u16 mask = U16_MAX;
 	struct cgroup_subsys *ss;
-	int nr_opts = 0;
+	int nr_opts __maybe_unused = 0;
 	int i;
 
 #ifdef CONFIG_CPUSETS

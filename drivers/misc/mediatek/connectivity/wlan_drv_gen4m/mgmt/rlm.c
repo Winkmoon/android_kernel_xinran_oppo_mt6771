@@ -2297,7 +2297,6 @@ static uint8_t rlmRecIeInfoForClient(struct ADAPTER *prAdapter,
 	uint8_t fgHasNewOPModeIE = FALSE;
 	uint8_t ucVhtOpModeChannelWidth = 0;
 	uint8_t ucVhtOpModeRxNss = 0;
-	uint8_t ucMaxBwAllowed;
 	uint8_t ucInitVhtOpMode = 0;
 #endif
 
@@ -2328,7 +2327,7 @@ static uint8_t rlmRecIeInfoForClient(struct ADAPTER *prAdapter,
 	prBssInfo->fgUseShortPreamble = prBssInfo->fgIsShortPreambleAllowed;
 	ucPrimaryChannel = 0;
 	prObssScnParam = NULL;
-	ucMaxBwAllowed = cnmGetBssMaxBw(prAdapter, prBssInfo->ucBssIndex);
+	(void)(cnmGetBssMaxBw(prAdapter, prBssInfo->ucBssIndex));
 	pucDumpIE = pucIE;
 
 	/* Note: HT-related members in staRec may not be zero before, so

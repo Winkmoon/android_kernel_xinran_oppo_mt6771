@@ -205,12 +205,9 @@ void mt_cpufreq_setvolt_ocp_registerCB(cpuVoltsampler_func pCB)
 }
 EXPORT_SYMBOL(mt_cpufreq_setvolt_ocp_registerCB);
 
-/* for PTP-OD */
-static mt_cpufreq_set_ptbl_funcPTP mt_cpufreq_update_private_tbl;
-
 void mt_cpufreq_set_ptbl_registerCB(mt_cpufreq_set_ptbl_funcPTP pCB)
 {
-	mt_cpufreq_update_private_tbl = pCB;
+	
 }
 EXPORT_SYMBOL(mt_cpufreq_set_ptbl_registerCB);
 

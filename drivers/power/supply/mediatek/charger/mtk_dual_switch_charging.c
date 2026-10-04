@@ -74,7 +74,6 @@ static void _disable_all_charging(struct charger_manager *info)
 static bool dual_swchg_check_pd_leave(struct charger_manager *info)
 {
 	struct mtk_pdc *pd = &info->pdc;
-	int ichg = 0;
 
 	if (info->disable_pd_dual)
 		return true;
@@ -85,7 +84,7 @@ static bool dual_swchg_check_pd_leave(struct charger_manager *info)
 	if (info->enable_hv_charging == false)
 		return true;
 
-	ichg = battery_get_bat_current() * 100;
+	(void)(battery_get_bat_current() * 100);
 	if (battery_get_soc() >= info->data.pd_stop_battery_soc ||
 		battery_get_uisoc() == -1)
 		return true;
@@ -867,7 +866,6 @@ static int mtk_dual_switch_charge_current(struct charger_manager *info)
 static int mtk_dual_switch_charging_run(struct charger_manager *info)
 {
 	struct dual_switch_charging_alg_data *swchgalg = info->algorithm_data;
-	int ret = 10;
 	bool chg2_en = false;
 
 	pr_info("%s [%d]\n", __func__, swchgalg->state);
@@ -883,25 +881,25 @@ static int mtk_dual_switch_charging_run(struct charger_manager *info)
 	case CHR_CC:
 	case CHR_TUNING:
 	case CHR_POSTCC:
-		ret = mtk_dual_switch_chr_cc(info);
+		(void)(mtk_dual_switch_chr_cc(info));
 		break;
 
 	case CHR_PE40_INIT:
-		ret = mtk_dual_switch_chr_pe40_init(info);
+		(void)(mtk_dual_switch_chr_pe40_init(info));
 		break;
 
 	case CHR_PE40_CC:
 	case CHR_PE40_TUNING:
 	case CHR_PE40_POSTCC:
-		ret = mtk_dual_switch_chr_pe40_cc(info);
+		(void)(mtk_dual_switch_chr_pe40_cc(info));
 		break;
 
 	case CHR_BATFULL:
-		ret = mtk_dual_switch_chr_full(info);
+		(void)(mtk_dual_switch_chr_full(info));
 		break;
 
 	case CHR_ERROR:
-		ret = mtk_dual_switch_chr_err(info);
+		(void)(mtk_dual_switch_chr_err(info));
 		break;
 	}
 

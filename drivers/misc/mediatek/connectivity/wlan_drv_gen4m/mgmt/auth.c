@@ -952,7 +952,6 @@ authSendDeauthFrame(IN struct ADAPTER *prAdapter,
 	/* 4 <1.1> Find the Receiver Address */
 	if (prClassErrSwRfb) {
 		u_int8_t fgIsAbleToSendDeauth = FALSE;
-		uint16_t u2RxFrameCtrl;
 		struct WLAN_MAC_HEADER_A4 *prWlanMacHeader = NULL;
 
 		prWlanMacHeader =
@@ -961,7 +960,7 @@ authSendDeauthFrame(IN struct ADAPTER *prAdapter,
 		/* WLAN_GET_FIELD_16(&prWlanMacHeader->u2FrameCtrl,
 		 *   &u2RxFrameCtrl);
 		 */
-		u2RxFrameCtrl = prWlanMacHeader->u2FrameCtrl;
+		
 		/* NOTE(Kevin): Optimized for ARM */
 
 		/* TODO(Kevin): Currently we won't send Deauth for IBSS node.

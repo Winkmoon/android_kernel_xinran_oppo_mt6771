@@ -144,8 +144,6 @@ static int g_TAP_over_critical_low = BTSMDPA_TAP_OVER_CRITICAL_LOW;
 static int g_RAP_pull_up_voltage = BTSMDPA_RAP_PULL_UP_VOLTAGE;
 static int g_RAP_ntc_table = BTSMDPA_RAP_NTC_TABLE;
 static int g_RAP_ADC_channel = BTSMDPA_RAP_ADC_CHANNEL;
-
-static int g_btsmdpa_TemperatureR;
 /* struct BTSMDPA_TEMPERATURE BTSMDPA_Temperature_Table[] = {0}; */
 
 static struct BTSMDPA_TEMPERATURE *BTSMDPA_Temperature_Table;
@@ -599,7 +597,7 @@ static __s16 mtk_ts_btsmdpa_volt_to_temp(__u32 dwVolt)
 	}
 	/* ------------------------------------------------------------------ */
 
-	g_btsmdpa_TemperatureR = TRes;
+	
 
 	/* convert register to temperature */
 	BTSMDPA_TMP = mtkts_btsmdpa_thermistor_conver_temp(TRes);

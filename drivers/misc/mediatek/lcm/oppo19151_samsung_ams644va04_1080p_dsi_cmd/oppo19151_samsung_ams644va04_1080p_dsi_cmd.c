@@ -139,8 +139,6 @@ static bool aod_out = true;
 static bool hbm_en;
 static bool hbm_wait;
 
-static unsigned int aod_light_brightness_mode = 0;
-
 #define SEED_PARAMETER {0xE0, 0x00, 0x06, 0x10, 0xFF, 0x00, 0x00, 0x00, 0xFF, 0x2A, 0xFF, 0xE2, 0xFF, 0x00, 0xEE, 0xFF, 0xF1, 0x00, 0xFF, 0xFF, 0xFF}
 
 static struct LCM_setting_table lcm_initialization_cmd_setting[] = {
@@ -987,7 +985,7 @@ static void lcm_set_aod_brightness(void *qhandle, unsigned int mode)
 			sizeof(lcm_aod_low_mode)/sizeof(lcm_aod_low_mode[0]), 1);
 		printk("[soso] %s : %d !\n", __func__, mode);
 	}
-	aod_light_brightness_mode = mode;
+	
 }
 
 void lcm_set_safe_mode(void *qhandle,unsigned int mode)

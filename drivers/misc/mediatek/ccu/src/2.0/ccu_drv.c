@@ -461,7 +461,9 @@ static long ccu_compat_ioctl(struct file *flip,
 	compat_uptr_t uptr_Addr32;
 	compat_uint_t uint_Data32;
 
-	int err;
+#ifdef CONFIG_COMPAT
+	int err __maybe_unused;
+#endif
 	int i;
 	/*>>>>>>>>>> debug 32/64 compat check*/
 
@@ -500,7 +502,9 @@ static long ccu_compat_ioctl(struct file *flip,
 		LOG_DBG("[IOCTL_DBG] *ptr_power64 size: %zu\n",
 			sizeof(*ptr_power64));
 
+#ifdef CONFIG_COMPAT
 		err = 0;
+#endif
 		err |= get_user(uint_Data32, &(ptr_power32->bON));
 		err |= put_user(uint_Data32, &(ptr_power64->bON));
 

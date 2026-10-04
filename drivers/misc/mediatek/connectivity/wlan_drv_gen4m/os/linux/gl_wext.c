@@ -1099,7 +1099,6 @@ wext_get_name(IN struct net_device *prNetDev,
 	enum ENUM_PARAM_NETWORK_TYPE eNetWorkType;
 
 	struct GLUE_INFO *prGlueInfo = NULL;
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	uint32_t u4BufLen = 0;
 
 	ASSERT(prNetDev);
@@ -1110,9 +1109,9 @@ wext_get_name(IN struct net_device *prNetDev,
 
 	if (netif_carrier_ok(prNetDev)) {
 
-		rStatus = kalIoctl(prGlueInfo, wlanoidQueryNetworkTypeInUse,
+		(void)(kalIoctl(prGlueInfo, wlanoidQueryNetworkTypeInUse,
 				   &eNetWorkType, sizeof(eNetWorkType),
-				   TRUE, FALSE, FALSE, &u4BufLen);
+				   TRUE, FALSE, FALSE, &u4BufLen));
 
 		switch (eNetWorkType) {
 		case PARAM_NETWORK_TYPE_DS:
@@ -1235,7 +1234,6 @@ wext_get_freq(IN struct net_device *prNetDev,
 	uint32_t u4Channel = 0;
 
 	struct GLUE_INFO *prGlueInfo = NULL;
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	uint32_t u4BufLen = 0;
 
 	ASSERT(prNetDev);
@@ -1248,8 +1246,8 @@ wext_get_freq(IN struct net_device *prNetDev,
 	if (!netif_carrier_ok(prNetDev))
 		return -ENOTCONN;
 
-	rStatus = kalIoctl(prGlueInfo, wlanoidQueryFrequency, &u4Channel,
-			   sizeof(u4Channel), TRUE, FALSE, FALSE, &u4BufLen);
+	(void)(kalIoctl(prGlueInfo, wlanoidQueryFrequency, &u4Channel,
+			   sizeof(u4Channel), TRUE, FALSE, FALSE, &u4BufLen));
 
 	prIwFreq->m = (int)u4Channel;	/* freq in KHz */
 	prIwFreq->e = 3;
@@ -1280,7 +1278,6 @@ wext_set_mode(IN struct net_device *prNetDev,
 {
 	struct PARAM_OP_MODE rOpMode;
 	struct GLUE_INFO *prGlueInfo = NULL;
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	uint32_t u4BufLen = 0;
 	struct GL_WPA_INFO *prWpaInfo;
 	uint8_t ucBssIndex = AIS_DEFAULT_INDEX;
@@ -1312,9 +1309,9 @@ wext_set_mode(IN struct net_device *prNetDev,
 
 	/* printk("%s(): Set Mode = %d\n", __FUNCTION__, *pu4Mode); */
 	rOpMode.ucBssIdx = ucBssIndex;
-	rStatus = kalIoctl(prGlueInfo, wlanoidSetInfrastructureMode,
+	(void)(kalIoctl(prGlueInfo, wlanoidSetInfrastructureMode,
 		(void *)&rOpMode, sizeof(struct PARAM_OP_MODE),
-		FALSE, FALSE, TRUE, &u4BufLen);
+		FALSE, FALSE, TRUE, &u4BufLen));
 
 	/* after set operation mode, key table are cleared */
 
@@ -1358,7 +1355,6 @@ wext_get_mode(IN struct net_device *prNetDev,
 	enum ENUM_PARAM_OP_MODE eOpMode;
 
 	struct GLUE_INFO *prGlueInfo = NULL;
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	uint32_t u4BufLen = 0;
 
 	ASSERT(prNetDev);
@@ -1367,8 +1363,8 @@ wext_get_mode(IN struct net_device *prNetDev,
 		return -EINVAL;
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
 
-	rStatus = kalIoctl(prGlueInfo, wlanoidQueryInfrastructureMode, &eOpMode,
-			   sizeof(eOpMode), TRUE, FALSE, FALSE, &u4BufLen);
+	(void)(kalIoctl(prGlueInfo, wlanoidQueryInfrastructureMode, &eOpMode,
+			   sizeof(eOpMode), TRUE, FALSE, FALSE, &u4BufLen));
 
 	switch (eOpMode) {
 	case NET_TYPE_IBSS:
@@ -1417,7 +1413,6 @@ wext_get_range(IN struct net_device *prNetDev,
 	int i = 0;
 
 	struct GLUE_INFO *prGlueInfo = NULL;
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	uint32_t u4BufLen = 0;
 
 	ASSERT(prNetDev);
@@ -1459,10 +1454,10 @@ wext_get_range(IN struct net_device *prNetDev,
 		prRange->freq[i].e = 6;	/* Values in table in MHz */
 	}
 
-	rStatus = kalIoctl(prGlueInfo,
+	(void)(kalIoctl(prGlueInfo,
 			   wlanoidQuerySupportedRates,
 			   &aucSuppRate, sizeof(aucSuppRate),
-			   TRUE, FALSE, FALSE, &u4BufLen);
+			   TRUE, FALSE, FALSE, &u4BufLen));
 
 	for (i = 0; i < IW_MAX_BITRATES
 	     && i < PARAM_MAX_LEN_RATES_EX; i++) {
@@ -1587,7 +1582,6 @@ wext_get_ap(IN struct net_device *prNetDev,
 	    OUT struct sockaddr *prAddr, IN char *pcExtra)
 {
 	struct GLUE_INFO *prGlueInfo = NULL;
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	uint32_t u4BufLen = 0;
 	uint8_t ucBssIndex = AIS_DEFAULT_INDEX;
 
@@ -1608,8 +1602,8 @@ wext_get_ap(IN struct net_device *prNetDev,
 		return 0;
 	}
 
-	rStatus = kalIoctl(prGlueInfo, wlanoidQueryBssid, prAddr->sa_data,
-			   ETH_ALEN, TRUE, FALSE, FALSE, &u4BufLen);
+	(void)(kalIoctl(prGlueInfo, wlanoidQueryBssid, prAddr->sa_data,
+			   ETH_ALEN, TRUE, FALSE, FALSE, &u4BufLen));
 
 	return 0;
 }				/* wext_get_ap */
@@ -1638,7 +1632,6 @@ wext_set_mlme(IN struct net_device *prNetDev,
 	struct iw_mlme *prMlme = NULL;
 
 	struct GLUE_INFO *prGlueInfo = NULL;
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	uint32_t u4BufLen = 0;
 
 	ASSERT(prNetDev);
@@ -1656,8 +1649,8 @@ wext_set_mlme(IN struct net_device *prNetDev,
 			return 0;
 		}
 
-		rStatus = kalIoctl(prGlueInfo, wlanoidSetDisassociate, NULL,
-				   0, FALSE, FALSE, TRUE, &u4BufLen);
+		(void)(kalIoctl(prGlueInfo, wlanoidSetDisassociate, NULL,
+				   0, FALSE, FALSE, TRUE, &u4BufLen));
 		return 0;
 	}
 	DBGLOG(INIT, INFO,
@@ -1686,7 +1679,6 @@ wext_set_scan(IN struct net_device *prNetDev,
 	      IN union iwreq_data *prData, IN char *pcExtra)
 {
 	struct GLUE_INFO *prGlueInfo = NULL;
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	uint32_t u4BufLen = 0;
 	int essid_len = 0;
 
@@ -1706,8 +1698,8 @@ wext_set_scan(IN struct net_device *prNetDev,
 
 	/* TODO:  parse flags and issue different scan requests? */
 
-	rStatus = kalIoctl(prGlueInfo, wlanoidSetBssidListScan,
-			   pcExtra, essid_len, FALSE, FALSE, FALSE, &u4BufLen);
+	(void)(kalIoctl(prGlueInfo, wlanoidSetBssidListScan,
+			   pcExtra, essid_len, FALSE, FALSE, FALSE, &u4BufLen));
 
 	/* wait_for_completion_interruptible_timeout(&prGlueInfo->rScanComp,
 	 *					     2 * KAL_HZ);
@@ -2224,7 +2216,6 @@ wext_set_essid(IN struct net_device *prNetDev,
 	enum ENUM_PARAM_AUTH_MODE eAuthMode;
 
 	struct GLUE_INFO *prGlueInfo = NULL;
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	uint32_t u4BufLen = 0;
 	struct GL_WPA_INFO *prWpaInfo;
 	uint8_t ucBssIndex = AIS_DEFAULT_INDEX;
@@ -2306,8 +2297,8 @@ wext_set_essid(IN struct net_device *prNetDev,
 		}
 	}
 
-	rStatus = kalIoctl(prGlueInfo, wlanoidSetAuthMode, &eAuthMode,
-			   sizeof(eAuthMode), FALSE, FALSE, FALSE, &u4BufLen);
+	(void)(kalIoctl(prGlueInfo, wlanoidSetAuthMode, &eAuthMode,
+			   sizeof(eAuthMode), FALSE, FALSE, FALSE, &u4BufLen));
 
 	/* set encryption status */
 	cipher = prWpaInfo->u4CipherGroup |
@@ -2336,9 +2327,9 @@ wext_set_essid(IN struct net_device *prNetDev,
 		eEncStatus = ENUM_ENCRYPTION_DISABLED;
 	}
 
-	rStatus = kalIoctl(prGlueInfo, wlanoidSetEncryptionStatus, &eEncStatus,
+	(void)(kalIoctl(prGlueInfo, wlanoidSetEncryptionStatus, &eEncStatus,
 			   sizeof(eEncStatus),
-			   FALSE, FALSE, FALSE, &u4BufLen);
+			   FALSE, FALSE, FALSE, &u4BufLen));
 
 #if WIRELESS_EXT < 21
 	/* GeorgeKuo: a length error bug exists in (WE < 21) cases, kernel
@@ -2615,7 +2606,6 @@ wext_set_rts(IN struct net_device *prNetDev,
 	uint32_t u4RtsThresh;
 
 	struct GLUE_INFO *prGlueInfo = NULL;
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	uint32_t u4BufLen = 0;
 
 	ASSERT(prNetDev);
@@ -2632,9 +2622,9 @@ wext_set_rts(IN struct net_device *prNetDev,
 	else
 		u4RtsThresh = (uint32_t) prRts->value;
 
-	rStatus = kalIoctl(prGlueInfo, wlanoidSetRtsThreshold, &u4RtsThresh,
+	(void)(kalIoctl(prGlueInfo, wlanoidSetRtsThreshold, &u4RtsThresh,
 			   sizeof(u4RtsThresh),
-			   FALSE, FALSE, FALSE, &u4BufLen);
+			   FALSE, FALSE, FALSE, &u4BufLen));
 
 	prRts->value = (typeof(prRts->value)) u4RtsThresh;
 	prRts->disabled = (prRts->value > 2347) ? 1 : 0;
@@ -2665,7 +2655,6 @@ wext_get_rts(IN struct net_device *prNetDev,
 	uint32_t u4RtsThresh;
 
 	struct GLUE_INFO *prGlueInfo = NULL;
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	uint32_t u4BufLen = 0;
 
 	ASSERT(prNetDev);
@@ -2674,8 +2663,8 @@ wext_get_rts(IN struct net_device *prNetDev,
 		return -EINVAL;
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
 
-	rStatus = kalIoctl(prGlueInfo, wlanoidQueryRtsThreshold, &u4RtsThresh,
-			   sizeof(u4RtsThresh), TRUE, FALSE, FALSE, &u4BufLen);
+	(void)(kalIoctl(prGlueInfo, wlanoidQueryRtsThreshold, &u4RtsThresh,
+			   sizeof(u4RtsThresh), TRUE, FALSE, FALSE, &u4BufLen));
 
 	prRts->value = (typeof(prRts->value)) u4RtsThresh;
 	prRts->disabled = (prRts->value > 2347
@@ -2791,15 +2780,12 @@ wext_get_txpow(IN struct net_device *prNetDev,
 	       IN struct iw_request_info *prIwrInfo,
 	       OUT struct iw_param *prTxPow, IN char *pcExtra)
 {
-	/* PARAM_DEVICE_POWER_STATE ePowerState; */
-
-	struct GLUE_INFO *prGlueInfo = NULL;
 
 	ASSERT(prNetDev);
 	ASSERT(prTxPow);
 	if (GLUE_CHK_PR2(prNetDev, prTxPow) == FALSE)
 		return -EINVAL;
-	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
+	(void)(*((struct GLUE_INFO **) netdev_priv(prNetDev)));
 
 	/* GeorgeKuo: wlanoidQueryAcpiDevicePowerState() reports capability, not
 	 * current state. Use struct GLUE_INFO to store state.
@@ -2847,7 +2833,6 @@ wext_get_encode(IN struct net_device *prNetDev,
 	enum ENUM_WEP_STATUS eEncMode;
 
 	struct GLUE_INFO *prGlueInfo = NULL;
-	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	uint32_t u4BufLen = 0;
 
 	ASSERT(prNetDev);
@@ -2856,8 +2841,8 @@ wext_get_encode(IN struct net_device *prNetDev,
 		return -EINVAL;
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
 
-	rStatus = kalIoctl(prGlueInfo, wlanoidQueryEncryptionStatus, &eEncMode,
-			   sizeof(eEncMode), TRUE, FALSE, FALSE, &u4BufLen);
+	(void)(kalIoctl(prGlueInfo, wlanoidQueryEncryptionStatus, &eEncMode,
+			   sizeof(eEncMode), TRUE, FALSE, FALSE, &u4BufLen));
 
 	switch (eEncMode) {
 	case ENUM_WEP_DISABLED:
@@ -3264,11 +3249,10 @@ wext_set_auth(IN struct net_device *prNetDev,
 		    prWpaInfo->u4KeyMgmt ==
 		    IW_AUTH_KEY_MGMT_WAPI_CERT) {
 			uint32_t u4BufLen;
-			uint32_t rStatus;
 
-			rStatus = kalIoctl(prGlueInfo, wlanoidSetWapiMode,
+			(void)(kalIoctl(prGlueInfo, wlanoidSetWapiMode,
 					   &prAuth->value, sizeof(uint32_t),
-					   FALSE, FALSE, TRUE, &u4BufLen);
+					   FALSE, FALSE, TRUE, &u4BufLen));
 			DBGLOG(INIT, INFO, "IW_AUTH_WAPI_ENABLED :%d\n",
 			       prAuth->value);
 		}
@@ -3295,11 +3279,10 @@ wext_set_auth(IN struct net_device *prNetDev,
 #if CFG_SUPPORT_WAPI
 	case IW_AUTH_WAPI_ENABLED: {
 		uint32_t u4BufLen;
-		uint32_t rStatus;
 
-		rStatus = kalIoctl(prGlueInfo, wlanoidSetWapiMode,
+		(void)(kalIoctl(prGlueInfo, wlanoidSetWapiMode,
 				   &prAuth->value, sizeof(uint32_t),
-				   FALSE, FALSE, TRUE, &u4BufLen);
+				   FALSE, FALSE, TRUE, &u4BufLen));
 	}
 	DBGLOG(INIT, INFO, "IW_AUTH_WAPI_ENABLED :%d\n",
 	       prAuth->value);
@@ -4615,8 +4598,6 @@ skip_indicate_event:
 struct iw_statistics *wext_get_wireless_stats(
 	struct net_device *prDev)
 {
-
-	uint32_t rStatus = WLAN_STATUS_FAILURE;
 	struct GLUE_INFO *prGlueInfo = NULL;
 	struct iw_statistics *pStats = NULL;
 	struct PARAM_LINK_SPEED_EX rLinkSpeed;
@@ -4638,11 +4619,11 @@ struct iw_statistics *wext_get_wireless_stats(
 		goto stat_out;
 	}
 
-	rStatus = kalIoctlByBssIdx(prGlueInfo,
+	(void)(kalIoctlByBssIdx(prGlueInfo,
 				   wlanoidQueryRssi,
 				   &rLinkSpeed, sizeof(rLinkSpeed),
 				   TRUE, TRUE, TRUE,
-				   &bufLen, ucBssIndex);
+				   &bufLen, ucBssIndex));
 
 stat_out:
 	return pStats;
@@ -4932,7 +4913,6 @@ static int std_set_genie(struct net_device *prDev,
 		char *pcExtra)
 {
 	uint32_t u4ExtraSize = prData->data.length;
-	struct GLUE_INFO *prGlueInfo = NULL;
 
 	DBGLOG(INIT, INFO, " mtk std ioctl is called.\n");
 
@@ -4944,8 +4924,8 @@ static int std_set_genie(struct net_device *prDev,
 
 	if (prData->data.pointer) {
 		u4ExtraSize = prData->data.length;
-		prGlueInfo = *((struct GLUE_INFO **)
-						 netdev_priv(prDev));
+		(void)(*((struct GLUE_INFO **)
+						 netdev_priv(prDev)));
 		wext_support_ioctl_SIOCSIWGENIE(
 			prDev, pcExtra,
 			u4ExtraSize);

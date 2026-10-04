@@ -64,7 +64,7 @@ update_system_overutilized(struct lb_env *env)
 {
 	unsigned long group_util;
 	bool intra_overutil = false;
-	unsigned long min_capacity;
+	unsigned long min_capacity __maybe_unused;
 	struct sched_group *group = env->sd->groups;
 	int this_cpu;
 	int min_cap_orig_cpu;
@@ -237,7 +237,7 @@ int find_best_idle_cpu(struct task_struct *p, bool prefer_idle)
 	int best_idle_cpu = -1;
 	struct cpumask *tsk_cpus_allow = &p->cpus_allowed;
 	struct hmp_domain *domain;
-	int domain_order = 0;
+	int domain_order __maybe_unused = 0;
 	int prefer_big = prefer_idle && (task_util(p) > stune_task_threshold);
 
 	for_each_hmp_domain_L_first(domain) {
@@ -283,7 +283,7 @@ static int init_cpu_info(void)
 	int i;
 
 	for (i = 0; i < nr_cpu_ids; i++) {
-		unsigned long capacity = SCHED_CAPACITY_SCALE;
+		unsigned long capacity __maybe_unused = SCHED_CAPACITY_SCALE;
 
 		if (cpu_core_energy(i)) {
 			int idx = cpu_core_energy(i)->nr_cap_states - 1;
@@ -916,8 +916,8 @@ update_sg_util(struct task_struct *p, int dst_cpu,
 		const struct cpumask *sg_mask, struct sg_state *sg_env)
 {
 	int cpu = cpumask_first(sg_mask);
-	struct sched_domain *sd;
-	const struct sched_group *sg;
+	struct sched_domain *sd __maybe_unused;
+	const struct sched_group *sg __maybe_unused;
 	const struct sched_group_energy *sge;
 	unsigned long new_util;
 	int idx, max_idx;
@@ -1129,7 +1129,7 @@ static int find_energy_efficient_cpu_enhanced(struct task_struct *p,
 {
 	unsigned long prev_energy = 0;
 	unsigned long prev_delta = ULONG_MAX, best_delta = ULONG_MAX;
-	int max_spare_cap_cpu_ls = prev_cpu;
+	int max_spare_cap_cpu_ls __maybe_unused = prev_cpu;
 	unsigned long max_spare_cap_ls = 0, target_cap;
 	unsigned long sys_max_spare_cap = 0;
 	unsigned long cpu_cap, util, wake_util;
@@ -1711,7 +1711,7 @@ static int __find_energy_efficient_cpu(struct sched_domain *sd,
 #ifdef CONFIG_MTK_SCHED_BOOST
 static void select_task_prefer_cpu_fair(struct task_struct *p, int *result)
 {
-	int task_prefer;
+	int task_prefer __maybe_unused;
 	int cpu, new_cpu;
 
 	task_prefer = cpu_prefer(p);

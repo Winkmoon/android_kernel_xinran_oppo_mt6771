@@ -211,7 +211,9 @@ enum {
 void dumpQueue(struct ADAPTER *prAdapter)
 {
 
+#if QM_ADAPTIVE_TC_RESOURCE_CTRL
 	struct TX_CTRL *prTxCtrl;
+#endif
 	struct QUE_MGT *prQM;
 	struct GLUE_INFO *prGlueInfo;
 	uint32_t i;
@@ -219,7 +221,9 @@ void dumpQueue(struct ADAPTER *prAdapter)
 
 	DEBUGFUNC("dumpQueue");
 
+#if QM_ADAPTIVE_TC_RESOURCE_CTRL
 	prTxCtrl = &prAdapter->rTxCtrl;
+#endif
 	prQM = &prAdapter->rQM;
 	prGlueInfo = prAdapter->prGlueInfo;
 #if QM_ADAPTIVE_TC_RESOURCE_CTRL
@@ -448,14 +452,18 @@ void swCtrlCmdCategory0(struct ADAPTER *prAdapter,
 			uint8_t ucOpt1)
 {
 	uint8_t ucIndex, ucRead;
+#if QM_DEBUG_COUNTER
 	uint32_t i;
+#endif
 	struct CMD_RX_PACKET_FILTER rSetRxPacketFilter;
 
 	DEBUGFUNC("swCtrlCmdCategory0");
 
 	SWCR_GET_RW_INDEX(ucAction, ucRead, ucIndex);
 
+#if QM_DEBUG_COUNTER
 	i = 0;
+#endif
 
 	if (ucIndex >= SWCTRL_CATA0_INDEX_NUM)
 		return;
@@ -486,7 +494,6 @@ void swCtrlCmdCategory0(struct ADAPTER *prAdapter,
 		case SWCTRL_RX_FILTER: {
 			uint32_t u4rxfilter;
 			u_int8_t fgUpdate = FALSE;
-			uint32_t rStatus = WLAN_STATUS_SUCCESS;
 
 			if (ucOpt0 == SWCR_RX_FILTER_CMD_STOP) {
 				g_u4RXFilter &= ~(RX_FILTER_START);
@@ -527,10 +534,9 @@ void swCtrlCmdCategory0(struct ADAPTER *prAdapter,
 			if (fgUpdate == TRUE) {
 				rSetRxPacketFilter.
 				u4RxPacketFilter = u4rxfilter;
-				rStatus =
-					wlanoidSetPacketFilter(
+				(void)(wlanoidSetPacketFilter(
 						prAdapter, &rSetRxPacketFilter,
-						FALSE, NULL, 0);
+						FALSE, NULL, 0));
 			}
 			/* DBGLOG(SW4, INFO,("SWCTRL_RX_FILTER:
 			 * g_u4RXFilter %x ucOpt0 %x ucOpt1 %x fgUpdate %x
@@ -719,9 +725,8 @@ void swCtrlCmdCategory0(struct ADAPTER *prAdapter,
 		}
 		break;
 		case SWCTRL_TX_CTRL_INFO: {
-			struct TX_CTRL *prTxCtrl;
 
-			prTxCtrl = &prAdapter->rTxCtrl;
+			
 			switch (ucOpt0) {
 			case 0:
 				g_au4SwCr[1] =
@@ -769,7 +774,6 @@ void swCtrlCmdCategory1(struct ADAPTER *prAdapter,
 			uint8_t ucOpt1)
 {
 	uint8_t ucIndex, ucRead;
-	uint8_t ucWTEntry;
 	struct STA_RECORD *prStaRec;
 
 	DEBUGFUNC("swCtrlCmdCategory1");
@@ -781,7 +785,7 @@ void swCtrlCmdCategory1(struct ADAPTER *prAdapter,
 
 	/* prStaRec = cnmGetStaRecByIndex (prAdapter, ucOpt0); */
 	prStaRec = &prAdapter->arStaRec[ucOpt0];
-	ucWTEntry = prStaRec->ucWlanIndex;
+	
 	if (ucRead == SWCR_WRITE) {
 		/* ToDo:: Nothing */
 	} else {
@@ -1068,7 +1072,6 @@ void testPsCmdCategory1(struct ADAPTER *prAdapter,
 			uint8_t ucOpt1)
 {
 	uint8_t ucIndex, ucRead;
-	uint8_t ucWTEntry;
 	struct STA_RECORD *prStaRec;
 
 	DEBUGFUNC("testPsCmdCategory1");
@@ -1085,7 +1088,7 @@ void testPsCmdCategory1(struct ADAPTER *prAdapter,
 		return;
 	}
 
-	ucWTEntry = prStaRec->ucWlanIndex;
+	
 	if (ucRead == SWCR_WRITE) {
 
 		switch (ucIndex) {

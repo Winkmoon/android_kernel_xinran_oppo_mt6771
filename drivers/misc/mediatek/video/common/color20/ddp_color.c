@@ -1113,8 +1113,6 @@ static unsigned int g_split_window_y_end = 0xFFFF;
 
 static unsigned long g_color0_dst_w;
 static unsigned long g_color0_dst_h;
-static unsigned long g_color1_dst_w;
-static unsigned long g_color1_dst_h;
 
 #if defined(CONFIG_MACH_MT6799)
 static unsigned int g_color_pos_x;
@@ -3247,8 +3245,8 @@ static int _color_config(enum DISP_MODULE_ENUM module,
 		g_color0_dst_w = pConfig->dst_w;
 		g_color0_dst_h = pConfig->dst_h;
 	} else {
-		g_color1_dst_w = pConfig->dst_w;
-		g_color1_dst_h = pConfig->dst_h;
+		
+		
 		offset = C1_OFFSET;
 #if defined(CONFIG_MACH_MT6595) || defined(CONFIG_MACH_MT6795)
 #ifndef CONFIG_FOR_SOURCE_PQ
@@ -3355,8 +3353,8 @@ static int _color_partial_update(enum DISP_MODULE_ENUM module,
 		g_color0_dst_w = width;
 		g_color0_dst_h = height;
 	} else {
-		g_color1_dst_w = width;
-		g_color1_dst_h = height;
+		
+		
 		offset = C1_OFFSET;
 #if defined(CONFIG_MACH_MT6595) || defined(CONFIG_MACH_MT6795)
 #ifndef CONFIG_FOR_SOURCE_PQ

@@ -664,7 +664,7 @@ int sched_get_nr_heavy_running_avg(int cluster_id, int *avg)
 	s64 diff;
 
 	u64 tmp_avg = 0, old_lgt;
-	u32 cpumask = 0;
+	u32 cpumask __maybe_unused = 0;
 	bool clk_faulty = 0;
 	unsigned long flags;
 	int cpu = 0;
@@ -807,7 +807,7 @@ int sched_get_nr_overutil_avg(int cluster_id, int *l_avg, int *h_avg)
 	u64 curr_time = sched_clock();
 	s64 diff;
 	u64 l_tmp_avg = 0, h_tmp_avg = 0;
-	u32 cpumask = 0;
+	u32 cpumask __maybe_unused = 0;
 	bool clk_faulty = 0;
 	unsigned long flags;
 	int cpu = 0;
@@ -915,8 +915,9 @@ static char met_log_info2[10][32] = {
 
 void sched_big_task_nr(int *L_nr, int *B_nr)
 {
+#if defined(MET_SCHED_DEBUG) && MET_SCHED_DEBUG
 	int l_avg, b_avg;
-	int l_nr, b_nr;
+#endif
 	int i;
 	int l_avg_time[MAX_CLUSTER_NR] = {0};
 	int h_avg_time[MAX_CLUSTER_NR] = {0};
@@ -947,11 +948,15 @@ void sched_big_task_nr(int *L_nr, int *B_nr)
 	 * that we call big task.
 	 *
 	 */
+#if defined(MET_SCHED_DEBUG) && MET_SCHED_DEBUG
 	l_avg = h_avg_time[0] + (l_avg_time[1] - h_avg_time[1]);
+#endif
+#if defined(MET_SCHED_DEBUG) && MET_SCHED_DEBUG
 	b_avg = h_avg_time[1] + l_avg_time[2];
+#endif
 
-	l_nr = _h_nr[0] + _h_nr[1];
-	b_nr = _h_nr[1] + _l_nr[2];
+	
+	
 
 	/* big core nr */
 	if (_l_nr[2]) {

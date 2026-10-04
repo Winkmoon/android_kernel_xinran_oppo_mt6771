@@ -179,7 +179,6 @@ static int adc_rtp_set = 1;
 #endif
 
 static dev_t auxadc_cali_devno;
-static int auxadc_cali_major;
 static struct cdev *auxadc_cali_cdev;
 static struct class *auxadc_cali_class;
 
@@ -569,7 +568,7 @@ int IMM_GetOneChannelValue_Cali(int Channel, int *voltage)
 static long auxadc_cali_unlocked_ioctl(struct file *file, unsigned int cmd,
 		unsigned long arg)
 {
-	int i = 0, ret = 0;
+	int i = 0;
 	long *user_data_addr;
 	long *nvram_data_addr;
 
@@ -582,7 +581,7 @@ static long auxadc_cali_unlocked_ioctl(struct file *file, unsigned int cmd,
 
 	case SET_ADC_CALI_Slop:
 		nvram_data_addr = (long *)arg;
-		ret = copy_from_user(auxadc_cali_slop, nvram_data_addr, 36);
+		(void)(copy_from_user(auxadc_cali_slop, nvram_data_addr, 36));
 		g_AUXADC_Cali = false;
 		/* Protection */
 		for (i = 0; i < ADC_CHANNEL_MAX; i++) {
@@ -597,7 +596,7 @@ static long auxadc_cali_unlocked_ioctl(struct file *file, unsigned int cmd,
 
 	case SET_ADC_CALI_Offset:
 		nvram_data_addr = (long *)arg;
-		ret = copy_from_user(auxadc_cali_offset, nvram_data_addr, 36);
+		(void)(copy_from_user(auxadc_cali_offset, nvram_data_addr, 36));
 		g_AUXADC_Cali = false;
 		for (i = 0; i < ADC_CHANNEL_MAX; i++)
 			pr_debug(TAG "auxadc_cali_offset[%d] = %d\n",
@@ -606,7 +605,7 @@ static long auxadc_cali_unlocked_ioctl(struct file *file, unsigned int cmd,
 
 	case SET_ADC_CALI_Cal:
 		nvram_data_addr = (long *)arg;
-		ret = copy_from_user(auxadc_cali_cal, nvram_data_addr, 4);
+		(void)(copy_from_user(auxadc_cali_cal, nvram_data_addr, 4));
 		/* enable calibration after setting AUXADC_CALI_Cal */
 		g_AUXADC_Cali = true;
 		if (auxadc_cali_cal[0] == 1)
@@ -618,8 +617,8 @@ static long auxadc_cali_unlocked_ioctl(struct file *file, unsigned int cmd,
 	case ADC_CHANNEL_READ:
 		g_AUXADC_Cali = false;
 		user_data_addr = (long *)arg;
-		ret = copy_from_user(auxadc_in_data, user_data_addr, 8);
-		ret = copy_to_user(user_data_addr, auxadc_out_data, 8);
+		(void)(copy_from_user(auxadc_in_data, user_data_addr, 8));
+		(void)(copy_to_user(user_data_addr, auxadc_out_data, 8));
 		pr_debug(TAG "AUXADC Channel %d * %d times = %d\n",
 				auxadc_in_data[0],
 			 auxadc_in_data[1], auxadc_out_data[0]);
@@ -1754,7 +1753,7 @@ static int mt_auxadc_probe(struct platform_device *dev)
 	if (ret)
 		pr_err(TAG "auxadc_cali Error: cdev_add\n");
 
-	auxadc_cali_major = MAJOR(auxadc_cali_devno);
+	(void)(MAJOR(auxadc_cali_devno));
 	auxadc_cali_class = class_create(THIS_MODULE, AUXADC_CALI_DEVNAME);
 	adc_dev = (struct device *)device_create(auxadc_cali_class,
 						 NULL, auxadc_cali_devno, NULL,

@@ -39,7 +39,6 @@ static struct kbase_gator_hwcnt_info info;
 static struct kbase_gator_hwcnt_handles *handle;
 static GPU_PMU *mali_pmus;
 static int name_offset_table[MALI_HWC_TYPES];
-static int mfg_is_power_on;
 static int binited;
 static uint32_t active_cycle;
 
@@ -472,7 +471,7 @@ static void _mtk_mfg_init_counter(void)
 	name_offset_table[TILER_BLOCK] = TILER_BLOCK_NAME_POS;
 	name_offset_table[SHADER_BLOCK] = SHADER_BLOCK_NAME_POS;
 	name_offset_table[MMU_L2_BLOCK] = MMU_BLOCK_NAME_POS;
-	mfg_is_power_on = 0;
+	
 	binited = 1;
 
 	/* Dump PMU info */
@@ -592,7 +591,7 @@ static void gpu_power_change_notify_mfg_counter(int power_on)
 		_mtk_mfg_reset_counter(PMU_OK);
 	}
 
-	mfg_is_power_on = power_on;
+	
 
 	mutex_unlock(&counter_info_lock);
 }
@@ -606,7 +605,7 @@ static int mali_get_gpu_pmu_init(GPU_PMU *pmus, int pmu_size, int *ret_size)
 
 	if (pmus) {
 		int i, j, cnt, block_type;
-		int nr_hwc_blocks, name_offset, data_offset;
+		int nr_hwc_blocks, name_offset;
 
 		mutex_lock(&counter_info_lock);
 
@@ -619,7 +618,7 @@ static int mali_get_gpu_pmu_init(GPU_PMU *pmus, int pmu_size, int *ret_size)
 				continue;
 
 			name_offset = name_offset_table[block_type] * MALI_COUNTERS_PER_BLOCK;
-			data_offset = i * MALI_COUNTERS_PER_BLOCK;
+			
 			for (j = 0; j < MALI_COUNTERS_PER_BLOCK; j++) {
 				const char *name = hardware_counter_names[name_offset+j];
 
@@ -718,7 +717,7 @@ int mali_get_gpu_pmu_deinit(void)
 
 	kfree(mali_pmus);
 	binited = 0;
-	mfg_is_power_on = 0;
+	
 
 	mutex_unlock(&counter_info_lock);
 
@@ -734,7 +733,7 @@ void mtk_mfg_counter_init(void)
 
 	mtk_register_gpu_power_change("mfg_counter", gpu_power_change_notify_mfg_counter);
 	binited = 0;
-	mfg_is_power_on = 0;
+	
 
 }
 

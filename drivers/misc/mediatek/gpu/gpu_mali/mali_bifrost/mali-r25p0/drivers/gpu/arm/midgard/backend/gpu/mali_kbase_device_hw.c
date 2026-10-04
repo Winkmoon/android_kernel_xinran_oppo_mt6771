@@ -344,12 +344,11 @@ int kbase_gpu_wait_cache_clean_timeout(struct kbase_device *kbdev,
 
 void kbase_gpu_interrupt(struct kbase_device *kbdev, u32 val)
 {
-	bool clear_gpu_fault = false;
 
 	KBASE_KTRACE_ADD(kbdev, CORE_GPU_IRQ, NULL, val);
 	if (val & GPU_FAULT)
-		clear_gpu_fault = kbase_gpu_fault_interrupt(kbdev,
-					val & MULTIPLE_GPU_FAULTS);
+		(void)(kbase_gpu_fault_interrupt(kbdev,
+					val & MULTIPLE_GPU_FAULTS));
 
 	if (val & RESET_COMPLETED)
 		kbase_pm_reset_done(kbdev);

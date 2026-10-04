@@ -73,8 +73,6 @@ static char g_bind6[20] = { 0 };
 static char g_bind7[20] = { 0 };
 static char g_bind8[20] = { 0 };
 static char g_bind9[20] = { 0 };
-
-static long int mt6358tsbuck3_cur_temp;
 /*
  *static long int mt6358tsbuck3_start_temp;
  *static long int mt6358tsbuck3_end_temp;
@@ -84,7 +82,7 @@ static long int mt6358tsbuck3_cur_temp;
 static int mt6358tsbuck3_get_temp(struct thermal_zone_device *thermal, int *t)
 {
 	*t = mt6358tsbuck3_get_hw_temp();
-	mt6358tsbuck3_cur_temp = *t;
+	
 
 	if ((int)*t >= polling_trip_temp1)
 		thermal->polling_delay = interval * 1000;

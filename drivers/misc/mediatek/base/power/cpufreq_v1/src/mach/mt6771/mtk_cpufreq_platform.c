@@ -527,11 +527,10 @@ struct hp_action_tbl cpu_dvfs_hp_action[] = {
 };
 
 unsigned int nr_hp_action = ARRAY_SIZE(cpu_dvfs_hp_action);
-static int can_turbo;
 void mt_cpufreq_turbo_action(unsigned long action,
 	unsigned int *cpus, enum mt_cpu_dvfs_id cluster_id)
 {
-	can_turbo = 0;
+	
 }
 
 int mt_cpufreq_turbo_config(enum mt_cpu_dvfs_id id,
@@ -572,7 +571,9 @@ int mt_cpufreq_dts_map(void)
 unsigned int _mt_cpufreq_get_cpu_level(void)
 {
 	unsigned int lv = CPU_LEVEL_0;
+#if defined(LV)
 	unsigned int buf = CPU_LEVEL_0;
+#endif
 	unsigned int temp = 0;
 	unsigned int segcode = 0;
 	unsigned int bincode = 0;
@@ -609,7 +610,9 @@ unsigned int _mt_cpufreq_get_cpu_level(void)
 	if (a_code == 1)
 		lv = CPU_LEVEL_7;	/* V5_4 */
 
+#if defined(LV)
 	buf = lv;
+#endif
 	if (turbocode == 1)
 		lv = CPU_LEVEL_6;	/* V5_T */
 

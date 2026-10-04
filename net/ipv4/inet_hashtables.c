@@ -512,7 +512,6 @@ void inet_unhash(struct sock *sk)
 {
 	struct inet_hashinfo *hashinfo = sk->sk_prot->h.hashinfo;
 	spinlock_t *lock;
-	bool listener = false;
 	int done;
 
 	if (sk_unhashed(sk))
@@ -520,7 +519,7 @@ void inet_unhash(struct sock *sk)
 
 	if (sk->sk_state == TCP_LISTEN) {
 		lock = &hashinfo->listening_hash[inet_sk_listen_hashfn(sk)].lock;
-		listener = true;
+		
 	} else {
 		lock = inet_ehash_lockp(hashinfo, sk->sk_hash);
 	}

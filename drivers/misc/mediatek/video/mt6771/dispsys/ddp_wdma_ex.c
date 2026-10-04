@@ -986,13 +986,11 @@ static inline int wdma_switch_to_sec(enum DISP_MODULE_ENUM module, void *handle)
 	unsigned int wdma_idx = wdma_index(module);
 	/* int *wdma_is_sec = svp_pgc->module_sec.wdma_sec; */
 	enum CMDQ_ENG_ENUM cmdq_engine;
-	enum CMDQ_EVENT_ENUM cmdq_event;
 
 	/* cmdq_engine = module_to_cmdq_engine(module); */
 	cmdq_engine = wdma_idx == 0 ?  CMDQ_ENG_DISP_WDMA0 :
 						CMDQ_ENG_DISP_WDMA1;
-	cmdq_event  = wdma_idx == 0 ?  CMDQ_EVENT_DISP_WDMA0_EOF :
-						CMDQ_EVENT_DISP_WDMA1_EOF;
+	
 
 	cmdqRecSetSecure(handle, 1);
 	/* set engine as sec */

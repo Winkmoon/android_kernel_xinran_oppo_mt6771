@@ -422,12 +422,11 @@ inline void __dbg_add_host_log(struct mmc_host *mmc, int type,
 inline void __dbg_add_sd_log(struct mmc_host *mmc, int type,
 			int cmd, int arg)
 {
-	unsigned long long t, tn;
+	unsigned long long t;
 	unsigned long long nanosec_rem;
 	static int last_cmd, last_arg, skip;
 	int l_skip = 0;
 	struct msdc_host *host = mmc_priv(mmc);
-	static int tag = -1;
 
 	/* only log msdc1 */
 	if (!host || host->id == 0)
@@ -437,7 +436,7 @@ inline void __dbg_add_sd_log(struct mmc_host *mmc, int type,
 
 	switch (type) {
 	case 0: /* normal - cmd */
-		tn = t;
+		(void)(t);
 		nanosec_rem = do_div(t, 1000000000)/1000;
 
 		dbg_run_sd_log_dat[dbg_sd_cnt].time_sec = t;
@@ -669,11 +668,8 @@ void sd_cmd_dump(char **buff, unsigned long *size, struct seq_file *m,
 	struct mmc_host *mmc, u32 latest_cnt)
 {
 	int i, j;
-	int tag = -1;
-	int is_read, is_rel, is_fprg;
 	unsigned long long time_sec, time_usec;
-	int type, cmd, arg, skip, cnt, cpu;
-	unsigned long active_reqs;
+	int type, cmd, arg, skip;
 	struct msdc_host *host;
 	u32 dump_cnt;
 
@@ -924,12 +920,11 @@ void msdc_cmdq_status_print(struct msdc_host *host, struct seq_file *m)
 
 void msdc_cmdq_func(struct msdc_host *host, const int num, struct seq_file *m)
 {
-	void __iomem *base;
 
 	if (!host || !host->mmc || !host->mmc->card)
 		return;
 
-	base = host->base;
+	
 
 	switch (num) {
 	case 0:
@@ -2358,7 +2353,6 @@ int g_count;
 static int msdc_debug_proc_show(struct seq_file *m, void *v)
 {
 	int cmd = -1;
-	int sscanf_num;
 	int p1, p2, p3, p4, p5, p6, p7, p8;
 	int id, zone;
 	int mode;
@@ -2383,8 +2377,8 @@ static int msdc_debug_proc_show(struct seq_file *m, void *v)
 	cmd_buf[g_count] = '\0';
 	seq_printf(m, "Debug Command:  %s\n", cmd_buf);
 
-	sscanf_num = sscanf(cmd_buf, "%x %x %x %x %x %x %x %x %x", &cmd,
-		&p1, &p2, &p3, &p4, &p5, &p6, &p7, &p8);
+	(void)(sscanf(cmd_buf, "%x %x %x %x %x %x %x %x %x", &cmd,
+		&p1, &p2, &p3, &p4, &p5, &p6, &p7, &p8));
 
 	/* clear buffer */
 	g_count = 0;
@@ -2616,7 +2610,7 @@ static int msdc_debug_proc_show(struct seq_file *m, void *v)
 		if (id >= HOST_MAX_NUM || id < 0)
 			goto invalid_host_id;
 
-			host = mtk_msdc_host[id];
+		host = mtk_msdc_host[id];
 		if (p1 == 1) {
 			mmc_get_card(host->mmc->card);
 			msdc_set_host_mode_speed(m, host->mmc, spd_mode);
@@ -2949,7 +2943,7 @@ static const struct file_operations sdcard_intr_gpio_value_fops = {
 static int msdc_##name##_show(struct seq_file *m, void *v) \
 { \
 	struct msdc_host *host;	\
-	struct mmc_card *card;	\
+	struct mmc_card *card __maybe_unused;	\
 	host = mtk_msdc_host[0]; \
 	card = host->mmc->card; \
 	seq_printf(m, fmt, args); \

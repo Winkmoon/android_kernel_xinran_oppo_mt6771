@@ -2349,7 +2349,6 @@ __priv_ate_set(IN struct net_device *prNetDev,
 	     IN union iwreq_data *prIwReqData,
 	     IN char *pcExtra)
 {
-	int32_t i4Status;
 	/* uint8_t *InBuf;
 	 * uint8_t *addr_str, *value_str;
 	 * uint32_t InBufLen;
@@ -2387,8 +2386,8 @@ __priv_ate_set(IN struct net_device *prNetDev,
 		       "PRIV_QACMD_SET: priv_set_string=(%s)(%u,%d)\n",
 		       aucOidBuf, u4CopySize,
 		       (int32_t)prIwReqData->data.length);
-		i4Status = AteCmdSetHandle(prNetDev, &aucOidBuf[0],
-					   u4CopySize);
+		(void)(AteCmdSetHandle(prNetDev, &aucOidBuf[0],
+					   u4CopySize));
 		break;
 	default:
 		return -EOPNOTSUPP;
@@ -2465,7 +2464,6 @@ priv_set_driver(IN struct net_device *prNetDev,
 		IN struct iw_request_info *prIwReqInfo,
 		IN union iwreq_data *prIwReqData, IN OUT char *pcExtra)
 {
-	uint32_t u4SubCmd = 0;
 	uint16_t u2Cmd = 0;
 
 	struct GLUE_INFO *prGlueInfo = NULL;
@@ -2483,7 +2481,7 @@ priv_set_driver(IN struct net_device *prNetDev,
 	u2Cmd = prIwReqInfo->cmd;
 	DBGLOG(REQ, INFO, "prIwReqInfo->cmd %u\n", u2Cmd);
 
-	u4SubCmd = (uint32_t) prIwReqData->data.flags;
+	
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
 	ASSERT(prGlueInfo);
 	if (!prGlueInfo) {
@@ -3103,7 +3101,6 @@ struct android_wifi_priv_cmd {
 int priv_driver_get_dbg_level(IN struct net_device
 			      *prNetDev, IN char *pcCommand, IN int i4TotalLen)
 {
-	struct GLUE_INFO *prGlueInfo = NULL;
 	int32_t i4BytesWritten = 0;
 	int32_t i4Argc = 0;
 	int8_t *apcArgv[WLAN_CFG_ARGV_MAX] = {0};
@@ -3114,7 +3111,7 @@ int priv_driver_get_dbg_level(IN struct net_device
 	ASSERT(prNetDev);
 	if (GLUE_CHK_PR2(prNetDev, pcCommand) == FALSE)
 		return -1;
-	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
+	(void)(*((struct GLUE_INFO **) netdev_priv(prNetDev)));
 
 	DBGLOG(REQ, LOUD, "command is %s\n", pcCommand);
 	wlanCfgParseArgument(pcCommand, &i4Argc, apcArgv);
@@ -3161,7 +3158,6 @@ static int priv_driver_set_efuse_buffer_mode(
 	IN int i4TotalLen)
 {
 	struct GLUE_INFO *prGlueInfo = NULL;
-	struct ADAPTER *prAdapter = NULL;
 	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	uint32_t u4BufLen = 0;
 	int32_t i4Argc = 0;
@@ -3177,7 +3173,7 @@ static int priv_driver_set_efuse_buffer_mode(
 	uint32_t u4ConfigReadLen;
 
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
-	prAdapter = prGlueInfo->prAdapter;
+	
 
 	wlanCfgParseArgument(pcCommand, &i4Argc, apcArgv);
 
@@ -3266,7 +3262,6 @@ static int priv_driver_get_rx_statistics(IN struct net_device *prNetDev,
 	int32_t i4BytesWritten = 0;
 	int32_t i4Argc = 0;
 	int8_t *apcArgv[WLAN_CFG_ARGV_MAX] = {0};
-	int32_t u4Ret = 0;
 	struct PARAM_CUSTOM_ACCESS_RX_STAT rRxStatisticsTest;
 
 	ASSERT(prNetDev);
@@ -3282,8 +3277,8 @@ static int priv_driver_get_rx_statistics(IN struct net_device *prNetDev,
 	       "MT6632 : priv_driver_get_rx_statistics\n");
 
 	if (i4Argc >= 2) {
-		u4Ret = kalkStrtou32(apcArgv[1], 0,
-				     &(rRxStatisticsTest.u4SeqNum));
+		(void)(kalkStrtou32(apcArgv[1], 0,
+				     &(rRxStatisticsTest.u4SeqNum)));
 		rRxStatisticsTest.u4TotalNum = sizeof(struct
 						      PARAM_RX_STAT) / 4;
 
@@ -4253,7 +4248,6 @@ static int priv_driver_get_mib_info(IN struct net_device *prNetDev,
 	int32_t i4Argc = 0;
 	uint8_t i;
 	uint32_t u4Per;
-	int32_t u4Ret = 0;
 	int8_t *apcArgv[WLAN_CFG_ARGV_MAX] = {0};
 	struct PARAM_HW_MIB_INFO *prHwMibInfo;
 	struct RX_CTRL *prRxCtrl;
@@ -4280,7 +4274,7 @@ static int priv_driver_get_mib_info(IN struct net_device *prNetDev,
 		prHwMibInfo->u4Index = 0;
 
 	if (i4Argc >= 2)
-		u4Ret = kalkStrtou32(apcArgv[1], 0, &prHwMibInfo->u4Index);
+		(void)(kalkStrtou32(apcArgv[1], 0, &prHwMibInfo->u4Index));
 
 	DBGLOG(REQ, INFO, "MT6632 : index = %d\n", prHwMibInfo->u4Index);
 
@@ -5465,7 +5459,6 @@ static int32_t priv_driver_txpower_man_set(IN struct net_device *prNetDev,
 					IN char *pcCommand, IN int i4TotalLen)
 {
 	struct GLUE_INFO *prGlueInfo = NULL;
-	struct ADAPTER *prAdapter = NULL;
 	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	uint32_t u4BufLen = 0, u4Size = 0;
 	int32_t i4BytesWritten = 0;
@@ -5483,7 +5476,7 @@ static int32_t priv_driver_txpower_man_set(IN struct net_device *prNetDev,
 	if (GLUE_CHK_PR2(prNetDev, pcCommand) == FALSE)
 		return -1;
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
-	prAdapter = prGlueInfo->prAdapter;
+	
 
 	DBGLOG(REQ, INFO, "command is %s\n", pcCommand);
 	wlanCfgParseArgument(pcCommand, &i4Argc, apcArgv);
@@ -7741,7 +7734,9 @@ int priv_driver_set_chip_config(IN struct net_device *prNetDev,
 {
 	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	struct GLUE_INFO *prGlueInfo = NULL;
+#if (CFG_SUPPORT_802_11AX == 1)
 	struct ADAPTER *prAdapter = NULL;
+#endif
 	uint32_t u4BufLen = 0;
 	int32_t i4BytesWritten = 0;
 	uint32_t u4CmdLen = 0;
@@ -7762,7 +7757,9 @@ int priv_driver_set_chip_config(IN struct net_device *prNetDev,
 		return -1;
 	}
 
+#if (CFG_SUPPORT_802_11AX == 1)
 	prAdapter = prGlueInfo->prAdapter;
+#endif
 	DBGLOG(REQ, LOUD, "command is %s\n", pcCommand);
 	/* wlanCfgParseArgument(pcCommand, &i4Argc, apcArgv); */
 	/* DBGLOG(REQ, LOUD,("argc is %i\n",i4Argc)); */
@@ -7868,7 +7865,6 @@ int priv_driver_get_chip_config(IN struct net_device *prNetDev,
 {
 	uint32_t rStatus = WLAN_STATUS_SUCCESS;
 	struct GLUE_INFO *prGlueInfo = NULL;
-	struct ADAPTER *prAdapter = NULL;
 	int32_t i4BytesWritten = 0;
 	uint32_t u4BufLen = 0;
 	uint32_t u2MsgSize = 0;
@@ -7884,7 +7880,7 @@ int priv_driver_get_chip_config(IN struct net_device *prNetDev,
 		return -1;
 
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
-	prAdapter = prGlueInfo->prAdapter;
+	
 
 	DBGLOG(REQ, LOUD, "command is %s\n", pcCommand);
 	/* wlanCfgParseArgument(pcCommand, &i4Argc, apcArgv); */
@@ -8209,8 +8205,6 @@ int priv_driver_set_csa(IN struct net_device *prNetDev,
 int priv_driver_get_country(IN struct net_device *prNetDev,
 			    IN char *pcCommand, IN int i4TotalLen)
 {
-
-	struct GLUE_INFO *prGlueInfo = NULL;
 	int32_t i4Argc = 0;
 	int8_t *apcArgv[WLAN_CFG_ARGV_MAX] = {0};
 	uint32_t i4BytesWritten = 0;
@@ -8219,7 +8213,7 @@ int priv_driver_get_country(IN struct net_device *prNetDev,
 	ASSERT(prNetDev);
 	if (GLUE_CHK_PR2(prNetDev, pcCommand) == FALSE)
 		return -1;
-	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
+	(void)(*((struct GLUE_INFO **) netdev_priv(prNetDev)));
 
 	DBGLOG(REQ, LOUD, "command is %s\n", pcCommand);
 	wlanCfgParseArgument(pcCommand, &i4Argc, apcArgv);
@@ -8249,7 +8243,6 @@ int priv_driver_get_channels(IN struct net_device *prNetDev,
 	struct CMD_DOMAIN_CHANNEL *pCh;
 	uint32_t ch_num = 0;
 	uint8_t maxbw = 160;
-	uint32_t u4Ret = 0;
 #endif
 
 	ASSERT(prNetDev);
@@ -8283,7 +8276,7 @@ int priv_driver_get_channels(IN struct net_device *prNetDev,
 				+ rlmDomainGetActiveChannelCount(KAL_BAND_5GHZ);
 		if (i4Argc >= 2)
 			/* Dump only specified channel */
-			u4Ret = kalkStrtou32(apcArgv[1], 0, &ch_num);
+			(void)(kalkStrtou32(apcArgv[1], 0, &ch_num));
 	}
 
 	if (regd_is_single_sku_en()) {
@@ -8633,16 +8626,15 @@ int parseValueInString(
 	IN void *aucValue,
 	IN int u4MaxLen)
 {
-	uint8_t *pcPtr;
 	uint32_t u4Len;
 	uint8_t *pucValueHead = NULL;
 	uint8_t *pucValueTail = NULL;
 
 	if (*pcCommand
 		&& !kalStrnCmp(*pcCommand, acDelim, kalStrLen(acDelim))) {
-		pcPtr = kalStrSep(pcCommand, "=,");
+		(void)(kalStrSep(pcCommand, "=,"));
 		pucValueHead = *pcCommand;
-		pcPtr = kalStrSep(pcCommand, "=,");
+		(void)(kalStrSep(pcCommand, "=,"));
 		DBGLOG(REQ, TRACE, "pucValueHead = %s\n", pucValueHead);
 		if (pucValueHead) {
 			u4Len = kalStrLen(pucValueHead);
@@ -8931,7 +8923,6 @@ int priv_driver_set_ap_sta_disassoc(IN struct net_device *prNetDev,
 				  IN char *pcCommand, IN int i4TotalLen)
 {
 	struct GLUE_INFO *prGlueInfo = NULL;
-	struct ADAPTER *prAdapter = NULL;
 	uint8_t aucValue[WLAN_CFG_ARGV_MAX] = {0};
 	uint8_t ucRoleIdx = 0;
 	int32_t i4BytesWritten = 0;
@@ -8945,7 +8936,7 @@ int priv_driver_set_ap_sta_disassoc(IN struct net_device *prNetDev,
 		goto error;
 
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
-	prAdapter = prGlueInfo->prAdapter;
+	
 
 	/* get role index from ndev */
 	if (mtk_Netdev_To_RoleIdx(prGlueInfo, prNetDev, &ucRoleIdx) != 0)
@@ -9040,7 +9031,6 @@ __priv_set_ap(IN struct net_device *prNetDev,
 	IN struct iw_request_info *prIwReqInfo,
 	IN union iwreq_data *prIwReqData, IN OUT char *pcExtra)
 {
-	uint32_t u4SubCmd = 0;
 	uint16_t u2Cmd = 0;
 	int32_t i4TotalFixLen = 1024;
 	int32_t i4CmdFound = 0;
@@ -9059,7 +9049,7 @@ __priv_set_ap(IN struct net_device *prNetDev,
 	u2Cmd = prIwReqInfo->cmd;
 	DBGLOG(REQ, INFO, "prIwReqInfo->cmd %x\n", u2Cmd);
 
-	u4SubCmd = (uint32_t) prIwReqData->data.flags;
+	
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
 	ASSERT(prGlueInfo);
 	if (!prGlueInfo) {
@@ -11660,7 +11650,6 @@ static int priv_driver_efuse_ops(IN struct net_device *prNetDev,
 	uint8_t ucOpChar;
 	int32_t i4Argc = 0;
 	int8_t *apcArgv[WLAN_CFG_ARGV_MAX] = {0};
-	uint32_t u4Ret;
 	int32_t i4Parameter = 0;
 	uint32_t u4Efuse_addr = 0;
 	uint8_t ucEfuse_value = 0;
@@ -11693,13 +11682,13 @@ static int priv_driver_efuse_ops(IN struct net_device *prNetDev,
 
 	/* convert address */
 	if (ucOpMode == EFUSE_READ || ucOpMode == EFUSE_WRITE) {
-		u4Ret = kalkStrtos32(apcArgv[2], 16, &i4Parameter);
+		(void)(kalkStrtos32(apcArgv[2], 16, &i4Parameter));
 		u4Efuse_addr = (uint32_t)i4Parameter;
 	}
 
 	/* convert value */
 	if (ucOpMode == EFUSE_WRITE) {
-		u4Ret = kalkStrtos32(apcArgv[3], 16, &i4Parameter);
+		(void)(kalkStrtos32(apcArgv[3], 16, &i4Parameter));
 		ucEfuse_value = (uint8_t)i4Parameter;
 	}
 
@@ -13161,7 +13150,9 @@ static int priv_driver_run_hqa(
 	IN char *pcCommand,
 	IN int i4TotalLen)
 {
+#if (CONFIG_WLAN_SERVICE == 1)
 	struct GLUE_INFO *prGlueInfo = NULL;
+#endif
 	int32_t i4BytesWritten = 0;
 	int8_t *this_char = NULL;
 #if (CONFIG_WLAN_SERVICE == 1)
@@ -13180,7 +13171,9 @@ static int priv_driver_run_hqa(
 	ASSERT(prNetDev);
 	if (GLUE_CHK_PR2(prNetDev, pcCommand) == FALSE)
 		return -1;
+#if (CONFIG_WLAN_SERVICE == 1)
 	prGlueInfo = *((struct GLUE_INFO **) netdev_priv(prNetDev));
+#endif
 
 	DBGLOG(REQ, LOUD, "command is %s\n", pcCommand);
 

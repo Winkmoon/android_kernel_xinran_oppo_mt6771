@@ -1026,7 +1026,7 @@ void primary_display_idlemgr_leave_idle_nolock(void)
 int primary_display_request_dvfs_perf(int scenario, int req)
 {
 #ifdef MTK_FB_MMDVFS_SUPPORT
-	int step = MMDVFS_FINE_STEP_UNREQUEST;
+	int step __maybe_unused = MMDVFS_FINE_STEP_UNREQUEST;
 	enum HRT_OPP_LEVEL opp_level = HRT_OPP_LEVEL_DEFAULT;
 #ifdef CONFIG_MTK_QOS_SUPPORT
 	unsigned int emi_opp, mm_freq;
@@ -1102,14 +1102,13 @@ unsigned int disp_lp_set_idle_check_interval(unsigned int new_interval)
 
 static int _primary_path_idlemgr_monitor_thread(void *data)
 {
-	int ret = 0;
 	unsigned long long t_to_check = 0;
 	unsigned long long t_idle;
 
 	msleep(16000);
 	while (1) {
-		ret = wait_event_interruptible(idlemgr_pgc->idlemgr_wait_queue,
-					atomic_read(&idlemgr_task_active));
+		(void)(wait_event_interruptible(idlemgr_pgc->idlemgr_wait_queue,
+					atomic_read(&idlemgr_task_active)));
 
 		t_idle = local_clock() - idlemgr_pgc->idlemgr_last_kick_time;
 		t_to_check = idle_check_interval * 1000ULL * 1000ULL - t_idle;

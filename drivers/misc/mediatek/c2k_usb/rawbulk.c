@@ -330,7 +330,7 @@ static ssize_t rawbulk_attr_store(struct device *dev,
 #else
 		{
 #endif
-			int ret;
+			int ret __maybe_unused;
 
 			ret = kstrtol(buf, 0, &tmp);
 			enable = (int)tmp;
@@ -454,26 +454,26 @@ static ssize_t rawbulk_attr_store(struct device *dev,
 	} else if (idx == ATTR_DTR) {
 		if (fn->transfer_id == RAWBULK_TID_MODEM) {
 			if (check_enable_state(fn)) {
-				int val, ret;
+				int val;
 				long tmp = 0;
 
-				ret = kstrtol(buf, 0, &tmp);
+				(void)(kstrtol(buf, 0, &tmp));
 				val = (int)tmp;
 				modem_dtr_set(val, 1);
 			}
 		}
 	} else if (idx == ATTR_AUTORECONN) {
-		int val, ret;
+		int val;
 		long tmp = 0;
 
-		ret = kstrtol(buf, 0, &tmp);
+		(void)(kstrtol(buf, 0, &tmp));
 		val = (int)tmp;
 		fn->autoreconn = !!val;
 	} else {
-		int val, ret;
+		int val;
 		long tmp = 0;
 
-		ret = kstrtol(buf, 0, &tmp);
+		(void)(kstrtol(buf, 0, &tmp));
 		val = (int)tmp;
 		switch (idx) {
 		case ATTR_NUPS:

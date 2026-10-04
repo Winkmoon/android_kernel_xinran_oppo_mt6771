@@ -221,7 +221,7 @@ static int moisture_int_r = 47000;
 static int moisture_ext_r = 470000;
 
 static bool debug_thread_en;
-static bool dump_reg;
+static bool dump_reg __maybe_unused;
 static struct task_struct *thread;
 
 static void accdet_init_once(void);

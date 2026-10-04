@@ -2432,14 +2432,12 @@ static void cmdq_mdp_begin_task_virtual(struct cmdqRecStruct *handle,
 			} else {
 				struct cmdqRecStruct *prevTask =
 					handle_list[i - 1];
-				struct mdp_pmqos *mdp_prev_pmqos;
 				struct mdp_pmqos_record *mdp_prev_record;
 
 				if (!prevTask)
 					continue;
 
-				mdp_prev_pmqos =
-					(struct mdp_pmqos *)prevTask->prop_addr;
+				
 				mdp_prev_record =
 					(struct mdp_pmqos_record *)
 					prevTask->user_private;
@@ -2619,7 +2617,7 @@ static void cmdq_mdp_end_task_virtual(struct cmdqRecStruct *handle,
 {
 #ifdef CONFIG_MTK_SMI_EXT
 	struct mdp_pmqos *mdp_curr_pmqos;
-	struct mdp_pmqos *target_pmqos;
+	struct mdp_pmqos *target_pmqos __maybe_unused;
 	struct mdp_pmqos *mdp_list_pmqos;
 	struct mdp_pmqos_record *pmqos_curr_record;
 	struct mdp_pmqos_record *pmqos_list_record;

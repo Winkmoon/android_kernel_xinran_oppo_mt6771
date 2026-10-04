@@ -998,8 +998,6 @@ struct mt_fh_hal_driver *mt_get_fh_hal_drv(void)
 /* [Purpose]: control PLL for each cluster */
 int mt_pause_armpll(unsigned int pll, unsigned int pause)
 {
-	/* unsigned long flags = 0; */
-	unsigned long reg_cfg = 0;
 	struct fhctl_ipi_data ipi_data;
 
 	if (g_initialize == 0) {
@@ -1014,7 +1012,7 @@ int mt_pause_armpll(unsigned int pll, unsigned int pause)
 	case FH_PLL0:
 	case FH_PLL1:
 	case FH_PLL2:
-		reg_cfg = g_reg_cfg[pll];
+		(void)(g_reg_cfg[pll]);
 		FH_MSG_DEBUG("(FHCTLx_CFG): 0x%x", fh_read32(g_reg_cfg[pll]));
 		break;
 	default:

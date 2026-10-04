@@ -562,7 +562,6 @@ static int primary_display_check_recovery_worker_kthread(void *data)
 int primary_display_esd_recovery(void)
 {
 	enum DISP_STATUS ret = DISP_STATUS_OK;
-	struct LCM_PARAMS *lcm_param = NULL;
 	mmp_event mmp_r = ddp_mmp_get_events()->esd_recovery_t;
 
 	DISPFUNC();
@@ -574,7 +573,7 @@ int primary_display_esd_recovery(void)
 	mmprofile_log_ex(mmp_r, MMPROFILE_FLAG_PULSE,
 			 primary_display_is_video_mode(), 1);
 
-	lcm_param = disp_lcm_get_params(primary_get_lcm());
+	(void)(disp_lcm_get_params(primary_get_lcm()));
 	if (primary_get_state() == DISP_SLEPT) {
 		DISPCHECK("[ESD]Primary DISP is slept, skip esd recovery\n");
 		goto done;

@@ -217,7 +217,6 @@ static ssize_t mtk_gpio_store_pin(struct device *dev,
 	char attrs[12];
 	struct mtk_pinctrl *hw = dev_get_drvdata(dev);
 	const struct mtk_pin_desc *desc;
-	struct gpio_chip *chip;
 	int r1r0_en[4] = {MTK_PUPD_SET_R1R0_00, MTK_PUPD_SET_R1R0_01,
 			  MTK_PUPD_SET_R1R0_10, MTK_PUPD_SET_R1R0_11};
 
@@ -226,7 +225,7 @@ static ssize_t mtk_gpio_store_pin(struct device *dev,
 		return count;
 	}
 
-	chip = &hw->chip;
+	
 
 	if (!strncmp(buf, "mode", 4)
 		&& (sscanf(buf+4, "%d %d", &gpio, &val) == 2)) {

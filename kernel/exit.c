@@ -810,10 +810,8 @@ static inline void check_stack_usage(void) {}
 static bool is_zygote_process(struct task_struct *t)
 {
 	const struct cred *tcred = __task_cred(t);
-
-	struct task_struct * first_child = NULL;
 	if(t->children.next && t->children.next != (struct list_head*)&t->children.next)
-		first_child = container_of(t->children.next, struct task_struct, sibling);
+		(void)(container_of(t->children.next, struct task_struct, sibling));
 	if(!strcmp(t->comm, "main") && (tcred->uid.val == 0) && (t->parent != 0 && !strcmp(t->parent->comm,"init"))  )
 		return true;
 	else

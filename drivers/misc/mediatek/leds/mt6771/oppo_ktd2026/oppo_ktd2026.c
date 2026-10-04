@@ -636,7 +636,6 @@ static ssize_t set_breathlight_colour_store ( struct device *dev,
 	int riseMS = 0;
 	int onMS = 0;
 	int fallMS = 0;
-	int offMS = 0;
 	int EdgeMS_reg = 0;
 	int totalMS_reg =0;
 	int fallMS_reg = 0;
@@ -721,19 +720,19 @@ static ssize_t set_breathlight_colour_store ( struct device *dev,
 				riseMS = 300;
 				onMS = 130;
 				fallMS = 200;
-				offMS = 230;
+				
 			} else if (22 == data[3]) {
 				totalMS = 1250;
 				riseMS = 500;
 				onMS = 130;
 				fallMS = 500;
-				offMS = 100;
+				
 			} else if (44 == data[3]) {
 				totalMS = 870;
 				riseMS = 0;
 				onMS = 300;
 				fallMS = 300;
-				offMS = 100;
+				
 			}
 			totalMS_reg = timetoreg(totalMS,time_stable_buf,sizeof(time_stable_buf)/4); //tall
 			riseMS_reg = timetoreg(riseMS,time_edge_buf,sizeof(time_edge_buf)/4);//trise and tfall

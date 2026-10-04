@@ -389,7 +389,9 @@ int _gz_client_wait_ret(int32_t Fd, struct gz_syscall_cmd_param *data)
 {
 	ssize_t rc;
 	struct tipc_k_handle *handle;
+#if debugFg
 	int size;
+#endif
 
 	handle = _FdToHandle(Fd);
 	if (!handle) {
@@ -399,7 +401,9 @@ int _gz_client_wait_ret(int32_t Fd, struct gz_syscall_cmd_param *data)
 
 	rc = _tipc_k_read_retry(handle, (void *)data,
 				sizeof(struct gz_syscall_cmd_param), O_RDWR);
+#if debugFg
 	size = data->payload_size;
+#endif
 	KREE_DEBUG(" ===> %s: tipc_k_read(1) rc = %d.\n", __func__, (int)rc);
 	KREE_DEBUG(" ===> %s: data payload size = %d.\n", __func__, size);
 #if debugFg

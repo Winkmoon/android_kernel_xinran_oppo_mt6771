@@ -300,8 +300,6 @@ int __init rd_load_disk(int n)
 	create_dev("/dev/ram", MKDEV(RAMDISK_MAJOR, n));
 	return rd_load_image("/dev/root");
 }
-
-static int exit_code;
 static int decompress_error;
 static int crd_infd, crd_outfd;
 
@@ -332,7 +330,7 @@ static long __init compr_flush(void *window, unsigned long outcnt)
 static void __init error(char *x)
 {
 	printk(KERN_ERR "%s\n", x);
-	exit_code = 1;
+	
 	decompress_error = 1;
 }
 

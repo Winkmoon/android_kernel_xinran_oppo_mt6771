@@ -16,7 +16,7 @@ mmp_event ion_mmp_events[PROFILE_MAX];
 /*because avoid CamelCase, will modify after*/
 void ion_profile_init(void)
 {
-	mmp_event ion_event;
+	mmp_event ion_event __maybe_unused;
 
 	mmprofile_enable(1);
 

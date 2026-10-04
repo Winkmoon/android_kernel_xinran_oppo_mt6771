@@ -1028,7 +1028,6 @@ void halHifSwInfoUnInit(IN struct GLUE_INFO *prGlueInfo)
 	struct GL_HIF_INFO *prHifInfo = &prGlueInfo->rHifInfo;
 	struct list_head *prCur, *prNext;
 	struct TX_CMD_REQ *prTxCmdReq;
-	struct TX_DATA_REQ *prTxDataReq;
 
 	del_timer_sync(&prHifInfo->rSerTimer);
 
@@ -1042,7 +1041,7 @@ void halHifSwInfoUnInit(IN struct GLUE_INFO *prGlueInfo)
 	}
 
 	list_for_each_safe(prCur, prNext, &prHifInfo->rTxDataQ) {
-		prTxDataReq = list_entry(prCur, struct TX_DATA_REQ, list);
+		(void)(list_entry(prCur, struct TX_DATA_REQ, list));
 		list_del(prCur);
 		prHifInfo->u4TxDataQLen--;
 	}
@@ -1752,12 +1751,11 @@ u_int8_t halWpdmaWaitIdle(struct GLUE_INFO *prGlueInfo,
 
 void halWpdmaInitRing(struct GLUE_INFO *prGlueInfo, bool fgResetHif)
 {
-	struct GL_HIF_INFO *prHifInfo;
 	struct BUS_INFO *prBusInfo;
 
 	ASSERT(prGlueInfo);
 
-	prHifInfo = &prGlueInfo->rHifInfo;
+	
 	prBusInfo = prGlueInfo->prAdapter->chip_info->bus_info;
 
 	/* Set DMA global configuration except TX_DMA_EN and RX_DMA_EN bits */
@@ -1787,11 +1785,15 @@ void halWpdmaInitTxRing(IN struct GLUE_INFO *prGlueInfo)
 	struct RTMP_TX_RING *prTxRing = NULL;
 	struct RTMP_DMACB *prTxCell;
 	uint32_t i = 0, offset = 0, phy_addr = 0;
+#if (CFG_SUPPORT_CONNAC2X == 1)
 	struct mt66xx_chip_info *prChipInfo;
+#endif
 
 	prHifInfo = &prGlueInfo->rHifInfo;
 	prBusInfo = prGlueInfo->prAdapter->chip_info->bus_info;
+#if (CFG_SUPPORT_CONNAC2X == 1)
 	prChipInfo = prGlueInfo->prAdapter->chip_info;
+#endif
 
 	/* reset all TX Ring register */
 	for (i = 0; i < NUM_OF_TX_RING; i++) {
@@ -2264,13 +2266,11 @@ static bool halWpdmaWriteData(struct GLUE_INFO *prGlueInfo,
 			      struct MSDU_TOKEN_ENTRY *prToken,
 			      uint32_t u4Idx, uint32_t u4Num)
 {
-	struct GL_HIF_INFO *prHifInfo = NULL;
-	struct mt66xx_chip_info *prChipInfo;
 	bool fgIsLast = (u4Idx + 1) == u4Num;
 
 	ASSERT(prGlueInfo);
-	prHifInfo = &prGlueInfo->rHifInfo;
-	prChipInfo = prGlueInfo->prAdapter->chip_info;
+	
+	
 
 	/* Update Tx descriptor */
 	halTxUpdateCutThroughDesc(prGlueInfo, prMsduInfo, prFillToken,

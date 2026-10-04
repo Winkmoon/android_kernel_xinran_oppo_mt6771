@@ -59,7 +59,6 @@ int disp_partial_compute_ovl_roi(struct disp_frame_cfg_t *cfg,
 {
 	int i, j;
 	int disable_layer = 0;
-	struct OVL_CONFIG_STRUCT *old_ovl_cfg = NULL;
 	struct disp_rect layer_roi = {0, 0, 0, 0};
 
 	if (ddp_debug_force_roi()) {
@@ -109,7 +108,7 @@ int disp_partial_compute_ovl_roi(struct disp_frame_cfg_t *cfg,
 			break;
 		}
 		/* 4. deal with other cases:layer disable, dim layer */
-		old_ovl_cfg = &(old_cfg->ovl_config[input_cfg->layer_id]);
+		
 		rect_join(&layer_total_roi, result, result);
 
 		/* break if roi is full lcm */

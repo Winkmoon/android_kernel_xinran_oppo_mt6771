@@ -98,7 +98,6 @@ static int Audio_i2s0_SideGen_Get(struct snd_kcontrol *kcontrol,
 static int Audio_i2s0_SideGen_Set(struct snd_kcontrol *kcontrol,
 				  struct snd_ctl_elem_value *ucontrol)
 {
-	bool ret = false;
 	static int samplerate;
 	unsigned int u32AudioI2sOut = 0;
 	unsigned int u32Audio2ndI2sIn = 0;
@@ -132,9 +131,9 @@ static int Audio_i2s0_SideGen_Set(struct snd_kcontrol *kcontrol,
 	 * then use default i2s3/0.
 	 */
 	if (get_afe_platform_ops()->set_smartpa_i2s != NULL) {
-		ret = get_afe_platform_ops()->set_smartpa_i2s(
+		(void)(get_afe_platform_ops()->set_smartpa_i2s(
 			mi2s0_sidegen_control, hdoutput_control,
-			extcodec_echoref_control, mtk_soc_always_hd);
+			extcodec_echoref_control, mtk_soc_always_hd));
 		goto i2s_config_done;
 	}
 

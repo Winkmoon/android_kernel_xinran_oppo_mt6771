@@ -57,7 +57,9 @@ static struct vpu_device *vpu_device;
 static struct wakeup_source vpu_wake_lock;
 static struct list_head device_debug_list;
 static struct mutex debug_list_mutex;
+#ifdef CONFIG_MTK_GZ_SUPPORT_SDSP
 static bool sdsp_locked;
+#endif
 
 struct ion_client *my_ion_client;
 unsigned int efuse_data;
@@ -1220,7 +1222,9 @@ static long vpu_ioctl(struct file *flip, unsigned int cmd, unsigned long arg)
 			for (i = 0 ; i < MTK_VPU_CORE ; i++)
 				mutex_lock(&vpu_device->sdsp_control_mutex[i]);
 
+#ifdef CONFIG_MTK_GZ_SUPPORT_SDSP
 			sdsp_locked = true;
+#endif
 
 			LOG_WRN("SDSP_SEC_LOCK mutex-m lock\n");
 			ret = vpu_sdsp_get_power(user);
@@ -1270,7 +1274,9 @@ static long vpu_ioctl(struct file *flip, unsigned int cmd, unsigned long arg)
 					&vpu_device->sdsp_control_mutex[i]);
 			}
 
+#ifdef CONFIG_MTK_GZ_SUPPORT_SDSP
 			sdsp_locked = false;
+#endif
 			LOG_WRN("DSP_SEC_UNLOCK mutex-m unlock\n");
 		} else
 			LOG_WRN("DSP_SEC_UNLOCK fail!!\n");
@@ -1405,7 +1411,7 @@ static int vpu_probe(struct platform_device *pdev)
 	struct device *dev;
 	struct device_node *node;
 	unsigned int irq_info[3]; /* Record interrupts info from device tree */
-	struct device_node *smi_node = NULL;
+	struct device_node *smi_node __maybe_unused = NULL;
 	struct device_node *ipu_conn_node = NULL;
 
 	core = vpu_num_devs;
@@ -1642,7 +1648,9 @@ static int __init VPU_INIT(void)
 	int ret = 0, i = 0;
 
 	vpu_device = kzalloc(sizeof(struct vpu_device), GFP_KERNEL);
+#ifdef CONFIG_MTK_GZ_SUPPORT_SDSP
 	sdsp_locked = false;
+#endif
 
 	INIT_LIST_HEAD(&vpu_device->user_list);
 	mutex_init(&vpu_device->user_mutex);

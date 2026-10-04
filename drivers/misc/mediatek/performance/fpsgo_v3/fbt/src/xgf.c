@@ -454,7 +454,6 @@ static void xgf_hw_event_update(unsigned long long max_ts,
 	struct xgf_hw_event *iter;
 	struct hlist_node *t;
 	struct xgf_dep *xd;
-	struct xgf_hw_rec *xhr;
 
 	xgf_lockprove(__func__);
 
@@ -472,7 +471,7 @@ static void xgf_hw_event_update(unsigned long long max_ts,
 
 		iter->event_index = render->frame_count;
 
-		xhr = xgf_get_hw_rec(iter->event_type, iter->mid, render, 1);
+		(void)(xgf_get_hw_rec(iter->event_type, iter->mid, render, 1));
 	}
 }
 
@@ -1285,13 +1284,13 @@ void fpsgo_ctrl2xgf_switch_xgf(int val)
 void fpsgo_fstb2xgf_do_recycle(int fstb_active)
 {
 	unsigned long long now_ts = xgf_get_time();
-	long long diff, check_period, recycle_period;
+	long long diff, check_period;
 	struct xgf_hw_event *hw_iter;
 	struct hlist_node *hw_t;
 
 	/* over 1 seconds since last check2recycle */
 	check_period = NSEC_PER_SEC;
-	recycle_period = NSEC_PER_SEC >> 1;
+	
 	diff = (long long)now_ts - (long long)last_check2recycle_ts;
 
 	xgf_trace("xgf_do_recycle now:%llu last_check:%llu fstb_act:%d",

@@ -1258,7 +1258,6 @@ extern unsigned int upmu_get_rgs_chrdet(void);
 
 enum charger_type mt_charger_type_detection(void)
 {
-	int rc =0;
 	int addr = 0;
 	int val_buf;
 	int count = 0;
@@ -1280,10 +1279,10 @@ enum charger_type mt_charger_type_detection(void)
 	usleep_range(5000, 5200);
 	bq24190_config_interface(charger_ic, REG07_BQ24190_ADDRESS, 0x80, 0);
 	bq24190_dump_registers();
-	rc = bq24190_read_reg(charger_ic, REG07_BQ24190_ADDRESS, &val_buf);
+	(void)(bq24190_read_reg(charger_ic, REG07_BQ24190_ADDRESS, &val_buf));
 	while (val_buf == 0xcb && count <20) {
 		count++;
-		rc = bq24190_read_reg(charger_ic, REG07_BQ24190_ADDRESS, &val_buf);
+		(void)(bq24190_read_reg(charger_ic, REG07_BQ24190_ADDRESS, &val_buf));
 		usleep_range(50000, 50200);
 		if (!upmu_get_rgs_chrdet()) {
 			MTK_CHR_Type_num = CHARGER_UNKNOWN;
@@ -1296,7 +1295,7 @@ enum charger_type mt_charger_type_detection(void)
 		return MTK_CHR_Type_num;
 	}
 	printk("mt_charger_type_detection2\n");
-	rc = bq24190_read_reg(charger_ic, addr, &val_buf);
+	(void)(bq24190_read_reg(charger_ic, addr, &val_buf));
 	printk("mt_charger_type_detection\n");
 	bq24190_dump_registers();
 	val_buf = val_buf & 0xc0;
@@ -1323,10 +1322,10 @@ enum charger_type mt_charger_type_detection(void)
 		usleep_range(5000, 5020);
 		bq24190_config_interface(charger_ic, REG07_BQ24190_ADDRESS, 0x80, 0);
 		bq24190_dump_registers();
-		rc = bq24190_read_reg(charger_ic, REG07_BQ24190_ADDRESS, &val_buf);
+		(void)(bq24190_read_reg(charger_ic, REG07_BQ24190_ADDRESS, &val_buf));
 		while (val_buf == 0xcb && count <20) {
 			count++;
-			rc = bq24190_read_reg(charger_ic, REG07_BQ24190_ADDRESS, &val_buf);
+			(void)(bq24190_read_reg(charger_ic, REG07_BQ24190_ADDRESS, &val_buf));
 			usleep_range(50000, 50200);
 			if (!upmu_get_rgs_chrdet()) {
 				MTK_CHR_Type_num = CHARGER_UNKNOWN;
@@ -1338,7 +1337,7 @@ enum charger_type mt_charger_type_detection(void)
 			chg_debug("count time out,return apple adapter\n");
 			return MTK_CHR_Type_num;
 		}
-		rc = bq24190_read_reg(charger_ic, addr, &val_buf);
+		(void)(bq24190_read_reg(charger_ic, addr, &val_buf));
 		bq24190_dump_registers();
 		val_buf = val_buf & 0xc0;
 		printk("val_buf =0x%x\n",val_buf);

@@ -277,7 +277,7 @@ sys_timer_timesync_sync_base_internal(unsigned int flag)
 {
 	u64 tick, ts;
 	unsigned long irq_flags = 0;
-	int freeze, unfreeze;
+	int freeze;
 
 	spin_lock_irqsave(&timesync_cxt.lock, irq_flags);
 
@@ -288,7 +288,7 @@ sys_timer_timesync_sync_base_internal(unsigned int flag)
 	sys_timer_timesync_inc_ver();
 
 	freeze = (flag & SYS_TIMER_TIMESYNC_FLAG_FREEZE) ? 1 : 0;
-	unfreeze = (flag & SYS_TIMER_TIMESYNC_FLAG_UNFREEZE) ? 1 : 0;
+	
 
 	/* sync with sysram */
 	if (timesync_cxt.support_sysram) {

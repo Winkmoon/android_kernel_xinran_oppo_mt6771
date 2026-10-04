@@ -74,15 +74,15 @@ static DEFINE_MUTEX(leds_pmic_mutex);
  ***************************************************************************/
 #define CLK_DIV1 0
 
-static unsigned int bl_brightness_hal = 102;
+
 #ifdef CONFIG_MTK_PWM
-static unsigned int bl_duty_hal = 21;
+
 #endif
 static unsigned int bl_div_hal = CLK_DIV1;
 
 /* for button led don't do ISINK disable first time */
-static int button_flag_isink0;
-static int button_flag_isink1;
+static int button_flag_isink0 __maybe_unused;
+static int button_flag_isink1 __maybe_unused;
 struct wakeup_source leds_suspend_lock;
 struct cust_mt65xx_led *pled_dtsi;
 
@@ -111,7 +111,6 @@ static int debug_enable_led_hal = 1;
 #ifdef CONFIG_MTK_PWM
 static int time_array_hal[PWM_DIV_NUM] = {
 	256, 512, 1024, 2048, 4096, 8192, 16384, 32768 };
-static unsigned int backlight_PWM_div_hal = CLK_DIV1;
 static unsigned int div_array_hal[PWM_DIV_NUM] = {
 	1, 2, 4, 8, 16, 32, 64, 128 };
 #endif
@@ -589,7 +588,7 @@ int mt_backlight_set_pwm(int pwm_num, u32 level, u32 div,
 
 	if (config_data->div) {
 		pwm_setting.clk_div = config_data->div;
-		backlight_PWM_div_hal = config_data->div;
+		
 	} else
 		pwm_setting.clk_div = div;
 
@@ -779,7 +778,7 @@ int mt_mt65xx_led_set_cust(struct cust_mt65xx_led *cust, int level)
 	case MT65XX_LED_MODE_PWM:
 #ifdef CONFIG_MTK_PWM
 		if (strcmp(cust->name, "lcd-backlight") == 0) {
-			bl_brightness_hal = level;
+			
 			if (level == 0) {
 				mt_pwm_disable(cust->data,
 					cust->config_data.pmic_pad);
@@ -794,7 +793,7 @@ int mt_mt65xx_led_set_cust(struct cust_mt65xx_led *cust, int level)
 				mt_backlight_set_pwm(cust->data, level,
 					bl_div_hal, &cust->config_data);
 			}
-			bl_duty_hal = level;
+			
 		} else {
 			if (level == 0) {
 				led_tmp_setting.nled_mode = NLED_OFF;
@@ -836,14 +835,14 @@ int mt_mt65xx_led_set_cust(struct cust_mt65xx_led *cust, int level)
 
 	case MT65XX_LED_MODE_CUST_LCM:
 		if (strcmp(cust->name, "lcd-backlight") == 0)
-			bl_brightness_hal = level;
+			(void)(level);
 		LEDS_DEBUG("%s backlight control by LCM\n", __func__);
 		/* warning for this API revork */
 		return ((cust_brightness_set) (cust->data)) (level, bl_div_hal);
 
 	case MT65XX_LED_MODE_CUST_BLS_PWM:
 		if (strcmp(cust->name, "lcd-backlight") == 0)
-			bl_brightness_hal = level;
+			(void)(level);
 #ifdef MET_USER_EVENT_SUPPORT
 		if (enable_met_backlight_tag())
 			output_met_backlight_tag(level);

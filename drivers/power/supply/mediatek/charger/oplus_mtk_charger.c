@@ -684,7 +684,6 @@ int unregister_charger_manager_notifier(struct charger_consumer *consumer,
 
 static struct class *charger_class;
 static struct cdev *charger_cdev;
-static int charger_major;
 static dev_t charger_devno;
 
 static int is_slave_charger_exist(void)
@@ -777,7 +776,7 @@ void charger_ftm_init(void)
 		goto free_cdev;
 	}
 
-	charger_major = MAJOR(charger_devno);
+	(void)(MAJOR(charger_devno));
 	charger_class = class_create(THIS_MODULE, CHARGER_DEVNAME);
 	if (IS_ERR(charger_class)) {
 		chr_err("[%s] class_create failed\n", __func__);
@@ -1095,13 +1094,12 @@ static ssize_t store_charger_log_level(struct device *dev,
 		struct device_attribute *attr, const char *buf, size_t size)
 {
 	unsigned long val = 0;
-	int ret;
 
 	chr_err("%s\n", __func__);
 
 	if (buf != NULL && size != 0) {
 		chr_err("%s: buf is %s\n", __func__, buf);
-		ret = kstrtoul(buf, 10, &val);
+		(void)(kstrtoul(buf, 10, &val));
 		if (val < 0) {
 			chr_err("%s: val is inavlid: %ld\n", __func__, val);
 			val = 0;
@@ -3361,12 +3359,11 @@ static ssize_t store_input_current(struct device *dev,
 {
 	struct charger_manager *pinfo = dev->driver_data;
 	unsigned int reg = 0;
-	int ret;
 
 	pr_debug("[Battery] %s\n", __func__);
 	if (buf != NULL && size != 0) {
 		pr_debug("[Battery] buf is %s and size is %zu\n", buf, size);
-		ret = kstrtouint(buf, 16, &reg);
+		(void)(kstrtouint(buf, 16, &reg));
 		pinfo->chg1_data.thermal_input_current_limit = reg;
 		if (pinfo->data.parallel_vbus)
 			pinfo->chg2_data.thermal_input_current_limit = reg;
@@ -3394,12 +3391,11 @@ static ssize_t store_chg1_current(struct device *dev,
 {
 	struct charger_manager *pinfo = dev->driver_data;
 	unsigned int reg = 0;
-	int ret;
 
 	pr_debug("[Battery] %s\n", __func__);
 	if (buf != NULL && size != 0) {
 		pr_debug("[Battery] buf is %s and size is %zu\n", buf, size);
-		ret = kstrtouint(buf, 16, &reg);
+		(void)(kstrtouint(buf, 16, &reg));
 		pinfo->chg1_data.thermal_charging_current_limit = reg;
 		pr_debug("[Battery] %s: %x\n", __func__,
 			pinfo->chg1_data.thermal_charging_current_limit);
@@ -3424,12 +3420,11 @@ static ssize_t store_chg2_current(struct device *dev,
 {
 	struct charger_manager *pinfo = dev->driver_data;
 	unsigned int reg = 0;
-	int ret;
 
 	pr_debug("[Battery] %s\n", __func__);
 	if (buf != NULL && size != 0) {
 		pr_debug("[Battery] buf is %s and size is %zu\n", buf, size);
-		ret = kstrtouint(buf, 16, &reg);
+		(void)(kstrtouint(buf, 16, &reg));
 		pinfo->chg2_data.thermal_charging_current_limit = reg;
 		pr_debug("[Battery] %s: %x\n", __func__,
 			pinfo->chg2_data.thermal_charging_current_limit);
@@ -3454,12 +3449,11 @@ static ssize_t store_BatNotify(struct device *dev,
 {
 	struct charger_manager *pinfo = dev->driver_data;
 	unsigned int reg = 0;
-	int ret;
 
 	pr_debug("[Battery] store_BatteryNotify\n");
 	if (buf != NULL && size != 0) {
 		pr_debug("[Battery] buf is %s and size is %zu\n", buf, size);
-		ret = kstrtouint(buf, 16, &reg);
+		(void)(kstrtouint(buf, 16, &reg));
 		pinfo->notify_code = reg;
 		pr_debug("[Battery] store code: 0x%x\n", pinfo->notify_code);
 #if defined(VENDOR_EDIT) && !defined(CONFIG_OPLUS_CHARGER_MT6370_TYPEC)
@@ -3486,12 +3480,11 @@ static ssize_t store_BN_TestMode(struct device *dev,
 {
 	struct charger_manager *pinfo = dev->driver_data;
 	unsigned int reg = 0;
-	int ret;
 
 	pr_debug("[Battery] %s\n", __func__);
 	if (buf != NULL && size != 0) {
 		pr_debug("[Battery] buf is %s and size is %zu\n", buf, size);
-		ret = kstrtouint(buf, 16, &reg);
+		(void)(kstrtouint(buf, 16, &reg));
 		pinfo->notify_test_mode = reg;
 		pr_debug("[Battery] store mode: %x\n", pinfo->notify_test_mode);
 	}

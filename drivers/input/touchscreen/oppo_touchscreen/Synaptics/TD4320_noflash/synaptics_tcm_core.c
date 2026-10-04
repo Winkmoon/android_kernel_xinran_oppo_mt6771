@@ -817,9 +817,8 @@ exit:
 static int syna_get_default_report_config(struct syna_tcm_hcd *tcm_hcd)
 {
     int retval = 0;
-    unsigned int length;
 
-    length = le2_to_uint(tcm_hcd->app_info.max_touch_report_config_size);
+    (void)(le2_to_uint(tcm_hcd->app_info.max_touch_report_config_size));
 
     LOCK_BUFFER(tcm_hcd->default_config);
 

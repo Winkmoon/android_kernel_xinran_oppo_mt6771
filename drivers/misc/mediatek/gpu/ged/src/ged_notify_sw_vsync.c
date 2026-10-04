@@ -147,7 +147,9 @@ static void ged_notify_sw_sync_work_handle(struct work_struct *psWork)
 
 
 #ifdef ENABLE_COMMON_DVFS
+#ifdef GED_DVFS_DEBUG
 static unsigned long long hw_vsync_ts;
+#endif
 #endif
 
 
@@ -248,7 +250,9 @@ GED_ERROR ged_notify_sw_vsync(GED_VSYNC_TYPE eType,
 
 	psQueryData->ul3DFenceDoneTime = ul3DFenceDoneTime;
 
+#ifdef GED_DVFS_DEBUG
 	hw_vsync_ts = temp = ged_get_time();
+#endif
 
 
 	if (g_gpu_timer_based_emu) {
@@ -291,7 +295,9 @@ GED_ERROR ged_notify_sw_vsync(GED_VSYNC_TYPE eType,
 
 #endif // #ifdef ENABLE_TIMER_BACKUP
 	} else {
+#ifdef GED_DVFS_DEBUG
 		hw_vsync_ts = temp;
+#endif
 
 		llDiff = (long long)(hw_vsync_ts - sw_vsync_ts);
 

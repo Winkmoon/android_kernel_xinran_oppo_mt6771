@@ -253,8 +253,8 @@ static void connlog_ring_emi_to_cache(int conn_type)
 	struct ring_emi_segment ring_emi_seg;
 	struct ring_emi *ring_emi;
 	struct ring *ring_cache;
-	int total_size = 0;
-	int count = 0;
+	int total_size __maybe_unused = 0;
+	int count __maybe_unused = 0;
 	unsigned int cache_max_size = 0;
 	static DEFINE_RATELIMIT_STATE(_rs, 10 * HZ, 1);
 	static DEFINE_RATELIMIT_STATE(_rs2, HZ, 1);
@@ -291,8 +291,8 @@ static void connlog_ring_emi_to_cache(int conn_type)
 
 	RING_EMI_READ_ALL_FOR_EACH(ring_emi_seg, ring_emi) {
 		struct ring_segment ring_cache_seg;
-		unsigned int emi_buf_size = ring_emi_seg.sz;
-		unsigned int written = 0;
+		unsigned int emi_buf_size __maybe_unused = ring_emi_seg.sz;
+		unsigned int written __maybe_unused = 0;
 
 #ifdef DEBUG_RING
 		ring_emi_dump(__func__, ring_emi);
@@ -413,7 +413,7 @@ static void connlog_fw_log_parser(int conn_type, const char *buf, ssize_t sz)
 static void connlog_ring_print(int conn_type)
 {
 	unsigned int written = 0;
-	unsigned int buf_size;
+	unsigned int buf_size __maybe_unused;
 	struct ring_emi_segment ring_emi_seg;
 	struct ring_emi *ring_emi;
 
@@ -1167,7 +1167,7 @@ EXPORT_SYMBOL(connsys_log_register_event_cb);
 ssize_t connsys_log_read(int conn_type, char *buf, size_t count)
 {
 	unsigned int written = 0;
-	unsigned int cache_buf_size;
+	unsigned int cache_buf_size __maybe_unused;
 	struct ring_segment ring_seg;
 	struct ring *ring;
 	unsigned int size = 0;
@@ -1214,7 +1214,7 @@ ssize_t connsys_log_read_to_user(int conn_type, char __user *buf, size_t count)
 	int retval;
 	unsigned int written = 0;
 	static DEFINE_RATELIMIT_STATE(_rs, 10 * HZ, 1);
-	unsigned int cache_buf_size;
+	unsigned int cache_buf_size __maybe_unused;
 	struct ring_segment ring_seg;
 	struct ring *ring;
 	unsigned int size = 0;

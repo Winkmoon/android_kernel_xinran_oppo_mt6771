@@ -106,8 +106,6 @@ static struct snd_dma_buffer *Dl1_Playback_dma_buf;
 
 static DEFINE_SPINLOCK(auddrv_DLCtl_lock);
 
-static struct device *mDev;
-
 /*
  *    function implementation
  */
@@ -636,7 +634,7 @@ static void DL1GlobalVarInit(void)
 
 	Dl1_Playback_dma_buf = NULL;
 
-	mDev = NULL;
+	
 
 	mPrepareDone = false;
 }
@@ -645,7 +643,7 @@ static int mtk_soc_dl1_probe(struct platform_device *pdev)
 {
 	int ret = 0;
 
-	mDev = &pdev->dev;
+	
 #if defined(DL1_DEBUG_LOG)
 	pr_debug("%s\n", __func__);
 #endif

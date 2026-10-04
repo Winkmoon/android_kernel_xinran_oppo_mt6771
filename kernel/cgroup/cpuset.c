@@ -1524,10 +1524,9 @@ out_unlock:
 static void cpuset_cancel_attach(struct cgroup_taskset *tset)
 {
 	struct cgroup_subsys_state *css;
-	struct cpuset *cs;
 
 	cgroup_taskset_first(tset, &css);
-	cs = css_cs(css);
+	(void)(css_cs(css));
 
 	mutex_lock(&cpuset_mutex);
 	css_cs(css)->attach_in_progress--;
@@ -2425,13 +2424,12 @@ void set_user_space_global_cpuset(struct cpumask *global_cpus, int cgroup_id)
 	rcu_read_lock();
 	cpuset_for_each_descendant_pre(cs, pos_css, &top_cpuset) {
 		struct cpumask *final_set_cpus = cs->cpus_allowed;
-		struct cpuset *parent;
 
 		if (cs == &top_cpuset || !css_tryget_online(&cs->css) ||
 			(cgroup_id != 0 && cs->css.cgroup->id != cgroup_id))
 			continue;
 
-		parent = parent_cs(cs);
+		(void)(parent_cs(cs));
 
 		cpumask_and(final_set_cpus, cs->cpus_requested, global_cpus);
 

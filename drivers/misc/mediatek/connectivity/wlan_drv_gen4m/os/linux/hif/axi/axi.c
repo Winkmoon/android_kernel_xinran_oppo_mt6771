@@ -1022,7 +1022,6 @@ int32_t glBusSetIrq(void *pvData, void *pfnIsr, void *pvCookie)
 	struct net_device *prNetDevice = NULL;
 	struct GLUE_INFO *prGlueInfo = NULL;
 	struct GL_HIF_INFO *prHifInfo = NULL;
-	struct platform_device *pdev = NULL;
 #ifdef CONFIG_OF
 	struct device_node *node = NULL;
 #endif
@@ -1039,7 +1038,7 @@ int32_t glBusSetIrq(void *pvData, void *pfnIsr, void *pvCookie)
 		return -1;
 
 	prHifInfo = &prGlueInfo->rHifInfo;
-	pdev = prHifInfo->pdev;
+	
 
 	prHifInfo->u4IrqId = AXI_WLAN_IRQ_NUMBER;
 #ifdef CONFIG_OF
@@ -1110,17 +1109,15 @@ exit:
 /*----------------------------------------------------------------------------*/
 void glBusFreeIrq(void *pvData, void *pvCookie)
 {
-	struct net_device *prNetDevice = NULL;
 	struct GLUE_INFO *prGlueInfo = NULL;
 	struct GL_HIF_INFO *prHifInfo = NULL;
-	struct platform_device *pdev = NULL;
 
 	ASSERT(pvData);
 	if (!pvData) {
 		DBGLOG(INIT, INFO, "%s null pvData\n", __func__);
 		return;
 	}
-	prNetDevice = (struct net_device *)pvData;
+	
 	prGlueInfo = (struct GLUE_INFO *) pvCookie;
 	ASSERT(prGlueInfo);
 	if (!prGlueInfo) {
@@ -1129,7 +1126,7 @@ void glBusFreeIrq(void *pvData, void *pvCookie)
 	}
 
 	prHifInfo = &prGlueInfo->rHifInfo;
-	pdev = prHifInfo->pdev;
+	
 
 	synchronize_irq(prHifInfo->u4IrqId);
 	free_irq(prHifInfo->u4IrqId, prGlueInfo);
@@ -1323,10 +1320,9 @@ static void axiDumpRx(struct GL_HIF_INFO *prHifInfo,
 		      uint32_t u4Idx, uint32_t u4DumpLen)
 {
 	struct RTMP_DMACB *prRxCell;
-	struct RTMP_DMABUF *prDmaBuf;
 
 	prRxCell = &prRxRing->Cell[u4Idx];
-	prDmaBuf = &prRxCell->DmaBuf;
+	
 
 	if (prRxCell->pPacket)
 		DBGLOG_MEM32(HAL, INFO, prRxCell->pPacket, u4DumpLen);

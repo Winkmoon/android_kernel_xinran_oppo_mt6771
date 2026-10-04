@@ -188,7 +188,6 @@ static ssize_t freqhopping_debug_proc_write(struct file *file,
 {
 	int ret, n;
 	char kbuf[256];
-	size_t len = 0;
 	unsigned int cmd, p1, p2, p3, p4, p5, p6, p7;
 	struct freqhopping_ioctl fh_ctl;
 
@@ -196,7 +195,7 @@ static ssize_t freqhopping_debug_proc_write(struct file *file,
 
 	FH_MSG("EN: %s", __func__);
 
-	len = min(count, (sizeof(kbuf) - 1));
+	(void)(min(count, (sizeof(kbuf) - 1)));
 
 	if (count == 0)
 		return -1;
@@ -304,7 +303,6 @@ static ssize_t freqhopping_status_proc_write(struct file *file,
 {
 	int ret, n;
 	char kbuf[256];
-	size_t len = 0;
 	unsigned int p1, p2, p3, p4, p5, p6;
 	struct freqhopping_ioctl fh_ctl;
 
@@ -312,7 +310,7 @@ static ssize_t freqhopping_status_proc_write(struct file *file,
 
 	FH_MSG("EN: %s", __func__);
 
-	len = min(count, (sizeof(kbuf) - 1));
+	(void)(min(count, (sizeof(kbuf) - 1)));
 
 	if (count == 0)
 		return -1;

@@ -343,14 +343,13 @@ void msdc_dump_info(char **buff, unsigned long *size, struct seq_file *m,
 	u32 id)
 {
 	struct msdc_host *host = mtk_msdc_host[id];
-	struct mmc_host *mmc;
 
 	if (host == NULL) {
 		SPREAD_PRINTF(buff, size, m, "msdc host<%d> null\n", id);
 		return;
 	}
 
-	mmc = host->mmc;
+	
 
 	if (host->tuning_in_progress == true)
 		return;
@@ -870,7 +869,6 @@ void msdc_send_stop(struct msdc_host *host)
 {
 	struct mmc_command stop = {0};
 	struct mmc_request mrq = {0};
-	u32 err;
 
 	stop.opcode = MMC_STOP_TRANSMISSION;
 	stop.arg = 0;
@@ -882,7 +880,7 @@ void msdc_send_stop(struct msdc_host *host)
 	/* stop busy tmo */
 	stop.busy_timeout = 500;
 
-	err = msdc_do_command(host, &stop, CMD_TIMEOUT);
+	(void)(msdc_do_command(host, &stop, CMD_TIMEOUT));
 }
 
 int msdc_get_card_status(struct mmc_host *mmc, struct msdc_host *host,
@@ -1689,7 +1687,7 @@ static u32 msdc_command_resp_polling(struct msdc_host *host,
 {
 	void __iomem *base = host->base;
 	u32 intsts;
-	u32 resp, tmo_type;
+	u32 tmo_type;
 	unsigned long tmo;
 	bool use_cmd_intr;
 
@@ -1706,7 +1704,7 @@ static u32 msdc_command_resp_polling(struct msdc_host *host,
 	}
 #endif
 
-	resp = host->cmd_rsp;
+	(void)(host->cmd_rsp);
 	use_cmd_intr = host->use_cmd_intr;
 
 	/* interrupt */
@@ -2035,12 +2033,12 @@ static unsigned int msdc_cmdq_command_resp_polling(struct msdc_host *host,
 	unsigned long timeout)
 {
 	void __iomem *base = host->base;
-	u32 intsts, resp;
+	u32 intsts;
 	unsigned long tmo;
 	u32 cmdsts = MSDC_INT_CMDRDY | MSDC_INT_RSPCRCERR | MSDC_INT_CMDTMO;
 	u64 rsp_time, now;
 
-	resp = host->cmd_rsp;
+	
 
 cmdq_resp_intr:
 	/* interrupt */
@@ -3889,7 +3887,7 @@ static int msdc_do_request_async(struct mmc_host *mmc, struct mmc_request *mrq)
 	struct mmc_command *cmd;
 	struct mmc_data *data;
 	void __iomem *base = host->base;
-	u32 arg;
+	u32 arg __maybe_unused;
 #ifdef CONFIG_MTK_EMMC_CQ_SUPPORT
 	int task_id;
 #endif
@@ -4053,7 +4051,7 @@ static void msdc_ops_request_legacy(struct mmc_host *mmc,
 	struct timespec sdio_profile_start;
 #endif
 #ifdef CONFIG_MTK_EMMC_CQ_SUPPORT
-	int ret;
+	int ret __maybe_unused;
 #endif
 
 	host->error = 0;
@@ -4422,7 +4420,6 @@ static int msdc_ops_get_ro(struct mmc_host *mmc)
 {
 	struct msdc_host *host = mmc_priv(mmc);
 	void __iomem *base = host->base;
-	unsigned long flags;
 	int ro = 0;
 
 	if (host->hw->flags & MSDC_WP_PIN_EN)
@@ -5238,7 +5235,9 @@ static int msdc_drv_probe(struct platform_device *pdev)
 	struct mmc_host *mmc = NULL;
 	struct msdc_host *host = NULL;
 	struct msdc_hw *hw = NULL;
+#ifdef CONFIG_MTK_EMMC_HW_CQ
 	void __iomem *base = NULL;
+#endif
 	int ret = 0;
 
 	/* Allocate MMC host for this device */
@@ -5253,7 +5252,9 @@ static int msdc_drv_probe(struct platform_device *pdev)
 	}
 
 	host = mmc_priv(mmc);
+#ifdef CONFIG_MTK_EMMC_HW_CQ
 	base = host->base;
+#endif
 	hw = host->hw;
 
 	/* Set host parameters to mmc */

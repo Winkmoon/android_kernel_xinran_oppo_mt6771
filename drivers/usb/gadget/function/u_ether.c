@@ -554,7 +554,6 @@ static void tx_complete(struct usb_ep *ep, struct usb_request *req)
 {
 	struct sk_buff	*skb;
 	struct eth_dev	*dev;
-	struct net_device *net;
 	struct usb_request *new_req;
 	struct usb_ep *in;
 	int length;
@@ -566,7 +565,7 @@ static void tx_complete(struct usb_ep *ep, struct usb_request *req)
 	}
 
 	dev = ep->driver_data;
-	net = dev->net;
+	
 
 	if (!dev->port_usb) {
 		usb_ep_free_request(ep, req);

@@ -287,8 +287,6 @@ void nicCmdEventQueryRxStatistics(IN struct ADAPTER
 void nicCmdEventPfmuDataRead(IN struct ADAPTER *prAdapter,
 	IN struct CMD_INFO *prCmdInfo, IN uint8_t *pucEventBuf)
 {
-	uint32_t u4QueryInfoLen;
-	struct GLUE_INFO *prGlueInfo;
 	union PFMU_DATA *prEventPfmuDataRead = NULL;
 
 	ASSERT(prAdapter);
@@ -297,10 +295,10 @@ void nicCmdEventPfmuDataRead(IN struct ADAPTER *prAdapter,
 
 	/* 4 <2> Update information of OID */
 	if (prCmdInfo->fgIsOid) {
-		prGlueInfo = prAdapter->prGlueInfo;
+		
 		prEventPfmuDataRead = (union PFMU_DATA *) (pucEventBuf);
 
-		u4QueryInfoLen = sizeof(union PFMU_DATA);
+		(void)(sizeof(union PFMU_DATA));
 
 		g_rPfmuData = *prEventPfmuDataRead;
 	}
@@ -1485,7 +1483,6 @@ int32_t GetIQData(struct ADAPTER *prAdapter,
 	uint8_t aucData[50];	/* iq data in string format */
 	uint32_t i = 0, j = 0, count = 0;
 	int32_t ret = -1;
-	int32_t rv;
 	struct file *file = NULL;
 
 	*prIQAry = prAdapter->rIcapInfo.au4IQData;
@@ -1525,8 +1522,8 @@ int32_t GetIQData(struct ADAPTER *prAdapter,
 			aucData[count] = '\0';
 
 			/* transfer data format (string to int) */
-			rv = kalStrtoint(aucData, 0,
-				       &prAdapter->rIcapInfo.au4IQData[i]);
+			(void)(kalStrtoint(aucData, 0,
+				       &prAdapter->rIcapInfo.au4IQData[i]));
 		}
 		*prDataLen = i * sizeof(uint32_t);
 		kalFileClose(file);
@@ -1587,7 +1584,9 @@ uint32_t nicTsfRawData2IqFmt(struct EVENT_DUMP_MEM
 	static uint8_t
 	ucDstOffset;	/* for alignment. bcs we send 2KB data per packet,*/
 	/*the data will not align in 12 bytes case. */
+#ifndef LINUX
 	static uint32_t u4CurTimeTick;
+#endif
 
 	static union ICAP_BUS_FMT icapBusData;
 	uint32_t *ptr;
@@ -1612,7 +1611,9 @@ uint32_t nicTsfRawData2IqFmt(struct EVENT_DUMP_MEM
 	fgAppend = TRUE;
 	if (prEventDumpMem->ucFragNum == 1) {
 
+#ifndef LINUX
 		u4CurTimeTick = kalGetTimeTick();
+#endif
 		/* Store memory dump into sdcard,
 		 * path /sdcard/dump_<current  system tick>_
 		 * <memory address>_<memory length>.hex
@@ -2052,7 +2053,9 @@ void nicEventQueryMemDump(IN struct ADAPTER *prAdapter,
 	struct EVENT_DUMP_MEM *prEventDumpMem;
 	static uint8_t aucPath[256];
 	static uint8_t aucPath_done[300];
+#ifndef LINUX
 	static uint32_t u4CurTimeTick;
+#endif
 
 	ASSERT(prAdapter);
 	ASSERT(pucEventBuf);
@@ -2073,7 +2076,9 @@ void nicEventQueryMemDump(IN struct ADAPTER *prAdapter,
 		 * path /sdcard/dump_<current  system tick>_
 		 * <memory address>_<memory length>.hex
 		 */
+#ifndef LINUX
 		u4CurTimeTick = kalGetTimeTick();
+#endif
 #if defined(LINUX)
 
 		/* if blbist mkdir undre /data/blbist,
@@ -3493,7 +3498,7 @@ void nicCmdEventQueryTxPowerInfo(IN struct ADAPTER *prAdapter,
 void nicEventLinkQuality(IN struct ADAPTER *prAdapter,
 			 IN struct WIFI_EVENT *prEvent)
 {
-	struct mt66xx_chip_info *prChipInfo = NULL;
+	struct mt66xx_chip_info *prChipInfo __maybe_unused = NULL;
 	struct CMD_INFO *prCmdInfo;
 	uint8_t ucBssIndex = AIS_DEFAULT_INDEX;
 
@@ -3623,7 +3628,9 @@ uint32_t nicExtTsfRawData2IqFmt(
 	/* for alignment. bcs we send 2KB data per packet,*/
 	static uint8_t	ucDstOffset;
 	/* the data will not align in 12 bytes case. */
+#ifndef LINUX
 	static uint32_t u4CurTimeTick;
+#endif
 
 	static union ICAP_BUS_FMT icapBusData;
 	uint32_t *ptr;
@@ -3647,7 +3654,9 @@ uint32_t nicExtTsfRawData2IqFmt(
 
 	fgAppend = TRUE;
 	if (prEventDumpMem->u4PktNum == 0) {
+#ifndef LINUX
 		u4CurTimeTick = kalGetTimeTick();
+#endif
 		/* Store memory dump into sdcard,
 		 * path /sdcard/dump_<current system tick>_
 		 * <memory address>_<memory length>.hex
@@ -4045,7 +4054,9 @@ void nicExtEventQueryMemDump(IN struct ADAPTER *prAdapter,
 	struct EXT_EVENT_RBIST_DUMP_DATA_T *prEventDumpMem;
 	static uint8_t aucPath[256];
 	static uint8_t aucPath_done[300];
+#ifndef LINUX
 	static uint32_t u4CurTimeTick;
+#endif
 
 	ASSERT(prAdapter);
 	ASSERT(pucEventBuf);
@@ -4067,7 +4078,9 @@ void nicExtEventQueryMemDump(IN struct ADAPTER *prAdapter,
 		 * path /sdcard/dump_<current  system tick>_<memory address>
 		 * _<memory length>.hex
 		 */
+#ifndef LINUX
 		u4CurTimeTick = kalGetTimeTick();
+#endif
 #if defined(LINUX)
 
 		/* if blbist mkdir undre /data/blbist,
@@ -4905,7 +4918,7 @@ void nicEventUpdateRddStatus(IN struct ADAPTER *prAdapter,
 void nicEventUpdateBwcsStatus(IN struct ADAPTER *prAdapter,
 			      IN struct WIFI_EVENT *prEvent)
 {
-	struct PTA_IPC *prEventBwcsStatus;
+	struct PTA_IPC *prEventBwcsStatus __maybe_unused;
 
 	prEventBwcsStatus = (struct PTA_IPC *) (prEvent->aucBuffer);
 
@@ -4926,7 +4939,7 @@ void nicEventUpdateBwcsStatus(IN struct ADAPTER *prAdapter,
 void nicEventUpdateBcmDebug(IN struct ADAPTER *prAdapter,
 			    IN struct WIFI_EVENT *prEvent)
 {
-	struct PTA_IPC *prEventBwcsStatus;
+	struct PTA_IPC *prEventBwcsStatus __maybe_unused;
 
 	prEventBwcsStatus = (struct PTA_IPC *) (prEvent->aucBuffer);
 
@@ -5363,7 +5376,6 @@ void nicCmdEventSetAddKey(IN struct ADAPTER *prAdapter,
 {
 	struct WIFI_CMD *prWifiCmd = NULL;
 	struct CMD_802_11_KEY *prCmdKey = NULL;
-	struct GLUE_INFO *prGlueInfo = NULL;
 	struct GL_DETECT_REPLAY_INFO *prDetRplyInfo = NULL;
 
 	ASSERT(prAdapter);
@@ -5377,7 +5389,7 @@ void nicCmdEventSetAddKey(IN struct ADAPTER *prAdapter,
 			       WLAN_STATUS_SUCCESS);
 	}
 
-	prGlueInfo = prAdapter->prGlueInfo;
+	
 
 	if (pucEventBuf) {
 		prWifiCmd = (struct WIFI_CMD *) (pucEventBuf);

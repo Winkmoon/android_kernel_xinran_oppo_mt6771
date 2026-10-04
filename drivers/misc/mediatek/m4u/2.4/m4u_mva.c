@@ -440,7 +440,6 @@ unsigned int get_first_valid_mva(void)
 {
 	unsigned short index = 1, nr = 0;
 	unsigned int mva;
-	void *priv;
 	unsigned long irq_flags;
 
 	spin_lock_irqsave(&gMvaGraph_lock, irq_flags);
@@ -449,7 +448,7 @@ unsigned int get_first_valid_mva(void)
 		mva = index << MVA_BLOCK_SIZE_ORDER;
 		nr = MVA_GET_NR(index);
 		if (MVA_IS_BUSY(index)) {
-			priv = mvaInfoGraph[index];
+			
 			break;
 		}
 	}

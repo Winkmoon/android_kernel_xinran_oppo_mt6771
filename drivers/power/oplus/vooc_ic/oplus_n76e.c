@@ -460,7 +460,6 @@ static int n76e_get_fw_verion_from_ic(struct oplus_vooc_chip *chip)
 }
 static int n76e_fw_check_then_recover(struct oplus_vooc_chip *chip)
 {
-	int update_result = 0;
 	int ret = 0;
 
 	if (!chip->firmware_data) {
@@ -472,7 +471,7 @@ static int n76e_fw_check_then_recover(struct oplus_vooc_chip *chip)
 
 	if (oplus_is_power_off_charging(chip) == true || oplus_is_charger_reboot(chip)== true) {
 		chip->mcu_update_ing = true;
-		update_result = n76e_fw_update(chip);
+		(void)(n76e_fw_update(chip));
 		chip->mcu_update_ing = false;
 		ret = FW_NO_CHECK_MODE;
 	} else {

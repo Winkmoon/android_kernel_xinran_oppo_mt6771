@@ -427,12 +427,11 @@ void scnSendScanReqV2(IN struct ADAPTER *prAdapter)
 void scnFsmMsgStart(IN struct ADAPTER *prAdapter, IN struct MSG_HDR *prMsgHdr)
 {
 	struct SCAN_INFO *prScanInfo;
-	struct SCAN_PARAM *prScanParam;
 
 	ASSERT(prMsgHdr);
 
 	prScanInfo = &(prAdapter->rWifiVar.rScanInfo);
-	prScanParam = &prScanInfo->rScanParam;
+	
 
 	if (prScanInfo->eCurrentState == SCAN_STATE_IDLE) {
 		if (prMsgHdr->eMsgId == MID_AIS_SCN_SCAN_REQ
@@ -718,7 +717,6 @@ void scnFsmRemovePendingMsg(IN struct ADAPTER *prAdapter, IN uint8_t ucSeqNum,
 	IN uint8_t ucBssIndex)
 {
 	struct SCAN_INFO *prScanInfo;
-	struct SCAN_PARAM *prScanParam;
 	struct MSG_HDR *prPendingMsgHdr = NULL;
 	struct MSG_HDR *prPendingMsgHdrNext = NULL;
 	struct MSG_HDR *prRemoveMsgHdr = NULL;
@@ -728,7 +726,7 @@ void scnFsmRemovePendingMsg(IN struct ADAPTER *prAdapter, IN uint8_t ucSeqNum,
 	ASSERT(prAdapter);
 
 	prScanInfo = &(prAdapter->rWifiVar.rScanInfo);
-	prScanParam = &prScanInfo->rScanParam;
+	
 
 	/* traverse through rPendingMsgList for removal */
 	LINK_FOR_EACH_ENTRY_SAFE(prPendingMsgHdr,
@@ -935,14 +933,12 @@ scnFsmGenerateScanDoneMsg(IN struct ADAPTER *prAdapter,
 	IN enum ENUM_MSG_ID eMsgId, IN uint8_t ucSeqNum, IN uint8_t ucBssIndex,
 	IN enum ENUM_SCAN_STATUS eScanStatus)
 {
-	struct SCAN_INFO *prScanInfo;
-	struct SCAN_PARAM *prScanParam;
 	struct MSG_SCN_SCAN_DONE *prScanDoneMsg;
 
 	ASSERT(prAdapter);
 
-	prScanInfo = &(prAdapter->rWifiVar.rScanInfo);
-	prScanParam = &prScanInfo->rScanParam;
+	
+	
 
 	prScanDoneMsg = (struct MSG_SCN_SCAN_DONE *) cnmMemAlloc(prAdapter,
 		RAM_TYPE_MSG, sizeof(struct MSG_SCN_SCAN_DONE));
@@ -1029,10 +1025,9 @@ void scnEventSchedScanDone(IN struct ADAPTER *prAdapter,
 	IN struct EVENT_SCHED_SCAN_DONE *prSchedScanDone)
 {
 	struct SCAN_INFO *prScanInfo;
-	struct SCHED_SCAN_PARAM *prSchedScanParam;
 
 	prScanInfo = &(prAdapter->rWifiVar.rScanInfo);
-	prSchedScanParam = &prScanInfo->rSchedScanParam;
+	
 
 	if (prScanInfo->fgSchedScanning == TRUE) {
 		scanlog_dbg(LOG_SCHED_SCAN_DONE_F2D, INFO, "scnEventSchedScanDone seq %u\n",

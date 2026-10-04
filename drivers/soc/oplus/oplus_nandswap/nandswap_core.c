@@ -527,7 +527,7 @@ static ssize_t swapin_anon(struct task_struct *task)
 	struct vm_area_struct *vma;
 	struct mm_walk walk = {};
 	struct ns_task_struct *ntask = NULL;
-	int task_anon = 0, task_swap = 0, err = 0;
+	int task_anon __maybe_unused = 0, task_swap __maybe_unused = 0, err = 0;
 
 retry:
 	/* TODO: do we need to use p = find_lock_task_mm(task); in case main thread got killed */

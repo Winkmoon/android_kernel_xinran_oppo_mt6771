@@ -154,11 +154,10 @@ static struct VAL_EVENT_T EncHWLockEvent;
 	/* mutex : HWLockEventTimeoutLock */
 static struct VAL_EVENT_T DecIsrEvent;    /* mutex : HWLockEventTimeoutLock */
 static struct VAL_EVENT_T EncIsrEvent;    /* mutex : HWLockEventTimeoutLock */
-static int Driver_Open_Count;         /* mutex : DriverOpenCountLock */
-static unsigned int gu4PWRCounter;      /* mutex : PWRLock */
+static int Driver_Open_Count;      /* mutex : PWRLock */
 static unsigned int gu4EncEMICounter;   /* mutex : EncEMILock */
 static unsigned int gu4DecEMICounter;   /* mutex : DecEMILock */
-static unsigned int gu4L2CCounter;      /* mutex : L2CLock */
+static unsigned int gu4L2CCounter __maybe_unused;      /* mutex : L2CLock */
 static char bIsOpened = VAL_FALSE;    /* mutex : IsOpenedLock */
 static unsigned int gu4HwVencIrqStatus;
 /* hardware VENC IRQ status (VP8/H264) */
@@ -171,9 +170,9 @@ static unsigned int gu4LogCount;
 
 static unsigned int gLockTimeOutCount;
 
-static unsigned int gu4VdecLockThreadId;
+static unsigned int gu4VdecLockThreadId __maybe_unused;
 
-static int gi4DecWaitEMI;
+static int gi4DecWaitEMI __maybe_unused;
 
 #define USE_WAKELOCK 0
 
@@ -302,7 +301,7 @@ static int  gHWLockMaxDuration;
 static unsigned int gHWLockPrevInterval;
 static unsigned int gMMDFVSCurrentVoltage = DVFS_UNREQUEST;
 static int gVDECBWRequested;
-static int gVENCBWRequested;
+
 static int gVDECLevel;
 static unsigned int gVDECFreq[2] = {450, 312};
 static unsigned int gVDECFrmTRAVC[4] = {4, 6, 10, 3}; /* /3 for real ratio */
@@ -406,7 +405,7 @@ unsigned int VdecDvfsStep(void)
 void VdecDvfsAdjustment(void)
 {
 	unsigned int _monitor_duration = 0;
-	unsigned int _diff = 0;
+	unsigned int _diff __maybe_unused = 0;
 	unsigned int _perc = 0;
 
 	if (gMMDFVFSMonitorStarts == VAL_TRUE &&
@@ -490,7 +489,7 @@ EXPORT_SYMBOL(mt_vdec_base_get);
 void vdec_polling_status(void)
 {
 	unsigned int u4DataStatusMain = 0;
-	unsigned int u4DataStatus = 0;
+	unsigned int u4DataStatus __maybe_unused = 0;
 	unsigned int u4CgStatus = 0;
 	unsigned int u4Counter = 0;
 
@@ -503,7 +502,7 @@ void vdec_polling_status(void)
 		u4CgStatus = VDO_HW_READ(KVA_VDEC_GCON_BASE);
 		u4DataStatusMain = VDO_HW_READ(KVA_VDEC_VLD_BASE+(61*4));
 		if (u4Counter++ > DRAM_DONE_POLLING_LIMIT) {
-			unsigned int u4IntStatus = 0;
+			unsigned int u4IntStatus __maybe_unused = 0;
 			unsigned int i = 0;
 
 			pr_debug("[VCODEC][ERROR] Leftover data access before powering down\n");
@@ -710,7 +709,7 @@ void venc_power_off(void)
 #ifdef CONFIG_MTK_QOS_SUPPORT
 	QOS_DEBUG("[PMQoS] %s reset to 0", __func__);
 	pm_qos_update_request(&vcodec_qos_request2, 0);
-	gVENCBWRequested = 0;
+	
 #endif
 #ifdef VCODEC_DVFS_V2
 	pm_qos_update_request(&vcodec_qos_request_f2, 0);
@@ -838,9 +837,6 @@ void dec_isr(void)
 {
 	enum VAL_RESULT_T    eValRet;
 	unsigned long     ulFlags, ulFlagsISR, ulFlagsLockHW;
-
-	unsigned int u4TempDecISRCount = 0;
-	unsigned int u4TempLockDecHWCount = 0;
 	unsigned int u4CgStatus = 0;
 	unsigned int u4DecDoneStatus = 0;
 
@@ -860,11 +856,11 @@ void dec_isr(void)
 
 	spin_lock_irqsave(&DecISRCountLock, ulFlagsISR);
 	gu4DecISRCount++;
-	u4TempDecISRCount = gu4DecISRCount;
+	
 	spin_unlock_irqrestore(&DecISRCountLock, ulFlagsISR);
 
 	spin_lock_irqsave(&LockDecHWCountLock, ulFlagsLockHW);
-	u4TempLockDecHWCount = gu4LockDecHWCount;
+	
 	spin_unlock_irqrestore(&LockDecHWCountLock, ulFlagsLockHW);
 
 	/* Clear interrupt */
@@ -887,19 +883,15 @@ void enc_isr(void)
 {
 	enum VAL_RESULT_T  eValRet;
 	unsigned long ulFlagsISR, ulFlagsLockHW;
-
-
-	unsigned int u4TempEncISRCount = 0;
-	unsigned int u4TempLockEncHWCount = 0;
 	/* ---------------------- */
 
 	spin_lock_irqsave(&EncISRCountLock, ulFlagsISR);
 	gu4EncISRCount++;
-	u4TempEncISRCount = gu4EncISRCount;
+	
 	spin_unlock_irqrestore(&EncISRCountLock, ulFlagsISR);
 
 	spin_lock_irqsave(&LockEncHWCountLock, ulFlagsLockHW);
-	u4TempLockEncHWCount = gu4LockEncHWCount;
+	
 	spin_unlock_irqrestore(&LockEncHWCountLock, ulFlagsLockHW);
 
 	if (grVcodecEncHWLock.pvHandle == 0) {
@@ -1076,7 +1068,7 @@ static long vcodec_lockhw(unsigned long arg)
 	unsigned int FirstUseDecHW = 0;
 	unsigned int FirstUseEncHW = 0;
 	struct VAL_TIME_T rCurTime;
-	unsigned int u4TimeInterval;
+	unsigned int u4TimeInterval __maybe_unused;
 	unsigned long ulFlagsLockHW;
 #if USE_WAKELOCK == 0
 	unsigned int suspend_block_cnt = 0;
@@ -1511,7 +1503,6 @@ static long vcodec_unlockhw(unsigned long arg)
 {
 	unsigned char *user_data_addr;
 	struct VAL_HW_LOCK_T rHWLock;
-	enum VAL_RESULT_T eValRet;
 	long ret;
 #ifdef VCODEC_DVFS_V2
 	struct codec_job *dec_cur_job;
@@ -1529,7 +1520,7 @@ static long vcodec_unlockhw(unsigned long arg)
 	}
 
 	pr_debug("VCODEC_UNLOCKHW eDriverType = %d\n", rHWLock.eDriverType);
-	eValRet = VAL_RESULT_INVALID_ISR;
+	
 	if (rHWLock.eDriverType == VAL_DRIVER_TYPE_MP4_DEC ||
 		rHWLock.eDriverType == VAL_DRIVER_TYPE_HEVC_DEC ||
 		rHWLock.eDriverType == VAL_DRIVER_TYPE_H264_DEC ||
@@ -1590,8 +1581,8 @@ static long vcodec_unlockhw(unsigned long arg)
 		pr_debug("wake_unlock(&vcodec_wake_lock) -");
 #endif
 		mutex_unlock(&VdecHWLock);
-		eValRet = eVideoSetEvent(&DecHWLockEvent,
-			sizeof(struct VAL_EVENT_T));
+		(void)(eVideoSetEvent(&DecHWLockEvent,
+			sizeof(struct VAL_EVENT_T)));
 	} else if (rHWLock.eDriverType == VAL_DRIVER_TYPE_H264_ENC ||
 			 rHWLock.eDriverType == VAL_DRIVER_TYPE_HEVC_ENC ||
 			 rHWLock.eDriverType == VAL_DRIVER_TYPE_JPEG_ENC) {
@@ -1650,8 +1641,8 @@ static long vcodec_unlockhw(unsigned long arg)
 		pr_debug("wake_unlock(&vcodec_wake_lock2) -");
 #endif
 		mutex_unlock(&VencHWLock);
-		eValRet = eVideoSetEvent(&EncHWLockEvent,
-			sizeof(struct VAL_EVENT_T));
+		(void)(eVideoSetEvent(&EncHWLockEvent,
+			sizeof(struct VAL_EVENT_T)));
 	} else {
 		pr_debug("[WARNING] VCODEC_UNLOCKHW Unknown instance\n");
 		return -EFAULT;
@@ -1882,7 +1873,7 @@ static long vcodec_set_frame_info(unsigned long arg)
 #ifdef CONFIG_MTK_QOS_SUPPORT
 		pm_qos_update_request(&vcodec_qos_request2, (int)emi_bw);
 #endif
-		gVENCBWRequested = 1;
+		(void)(1);
 		}
 		mutex_unlock(&EncPMQoSLock);
 	}
@@ -2971,7 +2962,7 @@ static int vcodec_release(struct inode *inode, struct file *file)
 		mutex_unlock(&EncEMILock);
 
 		mutex_lock(&PWRLock);
-		gu4PWRCounter = 0;
+		
 		mutex_unlock(&PWRLock);
 
 #if defined(VENC_USE_L2C)
@@ -3211,7 +3202,7 @@ static int vcodec_probe(struct platform_device *dev)
 	mutex_unlock(&EncEMILock);
 
 	mutex_lock(&PWRLock);
-	gu4PWRCounter = 0;
+	
 	mutex_unlock(&PWRLock);
 
 	mutex_lock(&L2CLock);

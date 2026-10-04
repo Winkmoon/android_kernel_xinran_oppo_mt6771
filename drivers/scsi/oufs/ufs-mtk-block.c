@@ -120,7 +120,6 @@ static const char *task_name[tsk_max] = {
 static void ufs_mtk_pr_tsk(struct ufs_mtk_bio_context_task *tsk,
 	unsigned int stage)
 {
-	const char *rw = "?";
 	int klogen = BTAG_KLOGEN(ufs_mtk_btag);
 	char buf[256];
 	__u32 bytes;
@@ -129,9 +128,9 @@ static void ufs_mtk_pr_tsk(struct ufs_mtk_bio_context_task *tsk,
 		return;
 
 	if (tsk->cmd == 0x28)
-		rw = "r";
+		(void)("r");
 	else if (tsk->cmd == 0x2A)
-		rw = "w";
+		(void)("w");
 
 	bytes = ((__u32)tsk->len) << SECTOR_SHIFT;
 	mtk_btag_task_timetag(buf, 256, stage, tsk_max, task_name, tsk->t,

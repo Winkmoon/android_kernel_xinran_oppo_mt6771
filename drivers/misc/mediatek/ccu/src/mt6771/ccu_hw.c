@@ -47,8 +47,8 @@
 
 #include "kd_camera_feature.h"/*for sensorType in ccu_set_sensor_info*/
 
-static uint64_t camsys_base;
-static uint64_t bin_base;
+static uint64_t camsys_base __maybe_unused;
+static uint64_t bin_base __maybe_unused;
 static uint64_t dmem_base;
 
 static struct ccu_device_s *ccu_dev;
@@ -945,13 +945,12 @@ int ccu_query_power_status(void)
 
 int ccu_irq_enable(void)
 {
-	int ret = 0;
 
 	LOG_DBG_MUST("%s+.\n", __func__);
 	if (request_irq(ccu_dev->irq_num, ccu_isr_handler,
 		IRQF_TRIGGER_NONE, "ccu", NULL)) {
 		LOG_ERR("fail to request ccu irq!\n");
-		ret = -ENODEV;
+		
 	}
 
 	return 0;

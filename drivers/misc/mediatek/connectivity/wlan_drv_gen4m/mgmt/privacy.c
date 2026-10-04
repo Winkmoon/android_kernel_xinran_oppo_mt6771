@@ -121,14 +121,13 @@
 void secInit(IN struct ADAPTER *prAdapter, IN uint8_t ucBssIndex)
 {
 	uint8_t i;
-	struct CONNECTION_SETTINGS *prConnSettings;
 	struct BSS_INFO *prBssInfo;
 	struct AIS_SPECIFIC_BSS_INFO *prAisSpecBssInfo;
 	struct IEEE_802_11_MIB *prMib;
 
 	DEBUGFUNC("secInit");
 
-	prConnSettings = aisGetConnSettings(prAdapter, ucBssIndex);
+	(void)(aisGetConnSettings(prAdapter, ucBssIndex));
 	prBssInfo = GET_BSS_INFO_BY_INDEX(prAdapter, ucBssIndex);
 	prAisSpecBssInfo =
 		aisGetAisSpecBssInfo(prAdapter, ucBssIndex);

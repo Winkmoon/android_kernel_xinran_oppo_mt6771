@@ -1364,8 +1364,6 @@ int dpmgr_path_mutex_sof(disp_path_handle dp_handle, void *trigger_loop_handle,
 		       int encmdq)
 {
 	struct ddp_path_handle *phandle;
-	int *list;
-	int m_num;
 
 	ASSERT(dp_handle != NULL);
 	if (!dp_handle)
@@ -1374,8 +1372,8 @@ int dpmgr_path_mutex_sof(disp_path_handle dp_handle, void *trigger_loop_handle,
 	phandle = (struct ddp_path_handle *)dp_handle;
 	DISP_LOG_I("%s scenario %s\n",
 			__func__, ddp_get_scenario_name(phandle->scenario));
-	list = ddp_get_scenario_list(phandle->scenario);
-	m_num = ddp_get_module_num(phandle->scenario);
+	(void)(ddp_get_scenario_list(phandle->scenario));
+	(void)(ddp_get_module_num(phandle->scenario));
 
 	ddp_mutex_enable(phandle->hwmutexid, phandle->scenario, phandle->mode,
 					 trigger_loop_handle);
@@ -2193,7 +2191,6 @@ int switch_module_to_nonsec(disp_path_handle dp_handle, void *cmdqhandle,
 
 int dpmgr_path_dsi_power_off(disp_path_handle dp_handle, void *cmdqhandle)
 {
-	int m;
 	struct ddp_path_handle *phandle;
 	enum DISP_MODULE_ENUM dst_module;
 	struct DDP_MODULE_DRIVER *m_drv;
@@ -2205,7 +2202,7 @@ int dpmgr_path_dsi_power_off(disp_path_handle dp_handle, void *cmdqhandle)
 	phandle = (struct ddp_path_handle *)dp_handle;
 	dst_module = ddp_get_dst_module(phandle->scenario);
 
-	m = dst_module;
+	
 	m_drv = ddp_get_module_driver(dst_module);
 	if (!m_drv || !m_drv->power_off)
 		return 0;
@@ -2217,7 +2214,6 @@ int dpmgr_path_dsi_power_off(disp_path_handle dp_handle, void *cmdqhandle)
 
 int dpmgr_path_dsi_power_on(disp_path_handle dp_handle, void *cmdqhandle)
 {
-	int m;
 	struct ddp_path_handle *phandle;
 	enum DISP_MODULE_ENUM dst_module;
 	struct DDP_MODULE_DRIVER *m_drv;
@@ -2229,7 +2225,7 @@ int dpmgr_path_dsi_power_on(disp_path_handle dp_handle, void *cmdqhandle)
 	phandle = (struct ddp_path_handle *)dp_handle;
 	dst_module = ddp_get_dst_module(phandle->scenario);
 
-	m = dst_module;
+	
 	m_drv = ddp_get_module_driver(dst_module);
 	if (!m_drv || !m_drv->power_on)
 		return 0;

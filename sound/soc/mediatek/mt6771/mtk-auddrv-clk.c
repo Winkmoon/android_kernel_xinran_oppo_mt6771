@@ -73,7 +73,6 @@ static int APLL2Counter;
 static int Aud_APLL_DIV_APLL1_cntr;
 static int Aud_APLL_DIV_APLL2_cntr;
 static unsigned int MCLKFS = 128;
-static unsigned int MCLKFS_HDMI = 256;
 
 int Aud_Core_Clk_cntr;
 int Aud_AFE_Clk_cntr;
@@ -322,7 +321,7 @@ void AudDrv_Clk_Global_Variable_Init(void)
 	Aud_APLL_DIV_APLL1_cntr = 0;
 	Aud_APLL_DIV_APLL2_cntr = 0;
 	MCLKFS = 128;
-	MCLKFS_HDMI = 256;
+	
 
 #if defined(_MT_IDLE_HEADER) && !defined(CONFIG_FPGA_EARLY_PORTING)
 	mtk_idle_notifier_register(&audio_idle_nfb);

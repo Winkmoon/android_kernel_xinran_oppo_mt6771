@@ -764,7 +764,6 @@ static void mmdvfs_single_hw_configuration_dump(struct mmdvfs_adaptor *self,
 
 	for (i = 0; i < hw_configuration->total_clks; i++) {
 		char *ccf_clk_source_name = "NONE";
-		char *ccf_clk_mux_name = "NONE";
 		u32 clk_rate_mhz = 0;
 		u32 clk_step = 0;
 		u32 clk_id = 0;
@@ -775,7 +774,7 @@ static void mmdvfs_single_hw_configuration_dump(struct mmdvfs_adaptor *self,
 
 		if (map_item != NULL && map_item->clk_mux.ccf_name != NULL) {
 			clk_id = map_item->step_clk_source_id_map[clk_step];
-			ccf_clk_mux_name = map_item->clk_mux.ccf_name;
+			
 		}
 
 		if (map_item->config_method == MMDVFS_CLK_CONFIG_BY_MUX

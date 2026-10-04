@@ -543,8 +543,6 @@ int pe40_get_output(struct charger_manager *pinfo,
 int mtk_pe40_get_init_watt(struct charger_manager *pinfo)
 {
 	int ret;
-	struct mtk_pe40 *pe40 = NULL;
-	struct charger_data *pdata = NULL;
 	int vbus1, ibus1;
 	int vbus2, ibus2;
 	int vbat1, vbat2;
@@ -556,8 +554,8 @@ int mtk_pe40_get_init_watt(struct charger_manager *pinfo)
 	if (pinfo->enable_hv_charging == false)
 		return -1;
 
-	pdata = &pinfo->chg1_data;
-	pe40 = &pinfo->pe4;
+	
+	
 	voltage = 0;
 	mtk_pe40_get_setting_by_watt(pinfo, &voltage, &adapter_ibus,
 		&actual_current, 27000000, &input_current);
@@ -964,13 +962,11 @@ err:
 int mtk_pe40_cc_state(struct charger_manager *pinfo)
 {
 	int ibus = 0, vbat, ibat, vbus, compare_ibus = 0;
-	int icl, ccl, ccl2, cv, max_icl;
+	int icl, ccl, ccl2, max_icl;
 	struct mtk_pe40 *pe40 = NULL;
 	int ret;
 	int oldavbus = 0;
 	int oldibus = 0;
-	int watt;
-	int max_watt;
 	struct charger_data *pdata = NULL;
 	int actual_current;
 	int new_watt = 0;
@@ -1015,8 +1011,8 @@ int mtk_pe40_cc_state(struct charger_manager *pinfo)
 	vbus = battery_get_vbus();
 	ccl = pinfo->chg1_data.charging_current_limit / 1000;
 	ccl2 = pinfo->chg2_data.charging_current_limit / 1000;
-	cv = pinfo->data.battery_cv / 1000;
-	watt = pe40->avbus * ibus;
+	
+	
 
 	icl = pinfo->chg1_data.input_current_limit / 1000 *
 		(100 - pinfo->data.ibus_err) / 100;
@@ -1040,7 +1036,7 @@ int mtk_pe40_cc_state(struct charger_manager *pinfo)
 	}
 
 	icl_threshold = 100;
-	max_watt = pe40->avbus * max_icl;
+	
 
 	chr_err("[pe40_cc]vbus:%d:%d,ibus:%d,cibus:%d,ibat:%d icl:%d:%d,ccl:%d,%d,vbat:%d,maxIbus:%d,mivr:%d,%d\n",
 		pe40->avbus, vbus,

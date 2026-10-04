@@ -282,18 +282,16 @@ unsigned short pmic_set_hk_reg_value(PMU_FLAGS_LIST_ENUM flagname,
 unsigned int upmu_get_reg_value(unsigned int reg)
 {
 	unsigned int reg_val = 0;
-	unsigned int ret = 0;
 
-	ret = pmic_read_interface(reg, &reg_val, 0xFFFF, 0x0);
+	(void)(pmic_read_interface(reg, &reg_val, 0xFFFF, 0x0));
 	return reg_val;
 }
 EXPORT_SYMBOL(upmu_get_reg_value);
 
 void upmu_set_reg_value(unsigned int reg, unsigned int reg_val)
 {
-	unsigned int ret = 0;
 
-	ret = pmic_config_interface(reg, reg_val, 0xFFFF, 0x0);
+	(void)(pmic_config_interface(reg, reg_val, 0xFFFF, 0x0));
 }
 
 /*****************************************************************************
@@ -309,7 +307,6 @@ void upmu_set_reg_value(unsigned int reg, unsigned int reg_val)
 
 static struct class *pmic_class;
 static struct cdev *pmic_cdev;
-static int pmic_major;
 static dev_t pmic_devno;
 
 static long pmic_ftm_ioctl(struct file *file,
@@ -376,7 +373,6 @@ static long pmic_ftm_compat_ioctl(struct file *file,
 				  unsigned int cmd,
 				  unsigned long arg)
 {
-	int ret = 0;
 
 	switch (cmd) {
 		/*#if defined(FTM_EXT_BUCK_CHECK) */
@@ -384,7 +380,7 @@ static long pmic_ftm_compat_ioctl(struct file *file,
 	case Get_IS_EXT_VBAT_BOOST_EXIST:
 	case Get_IS_EXT_SWCHR_EXIST:
 	case Get_IS_EXT_BUCK2_EXIST:
-		ret = file->f_op->unlocked_ioctl(file, cmd, arg);
+		(void)(file->f_op->unlocked_ioctl(file, cmd, arg));
 		break;
 	default:
 		PMICLOG("[%s] Error ID\n", __func__);
@@ -417,7 +413,6 @@ static const struct file_operations pmic_ftm_fops = {
 
 void pmic_ftm_init(void)
 {
-	struct class_device *class_dev = NULL;
 	int ret = 0;
 
 	ret = alloc_chrdev_region(&pmic_devno, 0, 1, PMIC_DEVNAME);
@@ -433,11 +428,11 @@ void pmic_ftm_init(void)
 	if (ret)
 		PMICLOG("[%s] Error: cdev_add\n", __func__);
 
-	pmic_major = MAJOR(pmic_devno);
+	(void)(MAJOR(pmic_devno));
 	pmic_class = class_create(THIS_MODULE, PMIC_DEVNAME);
 
-	class_dev = (struct class_device *)device_create(pmic_class,
-					NULL, pmic_devno, NULL, PMIC_DEVNAME);
+	(void)((struct class_device *)device_create(pmic_class,
+					NULL, pmic_devno, NULL, PMIC_DEVNAME));
 
 	PMICLOG("[%s] Done\n", __func__);
 }

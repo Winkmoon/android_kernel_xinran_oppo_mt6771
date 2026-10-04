@@ -116,7 +116,6 @@ UINT8 tx_buf[MTKSTP_BUFFER_SIZE] = { 0x0 };
 INT32 rd_idx;
 INT32 wr_idx;
 /* struct semaphore buf_mtx; */
-static spinlock_t buf_lock;
 static INT32 mtk_wcn_uart_tx(const PUINT8 data, const UINT32 size, PUINT32 written_size);
 
 
@@ -342,7 +341,6 @@ static VOID stp_uart_rx_handling(ULONG func_data)
 static VOID stp_uart_tty_receive(struct tty_struct *tty, const unsigned char *data, PINT8 flags, INT32 count)
 {
 	UINT32 fifo_avail_len = LDISC_RX_FIFO_SIZE - kfifo_len(g_stp_uart_rx_fifo);
-	UINT32 how_much_put = 0;
 #if 0
 	{
 		struct timeval now;
@@ -360,7 +358,7 @@ static VOID stp_uart_tty_receive(struct tty_struct *tty, const unsigned char *da
 	/*How much empty seat? */
 	if (fifo_avail_len > 0) {
 		/* UART_PR_INFO ("fifo left(%d), count(%d)\n", fifo_avail_len, count); */
-		how_much_put = kfifo_in(g_stp_uart_rx_fifo, (PUINT8) data, count);
+		(void)(kfifo_in(g_stp_uart_rx_fifo, (PUINT8) data, count));
 
 		/*schedule it! */
 		tasklet_schedule(&g_stp_uart_rx_fifo_tasklet);

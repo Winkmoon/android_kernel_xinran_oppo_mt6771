@@ -90,7 +90,7 @@
 
 static struct proc_dir_entry *oppo_secure_common_dir = NULL;
 static char* oppo_secure_common_dir_name = "oplus_secure_common";
-static struct secure_data *secure_data_ptr = NULL;
+static struct secure_data *secure_data_ptr __maybe_unused = NULL;
 
 secure_type_t get_secureType(void)
 {

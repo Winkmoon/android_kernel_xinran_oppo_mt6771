@@ -73,7 +73,7 @@ config F2FS_FS_SECURITY
 
 config OPPO_F2FS_DEBUG
 	string
-	option env="OPPO_F2FS_DEBUG"
+	default ""
 
 config F2FS_CHECK_FS
 	bool "F2FS consistency checking feature"

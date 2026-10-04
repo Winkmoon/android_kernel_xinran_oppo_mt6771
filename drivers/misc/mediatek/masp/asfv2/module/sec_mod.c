@@ -80,7 +80,6 @@
 static struct sec_mod sec = { 0 };
 static struct cdev sec_dev;
 static struct class *sec_class;
-static struct device *sec_device;
 
 void __iomem *hacc_base;
 static const struct of_device_id masp_of_ids[] = {
@@ -208,7 +207,7 @@ static int sec_init(struct platform_device *dev)
 	if (ret < 0)
 		goto exit;
 
-	sec_device = device_create(sec_class, NULL, id, NULL, SEC_DEV_NAME);
+	(void)(device_create(sec_class, NULL, id, NULL, SEC_DEV_NAME));
 	if (sec_class == NULL) {
 		pr_notice("[%s] Create device failed(0x%x)\n",
 			  SEC_DEV_NAME,

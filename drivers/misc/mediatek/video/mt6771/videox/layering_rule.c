@@ -544,7 +544,7 @@ static bool post_hw_limitation(struct disp_layer_info *disp_info)
 				yuv_tb = (yuv_tb < 2) ? 0 : yuv_tb - 2;
 				yuv_bb = yuv_tb + info->dst_height + 1;
 			} else {
-				unsigned int firs_tb, firs_bb, seco_tb, seco_bb;
+				unsigned int firs_bb, seco_tb;
 				unsigned int tmp_tb, tmp_bb;
 				bool sort_res;
 
@@ -554,10 +554,10 @@ static bool post_hw_limitation(struct disp_layer_info *disp_info)
 
 				sort_res = yuv_tb < info->dst_offset_y;
 
-				firs_tb = sort_res ? yuv_tb : tmp_tb;
+				
 				firs_bb = sort_res ? yuv_bb : tmp_bb;
 				seco_tb = sort_res ? tmp_tb : yuv_tb;
-				seco_bb = sort_res ? tmp_bb : yuv_bb;
+				
 
 				if (seco_tb <= firs_bb) {
 					/*

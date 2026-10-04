@@ -460,7 +460,6 @@ static long ccci_util_bc_ioctl(struct file *filp, unsigned int cmd,
 	struct bc_ctl_block_t *bc_dev;
 	int lock_cnt, cpy_size;
 	char *buf;
-	int md_id;
 
 	user_ctlb = filp->private_data;
 	bc_dev = user_ctlb->bc_dev_ptr;
@@ -535,19 +534,19 @@ static long ccci_util_bc_ioctl(struct file *filp, unsigned int cmd,
 			cpy_size = get_lock_rst_user_list(0, buf, 1024);
 			get_lock_rst_user_list(2, &buf[cpy_size],
 			1024 - cpy_size);
-			md_id = 0;
+			
 		} else if ((bc_dev->md_bit_mask &
 					(MD1_BC_SUPPORT | MD3_BC_SUPPORT))
 					== MD1_BC_SUPPORT) {
 			get_lock_rst_user_list(0, buf, 1024);
-			md_id = 1;
+			
 		} else if ((bc_dev->md_bit_mask &
 					(MD1_BC_SUPPORT | MD3_BC_SUPPORT))
 					== MD3_BC_SUPPORT) {
 			get_lock_rst_user_list(2, buf, 1024);
-			md_id = 3;
+			
 		} else {
-			md_id = 0;
+			
 			buf[0] = 0;
 		}
 		pr_info("ccci: Lock reset user list: %s\r\n", buf);
@@ -566,11 +565,9 @@ static long ccci_util_bc_ioctl(struct file *filp, unsigned int cmd,
 long ccci_util_bc_compat_ioctl(struct file *filp, unsigned int cmd,
 	unsigned long arg)
 {
-	struct ccci_util_bc_user_ctlb *user_ctlb;
-	struct bc_ctl_block_t *bc_dev;
 
-	user_ctlb = filp->private_data;
-	bc_dev = user_ctlb->bc_dev_ptr;
+	
+	
 
 	if (!filp->f_op || !filp->f_op->unlocked_ioctl) {
 		CCCI_UTIL_ERR_MSG(

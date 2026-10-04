@@ -1025,7 +1025,6 @@ int m4u_config_prog_dist(int port,
 	int i, free_id = -1;
 	int m4u_index = m4u_port_2_m4u_id(port);
 	unsigned long m4u_base = gM4UBaseAddr[m4u_index];
-	unsigned long larb_base;
 	unsigned int larb, larb_port;
 	struct M4U_PROG_DIST *pProgPfh;
 
@@ -1035,7 +1034,7 @@ int m4u_config_prog_dist(int port,
 		return -1;
 	}
 	larb_port = m4u_port_2_larb_port(port);
-	larb_base = gLarbBaseAddr[larb];
+	
 
 	pProgPfh = gM4UProgPfh[m4u_index];
 
@@ -1399,7 +1398,7 @@ int m4u_config_port(
 
 	int ret = 0;
 #ifdef M4U_TEE_SERVICE_ENABLE
-	unsigned int larb_port, mmu_en = 0, sec_en = 0;
+	unsigned int larb_port __maybe_unused, mmu_en = 0, sec_en = 0;
 #endif
 
 	if (unlikely(larb >= SMI_LARB_NR)) {

@@ -254,11 +254,9 @@ struct vpu_reg_field_desc g_vpu_reg_field_descs[VPU_NUM_REG_FIELDS] = {
 
 int vpu_init_reg(int core, struct vpu_device *device)
 {
-	unsigned int reg_value;
-	unsigned int reg_value2;
 
-	reg_value = 0x0;
-	reg_value2 = 0x0;
+	
+	
 
 	LOG_DBG("%s core(%d)\n", __func__, core);
 	vpu_base[core] = device->vpu_base[core];

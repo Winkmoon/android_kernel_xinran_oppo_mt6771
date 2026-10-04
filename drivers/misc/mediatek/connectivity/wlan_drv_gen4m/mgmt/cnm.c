@@ -680,7 +680,6 @@ void cnmChMngrRequestPrivilege(struct ADAPTER
 {
 	struct MSG_CH_REQ *prMsgChReq;
 	struct CMD_CH_PRIVILEGE *prCmdBody;
-	uint32_t rStatus;
 
 	ASSERT(prAdapter);
 	ASSERT(prMsgHdr);
@@ -758,7 +757,7 @@ void cnmChMngrRequestPrivilege(struct ADAPTER
 		       "CNM: ChReq with wrong netIdx=%d\n\n",
 		       prCmdBody->ucBssIndex);
 
-	rStatus = wlanSendSetQueryCmd(prAdapter,	/* prAdapter */
+	(void)(wlanSendSetQueryCmd(prAdapter,	/* prAdapter */
 				      CMD_ID_CH_PRIVILEGE,	/* ucCID */
 				      TRUE,	/* fgSetQuery */
 				      FALSE,	/* fgNeedResp */
@@ -774,7 +773,7 @@ void cnmChMngrRequestPrivilege(struct ADAPTER
 
 				      NULL,	/* pvSetQueryBuffer */
 				      0	/* u4SetQueryBufferLen */
-				     );
+				     ));
 
 	/* ASSERT(rStatus == WLAN_STATUS_PENDING); */
 
@@ -798,7 +797,6 @@ void cnmChMngrAbortPrivilege(struct ADAPTER *prAdapter,
 	struct MSG_CH_ABORT *prMsgChAbort;
 	struct CMD_CH_PRIVILEGE *prCmdBody;
 	struct CNM_INFO *prCnmInfo;
-	uint32_t rStatus;
 #if CFG_SISO_SW_DEVELOP
 	struct BSS_INFO *prBssInfo;
 #endif
@@ -884,7 +882,7 @@ void cnmChMngrAbortPrivilege(struct ADAPTER *prAdapter,
 		       "CNM: ChAbort with wrong netIdx=%d\n\n",
 		       prCmdBody->ucBssIndex);
 
-	rStatus = wlanSendSetQueryCmd(prAdapter,	/* prAdapter */
+	(void)(wlanSendSetQueryCmd(prAdapter,	/* prAdapter */
 				      CMD_ID_CH_PRIVILEGE,	/* ucCID */
 				      TRUE,	/* fgSetQuery */
 				      FALSE,	/* fgNeedResp */
@@ -900,7 +898,7 @@ void cnmChMngrAbortPrivilege(struct ADAPTER *prAdapter,
 
 				      NULL,	/* pvSetQueryBuffer */
 				      0	/* u4SetQueryBufferLen */
-				     );
+				     ));
 
 	/* ASSERT(rStatus == WLAN_STATUS_PENDING); */
 
@@ -1257,7 +1255,6 @@ void cnmIdcDetectHandler(IN struct ADAPTER *prAdapter,
 	struct BSS_INFO *prBssInfo;
 	struct GLUE_INFO *prGlueInfo = prAdapter->prGlueInfo;
 	uint8_t ucNewChannel = 0;
-	uint32_t u4Ret = 0;
 	OS_SYSTIME rCurrentTime = 0;
 	bool fgCsaCoolDown = FALSE;
 	uint8_t ucColdDownTime = 0;
@@ -1321,8 +1318,8 @@ void cnmIdcDetectHandler(IN struct ADAPTER *prAdapter,
 		ucNewChannel = cnmDecideSapNewChannel(prGlueInfo,
 			prBssInfo);
 		if (ucNewChannel) {
-			u4Ret = cnmIdcCsaReq(prAdapter, ucNewChannel,
-						prBssInfo->u4PrivateData);
+			(void)(cnmIdcCsaReq(prAdapter, ucNewChannel,
+						prBssInfo->u4PrivateData));
 			DBGLOG(CNM, INFO, "[CSA]BssIdx=%d,NewCH=%d\n",
 				prBssInfo->ucBssIndex, ucNewChannel);
 		} else {
@@ -1574,11 +1571,15 @@ u_int8_t cnmP2PIsPermitted(struct ADAPTER *prAdapter)
 {
 	struct BSS_INFO *prBssInfo;
 	uint8_t i;
+#if CFG_ENABLE_BT_OVER_WIFI
 	u_int8_t fgBowIsActive;
+#endif
 
 	ASSERT(prAdapter);
 
+#if CFG_ENABLE_BT_OVER_WIFI
 	fgBowIsActive = FALSE;
+#endif
 
 	for (i = 0; i < prAdapter->ucHwBssIdNum; i++) {
 		prBssInfo = prAdapter->aprBssInfo[i];
@@ -1586,8 +1587,10 @@ u_int8_t cnmP2PIsPermitted(struct ADAPTER *prAdapter)
 		if (prBssInfo && IS_BSS_ACTIVE(prBssInfo)) {
 			if (prBssInfo->eCurrentOPMode == OP_MODE_IBSS)
 				return FALSE;
+#if CFG_ENABLE_BT_OVER_WIFI
 			else if (IS_BSS_BOW(prBssInfo))
 				fgBowIsActive = TRUE;
+#endif
 		}
 	}
 

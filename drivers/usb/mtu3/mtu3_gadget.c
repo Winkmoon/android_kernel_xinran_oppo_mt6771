@@ -118,16 +118,14 @@ static int is_db_ok(struct mtu3_ep *mep)
 
 		for (; *descriptors; ++descriptors) {
 			struct usb_endpoint_descriptor *ep;
-			int is_in;
-			int epnum;
 
 			if ((*descriptors)->bDescriptorType != USB_DT_ENDPOINT)
 				continue;
 
 			ep = (struct usb_endpoint_descriptor *)*descriptors;
 
-			is_in = (ep->bEndpointAddress & 0x80) >> 7;
-			epnum = (ep->bEndpointAddress & 0x0f);
+			
+			
 
 			/*
 			 * Under saving mode, ALL EPs will be set
@@ -671,7 +669,6 @@ static int mtu3_gadget_start(struct usb_gadget *gadget,
 static void stop_activity(struct mtu3 *mtu)
 {
 	struct usb_gadget_driver *driver = mtu->gadget_driver;
-	int i;
 
 	dev_info(mtu->dev, "%s\n", __func__);
 

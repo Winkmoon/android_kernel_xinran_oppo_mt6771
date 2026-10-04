@@ -501,7 +501,7 @@ struct mtp_instance {
 static struct mtp_dev *_mtp_dev;
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-static ATOMIC_NOTIFIER_HEAD(mtp_rw_notifier);
+static ATOMIC_NOTIFIER_HEAD(mtp_rw_notifier __maybe_unused);
 #endif
 
 static inline struct mtp_dev *func_to_mtp(struct usb_function *f)

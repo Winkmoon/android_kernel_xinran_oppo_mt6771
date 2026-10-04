@@ -225,7 +225,6 @@ static unsigned int g_cur_opp_volt;
 static unsigned int g_cur_opp_vsram_volt;
 static unsigned int g_cur_opp_idx;
 static unsigned int g_cur_opp_cond_idx;
-static unsigned int g_keep_opp_freq;
 static unsigned int g_keep_opp_freq_idx;
 static unsigned int g_fixed_vsram_volt;
 static unsigned int g_fixed_vsram_volt_threshold;
@@ -242,21 +241,18 @@ static unsigned int g_DVFS_off_by_ptpod_idx;
 static unsigned int g_opp_springboard_idx;
 #ifdef MT_GPUFREQ_BATT_OC_PROTECT
 static bool g_batt_oc_limited_ignore_state;
-static unsigned int g_batt_oc_level;
 static unsigned int g_batt_oc_limited_idx;
 static unsigned int g_batt_oc_limited_idx_lvl_0;
 static unsigned int g_batt_oc_limited_idx_lvl_1;
 #endif /* ifdef MT_GPUFREQ_BATT_OC_PROTECT */
 #ifdef MT_GPUFREQ_BATT_PERCENT_PROTECT
 static bool g_batt_percent_limited_ignore_state;
-static unsigned int g_batt_percent_level;
 static unsigned int g_batt_percent_limited_idx;
 static unsigned int g_batt_percent_limited_idx_lvl_0;
 static unsigned int g_batt_percent_limited_idx_lvl_1;
 #endif /* ifdef MT_GPUFREQ_BATT_PERCENT_PROTECT */
 #ifdef MT_GPUFREQ_LOW_BATT_VOLT_PROTECT
 static bool g_low_batt_limited_ignore_state;
-static unsigned int g_low_battery_level;
 static unsigned int g_low_batt_limited_idx;
 static unsigned int g_low_batt_limited_idx_lvl_0;
 static unsigned int g_low_batt_limited_idx_lvl_2;
@@ -776,7 +772,7 @@ void mt_gpufreq_batt_oc_callback(BATTERY_OC_LEVEL battery_oc_level)
 
 	gpufreq_pr_debug("@%s: battery_oc_level = %d\n", __func__, battery_oc_level);
 
-	g_batt_oc_level = battery_oc_level;
+	
 
 	if (battery_oc_level == BATTERY_OC_LEVEL_1) {
 		if (g_batt_oc_limited_idx != g_batt_oc_limited_idx_lvl_1) {
@@ -805,7 +801,7 @@ void mt_gpufreq_batt_percent_callback(BATTERY_PERCENT_LEVEL battery_percent_leve
 
 	gpufreq_pr_debug("@%s: battery_percent_level = %d\n", __func__, battery_percent_level);
 
-	g_batt_percent_level = battery_percent_level;
+	
 
 	/* BATTERY_PERCENT_LEVEL_1: <= 15%, BATTERY_PERCENT_LEVEL_0: >15% */
 	if (battery_percent_level == BATTERY_PERCENT_LEVEL_1) {
@@ -835,7 +831,7 @@ void mt_gpufreq_low_batt_callback(LOW_BATTERY_LEVEL low_battery_level)
 
 	gpufreq_pr_debug("@%s: low_battery_level = %d\n", __func__, low_battery_level);
 
-	g_low_battery_level = low_battery_level;
+	
 
 	/*
 	 * 3.25V HW issue int and is_low_battery = 1
@@ -1447,7 +1443,7 @@ static ssize_t mt_gpufreq_opp_freq_proc_write(struct file *file,
 					ret = 0;
 					g_keep_opp_freq_idx = i;
 					g_keep_opp_freq_state = true;
-					g_keep_opp_freq = value;
+					
 					mt_gpufreq_target(i, true);
 					break;
 				}

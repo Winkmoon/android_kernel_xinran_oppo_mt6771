@@ -762,7 +762,6 @@ static const struct file_operations smem_dev_fops = {
 int port_smem_init(struct port_t *port)
 {
 	struct cdev *dev;
-	int ret = 0;
 	int md_id = port->md_id;
 	struct ccci_smem_port *smem_port;
 	struct ccci_smem_region *smem_region =
@@ -787,10 +786,10 @@ int port_smem_init(struct port_t *port)
 		}
 		cdev_init(dev, &smem_dev_fops);
 		dev->owner = THIS_MODULE;
-		ret = cdev_add(dev,
-			MKDEV(port->major, port->minor_base + port->minor), 1);
-		ret = ccci_register_dev_node(port->name, port->major,
-				port->minor_base + port->minor);
+		(void)(cdev_add(dev,
+			MKDEV(port->major, port->minor_base + port->minor), 1));
+		(void)(ccci_register_dev_node(port->name, port->major,
+				port->minor_base + port->minor));
 		port->interception = 0;
 		port->flags |= PORT_F_ADJUST_HEADER;
 	}

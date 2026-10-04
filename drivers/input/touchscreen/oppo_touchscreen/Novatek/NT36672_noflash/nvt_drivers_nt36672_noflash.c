@@ -54,8 +54,6 @@ static fw_update_state nvt_fw_update(void *chip_data, const struct firmware *fw,
 static int nvt_reset(void *chip_data);
 static int nvt_get_chip_info(void *chip_data);
 
-static struct chip_data_nt36672 *g_chip_info = NULL;
-
 /***************************** start of id map table******************************************/
 static const struct nvt_ts_mem_map NT36672A_memory_map = {
     .EVENT_BUF_ADDR           = 0x21C00,
@@ -737,7 +735,9 @@ return:
 static int32_t Write_Partition(struct chip_data_nt36672 *chip_info, const u8 *fwdata, size_t fwsize)
 {
         uint32_t list = 0;
+#if NVT_DUMP_SRAM
         char *name;
+#endif
         uint32_t BIN_addr, SRAM_addr, size;
         uint32_t i = 0;
         uint16_t len = 0;
@@ -751,7 +751,9 @@ static int32_t Write_Partition(struct chip_data_nt36672 *chip_info, const u8 *fw
                 SRAM_addr = chip_info->bin_map[list].SRAM_addr;
                 size = chip_info->bin_map[list].size;
                 BIN_addr = chip_info->bin_map[list].BIN_addr;
+#if NVT_DUMP_SRAM
                 name = chip_info->bin_map[list].name;
+#endif
 
 //              TPD_INFO("[%d][%s] SRAM (0x%08X), SIZE (0x%08X), BIN (0x%08X)\n",
 //                              list, name, SRAM_addr, size, BIN_addr);
@@ -1138,11 +1140,10 @@ fail:
 
 int32_t nvt_nf_detect_chip(struct chip_data_nt36672 *chip_info)
 {
-    int32_t ret = 0;
     int i;
     uint8_t buf[8] = {0};
 
-    ret = nvt_set_page(chip_info, 0x1F600);
+    (void)(nvt_set_page(chip_info, 0x1F600));
 
     buf[0] = 0x4E;  //offset
     buf[1] = 0x00;
@@ -1151,7 +1152,7 @@ int32_t nvt_nf_detect_chip(struct chip_data_nt36672 *chip_info)
     buf[4] = 0x00;
     buf[5] = 0x00;
     buf[6] = 0x00;
-    ret = CTP_SPI_READ(chip_info->s_client, buf, 2);
+    (void)(CTP_SPI_READ(chip_info->s_client, buf, 2));
     for(i=1; i<7; i++) {
         TPD_INFO("buf[%d] is 0x%02X\n", i, buf[i]);
         if(buf[i] != 0) {
@@ -3926,7 +3927,7 @@ static int nvt_tp_probe(struct spi_device *client)
         return ret;
     }
     memset(chip_info, 0, sizeof(*chip_info));
-    g_chip_info = chip_info;
+    
     chip_info->probe_done = 0;
     /* 2. Alloc common ts */
     ts = common_touch_data_alloc();

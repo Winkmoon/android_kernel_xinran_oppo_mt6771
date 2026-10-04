@@ -485,7 +485,7 @@ static int ccmni_close(struct net_device *dev)
 		(struct ccmni_instance *)netdev_priv(dev);
 	struct ccmni_ctl_block *ccmni_ctl = NULL;
 	struct ccmni_instance *ccmni_tmp = NULL;
-	int usage_cnt = 0, ret = 0;
+	int usage_cnt = 0;
 
 	if (ccmni->md_id < 0 || ccmni->md_id >= MAX_MD_NUM || ccmni->index < 0) {
 		CCMNI_INF_MSG(-1, "invalid md_id or index:md_id = %d,index = %d\n",
@@ -514,7 +514,7 @@ static int ccmni_close(struct net_device *dev)
 	if (unlikely(ccmni_ctl->ccci_ops->md_ability & MODEM_CAP_NAPI))
 		napi_disable(ccmni->napi);
 
-	ret = mtk_ccci_handle_port_list(DEV_CLOSE, dev->name);
+	(void)(mtk_ccci_handle_port_list(DEV_CLOSE, dev->name));
 	CCMNI_INF_MSG(ccmni->md_id, "%s_Close:cnt=(%d, %d)\n",
 		dev->name, atomic_read(&ccmni->usage),
 		atomic_read(&ccmni_tmp->usage));
@@ -1429,7 +1429,9 @@ int ccmni_header(int md_id, int ccmni_idx, struct sk_buff *skb)
 		struct ccmni_instance *ccmni = NULL;
 		struct net_device *dev = NULL;
 		int pkt_type, skb_len;
+#if defined(CCCI_SKB_TRACE)
 		struct iphdr *iph;
+#endif
 
 		int is_gro = 0;
 
@@ -1450,7 +1452,9 @@ int ccmni_header(int md_id, int ccmni_idx, struct sk_buff *skb)
 		ccmni = ctlb->ccmni_inst[ccmni_idx];
 		dev = ccmni->dev;
 
+#if defined(CCCI_SKB_TRACE)
 		iph = (struct iphdr *)skb->data;
+#endif
 		pkt_type = skb->data[0] & 0xF0;
 		ccmni_make_etherframe(md_id, dev, skb->data - ETH_HLEN,
 			dev->dev_addr, pkt_type);
@@ -1469,7 +1473,9 @@ int ccmni_header(int md_id, int ccmni_idx, struct sk_buff *skb)
 #endif
 
 #if defined(CCCI_SKB_TRACE)
+#if defined(CCCI_SKB_TRACE)
 		iph = (struct iphdr *)skb->data;
+#endif
 		ctlb->net_rx_delay[2] = iph->id;
 		ctlb->net_rx_delay[0] = dev->stats.rx_bytes + skb_len;
 		ctlb->net_rx_delay[1] = dev->stats.tx_bytes;
@@ -1486,7 +1492,7 @@ int ccmni_rx_list_push(int md_id, int ccmni_idx, struct list_head *head,
 			bool is_gro)
 {
 	struct ccmni_ctl_block *ctlb = NULL;
-	struct ccmni_instance *ccmni = NULL;
+	struct ccmni_instance *ccmni __maybe_unused = NULL;
 #ifdef ENABLE_WQ_GRO
 	struct sk_buff *skb, *next;
 #endif
