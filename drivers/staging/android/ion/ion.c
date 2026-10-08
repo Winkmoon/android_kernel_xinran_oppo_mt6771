@@ -1875,7 +1875,6 @@ static int ion_dma_buf_begin_cpu_access(struct dma_buf *dmabuf,
 					enum dma_data_direction direction)
 {
 	struct ion_buffer *buffer = dmabuf->priv;
-	void *vaddr;
 	struct ion_dma_buf_attachment *a;
 
 	/*
