@@ -92,7 +92,7 @@ jobs:
           cd kernel_workspace
           cd common
           if [[ -n "${{ github.event.inputs.kernel_suffix }}" ]]; then
-            for f in ./arch/arm64/configs/xiaomi_diting_defconfig; do
+            for f in ./arch/arm64/configs/oppo6771_defconfig; do
               sed -i "s/^CONFIG_LOCALVERSION=.*/CONFIG_LOCALVERSION=\"-${{ github.event.inputs.kernel_suffix }}\"/" "$f"
             done
           fi
