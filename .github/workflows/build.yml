@@ -143,9 +143,9 @@ jobs:
           export CCACHE_COMPRESS=true
           export KBUILD_BUILD_USER=XinRan♡
           export KBUILD_BUILD_HOST=Bai
-          make LLVM=1 LLVM_IAS=1 ARCH=arm64 CC="ccache clang" BUILD_CONFIG=build.config.gki.aarch64 O=out DEPMOD=depmod oppo6771_defconfig
+          make LLVM=1 LLVM_IAS=1 ARCH=arm64 CC="ccache clang" BUILD_CONFIG=build.config.gki.aarch64 O=out DEPMOD=depmod TARGET_PRODUCT=full_oppo6771 oppo6771_defconfig
           ## scripts/config --file out/.config -e LTO_CLANG -d LTO_NONE -e LTO_CLANG_THIN -d LTO_CLANG_FULL -e THINLTO
-          make -j24 O=out ARCH=arm64 CC="ccache clang" HOSTCC="ccache clang" HOSTCXX="ccache clang++" LLVM=1 LLVM_IAS=1
+          make -j24 O=out ARCH=arm64 CC="ccache clang" HOSTCC="ccache clang" HOSTCXX="ccache clang++" LLVM=1 LLVM_IAS=1 TARGET_PRODUCT=full_oppo6771
 
           for f in out/vmlinux out/arch/arm64/boot/Image; do
             if [ ! -s "$f" ]; then
