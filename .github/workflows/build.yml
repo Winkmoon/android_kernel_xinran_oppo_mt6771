@@ -56,10 +56,8 @@ jobs:
             ccache \
             rsync \
             binutils-aarch64-linux-gnu \
-            binutils-arm-linux-gnueabihf \
-            neofetch
+            binutils-arm-linux-gnueabihf
           lscpu
-          neofetch
           if [ ! -d aosp-clang ]; then
             wget -O LLVM-23.1.2-Linux-X64.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.2/LLVM-23.1.2-Linux-X64.tar.xz
             tar -xvaf LLVM-23.1.2-Linux-X64.tar.xz
