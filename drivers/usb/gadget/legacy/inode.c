@@ -114,6 +114,8 @@ enum ep0_state {
 #define	N_EVENT			5
 #define	RBUF_SIZE		256
 
+#define RBUF_SIZE		256
+
 struct dev_data {
 	spinlock_t			lock;
 	refcount_t			count;
