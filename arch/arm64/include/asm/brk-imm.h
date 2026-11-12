@@ -18,6 +18,9 @@
  * 0x800: kernel-mode BUG() and WARN() traps
  * 0x9xx: tag-based KASAN trap (allowed values 0x900 - 0x9ff)
  */
+#define KPROBES_BRK_IMM			0x004
+#define UPROBES_BRK_IMM			0x005
+#define KPROBES_BRK_SS_IMM		0x006
 #define FAULT_BRK_IMM			0x100
 #define KGDB_DYN_DBG_BRK_IMM		0x400
 #define KGDB_COMPILED_DBG_BRK_IMM	0x401
