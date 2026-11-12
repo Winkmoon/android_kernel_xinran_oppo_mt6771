@@ -58,13 +58,15 @@ endif
     export MTK_ANDROID_EMI=y
     export ADAPTOR_OPTS=CONNAC
     export WIFI_IP_SET=1
+    # gen3 的 Makefile 用 -imacros $(AUTOCONF_H) 引入配置，必须显式提供
+    export AUTOCONF_H := $(abspath $(objtree))/include/generated/autoconf.h
 
     subdir-ccflags-y += -D MTK_WCN_REMOVE_KERNEL_MODULE
     subdir-ccflags-y += -D MTK_WCN_BUILT_IN_DRIVER
     obj-y += wmt_drv/
     obj-y += wmt_chrdev_wifi/
-    # wlan_drv_gen4m/ 是为 mt6768/6779/6785/6853/6873/6885 写的，不支持 MT6771；
-    # 本平台的 WiFi 由 vendor 的 wlan_drv_gen3.ko 提供。
+    # MT6771 = CONSYS_6771 + MT6631 combo，配套驱动是 gen3（不是 gen4m）
+    obj-y += wlan_drv_gen3/
 
         # For BT built-in mode start @{
         # ifneq (,$(filter $(CONFIG_MTK_COMBO_CHIP), "CONSYS_6885"))
