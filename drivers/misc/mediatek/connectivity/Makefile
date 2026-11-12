@@ -63,7 +63,8 @@ endif
     subdir-ccflags-y += -D MTK_WCN_BUILT_IN_DRIVER
     obj-y += wmt_drv/
     obj-y += wmt_chrdev_wifi/
-    obj-y += wlan_drv_gen4m/
+    # wlan_drv_gen4m/ 是为 mt6768/6779/6785/6853/6873/6885 写的，不支持 MT6771；
+    # 本平台的 WiFi 由 vendor 的 wlan_drv_gen3.ko 提供。
 
         # For BT built-in mode start @{
         # ifneq (,$(filter $(CONFIG_MTK_COMBO_CHIP), "CONSYS_6885"))
