@@ -419,7 +419,8 @@ static void __kprobes kprobe_handler(struct pt_regs *regs)
 			if (!p->pre_handler || !p->pre_handler(p, regs)) {
 				setup_singlestep(p, regs, kcb, 0);
 				return;
-			}
+			} else
+				reset_current_kprobe();
 		}
 	} else if ((le32_to_cpu(*(kprobe_opcode_t *) addr) ==
 	    BRK64_OPCODE_KPROBES) && cur_kprobe) {
