@@ -65,8 +65,9 @@ endif
     subdir-ccflags-y += -D MTK_WCN_BUILT_IN_DRIVER
     obj-y += wmt_drv/
     obj-y += wmt_chrdev_wifi/
-    # MT6771 的 BT legacy 驱动也走 built-in，强符号覆盖 wmt_drv 的 weak 钩子
+    # MT6771 的 BT/GPS legacy 驱动也走 built-in，强符号覆盖 wmt_drv 的 weak 钩子
     obj-y += bt_drv/
+    obj-y += gps_drv/
     # MT6771 = CONSYS_6771 + MT6631 combo，配套驱动是 gen3（不是 gen4m）
     obj-y += wlan_drv_gen3/
 
