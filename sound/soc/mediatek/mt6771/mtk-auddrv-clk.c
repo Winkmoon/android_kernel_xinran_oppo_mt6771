@@ -155,6 +155,8 @@ struct audio_clock_attr {
 	bool clk_prepare;
 	bool clk_status;
 	struct clk *clock;
+	/* number of times the clock has actually been enabled */
+	int clk_enable_cnt;
 };
 
 static struct audio_clock_attr aud_clks[CLOCK_NUM] = {
@@ -188,7 +190,7 @@ static struct audio_clock_attr aud_clks[CLOCK_NUM] = {
 static int apll1_mux_setting(bool enable);
 static int apll2_mux_setting(bool enable);
 
-static int aud_clk_enable(const struct audio_clock_attr *clk)
+static int aud_clk_enable(struct audio_clock_attr *clk)
 {
 	int ret;
 
@@ -204,7 +206,27 @@ static int aud_clk_enable(const struct audio_clock_attr *clk)
 		return -EINVAL;
 	}
 
+	clk->clk_enable_cnt++;
+
 	return 0;
+}
+
+/*
+ * Disable a clock only if it was really enabled.  The clock framework
+ * warns when clk_disable() is called on a clock with enable_count 0,
+ * and this driver used to guard clk_disable() with clk_prepare, which
+ * is true for clocks that were only prepared and never enabled.
+ */
+static void aud_clk_disable(struct audio_clock_attr *clk)
+{
+	if (!clk->clock || IS_ERR(clk->clock))
+		return;
+
+	if (clk->clk_enable_cnt <= 0)
+		return;
+
+	clk_disable(clk->clock);
+	clk->clk_enable_cnt--;
 }
 
 
@@ -284,8 +306,7 @@ static int audio_idle_notify_call(struct notifier_block *nfb,
 		/* don't use AudDrv_AUDINTBUS_Sel in notify_call */
 		aud_intbus_mux_sel(0);
 
-		if (aud_clks[CLOCK_MUX_AUDIOINTBUS].clk_prepare)
-			clk_disable(aud_clks[CLOCK_MUX_AUDIOINTBUS].clock);
+		aud_clk_disable(&aud_clks[CLOCK_MUX_AUDIOINTBUS]);
 
 		break;
 	case NOTIFY_DPIDLE_LEAVE:
@@ -296,8 +317,7 @@ static int audio_idle_notify_call(struct notifier_block *nfb,
 		/* don't use AudDrv_AUDINTBUS_Sel in notify_call */
 		aud_intbus_mux_sel(1);
 
-		if (aud_clks[CLOCK_MUX_AUDIOINTBUS].clk_prepare)
-			clk_disable(aud_clks[CLOCK_MUX_AUDIOINTBUS].clock);
+		aud_clk_disable(&aud_clks[CLOCK_MUX_AUDIOINTBUS]);
 
 		break;
 	case NOTIFY_SOIDLE3_ENTER:
@@ -420,8 +440,7 @@ static int apll1_mux_setting(bool enable)
 			       aud_clks[CLOCK_CLK26M].name, ret);
 			goto EXIT;
 		}
-		if (aud_clks[CLOCK_TOP_MUX_AUD_ENG1].clk_prepare)
-			clk_disable(aud_clks[CLOCK_TOP_MUX_AUD_ENG1].clock);
+		aud_clk_disable(&aud_clks[CLOCK_TOP_MUX_AUD_ENG1]);
 
 		/* CLOCK_TOP_MUX_AUD_1 */
 		ret = clk_set_parent(aud_clks[CLOCK_TOP_MUX_AUD_1].clock,
@@ -433,8 +452,7 @@ static int apll1_mux_setting(bool enable)
 			goto EXIT;
 		}
 
-		if (aud_clks[CLOCK_TOP_MUX_AUD_1].clk_prepare)
-			clk_disable(aud_clks[CLOCK_TOP_MUX_AUD_1].clock);
+		aud_clk_disable(&aud_clks[CLOCK_TOP_MUX_AUD_1]);
 	}
 
 EXIT:
@@ -493,8 +511,7 @@ static int apll2_mux_setting(bool enable)
 			       aud_clks[CLOCK_CLK26M].name, ret);
 			goto EXIT;
 		}
-		if (aud_clks[CLOCK_TOP_MUX_AUD_ENG2].clk_prepare)
-			clk_disable(aud_clks[CLOCK_TOP_MUX_AUD_ENG2].clock);
+		aud_clk_disable(&aud_clks[CLOCK_TOP_MUX_AUD_ENG2]);
 
 		/* CLOCK_TOP_MUX_AUD_1 */
 		ret = clk_set_parent(aud_clks[CLOCK_TOP_MUX_AUD_2].clock,
@@ -506,8 +523,7 @@ static int apll2_mux_setting(bool enable)
 			goto EXIT;
 		}
 
-		if (aud_clks[CLOCK_TOP_MUX_AUD_2].clk_prepare)
-			clk_disable(aud_clks[CLOCK_TOP_MUX_AUD_2].clock);
+		aud_clk_disable(&aud_clks[CLOCK_TOP_MUX_AUD_2]);
 	}
 
 EXIT:
@@ -594,31 +610,24 @@ void AudDrv_Clk_Off(void)
 	if (Aud_AFE_Clk_cntr == 0) {
 		/* Disable AFE clock */
 
-		if (aud_clks[CLOCK_MTKAIF_26M_CLK].clk_prepare)
-			clk_disable(aud_clks[CLOCK_MTKAIF_26M_CLK].clock);
+		aud_clk_disable(&aud_clks[CLOCK_MTKAIF_26M_CLK]);
 
 		/* Make sure all IRQ status is cleared */
 		Afe_Set_Reg(AFE_IRQ_MCU_CLR, 0xffff, 0xffff);
 		Afe_Set_Reg(AFE_IRQ_MCU_CLR, 0xffff, 0xffff);
 
-		if (aud_clks[CLOCK_AFE].clk_prepare)
-			clk_disable(aud_clks[CLOCK_AFE].clock);
+		aud_clk_disable(&aud_clks[CLOCK_AFE]);
 
-		if (aud_clks[CLOCK_DAC].clk_prepare)
-			clk_disable(aud_clks[CLOCK_DAC].clock);
+		aud_clk_disable(&aud_clks[CLOCK_DAC]);
 
-		if (aud_clks[CLOCK_DAC_PREDIS].clk_prepare)
-			clk_disable(aud_clks[CLOCK_DAC_PREDIS].clock);
+		aud_clk_disable(&aud_clks[CLOCK_DAC_PREDIS]);
 
 		AudDrv_AUDINTBUS_Sel(0);
-		if (aud_clks[CLOCK_MUX_AUDIOINTBUS].clk_prepare)
-			clk_disable(aud_clks[CLOCK_MUX_AUDIOINTBUS].clock);
+		aud_clk_disable(&aud_clks[CLOCK_MUX_AUDIOINTBUS]);
 
-		if (aud_clks[CLOCK_MUX_AUDIO].clk_prepare)
-			clk_disable(aud_clks[CLOCK_MUX_AUDIO].clock);
+		aud_clk_disable(&aud_clks[CLOCK_MUX_AUDIO]);
 
-		if (aud_clks[CLOCK_INFRA_SYS_AUDIO].clk_prepare)
-			clk_disable(aud_clks[CLOCK_INFRA_SYS_AUDIO].clock);
+		aud_clk_disable(&aud_clks[CLOCK_INFRA_SYS_AUDIO]);
 
 		if (aud_clks[CLOCK_SCP_SYS_AUD].clk_status)
 			clk_disable_unprepare(
@@ -659,6 +668,7 @@ void AudDrv_ADC_Clk_On(void)
 					__func__, aud_clks[CLOCK_ADC].name);
 				goto EXIT;
 			}
+			aud_clks[CLOCK_ADC].clk_enable_cnt++;
 		} else {
 			pr_err("%s [CCF]clk_prepare error %s fail",
 				__func__, aud_clks[CLOCK_ADC].name);
@@ -677,8 +687,7 @@ void AudDrv_ADC_Clk_Off(void)
 	spin_lock_irqsave(&auddrv_Clk_lock, flags);
 	Aud_ADC_Clk_cntr--;
 	if (Aud_ADC_Clk_cntr == 0) {
-		if (aud_clks[CLOCK_ADC].clk_prepare)
-			clk_disable(aud_clks[CLOCK_ADC].clock);
+		aud_clk_disable(&aud_clks[CLOCK_ADC]);
 	}
 	if (Aud_ADC_Clk_cntr < 0) {
 		pr_warn("%s(), Aud_ADC_Clk_cntr %d < 0\n",
@@ -710,8 +719,7 @@ void AudDrv_ADC2_Clk_Off(void)
 	spin_lock_irqsave(&auddrv_Clk_lock, flags);
 	Aud_ADC2_Clk_cntr--;
 	if (Aud_ADC2_Clk_cntr == 0) {
-		if (aud_clks[CLOCK_ADC_ADDA6].clk_prepare)
-			clk_disable(aud_clks[CLOCK_ADC_ADDA6].clock);
+		aud_clk_disable(&aud_clks[CLOCK_ADC_ADDA6]);
 	}
 	if (Aud_ADC2_Clk_cntr < 0) {
 		pr_warn("%s(), Aud_ADC2_Clk_cntr %d < 0\n",
@@ -762,6 +770,7 @@ void AudDrv_APLL22M_Clk_On(void)
 				       __func__, aud_clks[CLOCK_APLL22M].name);
 				goto EXIT;
 			}
+			aud_clks[CLOCK_APLL22M].clk_enable_cnt++;
 		} else {
 			pr_err("%s [CCF]clk_prepare error %s fail",
 			       __func__, aud_clks[CLOCK_APLL22M].name);
@@ -785,7 +794,7 @@ void AudDrv_APLL22M_Clk_Off(void)
 
 	if (Aud_APLL22M_Clk_cntr == 0) {
 		if (aud_clks[CLOCK_APLL22M].clk_prepare) {
-			clk_disable(aud_clks[CLOCK_APLL22M].clock);
+			aud_clk_disable(&aud_clks[CLOCK_APLL22M]);
 		} else {
 			pr_err("%s [CCF]clk_prepare error %s fail",
 			       __func__, aud_clks[CLOCK_APLL22M].name);
@@ -822,6 +831,7 @@ void AudDrv_APLL24M_Clk_On(void)
 				       __func__, aud_clks[CLOCK_APLL24M].name);
 				goto EXIT;
 			}
+			aud_clks[CLOCK_APLL24M].clk_enable_cnt++;
 		} else {
 			pr_err("%s [CCF]clk_prepare error %s fail",
 			       __func__, aud_clks[CLOCK_APLL24M].name);
@@ -845,7 +855,7 @@ void AudDrv_APLL24M_Clk_Off(void)
 
 	if (Aud_APLL24M_Clk_cntr == 0) {
 		if (aud_clks[CLOCK_APLL24M].clk_prepare) {
-			clk_disable(aud_clks[CLOCK_APLL24M].clock);
+			aud_clk_disable(&aud_clks[CLOCK_APLL24M]);
 		} else {
 			pr_err("%s [CCF]clk_prepare error %s fail",
 			       __func__, aud_clks[CLOCK_APLL24M].name);
@@ -953,6 +963,7 @@ void AudDrv_APLL1Tuner_Clk_On(void)
 				       aud_clks[CLOCK_APLL1_TUNER].name);
 				goto EXIT;
 			}
+			aud_clks[CLOCK_APLL1_TUNER].clk_enable_cnt++;
 		} else {
 			pr_err("%s [CCF]clk_prepare error %s fail\n",
 			       __func__, aud_clks[CLOCK_APLL1_TUNER].name);
@@ -974,8 +985,7 @@ void AudDrv_APLL1Tuner_Clk_Off(void)
 	Aud_APLL1_Tuner_cntr--;
 	if (Aud_APLL1_Tuner_cntr == 0) {
 		SetApmixedCfg(AP_PLL_CON5, 0x0, 0x1);
-		if (aud_clks[CLOCK_APLL1_TUNER].clk_prepare)
-			clk_disable(aud_clks[CLOCK_APLL1_TUNER].clock);
+		aud_clk_disable(&aud_clks[CLOCK_APLL1_TUNER]);
 	} else if (Aud_APLL1_Tuner_cntr < 0) {
 		pr_warn("!! %s, Aud_APLL1_Tuner_cntr<0 (%d)\n",
 			__func__, Aud_APLL1_Tuner_cntr);
@@ -1003,6 +1013,7 @@ void AudDrv_APLL2Tuner_Clk_On(void)
 				       aud_clks[CLOCK_APLL2_TUNER].name);
 				goto EXIT;
 			}
+			aud_clks[CLOCK_APLL2_TUNER].clk_enable_cnt++;
 		} else {
 			pr_err("%s [CCF]clk_prepare error %s fail\n",
 			       __func__, aud_clks[CLOCK_APLL2_TUNER].name);
@@ -1024,8 +1035,7 @@ void AudDrv_APLL2Tuner_Clk_Off(void)
 	Aud_APLL2_Tuner_cntr--;
 	if (Aud_APLL2_Tuner_cntr == 0) {
 		SetApmixedCfg(AP_PLL_CON5, 0x0 << 1, 0x1 << 1);
-		if (aud_clks[CLOCK_APLL2_TUNER].clk_prepare)
-			clk_disable(aud_clks[CLOCK_APLL2_TUNER].clock);
+		aud_clk_disable(&aud_clks[CLOCK_APLL2_TUNER]);
 	} else if (Aud_APLL2_Tuner_cntr < 0) {
 		pr_warn("!! %s, Aud_APLL1_Tuner_cntr<0 (%d)\n",
 			__func__, Aud_APLL2_Tuner_cntr);
