@@ -230,7 +230,8 @@ HIF_OBJS += $(HIF_DIR)ahb_pdma.o
 else
 HIF_OBJS += $(HIF_DIR)ahb_cqdma.o
 endif
-ifneq ($(wildcard $(src)/$(PLAT_DIR)plat_priv.c),)
+# O= out-of-tree builds: src is relative to objtree, so check the source tree explicitly.
+ifneq ($(wildcard $(srctree)/$(src)/$(PLAT_DIR)plat_priv.c),)
 PLAT_OBJS := $(PLAT_DIR)plat_priv.o
 endif
 $(MODULE_NAME)-objs  += $(PLAT_OBJS)

@@ -3400,6 +3400,8 @@ static INT32 opfunc_wlan_probe(P_WMT_OP pWmtOp)
 	ULONG ctrlPa1;
 	ULONG ctrlPa2;
 	INT32 iRet;
+	UINT32 u4OrigHifType = WMT_HIF_MAX;
+	MTK_WCN_BOOL fgRestoreHifType = MTK_WCN_BOOL_FALSE;
 	UINT32 drvType = pWmtOp->au4OpData[0];
 
 
@@ -3444,6 +3446,25 @@ static INT32 opfunc_wlan_probe(P_WMT_OP pWmtOp)
 			wmt_lib_wlan_lock_release();
 			goto done;
 		}
+	} else if (gMtkWmtCtx.wmtHifConf.hifType == WMT_HIF_BTIF) {
+		/* BT stays on BTIF; MT6631 WLAN still needs the SDIO2 slot
+		 * powered before opfunc_wlan_probe()/wlanProbe() can access
+		 * the WiFi HIF.  Switch temporarily and restore afterwards.
+		 */
+		u4OrigHifType = gMtkWmtCtx.wmtHifConf.hifType;
+		gMtkWmtCtx.wmtHifConf.hifType = WMT_HIF_SDIO;
+		fgRestoreHifType = MTK_WCN_BOOL_TRUE;
+		ctrlPa1 = WMT_SDIO_SLOT_SDIO2;
+		ctrlPa2 = 1;
+		iRet = wmt_core_ctrl(WMT_CTRL_SDIO_HW, &ctrlPa1, &ctrlPa2);
+		if (iRet) {
+			WMT_ERR_FUNC("turn on SLOT_SDIO2 for BTIF fail (%d)\n", iRet);
+			gMtkWmtCtx.wmtHifConf.hifType = u4OrigHifType;
+			fgRestoreHifType = MTK_WCN_BOOL_FALSE;
+			wmt_lib_wlan_lock_release();
+			goto done;
+		}
+		gMtkWmtCtx.eDrvStatus[WMTDRV_TYPE_SDIO2] = DRV_STS_FUNC_ON;
 	} else {
 		WMT_ERR_FUNC("not implemented yet hifType: 0x%x, unspecified wifi_hif\n",
 				gMtkWmtCtx.wmtHifConf.hifType);
@@ -3451,6 +3472,8 @@ static INT32 opfunc_wlan_probe(P_WMT_OP pWmtOp)
 	}
 
 	iRet = (*(gpWmtFuncOps[drvType]->func_on)) (gMtkWmtCtx.p_ic_ops, wmt_conf_get_cfg());
+	if (fgRestoreHifType)
+		gMtkWmtCtx.wmtHifConf.hifType = u4OrigHifType;
 	if (iRet != 0) {
 		if (WMT_HIF_UART == gMtkWmtCtx.wmtHifConf.hifType) {
 			/*need to power SDIO off when Power on Wi-Fi fail, in case of power leakage and
