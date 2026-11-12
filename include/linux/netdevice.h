@@ -1772,6 +1772,12 @@ struct net_device {
 #endif
 	void 			*atalk_ptr;
 	struct in_device __rcu	*ip_ptr;
+	/*
+	 * Placeholder for the removed DECnet dn_ptr.  The vendor modules are
+	 * prebuilt against a net_device that still contains this slot; keeping
+	 * it preserves the offsets of the following fields.
+	 */
+	void			*dn_ptr_reserved;
 	struct inet6_dev __rcu	*ip6_ptr;
 	void			*ax25_ptr;
 	struct wireless_dev	*ieee80211_ptr;
