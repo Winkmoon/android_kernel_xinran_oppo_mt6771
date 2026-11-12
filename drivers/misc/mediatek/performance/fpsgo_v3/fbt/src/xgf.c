@@ -1264,7 +1264,11 @@ void notify_xgf_ko_ready(void)
 
 	xgf_unlock(__func__);
 }
-EXPORT_SYMBOL(notify_xgf_ko_ready);
+/*
+ * Built-in fpsgo_cus calls this directly.  Keep it out of the module
+ * symbol table so the proprietary fpsgo_cus.ko cannot bind to this
+ * kernel and is rejected at insmod time.
+ */
 
 void fpsgo_ctrl2xgf_switch_xgf(int val)
 {

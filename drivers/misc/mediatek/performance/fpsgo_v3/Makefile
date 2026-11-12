@@ -23,6 +23,8 @@ EARA_JOB_TOP = $(FPSGO_TOP)/eara_job
 VIDEOX_TOP += $(srctree)/drivers/misc/mediatek/video/$(MTK_PLATFORM)/videox
 
 obj-y += fpsgo_main.o
+# Built-in replacement for the proprietary fpsgo_cus.ko (XGF callbacks)
+obj-y += fpsgo_cus.o
 obj-y += base/
 obj-y += composer/
 obj-$(CONFIG_MTK_EARA_AI) += eara_job/
