@@ -99,6 +99,8 @@ enum {
 	Opt_gc_background,
 	Opt_disable_roll_forward,
 	Opt_norecovery,
+	Opt_checkpoint_merge,
+	Opt_nocheckpoint_merge,
 	Opt_discard,
 	Opt_nodiscard,
 	Opt_noheap,
@@ -167,6 +169,8 @@ static match_table_t f2fs_tokens = {
 	{Opt_gc_background, "background_gc=%s"},
 	{Opt_disable_roll_forward, "disable_roll_forward"},
 	{Opt_norecovery, "norecovery"},
+	{Opt_checkpoint_merge, "checkpoint_merge"},
+	{Opt_nocheckpoint_merge, "nocheckpoint_merge"},
 	{Opt_discard, "discard"},
 	{Opt_nodiscard, "nodiscard"},
 	{Opt_noheap, "no_heap"},
@@ -525,6 +529,12 @@ static int parse_options(struct super_block *sb, char *options, bool is_remount)
 			set_opt(sbi, NORECOVERY);
 			if (!f2fs_readonly(sb))
 				return -EINVAL;
+			break;
+		case Opt_checkpoint_merge:
+			set_opt(sbi, MERGE_CHECKPOINT);
+			break;
+		case Opt_nocheckpoint_merge:
+			clear_opt(sbi, MERGE_CHECKPOINT);
 			break;
 		case Opt_discard:
 			set_opt(sbi, DISCARD);
@@ -1313,15 +1323,8 @@ int f2fs_sync_fs(struct super_block *sb, int sync)
 	if (unlikely(is_sbi_flag_set(sbi, SBI_POR_DOING)))
 		return -EAGAIN;
 
-	if (sync) {
-		struct cp_control cpc;
-
-		cpc.reason = __get_cp_reason(sbi);
-
-		down_write(&sbi->gc_lock);
-		err = f2fs_write_checkpoint(sbi, &cpc);
-		up_write(&sbi->gc_lock);
-	}
+	if (sync)
+		err = f2fs_issue_checkpoint(sbi);
 	f2fs_trace_ios(NULL, 1);
 
 	return err;
@@ -3752,6 +3755,10 @@ try_onemore:
 
 	f2fs_build_gc_manager(sbi);
 
+	/* checkpoint merging is on by default; mount options may clear it */
+	set_opt(sbi, MERGE_CHECKPOINT);
+	f2fs_init_ckpt_req_control(sbi);
+
 	err = f2fs_build_stats(sbi);
 	if (err)
 		goto free_nm;
@@ -3789,6 +3796,13 @@ try_onemore:
 	err = f2fs_register_sysfs(sbi);
 	if (err)
 		goto free_root_inode;
+
+	if (test_opt(sbi, MERGE_CHECKPOINT) && !f2fs_readonly(sb)) {
+		if (f2fs_start_ckpt_thread(sbi)) {
+			f2fs_warn(sbi, "Failed to start checkpoint merge thread");
+			clear_opt(sbi, MERGE_CHECKPOINT);
+		}
+	}
 
 #ifdef CONFIG_QUOTA
 	/* Enable quota usage during mount */
@@ -3985,6 +3999,7 @@ static void kill_f2fs_super(struct super_block *sb)
 		set_sbi_flag(sbi, SBI_IS_CLOSE);
 		f2fs_stop_gc_thread(sbi);
 		f2fs_stop_discard_thread(sbi);
+		f2fs_stop_ckpt_thread(sbi);
 
 		if (is_sbi_flag_set(sbi, SBI_IS_DIRTY) ||
 				!is_set_ckpt_flags(sbi, CP_UMOUNT_FLAG)) {

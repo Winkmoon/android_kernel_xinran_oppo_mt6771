@@ -106,6 +106,7 @@ extern const char *f2fs_fault_name[FAULT_MAX];
 #define F2FS_MOUNT_RESERVE_ROOT		0x01000000
 #define F2FS_MOUNT_DISABLE_CHECKPOINT	0x02000000
 #define F2FS_MOUNT_NORECOVERY		0x04000000
+#define F2FS_MOUNT_MERGE_CHECKPOINT	0x08000000
 
 /*
  * private mount options
@@ -1451,6 +1452,26 @@ struct f2fs_hot_cold_params {
          unsigned int warm_node_waterline;
 };
 
+struct ckpt_req {
+	struct completion wait;		/* completion for checkpoint done */
+	struct llist_node llnode;	/* llist_node to be linked in wait queue */
+	int ret;			/* return code of checkpoint */
+	ktime_t queue_time;		/* request queued time */
+};
+
+struct ckpt_req_control {
+	struct task_struct *f2fs_issue_ckpt;	/* checkpoint task */
+	int ckpt_thread_ioprio;			/* checkpoint merge thread ioprio */
+	wait_queue_head_t ckpt_wait_queue;	/* waiting queue for wake-up */
+	atomic_t issued_ckpt;		/* # of actually issued ckpts */
+	atomic_t total_ckpt;		/* # of total ckpts */
+	atomic_t queued_ckpt;		/* # of queued ckpts */
+	struct llist_head issue_list;	/* list for command issue */
+	spinlock_t stat_lock;		/* lock for below checkpoint time stats */
+	unsigned int cur_time;		/* cur wait time in msec for currently issued checkpoint */
+	unsigned int peak_time;		/* peak wait time in msec until now */
+};
+
 struct f2fs_sb_info {
 	struct super_block *sb;			/* pointer to VFS super block */
 	struct proc_dir_entry *s_proc;		/* proc entry */
@@ -1566,6 +1587,7 @@ struct f2fs_sb_info {
 						 * race between GC and GC or CP
 						 */
 	struct f2fs_gc_kthread	*gc_thread;	/* GC thread */
+	struct ckpt_req_control cprc_info;	/* for checkpoint request control */
 	unsigned int cur_victim_sec;		/* current victim section num */
 	unsigned int gc_mode;			/* current GC state */
 	unsigned int next_victim_seg[2];	/* next segment in victim section */
@@ -3499,6 +3521,11 @@ void f2fs_remove_dirty_inode(struct inode *inode);
 int f2fs_sync_dirty_inodes(struct f2fs_sb_info *sbi, enum inode_type type);
 void f2fs_wait_on_all_pages(struct f2fs_sb_info *sbi, int type);
 int f2fs_write_checkpoint(struct f2fs_sb_info *sbi, struct cp_control *cpc);
+int f2fs_issue_checkpoint(struct f2fs_sb_info *sbi);
+int f2fs_start_ckpt_thread(struct f2fs_sb_info *sbi);
+void f2fs_stop_ckpt_thread(struct f2fs_sb_info *sbi);
+void f2fs_flush_ckpt_thread(struct f2fs_sb_info *sbi);
+void f2fs_init_ckpt_req_control(struct f2fs_sb_info *sbi);
 void f2fs_init_ino_entry_info(struct f2fs_sb_info *sbi);
 int __init f2fs_create_checkpoint_caches(void);
 void f2fs_destroy_checkpoint_caches(void);
