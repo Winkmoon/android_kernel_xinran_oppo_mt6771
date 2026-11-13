@@ -4,6 +4,17 @@
 
 #include <linux/compiler_types.h>
 
+/* Backport of the 5.4 fallthrough annotation */
+#if defined(__has_attribute)
+# if __has_attribute(__fallthrough__)
+#  define fallthrough			__attribute__((__fallthrough__))
+# else
+#  define fallthrough			do { } while (0)  /* fallthrough */
+# endif
+#else
+# define fallthrough			do { } while (0)  /* fallthrough */
+#endif
+
 #ifndef __ASSEMBLY__
 
 #ifdef __KERNEL__
