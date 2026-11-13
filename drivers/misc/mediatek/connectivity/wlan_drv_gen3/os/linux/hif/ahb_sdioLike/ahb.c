@@ -172,7 +172,7 @@ struct platform_driver MtkAhbPltmDriver = {
 	.suspend = NULL,
 	.resume = NULL,
 #endif /* CONFIG_PM */
-	.remove = __exit_p(HifAhbPltmRemove),
+	.remove = HifAhbPltmRemove,
 };
 
 static struct platform_device *HifAhbPDev;

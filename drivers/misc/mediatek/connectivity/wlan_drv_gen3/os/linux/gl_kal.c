@@ -1283,8 +1283,13 @@ kalIndicateStatusAndComplete(IN P_GLUE_INFO_T prGlueInfo, IN WLAN_STATUS eStatus
 		if (prGlueInfo->prAdapter)
 			wlanFWCfgForceDisIotAP(prGlueInfo->prAdapter);
 #endif
-		P_BSS_DESC_T prBssDesc = prGlueInfo->prAdapter->rWifiVar.rAisFsmInfo.prTargetBssDesc;
-		if(prBssDesc != NULL) prBssDesc->fgIsConnected = FALSE;
+		{
+			P_BSS_DESC_T prBssDesc =
+				prGlueInfo->prAdapter->rWifiVar.rAisFsmInfo.prTargetBssDesc;
+
+			if (prBssDesc != NULL)
+				prBssDesc->fgIsConnected = FALSE;
+		}
 
 		break;
 

@@ -2437,7 +2437,7 @@ static WLAN_STATUS __scanProcessBeaconAndProbeResp(IN P_ADAPTER_T prAdapter, IN 
 		    && EQUAL_MAC_ADDR(prBssDesc->aucBSSID, prAisBssInfo->aucBSSID)
 		    && EQUAL_SSID(prBssDesc->aucSSID, prBssDesc->ucSSIDLen, prAisBssInfo->aucSSID,
 				  prAisBssInfo->ucSSIDLen)) {
-			BOOLEAN fgNeedDisconnect = FALSE;
+			BOOLEAN fgNeedDisconnect __maybe_unused = FALSE;
 
 #if CFG_SUPPORT_BEACON_CHANGE_DETECTION
 			/* <1.1.2> check if supported rate differs */
