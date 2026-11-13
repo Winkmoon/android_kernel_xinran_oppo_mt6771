@@ -93,4 +93,6 @@
 #define ZSMALLOC_MAGIC		0x58295829
 #define DMA_BUF_MAGIC		0x444d4142	/* "DMAB" */
 
+#define EROFS_SUPER_MAGIC_V1	0xE0F5E1E2
+
 #endif /* __LINUX_MAGIC_H__ */

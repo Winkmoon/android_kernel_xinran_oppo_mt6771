@@ -137,6 +137,8 @@ obj-$(CONFIG_CEPH_FS)		+= ceph/
 obj-$(CONFIG_PSTORE)		+= pstore/
 obj-$(CONFIG_EFIVAR_FS)		+= efivarfs/
 
+obj-$(CONFIG_EROFS_FS)		+= erofs/
+
 ifdef CONFIG_OPLUS_FEATURE_EXT4_SUPPORT
 obj-$(CONFIG_EXT4_FS)		+= oext4/
 else
