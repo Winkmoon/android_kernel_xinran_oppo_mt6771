@@ -76,6 +76,18 @@ config EROFS_FS_ZIP
 
 	  If you don't want to enable compression feature, say N.
 
+config EROFS_FS_ZIP_LZMA
+	bool "EROFS LZMA compressed data support"
+	depends on EROFS_FS_ZIP
+	select XZ_DEC
+	select XZ_DEC_MICROLZMA
+	default y
+	help
+	  Saying Y here includes support for reading EROFS file systems
+	  containing LZMA compressed data.
+
+	  If unsure, say N.
+
 config EROFS_FS_PCPU_KTHREAD
 	bool "EROFS per-cpu decompression kthread workers"
 	depends on EROFS_FS_ZIP

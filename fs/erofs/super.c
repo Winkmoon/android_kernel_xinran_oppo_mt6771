@@ -228,6 +228,11 @@ static int erofs_load_compr_cfgs(struct super_block *sb,
 		case Z_EROFS_COMPRESSION_LZ4:
 			ret = z_erofs_load_lz4_config(sb, dsb, data, size);
 			break;
+#ifdef CONFIG_EROFS_FS_ZIP_LZMA
+		case Z_EROFS_COMPRESSION_LZMA:
+			ret = z_erofs_load_lzma_config(sb, dsb, data, size);
+			break;
+#endif
 		default:
 			DBG_BUGON(1);
 			ret = -EFAULT;

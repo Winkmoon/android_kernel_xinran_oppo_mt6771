@@ -581,6 +581,9 @@ int z_erofs_map_blocks_iter(struct inode *inode,
 	err = z_erofs_get_extent_compressedlen(&m, initial_lcn);
 	if (err)
 		goto out;
+
+	if (map->m_flags & EROFS_MAP_ZIPPED)
+		map->m_algorithmformat = vi->z_algorithmtype[0];
 unmap_out:
 	if (m.kaddr)
 		kunmap_atomic(m.kaddr);

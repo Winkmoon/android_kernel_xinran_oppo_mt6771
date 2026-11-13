@@ -265,6 +265,12 @@ static struct z_erofs_decompressor decompressors[] = {
 	[Z_EROFS_COMPRESSION_SHIFTED] = {
 		.name = "shifted"
 	},
+#ifdef CONFIG_EROFS_FS_ZIP_LZMA
+	[Z_EROFS_COMPRESSION_LZMA] = {
+		.prepare_destpages = z_erofs_lzma_prepare_destpages,
+		.decompress = z_erofs_lzma_decompress,
+	},
+#endif
 	[Z_EROFS_COMPRESSION_LZ4] = {
 		.prepare_destpages = z_erofs_lz4_prepare_destpages,
 		.decompress = z_erofs_lz4_decompress,
