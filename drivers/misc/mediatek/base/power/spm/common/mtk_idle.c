@@ -150,4 +150,5 @@ void __init mtk_cpuidle_framework_init(void)
 
 	spm_resource_req_init();
 }
-EXPORT_SYMBOL(mtk_cpuidle_framework_init);
+/* Not exported: the only callers are built-in init code.  Exporting an
+ * __init symbol makes modpost report a section mismatch. */

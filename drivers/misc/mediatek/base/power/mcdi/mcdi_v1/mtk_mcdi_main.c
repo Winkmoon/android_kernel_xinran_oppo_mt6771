@@ -85,25 +85,33 @@ static bool mcdi_stress_en;
 static unsigned int mcdi_stress_us = 10 * 1000;
 static struct task_struct *mcdi_stress_tsk[NF_CPU];
 
-int __attribute__((weak)) mtk_enter_idle_state(int mode)
-{
-	return 0;
-}
+/*
+ * Implemented in other translation units (spm_v4/mtk_idle.c,
+ * cpuidle_v3/mtk_cpuidle.c, spm_v4/mtk_idle_profile.c,
+ * mcdi/<platform>/mtk_mcdi_state.c).
+ *
+ * They used to be empty __weak stubs defined here.  clang LTO keeps the
+ * definition visible in this translation unit and inlines it into the calls
+ * below, so the real implementation is never reached.  Declare them extern
+ * and let the linker resolve the call instead.
+ */
+extern int mtk_enter_idle_state(int mode);
+extern int soidle_enter(int cpu);
+extern int dpidle_enter(int cpu);
+extern int soidle3_enter(int cpu);
+extern void mtk_idle_dump_cnt_in_interval(void);
+extern void mcdi_set_state_lat(int cpu_type, int state, unsigned int val);
+extern void mcdi_set_state_res(int cpu_type, int state, unsigned int val);
 
-int __attribute__((weak)) soidle_enter(int cpu)
-{
-	return 1;
-}
-
-int __attribute__((weak)) dpidle_enter(int cpu)
-{
-	return 1;
-}
-
-int __attribute__((weak)) soidle3_enter(int cpu)
-{
-	return 1;
-}
+/*
+ * Clang LTO miscompiles this file when it is optimised (the device resets
+ * a few seconds after boot, when the first CPU enters idle).  Compile the
+ * functions below without optimisation instead; LTO itself stays enabled
+ * for the whole tree.
+ */
+#ifdef __clang__
+#pragma clang optimize off
+#endif
 
 unsigned long long __attribute__((weak)) idle_get_current_time_ms(void)
 {
@@ -111,20 +119,6 @@ unsigned long long __attribute__((weak)) idle_get_current_time_ms(void)
 }
 
 void __attribute__((weak)) aee_rr_rec_mcdi_val(int id, u32 val)
-{
-}
-
-void __attribute__((weak)) mtk_idle_dump_cnt_in_interval(void)
-{
-}
-
-void __attribute__((weak))
-mcdi_set_state_lat(int cpu_type, int state, unsigned int val)
-{
-}
-
-void __attribute__((weak))
-mcdi_set_state_res(int cpu_type, int state, unsigned int val)
 {
 }
 
@@ -930,3 +924,7 @@ static int __init mcdi_init(void)
 }
 
 late_initcall(mcdi_init);
+
+#ifdef __clang__
+#pragma clang optimize on
+#endif

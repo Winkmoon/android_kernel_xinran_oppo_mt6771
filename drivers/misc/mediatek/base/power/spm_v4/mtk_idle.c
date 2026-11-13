@@ -105,15 +105,20 @@ void __attribute__((weak)) mtkTTimer_cancel_timer(void)
 
 }
 
-bool __attribute__((weak)) spm_get_sodi3_en(void)
-{
-	return false;
-}
-
-bool __attribute__((weak)) spm_get_sodi_en(void)
-{
-	return false;
-}
+/*
+ * Implemented elsewhere (mtk_spm_sodi3p0.c, mtk_spm_sodi.c,
+ * clkbuf_v1/<platform>/mtk_clkbuf_hw.c, mcdi/mtk_mcdi_governor.c).
+ *
+ * These used to be empty __weak stubs defined in this file.  clang LTO keeps
+ * the definition visible in this translation unit and inlines it into the
+ * call sites, so the real implementation is never reached.  Declare them
+ * extern and let the linker resolve the call instead.
+ */
+extern bool spm_get_sodi3_en(void);
+extern bool spm_get_sodi_en(void);
+extern u32 clk_buf_bblpm_enter_cond(void);
+extern void idle_refcnt_inc(void);
+extern void idle_refcnt_dec(void);
 
 int __attribute__((weak)) hps_del_timer(void)
 {
@@ -163,19 +168,6 @@ unsigned long __attribute__((weak)) localtimer_get_counter(void)
 int __attribute__((weak)) localtimer_set_next_event(unsigned long evt)
 {
 	return 0;
-}
-
-uint32_t __attribute__((weak)) clk_buf_bblpm_enter_cond(void)
-{
-	return -1;
-}
-
-void __attribute__((weak)) idle_refcnt_inc(void)
-{
-}
-
-void __attribute__((weak)) idle_refcnt_dec(void)
-{
 }
 
 #endif
@@ -2016,5 +2008,6 @@ void __init mtk_cpuidle_framework_init(void)
 	mtk_idle_set_clkmux_addr();
 	mtk_idle_profile_init();
 }
-EXPORT_SYMBOL(mtk_cpuidle_framework_init);
+/* Not exported: the only callers are built-in init code.  Exporting an
+ * __init symbol makes modpost report a section mismatch. */
 

@@ -105,25 +105,23 @@ struct spm_irq_desc {
 
 static twam_handler_t spm_twam_handler;
 
-void __attribute__((weak)) spm_sodi3_init(void)
-{
-	spm_crit2("NO %s !!!\n", __func__);
-}
-
-void __attribute__((weak)) spm_sodi_init(void)
-{
-	spm_crit2("NO %s !!!\n", __func__);
-}
-
-void __attribute__((weak)) spm_deepidle_init(void)
-{
-	spm_crit2("NO %s !!!\n", __func__);
-}
-
-void __attribute__((weak)) spm_vcorefs_init(void)
-{
-	spm_crit2("NO %s !!!\n", __func__);
-}
+/*
+ * Implemented in the per-function SPM files (mtk_spm_sodi3p0.c, mtk_spm_sodi.c,
+ * mtk_spm_dpidle.c, mtk_spm_vcorefs*.c, mtk_spm_fs.c, mtk_spm_sleep.c).
+ *
+ * These used to be empty __weak stubs defined in this file.  clang LTO keeps
+ * the definition visible in this translation unit and inlines it into the
+ * calls below, so the real implementation is never reached.  Declare them
+ * extern and let the linker resolve the call instead.
+ */
+extern void spm_sodi3_init(void);
+extern void spm_sodi_init(void);
+extern void spm_deepidle_init(void);
+extern void spm_vcorefs_init(void);
+extern int spm_fs_init(void);
+extern char *spm_vcorefs_dump_dvfs_regs(char *p);
+extern ssize_t get_spm_last_wakeup_src(char *ToUserBuf, size_t sz, void *priv);
+extern ssize_t get_spm_sleep_count(char *ToUserBuf, size_t sz, void *priv);
 
 void __attribute__((weak)) mt_power_gs_t_dump_suspend(int count, ...)
 {
@@ -145,22 +143,7 @@ void __attribute__((weak)) set_wakeup_sources(u32 *list, u32 num_events)
 	spm_crit2("NO %s !!!\n", __func__);
 }
 
-int __attribute__((weak)) spm_fs_init(void)
-{
-	spm_crit2("NO %s !!!\n", __func__);
-	return 0;
-}
 
-char *__attribute__((weak)) spm_vcorefs_dump_dvfs_regs(char *p)
-{
-	return NULL;
-}
-
-ssize_t __attribute__((weak))
-get_spm_last_wakeup_src(char *ToUserBuf, size_t sz, void *priv) { return 0; }
-
-ssize_t __attribute__((weak))
-get_spm_sleep_count(char *ToUserBuf, size_t sz, void *priv) { return 0; }
 
 
 

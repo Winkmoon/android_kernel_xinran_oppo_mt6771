@@ -6100,6 +6100,7 @@ int __init __weak create_kmalloc_debug(struct proc_dir_entry *parent)
 	pr_warn("OPLUS_FEATURE_MEMLEAK_DETECT is off.\n");
 	return 0;
 }
-EXPORT_SYMBOL(create_kmalloc_debug);
+/* Not exported: the only callers are built-in init code.  Exporting an
+ * __init symbol makes modpost report a section mismatch. */
 #endif
 #endif
