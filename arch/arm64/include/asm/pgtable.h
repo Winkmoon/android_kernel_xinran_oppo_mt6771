@@ -70,6 +70,14 @@ extern unsigned long empty_zero_page[PAGE_SIZE / sizeof(unsigned long)];
  */
 #define pte_present(pte)	(!!(pte_val(pte) & (PTE_VALID | PTE_PROT_NONE)))
 #define pte_young(pte)		(!!(pte_val(pte) & PTE_AF))
+
+/*
+ * The access flag is updated by hardware, so the young bit is meaningful
+ * even when the LRU code never writes it itself.  4.14 has no PUD sized
+ * huge pages, hence pud_leaf() is always false.
+ */
+#define arch_has_hw_pte_young()	(true)
+#define pud_leaf(pud)		(0)
 #define pte_special(pte)	(!!(pte_val(pte) & PTE_SPECIAL))
 #define pte_write(pte)		(!!(pte_val(pte) & PTE_WRITE))
 #define pte_user_exec(pte)	(!(pte_val(pte) & PTE_UXN))
