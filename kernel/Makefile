@@ -140,9 +140,12 @@ obj-y += special_opt/
 
 $(obj)/configs.o: $(obj)/config_data.h
 
+quiet_cmd_ikconfig = IKC     $@
+cmd_ikconfig = $(CONFIG_SHELL) $(srctree)/scripts/ikconfig_report.sh $< $@
+
 targets += config_data.gz
 $(obj)/config_data.gz: $(KCONFIG_CONFIG) FORCE
-	$(call if_changed,gzip)
+	$(call if_changed,ikconfig)
 
       filechk_ikconfiggz = (echo "static const char kernel_config_data[] __used = MAGIC_START"; cat $< | scripts/basic/bin2c; echo "MAGIC_END;")
 targets += config_data.h
