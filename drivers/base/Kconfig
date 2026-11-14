@@ -147,6 +147,15 @@ config EXTRA_FIRMWARE_DIR
 	  This option controls the directory in which the kernel build system
 	  looks for the firmware files listed in the EXTRA_FIRMWARE option.
 
+config FW_LOADER_COMPRESS
+	bool "Enable compressed firmware support"
+	depends on FW_LOADER
+	select XZ_DEC
+	help
+	  This option enables the firmware loader to decompress XZ-compressed
+	  firmware files.  The loader first looks for the uncompressed file
+	  and falls back to "<name>.xz" when it is missing.
+
 config FW_LOADER_USER_HELPER
 	bool
 

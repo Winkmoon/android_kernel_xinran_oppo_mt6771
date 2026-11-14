@@ -3695,6 +3695,18 @@ static int cgroup_add_file(struct cgroup_subsys_state *css, struct cgroup *cgrp,
 		spin_unlock_irq(&cgroup_file_kn_lock);
 	}
 
+	/*
+	 * When the hierarchy is mounted with noprefix (as Android does), LXC
+	 * and Droidspaces still look the files up under their prefixed name,
+	 * e.g. memory.limit_in_bytes.  Expose that name as a symlink to the
+	 * unprefixed file so both spellings work.
+	 */
+	if (cft->ss && (cgrp->root->flags & CGRP_ROOT_NOPREFIX) &&
+	    !(cft->flags & CFTYPE_NO_PREFIX)) {
+		snprintf(name, CGROUP_FILE_NAME_MAX, "%s.%s", cft->ss->name, cft->name);
+		kernfs_create_link(cgrp->kn, name, kn);
+	}
+
 	return 0;
 }
 

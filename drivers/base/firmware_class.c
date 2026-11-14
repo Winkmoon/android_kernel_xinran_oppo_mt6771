@@ -15,6 +15,7 @@
 #include <linux/init.h>
 #include <linux/timer.h>
 #include <linux/vmalloc.h>
+#include <linux/xz.h>
 #include <linux/interrupt.h>
 #include <linux/bitops.h>
 #include <linux/mutex.h>
@@ -395,9 +396,92 @@ static const char * const fw_path[] = {
 module_param_string(path, fw_path_para, sizeof(fw_path_para), 0644);
 MODULE_PARM_DESC(path, "customized firmware image search path with a higher priority than default path");
 
+#ifdef CONFIG_FW_LOADER_COMPRESS
+/*
+ * Decompress an XZ stream into a vmalloc'd buffer.  XZ_DYNALLOC lets the
+ * decoder size its own dictionary, and the output buffer is grown as needed
+ * because firmware sizes are not known in advance.
+ */
+static int fw_decompress_xz(struct device *dev, struct firmware_buf *buf,
+			    size_t in_size, const void *in_buffer)
+{
+	struct xz_dec *xz_dec;
+	struct xz_buf xz_buf;
+	enum xz_ret xz_ret;
+	unsigned int out_size;
+	void *out_buf;
+	int err = 0;
+
+	xz_dec = xz_dec_init(XZ_DYNALLOC, (u32)-1);
+	if (!xz_dec)
+		return -ENOMEM;
+
+	out_size = max_t(unsigned int, in_size * 4, SZ_64K);
+	out_buf = vmalloc(out_size);
+	if (!out_buf) {
+		xz_dec_end(xz_dec);
+		return -ENOMEM;
+	}
+
+	xz_buf.in = in_buffer;
+	xz_buf.in_pos = 0;
+	xz_buf.in_size = in_size;
+	xz_buf.out = out_buf;
+	xz_buf.out_pos = 0;
+	xz_buf.out_size = out_size;
+
+	for (;;) {
+		xz_ret = xz_dec_run(xz_dec, &xz_buf);
+		if (xz_ret == XZ_STREAM_END)
+			break;
+		if (xz_ret != XZ_OK) {
+			dev_warn(dev, "xz decompression failed (xz_ret=%d)\n",
+				 xz_ret);
+			err = xz_ret == XZ_MEM_ERROR ? -ENOMEM : -EINVAL;
+			break;
+		}
+		/* output buffer is full: grow it and keep the data produced */
+		if (out_size > (u32)-1 / 2) {
+			err = -EINVAL;
+			break;
+		}
+		{
+			void *nbuf = vmalloc(out_size << 1);
+
+			if (!nbuf) {
+				err = -ENOMEM;
+				break;
+			}
+			memcpy(nbuf, out_buf, xz_buf.out_pos);
+			vfree(out_buf);
+			out_buf = nbuf;
+			out_size <<= 1;
+			xz_buf.out = out_buf;
+			xz_buf.out_size = out_size;
+		}
+	}
+	xz_dec_end(xz_dec);
+
+	if (err) {
+		vfree(out_buf);
+		return err;
+	}
+
+	vfree(buf->data);
+	buf->data = out_buf;
+	buf->size = xz_buf.out_pos;
+	return 0;
+}
+#endif /* CONFIG_FW_LOADER_COMPRESS */
+
 #ifdef VENDOR_EDIT
 static int fw_get_filesystem_firmware(struct device *device,
-				       struct firmware_buf *buf, unsigned int opt_flags)
+				       struct firmware_buf *buf, unsigned int opt_flags,
+				       const char *suffix,
+				       int (*decompress)(struct device *dev,
+							 struct firmware_buf *buf,
+							 size_t in_size,
+							 const void *in_buffer))
 #endif
 {
 	loff_t size;
@@ -429,8 +513,8 @@ static int fw_get_filesystem_firmware(struct device *device,
 		if (!fw_path[i][0])
 			continue;
 
-		len = snprintf(path, PATH_MAX, "%s/%s",
-			       fw_path[i], buf->fw_id);
+		len = snprintf(path, PATH_MAX, "%s/%s%s",
+			       fw_path[i], buf->fw_id, suffix);
 		if (len >= PATH_MAX) {
 			rc = -ENAMETOOLONG;
 			break;
@@ -448,8 +532,15 @@ static int fw_get_filesystem_firmware(struct device *device,
 					 path, rc);
 			continue;
 		}
-		dev_dbg(device, "direct-loading %s\n", buf->fw_id);
-		buf->size = size;
+		if (decompress) {
+			dev_dbg(device, "f/w decompressing %s\n", buf->fw_id);
+			rc = decompress(device, buf, size, buf->data);
+			if (rc)
+				continue;
+		} else {
+			dev_dbg(device, "direct-loading %s\n", buf->fw_id);
+			buf->size = size;
+		}
 		fw_state_done(&buf->fw_st);
 		break;
 	}
@@ -1251,7 +1342,12 @@ _request_firmware(const struct firmware **firmware_p, const char *name,
 		goto out;
 
         #ifdef VENDOR_EDIT
-	ret = fw_get_filesystem_firmware(device, fw->priv, opt_flags);
+	ret = fw_get_filesystem_firmware(device, fw->priv, opt_flags, "", NULL);
+#ifdef CONFIG_FW_LOADER_COMPRESS
+	if (ret == -ENOENT)
+		ret = fw_get_filesystem_firmware(device, fw->priv, opt_flags,
+						 ".xz", fw_decompress_xz);
+#endif
 	#else
 	ret = fw_get_filesystem_firmware(device, fw->priv);
 	#endif
