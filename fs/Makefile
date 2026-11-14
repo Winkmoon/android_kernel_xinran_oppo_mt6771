@@ -156,3 +156,6 @@ obj-$(CONFIG_SDCARD_FS)		+= osdcardfs/
 else
 obj-$(CONFIG_SDCARD_FS)		+= sdcardfs/
 endif
+
+# fsopen()/fsmount()/move_mount() backport
+obj-y				+= fs_context.o

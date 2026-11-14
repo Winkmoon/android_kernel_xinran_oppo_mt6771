@@ -2580,6 +2580,24 @@ unlock:
 	return err;
 }
 
+/*
+ * Helpers for the fsopen()/fsmount()/move_mount() API.  do_add_mount() and
+ * clone_mnt() are static to this file, so the new syscalls reach them
+ * through these two entry points.
+ */
+int ksys_add_mount(struct vfsmount *mnt, struct path *path, int mnt_flags)
+{
+	return do_add_mount(real_mount(mnt), path, mnt_flags);
+}
+
+struct vfsmount *ksys_clone_mnt(struct vfsmount *mnt, struct dentry *root,
+				int flag)
+{
+	struct mount *m = clone_mnt(real_mount(mnt), root, flag);
+
+	return m ? &m->mnt : ERR_PTR(-ENOMEM);
+}
+
 static bool mount_too_revealing(struct vfsmount *mnt, int *new_mnt_flags);
 
 /*

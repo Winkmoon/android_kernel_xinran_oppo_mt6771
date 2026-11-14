@@ -105,4 +105,11 @@ extern unsigned int sysctl_mount_max;
 
 extern bool path_is_mountpoint(const struct path *path);
 
+/* fsopen()/fsmount()/move_mount() support */
+extern int ksys_add_mount(struct vfsmount *mnt, struct path *path,
+			  int mnt_flags);
+struct dentry;
+extern struct vfsmount *ksys_clone_mnt(struct vfsmount *mnt,
+				       struct dentry *root, int flag);
+
 #endif /* _LINUX_MOUNT_H */
