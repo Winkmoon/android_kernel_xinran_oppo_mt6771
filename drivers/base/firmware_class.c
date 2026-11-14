@@ -535,8 +535,11 @@ static int fw_get_filesystem_firmware(struct device *device,
 		if (decompress) {
 			dev_dbg(device, "f/w decompressing %s\n", buf->fw_id);
 			rc = decompress(device, buf, size, buf->data);
-			if (rc)
+			if (rc) {
+				vfree(buf->data);
+				buf->data = NULL;
 				continue;
+			}
 		} else {
 			dev_dbg(device, "direct-loading %s\n", buf->fw_id);
 			buf->size = size;
@@ -1344,7 +1347,12 @@ _request_firmware(const struct firmware **firmware_p, const char *name,
         #ifdef VENDOR_EDIT
 	ret = fw_get_filesystem_firmware(device, fw->priv, opt_flags, "", NULL);
 #ifdef CONFIG_FW_LOADER_COMPRESS
-	if (ret == -ENOENT)
+	/*
+	 * A preallocated buffer belongs to the caller: decompressing into it
+	 * would mean freeing memory we do not own, so only look for a
+	 * compressed file when the loader allocates the buffer itself.
+	 */
+	if (ret == -ENOENT && !((struct firmware_buf *)fw->priv)->data)
 		ret = fw_get_filesystem_firmware(device, fw->priv, opt_flags,
 						 ".xz", fw_decompress_xz);
 #endif
