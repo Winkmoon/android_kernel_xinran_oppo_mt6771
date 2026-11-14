@@ -103,6 +103,17 @@ static int fs_context_add_option(struct fs_context *fc, const char *key,
 	if (has_val && (!val || strchr(val, ',')))
 		return -EINVAL;
 
+	/* the device name, not something the filesystem parses from options */
+	if (!strcmp(key, "source")) {
+		char *src = kstrdup(val ? val : "", GFP_KERNEL);
+
+		if (!src)
+			return -ENOMEM;
+		kfree(fc->source);
+		fc->source = src;
+		return 0;
+	}
+
 	need = strlen(key) + 1;
 	if (has_val)
 		need += strlen(val) + 1;
@@ -279,6 +290,10 @@ SYSCALL_DEFINE3(fsmount, int, fs_fd, unsigned int, flags, unsigned int, ms_flags
 		fdput(f);
 		return -EINVAL;
 	}
+	if ((fc->fs_type->fs_flags & FS_REQUIRES_DEV) && !fc->source) {
+		fdput(f);
+		return -ENODEV;
+	}
 
 	if (ms_flags & MOUNT_ATTR_RDONLY)
 		sb_flags |= SB_RDONLY;
@@ -293,7 +308,8 @@ SYSCALL_DEFINE3(fsmount, int, fs_fd, unsigned int, flags, unsigned int, ms_flags
 	if (ms_flags & MOUNT_ATTR_NODIRATIME)
 		sb_flags |= SB_NODIRATIME;
 
-	mnt = vfs_kern_mount(fc->fs_type, sb_flags, fc->source, fc->options);
+	mnt = vfs_kern_mount(fc->fs_type, sb_flags,
+			     fc->source ? fc->source : "", fc->options);
 	fdput(f);
 	if (IS_ERR(mnt))
 		return PTR_ERR(mnt);
