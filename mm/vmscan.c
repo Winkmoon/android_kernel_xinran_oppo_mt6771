@@ -3718,7 +3718,12 @@ static void walk_mm(struct lruvec *lruvec, struct mm_struct *mm, struct lru_gen_
 
 static struct lru_gen_mm_walk *set_mm_walk(struct pglist_data *pgdat)
 {
-	struct lru_gen_mm_walk *walk = current->reclaim_state->mm_walk;
+	struct lru_gen_mm_walk *walk;
+
+	if (!current->reclaim_state)
+		return NULL;
+
+	walk = current->reclaim_state->mm_walk;
 
 	if (pgdat && current_is_kswapd()) {
 		VM_WARN_ON_ONCE(walk);
@@ -3737,7 +3742,12 @@ static struct lru_gen_mm_walk *set_mm_walk(struct pglist_data *pgdat)
 
 static void clear_mm_walk(void)
 {
-	struct lru_gen_mm_walk *walk = current->reclaim_state->mm_walk;
+	struct lru_gen_mm_walk *walk;
+
+	if (!current->reclaim_state)
+		return;
+
+	walk = current->reclaim_state->mm_walk;
 
 	VM_WARN_ON_ONCE(walk && memchr_inv(walk->nr_pages, 0, sizeof(walk->nr_pages)));
 	VM_WARN_ON_ONCE(walk && memchr_inv(walk->mm_stats, 0, sizeof(walk->mm_stats)));
@@ -4548,7 +4558,7 @@ retry:
 
 	putback_inactive_pages(lruvec, &list);
 
-	walk = current->reclaim_state->mm_walk;
+	walk = current->reclaim_state ? current->reclaim_state->mm_walk : NULL;
 	if (walk && walk->batched)
 		reset_batch_size(lruvec, walk);
 
