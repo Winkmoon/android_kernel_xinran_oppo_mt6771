@@ -74,9 +74,11 @@ jobs:
           git clone --depth=1 https://github.com/Winkmoon/android_kernel_xinran_oppo_mt6771 -b android11 common
           rm common/android/abi_gki_protected_exports_* || true
           # 禁用 Git 信息
+          cd ./common
           touch .scmversion
           # 确保 EXTRAVERSION 为空
           sed -i 's/^EXTRAVERSION =.*/EXTRAVERSION =/' Makefile
+          cd ../
       
       - name: 集成rksu
         id: ksu_version
