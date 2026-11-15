@@ -55,8 +55,6 @@ jobs:
             g++-multilib \
             ccache \
             rsync \
-            gcc-aarch64-linux-gnu \
-            g++-aarch64-linux-gnu \
             binutils-aarch64-linux-gnu \
             binutils-arm-linux-gnueabihf
           lscpu
