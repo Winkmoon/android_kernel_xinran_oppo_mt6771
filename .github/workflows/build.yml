@@ -31,7 +31,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: clang
-          key: llvm-23.1.2-${{ runner.os }}
+          key: llvm-23.1.5-${{ runner.os }}
 
       - name: 安装配置环境依赖
         run: |
@@ -59,10 +59,10 @@ jobs:
             binutils-arm-linux-gnueabihf
           lscpu
           if [ ! -d clang ]; then
-            wget -O LLVM-23.1.2-Linux-X64.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.2/LLVM-23.1.2-Linux-X64.tar.xz
-            tar -xvaf LLVM-23.1.2-Linux-X64.tar.xz
-            mv LLVM-23.1.2-Linux-X64 clang
-            rm -rf ./LLVM-23.1.2-Linux-X64.tar.xz
+            wget -O LLVM-23.1.5-Linux-X64.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.5/LLVM-23.1.5-Linux-X64.tar.xz
+            tar -xvaf LLVM-23.1.5-Linux-X64.tar.xz
+            mv LLVM-23.1.5-Linux-X64 clang
+            rm -rf ./LLVM-23.1.5-Linux-X64.tar.xz
           else
             echo "命中 LLVM 缓存，跳过下载"
           fi
