@@ -30,7 +30,7 @@ jobs:
         id: cache-llvm
         uses: actions/cache@v4
         with:
-          path: aosp-clang
+          path: clang
           key: llvm-23.1.2-${{ runner.os }}
 
       - name: 安装配置环境依赖
@@ -58,31 +58,34 @@ jobs:
             binutils-aarch64-linux-gnu \
             binutils-arm-linux-gnueabihf
           lscpu
-          if [ ! -d aosp-clang ]; then
+          if [ ! -d clang ]; then
             wget -O LLVM-23.1.2-Linux-X64.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.2/LLVM-23.1.2-Linux-X64.tar.xz
             tar -xvaf LLVM-23.1.2-Linux-X64.tar.xz
-            mv LLVM-23.1.2-Linux-X64 aosp-clang
+            mv LLVM-23.1.2-Linux-X64 clang
             rm -rf ./LLVM-23.1.2-Linux-X64.tar.xz
           else
             echo "命中 LLVM 缓存，跳过下载"
           fi
-          echo "AOSP_CLANG_PATH=$(pwd)/aosp-clang" >> $GITHUB_ENV
-          echo "PATH=$(pwd)/aosp-clang/bin:$PATH" >> $GITHUB_ENV
+          echo "CLANG_PATH=$(pwd)/clang" >> $GITHUB_ENV
+          echo "PATH=$(pwd)/clang/bin:$PATH" >> $GITHUB_ENV
       - name: 初始化源码仓库
         run: |
           rm -rf kernel_workspace && mkdir kernel_workspace && cd kernel_workspace
           git clone --depth=1 https://github.com/Winkmoon/android_kernel_xinran_oppo_mt6771 -b android11 common
           rm common/android/abi_gki_protected_exports_* || true
+          # 禁用 Git 信息
+          touch .scmversion
+          # 确保 EXTRAVERSION 为空
+          sed -i 's/^EXTRAVERSION =.*/EXTRAVERSION =/' Makefile
       
-     # - name: 集成ReSukiSU
-     #   id: ksu_version
-     #   run: |
-     #     cd kernel_workspace/common
-     #     curl -LSs "https://raw.githubusercontent.com/ReSukiSU/ReSukiSU/main/kernel/setup.sh" | bash -s main
-     #     echo "CONFIG_KSU=y" >> ./arch/arm64/configs/xiaomi_diting_defconfig
-     #     echo "CONFIG_KSU_TOOLKIT_SUPPORT=y" >> ./arch/arm64/configs/xiaomi_diting_defconfig
-     #     echo "CONFIG_KSU_MULTI_MANAGER_SUPPORT=y" >> ./arch/arm64/configs/xiaomi_diting_defconfig
-     #     echo "CONFIG_KSU_TRACEPOINT_HOOK=y" >> ./arch/arm64/configs/xiaomi_diting_defconfig
+      - name: 集成rksu
+        id: ksu_version
+        run: |
+          cd kernel_workspace/common
+          curl -LSs "https://raw.githubusercontent.com/rksuorg/KernelSU/main/kernel/setup.sh" | bash -s main
+          echo "CONFIG_KSU=y" >> ./arch/arm64/configs/oppo6771_defconfig
+          echo "CONFIG_KSU_TOOLKIT_SUPPORT=y" >> ./arch/arm64/configs/oppo6771_defconfig
+          # echo "CONFIG_KSU_MULTI_MANAGER_SUPPORT=y" >> ./arch/arm64/configs/oppo6771_defconfig
 
       
       - name: 添加制作名称
@@ -130,7 +133,7 @@ jobs:
           export CLANG_TRIPLE=aarch64-linux-gnu-
           export CROSS_COMPILE=aarch64-linux-gnu-
           export CROSS_COMPILE_ARM32=arm-linux-gnueabihf-
-          export PATH=$AOSP_CLANG_PATH/bin:$PATH
+          export PATH=$CLANG_PATH/bin:$PATH
           export LLVM=1
           export LLVM_IAS=0
           export KCFLAGS="-Wno-error -Wno-deprecated-declarations"
@@ -162,11 +165,11 @@ jobs:
           git clone https://github.com/Winkmoon/AnyKernel3 --depth=1
           rm -rf ./AnyKernel3/.git
           cd AnyKernel3
-          test -s ../out/arch/arm64/boot/Image || { echo "::error::out/ 里没有 Image，拒绝打包"; exit 1; }
+          test -s ../out/arch/arm64/boot/Image || { echo "::error::out/ 未检测到Image，拒绝打包"; exit 1; }
           cp ../out/arch/arm64/boot/Image ./Image
           ls -l ./Image
           sha256sum ./Image
-          zip -r ../AnyKernel3_xiaomi_diting.zip ./*
+          zip -r ../AnyKernel3_oppo6771-xinran.zip ./*
       
       - name: 上传 ZIP 工件
         uses: actions/upload-artifact@v4
