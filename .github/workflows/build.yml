@@ -55,6 +55,8 @@ jobs:
             g++-multilib \
             ccache \
             rsync \
+            gcc-aarch64-linux-gnu \
+            g++-aarch64-linux-gnu \
             binutils-aarch64-linux-gnu \
             binutils-arm-linux-gnueabihf
           lscpu
@@ -131,25 +133,15 @@ jobs:
       - name: 构建内核
         run: |
           cd kernel_workspace/common
-          export ARCH=arm64
-          export CLANG_TRIPLE=aarch64-linux-gnu-
-          export CROSS_COMPILE=aarch64-linux-gnu-
-          export CROSS_COMPILE_ARM32=arm-linux-gnueabihf-
           export PATH=$CLANG_PATH/bin:$PATH
-          export LLVM=1
-          export LLVM_IAS=0
-          export KCFLAGS="-Wno-error -Wno-deprecated-declarations"
-          export KBUILD_BUILD_VERSION="0"
-          export SOURCE_DATE_EPOCH=$(date +%s)
           export CCACHE_DIR=$HOME/.ccache
           export CCACHE_MAXSIZE=2G
           export CCACHE_COMPRESS=true
           export KBUILD_BUILD_USER=XinRan♡
           export KBUILD_BUILD_HOST=Bai
-          make LLVM=1 LLVM_IAS=1 ARCH=arm64 CC="ccache clang" BUILD_CONFIG=build.config.gki.aarch64 O=out DEPMOD=depmod TARGET_PRODUCT=full_oppo6771 oppo6771_defconfig
+          make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- CC="ccache clang" HOSTCC="ccache clang" LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip O=out KCFLAGS=-Wno-error TARGET_PRODUCT=full_oppo6771 oppo6771_defconfig
           ## scripts/config --file out/.config -e LTO_CLANG -d LTO_NONE -e LTO_CLANG_THIN -d LTO_CLANG_FULL -e THINLTO
-          make -j24 O=out ARCH=arm64 CC="ccache clang" HOSTCC="ccache clang" HOSTCXX="ccache clang++" LLVM=1 LLVM_IAS=1 TARGET_PRODUCT=full_oppo6771
-
+          make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- CC="ccache clang" HOSTCC="ccache clang" LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip O=out KCFLAGS=-Wno-error TARGET_PRODUCT=full_oppo6771 -j32
           for f in out/vmlinux out/arch/arm64/boot/Image; do
             if [ ! -s "$f" ]; then
               echo "::error::构建产物缺失: $f —— 本次编译失败"
