@@ -1,12 +1,19 @@
 name: 生产构建
 env:
   TZ: Asia/Shanghai
-  ANDROID_VERSION: 'android11'
   KERNEL_VERSION: '4.14'
   KERNEL_NAME: 'ran'
 on:
   workflow_dispatch:
     inputs:
+      branch:
+        description: '选择要构建的分支'
+        required: true
+        type: choice
+        default: android11
+        options:
+          - android11
+          - flyme
       kernel_suffix:
         description: '内核后缀(留空默认,开头别加连字符)'
         required: false
@@ -71,7 +78,7 @@ jobs:
       - name: 初始化源码仓库
         run: |
           rm -rf kernel_workspace && mkdir kernel_workspace && cd kernel_workspace
-          git clone --depth=1 https://github.com/Winkmoon/android_kernel_xinran_oppo_mt6771 -b android11 common
+          git clone --depth=1 https://github.com/Winkmoon/android_kernel_xinran_oppo_mt6771 -b "${{ inputs.branch }}" common
           rm common/android/abi_gki_protected_exports_* || true
           # 禁用 Git 信息
           cd ./common
@@ -92,12 +99,19 @@ jobs:
       
       - name: 添加制作名称
         run: |
-          cd kernel_workspace
-          cd common
-          if [[ -n "${{ github.event.inputs.kernel_suffix }}" ]]; then
-            for f in ./arch/arm64/configs/oppo6771_defconfig; do
-              sed -i "s/^CONFIG_LOCALVERSION=.*/CONFIG_LOCALVERSION=\"-${{ github.event.inputs.kernel_suffix }}\"/" "$f"
-            done
+          cd kernel_workspace/common
+          suffix="${{ inputs.kernel_suffix }}"
+          if [ -n "$suffix" ]; then
+            # The defconfig has no CONFIG_LOCALVERSION line at all, so the old
+            # sed never matched anything and the suffix was silently dropped.
+            # Append the setting instead; CONFIG_LOCALVERSION_AUTO is already
+            # disabled in the defconfig, so no git describe suffix is added.
+            sed -i '/^CONFIG_LOCALVERSION=/d' ./arch/arm64/configs/oppo6771_defconfig
+            echo "CONFIG_LOCALVERSION=\"-$suffix\"" >> ./arch/arm64/configs/oppo6771_defconfig
+            echo "内核后缀: -$suffix"
+            grep -n 'CONFIG_LOCALVERSION' ./arch/arm64/configs/oppo6771_defconfig
+          else
+            echo "未设置内核后缀，使用默认版本号"
           fi
       
       - name: 缓存 ccache 编译产物
@@ -161,12 +175,12 @@ jobs:
           cp ../out/arch/arm64/boot/Image ./Image
           ls -l ./Image
           sha256sum ./Image
-          zip -r ../AnyKernel3_oppo6771-xinran.zip ./*
+          zip -r "../AnyKernel3-oppo6771-${{ inputs.branch }}.zip" ./*
       
       - name: 上传 ZIP 工件
         uses: actions/upload-artifact@v4
         with:
-          name: Kernel_ZIP_Artifacts
+          name: Kernel_${{ inputs.branch }}-ak3
           path: ${{ github.workspace }}/kernel_workspace/common/*.zip
 
   release:
@@ -181,6 +195,6 @@ jobs:
       - name: 下载 ZIP 工件
         uses: actions/download-artifact@v4
         with:
-          name: Kernel_ZIP_Artifacts
+          name: Kernel_${{ inputs.branch }}-ak3
           path: ./release_zips
       
