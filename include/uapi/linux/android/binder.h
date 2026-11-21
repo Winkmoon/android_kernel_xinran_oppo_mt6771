@@ -274,6 +274,8 @@ struct binder_node_info_for_ref {
 #define BINDER_GET_NODE_DEBUG_INFO	_IOWR('b', 11, struct binder_node_debug_info)
 #define BINDER_GET_NODE_INFO_FOR_REF	_IOWR('b', 12, struct binder_node_info_for_ref)
 #define BINDER_SET_CONTEXT_MGR_EXT	_IOW('b', 13, struct flat_binder_object)
+/* 14 and 15 are BINDER_FREEZE / BINDER_GET_FROZEN_INFO upstream (not here) */
+#define BINDER_ENABLE_ONEWAY_SPAM_DETECTION	_IOW('b', 16, __u32)
 
 /*
  * NOTE: Two special error codes you should check for when calling
@@ -453,6 +455,15 @@ enum binder_driver_return_protocol {
 	/*
 	 * The the last transaction (either a bcTRANSACTION or
 	 * a bcATTEMPT_ACQUIRE) failed (e.g. out of memory).  No parameters.
+	 */
+
+	/* _IO('r', 18) is BR_FROZEN_REPLY upstream (no freezer here) */
+
+	BR_ONEWAY_SPAM_SUSPECT = _IO('r', 19),
+	/*
+	 * Current process sent too many oneway calls to target, and the last
+	 * asynchronous transaction makes the allocated async buffer size exceed
+	 * detection threshold.  No parameters.
 	 */
 };
 
