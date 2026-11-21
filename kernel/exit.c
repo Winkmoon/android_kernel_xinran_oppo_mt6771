@@ -63,15 +63,12 @@
 #include <linux/rcuwait.h>
 #include <linux/compat.h>
 #include <linux/sysfs.h>
+#include <linux/usermode_driver.h>
 
 #include <linux/uaccess.h>
 #include <asm/unistd.h>
 #include <asm/pgtable.h>
 #include <asm/mmu_context.h>
-
-#if defined(OPLUS_FEATURE_VIRTUAL_RESERVE_MEMORY) && defined(CONFIG_VIRTUAL_RESERVE_MEMORY)
-#include <linux/resmap_account.h>
-#endif
 
 /*
  * The default value should be high enough to not crash a system that randomly
@@ -124,13 +121,11 @@ static void __unhash_process(struct task_struct *p, bool group_dead)
 	nr_threads--;
 	detach_pid(p, PIDTYPE_PID);
 	if (group_dead) {
+		detach_pid(p, PIDTYPE_TGID);
 		detach_pid(p, PIDTYPE_PGID);
 		detach_pid(p, PIDTYPE_SID);
 
 		list_del_rcu(&p->tasks);
-#if defined(OPLUS_FEATURE_MEMLEAK_DETECT) && defined(CONFIG_ION) && defined(CONFIG_DUMP_TASKS_MEM)
-		list_del_rcu(&p->user_tasks);
-#endif
 		list_del_init(&p->sibling);
 		__this_cpu_dec(process_counts);
 	}
@@ -239,14 +234,6 @@ void release_task(struct task_struct *p)
 {
 	struct task_struct *leader;
 	int zap_leader;
-#ifdef CONFIG_OPLUS_FEATURE_FUSE_FS_SHORTCIRCUIT
-	if (p->fpack) {
-		if (p->fpack->iname)
-			__putname(p->fpack->iname);
-		kfree(p->fpack);
-		p->fpack = NULL;
-	}
-#endif /* CONFIG_OPLUS_FEATURE_FUSE_FS_SHORTCIRCUIT */
 repeat:
 	/* don't need to get the RCU readlock here - the process is dead and
 	 * can't be modifying its own credentials. But shut RCU-lockdep up */
@@ -431,22 +418,6 @@ static bool has_stopped_jobs(struct pid *pgrp)
 	return false;
 }
 
-#ifdef OPLUS_BUG_STABILITY
-static bool oppo_is_android_core_group(struct pid *pgrp)
-{
-    struct task_struct *p;
-
-    do_each_pid_task(pgrp, PIDTYPE_PGID, p) {
-        if (( !strcmp(p->comm, "zygote") ) || ( !strcmp(p->comm, "main")) ) {
-            printk("oppo_is_android_core_group: find zygote will be hungup, ignore it \n");
-            return true;
-        }
-    } while_each_pid_task(pgrp, PIDTYPE_PGID, p);
-
-    return false;
-}
-#endif /*OPLUS_BUG_STABILITY*/
-
 /*
  * Check to see if any process groups have become orphaned as
  * a result of our exiting, and if they have any stopped jobs,
@@ -473,12 +444,6 @@ kill_orphaned_pgrp(struct task_struct *tsk, struct task_struct *parent)
 	    task_session(parent) == task_session(tsk) &&
 	    will_become_orphaned_pgrp(pgrp, ignored_task) &&
 	    has_stopped_jobs(pgrp)) {
-#ifdef OPLUS_BUG_STABILITY
-            if (oppo_is_android_core_group(pgrp)) {
-                printk("kill_orphaned_pgrp: find android core process will be hungup, ignored it, only hungup itself:%s:%d , current=%d \n",tsk->comm,tsk->pid,current->pid);
-                return;
-            }
-#endif /*OPLUS_BUG_STABILITY*/
 		__kill_pgrp_info(SIGHUP, SEND_SIG_PRIV, pgrp);
 		__kill_pgrp_info(SIGCONT, SEND_SIG_PRIV, pgrp);
 	}
@@ -530,6 +495,8 @@ retry:
 	 * Search through everything else, we should not get here often.
 	 */
 	for_each_process(g) {
+		if (atomic_read(&mm->mm_users) <= 1)
+			break;
 		if (g->flags & PF_KTHREAD)
 			continue;
 		for_each_thread(g, c) {
@@ -567,6 +534,7 @@ assign_new_owner:
 		goto retry;
 	}
 	mm->owner = c;
+	lru_gen_migrate_mm(mm);
 	task_unlock(c);
 	put_task_struct(c);
 }
@@ -629,9 +597,6 @@ static void exit_mm(void)
 	enter_lazy_tlb(mm, current);
 	task_unlock(current);
 	mm_update_next_owner(mm);
-#if defined(OPLUS_FEATURE_VIRTUAL_RESERVE_MEMORY) && defined(CONFIG_OPPO_HEALTHINFO) && defined(CONFIG_VIRTUAL_RESERVE_MEMORY)
-	trigger_svm_oom_event(mm, false, false);
-#endif
 	mmput(mm);
 	if (test_thread_flag(TIF_MEMDIE))
 		exit_oom_victim();
@@ -775,7 +740,8 @@ static void forget_original_parent(struct task_struct *father,
 				t->parent = t->real_parent;
 			if (t->pdeath_signal)
 				group_send_sig_info(t->pdeath_signal,
-						    SEND_SIG_NOINFO, t);
+						    SEND_SIG_NOINFO, t,
+						    PIDTYPE_TGID);
 		}
 		/*
 		 * If this is a threaded reparent there is no need to
@@ -856,47 +822,10 @@ static void check_stack_usage(void)
 static inline void check_stack_usage(void) {}
 #endif
 
-#ifdef OPLUS_BUG_STABILITY
-static bool is_zygote_process(struct task_struct *t)
-{
-	const struct cred *tcred = __task_cred(t);
-	if(t->children.next && t->children.next != (struct list_head*)&t->children.next)
-		(void)(container_of(t->children.next, struct task_struct, sibling));
-	if(!strcmp(t->comm, "main") && (tcred->uid.val == 0) && (t->parent != 0 && !strcmp(t->parent->comm,"init"))  )
-		return true;
-	else
-		return false;
-	return false;
-}
-
-static bool is_critial_process(struct task_struct *t) {
-    if(t->group_leader && (!strcmp(t->group_leader->comm, "system_server") || is_zygote_process(t) || !strcmp(t->group_leader->comm, "surfaceflinger") || !strcmp(t->group_leader->comm, "servicemanager")))
-    {
-       if (t->pid == t->tgid)
-       {
-          return true;
-       }
-       else
-       {
-          return false;
-       }
-    } else {
-        return false;
-    }
-
-}
-#endif /*OPLUS_BUG_STABILITY*/
-
 void __noreturn do_exit(long code)
 {
 	struct task_struct *tsk = current;
 	int group_dead;
-
-#ifdef OPLUS_BUG_STABILITY
-    if (is_critial_process(tsk)) {
-        printk("critical svc %d:%s exit with %ld !\n", tsk->pid, tsk->comm,code);
-    }
-#endif /*OPLUS_BUG_STABILITY*/
 
 	/*
 	 * We can get here from a kernel oops, sometimes with preemption off.
@@ -992,6 +921,8 @@ void __noreturn do_exit(long code)
 	exit_task_namespaces(tsk);
 	exit_task_work(tsk);
 	exit_thread(tsk);
+	if (group_dead)
+		exit_umh(tsk);
 
 	/*
 	 * Flush inherited counters to the parent - before the parent
@@ -1148,14 +1079,6 @@ struct wait_opts {
 	wait_queue_entry_t		child_wait;
 	int			notask_error;
 };
-
-static inline
-struct pid *task_pid_type(struct task_struct *task, enum pid_type type)
-{
-	if (type != PIDTYPE_PID)
-		task = task->group_leader;
-	return task->pids[type].pid;
-}
 
 static int eligible_pid(struct wait_opts *wo, struct task_struct *p)
 {
@@ -1696,9 +1619,9 @@ end:
 }
 
 /*
- * Resolve a pidfd to the struct pid it refers to, taking a reference the
- * caller must drop with put_pid(). Backported from upstream 3695eae5fee0
- * ("pidfd: add P_PIDFD to waitid()").
+ * Backport of upstream 3695eae5fee0 ("pidfd: add P_PIDFD to waitid()").
+ * Resolve a pidfd file descriptor to the struct pid it refers to, taking a
+ * reference the caller must drop with put_pid().
  */
 static struct pid *pidfd_get_pid(unsigned int fd)
 {
@@ -1741,18 +1664,21 @@ static long kernel_waitid(int which, pid_t upid, struct waitid_info *infop,
 		type = PIDTYPE_PID;
 		if (upid <= 0)
 			return -EINVAL;
+
 		pid = find_get_pid(upid);
 		break;
 	case P_PGID:
 		type = PIDTYPE_PGID;
 		if (upid <= 0)
 			return -EINVAL;
+
 		pid = find_get_pid(upid);
 		break;
 	case P_PIDFD:
 		type = PIDTYPE_PID;
 		if (upid < 0)
 			return -EINVAL;
+
 		pid = pidfd_get_pid(upid);
 		if (IS_ERR(pid))
 			return PTR_ERR(pid);

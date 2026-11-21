@@ -40,16 +40,27 @@
 /**
  * struct clone_args - arguments for the clone3 syscall
  * @flags:       Flags for the new process as listed above.
- * @pidfd:       If CLONE_PIDFD is set, a pidfd will be returned here.
- * @child_tid:   If CLONE_CHILD_SETTID is set, the child TID is returned here.
- * @parent_tid:  If CLONE_PARENT_SETTID is set, the child TID is returned here.
- * @exit_signal: Signal sent to the parent when the child exits.
- * @stack:       Child stack location.
- * @stack_size:  Child stack size.
- * @tls:         TLS descriptor for CLONE_SETTLS.
+ *               All flags are valid except for CSIGNAL and
+ *               CLONE_DETACHED.
+ * @pidfd:       If CLONE_PIDFD is set, a pidfd will be
+ *               returned in this argument.
+ * @child_tid:   If CLONE_CHILD_SETTID is set, the TID of the
+ *               child process will be returned in the child's
+ *               memory.
+ * @parent_tid:  If CLONE_PARENT_SETTID is set, the TID of
+ *               the child process will be returned in the
+ *               parent's memory.
+ * @exit_signal: The exit_signal the parent process will be
+ *               sent when the child exits.
+ * @stack:       Specify the location of the stack for the
+ *               child process.
+ * @stack_size:  The size of the stack for the child process.
+ * @tls:         If CLONE_SETTLS is set, the tls descriptor
+ *               is set to tls.
  *
- * The structure is versioned by size and extensible: new members must be
- * appended and properly 64-bit aligned.
+ * The structure is versioned by size and thus extensible.
+ * New struct members must go at the end of the struct and
+ * must be properly 64bit aligned.
  */
 struct clone_args {
 	__aligned_u64 flags;

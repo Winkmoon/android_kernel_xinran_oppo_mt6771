@@ -106,37 +106,22 @@
 
 #define CREATE_TRACE_POINTS
 #include <trace/events/task.h>
-#ifdef OPLUS_FEATURE_UIFIRST
-#include <linux/uifirst/uifirst_sched_fork.h>
-#endif /* OPLUS_FEATURE_UIFIRST */
 
 #include <mt-plat/mtk_pidmap.h>
 #ifdef CONFIG_MTK_TASK_TURBO
 #include <mt-plat/turbo_common.h>
 #endif
-#ifdef OPLUS_FEATURE_HEALTHINFO
-#ifdef CONFIG_OPPO_JANK_INFO
-#include <linux/oppo_healthinfo/oppo_jank_monitor.h>
-#endif
-#endif /* OPLUS_FEATURE_HEALTHINFO */
 
 /*
  * Minimum number of threads to boot the kernel
  */
 #define MIN_THREADS 20
 
-#if defined(OPLUS_FEATURE_VIRTUAL_RESERVE_MEMORY) && defined(CONFIG_VIRTUAL_RESERVE_MEMORY)
-#include <linux/resmap_account.h>
-#include <linux/vm_anti_fragment.h>
-#endif
 /*
  * Maximum number of threads
  */
 #define MAX_THREADS FUTEX_TID_MASK
 
-#if defined(OPLUS_FEATURE_MEMLEAK_DETECT) && defined(CONFIG_ION) && defined(CONFIG_DUMP_TASKS_MEM)
-extern void update_user_tasklist(struct task_struct *tsk);
-#endif
 /*
  * Protected counters by write_lock_irq(&tasklist_lock)
  */
@@ -725,11 +710,6 @@ static __latent_entropy int dup_mmap(struct mm_struct *mm,
 		if (is_vm_hugetlb_page(tmp))
 			reset_vma_resv_huge_pages(tmp);
 
-#if defined(OPLUS_FEATURE_VIRTUAL_RESERVE_MEMORY) && defined(CONFIG_VIRTUAL_RESERVE_MEMORY)
-		if (BACKUP_CREATE_FLAG(tmp->vm_flags))
-			mm->reserve_vma = tmp;
-#endif
-
 		/*
 		 * Link in the new vma and copy the page table entries.
 		 */
@@ -762,14 +742,6 @@ static __latent_entropy int dup_mmap(struct mm_struct *mm,
 		if (retval)
 			goto out;
 	}
-	
-#if defined(OPLUS_FEATURE_VIRTUAL_RESERVE_MEMORY) && defined(CONFIG_VIRTUAL_RESERVE_MEMORY)
-	retval = dup_reserved_mmap(mm, oldmm, vm_area_cachep);
-	if (retval)
-		goto out;
-    mm->vm_search_two_way = oldmm->vm_search_two_way;
-#endif
-
 	/* a new mm has just been created */
 	retval = arch_dup_mmap(oldmm, mm);
 out:
@@ -886,9 +858,6 @@ static struct mm_struct *mm_init(struct mm_struct *mm, struct task_struct *p,
 	mm->mmap = NULL;
 	mm->mm_rb = RB_ROOT;
 	mm->vmacache_seqnum = 0;
-#if defined(OPLUS_FEATURE_VIRTUAL_RESERVE_MEMORY) && defined(CONFIG_VIRTUAL_RESERVE_MEMORY)
-	init_reserve_mm(mm);
-#endif
 #ifdef CONFIG_SPECULATIVE_PAGE_FAULT
 	rwlock_init(&mm->mm_rb_lock);
 #endif
@@ -897,8 +866,7 @@ static struct mm_struct *mm_init(struct mm_struct *mm, struct task_struct *p,
 	init_rwsem(&mm->mmap_sem);
 	INIT_LIST_HEAD(&mm->mmlist);
 	mm->core_state = NULL;
-	atomic_long_set(&mm->nr_ptes, 0);
-	mm_nr_pmds_init(mm);
+	mm_pgtables_bytes_init(mm);
 	mm->map_count = 0;
 	mm->locked_vm = 0;
 	mm->pinned_vm = 0;
@@ -932,6 +900,7 @@ static struct mm_struct *mm_init(struct mm_struct *mm, struct task_struct *p,
 		goto fail_nocontext;
 
 	mm->user_ns = get_user_ns(user_ns);
+	lru_gen_init_mm(mm);
 	return mm;
 
 fail_nocontext:
@@ -953,12 +922,9 @@ static void check_mm(struct mm_struct *mm)
 					  "mm:%p idx:%d val:%ld\n", mm, i, x);
 	}
 
-	if (atomic_long_read(&mm->nr_ptes))
-		pr_alert("BUG: non-zero nr_ptes on freeing mm: %ld\n",
-				atomic_long_read(&mm->nr_ptes));
-	if (mm_nr_pmds(mm))
-		pr_alert("BUG: non-zero nr_pmds on freeing mm: %ld\n",
-				mm_nr_pmds(mm));
+	if (mm_pgtables_bytes(mm))
+		pr_alert("BUG: non-zero pgtables_bytes on freeing mm: %ld\n",
+				mm_pgtables_bytes(mm));
 
 #if defined(CONFIG_TRANSPARENT_HUGEPAGE) && !USE_SPLIT_PMD_PTLOCKS
 	VM_BUG_ON_MM(mm->pmd_huge_pte, mm);
@@ -1016,6 +982,7 @@ static inline void __mmput(struct mm_struct *mm)
 	}
 	if (mm->binfmt)
 		module_put(mm->binfmt->module);
+	lru_gen_del_mm(mm);
 	mmdrop(mm);
 }
 
@@ -1185,7 +1152,9 @@ static int wait_for_vfork_done(struct task_struct *child,
 	int killed;
 
 	freezer_do_not_count();
+	cgroup_enter_frozen();
 	killed = wait_for_completion_killable(vfork);
+	cgroup_leave_frozen(false);
 	freezer_count();
 
 	if (killed) {
@@ -1373,28 +1342,25 @@ static int copy_fs(unsigned long clone_flags, struct task_struct *tsk)
 static int copy_files(unsigned long clone_flags, struct task_struct *tsk)
 {
 	struct files_struct *oldf, *newf;
-	int error = 0;
 
 	/*
 	 * A background process may not have any files ...
 	 */
 	oldf = current->files;
 	if (!oldf)
-		goto out;
+		return 0;
 
 	if (clone_flags & CLONE_FILES) {
 		atomic_inc(&oldf->count);
-		goto out;
+		return 0;
 	}
 
-	newf = dup_fd(oldf, &error);
-	if (!newf)
-		goto out;
+	newf = dup_fd(oldf, NULL);
+	if (IS_ERR(newf))
+		return PTR_ERR(newf);
 
 	tsk->files = newf;
-	error = 0;
-out:
-	return error;
+	return 0;
 }
 
 static int copy_io(unsigned long clone_flags, struct task_struct *tsk)
@@ -1441,7 +1407,7 @@ static int copy_sighand(unsigned long clone_flags, struct task_struct *tsk)
 	memcpy(sig->action, current->sighand->action, sizeof(sig->action));
 	spin_unlock_irq(&current->sighand->siglock);
 
-	/* Reset all signal handlers not set to SIG_IGN to SIG_DFL. */
+	/* Reset all signal handler not set to SIG_IGN to SIG_DFL. */
 	if (clone_flags & CLONE_CLEAR_SIGHAND)
 		flush_signal_handlers(tsk, 0);
 
@@ -1599,10 +1565,22 @@ static void posix_cpu_timers_init(struct task_struct *tsk)
 static inline void posix_cpu_timers_init(struct task_struct *tsk) { }
 #endif
 
+static inline void init_task_pid_links(struct task_struct *task)
+{
+	enum pid_type type;
+
+	for (type = PIDTYPE_PID; type < PIDTYPE_MAX; ++type) {
+		INIT_HLIST_NODE(&task->pid_links[type]);
+	}
+}
+
 static inline void
 init_task_pid(struct task_struct *task, enum pid_type type, struct pid *pid)
 {
-	 task->pids[type].pid = pid;
+	if (type == PIDTYPE_PID)
+		task->thread_pid = pid;
+	else
+		task->signal->pids[type] = pid;
 }
 
 static int pidfd_release(struct inode *inode, struct file *file)
@@ -1696,6 +1674,10 @@ static inline void rcu_copy_process(struct task_struct *p)
 	INIT_LIST_HEAD(&p->rcu_tasks_holdout_list);
 	p->rcu_tasks_idle_cpu = -1;
 #endif /* #ifdef CONFIG_TASKS_RCU */
+#ifdef CONFIG_TASKS_TRACE_RCU
+	p->trc_reader_nesting = 0;
+	INIT_LIST_HEAD(&p->trc_holdout_list);
+#endif /* #ifdef CONFIG_TASKS_TRACE_RCU */
 }
 
 static void __delayed_free_task(struct rcu_head *rhp)
@@ -1959,18 +1941,6 @@ static __latent_entropy struct task_struct *copy_process(
 #ifdef CONFIG_MTK_TASK_TURBO
 	init_turbo_attr(p, current);
 #endif
-#ifdef OPLUS_FEATURE_UIFIRST
-	init_task_ux_info(p);
-#endif /* OPLUS_FEATURE_UIFIRST */
-#ifdef OPLUS_FEATURE_HEALTHINFO
-#ifdef CONFIG_OPPO_JANK_INFO
-	p->jank_trace = 0;
-	memset(&p->oppo_jank_info, 0, sizeof(struct oppo_jank_monitor_info));
-#endif
-#endif /* OPLUS_FEATURE_HEALTHINFO */
-#ifdef CONFIG_OPLUS_FEATURE_FUSE_FS_SHORTCIRCUIT
-	p->fpack = NULL;
-#endif /* CONFIG_OPLUS_FEATURE_FUSE_FS_SHORTCIRCUIT */
 	/* Perform scheduler related setup. Assign this task to a CPU. */
 	retval = sched_fork(clone_flags, p);
 	if (retval)
@@ -2099,7 +2069,7 @@ static __latent_entropy struct task_struct *copy_process(
 	 */
 
 	p->start_time = ktime_get_ns();
-	p->real_start_time = ktime_get_boot_ns();
+	p->real_start_time = ktime_get_boottime_ns();
 
 	/*
 	 * Make it visible to the rest of the system, but dont wake it up yet.
@@ -2149,11 +2119,13 @@ static __latent_entropy struct task_struct *copy_process(
 		goto bad_fork_cancel_cgroup;
 	}
 
+	init_task_pid_links(p);
 	if (likely(p->pid)) {
 		ptrace_init_task(p, (clone_flags & CLONE_PTRACE) || trace);
 
 		init_task_pid(p, PIDTYPE_PID, pid);
 		if (thread_group_leader(p)) {
+			init_task_pid(p, PIDTYPE_TGID, pid);
 			init_task_pid(p, PIDTYPE_PGID, task_pgrp(current));
 			init_task_pid(p, PIDTYPE_SID, task_session(current));
 
@@ -2162,7 +2134,6 @@ static __latent_entropy struct task_struct *copy_process(
 				p->signal->flags |= SIGNAL_UNKILLABLE;
 			}
 
-			p->signal->leader_pid = pid;
 			p->signal->tty = tty_kref_get(current->signal->tty);
 			/*
 			 * Inherit has_child_subreaper flag under the same
@@ -2173,10 +2144,7 @@ static __latent_entropy struct task_struct *copy_process(
 							 p->real_parent->signal->is_child_subreaper;
 			list_add_tail(&p->sibling, &p->real_parent->children);
 			list_add_tail_rcu(&p->tasks, &init_task.tasks);
-#if defined(OPLUS_FEATURE_MEMLEAK_DETECT) && defined(CONFIG_ION) && defined(CONFIG_DUMP_TASKS_MEM)
-			INIT_LIST_HEAD(&p->user_tasks);
-			update_user_tasklist(p);
-#endif
+			attach_pid(p, PIDTYPE_TGID);
 			attach_pid(p, PIDTYPE_PGID);
 			attach_pid(p, PIDTYPE_SID);
 			__this_cpu_inc(process_counts);
@@ -2270,13 +2238,13 @@ fork_out:
 	return ERR_PTR(retval);
 }
 
-static inline void init_idle_pids(struct pid_link *links)
+static inline void init_idle_pids(struct task_struct *idle)
 {
 	enum pid_type type;
 
 	for (type = PIDTYPE_PID; type < PIDTYPE_MAX; ++type) {
-		INIT_HLIST_NODE(&links[type].node); /* not really needed */
-		links[type].pid = &init_struct_pid;
+		INIT_HLIST_NODE(&idle->pid_links[type]); /* not really needed */
+		init_task_pid(idle, type, &init_struct_pid);
 	}
 }
 
@@ -2286,7 +2254,7 @@ struct task_struct *fork_idle(int cpu)
 	task = copy_process(CLONE_VM, 0, 0, NULL, NULL, &init_struct_pid, 0, 0,
 			    cpu_to_node(cpu));
 	if (!IS_ERR(task)) {
-		init_idle_pids(task->pids);
+		init_idle_pids(task);
 		init_idle(task, cpu);
 	}
 
@@ -2345,9 +2313,6 @@ long _do_fork(unsigned long clone_flags,
 
 		pid = get_task_pid(p, PIDTYPE_PID);
 		nr = pid_vnr(pid);
-#if defined(OPLUS_FEATURE_MEMLEAK_DETECT) && defined(CONFIG_ION) && defined(CONFIG_DUMP_TASKS_MEM)
-		atomic64_set(&p->ions, 0);
-#endif
 
 		if (clone_flags & CLONE_PARENT_SETTID)
 			put_user(nr, parent_tidptr);
@@ -2356,6 +2321,13 @@ long _do_fork(unsigned long clone_flags,
 			p->vfork_done = &vfork;
 			init_completion(&vfork);
 			get_task_struct(p);
+		}
+
+		if (IS_ENABLED(CONFIG_LRU_GEN) && !(clone_flags & CLONE_VM)) {
+			/* lock the task to synchronize with memcg migration */
+			task_lock(p);
+			lru_gen_add_mm(p->mm);
+			task_unlock(p);
 		}
 
 		wake_up_new_task(p);
@@ -2449,13 +2421,25 @@ SYSCALL_DEFINE5(clone, unsigned long, clone_flags, unsigned long, newsp,
 
 #ifdef __ARCH_WANT_SYS_CLONE3
 
+/*
+ * clone3() backport (upstream v5.3+, commit 7f192e3cd316), adapted to 4.14's
+ * positional _do_fork() instead of the later kernel_clone_args refactor.
+ *
+ * Only the VER0 struct is supported; any trailing bytes must be zero (enforced
+ * by copy_struct_from_user()). The later set_tid[] (5.5) and CLONE_INTO_CGROUP
+ * (5.7) extensions are not implemented: callers requesting them get -EINVAL and
+ * are expected to fall back to the legacy path. CLONE_PIDFD reuses the existing
+ * 4.14 backport, which returns the pidfd through parent_tidptr.
+ */
+
 /* All legacy clone flags occupy the low 32 bits of the flag word. */
 #define CLONE3_LEGACY_FLAGS 0xffffffffULL
 
 /*
- * Validate the child stack like upstream clone3_stack_valid() and, on
- * down-growing stacks, advance it to the top of the region so _do_fork()
- * receives the same child stack pointer as the legacy clone path.
+ * Validate the child stack the same way upstream clone3_stack_valid() does and,
+ * on down-growing stacks, advance @stack to the top of the region so it can be
+ * handed to _do_fork() as the child stack pointer (exactly like a legacy clone
+ * newsp argument).
  */
 static bool clone3_stack_valid(unsigned long *stack, unsigned long stack_size)
 {
@@ -2487,6 +2471,16 @@ SYSCALL_DEFINE2(clone3, struct clone_args __user *, uargs, size_t, size)
 	if (unlikely(size < CLONE_ARGS_SIZE_VER0))
 		return -EINVAL;
 
+	/*
+	 * Propagate copy_struct_from_user()'s error verbatim. In particular it
+	 * returns -E2BIG when the caller passes a newer, larger struct with a
+	 * field we don't know about set to a non-zero value (e.g. glibc's
+	 * clone_args.cgroup for CLONE_INTO_CGROUP, a 5.7 feature we don't
+	 * implement). glibc/systemd treat that E2BIG as "CLONE_INTO_CGROUP
+	 * unsupported" and retry the spawn without POSIX_SPAWN_SETCGROUP,
+	 * migrating into the target cgroup the classic way. Masking it as
+	 * -EFAULT breaks that fallback and wedges every service spawn.
+	 */
 	err = copy_struct_from_user(&args, sizeof(args), uargs, size);
 	if (err)
 		return err;
@@ -2505,7 +2499,7 @@ SYSCALL_DEFINE2(clone3, struct clone_args __user *, uargs, size_t, size)
 		return -EINVAL;
 	if (args.flags & (CLONE_DETACHED | CSIGNAL))
 		return -EINVAL;
-	/* Clearing handlers only makes sense with a private sighand table. */
+	/* Clearing the handlers only makes sense with a private sighand table. */
 	if ((args.flags & (CLONE_SIGHAND | CLONE_CLEAR_SIGHAND)) ==
 	    (CLONE_SIGHAND | CLONE_CLEAR_SIGHAND))
 		return -EINVAL;
@@ -2668,13 +2662,13 @@ static int unshare_fs(unsigned long unshare_flags, struct fs_struct **new_fsp)
 static int unshare_fd(unsigned long unshare_flags, struct files_struct **new_fdp)
 {
 	struct files_struct *fd = current->files;
-	int error = 0;
 
 	if ((unshare_flags & CLONE_FILES) &&
 	    (fd && atomic_read(&fd->count) > 1)) {
-		*new_fdp = dup_fd(fd, &error);
-		if (!*new_fdp)
-			return error;
+		fd = dup_fd(fd, NULL);
+		if (IS_ERR(fd))
+			return PTR_ERR(fd);
+		*new_fdp = fd;
 	}
 
 	return 0;
