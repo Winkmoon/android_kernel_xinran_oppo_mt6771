@@ -179,15 +179,6 @@ struct mmc_request {
 #ifdef CONFIG_MTK_EMMC_HW_CQ
 	struct mmc_cmdq_req *cmdq_req;
 #endif
-
-	struct request		*req;
-#if defined(CONFIG_MTK_HW_FDE) || defined(CONFIG_MMC_CRYPTO)
-	bool		is_mmc_req; /* request is from mmc layer */
-#endif
-
-#ifdef CONFIG_MTK_EMMC_HW_CQ
-	struct mmc_cmdq_req *cmdq_req;
-#endif
 #if defined(VENDOR_EDIT) && defined(CONFIG_OPPO_HEALTHINFO)
     ktime_t cmdq_request_time_start;
 #endif
