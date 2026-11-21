@@ -232,6 +232,16 @@ static inline u64 ktime_get_tai_ns(void)
 	return ktime_to_ns(ktime_get_clocktai());
 }
 
+static inline u64 ktime_get_boottime_ns(void)
+{
+	return ktime_get_boot_ns();
+}
+
+static inline u64 ktime_get_clocktai_ns(void)
+{
+	return ktime_get_tai_ns();
+}
+
 static inline u64 ktime_get_raw_ns(void)
 {
 	return ktime_to_ns(ktime_get_raw());

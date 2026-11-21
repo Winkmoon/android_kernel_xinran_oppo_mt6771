@@ -24,6 +24,8 @@
 #include <linux/bsearch.h>
 #include <linux/btf_ids.h>
 #include <net/sock.h>
+#include <net/xdp.h>
+#include <net/flow_dissector.h>
 
 /* BTF (BPF Type Format) is the meta data format which describes
  * the data types of BPF program/map.  Hence, it basically focus

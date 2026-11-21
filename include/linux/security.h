@@ -1859,4 +1859,16 @@ static inline int get_current_security_context(char **context, u32 *context_len)
 }
 #endif
 #endif /* CONFIG_OPLUS_SECURE_GUARD */
+
+/* Minimal lockdown enum needed by the BPF helpers in this 4.14 tree. */
+enum lockdown_reason {
+	LOCKDOWN_NONE,
+	LOCKDOWN_BPF_READ,
+};
+
+static inline int security_locked_down(enum lockdown_reason what)
+{
+	return 0;
+}
+
 #endif /* ! __LINUX_SECURITY_H */

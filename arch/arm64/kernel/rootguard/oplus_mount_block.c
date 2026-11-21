@@ -22,6 +22,8 @@
 #include <linux/bootmem.h>
 #include <linux/task_work.h>
 #include <linux/sched/task.h>
+#include <linux/bpf.h>
+#include <linux/bpf_verifier.h>
 
 #ifdef CONFIG_OPLUS_MOUNT_BLOCK
 #include "oplus_guard_general.h"

@@ -10,16 +10,16 @@
 #include <linux/bpf.h>
 #include <linux/lsm_hooks.h>
 
+struct bpf_storage_blob {
+	struct bpf_local_storage __rcu *storage;
+};
+
 #ifdef CONFIG_BPF_LSM
 
 #define LSM_HOOK(RET, DEFAULT, NAME, ...) \
 	RET bpf_lsm_##NAME(__VA_ARGS__);
 #include <linux/lsm_hook_defs.h>
 #undef LSM_HOOK
-
-struct bpf_storage_blob {
-	struct bpf_local_storage __rcu *storage;
-};
 
 extern struct lsm_blob_sizes bpf_lsm_blob_sizes;
 

@@ -21,6 +21,8 @@
 
 #if LINUX_VERSION_CODE < KERNEL_VERSION(4,19,0)
 #include <linux/sched/task.h>
+#include <linux/bpf.h>
+#include <linux/bpf_verifier.h>
 #endif/* LINUX_VERSION_CODE < KERNEL_VERSION(4,19,0) */
 #endif/* VENDOR_EDIT */
 #include <linux/oplus_kevent.h>

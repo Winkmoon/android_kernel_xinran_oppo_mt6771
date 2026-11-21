@@ -116,7 +116,7 @@ static unsigned int ppm_cpi_get_cpu_cycle_count(int cpu)
 	unsigned int diff = 0;
 
 	if (event && event->state == PERF_EVENT_STATE_ACTIVE) {
-		perf_event_read_local(event, &new);
+		perf_event_read_local(event, &new, NULL, NULL);
 		if (new > old)
 			diff = (unsigned int)(new - old);
 
@@ -138,7 +138,7 @@ static unsigned int ppm_cpi_get_inst_count(int cpu)
 	unsigned int diff = 0;
 
 	if (event && event->state == PERF_EVENT_STATE_ACTIVE) {
-		perf_event_read_local(event, &new);
+		perf_event_read_local(event, &new, NULL, NULL);
 		if (new > old)
 			diff = (unsigned int)(new - old);
 
@@ -159,7 +159,7 @@ static unsigned long long ppm_cpi_get_pmu_e1_count(int cpu)
 	unsigned long long diff = 0;
 
 	if (event && event->state == PERF_EVENT_STATE_ACTIVE) {
-		perf_event_read_local(event, &new);
+		perf_event_read_local(event, &new, NULL, NULL);
 		if (new > old)
 			diff = new - old;
 
@@ -180,7 +180,7 @@ static unsigned long long ppm_cpi_get_pmu_e7_count(int cpu)
 	unsigned long long diff = 0;
 
 	if (event && event->state == PERF_EVENT_STATE_ACTIVE) {
-		perf_event_read_local(event, &new);
+		perf_event_read_local(event, &new, NULL, NULL);
 		if (new > old)
 			diff = new - old;
 
@@ -201,7 +201,7 @@ static unsigned long long ppm_cpi_get_pmu_e8_count(int cpu)
 	unsigned long long diff = 0;
 
 	if (event && event->state == PERF_EVENT_STATE_ACTIVE) {
-		perf_event_read_local(event, &new);
+		perf_event_read_local(event, &new, NULL, NULL);
 		if (new > old)
 			diff = new - old;
 
@@ -288,7 +288,7 @@ static void ppm_cpi_pmu_enable_locked(int cpu, int enable)
 		if (i_event) {
 			perf_event_enable(i_event);
 			perf_event_read_local(i_event,
-					      &per_cpu(inst_count, cpu));
+					      &per_cpu(inst_count, cpu), NULL, NULL);
 		}
 		if (p1_event)
 			perf_event_enable(p1_event);

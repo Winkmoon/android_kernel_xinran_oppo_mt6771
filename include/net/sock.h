@@ -325,6 +325,8 @@ struct sock_common {
   *	@sk_reuseport_cb: reuseport group container
   *	@sk_rcu: used during RCU grace period
   */
+struct bpf_local_storage;
+
 struct sock {
 	/*
 	 * Now struct inet_timewait_sock also uses sock_common, so please just
@@ -488,6 +490,9 @@ struct sock {
 	atomic_t		sk_zckey;
 	struct socket		*sk_socket;
 	void			*sk_user_data;
+#ifdef CONFIG_BPF_SYSCALL
+	struct bpf_local_storage __rcu *sk_bpf_storage;
+#endif
 #ifdef CONFIG_SECURITY
 	void			*sk_security;
 #endif
