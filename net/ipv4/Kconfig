@@ -655,6 +655,15 @@ config TCP_CONG_DCTCP
 	For further details see:
 	  http://simula.stanford.edu/~alizade/Site/DCTCP_files/dctcp-final.pdf
 
+config TCP_CONG_BBR2
+	tristate "BBR2 TCP"
+	default n
+	---help---
+	BBR2 TCP congestion control is a model-based congestion control
+	algorithm that aims to maximize network utilization while keeping
+	queues and retransmit rates low. It requires pacing and can use
+	either TCP internal pacing or the fq packet scheduler.
+
 config TCP_CONG_CDG
 	tristate "CAIA Delay-Gradient (CDG)"
 	default n
