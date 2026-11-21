@@ -147,13 +147,6 @@ static inline struct tcp_request_sock *tcp_rsk(const struct request_sock *req)
 	return (struct tcp_request_sock *)req;
 }
 
-struct saved_syn {
-	u32 mac_hdrlen;
-	u32 network_hdrlen;
-	u32 tcp_hdrlen;
-	u8 data[];
-};
-
 struct tcp_sock {
 	/* inet_connection_sock has to be the first member of tcp_sock */
 	struct inet_connection_sock	inet_conn;
