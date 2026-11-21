@@ -16,9 +16,6 @@
  * the kernel header - so no wrong-ABI symbol exists under a kernel API
  * name.
  */
-/* LZ4_decompress_fast() is still part of the kernel API; ask
- * upstream LZ4 not to mark it deprecated (upstream switch). */
-#define LZ4_DISABLE_DEPRECATE_WARNINGS
 #define LZ4_STATIC_LINKING_ONLY
 #define LZ4_HC_STATIC_LINKING_ONLY
 #include "lz4.h"
@@ -59,14 +56,6 @@ int LZ4_compress_default(const char *source, char *dest, int inputSize,
 					  LZ4_ACCELERATION_DEFAULT);
 }
 EXPORT_SYMBOL(LZ4_compress_default);
-
-int LZ4_compress_destSize(const char *source, char *dest, int *sourceSizePtr,
-	int targetDestSize, void *wrkmem)
-{
-	return LZ4_compress_destSize_extState(wrkmem, source, dest,
-			sourceSizePtr, targetDestSize, LZ4_ACCELERATION_DEFAULT);
-}
-EXPORT_SYMBOL(LZ4_compress_destSize);
 #endif /* CONFIG_LZ4_COMPRESS */
 
 #ifdef CONFIG_LZ4HC_COMPRESS
@@ -92,14 +81,6 @@ EXPORT_SYMBOL(LZ4_compress_HC);
 EXPORT_SYMBOL(LZ4_decompress_safe);
 EXPORT_SYMBOL(LZ4_decompress_safe_partial);
 EXPORT_SYMBOL(LZ4_decompress_fast);
-EXPORT_SYMBOL(LZ4_setStreamDecode);
-EXPORT_SYMBOL(LZ4_decompress_safe_continue);
-EXPORT_SYMBOL(LZ4_decompress_fast_continue);
-EXPORT_SYMBOL(LZ4_decompress_safe_usingDict);
-EXPORT_SYMBOL(LZ4_decompress_fast_usingDict);
-EXPORT_SYMBOL(LZ4_loadDict);
-EXPORT_SYMBOL(LZ4_saveDict);
-EXPORT_SYMBOL(LZ4_compress_fast_continue);
 
 MODULE_LICENSE("Dual BSD/GPL");
 MODULE_DESCRIPTION("LZ4 compressor/decompressor (upstream v1.10.0)");

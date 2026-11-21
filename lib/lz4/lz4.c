@@ -1450,7 +1450,6 @@ int LZ4_compress_fast_extState_fastReset(void* state, const char* src, char* dst
 }
 
 
-#if 0 /* unused: kernel API uses LZ4_compress_fast_extState() via lz4_glue.c */
 int LZ4_compress_fast(const char* src, char* dest, int srcSize, int dstCapacity, int acceleration)
 {
     int result;
@@ -1468,15 +1467,12 @@ int LZ4_compress_fast(const char* src, char* dest, int srcSize, int dstCapacity,
 #endif
     return result;
 }
-#endif
 
 
-#if 0 /* unused: kernel API uses LZ4_compress_fast_extState() via lz4_glue.c */
 int LZ4_compress_default(const char* src, char* dst, int srcSize, int dstCapacity)
 {
     return LZ4_compress_fast(src, dst, srcSize, dstCapacity, 1);
 }
-#endif
 
 
 /* Note!: This function leaves the stream in an unclean/broken state!
@@ -1507,7 +1503,6 @@ int LZ4_compress_destSize_extState(void* state, const char* src, char* dst, int*
 }
 
 
-#if 0 /* unused: kernel API uses LZ4_compress_destSize_extState() via lz4_glue.c */
 int LZ4_compress_destSize(const char* src, char* dst, int* srcSizePtr, int targetDstSize)
 {
 #if (LZ4_HEAPMODE)
@@ -1525,7 +1520,6 @@ int LZ4_compress_destSize(const char* src, char* dst, int* srcSizePtr, int targe
 #endif
     return result;
 }
-#endif
 
 
 
@@ -2767,18 +2761,14 @@ int LZ4_decompress_fast_usingDict(const char* source, char* dest, int originalSi
 *  Obsolete Functions
 ***************************************************/
 /* obsolete compression functions */
-#if 0 /* obsolete wrapper around the unused convenience compressor */
 int LZ4_compress_limitedOutput(const char* source, char* dest, int inputSize, int maxOutputSize)
 {
     return LZ4_compress_default(source, dest, inputSize, maxOutputSize);
 }
-#endif
-#if 0 /* obsolete wrapper around the unused convenience compressor */
 int LZ4_compress(const char* src, char* dest, int srcSize)
 {
     return LZ4_compress_default(src, dest, srcSize, LZ4_compressBound(srcSize));
 }
-#endif
 int LZ4_compress_limitedOutput_withState (void* state, const char* src, char* dst, int srcSize, int dstSize)
 {
     return LZ4_compress_fast_extState(state, src, dst, srcSize, dstSize, 1);
