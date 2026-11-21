@@ -15,7 +15,6 @@ extern const char linux_proc_banner[];
 
 extern char *log_buf_addr_get(void);
 extern u32 log_buf_len_get(void);
-extern bool mt_get_uartlog_status(void);
 
 #ifdef CONFIG_MTK_AEE_FEATURE
 extern void aee_wdt_zap_locks(void);
@@ -219,7 +218,7 @@ extern int dmesg_restrict;
 extern int kptr_restrict;
 
 extern int
-devkmsg_sysctl_set_loglvl(struct ctl_table *table, int write, void __user *buf,
+devkmsg_sysctl_set_loglvl(struct ctl_table *table, int write, void *buf,
 			  size_t *lenp, loff_t *ppos);
 
 extern void wake_up_klogd(void);

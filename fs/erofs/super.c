@@ -228,11 +228,6 @@ static int erofs_load_compr_cfgs(struct super_block *sb,
 		case Z_EROFS_COMPRESSION_LZ4:
 			ret = z_erofs_load_lz4_config(sb, dsb, data, size);
 			break;
-#ifdef CONFIG_EROFS_FS_ZIP_LZMA
-		case Z_EROFS_COMPRESSION_LZMA:
-			ret = z_erofs_load_lzma_config(sb, dsb, data, size);
-			break;
-#endif
 		default:
 			DBG_BUGON(1);
 			ret = -EFAULT;
@@ -577,7 +572,6 @@ static int erofs_fill_super(struct super_block *sb, void *data, int silent)
 
 #ifdef CONFIG_EROFS_FS_ZIP
 	INIT_RADIX_TREE(&sbi->workstn_tree, GFP_ATOMIC);
-	spin_lock_init(&sbi->workstn_lock);
 #endif
 
 	/* get the root inode */

@@ -14,6 +14,7 @@
 #include <linux/module.h>
 #include <linux/etherdevice.h>
 #include <linux/hash.h>
+#include <net/ipv6_stubs.h>
 #include <net/dst_metadata.h>
 #include <net/gro_cells.h>
 #include <net/rtnetlink.h>
@@ -215,7 +216,7 @@ static void geneve_rx(struct geneve_dev *geneve, struct geneve_sock *gs,
 	struct metadata_dst *tun_dst = NULL;
 	struct pcpu_sw_netstats *stats;
 	unsigned int len;
-	int err = 0;
+	int nh, err = 0;
 	void *oiph;
 
 	if (ip_tunnel_collect_metadata() || gs->collect_md) {
@@ -234,7 +235,8 @@ static void geneve_rx(struct geneve_dev *geneve, struct geneve_sock *gs,
 		}
 		/* Update tunnel dst according to Geneve options. */
 		ip_tunnel_info_opts_set(&tun_dst->u.tun_info,
-					gnvh->options, gnvh->opt_len * 4);
+					gnvh->options, gnvh->opt_len * 4,
+					TUNNEL_GENEVE_OPT);
 	} else {
 		/* Drop packets w/ critical options,
 		 * since we don't support any...
@@ -259,8 +261,22 @@ static void geneve_rx(struct geneve_dev *geneve, struct geneve_sock *gs,
 		goto drop;
 	}
 
-	oiph = skb_network_header(skb);
+	/* Save offset of outer header relative to skb->head,
+	 * because we are going to reset the network header to the inner header
+	 * and might change skb->head.
+	 */
+	nh = skb_network_header(skb) - skb->head;
+
 	skb_reset_network_header(skb);
+
+	if (!pskb_inet_may_pull(skb)) {
+		DEV_STATS_INC(geneve->dev, rx_length_errors);
+		DEV_STATS_INC(geneve->dev, rx_errors);
+		goto drop;
+	}
+
+	/* Get the outer header. */
+	oiph = skb->head + nh;
 
 	if (geneve_get_sk_family(gs) == AF_INET)
 		err = IP_ECN_decapsulate(oiph, skb);
@@ -678,7 +694,8 @@ static void geneve_build_header(struct genevehdr *geneveh,
 	geneveh->proto_type = htons(ETH_P_TEB);
 	geneveh->rsvd2 = 0;
 
-	ip_tunnel_info_opts_get(geneveh->options, info);
+	if (info->key.tun_flags & TUNNEL_GENEVE_OPT)
+		ip_tunnel_info_opts_get(geneveh->options, info);
 }
 
 static int geneve_build_skb(struct dst_entry *dst, struct sk_buff *skb,
@@ -835,7 +852,7 @@ static int geneve_xmit_skb(struct sk_buff *skb, struct net_device *dev,
 	__be16 df;
 	int err;
 
-	if (!pskb_network_may_pull(skb, sizeof(struct iphdr)))
+	if (!skb_vlan_inet_prepare(skb))
 		return -EINVAL;
 
 	sport = udp_flow_src_port(geneve->net, skb, 1, USHRT_MAX, true);
@@ -885,7 +902,7 @@ static int geneve6_xmit_skb(struct sk_buff *skb, struct net_device *dev,
 	__be16 sport;
 	int err;
 
-	if (!pskb_network_may_pull(skb, sizeof(struct ipv6hdr)))
+	if (!skb_vlan_inet_prepare(skb))
 		return -EINVAL;
 
 	sport = udp_flow_src_port(geneve->net, skb, 1, USHRT_MAX, true);
@@ -1109,7 +1126,7 @@ static void geneve_setup(struct net_device *dev)
 
 static const struct nla_policy geneve_policy[IFLA_GENEVE_MAX + 1] = {
 	[IFLA_GENEVE_ID]		= { .type = NLA_U32 },
-	[IFLA_GENEVE_REMOTE]		= { .len = FIELD_SIZEOF(struct iphdr, daddr) },
+	[IFLA_GENEVE_REMOTE]		= { .len = sizeof_field(struct iphdr, daddr) },
 	[IFLA_GENEVE_REMOTE6]		= { .len = sizeof(struct in6_addr) },
 	[IFLA_GENEVE_TTL]		= { .type = NLA_U8 },
 	[IFLA_GENEVE_TOS]		= { .type = NLA_U8 },
@@ -1675,9 +1692,11 @@ static int geneve_netdevice_event(struct notifier_block *unused,
 	    event == NETDEV_UDP_TUNNEL_DROP_INFO) {
 		geneve_offload_rx_ports(dev, event == NETDEV_UDP_TUNNEL_PUSH_INFO);
 	} else if (event == NETDEV_UNREGISTER) {
-		geneve_offload_rx_ports(dev, false);
+		if (!dev->udp_tunnel_nic_info)
+			geneve_offload_rx_ports(dev, false);
 	} else if (event == NETDEV_REGISTER) {
-		geneve_offload_rx_ports(dev, true);
+		if (!dev->udp_tunnel_nic_info)
+			geneve_offload_rx_ports(dev, true);
 	}
 
 	return NOTIFY_DONE;

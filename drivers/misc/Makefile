@@ -42,6 +42,7 @@ obj-$(CONFIG_PCH_PHUB)		+= pch_phub.o
 obj-y				+= ti-st/
 obj-y				+= lis3lv02d/
 obj-$(CONFIG_USB_SWITCH_FSA9480) += fsa9480.o
+obj-$(CONFIG_USB_SWITCH_ET7480) += et7480.o
 obj-$(CONFIG_ALTERA_STAPL)	+=altera-stapl/
 obj-$(CONFIG_INTEL_MEI)		+= mei/
 obj-$(CONFIG_VMWARE_VMCI)	+= vmw_vmci/
@@ -61,20 +62,9 @@ obj-$(CONFIG_PCI_ENDPOINT_TEST)	+= pci_endpoint_test.o
 obj-$(CONFIG_UID_SYS_STATS)	+= uid_sys_stats.o
 obj-$(CONFIG_MEMORY_STATE_TIME)	+= memory_state_time.o
 obj-$(CONFIG_MEDIATEK_SOLUTION) += mediatek/
-#ifdef VENDOR_EDIT//Fanhong.Kong@ProDrv.CHG,add 2018/10/25 for vib aw8697				+= lis3lv02d/
-obj-$(CONFIG_AW8697_HAPTIC)		+= aw8697_haptic/
-#endif
-#ifdef VENDOR_EDIT
-obj-$(CONFIG_OPPO_MOTOR)		+= motor.o
-obj-$(CONFIG_OPPO_MOTOR)		+= oppo_motor/
-#endif
-#ifdef OPLUS_FEATURE_TP_BASIC
-obj-$(CONFIG_SIM_DETECT)	+= sim_detect.o
-#endif
+obj-$(CONFIG_MI_GAMEKEY) += mi_gamekey.o
 
-#ifdef OPLUS_ARCH_EXTEND
-obj-$(CONFIG_MTK_FB)		+= oplus/
-#endif
+obj-$(CONFIG_GPIO_TESTING_MODE)	+= gpio-testing-mode.o
 
 lkdtm-$(CONFIG_LKDTM)		+= lkdtm_core.o
 lkdtm-$(CONFIG_LKDTM)		+= lkdtm_bugs.o

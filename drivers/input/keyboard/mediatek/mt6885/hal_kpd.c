@@ -20,10 +20,6 @@
 #include <kpd.h>
 #include <hal_kpd.h>
 #include <mt-plat/mtk_boot_common.h>
-#if IS_ENABLED(CONFIG_OPLUS_FEATURE_THEIA)
-#include <soc/oplus/system/oplus_bscheck.h>
-#include <soc/oplus/system/oplus_brightscreen_check.h>
-#endif
 
 #ifdef CONFIG_MTK_PMIC_NEW_ARCH /*for pmic not ready*/
 static int kpd_enable_lprst = 1;
@@ -59,6 +55,8 @@ void kpd_get_keymap_state(u16 state[])
 void long_press_reboot_function_setting(void)
 {
 #ifdef CONFIG_MTK_PMIC_NEW_ARCH /*for pmic not ready*/
+	/* unlock PMIC protect key */
+	pmic_set_register_value(PMIC_RG_CPS_W_KEY, 0x4729);
 	if (kpd_enable_lprst && get_boot_mode() == NORMAL_BOOT) {
 		kpd_info("Normal Boot long press reboot selection\n");
 
@@ -100,6 +98,8 @@ void long_press_reboot_function_setting(void)
 #endif
 
 	}
+	/* lock PMIC protect key */
+	pmic_set_register_value(PMIC_RG_CPS_W_KEY, 0);
 #endif
 }
 
@@ -112,10 +112,9 @@ bool __attribute__ ((weak)) ConditionEnterSuspend(void)
 /********************************************************************/
 void kpd_wakeup_src_setting(int enable)
 {
-/*
 	int is_fm_radio_playing = 0;
 
-	// If FM is playing, keep keypad as wakeup source
+	/* If FM is playing, keep keypad as wakeup source */
 	if (ConditionEnterSuspend() == true)
 		is_fm_radio_playing = 0;
 	else
@@ -129,14 +128,6 @@ void kpd_wakeup_src_setting(int enable)
 			kpd_print("disable kpd work!\n");
 			enable_kpd(0);
 		}
-	}
-*/
-	if (enable == 1) {
-		kpd_print("enable kpd work!\n");
-		enable_kpd(1);
-	} else {
-		kpd_print("disable kpd work!\n");
-		enable_kpd(0);
 	}
 }
 
@@ -200,14 +191,6 @@ void kpd_pmic_pwrkey_hal(unsigned long pressed)
 	input_sync(kpd_input_dev);
 	kpd_print(KPD_SAY "(%s) HW keycode =%d using PMIC\n",
 	       pressed ? "pressed" : "released", kpd_dts_data.kpd_sw_pwrkey);
-
-    #if IS_ENABLED(CONFIG_OPLUS_FEATURE_THEIA)
-    if(pressed){
-        //we should canel per work
-        black_screen_timer_restart();
-        bright_screen_timer_restart();
-    }
-    #endif		   
 }
 
 static int mrdump_eint_state;

@@ -104,7 +104,6 @@ GTAGS
 # id-utils files
 ID
 
-*.orig
 *~
 \#*#
 
@@ -125,4 +124,6 @@ all.config
 
 # fetched Android config fragments
 kernel/configs/android-*.cfg
-out/
+
+
+/out/

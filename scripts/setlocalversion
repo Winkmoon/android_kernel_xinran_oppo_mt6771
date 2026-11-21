@@ -90,6 +90,7 @@ scm_version()
 		# it fails. Note that git-diff-index does not refresh the
 		# index, so it may give misleading results. See
 		# git-update-index(1), git-diff-index(1), and git-status(1).
+		git status >/dev/null
 		if {
 			git --no-optional-locks status -uno --porcelain 2>/dev/null ||
 			git diff-index --name-only HEAD
@@ -187,7 +188,6 @@ else
 	# LOCALVERSION= is not specified
 	if test "${LOCALVERSION+set}" != "set"; then
 		scm=$(scm_version --short)
-		res="$res${scm:++}"
 	fi
 fi
 

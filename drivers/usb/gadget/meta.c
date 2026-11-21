@@ -639,7 +639,7 @@ android_unbind_enabled_functions(struct android_dev *dev,
 	}
 }
 
-static int android_enable_function(struct android_dev *dev, char *name)
+static int android_enable_function(struct android_dev *dev, const char *name)
 {
 	struct android_usb_function **functions = dev->functions;
 	struct android_usb_function *f;
@@ -761,6 +761,7 @@ static ssize_t enable_store(struct device *pdev, struct device_attribute *attr,
 	struct usb_composite_dev *cdev = dev->cdev;
 	struct android_usb_function *f;
 	int enabled = 0;
+	int ret;
 
 	if (!cdev)
 		return -ENODEV;
@@ -769,7 +770,7 @@ static ssize_t enable_store(struct device *pdev, struct device_attribute *attr,
 
 	pr_notice("[USB]%s: %d %d\n", __func__, enabled, dev->enabled);
 
-	(void)(kstrtoint(buff, 0, &enabled));
+	ret = kstrtoint(buff, 0, &enabled);
 
 	if (enabled && !dev->enabled) {
 		/* ALPS01770952
@@ -1212,7 +1213,7 @@ static void do_android_usb_state_monitor_work(struct work_struct *work)
 	if (dev && dev->cdev && dev->cdev->config)
 		usb_state = "CONFIGURED";
 
-	pr_info("usb_state<%s>\n", usb_state);
+	pr_debug("usb_state<%s>\n", usb_state);
 	schedule_delayed_work(&android_usb_state_monitor_work,
 			msecs_to_jiffies(USB_STATE_MONITOR_DELAY));
 }
@@ -1270,10 +1271,8 @@ void enable_meta_vcom(int mode)
 
 	if (mode == 1) {
 		strncpy(serial_str, "", sizeof(serial_str) - 1);
-		/*VENDOR_EDIT*/
-		device_desc.idVendor = 0x22D9;
-		device_desc.idProduct = 0x0006;
-		/*end VENDOR_EDIT*/
+		device_desc.idVendor = 0x0e8d;
+		device_desc.idProduct = 0x2007;
 		device_desc.bDeviceClass = 0x02;
 
 		/*ttyGS0*/
@@ -1284,10 +1283,9 @@ void enable_meta_vcom(int mode)
 
 
 		strncpy(serial_str, "", sizeof(serial_str) - 1);
-		/*VENDOR_EDIT*/
-		device_desc.idVendor = 0x22d9;
+		device_desc.idVendor = 0x0e8d;
 		device_desc.idProduct = 0x202d;
-		/*end VENDOR_EDIT*/
+
 		/*ttyGS0 + ttyGS3*/
 		quick_vcom_num = (1 << 0) + (1 << 3);
 

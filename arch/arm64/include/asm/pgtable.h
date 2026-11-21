@@ -362,6 +362,7 @@ static inline int pmd_protnone(pmd_t pmd)
 #define pfn_pud(pfn,prot)	(__pud(((phys_addr_t)(pfn) << PAGE_SHIFT) | pgprot_val(prot)))
 
 #define set_pmd_at(mm, addr, pmdp, pmd)	set_pte_at(mm, addr, (pte_t *)pmdp, pmd_pte(pmd))
+#define set_pud_at(mm, addr, pudp, pud)	set_pte_at(mm, addr, (pte_t *)pudp, pud_pte(pud))
 
 #define __pgprot_modify(prot,mask,bits) \
 	__pgprot((pgprot_val(prot) & ~(mask)) | (bits))
@@ -388,6 +389,7 @@ extern pgprot_t phys_mem_access_prot(struct file *file, unsigned long pfn,
 				 PMD_TYPE_TABLE)
 #define pmd_sect(pmd)		((pmd_val(pmd) & PMD_TYPE_MASK) == \
 				 PMD_TYPE_SECT)
+#define pmd_leaf(pmd)		(pmd_present(pmd) && !pmd_table(pmd))
 
 #if defined(CONFIG_ARM64_64K_PAGES) || CONFIG_PGTABLE_LEVELS < 3
 static inline bool pud_sect(pud_t pud) { return false; }
@@ -450,6 +452,7 @@ static inline void pte_unmap(pte_t *pte) { }
 #define pud_none(pud)		(!pud_val(pud))
 #define pud_bad(pud)		(!(pud_val(pud) & PUD_TABLE_BIT))
 #define pud_present(pud)	pte_present(pud_pte(pud))
+#define pud_leaf(pud)		(pud_present(pud) && !pud_table(pud))
 
 static inline void set_pud(pud_t *pudp, pud_t pud)
 {
@@ -728,6 +731,14 @@ static inline void update_mmu_cache(struct vm_area_struct *vma,
 
 #define kc_vaddr_to_offset(v)	((v) & ~VA_START)
 #define kc_offset_to_vaddr(o)	((o) | VA_START)
+
+/*
+ * On arm64 without hardware Access Flag, copying from user will fail because
+ * the pte is old and cannot be marked young. So we always end up with zeroed
+ * page after fork() + CoW for pfn mappings. We don't always have a
+ * hardware-managed access flag on arm64.
+ */
+#define arch_has_hw_pte_young		cpu_has_hw_af
 
 #endif /* !__ASSEMBLY__ */
 

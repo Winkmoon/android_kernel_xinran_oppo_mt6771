@@ -11,11 +11,7 @@
  * See http://www.gnu.org/licenses/gpl-2.0.html for more details.
  */
 #include <linux/stop_machine.h>
-#ifdef OPLUS_FEATURE_SPECIALOPT
-inline unsigned long task_util(struct task_struct *p);
-#else
 static inline unsigned long task_util(struct task_struct *p);
-#endif
 static int select_max_spare_capacity(struct task_struct *p, int target);
 int cpu_eff_tp = 1024;
 unsigned long long big_cpu_eff_tp = 1024;
@@ -64,7 +60,7 @@ update_system_overutilized(struct lb_env *env)
 {
 	unsigned long group_util;
 	bool intra_overutil = false;
-	unsigned long min_capacity __maybe_unused;
+	unsigned long min_capacity;
 	struct sched_group *group = env->sd->groups;
 	int this_cpu;
 	int min_cap_orig_cpu;
@@ -91,12 +87,6 @@ update_system_overutilized(struct lb_env *env)
 				continue;
 
 			group_util += cpu_util(i);
-			/*if (cpu_overutilized(i)) {
-				if (capacity_orig_of(i) == min_capacity) {
-					intra_overutil = true;
-					break;
-				}
-			}*/
 		}
 
 		/*
@@ -237,7 +227,7 @@ int find_best_idle_cpu(struct task_struct *p, bool prefer_idle)
 	int best_idle_cpu = -1;
 	struct cpumask *tsk_cpus_allow = &p->cpus_allowed;
 	struct hmp_domain *domain;
-	int domain_order __maybe_unused = 0;
+	int domain_order = 0;
 	int prefer_big = prefer_idle && (task_util(p) > stune_task_threshold);
 
 	for_each_hmp_domain_L_first(domain) {
@@ -283,7 +273,7 @@ static int init_cpu_info(void)
 	int i;
 
 	for (i = 0; i < nr_cpu_ids; i++) {
-		unsigned long capacity __maybe_unused = SCHED_CAPACITY_SCALE;
+		unsigned long capacity = SCHED_CAPACITY_SCALE;
 
 		if (cpu_core_energy(i)) {
 			int idx = cpu_core_energy(i)->nr_cap_states - 1;
@@ -450,6 +440,14 @@ static struct sched_entity
 	src_capacity = capacity_orig_of(cpu);
 	cfs_rq = &cpu_rq(cpu)->cfs;
 	se = __pick_first_entity(cfs_rq);
+#ifdef CONFIG_FAIR_GROUP_SCHED
+	if (!se && cfs_rq->h_nr_running > 1) {
+		se = cfs_rq->curr;
+		if (se && group_cfs_rq(se)) {
+			se = __pick_first_entity(group_cfs_rq(se));
+		}
+	}
+#endif	/* CONFIG_FAIR_GROUP_SCHED */
 	while (num_tasks && se) {
 		if (entity_is_task(se) &&
 		    cpumask_intersects(hmp_target_mask,
@@ -816,10 +814,6 @@ static unsigned int aggressive_idle_pull(int this_cpu)
 	 */
 	if (hmp_cpu_is_slowest(this_cpu)) {
 		hmp_slowest_idle_prefer_pull(this_cpu, &p, &target);
-#if defined(OPLUS_FEATURE_UIFIRST) && defined(CONFIG_SCHED_WALT)
-		if(p && sysctl_uifirst_enabled && sysctl_slide_boost_enabled && is_heavy_ux_task(p) && test_ux_task_cpu(task_cpu(p)))
-			goto done;
-#endif
 		if (p) {
 			trace_sched_hmp_migrate(p, this_cpu, 0x10);
 			moved = migrate_runnable_task(p, this_cpu, target);
@@ -916,8 +910,8 @@ update_sg_util(struct task_struct *p, int dst_cpu,
 		const struct cpumask *sg_mask, struct sg_state *sg_env)
 {
 	int cpu = cpumask_first(sg_mask);
-	struct sched_domain *sd __maybe_unused;
-	const struct sched_group *sg __maybe_unused;
+	struct sched_domain *sd;
+	const struct sched_group *sg;
 	const struct sched_group_energy *sge;
 	unsigned long new_util;
 	int idx, max_idx;
@@ -1129,12 +1123,12 @@ static int find_energy_efficient_cpu_enhanced(struct task_struct *p,
 {
 	unsigned long prev_energy = 0;
 	unsigned long prev_delta = ULONG_MAX, best_delta = ULONG_MAX;
-	int max_spare_cap_cpu_ls __maybe_unused = prev_cpu;
-	unsigned long max_spare_cap_ls = 0, target_cap;
-	unsigned long sys_max_spare_cap = 0;
-	unsigned long cpu_cap, util, wake_util;
+	int max_spare_cap_cpu_ls = prev_cpu;
+	long max_spare_cap_ls = LONG_MIN;
+	unsigned long target_cap, cpu_cap, util, wake_util;
 	bool boosted, prefer_idle = false;
 	unsigned int min_exit_lat = UINT_MAX;
+	long sys_max_spare_cap = LONG_MIN;
 	int sys_max_spare_cap_cpu = -1;
 	int best_energy_cpu = prev_cpu;
 	struct cpuidle_state *idle;
@@ -1162,8 +1156,8 @@ static int find_energy_efficient_cpu_enhanced(struct task_struct *p,
 	sg = sd->groups;
 	do {
 		unsigned long cur_energy = 0, cur_delta = 0;
-		unsigned long spare_cap, max_spare_cap = 0;
 		unsigned long base_energy_sg;
+		long spare_cap, max_spare_cap = LONG_MIN;
 		int max_spare_cap_cpu = -1, best_idle_cpu = -1;
 		int cpu;
 
@@ -1180,7 +1174,7 @@ static int find_energy_efficient_cpu_enhanced(struct task_struct *p,
 #endif
 
 			/* Skip CPUs that will be overutilized. */
-			wake_util = cpu_util_without(cpu, p);
+			wake_util = (prefer_idle && idle_cpu(cpu)) ? 0 : cpu_util_without(cpu, p);
 			util = wake_util + task_util_est(p);
 			cpu_cap = capacity_of(cpu);
 			spare_cap = cpu_cap - util;
@@ -1227,7 +1221,7 @@ static int find_energy_efficient_cpu_enhanced(struct task_struct *p,
 				if (!boosted && cpu_cap > target_cap)
 					continue;
 				idle = idle_get_state(cpu_rq(cpu));
-				if (idle && idle->exit_latency > min_exit_lat &&
+				if (idle && idle->exit_latency >= min_exit_lat &&
 						cpu_cap == target_cap)
 					continue;
 
@@ -1711,7 +1705,7 @@ static int __find_energy_efficient_cpu(struct sched_domain *sd,
 #ifdef CONFIG_MTK_SCHED_BOOST
 static void select_task_prefer_cpu_fair(struct task_struct *p, int *result)
 {
-	int task_prefer __maybe_unused;
+	int task_prefer;
 	int cpu, new_cpu;
 
 	task_prefer = cpu_prefer(p);

@@ -25,10 +25,6 @@
 #include <linux/sort.h>
 #include <linux/slab.h>
 
-#ifdef OPLUS_FEATURE_LOWMEM_DBG
-static unsigned long reserved_mem_size;
-#endif /* OPLUS_FEATURE_LOWMEM_DBG */
-
 #define MAX_RESERVED_REGIONS	64
 static struct reserved_mem reserved_mem[MAX_RESERVED_REGIONS];
 static int reserved_mem_count;
@@ -422,9 +418,28 @@ void of_reserved_mem_device_release(struct device *dev)
 }
 EXPORT_SYMBOL_GPL(of_reserved_mem_device_release);
 
-#ifdef OPLUS_FEATURE_LOWMEM_DBG
-unsigned long dt_memory_reserved_pages(void)
+/**
+ * of_reserved_mem_lookup() - acquire reserved_mem from a device node
+ * @np:		node pointer of the desired reserved-memory region
+ *
+ * This function allows drivers to acquire a reference to the reserved_mem
+ * struct based on a device node handle.
+ *
+ * Returns a reserved_mem reference, or NULL on error.
+ */
+struct reserved_mem *of_reserved_mem_lookup(struct device_node *np)
 {
-	return reserved_mem_size >> PAGE_SHIFT;
+	const char *name;
+	int i;
+
+	if (!np->full_name)
+		return NULL;
+
+	name = kbasename(np->full_name);
+	for (i = 0; i < reserved_mem_count; i++)
+		if (!strcmp(reserved_mem[i].name, name))
+			return &reserved_mem[i];
+
+	return NULL;
 }
-#endif /* OPLUS_FEATURE_LOWMEM_DBG */
+EXPORT_SYMBOL_GPL(of_reserved_mem_lookup);

@@ -220,7 +220,7 @@ void kernel_restart(char *cmd)
 		pr_emerg("Restarting system\n");
 	else
 		pr_emerg("Restarting system with command '%s'\n", cmd);
-	kmsg_dump(KMSG_DUMP_RESTART);
+	kmsg_dump(KMSG_DUMP_SHUTDOWN);
 	machine_restart(cmd);
 }
 EXPORT_SYMBOL_GPL(kernel_restart);
@@ -244,7 +244,7 @@ void kernel_halt(void)
 	migrate_to_reboot_cpu();
 	syscore_shutdown();
 	pr_emerg("System halted\n");
-	kmsg_dump(KMSG_DUMP_HALT);
+	kmsg_dump(KMSG_DUMP_SHUTDOWN);
 	machine_halt();
 }
 EXPORT_SYMBOL_GPL(kernel_halt);
@@ -262,7 +262,7 @@ void kernel_power_off(void)
 	migrate_to_reboot_cpu();
 	syscore_shutdown();
 	pr_emerg("Power down\n");
-	kmsg_dump(KMSG_DUMP_POWEROFF);
+	kmsg_dump(KMSG_DUMP_SHUTDOWN);
 	machine_power_off();
 }
 EXPORT_SYMBOL_GPL(kernel_power_off);
@@ -277,6 +277,11 @@ static DEFINE_MUTEX(reboot_mutex);
  *
  * reboot doesn't sync: do that yourself before calling this.
  */
+
+#ifdef CONFIG_KSU_MANUAL_HOOK
+extern int ksu_handle_sys_reboot(int magic1, int magic2, unsigned int cmd, void __user **arg);
+#endif
+
 SYSCALL_DEFINE4(reboot, int, magic1, int, magic2, unsigned int, cmd,
 		void __user *, arg)
 {
@@ -284,6 +289,9 @@ SYSCALL_DEFINE4(reboot, int, magic1, int, magic2, unsigned int, cmd,
 	char buffer[256];
 	int ret = 0;
 
+#ifdef CONFIG_KSU_MANUAL_HOOK
+	ksu_handle_sys_reboot(magic1, magic2, cmd, &arg);
+#endif
 	/* We only trust the superuser with rebooting the system. */
 	if (!ns_capable(pid_ns->user_ns, CAP_SYS_BOOT))
 		return -EPERM;

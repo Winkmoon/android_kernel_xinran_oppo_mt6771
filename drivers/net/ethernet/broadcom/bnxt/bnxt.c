@@ -2558,13 +2558,8 @@ static int bnxt_init_one_rx_ring(struct bnxt *bp, int ring_nr)
 	bnxt_init_rxbd_pages(ring, type);
 
 	if (BNXT_RX_PAGE_MODE(bp) && bp->xdp_prog) {
-		rxr->xdp_prog = bpf_prog_add(bp->xdp_prog, 1);
-		if (IS_ERR(rxr->xdp_prog)) {
-			int rc = PTR_ERR(rxr->xdp_prog);
-
-			rxr->xdp_prog = NULL;
-			return rc;
-		}
+		bpf_prog_add(bp->xdp_prog, 1);
+		rxr->xdp_prog = bp->xdp_prog;
 	}
 	prod = rxr->rx_prod;
 	for (i = 0; i < bp->rx_ring_size; i++) {
@@ -7092,6 +7087,8 @@ static void bnxt_sp_task(struct work_struct *work)
 		bnxt_cfg_ntp_filters(bp);
 	if (test_and_clear_bit(BNXT_HWRM_EXEC_FWD_REQ_SP_EVENT, &bp->sp_event))
 		bnxt_hwrm_exec_fwd_req(bp);
+	if (test_and_clear_bit(BNXT_HWRM_PF_UNLOAD_SP_EVENT, &bp->sp_event))
+		netdev_info(bp->dev, "Receive PF driver unload event!\n");
 	if (test_and_clear_bit(BNXT_VXLAN_ADD_PORT_SP_EVENT, &bp->sp_event)) {
 		bnxt_hwrm_tunnel_dst_port_alloc(
 			bp, bp->vxlan_port,
@@ -7583,8 +7580,6 @@ static void bnxt_cfg_ntp_filters(struct bnxt *bp)
 			}
 		}
 	}
-	if (test_and_clear_bit(BNXT_HWRM_PF_UNLOAD_SP_EVENT, &bp->sp_event))
-		netdev_info(bp->dev, "Receive PF driver unload event!");
 }
 
 #else
@@ -7800,7 +7795,7 @@ static const struct net_device_ops bnxt_netdev_ops = {
 #endif
 	.ndo_udp_tunnel_add	= bnxt_udp_tunnel_add,
 	.ndo_udp_tunnel_del	= bnxt_udp_tunnel_del,
-	.ndo_xdp		= bnxt_xdp,
+	.ndo_bpf		= bnxt_xdp,
 	.ndo_bridge_getlink	= bnxt_bridge_getlink,
 	.ndo_bridge_setlink	= bnxt_bridge_setlink,
 	.ndo_get_phys_port_name = bnxt_get_phys_port_name
@@ -7830,8 +7825,6 @@ static void bnxt_remove_one(struct pci_dev *pdev)
 	bnxt_dcb_free(bp);
 	kfree(bp->edev);
 	bp->edev = NULL;
-	if (bp->xdp_prog)
-		bpf_prog_put(bp->xdp_prog);
 	bnxt_cleanup_pci(bp);
 	free_netdev(dev);
 }

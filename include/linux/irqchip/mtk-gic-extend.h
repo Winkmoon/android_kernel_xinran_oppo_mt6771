@@ -20,10 +20,15 @@
 #define MT_POLARITY_LOW		0
 #define MT_POLARITY_HIGH	1
 
+#define INTID_INVALID		1024
+
 #ifndef FIQ_SMP_CALL_SGI
 #define FIQ_SMP_CALL_SGI	13
 #endif
 
+#define GIC_IIDR                    0x8
+#define GICD_V3_IIDR_GIC600         0x2
+#define GICD_V3_IIDR_PROD_ID_SHIFT  24
 
 #include <linux/irq.h>
 typedef void (*fiq_isr_handler) (void *arg, void *regs, void *svc_sp);
@@ -111,9 +116,12 @@ static inline unsigned int virq_to_hwirq(unsigned int virq)
 
 	desc = irq_to_desc(virq);
 
-	WARN_ON(!desc);
-
-	hwirq = gic_irq(&desc->irq_data);
+	if (desc) {
+		hwirq = gic_irq(&desc->irq_data);
+	} else {
+		WARN_ON(!desc);
+		hwirq = INTID_INVALID;
+	}
 
 	return hwirq;
 }

@@ -39,11 +39,17 @@
 #include "../mediatek/mtk_corner_pattern/mtk_data_hw_roundedpattern.h"
 #endif
 
+#if defined(CONFIG_RT4831A_I2C)
+#include "../../../misc/mediatek/gate_ic/gate_i2c.h"
+#endif
+
+
 struct lcm {
 	struct device *dev;
 	struct drm_panel panel;
 	struct backlight_device *backlight;
 	struct gpio_desc *reset_gpio;
+	struct gpio_desc *pm_enable_gpio;
 	struct gpio_desc *bias_pos, *bias_neg;
 
 	bool prepared;
@@ -216,13 +222,25 @@ static void lcm_panel_init(struct lcm *ctx)
 		return;
 	}
 	gpiod_set_value(ctx->reset_gpio, 0);
+#if BITS_PER_LONG == 32
+	mdelay(15 * 1000);
+#else
 	udelay(15 * 1000);
+#endif
 	gpiod_set_value(ctx->reset_gpio, 1);
 	udelay(1 * 1000);
 	gpiod_set_value(ctx->reset_gpio, 0);
+#if BITS_PER_LONG == 32
+	mdelay(10 * 1000);
+#else
 	udelay(10 * 1000);
+#endif
 	gpiod_set_value(ctx->reset_gpio, 1);
+#if BITS_PER_LONG == 32
+	mdelay(10 * 1000);
+#else
 	udelay(10 * 1000);
+#endif
 	devm_gpiod_put(ctx->dev, ctx->reset_gpio);
 
 	lcm_dcs_write_seq_static(ctx, 0x00, 0x00);
@@ -538,6 +556,7 @@ static void lcm_panel_init(struct lcm *ctx)
 	lcm_dcs_write_seq_static(ctx, 0x51, 0xff, 0x0f);
 	lcm_dcs_write_seq_static(ctx, 0x53, 0x24);
 	lcm_dcs_write_seq_static(ctx, 0x55, 0x01);
+	lcm_dcs_write_seq_static(ctx, 0x35);
 
 	lcm_dcs_write_seq_static(ctx, 0x11);
 	msleep(180);
@@ -578,6 +597,10 @@ static int lcm_unprepare(struct drm_panel *panel)
 	ctx->prepared = false;
 #if defined(CONFIG_RT5081_PMU_DSV) || defined(CONFIG_MT6370_PMU_DSV)
 	lcm_panel_bias_disable();
+#elif defined(CONFIG_RT4831A_I2C)
+	/*this is rt4831a*/
+	_gate_ic_i2c_panel_bias_enable(0);
+	_gate_ic_Power_off();
 #else
 	ctx->reset_gpio =
 		devm_gpiod_get(ctx->dev, "reset", GPIOD_OUT_HIGH);
@@ -612,7 +635,6 @@ static int lcm_unprepare(struct drm_panel *panel)
 	gpiod_set_value(ctx->bias_pos, 0);
 	devm_gpiod_put(ctx->dev, ctx->bias_pos);
 #endif
-
 	return 0;
 }
 
@@ -627,6 +649,10 @@ static int lcm_prepare(struct drm_panel *panel)
 
 #if defined(CONFIG_RT5081_PMU_DSV) || defined(CONFIG_MT6370_PMU_DSV)
 	lcm_panel_bias_enable();
+#elif defined(CONFIG_RT4831A_I2C)
+	_gate_ic_Power_on();
+	/*rt4831a co-work with leds_i2c*/
+	_gate_ic_i2c_panel_bias_enable(1);
 #else
 	ctx->bias_pos = devm_gpiod_get_index(ctx->dev,
 		"bias", 0, GPIOD_OUT_HIGH);
@@ -686,17 +712,17 @@ static int lcm_enable(struct drm_panel *panel)
 	return 0;
 }
 
-#define HFP (16)
-#define HSA (6)
-#define HBP (43)
-#define VFP (20)
-#define VSA (4)
-#define VBP (32)
+#define HFP (30)
+#define HSA (16)
+#define HBP (14)
+#define VFP (70)
+#define VSA (16)
+#define VBP (16)
 #define VAC (2300)
 #define HAC (1080)
 
 static struct drm_display_mode default_mode = {
-	.clock = 161857,
+	.clock = 164297,
 	.hdisplay = HAC,
 	.hsync_start = HAC + HFP,
 	.hsync_end = HAC + HFP + HSA,
@@ -779,16 +805,21 @@ static int lcm_get_virtual_width(void)
 }
 
 static struct mtk_panel_params ext_params = {
-	.pll_clk = 542,
-	.vfp_low_power = 810,
-	.cust_esd_check = 1,
+	.pll_clk = 530,
+	.vfp_low_power = 840,
+	.cust_esd_check = 0,
 	.esd_check_enable = 1,
 	.lcm_esd_check_table[0] = {
 		.cmd = 0x0a,
 		.count = 1,
 		.para_list[0] = 0x9c,
 	},
-
+	.dyn = {
+		.switch_en = 1,
+		.pll_clk = 535,
+		.hfp = 32,
+		.vfp = 93,
+	},
 };
 
 static struct mtk_panel_funcs ext_funcs = {
@@ -903,7 +934,9 @@ static int lcm_probe(struct mipi_dsi_device *dsi)
 		return PTR_ERR(ctx->reset_gpio);
 	}
 	devm_gpiod_put(dev, ctx->reset_gpio);
-
+#if defined(CONFIG_RT5081_PMU_DSV) || defined(CONFIG_MT6370_PMU_DSV)
+	lcm_panel_bias_enable();
+#else
 	ctx->bias_pos = devm_gpiod_get_index(dev, "bias", 0, GPIOD_OUT_HIGH);
 	if (IS_ERR(ctx->bias_pos)) {
 		dev_err(dev, "%s: cannot get bias-pos 0 %ld\n",
@@ -919,7 +952,7 @@ static int lcm_probe(struct mipi_dsi_device *dsi)
 		return PTR_ERR(ctx->bias_neg);
 	}
 	devm_gpiod_put(dev, ctx->bias_neg);
-
+#endif
 	ctx->prepared = true;
 	ctx->enabled = true;
 

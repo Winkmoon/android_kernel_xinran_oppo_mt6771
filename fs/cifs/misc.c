@@ -334,6 +334,10 @@ checkSMB(char *buf, unsigned int total_read, struct TCP_Server_Info *server)
 			cifs_dbg(VFS, "Length less than smb header size\n");
 		}
 		return -EIO;
+	} else if (total_read < sizeof(*smb) + 2 * smb->WordCount) {
+		cifs_dbg(VFS, "%s: can't read BCC due to invalid WordCount(%u)\n",
+			 __func__, smb->WordCount);
+		return -EIO;
 	}
 
 	/* otherwise, there is enough to get to the BCC */
@@ -792,7 +796,7 @@ setup_aio_ctx_iter(struct cifs_aio_ctx *ctx, struct iov_iter *iter, int rw)
 	struct page **pages = NULL;
 	struct bio_vec *bv = NULL;
 
-	if (iter->type & ITER_KVEC) {
+	if (iov_iter_is_kvec(iter)) {
 		memcpy(&ctx->iter, iter, sizeof(struct iov_iter));
 		ctx->len = count;
 		iov_iter_advance(iter, count);

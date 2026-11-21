@@ -780,54 +780,6 @@ config DEVICE_PUBLIC
 	  memory; i.e., memory that is accessible from both the device and
 	  the CPU
 
-config PROCESS_RECLAIM
-	bool "Enable process reclaim"
-	depends on PROC_FS
-	default n
-	help
-	 It allows to reclaim pages of the process by /proc/pid/reclaim.
-
-	 (echo file > /proc/PID/reclaim) reclaims file-backed pages only.
-	 (echo anon > /proc/PID/reclaim) reclaims anonymous pages only.
-	 (echo all > /proc/PID/reclaim) reclaims all pages.
-
-	 Any other value is ignored.
-
-#ifdef OPLUS_FEATURE_VIRTUAL_RESERVE_MEMORY
-config VIRTUAL_RESERVE_MEMORY
-	bool "reserved vma for gpu emergency mmap"
-	default y
-	help
-		support reserved vma for gpu emergency mmap.
-#endif /* VENDOR_EDIT */
-
-config ARCH_HAS_PTE_SPECIAL
-	bool
-config FRAME_VECTOR
-	bool
-
-config ARCH_USES_HIGH_VMA_FLAGS
-	bool
-config ARCH_HAS_PKEYS
-	bool
-
-config PERCPU_STATS
-	bool "Collect percpu memory statistics"
-	default n
-	help
-	  This feature collects and exposes statistics via debugfs. The
-	  information includes global and per chunk statistics, which can
-	  be used to help understand percpu memory usage.
-
-config GUP_BENCHMARK
-	bool "Enable infrastructure for get_user_pages_fast() benchmarking"
-	default n
-	help
-	  Provides /sys/kernel/debug/gup_benchmark that helps with testing
-	  performance of get_user_pages_fast().
-
-	  See tools/testing/selftests/vm/gup_benchmark.c
-
 config ARCH_HAS_PTE_SPECIAL
 	bool
 
@@ -873,9 +825,7 @@ config ARCH_USES_HIGH_VMA_FLAGS
 	bool
 config ARCH_HAS_PKEYS
 	bool
-#ifdef VENDOR_EDIT
-source "mm/oppo_healthinfo/Kconfig"
-#endif /*VENDOR_EDIT*/
+
 config PERCPU_STATS
 	bool "Collect percpu memory statistics"
 	default n
@@ -884,35 +834,28 @@ config PERCPU_STATS
 	  information includes global and per chunk statistics, which can
 	  be used to help understand percpu memory usage.
 
-# if defined(OPLUS_FEATURE_PROCESS_RECLAIM)
-# inactive pages only
-	  config PROCESS_RECLAIM_ENHANCE
-	  bool "Enable process reclaim enchance"
-	  depends on PROCESS_RECLAIM
-	  default y
-	  help
-	  It allows to reclaim different type pages of the process by
-	  /proc/process_reclaim.
-
-	  (echo inactive_file > /proc/PID/reclaim) reclaims inactive file-backed
-	  pages only.
-	  (echo inactive_anon > /proc/PID/reclaim) reclaims inactive anonymous
-	  pages only.
-	  (echo inactive > /proc/PID/reclaim) reclaims inactive file-backed and
-	  anonymous pages only.
-	  Any other vaule, please reference PROCESS_RECLAIM.
-# endif
-
-#ifdef OPLUS_FEATURE_MEMLEAK_DETECT
-source "mm/malloc_track/Kconfig.compat"
-source "mm/task_mem/Kconfig"
-#endif
-
-#ifdef OPLUS_FEATURE_MULTI_FREEAREA
-config PHYSICAL_ANTI_FRAGMENTATION
-	bool "Physical memory anti-fragmentation"
-	default y
+# multi-gen LRU {
+config LRU_GEN
+	bool "Multi-Gen LRU"
+	depends on MMU
+	# make sure page->flags has enough spare bits
+	depends on 64BIT || !SPARSEMEM || SPARSEMEM_VMEMMAP
 	help
-	 Turn on the function of Physical memory anti-fragmentation.
-#endif /* OPLUS_FEATURE_MULTI_FREEAREA */
+	  A high performance LRU implementation to overcommit memory. See
+	  Documentation/admin-guide/mm/multigen_lru.rst for details.
 
+config LRU_GEN_ENABLED
+	bool "Enable by default"
+	depends on LRU_GEN
+	help
+	  This option enables the multi-gen LRU by default.
+
+config LRU_GEN_STATS
+	bool "Full stats for debugging"
+	depends on LRU_GEN
+	help
+	  Do not enable this option unless you plan to look at historical stats
+	  from evicted generations for debugging purpose.
+
+	  This option has a per-memcg and per-node memory overhead.
+# }

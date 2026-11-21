@@ -1043,10 +1043,13 @@ out:
 
 void *bpf_jit_alloc_exec(unsigned long size)
 {
-	return module_alloc(size);
+	return __vmalloc_node_range(size, PAGE_SIZE, BPF_JIT_REGION_START,
+				    BPF_JIT_REGION_END, GFP_KERNEL,
+				    PAGE_KERNEL_EXEC, 0, NUMA_NO_NODE,
+				    __builtin_return_address(0));
 }
 
 void bpf_jit_free_exec(void *addr)
 {
-	module_memfree(addr);
+	return vfree(addr);
 }

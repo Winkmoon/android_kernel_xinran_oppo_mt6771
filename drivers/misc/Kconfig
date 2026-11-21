@@ -449,6 +449,16 @@ config USB_SWITCH_FSA9480
 	  stereo and mono audio, video, microphone and UART data to use
 	  a common connector port.
 
+config USB_SWITCH_ET7480
+	bool "Fairchild ET7480 chip"
+	select REGMAP_I2C
+	depends on I2C
+	help
+	  Support for the Fairchild ET7480 IC switch chip controlled
+	  using I2C. This driver provides common support
+	  for accessing the device, switching between USB and Audio
+	  modes, changing orientation.
+
 config LATTICE_ECP3_CONFIG
 	tristate "Lattice ECP3 FPGA bitstream configuration via SPI"
 	depends on SPI && SYSFS
@@ -537,13 +547,23 @@ config MEMORY_STATE_TIME
 	help
 	  Memory time statistics exported to /sys/kernel/memory_state_time
 
-#ifdef OPLUS_FEATURE_TP_BASIC
-config SIM_DETECT
-	tristate "SIM_DETECT system"
+config FACTORY_BUILD
+	bool "distiguish factory version from dev version"
 	default n
 	help
-	  Say Y here to enable sim detect system support
-#endif /* OPLUS_FEATURE_TP_BASIC */
+	  This macro will be defined when build factory version. It is used to
+	  distinguish factory and dev codes in kernel.
+
+config MI_GAMEKEY
+	tristate "xiaomi physical game key"
+	help
+	  xiaomi physical game key, can detect press on the key and key whether pop.
+
+config GPIO_TESTING_MODE
+	tristate "A simple GPIO testing mode driver"
+	default n
+	help
+	  Enable driver for a simple testing mode detection
 
 source "drivers/misc/c2port/Kconfig"
 source "drivers/misc/eeprom/Kconfig"
@@ -558,8 +578,4 @@ source "drivers/misc/genwqe/Kconfig"
 source "drivers/misc/echo/Kconfig"
 source "drivers/misc/cxl/Kconfig"
 source "drivers/misc/mediatek/Kconfig"
-source "drivers/misc/oppo_motor/Kconfig"
-#ifdef VENDOR_EDIT//Fanhong.Kong@ProDrv.CHG,add 2018/10/25 for vib aw8697
-source "drivers/misc/aw8697_haptic/Kconfig"
-#endif
 endmenu

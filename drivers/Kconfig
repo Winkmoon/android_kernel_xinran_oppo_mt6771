@@ -219,17 +219,8 @@ source "drivers/tee/Kconfig"
 
 source "drivers/mux/Kconfig"
 
-source "drivers/nfc/nq330-i2c/Kconfig"
-
-source "drivers/nfc/p73-spi-nq330/Kconfig"
-
-##ifdef OPLUS_FEATURE_BRINGUP
 source "drivers/nfc/Kconfig"
-source "drivers/nfc/pn553-i2c/Kconfig"
-source "drivers/nfc/p73-spi/Kconfig"
-source "drivers/nfc/st21nfc-i2c/Kconfig"
-source "drivers/nfc/st54-spi/Kconfig"
-#endif /* OPLUS_FEATURE_NFC_BRINGUP */
 
-source "drivers/fingerprint/Kconfig"
+source "drivers/p73-spi/Kconfig"
+
 endmenu

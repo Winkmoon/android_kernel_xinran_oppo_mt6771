@@ -20,16 +20,16 @@
 #include <linux/platform_device.h>
 #include <linux/slab.h>
 #include <linux/workqueue.h>
+#include <linux/of.h>
 
 #include "extcon_usb.h"
 
-extern void oplus_chg_set_otg_online(bool online);
-/*END VENDOR_EDIT*/
 struct usb_extcon_info {
 	struct device *dev;
 	struct extcon_dev *edev;
 	unsigned int dr; /* data role */
 	struct workqueue_struct *extcon_workq;
+	bool support_u3;
 };
 
 struct mt_usb_work {
@@ -165,8 +165,6 @@ void mt_usbhost_connect(void)
 	mt_usb_dual_role_to_host();
 #endif
 #endif
-	oplus_chg_set_otg_online(true);
-/*END VENDOR_EDIT*/
 
 	pr_info("%s\n", __func__);
 	issue_connection_work(DUAL_PROP_DR_HOST);
@@ -181,8 +179,6 @@ void mt_usbhost_disconnect(void)
 #endif
 #endif
 
-	oplus_chg_set_otg_online(false);
-/*END VENDOR_EDIT*/
 	pr_info("%s\n", __func__);
 	issue_connection_work(DUAL_PROP_DR_NONE);
 }
@@ -199,6 +195,11 @@ void mt_vbus_off(void)
 	usb_otg_set_vbus(false);
 }
 EXPORT_SYMBOL_GPL(mt_vbus_off);
+
+bool tcpc_is_support_u3(void)
+{
+	return g_extcon_info->support_u3;
+}
 
 static int usb_extcon_probe(struct platform_device *pdev)
 {
@@ -233,6 +234,10 @@ static int usb_extcon_probe(struct platform_device *pdev)
 	mt_usb_dual_role_init(g_extcon_info->dev);
 #endif
 #endif
+
+	g_extcon_info->support_u3 = of_property_read_bool(pdev->dev.of_node, "support_u3");
+	if (!g_extcon_info->support_u3)
+		dev_info(dev, "platform does not support U3\n");
 
 	/* Perform initial detection */
 	/* issue_connection_work(DUAL_PROP_DR_NONE); */

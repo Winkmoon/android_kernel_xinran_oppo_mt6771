@@ -377,6 +377,7 @@ static const char * const fw_path[] = {
 	//#endif /* OPLUS_FEATURE_WIFI_RUSUPGRADE */
 	"/odm/firmware/nxp",
 	fw_path_para,
+	"/vendor/firmware",
 	"/lib/firmware/updates/" UTS_RELEASE,
 	"/lib/firmware/updates",
 	"/lib/firmware/" UTS_RELEASE,

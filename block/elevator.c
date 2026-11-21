@@ -653,9 +653,7 @@ void elv_drain_elevator(struct request_queue *q)
 
 void __elv_add_request(struct request_queue *q, struct request *rq, int where)
 {
-#if defined(OPLUS_FEATURE_IOMONITOR) && defined(CONFIG_IOMONITOR)
-	rq->req_ti = ktime_get();
-#endif /*OPLUS_FEATURE_IOMONITOR*/
+	struct list_head *entry;
 
 	trace_block_rq_insert(q, rq);
 
@@ -678,10 +676,30 @@ void __elv_add_request(struct request_queue *q, struct request *rq, int where)
 	case ELEVATOR_INSERT_REQUEUE:
 	case ELEVATOR_INSERT_FRONT:
 		rq->rq_flags |= RQF_SOFTBARRIER;
-		list_add(&rq->queuelist, &q->queue_head);
-#if defined(OPLUS_FEATURE_FG_IO_OPT) && defined(CONFIG_OPPO_FG_IO_OPT)
-		queue_throtl_add_request(q, rq, true);
-#endif /*OPLUS_FEATURE_FG_IO_OPT*/
+		//list_add(&rq->queuelist, &q->queue_head);
+		entry = &q->queue_head;
+		#ifdef CONFIG_PM
+		/*
+		* PM requests always stay in front, otherwise they can be
+		* starved by non-PM requests whose RQF_SOFTBARRIER flag is
+		* set, see elv_next_request().
+		*/
+		if (rq->q->dev && !(rq->rq_flags & RQF_PM)) {
+			list_for_each(entry, &q->queue_head) {
+			struct request *pos = list_entry_rq(entry);
+
+			/* Found the first non-PM request */
+			if (!(pos->rq_flags & RQF_PM)) {
+				entry = entry->prev;
+				break;
+			}
+
+			if (list_is_last(entry, &q->queue_head))
+				break;
+			}
+		}
+		#endif
+		list_add(&rq->queuelist, entry);
 		break;
 
 	case ELEVATOR_INSERT_BACK:

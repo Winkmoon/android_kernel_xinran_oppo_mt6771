@@ -29,13 +29,8 @@
 #include <linux/workqueue.h>
 
 #define UEVENT_HELPER_PATH_LEN		256
-/*VENDOR_EDIT*/
 #define UEVENT_NUM_ENVP			64	/* number of env pointers */
-#define UEVENT_BUFFER_SIZE		4096	/* buffer for the variables */
-/*ELSE*/
-//#define UEVENT_NUM_ENVP			32	/* number of env pointers */
-//#define UEVENT_BUFFER_SIZE		2048	/* buffer for the variables */
-/*END VENDOR_EDIT*/
+#define UEVENT_BUFFER_SIZE		2048	/* buffer for the variables */
 
 #ifdef CONFIG_UEVENT_HELPER
 /* path to the userspace helper executed on an event */
@@ -142,7 +137,8 @@ static inline bool kobject_has_children(struct kobject *kobj)
 struct kobj_type {
 	void (*release)(struct kobject *kobj);
 	const struct sysfs_ops *sysfs_ops;
-	struct attribute **default_attrs;
+	struct attribute **default_attrs;	/* use default_groups instead */
+	const struct attribute_group **default_groups;
 	const struct kobj_ns_type_operations *(*child_ns_type)(struct kobject *kobj);
 	const void *(*namespace)(struct kobject *kobj);
 };

@@ -292,18 +292,11 @@ static void print_wakeup_sources(void)
 		return;
 	}
 
-	if (!list_empty(&leaf_irqs)) {
-		list_for_each_entry(n, &leaf_irqs, siblings) {
+	if (wakeup_reason == RESUME_IRQ && !list_empty(&leaf_irqs))
+		list_for_each_entry(n, &leaf_irqs, siblings)
 			pr_info("Resume caused by IRQ %d, %s\n", n->irq,
 				n->irq_name);
-			#ifdef OPLUS_FEATURE_POWERINFO_STANDBY
-		   if(strncmp(wakeup_irq_name,"NULL", strlen("NULL"))){
-				wakeup_reasons_statics(wakeup_irq_name,WS_CNT_POWERKEY);
-			}
-			#endif /* OPLUS_FEATURE_POWERINFO_STANDBY */
-		}
-	}
-	else if (wakeup_reason == RESUME_ABNORMAL) {
+	else if (wakeup_reason == RESUME_ABNORMAL)
 		pr_info("Resume caused by %s\n", non_irq_wake_reason);
 		#ifdef OPLUS_FEATURE_POWERINFO_STANDBY
 		wakeup_reasons_statics(non_irq_wake_reason, WS_CNT_WLAN|WS_CNT_ADSP|WS_CNT_MODEM|WS_CNT_POWERKEY|WS_CNT_SENSOR);

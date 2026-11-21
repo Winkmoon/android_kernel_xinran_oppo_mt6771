@@ -36,3 +36,6 @@ obj-$(CONFIG_INPUT_KEYCOMBO)	+= keycombo.o
 obj-$(CONFIG_OPPO_FINGERPRINT)  += oppo_secure_common/
 #endif /*VENDOR_EDIT*/
 obj-$(CONFIG_RMI4_CORE)		+= rmi4/
+
+obj-$(CONFIG_MTK_FINGERPRINT_SUPPORT) += fingerprint/
+

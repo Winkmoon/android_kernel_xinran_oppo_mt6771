@@ -2422,12 +2422,4 @@ walt_task_in_cum_window_demand(struct rq *rq, struct task_struct *p)
 #define arch_scale_freq_invariant()	(false)
 #endif
 
-#if defined(OPLUS_FEATURE_CORE_CTL) && defined(CONFIG_SCHED_CORE_CTL)
-struct sched_avg_stats {
-	int nr;
-	int nr_misfit;
-	int nr_max;
-};
-#endif /* OPLUS_FEATURE_CORE_CTL */
-
 #include "sched_plus.h"

@@ -174,7 +174,7 @@ void put_vma(struct vm_area_struct *vma)
 		__free_vma(vma);
 }
 #else
-void put_vma(struct vm_area_struct *vma)
+static inline void put_vma(struct vm_area_struct *vma)
 {
 	__free_vma(vma);
 }
@@ -446,16 +446,7 @@ static void vma_gap_update(struct vm_area_struct *vma)
 static inline void vma_rb_insert(struct vm_area_struct *vma,
 				 struct mm_struct *mm)
 {
-#if defined(OPLUS_FEATURE_VIRTUAL_RESERVE_MEMORY) && defined(CONFIG_VIRTUAL_RESERVE_MEMORY)
-	struct rb_root *root;
-
-	if (BACKUP_ALLOC_FLAG(vma->vm_flags))
-		root = &mm->reserve_mm_rb;
-	else
-		root = &mm->mm_rb;
-#else
 	struct rb_root *root = &mm->mm_rb;
-#endif
 
 	/* All rb_subtree_gap values must be consistent prior to insertion */
 	validate_mm_rb(root, NULL);
@@ -465,16 +456,7 @@ static inline void vma_rb_insert(struct vm_area_struct *vma,
 
 static void __vma_rb_erase(struct vm_area_struct *vma, struct mm_struct *mm)
 {
-#if defined(OPLUS_FEATURE_VIRTUAL_RESERVE_MEMORY) && defined(CONFIG_VIRTUAL_RESERVE_MEMORY)
-	struct rb_root *root;
-
-	if (BACKUP_ALLOC_FLAG(vma->vm_flags))
-		root = &mm->reserve_mm_rb;
-	else
-		root = &mm->mm_rb;
-#else
 	struct rb_root *root = &mm->mm_rb;
-#endif
 	/*
 	 * Note rb_erase_augmented is a fairly large inline function,
 	 * so make sure we instantiate it only once with our desired
@@ -500,14 +482,7 @@ static __always_inline void vma_rb_erase_ignore(struct vm_area_struct *vma,
 	 * with the possible exception of the "next" vma being erased if
 	 * next->vm_start was reduced.
 	 */
-#if defined(OPLUS_FEATURE_VIRTUAL_RESERVE_MEMORY) && defined(CONFIG_VIRTUAL_RESERVE_MEMORY)
-	if (BACKUP_ALLOC_FLAG(vma->vm_flags))
-		validate_mm_rb(&mm->reserve_mm_rb, ignore);
-	else
-		validate_mm_rb(&mm->mm_rb, ignore);
-#else
 	validate_mm_rb(&mm->mm_rb, ignore);
-#endif
 
 	__vma_rb_erase(vma, mm);
 }
@@ -519,14 +494,7 @@ static __always_inline void vma_rb_erase(struct vm_area_struct *vma,
 	 * All rb_subtree_gap values must be consistent prior to erase,
 	 * with the possible exception of the vma being erased.
 	 */
-#if defined(OPLUS_FEATURE_VIRTUAL_RESERVE_MEMORY) && defined(CONFIG_VIRTUAL_RESERVE_MEMORY)
-	if (BACKUP_ALLOC_FLAG(vma->vm_flags))
-		validate_mm_rb(&mm->reserve_mm_rb, vma);
-	else
-		validate_mm_rb(&mm->mm_rb, vma);
-#else
 	validate_mm_rb(&mm->mm_rb, vma);
-#endif
 
 	__vma_rb_erase(vma, mm);
 }
@@ -1061,7 +1029,6 @@ again:
 			mm->map_count--;
 #else
 		mm->map_count--;
-#endif
 		vm_raw_write_end(next);
 		put_vma(next);
 		/*
@@ -1994,10 +1961,6 @@ out:
 
 	vma_set_page_prot(vma);
 	vm_write_end(vma);
-#if defined(OPLUS_FEATURE_VIRTUAL_RESERVE_MEMORY) && defined(CONFIG_VIRTUAL_RESERVE_MEMORY)
-	if (BACKUP_CREATE_FLAG(vm_flags) && (!mm->reserve_vma))
-		mm->reserve_vma = vma;
-#endif
 
 	return addr;
 
@@ -2993,9 +2956,6 @@ detach_vmas_to_be_unmapped(struct mm_struct *mm, struct vm_area_struct *vma,
 	vma->vm_prev = NULL;
 	do {
 		vma_rb_erase(vma, mm);
-#if defined(OPLUS_FEATURE_VIRTUAL_RESERVE_MEMORY) && defined(CONFIG_VIRTUAL_RESERVE_MEMORY)
-		(backed_alloc) ? mm->reserve_map_count-- : mm->map_count--;
-#else
 		mm->map_count--;
 #endif
 		tail_vma = vma;
@@ -3731,7 +3691,7 @@ void vm_stat_account(struct mm_struct *mm, vm_flags_t flags, long npages)
 		mm->data_vm += npages;
 }
 
-static int special_mapping_fault(struct vm_fault *vmf);
+static vm_fault_t special_mapping_fault(struct vm_fault *vmf);
 
 /*
  * Having a close hook prevents vma merging regardless of flags.
@@ -3770,7 +3730,7 @@ static const struct vm_operations_struct legacy_special_mapping_vmops = {
 	.fault = special_mapping_fault,
 };
 
-static int special_mapping_fault(struct vm_fault *vmf)
+static vm_fault_t special_mapping_fault(struct vm_fault *vmf)
 {
 	struct vm_area_struct *vma = vmf->vma;
 	pgoff_t pgoff;

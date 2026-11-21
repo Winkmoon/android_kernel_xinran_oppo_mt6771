@@ -55,6 +55,7 @@
 #include <linux/uaccess.h>
 #include <asm/sections.h>
 
+#include <trace/events/initcall.h>
 #define CREATE_TRACE_POINTS
 #include <trace/events/printk.h>
 
@@ -167,7 +168,7 @@ __setup("printk.devkmsg=", control_devkmsg);
 char devkmsg_log_str[DEVKMSG_STR_MAX_SIZE] = "ratelimit";
 
 int devkmsg_sysctl_set_loglvl(struct ctl_table *table, int write,
-			      void __user *buffer, size_t *lenp, loff_t *ppos)
+			      void *buffer, size_t *lenp, loff_t *ppos)
 {
 	char old_str[DEVKMSG_STR_MAX_SIZE];
 	unsigned int old;
@@ -443,7 +444,7 @@ static u64 clear_seq;
 static u32 clear_idx;
 
 #define PREFIX_MAX		32
-#define LOG_LINE_MAX		(1024 - PREFIX_MAX)
+#define LOG_LINE_MAX		(3072 - PREFIX_MAX)
 
 #define LOG_LEVEL(v)		((v) & 0x07)
 #define LOG_FACILITY(v)		((v) >> 3 & 0xff)
@@ -456,10 +457,6 @@ static char __log_buf[__LOG_BUF_LEN] __aligned(LOG_ALIGN);
 static char *log_buf = __log_buf;
 static u32 log_buf_len = __LOG_BUF_LEN;
 
-//#ifdef OPLUS_BUG_STABILITY
-int printk_force_uart = 0;
-module_param_named(force_uart, printk_force_uart, int, S_IRUGO | S_IWUSR);
-//#endif /*OPLUS_BUG_STABILITY*/
 
 /* console duration detect */
 #ifdef CONFIG_CONSOLE_LOCK_DURATION_DETECT
@@ -1898,6 +1895,12 @@ static int console_trylock_spinning(void)
 	 */
 	mutex_acquire(&console_lock_dep_map, 0, 1, _THIS_IP_);
 
+	/*
+	 * Update @console_may_schedule for trylock because the previous
+	 * owner may have been schedulable.
+	 */
+	console_may_schedule = 0;
+
 	return 1;
 }
 
@@ -2597,6 +2600,7 @@ int is_console_locked(void)
 {
 	return console_locked;
 }
+EXPORT_SYMBOL(is_console_locked);
 
 /*
  * Check if we have any console that is capable of printing while cpu is
@@ -3222,7 +3226,9 @@ EXPORT_SYMBOL(unregister_console);
  */
 void __init console_init(void)
 {
-	initcall_t *call;
+	int ret;
+	initcall_t call;
+	initcall_entry_t *ce;
 
 	/* Setup the default TTY line discipline. */
 	n_tty_init();
@@ -3231,10 +3237,14 @@ void __init console_init(void)
 	 * set up the console device so that later boot sequences can
 	 * inform about problems etc..
 	 */
-	call = __con_initcall_start;
-	while (call < __con_initcall_end) {
-		(*call)();
-		call++;
+	ce = __con_initcall_start;
+	trace_initcall_level("console");
+	while (ce < __con_initcall_end) {
+		call = initcall_from_entry(ce);
+		trace_initcall_start(call);
+		ret = call();
+		trace_initcall_finish(call, ret);
+		ce++;
 	}
 }
 
@@ -3323,7 +3333,7 @@ static void wake_up_klogd_work_func(struct irq_work *irq_work)
 
 static DEFINE_PER_CPU(struct irq_work, wake_up_klogd_work) = {
 	.func = wake_up_klogd_work_func,
-	.flags = IRQ_WORK_LAZY,
+	.flags = ATOMIC_INIT(IRQ_WORK_LAZY),
 };
 
 void wake_up_klogd(void)
@@ -3476,12 +3486,19 @@ void kmsg_dump(enum kmsg_dump_reason reason)
 	struct kmsg_dumper *dumper;
 	unsigned long flags;
 
-	if ((reason > KMSG_DUMP_OOPS) && !always_kmsg_dump)
-		return;
-
 	rcu_read_lock();
 	list_for_each_entry_rcu(dumper, &dump_list, list) {
-		if (dumper->max_reason && reason > dumper->max_reason)
+		enum kmsg_dump_reason max_reason = dumper->max_reason;
+
+		/*
+		 * If client has not provided a specific max_reason, default
+		 * to KMSG_DUMP_OOPS, unless always_kmsg_dump was set.
+		 */
+		if (max_reason == KMSG_DUMP_UNDEF) {
+			max_reason = always_kmsg_dump ? KMSG_DUMP_MAX :
+							KMSG_DUMP_OOPS;
+		}
+		if (reason > max_reason)
 			continue;
 
 		/* initialize iterator with data about the stored records */

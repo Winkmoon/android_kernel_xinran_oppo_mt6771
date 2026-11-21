@@ -94,7 +94,9 @@ struct task_struct *wk_tsk[16] = { 0 };	/* max cpu 16 */
 static unsigned int wk_tsk_bind[16] = { 0 };	/* max cpu 16 */
 static unsigned long long wk_tsk_bind_time[16] = { 0 };	/* max cpu 16 */
 static unsigned long long wk_tsk_kick_time[16] = { 0 };	/* max cpu 16 */
+#ifdef CONFIG_MTK_TICK_BROADCAST_AEE_DUMP
 static char wk_tsk_buf[128] = { 0 };
+#endif
 
 static unsigned long kick_bit;
 static unsigned long rtc_update;
@@ -104,6 +106,7 @@ static struct wd_api *g_wd_api;
 static int g_kinterval = -1;
 static int g_timeout = -1;
 static int g_need_config;
+static int wdt_start;
 static int g_enable = 1;
 static struct work_struct wdk_work;
 static struct workqueue_struct *wdk_workqueue;
@@ -324,7 +327,7 @@ static int start_kicker_thread_with_default_setting(void)
 
 	g_need_config = 0;/* Note, we DO NOT want to call configure function */
 
-			/* Start once only */
+	wdt_start = 1;		/* Start once only */
 	rtc_update = jiffies;	/* update rtc_update time base*/
 
 	spin_unlock(&lock);
@@ -347,23 +350,26 @@ void wk_start_kick_cpu(int cpu)
 	}
 }
 
+#ifdef CONFIG_MTK_TICK_BROADCAST_AEE_DUMP
 void dump_wdk_bind_info(void)
 {
-	int i = 0;
+	int i = 0, ret = -1;
 
 #ifdef CONFIG_MTK_AEE_IPANIC
 	aee_sram_fiq_log("\n");
 #endif
-	snprintf(wk_tsk_buf, sizeof(wk_tsk_buf),
+	ret = snprintf(wk_tsk_buf, sizeof(wk_tsk_buf),
 		"[wdk] dump at %lld\n", sched_clock());
 #ifdef CONFIG_MTK_AEE_IPANIC
-	aee_sram_fiq_log(wk_tsk_buf);
+	if (ret >= 0)
+		aee_sram_fiq_log(wk_tsk_buf);
 #endif
-	snprintf(wk_tsk_buf, sizeof(wk_tsk_buf),
+	ret = snprintf(wk_tsk_buf, sizeof(wk_tsk_buf),
 		"[wdk]kick_bits: 0x%x, check_bits: 0x%x\n",
 		get_kick_bit(), get_check_bit());
 #ifdef CONFIG_MTK_AEE_IPANIC
-	aee_sram_fiq_log(wk_tsk_buf);
+	if (ret >= 0)
+		aee_sram_fiq_log(wk_tsk_buf);
 #endif
 	for (i = 0; i < CPU_NR; i++) {
 		if (wk_tsk[i] != NULL) {
@@ -374,14 +380,15 @@ void dump_wdk_bind_info(void)
 			 *	wk_tsk[i]->on_rq, wk_tsk[i]->state);
 			 */
 			memset(wk_tsk_buf, 0, sizeof(wk_tsk_buf));
-			snprintf(wk_tsk_buf, sizeof(wk_tsk_buf),
+			ret = snprintf(wk_tsk_buf, sizeof(wk_tsk_buf),
 				"[wdk]CPU %d, %d, %lld, %lu, %d, %ld, %lld\n",
 				i, wk_tsk_bind[i], wk_tsk_bind_time[i],
 				wk_tsk[i]->cpus_allowed.bits[0],
 				wk_tsk[i]->on_rq, wk_tsk[i]->state,
 				wk_tsk_kick_time[i]);
 #ifdef CONFIG_MTK_AEE_IPANIC
-			aee_sram_fiq_log(wk_tsk_buf);
+			if (ret >= 0)
+				aee_sram_fiq_log(wk_tsk_buf);
 #endif
 		}
 	}
@@ -392,6 +399,7 @@ void dump_wdk_bind_info(void)
 	tick_broadcast_mtk_aee_dump();
 	timer_list_aee_dump(kick_bit);
 }
+#endif
 
 void kicker_cpu_bind(int cpu)
 {
@@ -413,6 +421,7 @@ void wk_cpu_update_bit_flag(int cpu, int plug_status)
 		spin_lock(&lock);
 		cpus_kick_bit |= (1 << cpu);
 		kick_bit = 0;
+		g_hang_detected = 0;
 		lasthpg_cpu = cpu;
 		lasthpg_act = plug_status;
 		lasthpg_t = sched_clock();
@@ -422,6 +431,7 @@ void wk_cpu_update_bit_flag(int cpu, int plug_status)
 		spin_lock(&lock);
 		cpus_kick_bit &= (~(1 << cpu));
 		kick_bit = 0;
+		g_hang_detected = 0;
 		lasthpg_cpu = cpu;
 		lasthpg_act = plug_status;
 		lasthpg_t = sched_clock();
@@ -484,20 +494,21 @@ void wk_proc_exit(void)
 
 }
 
-static void kwdt_print_utc(char *msg_buf, int msg_buf_size)
+static int kwdt_print_utc(char *msg_buf, int msg_buf_size)
 {
 	struct rtc_time tm;
 	struct timeval tv = { 0 };
 	/* android time */
 	struct rtc_time tm_android;
 	struct timeval tv_android = { 0 };
+	int ret = -1;
 
 	do_gettimeofday(&tv);
 	tv_android = tv;
 	rtc_time_to_tm(tv.tv_sec, &tm);
 	tv_android.tv_sec -= sys_tz.tz_minuteswest * 60;
 	rtc_time_to_tm(tv_android.tv_sec, &tm_android);
-	snprintf(msg_buf, msg_buf_size,
+	ret = snprintf(msg_buf, msg_buf_size,
 		"[thread:%d][RT:%lld] %d-%02d-%02d %02d:%02d:%02d.%u UTC;"
 		"android time %d-%02d-%02d %02d:%02d:%02d.%03d\n",
 		current->pid, sched_clock(), tm.tm_year + 1900, tm.tm_mon + 1,
@@ -506,6 +517,8 @@ static void kwdt_print_utc(char *msg_buf, int msg_buf_size)
 		tm_android.tm_mon + 1, tm_android.tm_mday, tm_android.tm_hour,
 		tm_android.tm_min, tm_android.tm_sec,
 		(unsigned int)tv_android.tv_usec);
+
+	return ret;
 }
 static void kwdt_process_kick(int local_bit, int cpu,
 				unsigned long curInterval, char msg_buf[])
@@ -528,27 +541,28 @@ static void kwdt_process_kick(int local_bit, int cpu,
 	 *  avoid bulk of delayed printk happens here
 	 */
 	wk_tsk_kick_time[cpu] = sched_clock();
-	snprintf(msg_buf, WK_MAX_MSG_SIZE,
-	 "[wdk-c] cpu=%d,lbit=0x%x,cbit=0x%x,%d,%d,%lld,%lld,%lld,[%lld,%ld]\n",
-	 cpu, local_bit, wk_check_kick_bit(), lasthpg_cpu, lasthpg_act,
-	 lasthpg_t, lastsuspend_t, lastresume_t, wk_tsk_kick_time[cpu],
-	 curInterval);
 
 	if (local_bit == wk_check_kick_bit()) {
 		msg_buf[5] = 'k';
 		mtk_wdt_restart(WD_TYPE_NORMAL);/* for KICK external wdt */
 		local_bit = 0;
+		g_hang_detected = 0;
 	}
 
 	kick_bit = local_bit;
 
 	apxgpt_base = mtk_wdt_apxgpt_base();
 	if (apxgpt_base) {
+		u32 kick_dbg_off = 0;
 		/* "DB" signature */
 		tmp = 0x4442 << 16;
 		tmp |= (local_bit & 0xFF) << 8;
 		tmp |= wk_check_kick_bit() & 0xFF;
-		__raw_writel(tmp, apxgpt_base + 0x7c);
+		kick_dbg_off = mtk_wdt_kick_dbg_off();
+		if (kick_dbg_off)
+			__raw_writel(tmp, apxgpt_base + kick_dbg_off);
+		else
+			__raw_writel(tmp, apxgpt_base + 0x7c);
 	}
 
 	spin_unlock(&lock);
@@ -558,13 +572,6 @@ static void kwdt_process_kick(int local_bit, int cpu,
 	 * [wdt-k]: kick watchdog actaully, this log is more important thus
 	 *	    using printk_deferred to ensure being printed.
 	 */
-	if (msg_buf[5] != 'k')
-		pr_info("%s", msg_buf);
-	else
-		printk_deferred("%s", msg_buf);
-
-	if (dump_timeout)
-		dump_wdk_bind_info();
 
 #ifdef CONFIG_LOCAL_WDT
 	printk_deferred("[wdk] cpu:%d, kick local wdt,RT[%lld]\n",
@@ -589,7 +596,7 @@ static int kwdt_thread(void *arg)
 	for (;;) {
 
 		if (kthread_should_stop()) {
-			pr_info("[wdk] kthread_should_stop do !!\n");
+			pr_debug("[wdk] kthread_should_stop do !!\n");
 			break;
 		}
 
@@ -666,6 +673,7 @@ static int kwdt_thread(void *arg)
 		/* to avoid wk_tsk[cpu] had not created out */
 		if (wk_tsk[cpu] != 0) {
 			if (wk_tsk[cpu]->pid == current->pid) {
+				int ret = -1;
 #if (DEBUG_WDK == 1)
 				msleep_interruptible(debug_sleep * 1000);
 				pr_debug("[wdk] wdk woke up %d\n",
@@ -676,7 +684,7 @@ static int kwdt_thread(void *arg)
 				msg_buf[0] = '\0';
 				if (time_after(jiffies, rtc_update)) {
 					rtc_update = jiffies + (1 * HZ);
-					kwdt_print_utc(msg_buf,
+					ret = kwdt_print_utc(msg_buf,
 						WK_MAX_MSG_SIZE);
 				}
 				spin_unlock(&lock);
@@ -685,7 +693,7 @@ static int kwdt_thread(void *arg)
 				 * do not print message with spinlock held to
 				 * avoid bulk of delayed printk happens here
 				 */
-				if (msg_buf[0] != '\0')
+				if (msg_buf[0] != '\0' && (ret >= 0))
 					pr_info("%s", msg_buf);
 			}
 		}
@@ -725,14 +733,14 @@ static int start_kicker(void)
 			int ret = PTR_ERR(wk_tsk[i]);
 
 			wk_tsk[i] = NULL;
-			pr_info("[wdk]kthread_create failed, wdtk-%d\n", i);
+			pr_err("[wdk]kthread_create failed, wdtk-%d\n", i);
 			return ret;
 		}
 		/* wk_cpu_update_bit_flag(i,1); */
 		wk_start_kick_cpu(i);
 	}
 	g_kicker_init = 1;
-	pr_info("[wdk] WDT start kicker done CPU_NR=%d\n", CPU_NR);
+	pr_debug("[wdk] WDT start kicker done CPU_NR=%d\n", CPU_NR);
 	return 0;
 }
 
@@ -832,9 +840,7 @@ ssize_t mtk_rgu_pause_wdt_show(struct kobject *kobj, char *buffer)
 {
 	int remain = PAGE_SIZE;
 	int len = 0;
-#ifdef __ENABLE_WDT_SYSFS__
-	char *ptr __maybe_unused = buffer;
-#endif
+	char *ptr = buffer;
 
 	ptr += len;
 	remain -= len;
@@ -935,12 +941,12 @@ static void wdk_work_callback(struct work_struct *work)
 	res = cpuhp_setup_state_nocalls(CPUHP_AP_ONLINE_DYN,
 		"watchdog:wdkctrl:online", wk_cpu_callback_online, NULL);
 	if (res < 0)
-		pr_info("[wdk]setup CPUHP_AP_ONLINE_DYN fail %d\n", res);
+		pr_err("[wdk]setup CPUHP_AP_ONLINE_DYN fail %d\n", res);
 
 	res = cpuhp_setup_state_nocalls(CPUHP_BP_PREPARE_DYN,
 		"watchdog:wdkctrl:offline", NULL, wk_cpu_callback_offline);
 	if (res < 0)
-		pr_info("[wdk]setup CPUHP_BP_PREPARE_DYN fail %d\n", res);
+		pr_err("[wdk]setup CPUHP_BP_PREPARE_DYN fail %d\n", res);
 
 	for (i = 0; i < CPU_NR; i++) {
 		if (cpu_online(i)) {
@@ -958,7 +964,7 @@ static void wdk_work_callback(struct work_struct *work)
 #endif
 	cpu_hotplug_enable();
 
-	pr_info("[wdk]init_wk done late_initcall cpus_kick_bit=0x%x -----\n",
+	pr_debug("[wdk]init_wk done late_initcall cpus_kick_bit=0x%x -----\n",
 		cpus_kick_bit);
 
 }
@@ -993,7 +999,7 @@ static int __init init_wk(void)
 	res = queue_work(wdk_workqueue, &wdk_work);
 
 	if (!res)
-		pr_info("[wdk]wdk_work start return:%d!\n", res);
+		pr_err("[wdk]wdk_work start return:%d!\n", res);
 
 	wdt_pm_nb.notifier_call = wdt_pm_notify;
 	register_pm_notifier(&wdt_pm_nb);

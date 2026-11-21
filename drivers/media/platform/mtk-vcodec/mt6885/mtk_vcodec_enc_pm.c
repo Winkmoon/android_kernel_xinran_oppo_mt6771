@@ -96,8 +96,10 @@ struct temp_job {
 	int visible_width; /* temp usage only, will use kcy */
 	int visible_height; /* temp usage only, will use kcy */
 	int operation_rate;
+	int bitratemode;
 	long long submit;
 	int kcy;
+	struct mtk_vcodec_dev *dev;
 	struct temp_job *next;
 };
 static struct temp_job *temp_venc_jobs[CORE_NUM];
@@ -119,6 +121,7 @@ struct temp_job *new_job_from_info(struct mtk_vcodec_ctx *ctx, int core_id)
 	new_job->submit = 0; /* use now - to be filled */
 	new_job->kcy = 0; /* retrieve hw counter - to be filled */
 	new_job->next = 0;
+	new_job->dev = ctx->dev;
 	return new_job;
 }
 
@@ -507,11 +510,14 @@ void mtk_venc_dvfs_begin(struct temp_job **job_list)
 	} else if (area >= 1920 * 1080) {
 		if (job->operation_rate > 30) {
 			if (job->format == V4L2_PIX_FMT_H265)
-				idx = 1;
+				idx = 0;
 			else /* H.264 */
-				idx = 2;
+				idx = 0;
 		} else {
-			idx = 0;
+			if (job->bitratemode == 1) /* CBR */
+				idx = 1;
+			else
+				idx = 0;
 		}
 	} else {
 		idx = 0;
@@ -523,8 +529,14 @@ void mtk_venc_dvfs_begin(struct temp_job **job_list)
 	else if (job->operation_rate >= 120)
 		idx = 0;
 
+	if (job->dev != NULL && job->dev->enc_cnt > 1)
+		idx = 2;
+
 	if (job->format == V4L2_PIX_FMT_HEIF)
 		idx = 3;
+
+	mtk_v4l2_debug(2, "[Debug] freq idx %d (%d, %d, %d)",
+		idx, area, job->operation_rate, job->bitratemode);
 
 	venc_req_freq[job->module] = venc_freq_map[idx];
 	venc_freq = venc_req_freq[0];
@@ -784,8 +796,11 @@ void mtk_venc_pmqos_gce_flush(struct mtk_vcodec_ctx *ctx, int core_id,
 		frame_rate = ctx->enc_params.framerate_num /
 				ctx->enc_params.framerate_denom;
 	}
-	if (job != NULL)
+
+	if (job != NULL) {
 		job->operation_rate = frame_rate;
+		job->bitratemode = ctx->enc_params.bitratemode;
+	}
 
 	if (job_cnt == 0) {
 		// Adjust dvfs immediately

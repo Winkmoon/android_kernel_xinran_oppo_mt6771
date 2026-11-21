@@ -61,7 +61,6 @@ struct erofs_sb_info {
 
 	/* the dedicated workstation for compression */
 	struct radix_tree_root workstn_tree;
-	spinlock_t workstn_lock;	/* protects workstn_tree */
 
 	/* strategy of sync decompression (false - auto, true - force on) */
 	bool readahead_sync_decompress;
@@ -345,8 +344,6 @@ struct erofs_map_blocks {
 
 	unsigned int m_flags;
 
-	unsigned char m_algorithmformat;
-
 	struct page *mpage;
 };
 
@@ -444,15 +441,6 @@ int erofs_try_to_free_cached_page(struct address_space *mapping,
 int z_erofs_load_lz4_config(struct super_block *sb,
 			    struct erofs_super_block *dsb,
 			    struct z_erofs_lz4_cfgs *lz4, int len);
-#ifdef CONFIG_EROFS_FS_ZIP_LZMA
-struct z_erofs_decompress_req;
-int z_erofs_load_lzma_config(struct super_block *sb,
-			     struct erofs_super_block *dsb,
-			     struct z_erofs_lzma_cfgs *lzma, int size);
-int z_erofs_lzma_decompress(struct z_erofs_decompress_req *rq, u8 *dst);
-int z_erofs_lzma_prepare_destpages(struct z_erofs_decompress_req *rq,
-				   struct list_head *pagepool);
-#endif
 #else
 static inline void erofs_shrinker_register(struct super_block *sb) {}
 static inline void erofs_shrinker_unregister(struct super_block *sb) {}

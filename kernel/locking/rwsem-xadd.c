@@ -96,9 +96,6 @@ void __init_rwsem(struct rw_semaphore *sem, const char *name,
 #ifdef CONFIG_MTK_TASK_TURBO
 	sem->turbo_owner = NULL;
 #endif
-#ifdef OPLUS_FEATURE_UIFIRST
-	sem->ux_dep_task = NULL;
-#endif /* OPLUS_FEATURE_UIFIRST */
 }
 
 EXPORT_SYMBOL(__init_rwsem);
@@ -267,19 +264,11 @@ __rwsem_down_read_failed_common(struct rw_semaphore *sem, int state)
 	raw_spin_lock_irq(&sem->wait_lock);
 	if (list_empty(&sem->wait_list))
 		adjustment += RWSEM_WAITING_BIAS;
-
-#if defined(OPLUS_FEATURE_UIFIRST) && !defined(CONFIG_MTK_TASK_TURBO)
-	if (sysctl_uifirst_enabled)
-		rwsem_list_add(waiter.task, &waiter.list, &sem->wait_list);
-	else
-		list_add_tail(&waiter.list, &sem->wait_list);
-#else
 #ifdef CONFIG_MTK_TASK_TURBO
 	rwsem_list_add(waiter.task, &waiter.list, &sem->wait_list);
 #else
 	list_add_tail(&waiter.list, &sem->wait_list);
 #endif
-#endif /* OPLUS_FEATURE_UIFIRST */
 
 	/* we're now waiting on the lock, but no longer actively locking */
 	count = atomic_long_add_return(adjustment, &sem->count);
@@ -294,12 +283,6 @@ __rwsem_down_read_failed_common(struct rw_semaphore *sem, int state)
 	    (count > RWSEM_WAITING_BIAS &&
 	     adjustment != -RWSEM_ACTIVE_READ_BIAS))
 		__rwsem_mark_wake(sem, RWSEM_WAKE_ANY, &wake_q);
-
-#ifdef OPLUS_FEATURE_UIFIRST
-	if (sysctl_uifirst_enabled) {
-		rwsem_set_inherit_ux(current, waiter.task, READ_ONCE(sem->owner), sem);
-	}
-#endif /* OPLUS_FEATURE_UIFIRST */
 
 #ifdef CONFIG_MTK_TASK_TURBO
 	if (waiter.task)
@@ -583,18 +566,11 @@ __rwsem_down_write_failed_common(struct rw_semaphore *sem, int state)
 	if (list_empty(&sem->wait_list))
 		waiting = false;
 
-#if defined(OPLUS_FEATURE_UIFIRST) && !defined(CONFIG_MTK_TASK_TURBO)
-	if (sysctl_uifirst_enabled)
-		rwsem_list_add(waiter.task, &waiter.list, &sem->wait_list);
-	else
-		list_add_tail(&waiter.list, &sem->wait_list);
-#else
 #ifdef CONFIG_MTK_TASK_TURBO
 	rwsem_list_add(waiter.task, &waiter.list, &sem->wait_list);
 #else
 	list_add_tail(&waiter.list, &sem->wait_list);
 #endif
-#endif /* OPLUS_FEATURE_UIFIRST */
 
 	/* we're now waiting on the lock, but no longer actively locking */
 	if (waiting) {
@@ -629,11 +605,6 @@ __rwsem_down_write_failed_common(struct rw_semaphore *sem, int state)
 	/* inherit if current is turbo */
 	rwsem_start_turbo_inherit(sem);
 #endif
-#ifdef OPLUS_FEATURE_UIFIRST
-	if (sysctl_uifirst_enabled) {
-		rwsem_set_inherit_ux(waiter.task, current, READ_ONCE(sem->owner), sem);
-	}
-#endif /* OPLUS_FEATURE_UIFIRST */
 	/* wait until we successfully acquire the lock */
 	set_current_state(state);
 	while (true) {

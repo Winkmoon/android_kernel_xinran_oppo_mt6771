@@ -442,6 +442,7 @@ static inline void cpufreq_resume(void) {}
 /* Policy Notifiers  */
 #define CPUFREQ_ADJUST			(0)
 #define CPUFREQ_NOTIFY			(1)
+#define CPUFREQ_THERMAL			(2)
 
 #ifdef CONFIG_CPU_FREQ
 int cpufreq_register_notifier(struct notifier_block *nb, unsigned int list);
@@ -935,10 +936,6 @@ extern void arch_set_max_freq_scale(struct cpumask *cpus,
 				    unsigned long policy_max_freq);
 extern void arch_set_min_freq_scale(struct cpumask *cpus,
 				    unsigned long policy_min_freq);
-
-#ifdef OPLUS_FEATURE_HEALTHINFO
-struct list_head *get_cpufreq_policy_list(void);
-#endif /* OPLUS_FEATURE_HEALTHINFO */
 
 /* the following are really really optional */
 extern struct freq_attr cpufreq_freq_attr_scaling_available_freqs;

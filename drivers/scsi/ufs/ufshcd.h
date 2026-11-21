@@ -88,6 +88,34 @@ enum dev_cmd_type {
 	DEV_CMD_TYPE_QUERY		= 0x1,
 };
 
+enum ufs_event_type {
+	/* uic specific errors */
+	UFS_EVT_PA_ERR = 0,
+	UFS_EVT_DL_ERR,
+	UFS_EVT_NL_ERR,
+	UFS_EVT_TL_ERR,
+	UFS_EVT_DME_ERR,
+
+	/* fatal errors */
+	UFS_EVT_AUTO_HIBERN8_ERR,
+	UFS_EVT_FATAL_ERR,
+	UFS_EVT_LINK_STARTUP_FAIL,
+	UFS_EVT_RESUME_ERR,
+	UFS_EVT_SUSPEND_ERR,
+
+	/* abnormal events */
+	UFS_EVT_DEV_RESET,
+	UFS_EVT_HOST_RESET,
+	UFS_EVT_SW_RESET,
+	UFS_EVT_ABORT,
+	UFS_EVT_OCS_ERR,
+
+	/* performance warning */
+	UFS_EVT_PERF_WARN,
+
+	UFS_EVT_CNT,
+};
+
 /**
  * struct uic_command - UIC command structure
  * @command: UIC command
@@ -252,9 +280,7 @@ struct ufs_desc_size {
 	int interc_desc;
 	int unit_desc;
 	int conf_desc;
-#ifdef VENDOR_EDIT
-	int hlth_desc;
-#endif
+	int health_desc;
 };
 
 /**
@@ -359,6 +385,8 @@ struct ufs_hba_variant_ops {
 					struct ufs_pa_layer_attr *,
 					struct ufs_pa_layer_attr *);
 	void	(*setup_xfer_req)(struct ufs_hba *, int, bool);
+	void	(*compl_xfer_req)(struct ufs_hba *hba, int tag,
+				  bool is_scsi);
 	void	(*setup_task_mgmt)(struct ufs_hba *, int, u8);
 	void    (*hibern8_notify)(struct ufs_hba *, enum uic_cmd_dme,
 					enum ufs_notify_change_status);
@@ -397,6 +425,8 @@ struct ufs_hba_variant_ops {
 			       const union ufs_crypto_cfg_entry *cfg, int slot);
 	void	(*abort_handler)(struct ufs_hba *hba, int tag, char *file,
 				 int line);
+	void	(*event_notify)(struct ufs_hba *hba,
+				enum ufs_event_type evt, void *data);
 };
 
 struct keyslot_mgmt_ll_ops;
@@ -507,17 +537,18 @@ struct ufs_init_prefetch {
 	u32 icc_level;
 };
 
-#define UFS_ERR_REG_HIST_LENGTH 8
+#define UFS_EVENT_HIST_LENGTH 8
+
 /**
- * struct ufs_err_reg_hist - keeps history of uic errors
+ * struct ufs_event_hist - keeps history of uic errors
  * @pos: index to indicate cyclic buffer position
  * @reg: cyclic buffer for registers value
  * @tstamp: cyclic buffer for time stamp
  */
-struct ufs_err_reg_hist {
+struct ufs_event_hist {
 	int pos;
-	u32 reg[UFS_ERR_REG_HIST_LENGTH];
-	ktime_t tstamp[UFS_ERR_REG_HIST_LENGTH];
+	u32 val[UFS_EVENT_HIST_LENGTH];
+	ktime_t tstamp[UFS_EVENT_HIST_LENGTH];
 };
 
 /**
@@ -544,29 +575,48 @@ struct ufs_stats {
 	u32 hibern8_exit_cnt;
 	ktime_t last_hibern8_exit_tstamp;
 
-	/* uic specific errors */
-	struct ufs_err_reg_hist pa_err;
-	struct ufs_err_reg_hist dl_err;
-	struct ufs_err_reg_hist nl_err;
-	struct ufs_err_reg_hist tl_err;
-	struct ufs_err_reg_hist dme_err;
+        u32 pa_err_cnt_total;
+        u32 pa_err_cnt[UFS_EC_PA_MAX];
+        u32 dl_err_cnt_total;
+        u32 dl_err_cnt[UFS_EC_DL_MAX];
+        u32 dme_err_cnt;
+        u32 power_mode_change_cnt;
 
-	/* fatal errors */
-	struct ufs_err_reg_hist auto_hibern8_err;
-	struct ufs_err_reg_hist fatal_err;
-	struct ufs_err_reg_hist link_startup_err;
-	struct ufs_err_reg_hist resume_err;
-	struct ufs_err_reg_hist suspend_err;
+	struct ufs_event_hist event[UFS_EVT_CNT];
+};
 
-	/* abnormal events */
-	struct ufs_err_reg_hist dev_reset;
-	struct ufs_err_reg_hist host_reset;
-	struct ufs_err_reg_hist sw_reset;
-	struct ufs_err_reg_hist task_abort;
-	struct ufs_err_reg_hist ocs_err_status;
+/* UFSHCD states */
+enum {
+	UFSHCD_STATE_RESET,
+	UFSHCD_STATE_ERROR,
+	UFSHCD_STATE_OPERATIONAL,
+	UFSHCD_STATE_EH_SCHEDULED,
+};
 
-	/* performance warning */
-	struct ufs_err_reg_hist perf_warn;
+/* MTK PATCH UFS Host Controller debug print bitmask */
+#define UFSHCD_DBG_PRINT_CLK_FREQ_EN		UFS_BIT(0)
+#define UFSHCD_DBG_PRINT_UIC_ERR_HIST_EN	UFS_BIT(1)
+#define UFSHCD_DBG_PRINT_HOST_REGS_EN		UFS_BIT(2)
+#define UFSHCD_DBG_PRINT_TRS_EN			UFS_BIT(3)
+#define UFSHCD_DBG_PRINT_TMRS_EN		UFS_BIT(4)
+#define UFSHCD_DBG_PRINT_PWR_EN			UFS_BIT(5)
+#define UFSHCD_DBG_PRINT_HOST_STATE_EN		UFS_BIT(6)
+#define UFSHCD_DBG_PRINT_ABORT_CMD_EN		UFS_BIT(7)
+#define UFSHCD_DBG_PRINT_QCMD_EN		UFS_BIT(8)
+
+#define UFSHCD_DBG_PRINT_ALL						   \
+		(UFSHCD_DBG_PRINT_CLK_FREQ_EN		|		   \
+		 UFSHCD_DBG_PRINT_UIC_ERR_HIST_EN	|		   \
+		 UFSHCD_DBG_PRINT_HOST_REGS_EN | UFSHCD_DBG_PRINT_TRS_EN | \
+		 UFSHCD_DBG_PRINT_TMRS_EN | UFSHCD_DBG_PRINT_PWR_EN |	   \
+		 UFSHCD_DBG_PRINT_HOST_STATE_EN |	   \
+		 UFSHCD_DBG_PRINT_ABORT_CMD_EN)
+
+enum ufs_crypto_state {
+	UFS_CRYPTO_HW_FDE             = (1 << 0),
+	UFS_CRYPTO_HW_FDE_ENCRYPTED   = (1 << 1),
+	UFS_CRYPTO_HW_FBE             = (1 << 2),
+	UFS_CRYPTO_HW_FBE_ENCRYPTED   = (1 << 3),
 };
 
 /* MTK PATCH UFS Host Controller debug print bitmask */
@@ -783,6 +833,12 @@ struct ufs_hba {
 	#define UFSHCD_QUIRK_BROKEN_UFS_HCI_VERSION		UFS_BIT(5)
 
 	/*
+	 * This quirk needs to be enabled if we apply performance heuristic
+	 * to UFS host.
+	 */
+	#define UFSHCD_QUIRK_UFS_HCI_PERF_HEURISTIC		UFS_BIT(6)
+
+	/*
 	 * This quirk needs to be enabled if the host contoller regards
 	 * resolution of the values of PRDTO and PRDTL in UTRD as byte.
 	 */
@@ -809,11 +865,16 @@ struct ufs_hba {
 	 */
 	#define UFSHCD_QUIRK_UFS_HCI_DISABLE_AH8_BEFORE_RDB	UFS_BIT(10)
 
-    /*
+	/*
 	 * This quirk needs to be enabled if the host controller advertises
 	 * inline encryption support but it doesn't work correctly.
 	 */
 	#define UFSHCD_QUIRK_BROKEN_CRYPTO			UFS_BIT(11)
+
+	/*
+	 * This quirk needs to be enabled if VCC drop slow
+	 */
+	#define UFSHCD_QUIRK_UFS_VCC_ALWAYS_ON			UFS_BIT(12)
 
 	unsigned int quirks;	/* Deviations from standard UFSHCI spec. */
 
@@ -837,9 +898,11 @@ struct ufs_hba {
 	bool is_powered;
 	bool is_init_prefetch;
 	struct ufs_init_prefetch init_prefetch_data;
+	struct semaphore eh_sem;
 
 	/* Work Queues */
 	struct work_struct eh_work;
+	struct work_struct inv_resp_work;
 	struct work_struct eeh_work;
 	struct work_struct rls_work;
 
@@ -964,6 +1027,55 @@ struct ufs_hba {
 	struct scsi_device *sdev_ufs_lu[UFS_UPIU_MAX_GENERAL_LUN];
 #endif
 
+	/* MTK PATCH */
+	/* record vendor id for vendor-specific configurations */
+	u32 manu_id;
+
+	/* MTK PATCH */
+	struct device_attribute rpm_info_attr;
+	struct device_attribute spm_info_attr;
+
+	/* MTK PATCH */
+	/* crypto */
+	/* hw-fde key index */
+	int crypto_hwfde_key_idx;
+	u32 crypto_feature;
+
+	/* MTK PATCH */
+	struct mutex rpmb_lock;
+
+	struct ufs_dev_desc *card;
+
+	atomic_t scsi_block_reqs_cnt;
+	bool restore_needed;
+
+	bool full_init_linereset;
+	bool force_host_reset;
+	bool invalid_resp_upiu;
+
+#if defined(CONFIG_UFSFEATURE)
+	struct ufsf_feature ufsf;
+#endif
+
+#if defined(CONFIG_SCSI_SKHPB)
+	/* HPB support */
+	u32 skhpb_feat;
+	int skhpb_state;
+	int skhpb_max_regions;
+	struct delayed_work skhpb_init_work;
+	bool issue_ioctl;
+	struct skhpb_lu *skhpb_lup[UFS_UPIU_MAX_GENERAL_LUN];
+	struct work_struct skhpb_eh_work;
+	u32 skhpb_quirk;
+	u8 hpb_control_mode;
+#define SKHPB_U8_MAX 0xFF
+	u8 skhpb_quicklist_lu_enable[UFS_UPIU_MAX_GENERAL_LUN];
+#endif
+
+#if defined(CONFIG_SCSI_SKHPB)
+	struct scsi_device *sdev_ufs_lu[UFS_UPIU_MAX_GENERAL_LUN];
+#endif
+
 #ifdef CONFIG_SCSI_UFS_CRYPTO
 	/* crypto */
 	union ufs_crypto_capabilities crypto_capabilities;
@@ -973,10 +1085,9 @@ struct ufs_hba {
 	void *crypto_DO_NOT_USE[8];
 #endif /* CONFIG_SCSI_UFS_CRYPTO */
 
-#ifdef OPLUS_FEATURE_MIDAS
-	struct ufs_transmission_status_t ufs_transmission_status;
-	struct device_attribute ufs_transmission_status_attr;
-#endif
+	u32 ufs_mtk_qcmd_r_cmd_cnt;
+	u32 ufs_mtk_qcmd_w_cmd_cnt;
+
 };
 
 /* MTK PATCH */
@@ -1221,6 +1332,13 @@ int ufshcd_exec_dev_cmd(struct ufs_hba *hba,
 			enum dev_cmd_type cmd_type, int timeout);
 int ufshcd_comp_scsi_upiu(struct ufs_hba *hba, struct ufshcd_lrb *lrbp);
 int ufshcd_map_sg(struct ufs_hba *hba, struct ufshcd_lrb *lrbp);
+void ufshcd_scsi_block_requests(struct ufs_hba *hba);
+void ufshcd_scsi_unblock_requests(struct ufs_hba *hba);
+int ufshcd_wait_for_doorbell_clr(struct ufs_hba *hba,
+				u64 wait_timeout_us,
+				bool ignore_state,
+				int tr_allowed,
+				int tm_allowed);
 #endif
 
 #if defined(CONFIG_SCSI_SKHPB)
@@ -1239,13 +1357,14 @@ u32 ufshcd_get_local_unipro_ver(struct ufs_hba *hba);
  */
 int ufshcd_clock_scaling_prepare(struct ufs_hba *hba);
 void ufshcd_clock_scaling_unprepare(struct ufs_hba *hba);
+int ufshcd_devfreq_scale(struct ufs_hba *hba, bool scale_up);
 void ufshcd_enable_intr(struct ufs_hba *hba, u32 intrs);
 void ufshcd_disable_intr(struct ufs_hba *hba, u32 intrs);
 int ufshcd_hba_enable(struct ufs_hba *hba);
 int ufshcd_make_hba_operational(struct ufs_hba *hba);
 void ufshcd_print_host_state(struct ufs_hba *hba,
 	u32 mphy_info, struct seq_file *m, char **buff, unsigned long *size);
-void ufshcd_print_all_err_hist(struct ufs_hba *hba,
+void ufshcd_print_all_evt_hist(struct ufs_hba *hba,
 	struct seq_file *m, char **buff, unsigned long *size);
 int ufshcd_query_attr(struct ufs_hba *hba,
 	enum query_opcode opcode,
@@ -1265,8 +1384,7 @@ int ufshcd_rpmb_security_out(struct scsi_device *sdev,
 			 struct rpmb_frame *frames, u32 cnt);
 int ufshcd_rpmb_security_in(struct scsi_device *sdev,
 			struct rpmb_frame *frames, u32 cnt);
-void ufshcd_update_reg_hist(struct ufs_err_reg_hist *reg_hist,
-			u32 reg);
+void ufshcd_update_evt_hist(struct ufs_hba *hba, u32 id, u32 val);
 
 /**
  * ufshcd_upiu_wlun_to_scsi_wlun - maps UPIU W-LUN id to SCSI W-LUN ID
@@ -1315,6 +1433,14 @@ static inline int ufshcd_vops_clk_scale_notify(struct ufs_hba *hba,
 	if (hba->vops && hba->vops->clk_scale_notify)
 		return hba->vops->clk_scale_notify(hba, up, status);
 	return 0;
+}
+
+static inline void ufshcd_vops_event_notify(struct ufs_hba *hba,
+					    enum ufs_event_type evt,
+					    void *data)
+{
+	if (hba->vops && hba->vops->event_notify)
+		hba->vops->event_notify(hba, evt, data);
 }
 
 static inline int ufshcd_vops_setup_clocks(struct ufs_hba *hba, bool on,
@@ -1369,6 +1495,13 @@ static inline void ufshcd_vops_setup_xfer_req(struct ufs_hba *hba, int tag,
 		return hba->vops->setup_xfer_req(hba, tag, is_scsi_cmd);
 }
 
+static inline void ufshcd_vops_compl_xfer_req(struct ufs_hba *hba,
+					      int tag, bool is_scsi)
+{
+	if (hba->vops && hba->vops->compl_xfer_req)
+		hba->vops->compl_xfer_req(hba, tag, is_scsi);
+}
+
 static inline void ufshcd_vops_setup_task_mgmt(struct ufs_hba *hba,
 					int tag, u8 tm_function)
 {
@@ -1417,7 +1550,18 @@ static inline void ufshcd_vops_device_reset(struct ufs_hba *hba)
 {
 	if (hba->vops && hba->vops->device_reset) {
 		hba->vops->device_reset(hba);
-		ufshcd_update_reg_hist(&hba->ufs_stats.dev_reset, 0);
+		ufshcd_update_evt_hist(hba, UFS_EVT_DEV_RESET, 0);
 	}
 }
+
+int ufshcd_query_flag_sel(struct ufs_hba *hba, enum query_opcode opcode,
+		enum flag_idn idn, u8 index, u8 selector, bool *flag_res);
+
+int ufshcd_read_desc_param_sel(struct ufs_hba *hba,\
+		enum desc_idn desc_id,
+		int desc_index,
+		u8 selector,
+		u8 param_offset,
+		u8 *param_read_buf,
+		u8 param_size);
 #endif /* End of Header */

@@ -44,39 +44,6 @@
 #include "walt.h"
 #include "eas_plus.h"
 #include "hmp.h"
-#ifdef OPLUS_FEATURE_UIFIRST
-#include <linux/uifirst/uifirst_sched_common.h>
-#endif /* OPLUS_FEATURE_UIFIRST */
-#ifdef OPLUS_FEATURE_HEALTHINFO
-// Add for get cpu load
-#ifdef CONFIG_OPPO_HEALTHINFO
-#include <soc/oplus/oppo_healthinfo.h>
-#endif
-#endif /* OPLUS_FEATURE_HEALTHINFO */
-#if defined (CONFIG_SCHED_WALT) && defined (OPLUS_FEATURE_UIFIRST)
-#include <linux/sched.h>
-extern u64 ux_task_load[];
-extern u64 ux_load_ts[];
-extern unsigned int walt_ravg_window;
-#define walt_scale_demand_divisor (walt_ravg_window >> SCHED_CAPACITY_SHIFT)
-#define scale_demand(d) ((d)/walt_scale_demand_divisor)
-#define UX_LOAD_WINDOW 8000000
-#endif /* OPLUS_FEATURE_UIFIRST */
-
-#ifdef CONFIG_OPLUS_PREFER_SILVER
-#include <linux/cpufreq.h>
-#endif /* CONFIG_OPLUS_PREFER_SILVER */
-
-#ifdef OPLUS_FEATURE_SPECIALOPT
-#include <linux/special_opt/special_opt.h>
-#endif
-
-#if defined (CONFIG_OPLUS_PREFER_SILVER) && defined (OPLUS_FEATURE_UIFIRST)
-// BSP.KERNEL.POWER, 2021/7/12,add trigger for prefer little cluster
-bool prefer_silver_check_freq(int cpu);
-bool prefer_silver_check_task_util(struct task_struct *p);
-bool prefer_silver_check_cpu_util(int cpu);
-#endif
 
 /*
  * Targeted preemption latency for CPU-bound tasks:
@@ -169,11 +136,11 @@ __read_mostly unsigned int sysctl_sched_walt_cpu_high_irqload =
 
 #ifdef CONFIG_SMP
 /*
- * For asym packing, by default the lower numbered cpu has higher priority.
+ * For asym packing, by default the lower max-capacity cpu has higher priority.
  */
 int __weak arch_asym_cpu_priority(int cpu)
 {
-	return -cpu;
+	return -arch_scale_cpu_capacity(NULL, cpu);
 }
 #endif
 
@@ -689,8 +656,7 @@ struct sched_entity *__pick_last_entity(struct cfs_rq *cfs_rq)
  */
 
 int sched_proc_update_handler(struct ctl_table *table, int write,
-		void __user *buffer, size_t *lenp,
-		loff_t *ppos)
+		void *buffer, size_t *lenp, loff_t *ppos)
 {
 	int ret = proc_dointvec_minmax(table, write, buffer, lenp, ppos);
 	unsigned int factor = get_update_sysctl_factor();
@@ -851,6 +817,12 @@ void post_init_entity_util_avg(struct sched_entity *se)
 	struct sched_avg *sa = &se->avg;
 	long cpu_scale = arch_scale_cpu_capacity(NULL, cpu_of(rq_of(cfs_rq)));
 	long cap = (long)(cpu_scale - cfs_rq->avg.util_avg) / 2;
+	int forked_ramup_factor = sched_forked_ramup_factor();
+
+	if (forked_ramup_factor != 0) {
+
+		cap = (long) SCHED_CAPACITY_SCALE * forked_ramup_factor / 100;
+	}
 
 	if (cap > 0) {
 		if (cfs_rq->avg.util_avg != 0) {
@@ -2530,7 +2502,8 @@ void task_numa_fault(int last_cpupid, int mem_node, int pages, int flags)
 	struct numa_group *ng;
 	int priv;
 
-	if (!static_branch_likely(&sched_numa_balancing))
+	if (!IS_ENABLED(CONFIG_NUMA_BALANCING) ||
+	    !static_branch_likely(&sched_numa_balancing))
 		return;
 
 	/* for example, ksmd faulting in a user's mm */
@@ -5475,6 +5448,7 @@ enqueue_task_fair(struct rq *rq, struct task_struct *p, int flags)
 	struct cfs_rq *cfs_rq;
 	struct sched_entity *se = &p->se;
 	int task_new = !(flags & ENQUEUE_WAKEUP);
+	int is_idle = idle_cpu(cpu_of(rq));
 
 	/*
 	 * The code below (indirectly) updates schedutil which looks at
@@ -5553,6 +5527,12 @@ enqueue_task_fair(struct rq *rq, struct task_struct *p, int flags)
 
 	if (!se) {
 		add_nr_running(rq, 1);
+		/* if first is idle, some governors may not
+		 * update frequency, we must update again,
+		 * because idle_cpu return false until now.
+		 */
+		if (is_idle)
+			cfs_rq_util_change(&rq->cfs);
 #ifdef CONFIG_MTK_SCHED_RQAVG_US
 		inc_nr_heavy_running(2, p, 1, false);
 #endif
@@ -6822,7 +6802,7 @@ static inline int select_energy_cpu_idx(struct energy_env *eenv)
 	for (cpu_idx = EAS_CPU_PRV; cpu_idx < eenv->max_cpu_count; ++cpu_idx) {
 		int cpu = eenv->cpu[cpu_idx].cpu_id;
 
-		if (cpu < 0 && cpu_isolated(cpu))
+		if (cpu < 0 || cpu_isolated(cpu))
 			continue;
 		cpumask_set_cpu(cpu, &eenv->cpus_mask);
 	}
@@ -7469,9 +7449,12 @@ static int select_idle_core(struct task_struct *p, struct sched_domain *sd, int 
 
 		for_each_cpu(cpu, cpu_smt_mask(core)) {
 			cpumask_clear_cpu(cpu, cpus);
-			if (!idle_cpu(cpu))
+			if (!idle_cpu(cpu)){
 				idle = false;
+				break;
+			}
 		}
+		cpumask_andnot(cpus, cpus, cpu_smt_mask(core));
 
 		if (idle)
 			return core;
@@ -7696,21 +7679,9 @@ static int start_cpu(struct task_struct *p, bool prefer_idle,
 	if (rd->min_cap_orig_cpu < 0)
 		return -1;
 
-#ifdef OPLUS_FEATURE_SPECIALOPT
-	if (sysctl_cpu_multi_thread && !is_heavy_load_task(p))
-		return rd->min_cap_orig_cpu;
-#endif
-
 	if (boosted && (task_util(p) >= stune_task_threshold))
 		return boosted ? rd->max_cap_orig_cpu : rd->min_cap_orig_cpu;
 
-#if defined (CONFIG_SCHED_WALT) && defined (OPLUS_FEATURE_UIFIRST)
-	if (sysctl_uifirst_enabled && sysctl_slide_boost_enabled && p->static_ux == 2 &&
-	(scale_demand(p->ravg.demand) >= sysctl_boost_task_threshold ||
-	 scale_demand(p->ravg.sum) >= sysctl_boost_task_threshold)) {
-		return rd->max_cap_orig_cpu;
-	}
-#endif
 	return rd->min_cap_orig_cpu;
 }
 
@@ -7723,7 +7694,8 @@ static inline int find_best_target(struct task_struct *p, int *backup_cpu,
 	unsigned long target_capacity = ULONG_MAX;
 	unsigned long min_wake_util = ULONG_MAX;
 	unsigned long target_max_spare_cap = 0;
-	unsigned long target_orig_max_spare_cap = 0;
+	long target_orig_max_spare_cap = 0;
+	unsigned long target_util = ULONG_MAX;
 	unsigned long best_active_util = ULONG_MAX;
 	unsigned long max_capacity = cluster_max_capacity();
 	unsigned long min_cpu_util = ULONG_MAX;
@@ -8103,7 +8075,7 @@ static inline int find_best_target(struct task_struct *p, int *backup_cpu,
 				target_max_spare_cap = spare_cap;
 				target_orig_max_spare_cap = real_spare_cap;
 				target_capacity = capacity_orig;
-				
+				target_util = new_util;
 				target_cpu = i;
 			}
 		}
@@ -8700,7 +8672,7 @@ select_task_rq_fair(struct task_struct *p, int prev_cpu, int sd_flag,
 	cpu = (result & LB_CPU_MASK);
 
 	trace_sched_select_task_rq(p, result, prev_cpu, cpu,
-			task_util(p), boosted_task_util(p),
+			task_util_est(p), boosted_task_util(p),
 			(schedtune_prefer_idle(p) > 0), wake_flags);
 	return cpu;
 
@@ -10043,11 +10015,6 @@ void update_group_capacity(struct sched_domain *sd, int cpu)
 	struct sched_domain *child = sd->child;
 	struct sched_group *group, *sdg = sd->groups;
 	unsigned long capacity, min_capacity, max_capacity;
-	unsigned long interval;
-
-	interval = msecs_to_jiffies(sd->balance_interval);
-	interval = clamp(interval, 1UL, max_load_balance_interval);
-	sdg->sgc->next_update = jiffies + interval;
 
 	if (!child) {
 		update_cpu_capacity(sd, cpu);
@@ -10322,7 +10289,7 @@ static inline void update_sg_lb_stats(struct lb_env *env,
 		}
 	}
 	/* Isolated CPU has no weight */
-	if (!group->group_weight) {
+	if (!group->group_weight || !group->sgc->capacity) {
 		sgs->group_capacity = 0;
 		sgs->avg_load = 0;
 		sgs->group_no_capacity = 1;
@@ -10536,10 +10503,6 @@ static inline void update_sd_lb_stats(struct lb_env *env, struct sd_lb_stats *sd
 		if (local_group) {
 			sds->local = sg;
 			sgs = local;
-
-			if (env->idle != CPU_NEWLY_IDLE ||
-			    time_after_eq(jiffies, sg->sgc->next_update))
-				update_group_capacity(env->sd, env->dst_cpu);
 		}
 
 		update_sg_lb_stats(env, sg, load_idx, local_group, sgs,
@@ -10884,9 +10847,7 @@ static struct sched_group *find_busiest_group(struct lb_env *env)
 	struct sg_lb_stats *local, *busiest;
 	struct sd_lb_stats sds;
 	int local_cpu = 0, busiest_cpu = 0, intra = 0;
-#ifdef CONFIG_SMP
-	struct cpumask *busiest_cpumask __maybe_unused;
-#endif
+	struct cpumask *busiest_cpumask;
 
 	init_sd_lb_stats(&sds);
 
@@ -10899,9 +10860,7 @@ static struct sched_group *find_busiest_group(struct lb_env *env)
 	update_system_overutilized(env);
 
 	if (sds.busiest) {
-#ifdef CONFIG_SMP
 		busiest_cpumask = sched_group_span(sds.busiest);
-#endif
 		local_cpu = env->dst_cpu;
 		busiest_cpu = group_first_cpu(sds.busiest);
 
@@ -10918,6 +10877,10 @@ static struct sched_group *find_busiest_group(struct lb_env *env)
 
 	local = &sds.local_stat;
 	busiest = &sds.busiest_stat;
+
+	/* if cpu was isolated, then discard load balance*/
+	if (local->group_capacity == 0 || busiest->group_capacity == 0)
+		goto out_balanced;
 
 	/* ASYM feature bypasses nice load balance check */
 	if (check_asym_packing(env, &sds))
@@ -11403,7 +11366,6 @@ more_balance:
 #endif
 
 #ifdef CONFIG_SCHED_HMP
-		{
 			/*
 			 * If cpu_util + new task_util is overutil,
 			 * we don't migrate this task.
@@ -11417,7 +11379,6 @@ more_balance:
 				env.flags |= LBF_ALL_PINNED;
 				goto out_one_pinned;
 			}
-		}
 #endif
 
 			/*
@@ -12335,61 +12296,12 @@ static void rq_offline_fair(struct rq *rq)
 	unthrottle_offline_cfs_rqs(rq);
 }
 
-#if defined (CONFIG_SCHED_WALT) && defined (OPLUS_FEATURE_UIFIRST)
-bool ux_task_misfit(struct task_struct *p, int cpu)
-{
-	int num_mincpu = cpumask_weight(topology_core_cpumask(0));
-	if ((scale_demand(p->ravg.sum) >= sysctl_boost_task_threshold ||
-	     scale_demand(p->ravg.demand) >= sysctl_boost_task_threshold) && cpu < num_mincpu)
-		return true;
-
-	return false;
-}
-#endif
-#if defined (CONFIG_OPLUS_PREFER_SILVER) && defined (OPLUS_FEATURE_UIFIRST)
-// BSP.KERNEL.POWER, 2021/7/12, Add for trigger prefer silver cpu
-#define TRIGGER_FREQ	1516800
-bool prefer_silver_check_freq(int cpu)
-{
-	unsigned int freq = 0;
-	freq = cpufreq_quick_get(cpu);
-
-	if (freq < TRIGGER_FREQ) {
-		return true;
-	}
-	return false;
-}
-
-bool prefer_silver_check_task_util(struct task_struct *p)
-{
-	int cpu;
-	unsigned long thresh_load;
-	struct reciprocal_value spc_rdiv = reciprocal_value(100);
-
-	if (!p)
-		return false;
-
-	cpu = task_cpu(p);
-	thresh_load = capacity_orig_of(cpu) * sysctl_heavy_task_thresh;
-	if(task_util(p) <  reciprocal_divide(thresh_load,spc_rdiv) ||
-			scale_demand(p->ravg.sum) < reciprocal_divide(thresh_load,spc_rdiv))
-		return true;
-
-	return false;
-}
-
-bool prefer_silver_check_cpu_util(int cpu)
-{
-	return  (capacity_orig_of(cpu) * sysctl_cpu_util_thresh) >
-		(cpu_util(cpu) * 100);
-}
-#endif
-
 static DEFINE_RAW_SPINLOCK(migration_lock);
 void check_for_migration(struct rq *rq, struct task_struct *p)
 {
 	int new_cpu;
 	int cpu = task_cpu(p);
+	int force = 0;
 	int i, heavy_task = 0;
 	struct task_rotate_reset_uclamp_work *wr = NULL;
 
@@ -12409,12 +12321,7 @@ void check_for_migration(struct rq *rq, struct task_struct *p)
 		}
 	}
 
-#if defined (CONFIG_SCHED_WALT) && defined (OPLUS_FEATURE_UIFIRST)
-	if (rq->misfit_task_load || (sysctl_uifirst_enabled && sysctl_slide_boost_enabled &&
-					p->static_ux == 2 && ux_task_misfit(p, cpu))) {
-#else
 	if (rq->misfit_task_load) {
-#endif
 		if (rq->curr->state != TASK_RUNNING ||
 			rq->curr->nr_cpus_allowed == 1)
 			return;
@@ -12428,7 +12335,7 @@ void check_for_migration(struct rq *rq, struct task_struct *p)
 #if defined(CONFIG_SCHED_HMP) || defined(CONFIG_MTK_IDLE_BALANCE_ENHANCEMENT)
 			raw_spin_unlock(&migration_lock);
 			get_task_struct(p);
-			(void)(migrate_running_task(new_cpu, p, rq));
+			force = migrate_running_task(new_cpu, p, rq);
 			put_task_struct(p);
 			return;
 #endif
@@ -12453,7 +12360,8 @@ static void task_tick_fair(struct rq *rq, struct task_struct *curr, int queued)
 		entity_tick(cfs_rq, se, queued);
 	}
 
-	if (static_branch_unlikely(&sched_numa_balancing))
+	if (IS_ENABLED(CONFIG_NUMA_BALANCING) &&
+	    static_branch_unlikely(&sched_numa_balancing))
 		task_tick_numa(rq, curr);
 
 	update_misfit_status(curr, rq);

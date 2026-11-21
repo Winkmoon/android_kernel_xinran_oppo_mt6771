@@ -255,8 +255,6 @@ struct flow_dissector {
 	unsigned short int offset[FLOW_DISSECTOR_KEY_MAX];
 };
 
-extern const struct flow_dissector flow_keys_buf_dissector;
-
 struct flow_keys_basic {
 	struct flow_dissector_key_control control;
 	struct flow_dissector_key_basic basic;

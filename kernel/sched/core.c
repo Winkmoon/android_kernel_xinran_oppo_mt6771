@@ -65,10 +65,6 @@
 #include <mt-plat/mtk_qos_prefetch_common.h>
 #endif /* CONFIG_MTK_QOS_FRAMEWORK */
 
-#ifdef OPLUS_FEATURE_UIFIRST
-#include <linux/uifirst/uifirst_sched_common.h>
-#endif /* OPLUS_FEATURE_UIFIRST */
-
 DEFINE_PER_CPU_SHARED_ALIGNED(struct rq, runqueues);
 
 DEFINE_MUTEX(sched_isolation_mutex);
@@ -878,14 +874,14 @@ void init_opp_capacity_tbl(void)
 	struct sched_group *sg;
 	const struct sched_group_energy *sge;
 	struct cpufreq_policy *policy;
+	unsigned int *tbl;
 
 	count = system_opp_count();
 	if (count < 0)
 		return;
 
-	opp_capacity_tbl =
-		kmalloc_array(count, sizeof(unsigned int), GFP_KERNEL);
-	if (!opp_capacity_tbl)
+	tbl = kmalloc_array(count, sizeof(unsigned int), GFP_KERNEL);
+	if (!tbl)
 		return;
 
 	rcu_read_lock();
@@ -911,7 +907,7 @@ void init_opp_capacity_tbl(void)
 
 		for (i = 0; i < sge->nr_cap_states; i++) {
 			cap = get_opp_capacity(policy, i);
-			opp_capacity_tbl[idx] = cap;
+			tbl[idx] = cap;
 			idx++;
 		}
 		cpufreq_cpu_put(policy);
@@ -919,16 +915,17 @@ void init_opp_capacity_tbl(void)
 	}
 	rcu_read_unlock();
 
-	sort(opp_capacity_tbl, count, sizeof(unsigned int),
+	sort(tbl, count, sizeof(unsigned int),
 			&cap_compare, NULL);
-	opp_capacity_tbl[count - 1] = SCHED_CAPACITY_SCALE;
+	tbl[count - 1] = SCHED_CAPACITY_SCALE;
 	total_opp_count = count;
+	opp_capacity_tbl = tbl;
 	opp_capacity_tbl_ready = 1;
 
 	return;
 free_unlock:
 	rcu_read_unlock();
-	kfree(opp_capacity_tbl);
+	kfree(tbl);
 }
 
 unsigned int find_fit_capacity(unsigned int cap)
@@ -1319,7 +1316,7 @@ static inline void uclamp_cpu_put_id(struct task_struct *p, struct rq *rq,
 		rq->uclamp.group[clamp_id][group_id].tasks -= 1;
 #ifdef CONFIG_SCHED_DEBUG
 	else {
-		printk_deferred("[name:uclamp&] invalid CPU[%d] clamp group [%u:%u] refcount\n",
+		printk_deferred_once("[name:uclamp&] invalid CPU[%d] clamp group [%u:%u] refcount\n",
 		     cpu_of(rq), clamp_id, group_id);
 	}
 #endif
@@ -1330,7 +1327,7 @@ static inline void uclamp_cpu_put_id(struct task_struct *p, struct rq *rq,
 	clamp_value = rq->uclamp.group[clamp_id][group_id].value;
 #ifdef CONFIG_SCHED_DEBUG
 	if (unlikely(clamp_value > rq->uclamp.value[clamp_id])) {
-		printk_deferred("[name:uclamp&] invalid CPU[%d] clamp group [%u:%u] value\n",
+		printk_deferred_once("[name:uclamp&] invalid CPU[%d] clamp group [%u:%u] value\n",
 		     cpu_of(rq), clamp_id, group_id);
 	}
 #endif
@@ -1564,9 +1561,11 @@ retry:
 		/* Refcounting is expected to be always 0 for free groups */
 		if (unlikely(uc_cpu->group[clamp_id][group_id].tasks)) {
 #ifdef CONFIG_SCHED_DEBUG
-			WARN(1, "invalid CPU[%d] clamp group [%u:%u] refcount: [%u]\n",
+			WARN_ONCE(1, "invalid CPU[%d] clamp group [%u:%u] refcount: [%u] free_group_id: [%u] uc_map_new.se_count: [%lu]\n",
 			     cpu, clamp_id, group_id,
-			     uc_cpu->group[clamp_id][group_id].tasks);
+			     uc_cpu->group[clamp_id][group_id].tasks,
+				free_group_id,
+				uc_map_new.se_count);
 #endif
 			uc_cpu->group[clamp_id][group_id].tasks = 0;
 		}
@@ -1925,21 +1924,6 @@ unsigned int get_capacity_margin(void)
 	return capacity_margin;
 }
 EXPORT_SYMBOL(get_capacity_margin);
-
-#if defined(OPLUS_FEATURE_SCHEDUTIL_USE_TL) && defined(CONFIG_SCHEDUTIL_USE_TL)
-void set_capacity_margin_dvfs(unsigned int margin)
-{
-	capacity_margin_dvfs = margin;
-}
-EXPORT_SYMBOL(set_capacity_margin_dvfs);
-
-unsigned int get_capacity_margin_dvfs(void)
-{
-	return capacity_margin_dvfs;
-}
-EXPORT_SYMBOL(get_capacity_margin_dvfs);
-#endif
-
 
 static inline void enqueue_task(struct rq *rq, struct task_struct *p, int flags)
 {
@@ -3546,7 +3530,7 @@ void set_numabalancing_state(bool enabled)
 
 #ifdef CONFIG_PROC_SYSCTL
 int sysctl_numa_balancing(struct ctl_table *table, int write,
-			 void __user *buffer, size_t *lenp, loff_t *ppos)
+			  void *buffer, size_t *lenp, loff_t *ppos)
 {
 	struct ctl_table t;
 	int err;
@@ -3620,8 +3604,8 @@ static void __init init_schedstats(void)
 }
 
 #ifdef CONFIG_PROC_SYSCTL
-int sysctl_schedstats(struct ctl_table *table, int write,
-			 void __user *buffer, size_t *lenp, loff_t *ppos)
+int sysctl_schedstats(struct ctl_table *table, int write, void *buffer,
+		size_t *lenp, loff_t *ppos)
 {
 	struct ctl_table t;
 	int err;
@@ -4114,8 +4098,10 @@ context_switch(struct rq *rq, struct task_struct *prev,
 		next->active_mm = oldmm;
 		mmgrab(oldmm);
 		enter_lazy_tlb(oldmm, next);
-	} else
+	} else {
 		switch_mm_irqs_off(oldmm, mm, next);
+		lru_gen_use_mm(next->mm);
+	}
 
 	if (!prev->mm) {
 		prev->active_mm = NULL;
@@ -4435,9 +4421,6 @@ void scheduler_tick(void)
 #ifdef CONFIG_MTK_CACHE_CONTROL
 	hook_ca_scheduler_tick(cpu);
 #endif
-#ifdef CONFIG_MTK_PERF_TRACKER
-	perf_tracker(ktime_get_ns());
-#endif
 
 #ifdef CONFIG_SMP
 	rq->idle_balance = idle_cpu(cpu);
@@ -4452,6 +4435,10 @@ void scheduler_tick(void)
 	sched_max_util_task_tracking();
 #endif
 
+#ifdef CONFIG_MTK_PERF_TRACKER
+	perf_tracker(ktime_get_ns());
+#endif
+
 #ifdef CONFIG_MTK_SCHED_CPULOAD
 	cal_cpu_load(cpu);
 #endif
@@ -4459,15 +4446,9 @@ void scheduler_tick(void)
 	if (curr->sched_class == &fair_sched_class)
 		check_for_migration(rq, curr);
 
-#if defined(OPLUS_FEATURE_CORE_CTL) && defined(CONFIG_SCHED_CORE_CTL)
-	if (cpu == tick_do_timer_cpu)
-		core_ctl_check(ktime_get_ns());
-#endif /* OPLUS_FEATURE_CORE_CTL */
-
 #ifdef CONFIG_MTK_QOS_FRAMEWORK
 	qos_prefetch_tick(cpu);
 #endif /* CONFIG_MTK_QOS_FRAMEWORK */
-
 }
 
 #ifdef CONFIG_NO_HZ_FULL
@@ -4591,7 +4572,7 @@ static noinline void __schedule_bug(struct task_struct *prev)
 {
 	/* Save this before calling printk(), since that will clobber it */
 	unsigned long preempt_disable_ip = get_preempt_disable_ip(current);
-	int i __maybe_unused = 0;
+	int i = 0;
 	if (oops_in_progress)
 		return;
 
@@ -5099,18 +5080,35 @@ void rt_mutex_setprio(struct task_struct *p, struct task_struct *pi_task)
 	struct rq *rq;
 
 #ifdef CONFIG_MTK_TASK_TURBO
+	rq = __task_rq_lock(p, &rf);
+	update_rq_clock(rq);
+
 	/* if rt boost, recover prio with backup */
 	if (unlikely(is_turbo_task(p))) {
 		if (!dl_prio(p->prio) && !rt_prio(p->prio)) {
 			int backup = p->nice_backup;
 
 			if (backup >= MIN_NICE && backup <= MAX_NICE) {
+				queued = task_on_rq_queued(p);
+				running = task_current(rq, p);
+				if (queued)
+					dequeue_task(rq, p, DEQUEUE_SAVE | DEQUEUE_NOCLOCK);
+				if (running)
+					put_prev_task(rq, p);
+
 				p->static_prio = NICE_TO_PRIO(backup);
+
 				p->prio = p->normal_prio = __normal_prio(p);
 				set_load_weight(p);
+
+				if (queued)
+					enqueue_task(rq, p, ENQUEUE_RESTORE | ENQUEUE_NOCLOCK);
+				if (running)
+					set_curr_task(rq, p);
 			}
 		}
 	}
+	__task_rq_unlock(rq, &rf);
 #endif
 	/* XXX used to be waiter->prio, not waiter->task->prio */
 	prio = __rt_effective_prio(pi_task, p->normal_prio);
@@ -5759,6 +5757,8 @@ static int _sched_setscheduler(struct task_struct *p, int policy,
  * @policy: new policy.
  * @param: structure containing the new RT priority.
  *
+ * Use sched_set_fifo(), read its comment.
+ *
  * Return: 0 on success. An error code otherwise.
  *
  * NOTE that the task may be already dead.
@@ -5775,6 +5775,11 @@ int sched_setattr(struct task_struct *p, const struct sched_attr *attr)
 	return __sched_setscheduler(p, attr, true, true);
 }
 EXPORT_SYMBOL_GPL(sched_setattr);
+
+int sched_setattr_nocheck(struct task_struct *p, const struct sched_attr *attr)
+{
+	return __sched_setscheduler(p, attr, false, true);
+}
 
 /**
  * sched_setscheduler_nocheck - change the scheduling policy and/or RT priority of a thread from kernelspace.
@@ -5795,6 +5800,51 @@ int sched_setscheduler_nocheck(struct task_struct *p, int policy,
 	return _sched_setscheduler(p, policy, param, false);
 }
 EXPORT_SYMBOL_GPL(sched_setscheduler_nocheck);
+
+/*
+ * SCHED_FIFO is a broken scheduler model; that is, it is fundamentally
+ * incapable of resource management, which is the one thing an OS really should
+ * be doing.
+ *
+ * This is of course the reason it is limited to privileged users only.
+ *
+ * Worse still; it is fundamentally impossible to compose static priority
+ * workloads. You cannot take two correctly working static prio workloads
+ * and smash them together and still expect them to work.
+ *
+ * For this reason 'all' FIFO tasks the kernel creates are basically at:
+ *
+ *   MAX_RT_PRIO / 2
+ *
+ * The administrator _MUST_ configure the system, the kernel simply doesn't
+ * know enough information to make a sensible choice.
+ */
+int sched_set_fifo(struct task_struct *p)
+{
+	struct sched_param sp = { .sched_priority = MAX_RT_PRIO / 2 };
+	return sched_setscheduler_nocheck(p, SCHED_FIFO, &sp);
+}
+EXPORT_SYMBOL_GPL(sched_set_fifo);
+
+/*
+ * For when you don't much care about FIFO, but want to be above SCHED_NORMAL.
+ */
+int sched_set_fifo_low(struct task_struct *p)
+{
+	struct sched_param sp = { .sched_priority = 1 };
+	return sched_setscheduler_nocheck(p, SCHED_FIFO, &sp);
+}
+EXPORT_SYMBOL_GPL(sched_set_fifo_low);
+
+int sched_set_normal(struct task_struct *p, int nice)
+{
+	struct sched_attr attr = {
+		.sched_policy = SCHED_NORMAL,
+		.sched_nice = nice,
+	};
+	return sched_setattr_nocheck(p, &attr);
+}
+EXPORT_SYMBOL_GPL(sched_set_normal);
 
 static int
 do_sched_setscheduler(pid_t pid, int policy, struct sched_param __user *param)
@@ -6195,6 +6245,10 @@ again:
 
 		retval = -EINVAL;
 	}
+
+	if (!retval && !(p->flags & PF_KTHREAD))
+		cpumask_and(&p->cpus_requested, in_mask, cpu_possible_mask);
+
 out_free_new_mask:
 	free_cpumask_var(new_mask);
 out_free_cpus_allowed:
@@ -6753,9 +6807,6 @@ void init_idle(struct task_struct *idle, int cpu)
 	idle->se.exec_start = sched_clock();
 	idle->flags |= PF_IDLE;
 
-//#ifdef OPLUS_BUG_STABILITY
-	scs_task_reset(idle);
-//#endif /*OPLUS_BUG_STABILITY*/
 	kasan_unpoison_task_stack(idle);
 
 #ifdef CONFIG_SMP
@@ -7244,6 +7295,7 @@ out:
 			__func__, iso_prio, cpu, cpu_isolated_mask->bits[0]);
 	return ret_code;
 }
+EXPORT_SYMBOL(_sched_isolate_cpu);
 
 /*
  * Note: The client calling sched_isolate_cpu() is repsonsible for ONLY
@@ -7251,7 +7303,7 @@ out:
  * Client is also responsible for deisolating when a core goes offline
  * (after CPU is marked offline).
  */
-int __sched_deisolate_cpu_unlocked(int cpu)
+int sched_deisolate_cpu_unlocked(int cpu)
 {
 	int ret_code = 0;
 	struct rq *rq = cpu_rq(cpu);
@@ -7303,10 +7355,11 @@ int _sched_deisolate_cpu(int cpu)
 	int ret_code;
 
 	cpu_maps_update_begin();
-	ret_code = __sched_deisolate_cpu_unlocked(cpu);
+	ret_code = sched_deisolate_cpu_unlocked(cpu);
 	cpu_maps_update_done();
 	return ret_code;
 }
+EXPORT_SYMBOL(_sched_deisolate_cpu);
 
 void iso_cpumask_init(void)
 {
@@ -7577,6 +7630,11 @@ int sched_cpu_deactivate(unsigned int cpu)
 static void sched_rq_cpu_starting(unsigned int cpu)
 {
 	struct rq *rq = cpu_rq(cpu);
+	struct rq_flags rf;
+
+	rq_lock_irqsave(rq, &rf);
+	walt_set_window_start(rq, &rf);
+	rq_unlock_irqrestore(rq, &rf);
 
 	rq->calc_load_update = calc_load_update;
 	update_max_interval();
@@ -7648,6 +7706,7 @@ void __init sched_init_smp(void)
 	/* Move init over to a non-isolated CPU */
 	if (set_cpus_allowed_ptr(current, non_isolated_cpus) < 0)
 		BUG();
+	cpumask_copy(&current->cpus_requested, cpu_possible_mask);
 	sched_init_granularity();
 	free_cpumask_var(non_isolated_cpus);
 
@@ -7959,6 +8018,34 @@ void ___might_sleep(const char *file, int line, int preempt_offset)
 	add_taint(TAINT_WARN, LOCKDEP_STILL_OK);
 }
 EXPORT_SYMBOL(___might_sleep);
+
+void __cant_sleep(const char *file, int line, int preempt_offset)
+{
+	static unsigned long prev_jiffy;
+
+	if (irqs_disabled())
+		return;
+
+	if (!IS_ENABLED(CONFIG_PREEMPT_COUNT))
+		return;
+
+	if (preempt_count() > preempt_offset)
+		return;
+
+	if (time_before(jiffies, prev_jiffy + HZ) && prev_jiffy)
+		return;
+	prev_jiffy = jiffies;
+
+	printk(KERN_ERR "BUG: assuming atomic context at %s:%d\n", file, line);
+	printk(KERN_ERR "in_atomic(): %d, irqs_disabled(): %d, pid: %d, name: %s\n",
+			in_atomic(), irqs_disabled(),
+			current->pid, current->comm);
+
+	debug_show_held_locks(current);
+	dump_stack();
+	add_taint(TAINT_WARN, LOCKDEP_STILL_OK);
+}
+EXPORT_SYMBOL_GPL(__cant_sleep);
 #endif
 
 #ifdef CONFIG_MAGIC_SYSRQ

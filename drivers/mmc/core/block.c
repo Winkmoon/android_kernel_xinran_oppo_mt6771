@@ -38,16 +38,13 @@
 #include <linux/pm_runtime.h>
 #include <linux/idr.h>
 #include <linux/debugfs.h>
+#include <linux/math64.h>
 
 #include <linux/mmc/ioctl.h>
 #include <linux/mmc/card.h>
 #include <linux/mmc/host.h>
 #include <linux/mmc/mmc.h>
 #include <linux/mmc/sd.h>
-
-#ifdef VENDOR_EDIT
-#include <soc/oppo/device_info.h>
-#endif /* VENDOR_EDIT */
 
 #ifdef CONFIG_MMC_FFU
 #include <linux/mmc/ffu.h>
@@ -1031,7 +1028,7 @@ static int mmc_blk_check_disk_range_wp(struct gendisk *disk,
 
 	start = part_start;
 	quot = start;
-	remain = do_div(quot, card->wp_grp_size);
+	quot = div_u64_rem(quot, card->wp_grp_size, &remain);
 	if (remain) {
 		pr_notice("Start 0x%llx of disk %s not write group aligned\n",
 			(unsigned long long)part_start, disk->disk_name);
@@ -1040,15 +1037,14 @@ static int mmc_blk_check_disk_range_wp(struct gendisk *disk,
 
 	end = part_start + part_nr_sects;
 	quot = end;
-	remain = do_div(quot, card->wp_grp_size);
+	quot = div_u64_rem(quot, card->wp_grp_size, &remain);
 	if (remain) {
 		pr_notice("End 0x%llx of disk %s not write group aligned\n",
 			(unsigned long long)part_start, disk->disk_name);
 		end += card->wp_grp_size - remain;
 	}
 	wp_grp_total = end - start;
-	do_div(wp_grp_total, card->wp_grp_size);
-	wp_grp_rem = wp_grp_total;
+	wp_grp_rem = div_u64(wp_grp_total, card->wp_grp_size);
 	wp_grp_found = 0;
 
 	cmd.opcode = MMC_SEND_WRITE_PROT_TYPE;
@@ -1299,6 +1295,8 @@ static const struct block_device_operations mmc_bdops = {
 static int mmc_blk_part_switch_pre(struct mmc_card *card,
 				   unsigned int part_type)
 {
+	const unsigned int mask = EXT_CSD_PART_CONFIG_ACC_MASK;
+	const unsigned int rpmb = EXT_CSD_PART_CONFIG_ACC_RPMB;
 	int ret = 0;
 
 #if defined(CONFIG_MTK_EMMC_CQ_SUPPORT) || defined(CONFIG_MTK_EMMC_HW_CQ)
@@ -1311,12 +1309,11 @@ static int mmc_blk_part_switch_pre(struct mmc_card *card,
 		if (ret)
 			return ret;
 	}
-	if (part_type == EXT_CSD_PART_CONFIG_ACC_RPMB)
+	if ((part_type & mask) == rpmb) {
 		mmc_retune_pause(card->host);
+	}
 #else
-	const unsigned int mask = EXT_CSD_PART_CONFIG_ACC_RPMB;
-
-	if ((part_type & mask) == mask) {
+	if ((part_type & mask) == rpmb) {
 		if (card->ext_csd.cmdq_en) {
 			ret = mmc_cmdq_disable(card);
 			if (ret)
@@ -1331,11 +1328,14 @@ static int mmc_blk_part_switch_pre(struct mmc_card *card,
 static int mmc_blk_part_switch_post(struct mmc_card *card,
 				    unsigned int part_type)
 {
+	const unsigned int mask = EXT_CSD_PART_CONFIG_ACC_MASK;
+	const unsigned int rpmb = EXT_CSD_PART_CONFIG_ACC_RPMB;
 	int ret = 0;
 
 #if defined(CONFIG_MTK_EMMC_CQ_SUPPORT) || defined(CONFIG_MTK_EMMC_HW_CQ)
-	if (part_type == EXT_CSD_PART_CONFIG_ACC_RPMB)
+	if ((part_type & mask) == rpmb) {
 		mmc_retune_unpause(card->host);
+	}
 
 	/* enable cmdq
 	 * if partition supports cmdq
@@ -1346,9 +1346,8 @@ static int mmc_blk_part_switch_post(struct mmc_card *card,
 			return ret;
 	}
 #else
-	const unsigned int mask = EXT_CSD_PART_CONFIG_ACC_RPMB;
 
-	if ((part_type & mask) == mask) {
+	if ((part_type & mask) == rpmb) {
 		mmc_retune_unpause(card->host);
 		if (card->reenable_cmdq && !card->ext_csd.cmdq_en)
 			ret = mmc_cmdq_enable(card);
@@ -1841,6 +1840,9 @@ static int mmc_blk_cmdq_issue_discard_rq(struct mmc_queue *mq,
 	}
 	err = mmc_cmdq_erase(cmdq_req, card, from, nr, arg);
 clear_dcmd:
+	if (err == -EBADSLT)
+		goto out;
+
 	blk_complete_request(req);
 out:
 	return err ? 1 : 0;
@@ -2035,6 +2037,9 @@ static int mmc_blk_cmdq_issue_secdiscard_rq(struct mmc_queue *mq,
 				MMC_SECURE_TRIM2_ARG);
 	}
 clear_dcmd:
+	if (err == -EBADSLT)
+		goto out;
+
 	blk_complete_request(req);
 out:
 	return err ? 1 : 0;
@@ -2931,6 +2936,29 @@ out:
 	return -ENOENT;
 }
 
+static void mmc_cmdq_dcmd_reset(struct request_queue *q, int tag)
+{
+	struct request *req;
+	struct mmc_queue_req *mq_rq;
+	struct mmc_cmdq_req *cmdq_req;
+	struct mmc_request *mrq;
+
+	req = blk_queue_find_tag(q, tag);
+	if (WARN_ON(!req))
+		return;
+	mq_rq = req->special;
+	if (WARN_ON(!mq_rq))
+		return;
+	cmdq_req = &(mq_rq->cmdq_req);
+	mrq = &cmdq_req->mrq;
+	if (mrq && !completion_done(&mrq->completion)) {
+		pr_info("%s: discard req reset done\n", __func__);
+		mrq->cmd->error = -EBADSLT;
+		mrq->done(mrq);
+	}
+
+}
+
 /**
  * mmc_blk_cmdq_reset_all - Reset everything for CMDQ block request.
  * @host:	mmc_host pointer.
@@ -2986,6 +3014,7 @@ static void mmc_blk_cmdq_reset_all(struct mmc_host *host, int err)
 				 &ctx_info->data_active_reqs));
 			mmc_cmdq_post_req(host, itag, err);
 		} else {
+			mmc_cmdq_dcmd_reset(q, itag);
 			clear_bit(CMDQ_STATE_DCMD_ACTIVE,
 					&ctx_info->curr_state);
 		}
@@ -3603,7 +3632,6 @@ int mmc_blk_end_queued_req(struct mmc_host *host,
 		}
 		mmc_put_card(card);
 		atomic_set(&mq->mqrq[index].index, 0);
-		mb();
 		atomic_dec(&mq->qcnt);
 		atomic_dec(&host->areq_cnt);
 		break;
@@ -3638,7 +3666,6 @@ int mmc_blk_end_queued_req(struct mmc_host *host,
 		mmc_put_card(card);
 
 		atomic_set(&mq->mqrq[index].index, 0);
-		mb();
 		atomic_dec(&mq->qcnt);
 		atomic_dec(&host->areq_cnt);
 
@@ -3682,7 +3709,6 @@ cmd_abort:
 		mmc_put_card(card);
 
 	atomic_set(&mq->mqrq[index].index, 0);
-	mb();
 	atomic_dec(&mq->qcnt);
 	atomic_dec(&host->areq_cnt);
 
@@ -3939,13 +3965,7 @@ void mmc_blk_issue_rq(struct mmc_queue *mq, struct request *req)
 				int index = 0;
 
 				index = mmc_get_cmdq_index(mq);
-				if (WARN_ON(index >= card->ext_csd.cmdq_depth)) {
-						 pr_info("%s,index:%d,areq_cnt:%d\n",
-						 __func__, index, atomic_read(&card->host->areq_cnt));
-						 blk_end_request(req, BLK_STS_IOERR, blk_rq_bytes(req));
-						 mmc_put_card(card);
-						 return;
-				}
+				WARN_ON(index >= card->ext_csd.cmdq_depth);
 				mq->mqrq[index].req = req;
 				atomic_set(&req_to_mmc_queue_req(req)->index,
 					index + 1);
@@ -5006,10 +5026,12 @@ static int mmc_blk_suspend(struct device *dev)
 	 * suspend.
 	 */
 	if (md) {
+		mmc_get_card(card);
 		ret = mmc_blk_part_switch(card, md->part_type);
 		if (ret)
 			pr_info("%s: error %d during suspend\n",
 				md->disk->disk_name, ret);
+		mmc_put_card(card);
 	}
 out:
 		return ret;

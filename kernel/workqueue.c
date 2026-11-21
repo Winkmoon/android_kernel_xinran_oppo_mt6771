@@ -2176,7 +2176,7 @@ __acquires(&pool->lock)
 	 * stop_machine. At the same time, report a quiescent RCU state so
 	 * the same condition doesn't freeze RCU.
 	 */
-	cond_resched_rcu_qs();
+	cond_resched_tasks_rcu_qs();
 
 	spin_lock_irq(&pool->lock);
 
@@ -4390,6 +4390,7 @@ void set_worker_desc(const char *fmt, ...)
 		worker->desc_valid = true;
 	}
 }
+EXPORT_SYMBOL_GPL(set_worker_desc);
 
 /**
  * print_worker_info - print out worker information and description

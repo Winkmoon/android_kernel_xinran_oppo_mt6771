@@ -22,7 +22,6 @@
 #include <linux/if_vlan.h>
 #include <linux/vmalloc.h>
 #include <linux/sockptr.h>
-#include <linux/bpf.h>
 
 #include <net/sch_generic.h>
 #include <net/net_namespace.h>
@@ -677,6 +676,7 @@ static inline void bpf_compute_data_pointers(struct sk_buff *skb)
 {
 	struct bpf_skb_data_end *cb = (struct bpf_skb_data_end *)skb->cb;
 
+	BUILD_BUG_ON(sizeof(*cb) > sizeof_field(struct sk_buff, cb));
 	cb->data_meta = skb->data - skb_metadata_len(skb);
 	cb->data_end  = skb->data + skb_headlen(skb);
 }
@@ -714,6 +714,9 @@ static inline u8 *bpf_skb_cb(struct sk_buff *skb)
 	 * attached to sockets, we need to clear the bpf_skb_cb() area
 	 * to not leak previous contents to user space.
 	 */
+	BUILD_BUG_ON(sizeof_field(struct __sk_buff, cb) != BPF_SKB_CB_LEN);
+	BUILD_BUG_ON(sizeof_field(struct __sk_buff, cb) !=
+		     sizeof_field(struct qdisc_skb_cb, data));
 
 	return qdisc_skb_cb(skb)->data;
 }

@@ -118,14 +118,16 @@ static int is_db_ok(struct mtu3_ep *mep)
 
 		for (; *descriptors; ++descriptors) {
 			struct usb_endpoint_descriptor *ep;
+			int is_in;
+			int epnum;
 
 			if ((*descriptors)->bDescriptorType != USB_DT_ENDPOINT)
 				continue;
 
 			ep = (struct usb_endpoint_descriptor *)*descriptors;
 
-			
-			
+			is_in = (ep->bEndpointAddress & 0x80) >> 7;
+			epnum = (ep->bEndpointAddress & 0x0f);
 
 			/*
 			 * Under saving mode, ALL EPs will be set
@@ -345,19 +347,11 @@ struct usb_request *mtu3_alloc_request(struct usb_ep *ep, gfp_t gfp_flags)
 void mtu3_free_request(struct usb_ep *ep, struct usb_request *req)
 {
 	struct mtu3_ep *mep = to_mtu3_ep(ep);
-	struct mtu3_request *mreq = to_mtu3_request(req);
-        struct mtu3_request *r;
-        struct mtu3 *mtu = mep->mtu;
+	struct mtu3 *mtu = mep->mtu;
 	unsigned long flags;
 
 	spin_lock_irqsave(&mtu->lock, flags);
-	list_for_each_entry(r, &mep->req_list, list) {
-                if (r == mreq) {
-                        list_del(&mreq->list);
-                break;
-                }
-        }
-        kfree(mreq);
+	kfree(to_mtu3_request(req));
 	spin_unlock_irqrestore(&mtu->lock, flags);
 }
 
@@ -623,6 +617,17 @@ static int mtu3_gadget_pullup(struct usb_gadget *gadget, int is_on)
 		set_usb_rdy();
 
 	spin_unlock_irqrestore(&mtu->lock, flags);
+	#ifdef CONFIG_USB_MTU3_PLAT_PHONE
+	/* Trigger connection when force on*/
+	if ((mtu3_cable_mode == CABLE_MODE_FORCEON) ||
+		(get_boot_mode() == META_BOOT) ||
+		(get_boot_mode() == ADVMETA_BOOT)) {
+		dev_info(mtu->dev, "%s CABLE_MODE_FORCEON or META_MODE\n",
+			__func__);
+		ssusb_set_mailbox(&mtu->ssusb->otg_switch,
+			MTU3_VBUS_VALID);
+	}
+	#endif
 
 	#ifdef CONFIG_USB_MTU3_PLAT_PHONE
 	/* Trigger connection when force on*/
@@ -669,6 +674,8 @@ static int mtu3_gadget_start(struct usb_gadget *gadget,
 static void stop_activity(struct mtu3 *mtu)
 {
 	struct usb_gadget_driver *driver = mtu->gadget_driver;
+
+	dev_info(mtu->dev, "%s\n", __func__);
 
 	dev_info(mtu->dev, "%s\n", __func__);
 

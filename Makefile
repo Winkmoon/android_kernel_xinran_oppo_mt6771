@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: GPL-2.0
 VERSION = 4
 PATCHLEVEL = 14
-SUBLEVEL = 336
-EXTRAVERSION =
+SUBLEVEL = 357
+EXTRAVERSION = -openela
 NAME = Petit Gorille
 
 # *DOCUMENTATION*
@@ -372,8 +372,13 @@ HOST_LFS_CFLAGS := $(shell getconf LFS_CFLAGS 2>/dev/null)
 HOST_LFS_LDFLAGS := $(shell getconf LFS_LDFLAGS 2>/dev/null)
 HOST_LFS_LIBS := $(shell getconf LFS_LIBS 2>/dev/null)
 
-HOSTCC       = gcc
-HOSTCXX      = g++
+ifneq ($(LLVM),)
+HOSTCC	= clang
+HOSTCXX	= clang++
+else
+HOSTCC	= gcc
+HOSTCXX	= g++
+endif
 HOSTCFLAGS   := -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 \
 		-fomit-frame-pointer -std=gnu89 $(HOST_LFS_CFLAGS)
 HOSTCXXFLAGS := -O2 $(HOST_LFS_CFLAGS)
@@ -381,16 +386,30 @@ HOSTLDFLAGS  := $(HOST_LFS_LDFLAGS)
 HOST_LOADLIBES := $(HOST_LFS_LIBS)
 
 # Make variables (CC, etc...)
-AS		= $(CROSS_COMPILE)as
+CPP		= $(CC) -E
+ifneq ($(LLVM),)
+CC		= clang
+LD		= ld.lld
+AR		= llvm-ar
+NM		= llvm-nm
+OBJCOPY		= llvm-objcopy
+OBJDUMP		= llvm-objdump
+READELF		= llvm-readelf
+STRIP		= llvm-strip
+HOSTLDFLAGS	+= -fuse-ld=lld
+else
+CC		= $(CROSS_COMPILE)gcc
 LD		= $(CROSS_COMPILE)ld
 LDGOLD		= $(CROSS_COMPILE)ld.gold
-CC		= $(CROSS_COMPILE)gcc
-CPP		= $(CC) -E
 AR		= $(CROSS_COMPILE)ar
 NM		= $(CROSS_COMPILE)nm
-STRIP		= $(CROSS_COMPILE)strip
 OBJCOPY		= $(CROSS_COMPILE)objcopy
 OBJDUMP		= $(CROSS_COMPILE)objdump
+READELF		= $(CROSS_COMPILE)readelf
+STRIP           = $(CROSS_COMPILE)strip
+PAHOLE		= pahole
+endif
+RESOLVE_BTFIDS	= $(objtree)/tools/bpf/resolve_btfids/resolve_btfids
 AWK		= awk
 GENKSYMS	= scripts/genksyms/genksyms
 INSTALLKERNEL  := installkernel
@@ -443,41 +462,8 @@ LDFLAGS :=
 GCC_PLUGINS_CFLAGS :=
 CLANG_FLAGS :=
 
-#ifdef VENDOR_EDIT
-ifeq ($(OPPO_HIGH_TEMP_VERSION),true)
-KBUILD_CFLAGS += -DCONFIG_HIGH_TEMP_VERSION
-endif
-#endif /* VENDOR_EDIT */
-
-#ifdef  VENDOR_EDIT
-KBUILD_CFLAGS +=   -DVENDOR_EDIT
-KBUILD_CPPFLAGS += -DVENDOR_EDIT
-CFLAGS_KERNEL +=   -DVENDOR_EDIT
-CFLAGS_MODULE +=   -DVENDOR_EDIT
-#endif /* VENDOR_EDIT */
-
-#ifdef OPLUS_FEATURE_MEMLEAK_DETECT
-ifeq ($(AGING_DEBUG_MASK),1)
-# enable memleak detect daemon
-OPPO_MEMLEAK_DETECT := thread
-endif
-
-ifeq ($(TARGET_MEMLEAK_DETECT_TEST),0)
-# disable memleak detect daemon
-OPPO_MEMLEAK_DETECT := none
-else ifeq ($(TARGET_MEMLEAK_DETECT_TEST),1)
-# enable memleak detect daemon
-OPPO_MEMLEAK_DETECT := thread
-else ifeq ($(TARGET_MEMLEAK_DETECT_TEST),2)
-# enable memleak detect daemon and kasan
-OPPO_MEMLEAK_DETECT := all
-endif
-
-export OPPO_MEMLEAK_DETECT
-#endif
-
-export ARCH SRCARCH CONFIG_SHELL HOSTCC HOSTCFLAGS CROSS_COMPILE AS LD CC
-export CPP AR NM STRIP OBJCOPY OBJDUMP HOSTLDFLAGS HOST_LOADLIBES
+export ARCH SRCARCH CONFIG_SHELL HOSTCC HOSTCFLAGS CROSS_COMPILE LD CC
+export CPP AR NM STRIP OBJCOPY OBJDUMP PAHOLE READELF RESOLVE_BTFIDS HOST_LOADLIBES
 export MAKE AWK GENKSYMS INSTALLKERNEL PERL PYTHON UTS_MACHINE
 export HOSTCXX HOSTCXXFLAGS LDFLAGS_MODULE CHECK CHECKFLAGS
 
@@ -539,7 +525,9 @@ endif
 ifneq ($(GCC_TOOLCHAIN),)
 CLANG_FLAGS	+= --gcc-toolchain=$(GCC_TOOLCHAIN)
 endif
+ifneq ($(LLVM_IAS),1)
 CLANG_FLAGS	+= -no-integrated-as
+endif
 CLANG_FLAGS	+= -Werror=unknown-warning-option
 KBUILD_CFLAGS	+= $(CLANG_FLAGS)
 KBUILD_AFLAGS	+= $(CLANG_FLAGS)
@@ -558,6 +546,11 @@ RETPOLINE_CFLAGS := $(call cc-option,$(RETPOLINE_CFLAGS_GCC),$(call cc-option,$(
 RETPOLINE_VDSO_CFLAGS := $(call cc-option,$(RETPOLINE_VDSO_CFLAGS_GCC),$(call cc-option,$(RETPOLINE_VDSO_CFLAGS_CLANG)))
 export RETPOLINE_CFLAGS
 export RETPOLINE_VDSO_CFLAGS
+
+ifeq ($(shell $(CONFIG_SHELL) $(srctree)/scripts/cc-can-link.sh $(CC)), y)
+  CC_CAN_LINK := y
+  export CC_CAN_LINK
+endif
 
 ifeq ($(config-targets),1)
 # ===========================================================================
@@ -810,7 +803,7 @@ endif
 KBUILD_CFLAGS += $(call cc-disable-warning, unused-but-set-variable)
 
 ifeq ($(ld-name),lld)
-LDFLAGS += -O2
+LDFLAGS += -z norelro
 endif
 
 KBUILD_CFLAGS += $(call cc-disable-warning, unused-const-variable)
@@ -852,8 +845,11 @@ KBUILD_CFLAGS   += $(call cc-option, -gsplit-dwarf, -g)
 else
 KBUILD_CFLAGS	+= -g
 endif
+ifneq ($(LLVM_IAS),1)
 KBUILD_AFLAGS	+= -Wa,-gdwarf-2
 endif
+endif
+
 ifdef CONFIG_DEBUG_INFO_DWARF4
 KBUILD_CFLAGS	+= $(call cc-option, -gdwarf-4,)
 endif

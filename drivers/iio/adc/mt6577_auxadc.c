@@ -112,9 +112,7 @@ struct adc_cali_info {
 };
 
 static struct adc_cali_info adc_cali;
-#ifdef OPLUS_FEATURE_CHG_BASIC
-static atomic_t mt_auxadc_state;
-#endif
+
 extern u32 __attribute__((weak)) get_devinfo_with_index(u32 index)
 {
 	return 0;
@@ -397,6 +395,36 @@ static int proc_utilization_show(struct seq_file *m, void *v)
 	return 0;
 }
 
+static int proc_utilization_show(struct seq_file *m, void *v)
+{
+	int raw, raw_cali;
+
+	seq_puts(m, "********** Auxadc status dump **********\n");
+
+	seq_printf(m, "ADC_CALI_EN_MASK:0x%x ADC_CALI_EN_SHIFT:%d\n",
+		ADC_GE_OE_EN_MASK, adc_cali.efuse_en_bs);
+	seq_printf(m, "ADC_GE_MASK:0x%x ADC_GE_SHIFT:%d\n",
+		ADC_GE_OE_MASK, adc_cali.efuse_ge_bs);
+	seq_printf(m, "ADC_OE_MASK:0x%x ADC_OE_SHIFT:%d\n",
+		ADC_GE_OE_MASK, adc_cali.efuse_oe_bs);
+
+	seq_printf(m, "reg_value=0x%x efuse_en=%d, efuse_ge=%d, efuse_oe=%d\n",
+		adc_cali.efuse_reg_value, adc_cali.efuse_en,
+		adc_cali.efuse_ge, adc_cali.efuse_oe);
+
+	seq_printf(m, "cali_ge:%d cali_oe:%d gain:0x%x\n",
+		adc_cali.cali_ge, adc_cali.cali_oe, adc_cali.gain);
+
+	for (raw = 100; raw <= 4500; raw = raw + 100) {
+		raw_cali = mt_auxadc_get_cali_data(raw, true);
+
+		seq_printf(m, "raw without cali : %d, with cali : %d\n",
+			raw, raw_cali);
+	}
+
+	return 0;
+}
+
 static int proc_utilization_open(struct inode *inode, struct file *file)
 {
 	return single_open(file, proc_utilization_show, NULL);
@@ -493,6 +521,8 @@ static int mt6577_auxadc_probe(struct platform_device *pdev)
 #ifdef OPLUS_FEATURE_CHG_BASIC
 	atomic_set(&mt_auxadc_state, 1);
 #endif
+	adc_debug_init();
+
 	adc_debug_init();
 
 	return 0;

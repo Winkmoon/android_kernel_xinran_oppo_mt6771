@@ -1412,6 +1412,8 @@ static void snapshot_dtr(struct dm_target *ti)
 
 	dm_exception_store_destroy(s->store);
 
+	bio_uninit(&s->flush_bio);
+
 	mutex_destroy(&s->lock);
 
 	bio_uninit(&s->flush_bio);

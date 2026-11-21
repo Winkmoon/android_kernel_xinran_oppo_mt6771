@@ -299,7 +299,7 @@ int ufs_mtk_pltfrm_xo_ufs_req(struct ufs_hba *hba, bool on)
 
 	/* inform ATF clock is on */
 	if (on)
-		mt_secure_call(MTK_SIP_KERNEL_UFS_CTL, 4, 1, 0, 0);
+		mt_secure_call(MTK_SIP_KERNEL_UFS_CTL, 8, 1, 0, 0);
 
 	/*
 	 * Delay before disable ref-clk: H8 -> delay A -> disable ref-clk
@@ -382,7 +382,7 @@ int ufs_mtk_pltfrm_xo_ufs_req(struct ufs_hba *hba, bool on)
 
 	/* inform ATF clock is off */
 	if (!on && !hba->auto_bkops_enabled)
-		mt_secure_call(MTK_SIP_KERNEL_UFS_CTL, 4, 0, 0, 0);
+		mt_secure_call(MTK_SIP_KERNEL_UFS_CTL, 8, 0, 0, 0);
 
 	return 0;
 }
@@ -508,7 +508,7 @@ int ufs_mtk_pltfrm_host_sw_rst(struct ufs_hba *hba, u32 target)
 
 	dev_info(hba->dev, "ufs_mtk_host_sw_rst: 0x%x\n", target);
 
-	ufshcd_update_reg_hist(&hba->ufs_stats.sw_reset, (u32)target);
+	ufshcd_update_evt_hist(hba, UFS_EVT_SW_RESET, (u32)target);
 
 	if (target & SW_RST_TARGET_UFSHCI) {
 		/* reset HCI */
