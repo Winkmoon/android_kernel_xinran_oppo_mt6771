@@ -281,7 +281,7 @@ static const char *const bpf_class_string[] = {
 	[BPF_STX]   = "stx",
 	[BPF_ALU]   = "alu",
 	[BPF_JMP]   = "jmp",
-	[BPF_RET]   = "BUG",
+	[BPF_JMP32]   = "jmp32",
 	[BPF_ALU64] = "alu64",
 };
 
@@ -408,7 +408,7 @@ static void print_bpf_insn(const struct bpf_verifier_env *env,
 			verbose("BUG_ld_%02x\n", insn->code);
 			return;
 		}
-	} else if (class == BPF_JMP) {
+	} else if (class == BPF_JMP || class == BPF_JMP32) {
 		u8 opcode = BPF_OP(insn->code);
 
 		if (opcode == BPF_CALL) {
@@ -3310,10 +3310,16 @@ static int check_cond_jmp_op(struct bpf_verifier_env *env,
 	struct bpf_verifier_state *other_branch, *this_branch = env->cur_state;
 	struct bpf_reg_state *regs = this_branch->regs, *dst_reg;
 	u8 opcode = BPF_OP(insn->code);
+	bool is_jmp32 = BPF_CLASS(insn->code) == BPF_JMP32;
 	int err;
 
-	if (opcode > BPF_JSLE) {
-		verbose("invalid BPF_JMP opcode %x\n", opcode);
+	if (opcode == BPF_JA || opcode > BPF_JSLE) {
+		verbose("invalid BPF_JMP/JMP32 opcode %x\n", opcode);
+		return -EINVAL;
+	}
+
+	if (is_jmp32 && (opcode == BPF_CALL || opcode == BPF_EXIT)) {
+		verbose("BPF_JMP32 does not support call/exit\n");
 		return -EINVAL;
 	}
 
@@ -3347,6 +3353,11 @@ static int check_cond_jmp_op(struct bpf_verifier_env *env,
 
 	dst_reg = &regs[insn->dst_reg];
 
+	if (is_jmp32 && dst_reg->type != SCALAR_VALUE) {
+		verbose("BPF_JMP32 pointer comparison prohibited\n");
+		return -EACCES;
+	}
+
 	/* detect if R == 0 where R was initialized to zero earlier */
 	if (BPF_SRC(insn->code) == BPF_K &&
 	    (opcode == BPF_JEQ || opcode == BPF_JNE) &&
@@ -3371,6 +3382,14 @@ static int check_cond_jmp_op(struct bpf_verifier_env *env,
 				  false);
 	if (!other_branch)
 		return -EFAULT;
+
+	/*
+	 * JMP32 only compares the low 32 bits.  The 64-bit min/max and
+	 * pointer-tracking deductions below do not apply, so keep both
+	 * branches but skip those optimizations.
+	 */
+	if (is_jmp32)
+		return 0;
 
 	/* detect if we are comparing against a constant value so we can adjust
 	 * our min/max values for our dst register.
@@ -3702,8 +3721,16 @@ peek_stack:
 		goto check_state;
 	t = insn_stack[cur_stack - 1];
 
-	if (BPF_CLASS(insns[t].code) == BPF_JMP) {
+	if (BPF_CLASS(insns[t].code) == BPF_JMP ||
+	    BPF_CLASS(insns[t].code) == BPF_JMP32) {
 		u8 opcode = BPF_OP(insns[t].code);
+
+		if (BPF_CLASS(insns[t].code) == BPF_JMP32 &&
+		    (opcode == BPF_EXIT || opcode == BPF_CALL ||
+		     opcode == BPF_JA)) {
+			ret = -EINVAL;
+			goto err_free;
+		}
 
 		if (opcode == BPF_EXIT) {
 			goto mark_explored;
@@ -4370,8 +4397,16 @@ static int do_check(struct bpf_verifier_env *env)
 			if (err)
 				return err;
 
-		} else if (class == BPF_JMP) {
+		} else if (class == BPF_JMP ||
+			   class == BPF_JMP32) {
 			u8 opcode = BPF_OP(insn->code);
+
+			if (class == BPF_JMP32 &&
+			    (opcode == BPF_CALL || opcode == BPF_JA ||
+			     opcode == BPF_EXIT)) {
+				verbose("BPF_JMP32 does not support call/ja/exit\n");
+				return -EINVAL;
+			}
 
 			if (opcode == BPF_CALL) {
 				if (BPF_SRC(insn->code) != BPF_K ||

@@ -222,7 +222,8 @@ int bpf_prog_calc_tag(struct bpf_prog *fp)
 
 static bool bpf_is_jmp_and_has_target(const struct bpf_insn *insn)
 {
-	return BPF_CLASS(insn->code) == BPF_JMP  &&
+	return (BPF_CLASS(insn->code) == BPF_JMP ||
+		BPF_CLASS(insn->code) == BPF_JMP32) &&
 	       /* Call and Exit are both special jumps with no
 		* target inside the BPF instruction image.
 		*/
