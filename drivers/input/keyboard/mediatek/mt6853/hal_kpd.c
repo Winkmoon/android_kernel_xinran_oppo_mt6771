@@ -21,6 +21,10 @@
 #include <hal_kpd.h>
 #include <mt-plat/mtk_boot_common.h>
 
+//#ifdef OPLUS_BUG_STABILITY
+#include <soc/oppo/oppo_project.h>
+//#endif /*OPLUS_BUG_STABILITY*/
+
 #ifdef CONFIG_MTK_PMIC_NEW_ARCH /*for pmic not ready*/
 static int kpd_enable_lprst = 1;
 #endif
@@ -55,8 +59,11 @@ void kpd_get_keymap_state(u16 state[])
 void long_press_reboot_function_setting(void)
 {
 #ifdef CONFIG_MTK_PMIC_NEW_ARCH /*for pmic not ready*/
-	/* unlock PMIC protect key */
-	pmic_set_register_value(PMIC_RG_CPS_W_KEY, 0x4729);
+//#ifdef OPLUS_BUG_STABILITY
+	if (20075 != get_project() && 20076 != get_project()) {
+//#endif /*OPLUS_BUG_STABILITY*/
+       /* unlock PMIC protect key */
+       pmic_set_register_value(PMIC_RG_CPS_W_KEY, 0x4729);
 	if (kpd_enable_lprst && get_boot_mode() == NORMAL_BOOT) {
 		kpd_info("Normal Boot long press reboot selection\n");
 
@@ -100,6 +107,9 @@ void long_press_reboot_function_setting(void)
 	}
 	/* lock PMIC protect key */
 	pmic_set_register_value(PMIC_RG_CPS_W_KEY, 0);
+//#ifdef OPLUS_BUG_STABILITY
+	}
+//#endif /*OPLUS_BUG_STABILITY*/
 #endif
 }
 

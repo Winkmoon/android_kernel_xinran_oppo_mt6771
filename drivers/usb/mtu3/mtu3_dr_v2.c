@@ -217,8 +217,6 @@ static void switch_port_to_host(struct ssusb_mtk *ssusb)
 {
 	int retval;
 
-	u32 check_clk = 0;
-
 	dev_info(ssusb->dev, "%s\n", __func__);
 	ssusb_dual_phy_power_on(ssusb, true);
 	ssusb_clk_on(ssusb, true);
@@ -227,7 +225,7 @@ static void switch_port_to_host(struct ssusb_mtk *ssusb)
 
 	if (ssusb->otg_switch.is_u3h_drd) {
 		ssusb_port0_switch(ssusb, USB3_PORT, true);
-		check_clk = SSUSB_U3_MAC_RST_B_STS;
+		
 	}
 
 	/*ssusb_check_clocks(ssusb, check_clk);*/
@@ -287,6 +285,7 @@ void ssusb_gadget_disconnect(struct mtu3 *mtu)
 	usb_gadget_set_state(&mtu->g, USB_STATE_NOTATTACHED);
 }
 
+unsigned int usb_mode;
 static void ssusb_set_mode(struct work_struct *work)
 {
 	struct otg_switch_mtk *__otg_sx = container_of(to_delayed_work(work),
@@ -296,7 +295,6 @@ static void ssusb_set_mode(struct work_struct *work)
 		container_of(otg_sx, struct ssusb_mtk, otg_switch);
 	struct mtu3 *mtu = ssusb->u3d;
 	unsigned long flags;
-	unsigned int usb_mode;
 
 	spin_lock_irqsave(&otg_sx->dr_lock, flags);
 	usb_mode = __otg_sx->desire_usb_mode;
@@ -482,9 +480,7 @@ int ssusb_otg_switch_init(struct ssusb_mtk *ssusb)
 
 	INIT_DELAYED_WORK(&otg_sx->extcon_reg_dwork, extcon_register_dwork);
 
-#ifdef CONFIG_PROC_FS
 	ssusb_debugfs_init(ssusb);
-#endif
 
 	/* It is enough to delay 1s for waiting for host initialization */
 	schedule_delayed_work(&otg_sx->extcon_reg_dwork, HZ/2);
@@ -506,8 +502,6 @@ void ssusb_otg_switch_exit(struct ssusb_mtk *ssusb)
 			EXTCON_USB_HOST, &otg_sx->id_nb);
 	}
 
-#ifdef CONFIG_PROC_FS
 	ssusb_debugfs_exit(ssusb);
-#endif
 	g_otg_sx = NULL;
 }

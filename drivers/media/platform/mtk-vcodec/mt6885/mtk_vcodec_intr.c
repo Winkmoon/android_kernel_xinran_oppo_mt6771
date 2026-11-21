@@ -81,14 +81,8 @@ irqreturn_t mtk_vcodec_dec_irq_handler(int irq, void *priv)
 	if (ctx == NULL)
 		return IRQ_HANDLED;
 
-	if (ctx->dec_params.svp_mode) {
-		mtk_v4l2_debug(4, "svp_mode %d don't handle",
-			ctx->dec_params.svp_mode);
-		return IRQ_HANDLED;
-	}
-
 	/* check if HW active or not */
-	cg_status = readl(dev->dec_reg_base[VDEC_SYS]);
+	cg_status = readl(dev->dec_reg_base[0]);
 	if ((cg_status & MTK_VDEC_HW_ACTIVE) != 0) {
 		mtk_v4l2_err("DEC ISR, VDEC active is not 0x0 (0x%08x)",
 					 cg_status);
@@ -132,7 +126,7 @@ irqreturn_t mtk_vcodec_lat_dec_irq_handler(int irq, void *priv)
 		return IRQ_HANDLED;
 
 	/* check if HW active or not */
-	cg_status = readl(dev->dec_reg_base[VDEC_BASE]);
+	cg_status = readl(dev->dec_reg_base[0]);
 	if ((cg_status & MTK_VDEC_HW_ACTIVE) != 0) {
 		mtk_v4l2_err("DEC LAT ISR, VDEC active is not 0x0 (0x%08x)",
 					 cg_status);
@@ -235,8 +229,7 @@ int mtk_vcodec_dec_irq_setup(struct platform_device *pdev,
 		dev->dec_irq[i] = platform_get_irq(pdev, i);
 		if (i == MTK_VDEC_CORE)
 			ret = devm_request_irq(&pdev->dev, dev->dec_irq[i],
-				mtk_vcodec_dec_irq_handler,
-				IRQF_NO_THREAD | IRQF_SHARED | IRQF_PROBE_SHARED, pdev->name, dev);
+				mtk_vcodec_dec_irq_handler, 0, pdev->name, dev);
 		else if (i == MTK_VDEC_LAT)
 			ret = devm_request_irq(&pdev->dev, dev->dec_irq[i],
 				mtk_vcodec_lat_dec_irq_handler, 0,

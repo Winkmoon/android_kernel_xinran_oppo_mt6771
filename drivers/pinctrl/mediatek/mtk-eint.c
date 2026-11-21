@@ -112,13 +112,14 @@ static int mtk_eint_flip_edge(struct mtk_eint *eint, int hwirq)
 static void mtk_eint_mask(struct irq_data *d)
 {
 	struct mtk_eint *eint = irq_data_get_irq_chip_data(d);
+	u32 mask;
+	void __iomem *reg;
 
 	if (!eint)
 		return;
 
-	u32 mask = BIT(d->hwirq & 0x1f);
-	void __iomem *reg = mtk_eint_get_offset(eint, d->hwirq,
-						eint->regs->mask_set);
+	mask = BIT(d->hwirq & 0x1f);
+	reg = mtk_eint_get_offset(eint, d->hwirq, eint->regs->mask_set);
 
 	eint->cur_mask[d->hwirq >> 5] &= ~mask;
 
@@ -407,9 +408,6 @@ static void mtk_eint_irq_handler(struct irq_desc *desc)
 								 index);
 			}
 
-			if (irq_get_irq_data(virq) == NULL) {
-				continue;
-			}
 			if (eint->eint_sw_debounce_en[index]) {
 				mtk_eint_mask(irq_get_irq_data(virq));
 				mtk_eint_sw_debounce_start(eint,
@@ -472,7 +470,7 @@ int mtk_eint_set_debounce(struct mtk_eint *eint, unsigned long eint_num,
 	if (!mtk_eint_can_en_debounce(eint, eint_num))
 		return -EINVAL;
 
-	dbnc = ARRAY_SIZE(debounce_time) - 1U;
+	dbnc = ARRAY_SIZE(debounce_time);
 	for (i = 0; i < ARRAY_SIZE(debounce_time); i++) {
 		if (debounce <= debounce_time[i]) {
 			dbnc = i;

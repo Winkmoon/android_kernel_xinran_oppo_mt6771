@@ -28,7 +28,6 @@
 #ifdef CONFIG_VIDEO_MEDIATEK_VCU
 #include "mtk_vcu.h"
 const struct venc_common_if *get_enc_common_if(void);
-const struct venc_common_if *get_enc_log_if(void);
 #endif
 
 #ifdef CONFIG_VIDEO_MEDIATEK_VPU
@@ -54,9 +53,6 @@ int venc_if_init(struct mtk_vcodec_ctx *ctx, unsigned int fourcc)
 		ctx->enc_if = get_enc_common_if();
 		ctx->oal_vcodec = 0;
 		break;
-	case V4L2_CID_MPEG_MTK_LOG:
-		ctx->enc_if = get_enc_log_if();
-		return 0;
 	default:
 		return -EINVAL;
 	}
@@ -127,6 +123,7 @@ void venc_encode_prepare(void *ctx_prepare,
 		return;
 
 	mtk_venc_pmqos_prelock(ctx, core_id);
+	mtk_venc_lock(ctx, core_id);
 	spin_lock_irqsave(&ctx->dev->irqlock, *flags);
 	ctx->dev->curr_enc_ctx[0] = ctx;
 	spin_unlock_irqrestore(&ctx->dev->irqlock, *flags);
@@ -134,14 +131,6 @@ void venc_encode_prepare(void *ctx_prepare,
 	mtk_venc_pmqos_begin_frame(ctx, core_id);
 }
 EXPORT_SYMBOL_GPL(venc_encode_prepare);
-
-int venc_lock(void *ctx_lock, int core_id, bool sec)
-{
-	struct mtk_vcodec_ctx *ctx = (struct mtk_vcodec_ctx *)ctx_lock;
-
-	return mtk_venc_lock(ctx, core_id, sec);
-}
-EXPORT_SYMBOL_GPL(venc_lock);
 
 void venc_encode_unprepare(void *ctx_unprepare,
 	unsigned int core_id, unsigned long *flags)
@@ -162,16 +151,9 @@ void venc_encode_unprepare(void *ctx_unprepare,
 	spin_lock_irqsave(&ctx->dev->irqlock, *flags);
 	ctx->dev->curr_enc_ctx[0] = NULL;
 	spin_unlock_irqrestore(&ctx->dev->irqlock, *flags);
-}
-EXPORT_SYMBOL_GPL(venc_encode_unprepare);
-
-void venc_unlock(void *ctx_unlock, int core_id)
-{
-	struct mtk_vcodec_ctx *ctx = (struct mtk_vcodec_ctx *)ctx_unlock;
-
 	mtk_venc_unlock(ctx, core_id);
 }
-EXPORT_SYMBOL_GPL(venc_unlock);
+EXPORT_SYMBOL_GPL(venc_encode_unprepare);
 
 void venc_encode_pmqos_gce_begin(void *ctx_begin,
 	unsigned int core_id, int job_cnt)
