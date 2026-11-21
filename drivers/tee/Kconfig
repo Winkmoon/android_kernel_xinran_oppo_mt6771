@@ -16,10 +16,4 @@ source "drivers/tee/optee/Kconfig"
 
 endmenu
 
-menu "MITEE drivers"
-
-source "drivers/tee/mitee/Kconfig"
-
-endmenu
-
 endif
