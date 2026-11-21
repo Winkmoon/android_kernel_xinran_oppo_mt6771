@@ -30,9 +30,12 @@
 #include <net/netns/xfrm.h>
 #include <net/netns/mpls.h>
 #include <net/netns/can.h>
+#include <net/netns/xdp.h>
+#include <net/netns/bpf.h>
 #include <linux/ns_common.h>
 #include <linux/idr.h>
 #include <linux/skbuff.h>
+#include <linux/notifier.h>
 
 struct user_namespace;
 struct proc_dir_entry;
@@ -42,6 +45,7 @@ struct ctl_table_header;
 struct net_generic;
 struct sock;
 struct netns_ipvs;
+struct bpf_prog;
 
 
 #define NETDEV_HASHBITS    8
@@ -57,7 +61,6 @@ struct net {
 	spinlock_t		rules_mod_lock;
 
 	u32			hash_mix;
-	atomic64_t		cookie_gen;
 
 	struct list_head	list;		/* list of network namespaces */
 	struct list_head	cleanup_list;	/* namespaces on death row */
@@ -83,6 +86,8 @@ struct net {
 	struct list_head 	dev_base_head;
 	struct hlist_head 	*dev_name_head;
 	struct hlist_head	*dev_index_head;
+	struct raw_notifier_head	netdev_chain;
+
 	unsigned int		dev_base_seq;	/* protected by rtnl_mutex */
 	int			ifindex;
 	unsigned int		dev_unreg_count;
@@ -137,10 +142,16 @@ struct net {
 #endif
 	struct net_generic __rcu	*gen;
 
+	/* Used to store attached BPF programs */
+	struct netns_bpf	bpf;
+
 	/* Note : following structs are cache line aligned */
 #ifdef CONFIG_XFRM
 	struct netns_xfrm	xfrm;
 #endif
+
+	atomic64_t		net_cookie; /* written once */
+
 #if IS_ENABLED(CONFIG_IP_VS)
 	struct netns_ipvs	*ipvs;
 #endif
@@ -149,6 +160,9 @@ struct net {
 #endif
 #if IS_ENABLED(CONFIG_CAN)
 	struct netns_can	can;
+#endif
+#ifdef CONFIG_XDP_SOCKETS
+	struct netns_xdp	xdp;
 #endif
 	struct sock		*diag_nlsk;
 	atomic_t		fnhe_genid;
@@ -232,6 +246,8 @@ static inline int check_net(const struct net *net)
 
 void net_drop_ns(void *);
 
+u64 net_gen_cookie(struct net *net);
+
 #else
 
 static inline struct net *get_net(struct net *net)
@@ -257,6 +273,11 @@ int net_eq(const struct net *net1, const struct net *net2)
 static inline int check_net(const struct net *net)
 {
 	return 1;
+}
+
+static inline u64 net_gen_cookie(struct net *net)
+{
+	return 0;
 }
 
 #define net_drop_ns NULL
@@ -287,7 +308,8 @@ static inline struct net *read_pnet(const possible_net_t *pnet)
 
 #define for_each_net(VAR)				\
 	list_for_each_entry(VAR, &net_namespace_list, list)
-
+#define for_each_net_continue_reverse(VAR)		\
+	list_for_each_entry_continue_reverse(VAR, &net_namespace_list, list)
 #define for_each_net_rcu(VAR)				\
 	list_for_each_entry_rcu(VAR, &net_namespace_list, list)
 
@@ -310,7 +332,26 @@ struct net *get_net_ns_by_id(struct net *net, int id);
 
 struct pernet_operations {
 	struct list_head list;
+	/*
+	 * Below methods are called without any exclusive locks.
+	 * More than one net may be constructed and destructed
+	 * in parallel on several cpus. Every pernet_operations
+	 * have to keep in mind all other pernet_operations and
+	 * to introduce a locking, if they share common resources.
+	 *
+	 * Exit methods using blocking RCU primitives, such as
+	 * synchronize_rcu(), should be implemented via exit_batch.
+	 * Then, destruction of a group of net requires single
+	 * synchronize_rcu() related to these pernet_operations,
+	 * instead of separate synchronize_rcu() for every net.
+	 * Please, avoid synchronize_rcu() at all, where it's possible.
+	 *
+	 * Note that a combination of pre_exit() and exit() can
+	 * be used, since a synchronize_rcu() is guaranteed between
+	 * the calls.
+	 */
 	int (*init)(struct net *net);
+	void (*pre_exit)(struct net *net);
 	void (*exit)(struct net *net);
 	void (*exit_batch)(struct list_head *net_exit_list);
 	unsigned int *id;
