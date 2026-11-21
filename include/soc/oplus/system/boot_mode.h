@@ -26,7 +26,7 @@ enum{
         MSM_BOOT_MODE__SAFE = 999,
 };
 
-extern int get_boot_mode(void);
+extern unsigned int get_boot_mode(void);
 #ifdef OPLUS_BUG_STABILITY
 /*add for charge*/
 extern bool qpnp_is_power_off_charging(void);

@@ -11,6 +11,11 @@ config OPLUS_CHARGER_MTK
 	help
 	  Say Y here to declare charging system is on MTK
 	  
+config OPLUS_CHARGER_MTK6771
+	bool "OPLUS charger on MT6771"
+	help
+	  Declare the MT6771 charging platform.
+
 config OPLUS_SHORT_C_BATT_CHECK
 	bool "OPLUS batt short "
 	help
