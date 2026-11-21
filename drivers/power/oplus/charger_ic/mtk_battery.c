@@ -6010,6 +6010,7 @@ static int oplus_chg_batt_psy_init(struct oplus_chg_chip *chip)
              return -1;
         }
 
+        return 0;
 }
 
 
