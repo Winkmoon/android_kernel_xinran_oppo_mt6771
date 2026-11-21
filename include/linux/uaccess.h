@@ -282,6 +282,36 @@ extern long strncpy_from_unsafe_user(char *dst, const void __user *unsafe_addr,
 				     long count);
 extern long strnlen_unsafe_user(const void __user *unsafe_addr, long count);
 
+extern __must_check int check_zeroed_user(const void __user *from, size_t size);
+
+/**
+ * copy_struct_from_user: copy a struct from userspace
+ *
+ * Handles userspace structs that may be smaller (zero-fill the tail) or
+ * larger (require the unknown tail to be zero) than the kernel struct.
+ */
+static __always_inline __must_check int
+copy_struct_from_user(void *dst, size_t ksize, const void __user *src,
+		      size_t usize)
+{
+	size_t size = min(ksize, usize);
+	size_t rest = max(ksize, usize) - size;
+
+	if (usize < ksize) {
+		memset(dst + size, 0, rest);
+	} else if (usize > ksize) {
+		int ret = check_zeroed_user(src + size, rest);
+
+		if (ret <= 0)
+			return ret ?: -E2BIG;
+	}
+
+	if (copy_from_user(dst, src, size))
+		return -EFAULT;
+
+	return 0;
+}
+
 /**
  * probe_kernel_address(): safely attempt to read from a location
  * @addr: address to read from

@@ -1440,6 +1440,11 @@ static int copy_sighand(unsigned long clone_flags, struct task_struct *tsk)
 	spin_lock_irq(&current->sighand->siglock);
 	memcpy(sig->action, current->sighand->action, sizeof(sig->action));
 	spin_unlock_irq(&current->sighand->siglock);
+
+	/* Reset all signal handlers not set to SIG_IGN to SIG_DFL. */
+	if (clone_flags & CLONE_CLEAR_SIGHAND)
+		flush_signal_handlers(tsk, 0);
+
 	return 0;
 }
 
@@ -2441,6 +2446,90 @@ SYSCALL_DEFINE5(clone, unsigned long, clone_flags, unsigned long, newsp,
 	return _do_fork(clone_flags, newsp, 0, parent_tidptr, child_tidptr, tls);
 }
 #endif
+
+#ifdef __ARCH_WANT_SYS_CLONE3
+
+/* All legacy clone flags occupy the low 32 bits of the flag word. */
+#define CLONE3_LEGACY_FLAGS 0xffffffffULL
+
+/*
+ * Validate the child stack like upstream clone3_stack_valid() and, on
+ * down-growing stacks, advance it to the top of the region so _do_fork()
+ * receives the same child stack pointer as the legacy clone path.
+ */
+static bool clone3_stack_valid(unsigned long *stack, unsigned long stack_size)
+{
+	if (*stack == 0) {
+		if (stack_size > 0)
+			return false;
+	} else {
+		if (stack_size == 0)
+			return false;
+		if (!access_ok(VERIFY_READ, (void __user *)*stack, stack_size))
+			return false;
+#if !defined(CONFIG_STACK_GROWSUP) && !defined(CONFIG_IA64)
+		*stack += stack_size;
+#endif
+	}
+	return true;
+}
+
+SYSCALL_DEFINE2(clone3, struct clone_args __user *, uargs, size_t, size)
+{
+	struct clone_args args;
+	unsigned long clone_flags;
+	unsigned long stack, stack_size;
+	int __user *parent_tid, *child_tid;
+	int err;
+
+	if (unlikely(size > PAGE_SIZE))
+		return -E2BIG;
+	if (unlikely(size < CLONE_ARGS_SIZE_VER0))
+		return -EINVAL;
+
+	err = copy_struct_from_user(&args, sizeof(args), uargs, size);
+	if (err)
+		return err;
+
+	/* exit_signal must have its high bits clear and be a valid signal. */
+	if (unlikely((args.exit_signal & ~((u64)CSIGNAL)) ||
+		     !valid_signal(args.exit_signal)))
+		return -EINVAL;
+
+	/*
+	 * Reject unknown flags, and the CSIGNAL / CLONE_DETACHED bits which
+	 * clone3 repurposes and forbids in the flag word. CLONE_CLEAR_SIGHAND
+	 * (bit 32) is the one non-legacy flag accepted here.
+	 */
+	if (args.flags & ~(CLONE3_LEGACY_FLAGS | CLONE_CLEAR_SIGHAND))
+		return -EINVAL;
+	if (args.flags & (CLONE_DETACHED | CSIGNAL))
+		return -EINVAL;
+	/* Clearing handlers only makes sense with a private sighand table. */
+	if ((args.flags & (CLONE_SIGHAND | CLONE_CLEAR_SIGHAND)) ==
+	    (CLONE_SIGHAND | CLONE_CLEAR_SIGHAND))
+		return -EINVAL;
+	if ((args.flags & (CLONE_THREAD | CLONE_PARENT)) && args.exit_signal)
+		return -EINVAL;
+
+	stack = args.stack;
+	stack_size = args.stack_size;
+	if (!clone3_stack_valid(&stack, stack_size))
+		return -EINVAL;
+
+	/* Fold the separate exit_signal back into the legacy flag word. */
+	clone_flags = args.flags | (args.exit_signal & CSIGNAL);
+
+	/* The 4.14 CLONE_PIDFD backport returns the pidfd via parent_tidptr. */
+	if (args.flags & CLONE_PIDFD)
+		parent_tid = u64_to_user_ptr(args.pidfd);
+	else
+		parent_tid = u64_to_user_ptr(args.parent_tid);
+	child_tid = u64_to_user_ptr(args.child_tid);
+
+	return _do_fork(clone_flags, stack, 0, parent_tid, child_tid, args.tls);
+}
+#endif /* __ARCH_WANT_SYS_CLONE3 */
 
 void walk_process_tree(struct task_struct *top, proc_visitor visitor, void *data)
 {

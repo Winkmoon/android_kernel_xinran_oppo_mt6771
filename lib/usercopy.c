@@ -38,3 +38,23 @@ unsigned long _copy_to_user(void __user *to, const void *from, unsigned long n)
 }
 EXPORT_SYMBOL(_copy_to_user);
 #endif
+
+int check_zeroed_user(const void __user *from, size_t size)
+{
+	const u8 __user *p = from;
+	u8 val;
+
+	if (unlikely(size == 0))
+		return 1;
+
+	while (size--) {
+		if (__get_user(val, p))
+			return -EFAULT;
+		if (val)
+			return 0;
+		p++;
+	}
+
+	return 1;
+}
+EXPORT_SYMBOL(check_zeroed_user);

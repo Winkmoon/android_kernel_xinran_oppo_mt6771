@@ -2,6 +2,8 @@
 #ifndef _UAPI_LINUX_SCHED_H
 #define _UAPI_LINUX_SCHED_H
 
+#include <linux/types.h>
+
 /*
  * cloning flags:
  */
@@ -30,6 +32,38 @@
 #define CLONE_NEWPID		0x20000000	/* New pid namespace */
 #define CLONE_NEWNET		0x40000000	/* New network namespace */
 #define CLONE_IO		0x80000000	/* Clone io context */
+
+/* Flags for the clone3() syscall (do not fit in the 32-bit legacy flag word). */
+#define CLONE_CLEAR_SIGHAND 0x100000000ULL /* Clear any signal handler and reset to SIG_DFL. */
+
+#ifndef __ASSEMBLY__
+/**
+ * struct clone_args - arguments for the clone3 syscall
+ * @flags:       Flags for the new process as listed above.
+ * @pidfd:       If CLONE_PIDFD is set, a pidfd will be returned here.
+ * @child_tid:   If CLONE_CHILD_SETTID is set, the child TID is returned here.
+ * @parent_tid:  If CLONE_PARENT_SETTID is set, the child TID is returned here.
+ * @exit_signal: Signal sent to the parent when the child exits.
+ * @stack:       Child stack location.
+ * @stack_size:  Child stack size.
+ * @tls:         TLS descriptor for CLONE_SETTLS.
+ *
+ * The structure is versioned by size and extensible: new members must be
+ * appended and properly 64-bit aligned.
+ */
+struct clone_args {
+	__aligned_u64 flags;
+	__aligned_u64 pidfd;
+	__aligned_u64 child_tid;
+	__aligned_u64 parent_tid;
+	__aligned_u64 exit_signal;
+	__aligned_u64 stack;
+	__aligned_u64 stack_size;
+	__aligned_u64 tls;
+};
+#endif
+
+#define CLONE_ARGS_SIZE_VER0 64 /* sizeof first published struct */
 
 /*
  * Scheduling policies
