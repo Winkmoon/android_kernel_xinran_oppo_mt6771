@@ -1023,7 +1023,6 @@ static void remove_dquot_ref(struct super_block *sb, int type)
 
 #ifdef CONFIG_QUOTA_DEBUG
 			if (unlikely(inode_get_rsv_space(inode) > 0))
-#ifdef CONFIG_QUOTA_DEBUG
 				reserved = 1;
 #endif
 			rcu_assign_pointer(dquots[type], NULL);

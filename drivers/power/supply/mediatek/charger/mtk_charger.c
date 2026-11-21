@@ -101,6 +101,7 @@
 static bool em_mode = false;
 static bool is_vooc_project(void);
 struct oplus_chg_chip *g_oplus_chip = NULL;
+#define g_oppo_chip g_oplus_chip
 extern struct oplus_chg_operations * oplus_get_chg_ops(void);
 extern bool is_mtksvooc_project;
 extern int battery_meter_get_charger_voltage(void);

@@ -12,6 +12,7 @@
 #ifdef CONFIG_OPPO_MEM_MONITOR
 #include <linux/oppo_healthinfo/memory_monitor.h>
 #endif
+extern struct ion_wait_para ionwait_para;
 #ifdef OPLUS_FEATURE_UFSPLUS
 #if defined(CONFIG_UFSFEATURE)
 #include "../../../drivers/scsi/oufs/ufsfeature.h"

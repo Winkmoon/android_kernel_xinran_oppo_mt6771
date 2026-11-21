@@ -574,11 +574,6 @@ struct pid *task_pid_type(struct task_struct *task, enum pid_type type)
 	return pid;
 }
 
-static inline struct pid *task_tgid(struct task_struct *task)
-{
-	return task->signal->pids[PIDTYPE_TGID];
-}
-
 /*
  * Without tasklist or RCU lock it is not safe to dereference
  * the result of task_pgrp/task_session even if task == current,

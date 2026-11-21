@@ -1527,6 +1527,8 @@ static inline pid_t task_pid_vnr(struct task_struct *tsk)
 }
 
 
+#define task_tgid(task) get_task_pid((task), PIDTYPE_PID)
+
 static inline pid_t task_tgid_nr(struct task_struct *tsk)
 {
 	return tsk->tgid;

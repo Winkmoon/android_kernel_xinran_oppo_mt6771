@@ -139,9 +139,6 @@ static unsigned long one_ul = 1;
 static unsigned long long_max = LONG_MAX;
 static int one_hundred = 100;
 static int two_hundred = 200;
-#ifdef CONFIG_MTK_GMO_RAM_OPTIMIZE
-static int two_hundred = 200;
-#endif
 static int one_thousand = 1000;
 #ifdef CONFIG_PRINTK
 static int ten_thousand = 10000;
@@ -159,6 +156,14 @@ unsigned int sysctl_ext4_fsync_enable = 0;
 unsigned int ext4_fsync_enable_status = 0;
 unsigned long sysctl_blkdev_issue_flush_count = 0;
 #endif /*VENDOR_EDIT*/
+
+#ifndef MAX_KSWAPD_THREADS
+#define MAX_KSWAPD_THREADS 8
+#endif
+extern unsigned int sysctl_fg_io_opt;
+int direct_vm_swappiness = 60;
+int kswapd_threads = 1;
+extern int kswapd_threads_sysctl_handler(struct ctl_table *, int, void __user *, size_t *, loff_t *);
 
 static int max_kswapd_threads = MAX_KSWAPD_THREADS;
 

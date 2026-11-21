@@ -628,6 +628,8 @@ enum MTK_DRM_DISP_FEATURE {
 	DRM_DISP_FEATURE_MML_PRIMARY = 0x00000400,
 };
 
+#ifndef MTK_MMSYS_ID_DEFINED
+#define MTK_MMSYS_ID_DEFINED
 enum mtk_mmsys_id {
 	MMSYS_MT2701 = 0x2701,
 	MMSYS_MT2712 = 0x2712,
@@ -644,6 +646,7 @@ enum mtk_mmsys_id {
 	MMSYS_MT6895 = 0x6895,
 	MMSYS_MAX,
 };
+#endif /* MTK_MMSYS_ID_DEFINED */
 
 struct mtk_drm_disp_caps_info {
 	unsigned int hw_ver;

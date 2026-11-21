@@ -280,7 +280,7 @@ static int xhci_mtk_dbg_exit(struct xhci_hcd_mtk *mtk)
 }
 
 #if !IS_ENABLED(CONFIG_USB_XHCI_MTK_SUSPEND)
-static int mtk_xhci_wakelock_lock(struct xhci_hcd_mtk *mtk)
+int mtk_xhci_wakelock_lock(struct xhci_hcd_mtk *mtk)
 {
 	struct device_node *of_node = mtk->dev->of_node;
 	struct xhci_hcd *xhci = hcd_to_xhci(mtk->hcd);
@@ -292,7 +292,7 @@ static int mtk_xhci_wakelock_lock(struct xhci_hcd_mtk *mtk)
 	return 0;
 }
 
-static int mtk_xhci_wakelock_unlock(struct xhci_hcd_mtk *mtk)
+int mtk_xhci_wakelock_unlock(struct xhci_hcd_mtk *mtk)
 {
 	struct device_node *of_node = mtk->dev->of_node;
 	struct xhci_hcd *xhci = hcd_to_xhci(mtk->hcd);

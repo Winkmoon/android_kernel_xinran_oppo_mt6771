@@ -4,6 +4,9 @@
 #include <linux/device.h>
 #include <linux/nls.h>
 #include <linux/usb/composite.h>
+#ifndef USB_MAX_STRING_WITH_NULL_LEN
+#define USB_MAX_STRING_WITH_NULL_LEN (USB_MAX_STRING_LEN + 1)
+#endif
 #include <linux/usb/gadget_configfs.h>
 #include "configfs.h"
 #include "u_f.h"

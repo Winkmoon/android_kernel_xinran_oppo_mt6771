@@ -3,8 +3,8 @@
  * Copyright (C) 2018-2020 Oplus. All rights reserved.
  */
 
-#ifndef __OPLUS_BATTERY_MTK6779_H__
-#define __OPLUS_BATTERY_MTK6779_H__
+#ifndef __OPLUS_BATTERY_MTK6779Q_H__
+#define __OPLUS_BATTERY_MTK6779Q_H__
 
 #include <linux/device.h>
 #include <linux/hrtimer.h>
@@ -60,11 +60,14 @@ typedef enum {
 	STEP_CHG_STATUS_INVALID
 } OPLUS_STEP_CHG_STATUS;
 
-#ifdef OPLUS_FEATURE_CHG_BASIC
+#if defined(OPLUS_FEATURE_CHG_BASIC) || defined(CONFIG_OPLUS_CHARGER_MTK6771)
 
+#ifndef MTK_PMIC_DEFINED
+#define MTK_PMIC_DEFINED
 struct mtk_pmic {
 	struct charger_manager* oplus_info;
 };
+#endif
 
 //extern int mt_power_supply_type_check(void);
 extern enum charger_type mt_get_charger_type(void);

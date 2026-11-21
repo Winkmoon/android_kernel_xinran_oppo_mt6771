@@ -60,6 +60,7 @@ static inline int current_is_kswapd(void)
  * When a page is migrated from CPU to device, we set the CPU page table entry
  * to a special SWP_DEVICE_* entry.
  */
+#define SWP_NANDSWAP (1 << 24)
 #ifdef CONFIG_DEVICE_PRIVATE
 #define SWP_DEVICE_NUM 2
 #define SWP_DEVICE_WRITE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM)

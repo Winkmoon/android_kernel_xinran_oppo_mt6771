@@ -720,6 +720,7 @@ struct sk_buff {
 #endif
 	#ifdef OPLUS_FEATURE_WIFI_LIMMITBGSPEED
 	struct nf_queue_entry   *nf_queue_entry;
+	void			*cb_next;
 	#endif /* OPLUS_FEATURE_WIFI_LIMMITBGSPEED */
 
 #if IS_ENABLED(CONFIG_BRIDGE_NETFILTER)

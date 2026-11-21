@@ -562,6 +562,10 @@ static bool mtk8250_dma_filter(struct dma_chan *chan, void *param)
 }
 #endif
 
+static struct pinctrl *serial_pinctrl = NULL;
+static struct pinctrl_state *rx_pinctrl_state_diable = NULL;
+static struct pinctrl_state *tx_pinctrl_state_diable = NULL;
+
 static int mtk8250_probe_of(struct platform_device *pdev, struct uart_port *p,
 			   struct mtk8250_data *data)
 {

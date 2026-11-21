@@ -140,6 +140,7 @@ static void udf_bitmap_free_blocks(struct super_block *sb,
 	unsigned long i;
 	int bitmap_nr;
 	unsigned long overflow;
+	struct udf_part_map *partmap;
 
 	mutex_lock(&sbi->s_alloc_mutex);
 	partmap = &sbi->s_partmaps[bloc->partitionReferenceNum];
@@ -378,6 +379,7 @@ static void udf_table_free_blocks(struct super_block *sb,
 	struct extent_position oepos, epos;
 	int8_t etype;
 	struct udf_inode_info *iinfo;
+	struct udf_part_map *partmap;
 
 	mutex_lock(&sbi->s_alloc_mutex);
 	partmap = &sbi->s_partmaps[bloc->partitionReferenceNum];

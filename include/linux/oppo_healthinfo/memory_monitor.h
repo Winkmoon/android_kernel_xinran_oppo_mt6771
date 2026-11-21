@@ -5,6 +5,9 @@
 #ifndef _MEMORY_MONITOR_H_
 #define _MEMORY_MONITOR_H_
 
+struct ion_wait_para;
+struct alloc_wait_para;
+
 extern void memory_alloc_monitor(gfp_t gfp_mask, unsigned int order, u64 wait_ms);
 extern struct alloc_wait_para allocwait_para;
 

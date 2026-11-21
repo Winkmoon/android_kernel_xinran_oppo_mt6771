@@ -314,13 +314,10 @@ static ssize_t mem_used_max_store(struct device *dev,
 	return len;
 }
 
-/*
- * Mark all pages which are older than or equal to cutoff as IDLE.
- * Callers should hold the zram init lock in read mode
- */
-static void mark_idle(struct zram *zram, ktime_t cutoff)
+static ssize_t idle_store(struct device *dev,
+		struct device_attribute *attr, const char *buf, size_t len)
 {
-	int is_idle = 1;
+	struct zram *zram = dev_to_zram(dev);
 	unsigned long nr_pages = zram->disksize >> PAGE_SHIFT;
 	int index, mark_nr = 0;
 
@@ -379,45 +376,10 @@ static ssize_t new_store(struct device *dev,
 		zram_clear_idle_count(zram, index);
 		zram_slot_unlock(zram, index);
 	}
-}
 
-static ssize_t idle_store(struct device *dev,
-		struct device_attribute *attr, const char *buf, size_t len)
-{
-	struct zram *zram = dev_to_zram(dev);
-	ktime_t cutoff_time = 0;
-	ssize_t rv = -EINVAL;
-
-	if (!sysfs_streq(buf, "all")) {
-		/*
-		 * If it did not parse as 'all' try to treat it as an integer
-		 * when we have memory tracking enabled.
-		 */
-		u64 age_sec;
-
-		if (IS_ENABLED(CONFIG_ZRAM_MEMORY_TRACKING) &&
-		    !kstrtoull(buf, 0, &age_sec))
-			cutoff_time = ktime_sub(ktime_get_boottime(),
-						ns_to_ktime(age_sec * NSEC_PER_SEC));
-		else
-			goto out;
-	}
-
-	down_read(&zram->init_lock);
-	if (!init_done(zram))
-		goto out_unlock;
-
-	/*
-	 * A cutoff_time of 0 marks everything as idle, this is the
-	 * "all" behavior.
-	 */
-	mark_idle(zram, cutoff_time);
-	rv = len;
-
-out_unlock:
 	up_read(&zram->init_lock);
-out:
-	return rv;
+
+	return len;
 }
 
 #if defined(CONFIG_ZRAM_WRITEBACK) || defined(CONFIG_RTMM)
@@ -842,7 +804,7 @@ static ssize_t writeback_store(struct device *dev,
 			  (!zram_test_flag(zram, index, ZRAM_IDLE) ||
 			   zram_get_idle_count(zram, index) < wb_idle_min))
 			goto next;
-		if (mode & HUGE_WRITEBACK &&
+		if (mode == HUGE_WRITEBACK &&
 			  !zram_test_flag(zram, index, ZRAM_HUGE))
 			goto next;
 		/*
@@ -1056,7 +1018,7 @@ static ssize_t read_block_state(struct file *file, char __user *buf,
 			zram_test_flag(zram, index, ZRAM_HUGE) ? 'h' : '.',
 			zram_test_flag(zram, index, ZRAM_IDLE) ? 'i' : '.');
 
-		if (count <= copied) {
+		if (count < copied) {
 			zram_slot_unlock(zram, index);
 			break;
 		}
@@ -1441,10 +1403,6 @@ static int __zram_bvec_read(struct zram *zram, struct page *page, u32 index,
 
 		zram_slot_unlock(zram, index);
 
-		/* A null bio means rw_page was used, we must fallback to bio */
-		if (!bio)
-			return -EOPNOTSUPP;
-
 		bvec.bv_page = page;
 		bvec.bv_len = PAGE_SIZE;
 		bvec.bv_offset = 0;
@@ -1587,11 +1545,7 @@ compress_again:
 		atomic64_inc(&zram->stats.writestall);
 		handle = zs_malloc(zram->mem_pool, comp_len,
 				GFP_NOIO | __GFP_HIGHMEM |
-#ifdef OPLUS_FEATURE_PERFORMANCE
-                __GFP_MOVABLE | GFP_ATOMIC);
-#else
 				__GFP_MOVABLE);
-#endif
 		if (handle)
 			goto compress_again;
 		return -ENOMEM;

@@ -93,6 +93,8 @@
 #include "charger_ic/oplus_battery_msm7250_Q.h"
 #elif defined CONFIG_OPLUS_SM7250R_CHARGER
 #include "charger_ic/oplus_battery_msm7250_R.h"
+#elif defined CONFIG_OPLUS_CHARGER_MTK6771
+#include "charger_ic/oplus_battery_mtk6779Q.h"
 #else /* CONFIG_OPLUS_MSM8953_CHARGER */
 #include "charger_ic/oplus_battery_msm8976.h"
 #endif /* CONFIG_OPLUS_MSM8953_CHARGER */
@@ -569,6 +571,13 @@ struct short_c_batt_data {
 	bool shortc_gpio_status;
 };
 
+#ifndef MTK_PMIC_DEFINED
+#define MTK_PMIC_DEFINED
+struct mtk_pmic {
+	struct charger_manager *oplus_info;
+};
+#endif
+
 struct oplus_chg_chip {
 	struct i2c_client *client;
 	struct device *dev;
@@ -583,7 +592,7 @@ struct oplus_chg_chip {
 #ifndef CONFIG_OPLUS_CHARGER_MTK
 	struct qcom_pmic pmic_spmi;
 #endif
-#ifdef CONFIG_OPLUS_CHARGER_MTK_CHGIC
+#if defined(CONFIG_OPLUS_CHARGER_MTK_CHGIC) || defined(CONFIG_OPLUS_CHARGER_MTK6771)
 	struct mtk_pmic chgic_mtk;
 #endif
 	struct power_supply	*batt_psy;

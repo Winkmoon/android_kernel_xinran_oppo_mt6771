@@ -103,6 +103,8 @@ void __init fdt_reserved_mem_save_node(unsigned long node, const char *uname,
  * res_mem_alloc_size() - allocate reserved memory described by 'size', 'align'
  *			  and 'alloc-ranges' properties
  */
+static u64 reserved_mem_size;
+
 static int __init __reserved_mem_alloc_size(unsigned long node,
 	const char *uname, phys_addr_t *res_base, phys_addr_t *res_size)
 {

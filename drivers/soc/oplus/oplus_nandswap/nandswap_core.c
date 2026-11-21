@@ -6,6 +6,7 @@
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 #include <linux/mm.h>
+#include <linux/pagewalk.h>
 #include <linux/sched/mm.h>
 #include <linux/module.h>
 #include <linux/gfp.h>
@@ -521,11 +522,12 @@ static void ns_state_check(int cur_adj, struct task_struct* task, int type)
 	return;
 }
 
+static const struct mm_walk_ops swapin_walk_ops = { .pmd_entry = swapin_walk_pmd_entry };
+
 static ssize_t swapin_anon(struct task_struct *task)
 {
 	struct mm_struct *mm;
 	struct vm_area_struct *vma;
-	struct mm_walk walk = {};
 	struct ns_task_struct *ntask = NULL;
 	int task_anon __maybe_unused = 0, task_swap __maybe_unused = 0, err = 0;
 
@@ -538,8 +540,6 @@ retry:
 	task_anon = get_mm_counter(mm, MM_ANONPAGES);
 	task_swap = get_mm_counter(mm, MM_SWAPENTS);
 
-	walk.mm = mm;
-	walk.pmd_entry = swapin_walk_pmd_entry;
 
 	down_read(&mm->mmap_sem);
 
@@ -557,8 +557,7 @@ retry:
 		if (vma->vm_flags & VM_LOCKED)
 			continue;
 
-		walk.private = vma;
-		err = walk_page_range(vma->vm_start, vma->vm_end, &walk);
+		err = walk_page_range(mm, vma->vm_start, vma->vm_end, &swapin_walk_ops, vma);
 		if (err == -1)
 			break;
 		vma->vm_flags |= VM_NANDSWAP;
@@ -728,11 +727,12 @@ cont:
 }
 
 /* get_task_struct before using this function */
+static const struct mm_walk_ops ns_reclaim_walk_ops = { .pmd_entry = ns_reclaim_pte };
+
 static ssize_t reclaim_anon(struct task_struct *task)
 {
 	struct mm_struct *mm;
 	struct vm_area_struct *vma;
-	struct mm_walk reclaim_walk = {};
 	struct ns_reclaim_param rp;
 	struct ns_task_struct *ntask = NULL;
 
@@ -777,9 +777,6 @@ static ssize_t reclaim_anon(struct task_struct *task)
 	rp.nr_scanned = 0;
 	rp.type = ntask->type;
 
-	reclaim_walk.mm = mm;
-	reclaim_walk.private = &rp;
-	reclaim_walk.pmd_entry = ns_reclaim_pte;
 
 	down_read(&mm->mmap_sem);
 	for (vma = mm->mmap; vma; vma = vma->vm_next) {
@@ -797,8 +794,7 @@ static ssize_t reclaim_anon(struct task_struct *task)
 			break;
 
 		rp.vma = vma;
-		walk_page_range(vma->vm_start, vma->vm_end,
-				&reclaim_walk);
+		walk_page_range(mm, vma->vm_start, vma->vm_end, &ns_reclaim_walk_ops, &rp);
 
 		vma->vm_flags &= ~VM_NANDSWAP;
 		if (!rp.nr_to_reclaim)
@@ -947,11 +943,12 @@ static int drop_swapcache_pte(pmd_t *pmd, unsigned long start,
 	return 0;
 }
 
+static const struct mm_walk_ops drop_swapcache_walk_ops = { .pmd_entry = drop_swapcache_pte };
+
 static bool drop_swapcache_task(struct task_struct *task)
 {
 	struct mm_struct *mm;
 	struct vm_area_struct *vma;
-	struct mm_walk reclaim_walk = {};
 	struct ns_reclaim_param rp;
 	struct ns_task_struct *ntask = NULL;
 	bool retry = false;
@@ -993,9 +990,6 @@ static bool drop_swapcache_task(struct task_struct *task)
 	rp.nr_reclaimed = 0;
 	rp.nr_scanned = 0;
 
-	reclaim_walk.mm = mm;
-	reclaim_walk.private = &rp;
-	reclaim_walk.pmd_entry = drop_swapcache_pte;
 
 	down_read(&mm->mmap_sem);
 	for (vma = mm->mmap; vma; vma = vma->vm_next) {
@@ -1012,7 +1006,7 @@ static bool drop_swapcache_task(struct task_struct *task)
 			break;
 
 		rp.vma = vma;
-		walk_page_range(vma->vm_start, vma->vm_end, &reclaim_walk);
+		walk_page_range(mm, vma->vm_start, vma->vm_end, &drop_swapcache_walk_ops, &rp);
 		if (!rp.nr_to_reclaim)
 			break;
 	}
@@ -1139,12 +1133,13 @@ static int swap_ratio_pte(pmd_t *pmd, unsigned long start,
 }
 
 /* get_task_struct before using this function */
+static const struct mm_walk_ops swap_ratio_walk_ops = { .pmd_entry = swap_ratio_pte };
+
 static unsigned long swap_ratio_task(struct task_struct *task, unsigned long type)
 {
 	struct mm_struct *mm;
 	struct vm_area_struct *vma;
 	struct ns_swap_ratio nsr = {};
-	struct mm_walk walk = {};
 
 	mm = get_task_mm(task);
 	if (!mm)
@@ -1154,9 +1149,6 @@ static unsigned long swap_ratio_task(struct task_struct *task, unsigned long typ
 	nsr.ram = 0;
 	nsr.type = type;
 
-	walk.mm = mm;
-	walk.pmd_entry = swap_ratio_pte;
-	walk.private = &nsr;
 
 	down_read(&mm->mmap_sem);
 	for (vma = mm->mmap; vma; vma = vma->vm_next) {
@@ -1171,7 +1163,7 @@ static unsigned long swap_ratio_task(struct task_struct *task, unsigned long typ
 			continue;
 
 		nsr.vma = vma;
-		walk_page_range(vma->vm_start, vma->vm_end, &walk);
+		walk_page_range(mm, vma->vm_start, vma->vm_end, &swap_ratio_walk_ops, &nsr);
 	}
 
 	flush_tlb_mm(mm);

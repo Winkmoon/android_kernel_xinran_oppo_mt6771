@@ -259,7 +259,7 @@ static ssize_t fingerprint_notify_trigger(struct device *dev,
 /*
 * add for lcd serial
 */
-int panel_serial_number_read(char cmd, int num)
+int oplus_panel_serial_number_read(char cmd, int num)
 {
         char para[20] = {0};
         char *panel_name;
@@ -346,7 +346,7 @@ static ssize_t oplus_get_panel_serial_number(struct device *dev,
                 struct device_attribute *attr, char *buf)
 {
         int ret = 0;
-        ret = panel_serial_number_read(PANEL_SERIAL_NUM_REG, PANEL_REG_READ_LEN);
+        ret = oplus_panel_serial_number_read(PANEL_SERIAL_NUM_REG, PANEL_REG_READ_LEN);
         if (ret <= 0)
                 return scnprintf(buf, PAGE_SIZE, "Get serial number failed: %d\n", ret);
         else

@@ -58,6 +58,11 @@
  *
  * (default: 6ms * (1 + ilog(ncpus)), units: nanoseconds)
  */
+#include <soc/oplus/oppo_healthinfo.h>
+extern u64 ux_task_load[];
+extern u64 ux_load_ts[];
+#define UX_LOAD_WINDOW 8000000
+
 unsigned int sysctl_sched_latency			= 6000000ULL;
 unsigned int normalized_sysctl_sched_latency		= 6000000ULL;
 

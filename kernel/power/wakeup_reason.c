@@ -296,13 +296,12 @@ static void print_wakeup_sources(void)
 		list_for_each_entry(n, &leaf_irqs, siblings)
 			pr_info("Resume caused by IRQ %d, %s\n", n->irq,
 				n->irq_name);
-	else if (wakeup_reason == RESUME_ABNORMAL)
+	else if (wakeup_reason == RESUME_ABNORMAL) {
 		pr_info("Resume caused by %s\n", non_irq_wake_reason);
 		#ifdef OPLUS_FEATURE_POWERINFO_STANDBY
 		wakeup_reasons_statics(non_irq_wake_reason, WS_CNT_WLAN|WS_CNT_ADSP|WS_CNT_MODEM|WS_CNT_POWERKEY|WS_CNT_SENSOR);
 		#endif /* OPLUS_FEATURE_POWERINFO_STANDBY */
-	}
-	else
+	} else
 		pr_info("Resume cause unknown\n");
 
 	spin_unlock_irqrestore(&wakeup_reason_lock, flags);

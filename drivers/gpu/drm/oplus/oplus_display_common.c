@@ -30,7 +30,7 @@ extern unsigned long esd_mode;
 extern struct drm_device* get_drm_device(void);
 extern int mtk_drm_setbacklight(struct drm_crtc *crtc, unsigned int level);
 extern int oplus_mtk_drm_sethbm(struct drm_crtc *crtc, unsigned int hbm_mode);
-extern int panel_serial_number_read(char cmd, int num);
+extern int oplus_panel_serial_number_read(char cmd, int num);
 extern int oplus_mtk_drm_setcabc(struct drm_crtc *crtc, unsigned int hbm_mode);
 
 enum {
@@ -124,7 +124,7 @@ int oplus_display_panel_get_serial_number(void *buf)
 {
 	struct panel_serial_number *p_snumber = buf;
 	int ret = 0;
-	ret = panel_serial_number_read(PANEL_SERIAL_NUM_REG, PANEL_REG_READ_LEN);
+	ret = oplus_panel_serial_number_read(PANEL_SERIAL_NUM_REG, PANEL_REG_READ_LEN);
 	if (ret <= 0) {
 		printk("%s read serial number fail\n", __func__);
 		return -1;

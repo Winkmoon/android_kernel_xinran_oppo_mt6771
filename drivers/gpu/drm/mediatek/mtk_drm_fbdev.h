@@ -26,12 +26,12 @@ struct tag_videolfb {
 int mtk_fbdev_init(struct drm_device *dev);
 void mtk_fbdev_fini(struct drm_device *dev);
 #else
-int mtk_fbdev_init(struct drm_device *dev)
+static inline int mtk_fbdev_init(struct drm_device *dev)
 {
 	return 0;
 }
 
-void mtk_fbdev_fini(struct drm_device *dev)
+static inline void mtk_fbdev_fini(struct drm_device *dev)
 {
 }
 #endif /* CONFIG_DRM_FBDEV_EMULATION */

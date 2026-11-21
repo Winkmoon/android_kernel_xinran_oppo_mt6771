@@ -100,6 +100,7 @@
 
 #define CREATE_TRACE_POINTS
 #include <trace/events/initcall.h>
+#include "../drivers/soc/oplus/system/oppo_phoenix/oppo_phoenix.h"
 
 static int kernel_init(void *);
 

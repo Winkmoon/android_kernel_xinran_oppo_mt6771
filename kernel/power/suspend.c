@@ -655,60 +655,6 @@ abort:
 	return -EAGAIN;
 }
 
-#if MTK_SOLUTION
-
-#define SYS_SYNC_TIMEOUT 2000
-
-static int sys_sync_ongoing;
-
-static void suspend_sys_sync(struct work_struct *work);
-static struct workqueue_struct *suspend_sys_sync_work_queue;
-DECLARE_WORK(suspend_sys_sync_work, suspend_sys_sync);
-
-static void suspend_sys_sync(struct work_struct *work)
-{
-	pr_debug("++\n");
-	sys_sync();
-	sys_sync_ongoing = 0;
-	pr_debug("--\n");
-}
-
-int suspend_syssync_enqueue(void)
-{
-	int timeout = 0;
-
-	if (suspend_sys_sync_work_queue == NULL) {
-		suspend_sys_sync_work_queue =
-			create_singlethread_workqueue("fs_suspend_syssync");
-		if (suspend_sys_sync_work_queue == NULL) {
-			pr_err("fs_suspend_syssync workqueue create failed\n");
-			return -EBUSY;
-		}
-	}
-
-	while (timeout < SYS_SYNC_TIMEOUT) {
-		if (!sys_sync_ongoing)
-			break;
-		msleep(100);
-		timeout += 100;
-	}
-
-	if (!sys_sync_ongoing) {
-		sys_sync_ongoing = 1;
-		queue_work(suspend_sys_sync_work_queue, &suspend_sys_sync_work);
-		while (timeout < SYS_SYNC_TIMEOUT) {
-			if (!sys_sync_ongoing)
-				return 0;
-			msleep(100);
-			timeout += 100;
-		}
-	}
-
-	return -EBUSY;
-}
-
-#endif
-
 /**
  * enter_state - Do common work needed to enter system sleep state.
  * @state: System sleep state to enter.
