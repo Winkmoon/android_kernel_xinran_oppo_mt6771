@@ -301,6 +301,11 @@ void css_task_iter_end(struct css_task_iter *it);
  * Inline functions.
  */
 
+static inline u64 cgroup_id(struct cgroup *cgrp)
+{
+	return cgrp->kn->id;
+}
+
 /**
  * css_get - obtain a reference on the specified css
  * @css: target css
@@ -421,6 +426,18 @@ static inline void cgroup_put(struct cgroup *cgrp)
 	css_put(&cgrp->self);
 }
 
+extern struct mutex cgroup_mutex;
+
+static inline void cgroup_lock(void)
+{
+	mutex_lock(&cgroup_mutex);
+}
+
+static inline void cgroup_unlock(void)
+{
+	mutex_unlock(&cgroup_mutex);
+}
+
 /**
  * task_css_set_check - obtain a task's css_set with extra access conditions
  * @task: the task to obtain css_set for
@@ -434,20 +451,7 @@ static inline void cgroup_put(struct cgroup *cgrp)
  * The caller can also specify additional allowed conditions via @__c, such
  * as locks used during the cgroup_subsys::attach() methods.
  */
-extern struct mutex cgroup_mutex;
-
-static inline void cgroup_lock(void)
-{
-	mutex_lock(&cgroup_mutex);
-}
-
-static inline void cgroup_unlock(void)
-{
-	mutex_unlock(&cgroup_mutex);
-}
-
 #ifdef CONFIG_PROVE_RCU
-extern struct mutex cgroup_mutex;
 extern spinlock_t css_set_lock;
 #define task_css_set_check(task, __c)					\
 	rcu_dereference_check((task)->cgroups,				\
@@ -574,7 +578,28 @@ static inline bool cgroup_is_descendant(struct cgroup *cgrp,
 {
 	if (cgrp->root != ancestor->root || cgrp->level < ancestor->level)
 		return false;
-	return cgrp->ancestor_ids[ancestor->level] == ancestor->id;
+	return cgrp->ancestor_ids[ancestor->level] == cgroup_id(ancestor);
+}
+
+/**
+ * cgroup_ancestor - find ancestor of cgroup
+ * @cgrp: cgroup to find ancestor of
+ * @ancestor_level: level of ancestor to find starting from root
+ *
+ * Find ancestor of cgroup at specified level starting from root if it exists
+ * and return pointer to it. Return NULL if @cgrp doesn't have ancestor at
+ * @ancestor_level.
+ *
+ * This function is safe to call as long as @cgrp is accessible.
+ */
+static inline struct cgroup *cgroup_ancestor(struct cgroup *cgrp,
+					     int ancestor_level)
+{
+	if (cgrp->level < ancestor_level)
+		return NULL;
+	while (cgrp && cgrp->level > ancestor_level)
+		cgrp = cgroup_parent(cgrp);
+	return cgrp;
 }
 
 /**
@@ -604,7 +629,7 @@ static inline bool cgroup_is_populated(struct cgroup *cgrp)
 /* returns ino associated with a cgroup */
 static inline ino_t cgroup_ino(struct cgroup *cgrp)
 {
-	return cgrp->kn->id.ino;
+	return kernfs_ino(cgrp->kn);
 }
 
 /* cft/css accessors for cftype->write() operation */
@@ -677,19 +702,17 @@ static inline void cgroup_kthread_ready(void)
 	current->no_cgroup_migration = 0;
 }
 
-static inline union kernfs_node_id *cgroup_get_kernfs_id(struct cgroup *cgrp)
-{
-	return &cgrp->kn->id;
-}
-
-void cgroup_path_from_kernfs_id(const union kernfs_node_id *id,
-					char *buf, size_t buflen);
+void cgroup_path_from_kernfs_id(u64 id, char *buf, size_t buflen);
 #else /* !CONFIG_CGROUPS */
 
 struct cgroup_subsys_state;
 struct cgroup;
 
+static inline u64 cgroup_id(struct cgroup *cgrp) { return 1; }
+static inline void css_get(struct cgroup_subsys_state *css) {}
 static inline void css_put(struct cgroup_subsys_state *css) {}
+static inline void cgroup_lock(void) {}
+static inline void cgroup_unlock(void) {}
 static inline int cgroup_attach_task_all(struct task_struct *from,
 					 struct task_struct *t) { return 0; }
 static inline int cgroupstats_build(struct cgroupstats *stats,
@@ -707,10 +730,6 @@ static inline int cgroup_init_early(void) { return 0; }
 static inline int cgroup_init(void) { return 0; }
 static inline void cgroup_init_kthreadd(void) {}
 static inline void cgroup_kthread_ready(void) {}
-static inline union kernfs_node_id *cgroup_get_kernfs_id(struct cgroup *cgrp)
-{
-	return NULL;
-}
 
 static inline struct cgroup *cgroup_parent(struct cgroup *cgrp)
 {
@@ -733,8 +752,8 @@ static inline bool task_under_cgroup_hierarchy(struct task_struct *task,
 	return true;
 }
 
-static inline void cgroup_path_from_kernfs_id(const union kernfs_node_id *id,
-	char *buf, size_t buflen) {}
+static inline void cgroup_path_from_kernfs_id(u64 id, char *buf, size_t buflen)
+{}
 #endif /* !CONFIG_CGROUPS */
 
 /*
@@ -824,5 +843,66 @@ static inline void put_cgroup_ns(struct cgroup_namespace *ns)
 	if (ns && refcount_dec_and_test(&ns->count))
 		free_cgroup_ns(ns);
 }
+
+#ifdef CONFIG_CGROUPS
+
+void cgroup_enter_frozen(void);
+void cgroup_leave_frozen(bool always_leave);
+void cgroup_update_frozen(struct cgroup *cgrp);
+void cgroup_freeze(struct cgroup *cgrp, bool freeze);
+void cgroup_freezer_migrate_task(struct task_struct *task, struct cgroup *src,
+				 struct cgroup *dst);
+void cgroup_freezer_frozen_exit(struct task_struct *task);
+static inline bool cgroup_task_freeze(struct task_struct *task)
+{
+	bool ret;
+
+	if (task->flags & PF_KTHREAD)
+		return false;
+
+	rcu_read_lock();
+	ret = test_bit(CGRP_FREEZE, &task_dfl_cgroup(task)->flags);
+	rcu_read_unlock();
+
+	return ret;
+}
+
+static inline bool cgroup_task_frozen(struct task_struct *task)
+{
+	return task->frozen;
+}
+
+#else /* !CONFIG_CGROUPS */
+
+static inline void cgroup_enter_frozen(void) { }
+static inline void cgroup_leave_frozen(bool always_leave) { }
+static inline bool cgroup_task_freeze(struct task_struct *task)
+{
+	return false;
+}
+static inline bool cgroup_task_frozen(struct task_struct *task)
+{
+	return false;
+}
+
+#endif /* !CONFIG_CGROUPS */
+
+#ifdef CONFIG_CGROUP_BPF
+static inline void cgroup_bpf_get(struct cgroup *cgrp)
+{
+	percpu_ref_get(&cgrp->bpf.refcnt);
+}
+
+static inline void cgroup_bpf_put(struct cgroup *cgrp)
+{
+	percpu_ref_put(&cgrp->bpf.refcnt);
+}
+
+#else /* CONFIG_CGROUP_BPF */
+
+static inline void cgroup_bpf_get(struct cgroup *cgrp) {}
+static inline void cgroup_bpf_put(struct cgroup *cgrp) {}
+
+#endif /* CONFIG_CGROUP_BPF */
 
 #endif /* _LINUX_CGROUP_H */
