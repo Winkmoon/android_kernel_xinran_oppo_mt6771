@@ -40,6 +40,12 @@
 #define U32_MIN            ((u32)0)
 #define S32_MAX		((s32)(U32_MAX>>1))
 #define S32_MIN		((s32)(-S32_MAX - 1))
+#ifndef sizeof_field
+#define sizeof_field(TYPE, MEMBER) sizeof((((TYPE *)0)->MEMBER))
+#endif
+#ifndef static_assert
+#define static_assert(expr, ...) _Static_assert(expr, #__VA_ARGS__)
+#endif
 #define U64_MAX		((u64)~0ULL)
 #define S64_MAX		((s64)(U64_MAX>>1))
 #define S64_MIN		((s64)(-S64_MAX - 1))

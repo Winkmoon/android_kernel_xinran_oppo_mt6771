@@ -1895,7 +1895,7 @@ static inline void dst_negative_advice(struct sock *sk)
 	sk_rethink_txhash(sk);
 
 	if (dst && dst->ops->negative_advice)
-		dst->ops->negative_advice(dst);
+		dst->ops->negative_advice(sk, dst);
 }
 
 static inline void

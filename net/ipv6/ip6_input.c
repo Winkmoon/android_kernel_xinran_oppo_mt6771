@@ -49,9 +49,7 @@
 
 void udp_v6_early_demux(struct sk_buff *);
 void tcp_v6_early_demux(struct sk_buff *);
-
-static void ip6_rcv_finish_core(struct net *net, struct sock *sk,
-				struct sk_buff *skb)
+static void ip6_rcv_finish_core(struct net *net, struct sock *sk, struct sk_buff *skb)
 {
 	if (READ_ONCE(net->ipv4.sysctl_ip_early_demux) &&
 	    !skb_dst(skb) && !skb->sk) {
@@ -258,7 +256,8 @@ static struct sk_buff *ip6_rcv_core(struct sk_buff *skb, struct net_device *dev,
 	rcu_read_unlock();
 
 	/* Must drop socket now because of tproxy. */
-	skb_orphan(skb);
+	if (!skb_sk_is_prefetched(skb))
+		skb_orphan(skb);
 
 	return skb;
 err:
@@ -448,7 +447,7 @@ int ip6_mc_input(struct sk_buff *skb)
 	bool deliver;
 
 	__IP6_UPD_PO_STATS(dev_net(skb_dst(skb)->dev),
-			 ip6_dst_idev(skb_dst(skb)), IPSTATS_MIB_INMCAST,
+			 __in6_dev_get_safely(skb->dev), IPSTATS_MIB_INMCAST,
 			 skb->len);
 
 	hdr = ipv6_hdr(skb);

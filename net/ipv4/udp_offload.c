@@ -401,12 +401,14 @@ struct sk_buff *udp_gro_receive(struct list_head *head, struct sk_buff *skb,
 	unsigned int off = skb_gro_offset(skb);
 	int flush = 1;
 	struct sock *sk_gro;
-	struct udphdr *uh_gro = udp_gro_udphdr(skb);
+
+	if (unlikely(!uh))
+		goto out;
 
 	if (!NAPI_GRO_CB(skb)->is_ipv6)
-		sk_gro = udp4_lib_lookup_skb(skb, uh_gro->source, uh_gro->dest);
+		sk_gro = udp4_lib_lookup_skb(skb, uh->source, uh->dest);
 	else
-		sk_gro = udp6_lib_lookup_skb(skb, uh_gro->source, uh_gro->dest);
+		sk_gro = udp6_lib_lookup_skb(skb, uh->source, uh->dest);
 
 	if (sk_gro && (udp_sk(sk_gro)->gro_disabled == UDP_GRO_DISABLED))
 		goto out;

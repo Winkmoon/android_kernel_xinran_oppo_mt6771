@@ -44,6 +44,7 @@
 #include <linux/mm.h>
 #include <net/tcp.h>
 #include <linux/inet_diag.h>
+#include "tcp_dctcp.h"
 
 #define DCTCP_MAX_ALPHA	1024U
 
@@ -59,7 +60,18 @@ struct dctcp {
 };
 
 static unsigned int dctcp_shift_g __read_mostly = 4; /* g = 1/2^4 */
-module_param(dctcp_shift_g, uint, 0644);
+
+static int dctcp_shift_g_set(const char *val, const struct kernel_param *kp)
+{
+	return param_set_uint_minmax(val, kp, 0, 10);
+}
+
+static const struct kernel_param_ops dctcp_shift_g_ops = {
+	.set = dctcp_shift_g_set,
+	.get = param_get_uint,
+};
+
+module_param_cb(dctcp_shift_g, &dctcp_shift_g_ops, &dctcp_shift_g, 0644);
 MODULE_PARM_DESC(dctcp_shift_g, "parameter g for updating dctcp_alpha");
 
 static unsigned int dctcp_alpha_on_init __read_mostly = DCTCP_MAX_ALPHA;
@@ -227,12 +239,12 @@ static void dctcp_state(struct sock *sk, u8 new_state)
 
 static void dctcp_cwnd_event(struct sock *sk, enum tcp_ca_event ev)
 {
+	struct dctcp *ca = inet_csk_ca(sk);
+
 	switch (ev) {
 	case CA_EVENT_ECN_IS_CE:
-		dctcp_ce_state_0_to_1(sk);
-		break;
 	case CA_EVENT_ECN_NO_CE:
-		dctcp_ce_state_1_to_0(sk);
+		dctcp_ece_ack_update(sk, ev, &ca->prior_rcv_nxt, &ca->ce_state);
 		break;
 	case CA_EVENT_LOSS:
 		dctcp_react_to_loss(sk);

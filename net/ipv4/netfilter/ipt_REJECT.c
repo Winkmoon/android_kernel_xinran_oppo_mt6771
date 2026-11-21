@@ -30,11 +30,6 @@ MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Netfilter Core Team <coreteam@netfilter.org>");
 MODULE_DESCRIPTION("Xtables: packet \"rejection\" target for IPv4");
 
-//#ifdef OPLUS_FEATURE_WIFI_SLA
-void (*mark_streams_for_iptables_reject)(struct sk_buff *skb,enum ipt_reject_with reject_type) = NULL;
-EXPORT_SYMBOL(mark_streams_for_iptables_reject);
-//#endif /* OPLUS_FEATURE_WIFI_SLA */
-
 static unsigned int
 reject_tg(struct sk_buff *skb, const struct xt_action_param *par)
 {
@@ -69,11 +64,6 @@ reject_tg(struct sk_buff *skb, const struct xt_action_param *par)
 		/* Doesn't happen. */
 		break;
 	}
-	//#ifdef OPLUS_FEATURE_WIFI_SLA
-	if (mark_streams_for_iptables_reject) {
-		mark_streams_for_iptables_reject(skb,reject->with);
-	}
-	//#endif /* OPLUS_FEATURE_WIFI_SLA */
 
 	return NF_DROP;
 }
@@ -84,13 +74,13 @@ static int reject_tg_check(const struct xt_tgchk_param *par)
 	const struct ipt_entry *e = par->entryinfo;
 
 	if (rejinfo->with == IPT_ICMP_ECHOREPLY) {
-		pr_info("ECHOREPLY no longer supported.\n");
+		pr_info_ratelimited("ECHOREPLY no longer supported.\n");
 		return -EINVAL;
 	} else if (rejinfo->with == IPT_TCP_RESET) {
 		/* Must specify that it's a TCP packet */
 		if (e->ip.proto != IPPROTO_TCP ||
 		    (e->ip.invflags & XT_INV_PROTO)) {
-			pr_info("TCP_RESET invalid for non-tcp\n");
+			pr_info_ratelimited("TCP_RESET invalid for non-tcp\n");
 			return -EINVAL;
 		}
 	}

@@ -109,25 +109,10 @@ int sch_direct_xmit(struct sk_buff *skb, struct Qdisc *q,
 
 void __qdisc_run(struct Qdisc *q);
 
-#ifdef OPLUS_FEATURE_WIFI_LIMMITBGSPEED
-struct sk_buff *qdisc_dequeue_skb(struct Qdisc *q, bool *validate);
-#endif /* OPLUS_FEATURE_WIFI_LIMMITBGSPEED */
-
 static inline void qdisc_run(struct Qdisc *q)
 {
 	if (qdisc_run_begin(q))
 		__qdisc_run(q);
-}
-
-static inline __be16 tc_skb_protocol(const struct sk_buff *skb)
-{
-	/* We need to take extra care in case the skb came via
-	 * vlan accelerated path. In that case, use skb->vlan_proto
-	 * as the original vlan header was already stripped.
-	 */
-	if (skb_vlan_tag_present(skb))
-		return skb->vlan_proto;
-	return skb->protocol;
 }
 
 extern const struct nla_policy rtm_tca_policy[TCA_MAX + 1];

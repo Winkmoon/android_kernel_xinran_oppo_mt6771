@@ -82,62 +82,6 @@ static struct kmem_cache *skbuff_fclone_cache __read_mostly;
 int sysctl_max_skb_frags __read_mostly = MAX_SKB_FRAGS;
 EXPORT_SYMBOL(sysctl_max_skb_frags);
 
-#ifdef OPLUS_FEATURE_WIFI_LIMMITBGSPEED
-static struct kmem_cache *skbuff_cb_store_cache __read_mostly;
-
-/* Control buffer save/restore for IMQ devices */
-struct skb_cb_table {
-	char			cb[48] __aligned(8);
-	void			*cb_next;
-	atomic_t		refcnt;
-};
-
-
-int skb_save_cb(struct sk_buff *skb)
-{
-	struct skb_cb_table *next;
-
-	next = kmem_cache_alloc(skbuff_cb_store_cache, GFP_ATOMIC);
-	if (!next)
-		return -ENOMEM;
-
-	BUILD_BUG_ON(sizeof(skb->cb) != sizeof(next->cb));
-
-	memcpy(next->cb, skb->cb, sizeof(skb->cb));
-	next->cb_next = skb->cb_next;
-
-	skb->cb_next = next;
-	smp_wmb();
-
-	return 0;
-}
-EXPORT_SYMBOL(skb_save_cb);
-
-int skb_restore_cb(struct sk_buff *skb)
-{
-	struct skb_cb_table *next;
-
-	if (!skb->cb_next)
-		return 0;
-
-	next = skb->cb_next;
-
-	BUILD_BUG_ON(sizeof(skb->cb) != sizeof(next->cb));
-
-	memcpy(skb->cb, next->cb, sizeof(skb->cb));
-	skb->cb_next = next->cb_next;
-
-	smp_wmb();
-
-	kmem_cache_free(skbuff_cb_store_cache, next);
-
-	return 0;
-}
-EXPORT_SYMBOL(skb_restore_cb);
-
-#endif /* OPLUS_FEATURE_WIFI_LIMMITBGSPEED */
-
-
 /**
  *	skb_panic - private function for out-of-line support
  *	@skb:	buffer
@@ -309,6 +253,33 @@ nodata:
 }
 EXPORT_SYMBOL(__alloc_skb);
 
+/* Caller must provide SKB that is memset cleared */
+static struct sk_buff *__build_skb_around(struct sk_buff *skb,
+					  void *data, unsigned int frag_size)
+{
+	struct skb_shared_info *shinfo;
+	unsigned int size = frag_size ? : ksize(data);
+
+	size -= SKB_DATA_ALIGN(sizeof(struct skb_shared_info));
+
+	/* Assumes caller memset cleared SKB */
+	skb->truesize = SKB_TRUESIZE(size);
+	refcount_set(&skb->users, 1);
+	skb->head = data;
+	skb->data = data;
+	skb_reset_tail_pointer(skb);
+	skb->end = skb->tail + size;
+	skb->mac_header = (typeof(skb->mac_header))~0U;
+	skb->transport_header = (typeof(skb->transport_header))~0U;
+
+	/* make sure we initialize shinfo sequentially */
+	shinfo = skb_shinfo(skb);
+	memset(shinfo, 0, offsetof(struct skb_shared_info, dataref));
+	atomic_set(&shinfo->dataref, 1);
+
+	return skb;
+}
+
 /**
  * __build_skb - build a network buffer
  * @data: data buffer provided by caller
@@ -330,32 +301,15 @@ EXPORT_SYMBOL(__alloc_skb);
  */
 struct sk_buff *__build_skb(void *data, unsigned int frag_size)
 {
-	struct skb_shared_info *shinfo;
 	struct sk_buff *skb;
-	unsigned int size = frag_size ? : ksize(data);
 
 	skb = kmem_cache_alloc(skbuff_head_cache, GFP_ATOMIC);
-	if (!skb)
+	if (unlikely(!skb))
 		return NULL;
 
-	size -= SKB_DATA_ALIGN(sizeof(struct skb_shared_info));
-
 	memset(skb, 0, offsetof(struct sk_buff, tail));
-	skb->truesize = SKB_TRUESIZE(size);
-	refcount_set(&skb->users, 1);
-	skb->head = data;
-	skb->data = data;
-	skb_reset_tail_pointer(skb);
-	skb->end = skb->tail + size;
-	skb->mac_header = (typeof(skb->mac_header))~0U;
-	skb->transport_header = (typeof(skb->transport_header))~0U;
 
-	/* make sure we initialize shinfo sequentially */
-	shinfo = skb_shinfo(skb);
-	memset(shinfo, 0, offsetof(struct skb_shared_info, dataref));
-	atomic_set(&shinfo->dataref, 1);
-
-	return skb;
+	return __build_skb_around(skb, data, frag_size);
 }
 
 /* build_skb() is wrapper over __build_skb(), that specifically
@@ -375,6 +329,29 @@ struct sk_buff *build_skb(void *data, unsigned int frag_size)
 	return skb;
 }
 EXPORT_SYMBOL(build_skb);
+
+/**
+ * build_skb_around - build a network buffer around provided skb
+ * @skb: sk_buff provide by caller, must be memset cleared
+ * @data: data buffer provided by caller
+ * @frag_size: size of data, or 0 if head was kmalloced
+ */
+struct sk_buff *build_skb_around(struct sk_buff *skb,
+				 void *data, unsigned int frag_size)
+{
+	if (unlikely(!skb))
+		return NULL;
+
+	skb = __build_skb_around(skb, data, frag_size);
+
+	if (skb && frag_size) {
+		skb->head_frag = 1;
+		if (page_is_pfmemalloc(virt_to_head_page(data)))
+			skb->pfmemalloc = 1;
+	}
+	return skb;
+}
+EXPORT_SYMBOL(build_skb_around);
 
 #define NAPI_SKB_CACHE_SIZE	64
 
@@ -680,29 +657,6 @@ void skb_release_head_state(struct sk_buff *skb)
 		WARN_ON(in_irq());
 		skb->destructor(skb);
 	}
-	#ifdef OPLUS_FEATURE_WIFI_LIMMITBGSPEED
-	/*
-	 * This should not happen. When it does, avoid memleak by restoring
-	 * the chain of cb-backups.
-	 */
-	while (skb->cb_next != NULL) {
-		if (net_ratelimit())
-			pr_warn("IMQ: kfree_skb: skb->cb_next: %08x\n",
-				(unsigned int)(uintptr_t)skb->cb_next);
-
-		skb_restore_cb(skb);
-	}
-	/*
-	 * This should not happen either, nf_queue_entry is nullified in
-	 * imq_dev_xmit(). If we have non-NULL nf_queue_entry then we are
-	 * leaking entry pointers, maybe memory. We don't know if this is
-	 * pointer to already freed memory, or should this be freed.
-	 * If this happens we need to add refcounting, etc for nf_queue_entry.
-	 */
-	if (skb->nf_queue_entry && net_ratelimit())
-		pr_warn("%s\n", "IMQ: kfree_skb: skb->nf_queue_entry != NULL");
-	#endif /* OPLUS_FEATURE_WIFI_LIMMITBGSPEED */
-
 #if IS_ENABLED(CONFIG_NF_CONNTRACK)
 	nf_conntrack_put(skb_nfct(skb));
 #endif
@@ -892,12 +846,6 @@ static void __copy_skb_header(struct sk_buff *new, const struct sk_buff *old)
 	new->sp			= secpath_get(old->sp);
 #endif
 	__nf_copy(new, old, false);
-
-	#ifdef OPLUS_FEATURE_WIFI_LIMMITBGSPEED
-	new->cb_next = NULL;
-	/*skb_copy_stored_cb(new, old);*/
-	#endif /* OPLUS_FEATURE_WIFI_LIMMITBGSPEED */
-
 
 	/* Note : this field could be in headers_start/headers_end section
 	 * It is not yet because we do not want to have a 16 bit hole
@@ -1606,6 +1554,8 @@ int pskb_expand_head(struct sk_buff *skb, int nhead, int ntail,
 	skb->hdr_len  = 0;
 	skb->nohdr    = 0;
 	atomic_set(&skb_shinfo(skb)->dataref, 1);
+
+	skb_metadata_clear(skb);
 
 	/* It is not generally safe to change skb->truesize.
 	 * For the moment, we really care of rx path, or
@@ -3601,6 +3551,19 @@ void *skb_pull_rcsum(struct sk_buff *skb, unsigned int len)
 }
 EXPORT_SYMBOL_GPL(skb_pull_rcsum);
 
+static inline skb_frag_t skb_head_frag_to_page_desc(struct sk_buff *frag_skb)
+{
+	skb_frag_t head_frag;
+	struct page *page;
+
+	page = virt_to_head_page(frag_skb->head);
+	head_frag.page.p = page;
+	head_frag.page_offset = frag_skb->data -
+		(unsigned char *)page_address(page);
+	head_frag.size = skb_headlen(frag_skb);
+	return head_frag;
+}
+
 /**
  *	skb_segment - Perform protocol segmentation on skb.
  *	@head_skb: buffer to segment
@@ -3696,8 +3659,9 @@ struct sk_buff *skb_segment(struct sk_buff *head_skb,
 		/* GSO partial only requires that we trim off any excess that
 		 * doesn't fit into an MSS sized block, so take care of that
 		 * now.
+		 * Cap len to not accidentally hit GSO_BY_FRAGS.
 		 */
-		partial_segs = len / mss;
+		partial_segs = min(len, (unsigned int)(GSO_BY_FRAGS - 1)) / mss;
 		if (partial_segs > 1)
 			mss *= partial_segs;
 		else
@@ -3822,15 +3786,19 @@ normal:
 
 		while (pos < offset + len) {
 			if (i >= nfrags) {
-				BUG_ON(skb_headlen(list_skb));
-
 				i = 0;
 				nfrags = skb_shinfo(list_skb)->nr_frags;
 				frag = skb_shinfo(list_skb)->frags;
 				frag_skb = list_skb;
+				if (!skb_headlen(list_skb)) {
+					BUG_ON(!nfrags);
+				} else {
+					BUG_ON(!list_skb->head_frag);
 
-				BUG_ON(!nfrags);
-
+					/* to make room for head_frag. */
+					i--;
+					frag--;
+				}
 				list_skb = list_skb->next;
 			}
 
@@ -3848,7 +3816,7 @@ normal:
 			if (skb_zerocopy_clone(nskb, frag_skb, GFP_ATOMIC))
 				goto err;
 
-			*nskb_frag = *frag;
+			*nskb_frag = (i < 0) ? skb_head_frag_to_page_desc(frag_skb) : *frag;
 			__skb_frag_ref(nskb_frag);
 			size = skb_frag_size(nskb_frag);
 
@@ -4064,13 +4032,6 @@ void __init skb_init(void)
 						0,
 						SLAB_HWCACHE_ALIGN|SLAB_PANIC,
 						NULL);
-	#ifdef OPLUS_FEATURE_WIFI_LIMMITBGSPEED
-	skbuff_cb_store_cache = kmem_cache_create("skbuff_cb_store_cache",
-						  sizeof(struct skb_cb_table),
-						  0,
-						  SLAB_HWCACHE_ALIGN|SLAB_PANIC,
-						  NULL);
-	#endif /* OPLUS_FEATURE_WIFI_LIMMITBGSPEED */
 }
 
 static int

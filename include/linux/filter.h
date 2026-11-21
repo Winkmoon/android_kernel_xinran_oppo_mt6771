@@ -17,7 +17,6 @@
 #include <linux/sched.h>
 #include <linux/capability.h>
 #include <linux/cryptohash.h>
-#include <crypto/sha.h>
 #include <linux/set_memory.h>
 #include <linux/kallsyms.h>
 #include <linux/if_vlan.h>
@@ -715,11 +714,7 @@ static inline u8 *bpf_skb_cb(struct sk_buff *skb)
 	 * attached to sockets, we need to clear the bpf_skb_cb() area
 	 * to not leak previous contents to user space.
 	 */
-	/*
-	 * The static asserts comparing __sk_buff.cb and qdisc_skb_cb.data
-	 * belong to the newer skb layout; this 4.14 tree keeps the old
-	 * qdisc callback layout, so skip them without changing the access.
-	 */
+
 	return qdisc_skb_cb(skb)->data;
 }
 

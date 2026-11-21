@@ -19,6 +19,7 @@ struct Qdisc_ops;
 struct qdisc_walker;
 struct tcf_walker;
 struct module;
+struct bpf_flow_keys;
 
 struct qdisc_rate_table {
 	struct tc_ratespec rate;
@@ -255,9 +256,11 @@ struct tcf_proto {
 };
 
 struct qdisc_skb_cb {
-	unsigned int		pkt_len;
-	u16			slave_dev_queue_mapping;
-	u16			tc_classid;
+	struct {
+		unsigned int		pkt_len;
+		u16			slave_dev_queue_mapping;
+		u16			tc_classid;
+	};
 #define QDISC_CB_PRIV_LEN 20
 	unsigned char		data[QDISC_CB_PRIV_LEN];
 };
@@ -570,15 +573,6 @@ static inline int qdisc_enqueue(struct sk_buff *skb, struct Qdisc *sch,
 	qdisc_calculate_pkt_len(skb, sch);
 	return sch->enqueue(skb, sch, to_free);
 }
-
-#ifdef OPLUS_FEATURE_WIFI_LIMMITBGSPEED
-static inline int qdisc_enqueue_root(struct sk_buff *skb, struct Qdisc *sch,
-				      struct sk_buff **to_free)
-{
-    qdisc_skb_cb(skb)->pkt_len = skb->len;
-    return qdisc_enqueue(skb, sch, to_free) & NET_XMIT_MASK;
-}
-#endif /* OPLUS_FEATURE_WIFI_LIMMITBGSPEED */
 
 static inline bool qdisc_is_percpu_stats(const struct Qdisc *q)
 {

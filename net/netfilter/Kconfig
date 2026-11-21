@@ -615,6 +615,15 @@ config NFT_FIB_INET
 	  The lookup will be delegated to the IPv4 or IPv6 FIB depending
 	  on the protocol of the packet.
 
+config NFT_SOCKET
+	tristate "Netfilter nf_tables socket match support"
+	depends on IPV6 || IPV6=n
+	select NF_SOCKET_IPV4
+	select NF_SOCKET_IPV6 if IPV6
+	help
+	  This option allows matching for the presence or absence of a
+	  corresponding socket and its attributes.
+
 if NF_TABLES_NETDEV
 
 config NF_DUP_NETDEV
@@ -865,20 +874,6 @@ config NETFILTER_XT_TARGET_LOG
 	  any iptables table which records the packet header to the syslog.
 
 	  To compile it as a module, choose M here.  If unsure, say N.
-
-#ifdef OPLUS_FEATURE_WIFI_LIMMITBGSPEED
-config NETFILTER_XT_TARGET_IMQ
-    tristate '"IMQ" target support'
-	depends on NETFILTER_XTABLES
-	depends on IP_NF_MANGLE || IP6_NF_MANGLE
-	select IMQ
-	default y
-        help
-          This option adds a `IMQ' target which is used to specify if and
-          to which imq device packets should get enqueued/dequeued.
-
-          To compile it as a module, choose M here.  If unsure, say N.
-#endif /* OPLUS_FEATURE_WIFI_LIMMITBGSPEED */
 
 config NETFILTER_XT_TARGET_MARK
 	tristate '"MARK" target support'
@@ -1364,14 +1359,6 @@ config NETFILTER_XT_MATCH_OSF
 	  http://www.ioremap.net/projects/osf
 
 	  To compile it as a module, choose M here.  If unsure, say N.
-
-config NETFILTER_XT_MATCH_QTAGUID
-	bool '"quota, tag, owner" match and stats support'
-	depends on NETFILTER_XT_MATCH_SOCKET
-	depends on NETFILTER_XT_MATCH_OWNER=n
-	help
-	  This option replaces the `owner' match. In addition to matching
-	  on uid, it keeps stats based on a tag assigned to a socket.
 
 config NETFILTER_XT_MATCH_OWNER
 	tristate '"owner" match support'
