@@ -924,7 +924,7 @@ static void __pagevec_lru_add_fn(struct page *page, struct lruvec *lruvec,
 	SetPageLRU(page);
 	add_page_to_lru_list(page, lruvec);
 	update_page_reclaim_stat(lruvec, file, active);
-	trace_mm_lru_insertion(page, page_lru(page));
+	trace_mm_lru_insertion(page);
 }
 
 /*
@@ -1053,7 +1053,4 @@ void __init swap_setup(void)
 	 * Right now other parts of the system means that we
 	 * _really_ don't want to cluster much more
 	 */
-#if defined(OPLUS_FEATURE_ZRAM_OPT) && defined(CONFIG_OPLUS_ZRAM_OPT)
-	page_cluster = 0;
-#endif /*OPLUS_FEATURE_ZRAM_OPT*/
 }

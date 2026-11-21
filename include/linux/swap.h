@@ -14,11 +14,6 @@
 #include <linux/page-flags.h>
 #include <asm/page.h>
 
-#if defined(CONFIG_NANDSWAP)
-#include <../drivers/soc/oplus/oplus_nandswap/nandswap.h>
-#define SWAP_NANDSWAP_PRIO	2020	/* just a magic number */
-#endif
-
 struct notifier_block;
 
 struct bio;
@@ -181,12 +176,7 @@ enum {
 	SWP_PAGE_DISCARD = (1 << 9),	/* freed swap page-cluster discards */
 	SWP_STABLE_WRITES = (1 << 10),	/* no overwrite PG_writeback pages */
 					/* add others here before... */
-#if defined(CONFIG_NANDSWAP)
-	SWP_NANDSWAP	= (1 << 11),	/* mark the device used for nandswap */
-	SWP_SCANNING	= (1 << 12),	/* refcount in scan_swap_map */
-#else
 	SWP_SCANNING	= (1 << 11),	/* refcount in scan_swap_map */
-#endif
 };
 
 #define SWAP_CLUSTER_MAX 32UL
@@ -423,9 +413,12 @@ extern unsigned long total_swapcache_pages(void);
 extern void show_swap_cache_info(void);
 extern int add_to_swap(struct page *page);
 extern int add_to_swap_cache(struct page *, swp_entry_t, gfp_t);
-extern int __add_to_swap_cache(struct page *page, swp_entry_t entry, void **shadowp);
+extern int __add_to_swap_cache(struct page *page, swp_entry_t entry,
+			void **shadowp);
 extern void __delete_from_swap_cache(struct page *page, void *shadow);
 extern void delete_from_swap_cache(struct page *);
+extern void clear_shadow_from_swap_cache(int type, unsigned long begin,
+				unsigned long end);
 extern void free_page_and_swap_cache(struct page *);
 extern void free_pages_and_swap_cache(struct page **, int);
 extern struct page *lookup_swap_cache(swp_entry_t entry,
@@ -451,9 +444,6 @@ extern atomic_long_t nr_swap_pages;
 extern long total_swap_pages;
 extern atomic_t nr_rotate_swap;
 extern bool has_usable_swap(void);
-#if defined(CONFIG_NANDSWAP)
-extern struct swap_info_struct *nandswap_si;
-#endif
 
 static inline bool swap_use_vma_readahead(void)
 {
@@ -463,22 +453,11 @@ static inline bool swap_use_vma_readahead(void)
 /* Swap 50% full? Release swapcache more aggressively.. */
 static inline bool vm_swap_full(void)
 {
-#if defined(CONFIG_NANDSWAP)
-	if (nandswap_si)
-		return (atomic_long_read(&nr_swap_pages) -
-			(nandswap_si->pages - nandswap_si->inuse_pages)) * 2
-			< (total_swap_pages - nandswap_si->pages);
-#endif
 	return atomic_long_read(&nr_swap_pages) * 2 < total_swap_pages;
 }
 
 static inline long get_nr_swap_pages(void)
 {
-#if defined(CONFIG_NANDSWAP)
-	if (nandswap_si)
-		return atomic_long_read(&nr_swap_pages) -
-			(nandswap_si->pages - nandswap_si->inuse_pages);
-#endif
 	return atomic_long_read(&nr_swap_pages);
 }
 
@@ -606,6 +585,11 @@ static inline void __delete_from_swap_cache(struct page *page, void *shadow)
 }
 
 static inline void delete_from_swap_cache(struct page *page)
+{
+}
+
+static inline void clear_shadow_from_swap_cache(int type, unsigned long begin,
+				unsigned long end)
 {
 }
 
