@@ -5088,6 +5088,12 @@ static struct cgroup_subsys_state *css_create(struct cgroup *cgrp,
 	if (IS_ERR(css))
 		return css;
 
+	if (!virt_addr_valid(css)) {
+		pr_err("cgroup: %s css_alloc returned invalid %px (parent %px)\n",
+		       ss->name, css, parent_css);
+		return ERR_PTR(-EINVAL);
+	}
+
 	init_and_link_css(css, ss, cgrp);
 
 	err = percpu_ref_init(&css->refcnt, css_release, 0, GFP_KERNEL);
