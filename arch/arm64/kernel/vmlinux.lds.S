@@ -173,9 +173,6 @@ SECTIONS
 	.init.data : {
 		INIT_DATA
 		INIT_SETUP(16)
-		__start_lsm_info = .;
-		KEEP(*(.lsm_info.init))
-		__end_lsm_info = .;
 		INIT_CALLS
 		CON_INITCALL
 		SECURITY_INITCALL
