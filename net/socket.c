@@ -108,9 +108,6 @@
 #include <linux/atalk.h>
 #include <net/busy_poll.h>
 #include <linux/errqueue.h>
-//#ifdef OPLUS_FEATURE_NWPOWER_NETCONTROLLER
-#include <net/oplus_nwpower.h>
-//#endif /* OPLUS_FEATURE_NWPOWER_NETCONTROLLER */
 
 #ifdef CONFIG_NET_RX_BUSY_POLL
 unsigned int sysctl_net_busy_read __read_mostly;
@@ -428,13 +425,6 @@ struct file *sock_alloc_file(struct socket *sock, int flags, const char *dname)
 	sock->file = file;
 	file->f_flags = O_RDWR | (flags & O_NONBLOCK);
 	file->private_data = sock;
-
-	//#ifdef OPLUS_FEATURE_NWPOWER
-	if (sock->sk) {
-		sock->sk->sk_oplus_pid = current->tgid;
-	}
-	//#endif /* OPLUS_FEATURE_NWPOWER */
-
 	return file;
 }
 EXPORT_SYMBOL(sock_alloc_file);
@@ -1657,11 +1647,6 @@ SYSCALL_DEFINE3(connect, int, fd, struct sockaddr __user *, uservaddr,
 	if (err < 0)
 		goto out_put;
 
-	//#ifdef OPLUS_FEATURE_NWPOWER_NETCONTROLLER
-	if(oplus_check_socket_in_blacklist(OPLUS_NET_OUTPUT, sock))
-		return -EACCES;
-	//#endif /* OPLUS_FEATURE_NWPOWER_NETCONTROLLER */
-
 	err =
 	    security_socket_connect(sock, (struct sockaddr *)&address, addrlen);
 	if (err)
@@ -1761,11 +1746,6 @@ SYSCALL_DEFINE6(sendto, int, fd, void __user *, buff, size_t, len,
 	if (!sock)
 		goto out;
 
-	//#ifdef OPLUS_FEATURE_NWPOWER_NETCONTROLLER
-	if(oplus_check_socket_in_blacklist(OPLUS_NET_OUTPUT, sock))
-		return -EACCES;
-	//#endif /* OPLUS_FEATURE_NWPOWER_NETCONTROLLER */
-
 	msg.msg_name = NULL;
 	msg.msg_control = NULL;
 	msg.msg_controllen = 0;
@@ -1822,11 +1802,6 @@ SYSCALL_DEFINE6(recvfrom, int, fd, void __user *, ubuf, size_t, size,
 	if (!sock)
 		goto out;
 
-	//#ifdef OPLUS_FEATURE_NWPOWER_NETCONTROLLER
-	if(oplus_check_socket_in_blacklist(OPLUS_NET_INPUT, sock))
-		return err;
-	//#endif /* OPLUS_FEATURE_NWPOWER_NETCONTROLLER */
-
 	msg.msg_control = NULL;
 	msg.msg_controllen = 0;
 	/* Save some cycles and don't copy the address if not needed */
@@ -1866,9 +1841,11 @@ SYSCALL_DEFINE4(recv, int, fd, void __user *, ubuf, size_t, size,
  *	to pass the user mode parameter for the protocols to sort out.
  */
 
-SYSCALL_DEFINE5(setsockopt, int, fd, int, level, int, optname,
-		char __user *, optval, int, optlen)
+static int __sys_setsockopt(int fd, int level, int optname,
+			    char __user *optval, int optlen)
 {
+	mm_segment_t oldfs = get_fs();
+	char *kernel_optval = NULL;
 	int err, fput_needed;
 	struct socket *sock;
 
@@ -1881,6 +1858,22 @@ SYSCALL_DEFINE5(setsockopt, int, fd, int, level, int, optname,
 		if (err)
 			goto out_put;
 
+		err = BPF_CGROUP_RUN_PROG_SETSOCKOPT(sock->sk, &level,
+						     &optname, optval, &optlen,
+						     &kernel_optval);
+
+		if (err < 0) {
+			goto out_put;
+		} else if (err > 0) {
+			err = 0;
+			goto out_put;
+		}
+
+		if (kernel_optval) {
+			set_fs(KERNEL_DS);
+			optval = (char __user __force *)kernel_optval;
+		}
+
 		if (level == SOL_SOCKET)
 			err =
 			    sock_setsockopt(sock, level, optname, optval,
@@ -1889,10 +1882,21 @@ SYSCALL_DEFINE5(setsockopt, int, fd, int, level, int, optname,
 			err =
 			    sock->ops->setsockopt(sock, level, optname, optval,
 						  optlen);
+
+		if (kernel_optval) {
+			set_fs(oldfs);
+			kfree(kernel_optval);
+		}
 out_put:
 		fput_light(sock->file, fput_needed);
 	}
 	return err;
+}
+
+SYSCALL_DEFINE5(setsockopt, int, fd, int, level, int, optname,
+		char __user *, optval, int, optlen)
+{
+	return __sys_setsockopt(fd, level, optname, optval, optlen);
 }
 
 /*
@@ -1900,17 +1904,20 @@ out_put:
  *	to pass a user mode parameter for the protocols to sort out.
  */
 
-SYSCALL_DEFINE5(getsockopt, int, fd, int, level, int, optname,
-		char __user *, optval, int __user *, optlen)
+static int __sys_getsockopt(int fd, int level, int optname,
+			    char __user *optval, int __user *optlen)
 {
 	int err, fput_needed;
 	struct socket *sock;
+	int max_optlen;
 
 	sock = sockfd_lookup_light(fd, &err, &fput_needed);
 	if (sock != NULL) {
 		err = security_socket_getsockopt(sock, level, optname);
 		if (err)
 			goto out_put;
+
+		max_optlen = BPF_CGROUP_GETSOCKOPT_MAX_OPTLEN(optlen);
 
 		if (level == SOL_SOCKET)
 			err =
@@ -1920,10 +1927,20 @@ SYSCALL_DEFINE5(getsockopt, int, fd, int, level, int, optname,
 			err =
 			    sock->ops->getsockopt(sock, level, optname, optval,
 						  optlen);
+
+		err = BPF_CGROUP_RUN_PROG_GETSOCKOPT(sock->sk, level, optname,
+						     optval, optlen,
+						     max_optlen, err);
 out_put:
 		fput_light(sock->file, fput_needed);
 	}
 	return err;
+}
+
+SYSCALL_DEFINE5(getsockopt, int, fd, int, level, int, optname,
+		char __user *, optval, int __user *, optlen)
+{
+	return __sys_getsockopt(fd, level, optname, optval, optlen);
 }
 
 /*
@@ -2097,14 +2114,8 @@ static int ___sys_sendmsg(struct socket *sock, struct user_msghdr __user *msg,
 	}
 
 out_freectl:
-	if (ctl_buf != ctl){
-#ifdef CONFIG_OPLUS_SECURE_GUARD
-#ifdef CONFIG_OPLUS_ROOT_CHECK
-		memset(ctl_buf, 0, ctl_len);
-#endif /* CONFIG_OPLUS_ROOT_CHECK */
-#endif /* CONFIG_OPLUS_SECURE_GUARD */
+	if (ctl_buf != ctl)
 		sock_kfree_s(sock->sk, ctl_buf, ctl_len);
-	}
 out_freeiov:
 	kfree(iov);
 	return err;
@@ -2123,11 +2134,6 @@ long __sys_sendmsg(int fd, struct user_msghdr __user *msg, unsigned flags)
 	sock = sockfd_lookup_light(fd, &err, &fput_needed);
 	if (!sock)
 		goto out;
-
-	//#ifdef OPLUS_FEATURE_NWPOWER_NETCONTROLLER
-	if(oplus_check_socket_in_blacklist(OPLUS_NET_OUTPUT, sock))
-		return -EACCES;
-	//#endif /* OPLUS_FEATURE_NWPOWER_NETCONTROLLER */
 
 	err = ___sys_sendmsg(sock, msg, &msg_sys, flags, NULL, 0);
 
@@ -2166,11 +2172,6 @@ int __sys_sendmmsg(int fd, struct mmsghdr __user *mmsg, unsigned int vlen,
 	sock = sockfd_lookup_light(fd, &err, &fput_needed);
 	if (!sock)
 		return err;
-
-	//#ifdef OPLUS_FEATURE_NWPOWER_NETCONTROLLER
-	if(oplus_check_socket_in_blacklist(OPLUS_NET_OUTPUT, sock))
-		return -EACCES;
-	//#endif /* OPLUS_FEATURE_NWPOWER_NETCONTROLLER */
 
 	used_address.name_len = UINT_MAX;
 	entry = mmsg;
@@ -2304,11 +2305,6 @@ long __sys_recvmsg(int fd, struct user_msghdr __user *msg, unsigned flags)
 	if (!sock)
 		goto out;
 
-	//#ifdef OPLUS_FEATURE_NWPOWER_NETCONTROLLER
-	if(oplus_check_socket_in_blacklist(OPLUS_NET_INPUT, sock))
-		return err;
-	//#endif /* OPLUS_FEATURE_NWPOWER_NETCONTROLLER */
-
 	err = ___sys_recvmsg(sock, msg, &msg_sys, flags, 0);
 
 	fput_light(sock->file, fput_needed);
@@ -2355,11 +2351,6 @@ int __sys_recvmmsg(int fd, struct mmsghdr __user *mmsg, unsigned int vlen,
 		datagrams = err;
 		goto out_put;
 	}
-
-	//#ifdef OPLUS_FEATURE_NWPOWER_NETCONTROLLER
-	if(oplus_check_socket_in_blacklist(OPLUS_NET_INPUT, sock))
-		return err;
-	//#endif /* OPLUS_FEATURE_NWPOWER_NETCONTROLLER */
 
 	entry = mmsg;
 	compat_entry = (struct compat_mmsghdr __user *)mmsg;
@@ -2562,11 +2553,11 @@ SYSCALL_DEFINE2(socketcall, int, call, unsigned long __user *, args)
 		err = sys_shutdown(a0, a1);
 		break;
 	case SYS_SETSOCKOPT:
-		err = sys_setsockopt(a0, a1, a[2], (char __user *)a[3], a[4]);
+		err = __sys_setsockopt(a0, a1, a[2], (char __user *)a[3], a[4]);
 		break;
 	case SYS_GETSOCKOPT:
 		err =
-		    sys_getsockopt(a0, a1, a[2], (char __user *)a[3],
+		    __sys_getsockopt(a0, a1, a[2], (char __user *)a[3],
 				   (int __user *)a[4]);
 		break;
 	case SYS_SENDMSG:
@@ -2654,6 +2645,11 @@ void sock_unregister(int family)
 	pr_info("NET: Unregistered protocol family %d\n", family);
 }
 EXPORT_SYMBOL(sock_unregister);
+
+bool sock_is_registered(int family)
+{
+	return family < NPROTO && rcu_access_pointer(net_families[family]);
+}
 
 static int __init sock_init(void)
 {

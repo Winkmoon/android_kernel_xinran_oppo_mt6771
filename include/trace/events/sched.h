@@ -5,6 +5,7 @@
 #if !defined(_TRACE_SCHED_H) || defined(TRACE_HEADER_MULTI_READ)
 #define _TRACE_SCHED_H
 
+#include <linux/kthread.h>
 #include <linux/sched/numa_balancing.h>
 #include <linux/tracepoint.h>
 #include <linux/binfmts.h>
@@ -77,6 +78,88 @@ TRACE_EVENT(sched_kthread_stop_ret,
 static inline long __trace_sched_switch_state(bool preempt,
 						struct task_struct *p);
 #endif
+/**
+ * sched_kthread_work_queue_work - called when a work gets queued
+ * @worker:	pointer to the kthread_worker
+ * @work:	pointer to struct kthread_work
+ *
+ * This event occurs when a work is queued immediately or once a
+ * delayed work is actually queued (ie: once the delay has been
+ * reached).
+ */
+TRACE_EVENT(sched_kthread_work_queue_work,
+
+	TP_PROTO(struct kthread_worker *worker,
+		 struct kthread_work *work),
+
+	TP_ARGS(worker, work),
+
+	TP_STRUCT__entry(
+		__field( void *,	work	)
+		__field( void *,	function)
+		__field( void *,	worker)
+	),
+
+	TP_fast_assign(
+		__entry->work		= work;
+		__entry->function	= work->func;
+		__entry->worker		= worker;
+	),
+
+	TP_printk("work struct=%p function=%ps worker=%p",
+		  __entry->work, __entry->function, __entry->worker)
+);
+
+/**
+ * sched_kthread_work_execute_start - called immediately before the work callback
+ * @work:	pointer to struct kthread_work
+ *
+ * Allows to track kthread work execution.
+ */
+TRACE_EVENT(sched_kthread_work_execute_start,
+
+	TP_PROTO(struct kthread_work *work),
+
+	TP_ARGS(work),
+
+	TP_STRUCT__entry(
+		__field( void *,	work	)
+		__field( void *,	function)
+	),
+
+	TP_fast_assign(
+		__entry->work		= work;
+		__entry->function	= work->func;
+	),
+
+	TP_printk("work struct %p: function %ps", __entry->work, __entry->function)
+);
+
+/**
+ * sched_kthread_work_execute_end - called immediately after the work callback
+ * @work:	pointer to struct work_struct
+ * @function:   pointer to worker function
+ *
+ * Allows to track workqueue execution.
+ */
+TRACE_EVENT(sched_kthread_work_execute_end,
+
+	TP_PROTO(struct kthread_work *work, kthread_work_func_t function),
+
+	TP_ARGS(work, function),
+
+	TP_STRUCT__entry(
+		__field( void *,	work	)
+		__field( void *,	function)
+	),
+
+	TP_fast_assign(
+		__entry->work		= work;
+		__entry->function	= function;
+	),
+
+	TP_printk("work struct %p: function %ps", __entry->work, __entry->function)
+);
 
 /*
  * Tracepoint for waking up a task:
@@ -231,10 +314,10 @@ TRACE_EVENT(sched_switch,
 		__field(	pid_t,	next_pid			)
 		__field(	int,	next_prio			)
 #if defined(CONFIG_MTK_SCHED_TRACERS) && defined(CONFIG_CGROUPS)
-		__field(int,	prev_cgrp_id)
-		__field(int,	next_cgrp_id)
-		__field(int,	prev_st_cgrp_id)
-		__field(int,	next_st_cgrp_id)
+		__field(u64,	prev_cgrp_id)
+		__field(u64,	next_cgrp_id)
+		__field(u64,	prev_st_cgrp_id)
+		__field(u64,	next_st_cgrp_id)
 #endif
 	),
 
@@ -248,15 +331,15 @@ TRACE_EVENT(sched_switch,
 		__entry->next_prio	= next->prio;
 #if defined(CONFIG_MTK_SCHED_TRACERS) && defined(CONFIG_CGROUPS)
 #if defined(CONFIG_CPUSETS)
-		__entry->prev_cgrp_id	= prev->cgroups->subsys[0]->cgroup->id;
-		__entry->next_cgrp_id	= next->cgroups->subsys[0]->cgroup->id;
+		__entry->prev_cgrp_id	= prev->cgroups->subsys[0]->cgroup->kn->id;
+		__entry->next_cgrp_id	= next->cgroups->subsys[0]->cgroup->kn->id;
 #else
 		__entry->prev_cgrp_id	= 0;
 		__entry->next_cgrp_id	= 0;
 #endif
 #if defined(CONFIG_SCHED_TUNE)
-		__entry->prev_st_cgrp_id = prev->cgroups->subsys[3]->cgroup->id;
-		__entry->next_st_cgrp_id = next->cgroups->subsys[3]->cgroup->id;
+		__entry->prev_st_cgrp_id = prev->cgroups->subsys[3]->cgroup->kn->id;
+		__entry->next_st_cgrp_id = next->cgroups->subsys[3]->cgroup->kn->id;
 #else
 		__entry->prev_st_cgrp_id = 0;
 		__entry->next_st_cgrp_id = 0;
@@ -267,7 +350,7 @@ TRACE_EVENT(sched_switch,
 #ifdef CONFIG_MTK_SCHED_TRACERS
 	TP_printk(
 #if defined(CONFIG_CGROUPS)
-	"prev_comm=%s prev_pid=%d prev_prio=%d prev_state=%s%s ==> next_comm=%s next_pid=%d next_prio=%d%s%s prev->cgrp=%d next->cgrp=%d prev->st=%d next->st=%d",
+	"prev_comm=%s prev_pid=%d prev_prio=%d prev_state=%s%s ==> next_comm=%s next_pid=%d next_prio=%d%s%s prev->cgrp=%llu next->cgrp=%llu prev->st=%llu next->st=%llu",
 #else
 	"prev_comm=%s prev_pid=%d prev_prio=%d prev_state=%s%s ==> next_comm=%s next_pid=%d next_prio=%d%s%s",
 #endif
@@ -554,46 +637,6 @@ TRACE_EVENT(sched_util,
 	)
 );
 
-#ifdef VENDOR_EDIT
-TRACE_EVENT(iowait_task,
-
-	TP_PROTO(struct task_struct *t),
-
-	TP_ARGS(t),
-
-	TP_STRUCT__entry(
-		__array(	char,	comm,	TASK_COMM_LEN	)
-		__field(	pid_t,	pid			)
-	),
-
-	TP_fast_assign(
-		memcpy(__entry->comm, t->comm, TASK_COMM_LEN);
-		__entry->pid		= t->pid;
-	),
-
-	TP_printk("comm=%s pid=%d",
-		  __entry->comm, __entry->pid)
-);
-
-TRACE_EVENT(cpu_iowait_util,
-	TP_PROTO(unsigned int cpu, unsigned int iowait_boost),
-
-	TP_ARGS(cpu, iowait_boost),
-
-	TP_STRUCT__entry(
-		__field(unsigned int, cpu)
-		__field(unsigned int, iowait_boost)
-	),
-
-	TP_fast_assign(
-		__entry->cpu		= cpu;
-		__entry->iowait_boost	= iowait_boost;
-	),
-
-	TP_printk("cpu=%d iowait_boost=%u",
-		__entry->cpu, __entry->iowait_boost)
-);
-#endif
 /*
  * Tracepoint for accounting wait time (time the task is runnable
  * but not actually running due to scheduler contention).
@@ -1196,42 +1239,6 @@ TRACE_EVENT_CONDITION(sched_overutilized,
 	TP_printk("overutilized=%d sd_span=%s",
 		__entry->overutilized ? 1 : 0, __entry->cpulist)
 );
-
-#ifdef CONFIG_OPLUS_PREFER_SILVER
-TRACE_EVENT(sched_cpu_skip,
-
-	TP_PROTO(struct task_struct *p, bool sysctl_prefer_silver, bool is_ux_task, bool check_freq, bool check_task_util, bool check_cpu_util, int start_cpu),
-
-	TP_ARGS(p, sysctl_prefer_silver, is_ux_task, check_freq, check_task_util, check_cpu_util, start_cpu),
-
-	TP_STRUCT__entry(
-		__field(int,    pid)
-		__array(char,   comm, TASK_COMM_LEN)
-		__field(bool,   sysctl_prefer_silver)
-		__field(bool,   is_ux_task)
-		__field(bool,   check_freq)
-		__field(bool,   check_task_util)
-		__field(bool,   check_cpu_util)
-		__field(int,    start_cpu)
-	),
-
-	TP_fast_assign(
-		__entry->pid                    = p ? p->pid : -1;
-		memcpy(__entry->comm, p ? p->comm:"NULL", TASK_COMM_LEN);
-		__entry->sysctl_prefer_silver   = sysctl_prefer_silver;
-		__entry->is_ux_task             = is_ux_task;
-		__entry->check_freq             = check_freq;
-		__entry->check_task_util        = check_task_util;
-		__entry->check_cpu_util         = check_cpu_util;
-		__entry->start_cpu              = start_cpu;
-	),
-
-	TP_printk("pid=%d comm=%s prefer_silver_enabled=%d is_ux_task=%d check_freq=%d check_task_util=%d check_cpu_util=%d start_cpu=%d",
-		__entry->pid, __entry->comm, __entry->sysctl_prefer_silver,
-		__entry->is_ux_task, __entry->check_freq,
-		__entry->check_task_util, __entry->check_cpu_util, __entry->start_cpu)
-);
-#endif /* CONFIG_OPLUS_PREFER_SILVER */
 
 /*
  * Tracepoint for find_best_target

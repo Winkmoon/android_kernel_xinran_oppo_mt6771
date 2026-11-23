@@ -38,6 +38,10 @@
 #define S16_MIN		((s16)(-S16_MAX - 1))
 #define U32_MAX		((u32)~0U)
 #define U32_MIN            ((u32)0)
+#ifndef sizeof_field
+#define sizeof_field(TYPE, MEMBER) sizeof((((TYPE *)0)->MEMBER))
+#endif
+
 #ifndef static_assert
 #define static_assert(expr, ...) _Static_assert(expr, #__VA_ARGS__)
 #endif
@@ -955,4 +959,16 @@ static inline void ftrace_dump(enum ftrace_dump_mode oops_dump_mode) { }
 	 /* OTHER_WRITABLE?  Generally considered a bad idea. */		\
 	 BUILD_BUG_ON_ZERO((perms) & 2) +					\
 	 (perms))
+#endif
+
+#ifndef cant_migrate
+# ifdef CONFIG_DEBUG_ATOMIC_SLEEP
+#  define cant_migrate()	cant_sleep()
+# else
+#  define cant_migrate()	do { } while (0)
+# endif
+#endif
+
+#ifndef cant_sleep
+#define cant_sleep() do { } while (0)
 #endif

@@ -893,8 +893,8 @@ static int update_cpus_allowed(struct cpuset *cs, struct task_struct *p,
 {
 	int ret;
 
-	if (cpumask_subset(&p->cpus_requested, cs->cpus_requested)) {
-		ret = set_cpus_allowed_ptr(p, &p->cpus_requested);
+	if (cpumask_subset(&p->cpus_allowed, cs->cpus_requested)) {
+		ret = set_cpus_allowed_ptr(p, cs->cpus_requested);
 		if (!ret)
 			return ret;
 	}

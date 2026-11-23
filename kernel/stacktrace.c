@@ -77,3 +77,11 @@ save_stack_trace_tsk_reliable(struct task_struct *tsk,
 	WARN_ONCE(1, KERN_INFO "save_stack_tsk_reliable() not implemented yet.\n");
 	return -ENOSYS;
 }
+
+unsigned int stack_trace_save_tsk(struct task_struct *task,
+				  unsigned long *store, unsigned int size,
+				  unsigned int skipnr)
+{
+	return 0;
+}
+EXPORT_SYMBOL_GPL(stack_trace_save_tsk);

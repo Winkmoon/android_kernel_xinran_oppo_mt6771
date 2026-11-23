@@ -132,18 +132,6 @@ struct xfrm_state_offload {
 	u8			flags;
 };
 
-#define XFRM_TRACK_ADDRS_COUNT 32
-#define MAX_TRACE_LEN  1024
-
-struct xfrm_state_trace {
-	int cpu;
-	int pid;
-	int count;
-	unsigned long long when_sec;
-	unsigned long when_nsec;
-	unsigned long addrs[XFRM_TRACK_ADDRS_COUNT];
-};
-
 /* Full description of state of transformer. */
 struct xfrm_state {
 	possible_net_t		xs_net;
@@ -156,19 +144,6 @@ struct xfrm_state {
 
 	refcount_t		refcnt;
 	spinlock_t		lock;
-
-	bool			user_del_flag;
-	struct xfrm_state_trace xfrm_alloc_trace;
-	struct xfrm_state_trace xfrm_free_trace;
-	struct xfrm_state_trace xfrm_transfer_trace;
-	struct xfrm_state_trace xfrm_find_trace;
-	struct xfrm_state_trace xfrm_insert_trace;
-
-#ifdef CONFIG_MTK_ENG_BUILD
-	struct xfrm_state_trace xfrm_refcount_trace[MAX_TRACE_LEN];
-	int xfrm_refcount_trace_idx;
-	int xfrm_refcount_trace_overwrite;
-#endif
 	struct xfrm_id		id;
 	struct xfrm_selector	sel;
 	struct xfrm_mark	mark;
@@ -767,9 +742,9 @@ static inline struct audit_buffer *xfrm_audit_start(const char *op)
 {
 	struct audit_buffer *audit_buf = NULL;
 
-	if (audit_enabled == 0)
+	if (audit_enabled == AUDIT_OFF)
 		return NULL;
-	audit_buf = audit_log_start(current->audit_context, GFP_ATOMIC,
+	audit_buf = audit_log_start(audit_context(), GFP_ATOMIC,
 				    AUDIT_MAC_IPSEC_EVENT);
 	if (audit_buf == NULL)
 		return NULL;
@@ -875,95 +850,19 @@ static inline void xfrm_pols_put(struct xfrm_policy **pols, int npols)
 
 void __xfrm_state_destroy(struct xfrm_state *);
 
-#define XFRM_PUT_FLAG   (1 << 28)
-#define XFRM_HOLD_FLAG  (1 << 29)
-
 static inline void __xfrm_state_put(struct xfrm_state *x)
 {
-#ifdef CONFIG_MTK_ENG_BUILD
-	unsigned int cpu, idx;
-	struct stack_trace stack_trace;
-	u64 ts_nsc = sched_clock();
-
-	cpu = get_cpu();
-	idx = x->xfrm_refcount_trace_idx;
-	if (++x->xfrm_refcount_trace_idx >= MAX_TRACE_LEN) {
-		x->xfrm_refcount_trace_idx = 0;
-		x->xfrm_refcount_trace_overwrite++;
-	}
-
-	stack_trace.max_entries = XFRM_TRACK_ADDRS_COUNT;
-	stack_trace.nr_entries = 0;
-	stack_trace.entries = (x->xfrm_refcount_trace)[idx].addrs;
-	stack_trace.skip = 0;
-	save_stack_trace(&stack_trace);
-	(x->xfrm_refcount_trace)[idx].cpu = cpu;
-	(x->xfrm_refcount_trace)[idx].pid = current->pid | XFRM_PUT_FLAG;
-	(x->xfrm_refcount_trace)[idx].count = refcount_read(&x->refcnt);
-	(x->xfrm_refcount_trace)[idx].when_nsec = do_div(ts_nsc, 1000000000);
-	(x->xfrm_refcount_trace)[idx].when_sec = ts_nsc;
-	put_cpu();
-#endif
 	refcount_dec(&x->refcnt);
 }
 
 static inline void xfrm_state_put(struct xfrm_state *x)
 {
-#ifdef CONFIG_MTK_ENG_BUILD
-	unsigned int cpu, idx;
-	struct stack_trace stack_trace;
-	u64 ts_nsc = sched_clock();
-
-	cpu = get_cpu();
-	idx = x->xfrm_refcount_trace_idx;
-	if (++x->xfrm_refcount_trace_idx >= MAX_TRACE_LEN) {
-		x->xfrm_refcount_trace_idx = 0;
-		x->xfrm_refcount_trace_overwrite++;
-	}
-
-	stack_trace.max_entries = XFRM_TRACK_ADDRS_COUNT;
-	stack_trace.nr_entries = 0;
-	stack_trace.entries = (x->xfrm_refcount_trace)[idx].addrs;
-	stack_trace.skip = 0;
-	save_stack_trace(&stack_trace);
-	(x->xfrm_refcount_trace)[idx].cpu = cpu;
-	(x->xfrm_refcount_trace)[idx].pid = current->pid | XFRM_PUT_FLAG;
-	(x->xfrm_refcount_trace)[idx].count = refcount_read(&x->refcnt);
-	(x->xfrm_refcount_trace)[idx].when_nsec = do_div(ts_nsc, 1000000000);
-	(x->xfrm_refcount_trace)[idx].when_sec = ts_nsc;
-	put_cpu();
-#endif
-
 	if (refcount_dec_and_test(&x->refcnt))
 		__xfrm_state_destroy(x);
 }
 
 static inline void xfrm_state_hold(struct xfrm_state *x)
 {
-#ifdef CONFIG_MTK_ENG_BUILD
-	unsigned int cpu, idx;
-	struct stack_trace stack_trace;
-	u64 ts_nsc = sched_clock();
-
-	cpu = get_cpu();
-	idx = x->xfrm_refcount_trace_idx;
-	if (++x->xfrm_refcount_trace_idx >= MAX_TRACE_LEN) {
-		x->xfrm_refcount_trace_idx = 0;
-		x->xfrm_refcount_trace_overwrite++;
-	}
-
-	stack_trace.max_entries = XFRM_TRACK_ADDRS_COUNT;
-	stack_trace.nr_entries = 0;
-	stack_trace.entries = (x->xfrm_refcount_trace)[idx].addrs;
-	stack_trace.skip = 0;
-	save_stack_trace(&stack_trace);
-	(x->xfrm_refcount_trace)[idx].cpu = cpu;
-	(x->xfrm_refcount_trace)[idx].pid = current->pid | XFRM_HOLD_FLAG;
-	(x->xfrm_refcount_trace)[idx].count = refcount_read(&x->refcnt);
-	(x->xfrm_refcount_trace)[idx].when_nsec = do_div(ts_nsc, 1000000000);
-	(x->xfrm_refcount_trace)[idx].when_sec = ts_nsc;
-	put_cpu();
-#endif
 	refcount_inc(&x->refcnt);
 }
 
@@ -1077,7 +976,7 @@ static inline bool xfrm_sec_ctx_match(struct xfrm_sec_ctx *s1, struct xfrm_sec_c
 
 /* A struct encoding bundle of transformations to apply to some set of flow.
  *
- * dst->child points to the next element of bundle.
+ * xdst->child points to the next element of bundle.
  * dst->xfrm  points to an instanse of transformer.
  *
  * Due to unfortunate limitations of current routing cache, which we
@@ -1093,6 +992,8 @@ struct xfrm_dst {
 		struct rt6_info		rt6;
 	} u;
 	struct dst_entry *route;
+	struct dst_entry *child;
+	struct dst_entry *path;
 	struct xfrm_policy *pols[XFRM_POLICY_TYPE_MAX];
 	int num_pols, num_xfrms;
 	u32 xfrm_genid;
@@ -1103,7 +1004,35 @@ struct xfrm_dst {
 	u32 path_cookie;
 };
 
+static inline struct dst_entry *xfrm_dst_path(const struct dst_entry *dst)
+{
 #ifdef CONFIG_XFRM
+	if (dst->xfrm) {
+		const struct xfrm_dst *xdst = (const struct xfrm_dst *) dst;
+
+		return xdst->path;
+	}
+#endif
+	return (struct dst_entry *) dst;
+}
+
+static inline struct dst_entry *xfrm_dst_child(const struct dst_entry *dst)
+{
+#ifdef CONFIG_XFRM
+	if (dst->xfrm) {
+		struct xfrm_dst *xdst = (struct xfrm_dst *) dst;
+		return xdst->child;
+	}
+#endif
+	return NULL;
+}
+
+#ifdef CONFIG_XFRM
+static inline void xfrm_dst_set_child(struct xfrm_dst *xdst, struct dst_entry *child)
+{
+	xdst->child = child;
+}
+
 static inline void xfrm_dst_destroy(struct xfrm_dst *xdst)
 {
 	xfrm_pols_put(xdst->pols, xdst->num_pols);
@@ -2012,12 +1941,14 @@ bool xfrm_dev_offload_ok(struct sk_buff *skb, struct xfrm_state *x);
 static inline bool xfrm_dst_offload_ok(struct dst_entry *dst)
 {
 	struct xfrm_state *x = dst->xfrm;
+	struct xfrm_dst *xdst;
 
 	if (!x || !x->type_offload)
 		return false;
 
-	if (x->xso.offload_handle && (x->xso.dev == dst->path->dev) &&
-	    !dst->child->xfrm)
+	xdst = (struct xfrm_dst *) dst;
+	if (x->xso.offload_handle && (x->xso.dev == xfrm_dst_path(dst)->dev) &&
+	    !xdst->child->xfrm)
 		return true;
 
 	return false;

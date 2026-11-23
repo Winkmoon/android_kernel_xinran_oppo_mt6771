@@ -521,6 +521,7 @@ static struct ctl_table_header *oplus_sla_table_hrd;
   * the three handshark (syn-synack) rtt is  good but the network is worse.
 */
 extern void (*statistic_dev_rtt)(struct sock *sk, long rtt);
+void (*statistic_dev_rtt)(struct sock *sk, long rtt) = NULL;
 
 /*sometimes when skb reject by iptables,
 *it will retran syn which may make the rtt much high

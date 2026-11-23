@@ -220,6 +220,7 @@ enum {
  * };
  */
 struct nla_policy {
+	u16		strict_start_type;
 	u16		type;
 	u16		len;
 	void            *validation_data;

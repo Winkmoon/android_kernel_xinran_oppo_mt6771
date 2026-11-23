@@ -2,6 +2,7 @@
 /* Copyright (c) 2020 Facebook */
 
 #include <linux/init.h>
+#include <linux/sched/task.h>
 #include <linux/namei.h>
 #include <linux/pid_namespace.h>
 #include <linux/fs.h>

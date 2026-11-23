@@ -7,9 +7,6 @@
 #include <linux/kernel.h>
 #include <linux/types.h>
 #include <linux/slab.h>
-#include <net/xdp.h>
-#include <linux/skmsg.h>
-#include <net/flow_dissector.h>
 #include <linux/bpf.h>
 #include <linux/btf.h>
 #include <linux/bpf_verifier.h>

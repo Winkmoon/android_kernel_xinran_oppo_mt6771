@@ -4226,3 +4226,18 @@ void __init rcu_init(void)
 
 #include "tree_exp.h"
 #include "tree_plugin.h"
+
+void rcu_softirq_qs(void) { }
+EXPORT_SYMBOL_GPL(rcu_softirq_qs);
+int cond_resched_rcu_qs(void) { return 0; }
+EXPORT_SYMBOL_GPL(cond_resched_rcu_qs);
+
+void rcu_read_lock_trace(void) { }
+EXPORT_SYMBOL_GPL(rcu_read_lock_trace);
+void rcu_read_unlock_trace(void) { }
+EXPORT_SYMBOL_GPL(rcu_read_unlock_trace);
+void call_rcu_tasks_trace(struct rcu_head *rhp, rcu_callback_t func)
+{
+	call_rcu(rhp, func);
+}
+EXPORT_SYMBOL_GPL(call_rcu_tasks_trace);

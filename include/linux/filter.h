@@ -17,7 +17,6 @@
 #include <linux/sched.h>
 #include <linux/capability.h>
 #include <linux/cryptohash.h>
-#include <crypto/sha.h>
 #include <linux/set_memory.h>
 #include <linux/kallsyms.h>
 #include <linux/if_vlan.h>
@@ -25,7 +24,6 @@
 #include <linux/sockptr.h>
 
 #include <net/sch_generic.h>
-#include <net/net_namespace.h>
 
 #include <asm/byteorder.h>
 #include <uapi/linux/filter.h>
@@ -673,10 +671,18 @@ DECLARE_PER_CPU(struct bpf_redirect_info, bpf_redirect_info);
  * ensure that cb[] area can be written to when BPF program is
  * invoked (otherwise cb[] save/restore is necessary).
  */
+static inline void bpf_compute_data_end(struct sk_buff *skb)
+{
+	struct bpf_skb_data_end *cb = (struct bpf_skb_data_end *)skb->cb;
+
+	cb->data_end = skb->data + skb_headlen(skb);
+}
+
 static inline void bpf_compute_data_pointers(struct sk_buff *skb)
 {
 	struct bpf_skb_data_end *cb = (struct bpf_skb_data_end *)skb->cb;
 
+	BUILD_BUG_ON(sizeof(*cb) > sizeof_field(struct sk_buff, cb));
 	cb->data_meta = skb->data - skb_metadata_len(skb);
 	cb->data_end  = skb->data + skb_headlen(skb);
 }
@@ -714,11 +720,10 @@ static inline u8 *bpf_skb_cb(struct sk_buff *skb)
 	 * attached to sockets, we need to clear the bpf_skb_cb() area
 	 * to not leak previous contents to user space.
 	 */
-	/*
-	 * The static asserts comparing __sk_buff.cb and qdisc_skb_cb.data
-	 * belong to the newer skb layout; this 4.14 tree keeps the old
-	 * qdisc callback layout, so skip them without changing the access.
-	 */
+	BUILD_BUG_ON(sizeof_field(struct __sk_buff, cb) != BPF_SKB_CB_LEN);
+	BUILD_BUG_ON(sizeof_field(struct __sk_buff, cb) !=
+		     sizeof_field(struct qdisc_skb_cb, data));
+
 	return qdisc_skb_cb(skb)->data;
 }
 

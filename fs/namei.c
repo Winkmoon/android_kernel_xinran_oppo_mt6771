@@ -5048,3 +5048,10 @@ const struct inode_operations page_symlink_inode_operations = {
 	.get_link	= page_get_link,
 };
 EXPORT_SYMBOL(page_symlink_inode_operations);
+
+int vfs_mkobj(struct dentry *dentry, umode_t mode,
+	      int (*f)(struct dentry *, umode_t, void *), void *data)
+{
+	return -EINVAL;
+}
+EXPORT_SYMBOL_GPL(vfs_mkobj);

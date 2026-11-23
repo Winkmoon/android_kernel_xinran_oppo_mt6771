@@ -148,6 +148,7 @@ static int verify_newsa_info(struct xfrm_usersa_info *p,
 			     struct nlattr **attrs)
 {
 	int err;
+	u16 family = p->sel.family;
 
 	err = -EINVAL;
 	switch (p->family) {
@@ -166,7 +167,10 @@ static int verify_newsa_info(struct xfrm_usersa_info *p,
 		goto out;
 	}
 
-	switch (p->sel.family) {
+	if (!family && !(p->flags & XFRM_STATE_AF_UNSPEC))
+		family = p->family;
+
+	switch (family) {
 	case AF_UNSPEC:
 		break;
 
@@ -754,9 +758,6 @@ static int xfrm_del_sa(struct sk_buff *skb, struct nlmsghdr *nlh,
 	x = xfrm_user_state_lookup(net, p, attrs, &err);
 	if (x == NULL)
 		return err;
-
-	x->user_del_flag = true;
-
 	if ((err = security_xfrm_state_delete(x)) != 0)
 		goto out;
 
@@ -764,10 +765,6 @@ static int xfrm_del_sa(struct sk_buff *skb, struct nlmsghdr *nlh,
 		err = -EPERM;
 		goto out;
 	}
-#ifdef CONFIG_MTK_ENG_BUILD
-	pr_info("[xfrm_state]:xfrm_del_sa_lookup ,x: %px refcnt: %d\n",
-		x, refcount_read(&x->refcnt));
-#endif
 	err = xfrm_state_delete(x);
 
 	if (err < 0)
@@ -780,7 +777,6 @@ static int xfrm_del_sa(struct sk_buff *skb, struct nlmsghdr *nlh,
 
 out:
 	xfrm_audit_state_delete(x, err ? 0 : 1, true);
-	x->user_del_flag = false;
 	xfrm_state_put(x);
 	return err;
 }
@@ -1738,6 +1734,9 @@ static int copy_to_user_tmpl(struct xfrm_policy *xp, struct sk_buff *skb)
 
 	if (xp->xfrm_nr == 0)
 		return 0;
+
+	if (xp->xfrm_nr > XFRM_MAX_DEPTH)
+		return -ENOBUFS;
 
 	for (i = 0; i < xp->xfrm_nr; i++) {
 		struct xfrm_user_tmpl *up = &vec[i];

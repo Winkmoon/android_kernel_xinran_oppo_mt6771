@@ -15,6 +15,9 @@ enum pid_type
 	__PIDTYPE_TGID
 };
 
+#define PIDTYPE_TGID __PIDTYPE_TGID
+
+
 /*
  * What is struct pid?
  *

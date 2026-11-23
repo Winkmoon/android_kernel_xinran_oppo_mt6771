@@ -1,3 +1,4 @@
+#define trace_iowait_task(x) do { } while (0)
 // SPDX-License-Identifier: GPL-2.0
 /*
  * Completely Fair Scheduling (CFS) Class (SCHED_NORMAL/SCHED_BATCH)

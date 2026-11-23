@@ -5673,3 +5673,10 @@ void skb_condense(struct sk_buff *skb)
 	 */
 	skb->truesize = SKB_TRUESIZE(skb_end_offset(skb));
 }
+
+struct sk_buff *build_skb_around(struct sk_buff *skb, void *data,
+				 unsigned int frag_size)
+{
+	return build_skb(data, frag_size);
+}
+EXPORT_SYMBOL(build_skb_around);

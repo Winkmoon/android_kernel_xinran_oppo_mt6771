@@ -402,3 +402,9 @@ unsigned long read_word_at_a_time(const void *addr)
 #define prevent_tail_call_optimization()	mb()
 
 #endif /* __LINUX_COMPILER_H */
+
+#ifndef __diag_push
+#define __diag_push()
+#define __diag_pop()
+#define __diag_ignore(compiler, version, option, comment)
+#endif

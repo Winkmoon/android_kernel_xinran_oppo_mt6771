@@ -708,3 +708,9 @@ static int __init kallsyms_init(void)
 	return 0;
 }
 device_initcall(kallsyms_init);
+
+int kallsyms_show_value(const struct cred *cred)
+{
+	return 1;
+}
+EXPORT_SYMBOL_GPL(kallsyms_show_value);

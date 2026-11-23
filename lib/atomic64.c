@@ -193,3 +193,14 @@ int atomic64_add_unless(atomic64_t *v, long long a, long long u)
 	return ret;
 }
 EXPORT_SYMBOL(atomic64_add_unless);
+
+u64 atomic64_fetch_add_unless(atomic64_t *v, u64 a, u64 u)
+{
+	u64 c = atomic64_read(v);
+	do {
+		if (c == u)
+			break;
+	} while (!atomic64_try_cmpxchg(v, &c, c + a));
+	return c;
+}
+EXPORT_SYMBOL(atomic64_fetch_add_unless);

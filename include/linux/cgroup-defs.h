@@ -291,6 +291,7 @@ struct cgroup_freezer_state {
 };
 
 struct cgroup {
+	int id;
 	/* self css with NULL ->ss, points back to this cgroup */
 	struct cgroup_subsys_state self;
 

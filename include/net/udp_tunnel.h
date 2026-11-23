@@ -4,6 +4,7 @@
 
 #include <net/ip_tunnels.h>
 #include <net/udp.h>
+#include <net/ipv6_stubs.h>
 
 #if IS_ENABLED(CONFIG_IPV6)
 #include <net/ipv6.h>

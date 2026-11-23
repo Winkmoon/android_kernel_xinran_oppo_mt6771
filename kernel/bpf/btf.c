@@ -2,9 +2,6 @@
 /* Copyright (c) 2018 Facebook */
 
 #include <uapi/linux/btf.h>
-#include <net/xdp.h>
-#include <linux/skmsg.h>
-#include <net/flow_dissector.h>
 #include <uapi/linux/bpf.h>
 #include <uapi/linux/bpf_perf_event.h>
 #include <uapi/linux/types.h>
@@ -22,6 +19,7 @@
 #include <linux/bpf_verifier.h>
 #include <linux/btf.h>
 #include <linux/btf_ids.h>
+#include <linux/skmsg.h>
 #include <linux/perf_event.h>
 #include <linux/bsearch.h>
 #include <linux/btf_ids.h>

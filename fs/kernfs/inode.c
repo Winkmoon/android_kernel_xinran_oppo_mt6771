@@ -164,9 +164,9 @@ static inline void set_inode_attr(struct inode *inode,
 	struct super_block *sb = inode->i_sb;
 	inode->i_uid = attrs->ia_uid;
 	inode->i_gid = attrs->ia_gid;
-	inode->i_atime = timespec64_trunc(attrs->ia_atime, sb->s_time_gran);
-	inode->i_mtime = timespec64_trunc(attrs->ia_mtime, sb->s_time_gran);
-	inode->i_ctime = timespec64_trunc(attrs->ia_ctime, sb->s_time_gran);
+	inode->i_atime = timespec_trunc(attrs->ia_atime, sb->s_time_gran);
+	inode->i_mtime = timespec_trunc(attrs->ia_mtime, sb->s_time_gran);
+	inode->i_ctime = timespec_trunc(attrs->ia_ctime, sb->s_time_gran);
 }
 
 static void kernfs_refresh_inode(struct kernfs_node *kn, struct inode *inode)
@@ -307,7 +307,7 @@ int kernfs_xattr_set(struct kernfs_node *kn, const char *name,
 	if (!attrs)
 		return -ENOMEM;
 
-	return simple_xattr_set(&attrs->xattrs, name, value, size, flags, NULL);
+	return simple_xattr_set(&attrs->xattrs, name, value, size, flags);
 }
 
 static int kernfs_vfs_xattr_get(const struct xattr_handler *handler,
@@ -351,8 +351,7 @@ static int kernfs_vfs_user_xattr_add(struct kernfs_node *kn,
 		goto dec_size_out;
 	}
 
-	ret = simple_xattr_set(xattrs, full_name, value, size, flags,
-			       &removed_size);
+	ret = simple_xattr_set(xattrs, full_name, value, size, flags);
 
 	if (!ret && removed_size >= 0)
 		size = removed_size;
@@ -375,8 +374,7 @@ static int kernfs_vfs_user_xattr_rm(struct kernfs_node *kn,
 	ssize_t removed_size;
 	int ret;
 
-	ret = simple_xattr_set(xattrs, full_name, value, size, flags,
-			       &removed_size);
+	ret = simple_xattr_set(xattrs, full_name, value, size, flags);
 
 	if (removed_size >= 0) {
 		atomic_sub(removed_size, sz);

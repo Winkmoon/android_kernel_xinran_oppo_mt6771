@@ -13,6 +13,8 @@
 
 ccflags-y += \
 	-I$(PPM_ROOT_DIR)/inc \
+	-I$(srctree)/drivers/misc/mediatek/base/power/ppm_v3/src/mach/mt6771 \
+	-I$(srctree)/drivers/misc/mediatek/base/power/ppm_v3/inc \
 	-I$(srctree)/drivers/misc/mediatek/include/mt-plat/$(CONFIG_MTK_PLATFORM)/include	\
 	-I$(srctree)/drivers/misc/mediatek/base/power/include	\
 	-I$(srctree)/drivers/misc/mediatek/base/power/$(CONFIG_MTK_PLATFORM)	\

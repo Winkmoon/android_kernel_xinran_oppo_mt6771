@@ -822,3 +822,9 @@ out_mm:
 out:
 	return res;
 }
+
+void *kvcalloc(size_t n, size_t size, gfp_t flags)
+{
+	return kcalloc(n, size, flags);
+}
+EXPORT_SYMBOL(kvcalloc);

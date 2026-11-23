@@ -1,10 +1,21 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /* Copyright (c) 2011-2014 PLUMgrid, http://plumgrid.com
  */
-#include <net/xdp.h>
-#include <linux/skmsg.h>
-#include <net/flow_dissector.h>
 #include <linux/bpf.h>
+
+#ifndef atomic64_fetch_add_unless
+static inline u64 atomic64_fetch_add_unless(atomic64_t *v, u64 a, u64 u)
+{
+	u64 c = atomic64_read(v);
+	while (c != u) {
+		u64 old = atomic64_cmpxchg(v, c, c + a);
+		if (old == c)
+			break;
+		c = old;
+	}
+	return c;
+}
+#endif
 #include <linux/bpf_trace.h>
 #include <linux/bpf_lirc.h>
 #include <linux/bpf_verifier.h>

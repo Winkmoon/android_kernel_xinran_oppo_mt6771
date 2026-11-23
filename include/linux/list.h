@@ -112,6 +112,12 @@ static inline void __list_del(struct list_head * prev, struct list_head * next)
  * Note: list_empty() on entry does not return true after this, the entry is
  * in an undefined state.
  */
+static inline void __list_del_clearprev(struct list_head *entry)
+{
+	__list_del(entry->prev, entry->next);
+	entry->prev = NULL;
+}
+
 static inline void __list_del_entry(struct list_head *entry)
 {
 	if (!__list_del_entry_valid(entry))
@@ -668,6 +674,11 @@ static inline void INIT_HLIST_NODE(struct hlist_node *h)
 {
 	h->next = NULL;
 	h->pprev = NULL;
+}
+
+static inline int hlist_unhashed_lockless(const struct hlist_node *h)
+{
+	return !h->pprev;
 }
 
 static inline int hlist_unhashed(const struct hlist_node *h)
