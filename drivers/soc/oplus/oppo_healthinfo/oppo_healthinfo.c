@@ -9,9 +9,9 @@
 #include <linux/kobject.h>
 #include <linux/ratelimit.h>
 #include <linux/blkdev.h>
-#ifdef CONFIG_OPPO_MEM_MONITOR
 #include <linux/oppo_healthinfo/memory_monitor.h>
-#endif
+struct ion_wait_para __weak ionwait_para;
+struct alloc_wait_para __weak allocwait_para;
 #ifdef OPLUS_FEATURE_UFSPLUS
 #if defined(CONFIG_UFSFEATURE)
 #include "../../../drivers/scsi/oufs/ufsfeature.h"

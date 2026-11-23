@@ -157,6 +157,10 @@ static void hans_handler(struct sk_buff *skb)
 	}
 }
 
+void __weak hans_check_frozen_transcation(uid_t uid, enum message_type type)
+{
+}
+
 static int __init hans_core_init(void)
 {
 	struct netlink_kernel_cfg cfg = {
