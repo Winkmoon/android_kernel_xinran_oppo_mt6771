@@ -5017,7 +5017,10 @@ static void init_and_link_css(struct cgroup_subsys_state *css,
 
 	if (cgroup_parent(cgrp)) {
 		css->parent = cgroup_css(cgroup_parent(cgrp), ss);
-		css_get(css->parent);
+		if (!css->parent)
+			css->parent = init_css_set.subsys[ss->id];
+		if (css->parent)
+			css_get(css->parent);
 	}
 
 	BUG_ON(cgroup_css(cgrp, ss));
@@ -5084,6 +5087,12 @@ static struct cgroup_subsys_state *css_create(struct cgroup *cgrp,
 
 	pr_info("cgroup: css_create ss=%s id=%d parent=%px\n",
 		ss->name ? ss->name : "?", ss->id, parent_css);
+	if (!parent_css)
+		parent_css = init_css_set.subsys[ss->id];
+	if (!parent_css) {
+		pr_err("cgroup: %s has no root css\n", ss->name);
+		return ERR_PTR(-EINVAL);
+	}
 	css = ss->css_alloc(parent_css);
 	pr_info("cgroup: css_create ss=%s css=%px\n",
 		ss->name ? ss->name : "?", css);
