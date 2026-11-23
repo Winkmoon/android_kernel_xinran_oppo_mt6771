@@ -4639,6 +4639,13 @@ static int cgroup_procs_write_permission(struct cgroup *src_cgrp,
 	while (!cgroup_is_descendant(dst_cgrp, com_cgrp))
 		com_cgrp = cgroup_parent(com_cgrp);
 
+	/*
+	 * Legacy v1 hierarchies don't populate procs_file.kn; the VFS has
+	 * already checked the opened cgroup.procs inode in that case.
+	 */
+	if (!com_cgrp->procs_file.kn)
+		return 0;
+
 	/* %current should be authorized to migrate to the common ancestor */
 	inode = kernfs_get_inode(sb, com_cgrp->procs_file.kn);
 	if (!inode)
