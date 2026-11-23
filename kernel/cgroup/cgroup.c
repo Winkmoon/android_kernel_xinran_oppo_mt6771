@@ -5082,13 +5082,18 @@ static struct cgroup_subsys_state *css_create(struct cgroup *cgrp,
 
 	lockdep_assert_held(&cgroup_mutex);
 
+	pr_info("cgroup: css_create ss=%s id=%d parent=%px\n",
+		ss->name ? ss->name : "?", ss->id, parent_css);
 	css = ss->css_alloc(parent_css);
+	pr_info("cgroup: css_create ss=%s css=%px\n",
+		ss->name ? ss->name : "?", css);
 	if (!css)
 		css = ERR_PTR(-ENOMEM);
 	if (IS_ERR(css))
 		return css;
 
-	if (!virt_addr_valid(css)) {
+	if (!virt_addr_valid(css) || is_vmalloc_addr(css) ||
+	    core_kernel_text((unsigned long)css)) {
 		pr_err("cgroup: %s css_alloc returned invalid %px (parent %px)\n",
 		       ss->name, css, parent_css);
 		return ERR_PTR(-EINVAL);
