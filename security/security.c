@@ -1773,3 +1773,8 @@ int security_perf_event_write(struct perf_event *event)
 	return call_int_hook(perf_event_write, 0, event);
 }
 #endif /* CONFIG_PERF_EVENTS */
+
+int security_locked_down(enum lockdown_reason what)
+{
+	return 0;
+}

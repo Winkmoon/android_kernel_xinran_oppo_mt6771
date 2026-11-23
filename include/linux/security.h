@@ -26,6 +26,14 @@
 #include <linux/key.h>
 #include <linux/capability.h>
 #include <linux/fs.h>
+
+enum lockdown_reason {
+	LOCKDOWN_NONE,
+	LOCKDOWN_BPF_READ,
+	LOCKDOWN_MAX,
+};
+
+int security_locked_down(enum lockdown_reason what);
 #include <linux/slab.h>
 #include <linux/err.h>
 #include <linux/string.h>
