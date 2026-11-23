@@ -802,6 +802,7 @@ struct task_struct {
 	atomic_t			usage;
 	/* Per task flags (PF_*), defined further below: */
 	unsigned int			flags;
+	unsigned int			frozen:1;
 	unsigned int			ptrace;
 
 #ifdef CONFIG_SMP
