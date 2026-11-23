@@ -5549,6 +5549,7 @@ static void __init cgroup_init_subsys(struct cgroup_subsys *ss, bool early)
 	/* We don't handle early failures gracefully */
 	BUG_ON(IS_ERR(css));
 	init_and_link_css(css, ss, &cgrp_dfl_root.cgrp);
+	rcu_assign_pointer(cgrp_dfl_root.cgrp.subsys[ss->id], css);
 
 	/*
 	 * Root csses are never destroyed and we can't initialize
