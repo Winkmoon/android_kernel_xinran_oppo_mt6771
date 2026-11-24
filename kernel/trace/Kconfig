@@ -273,7 +273,6 @@ config HWLAT_TRACER
 
 config ENABLE_DEFAULT_TRACERS
 	bool "Trace process context switches and events"
-	depends on !GENERIC_TRACER
 	select TRACING
 	help
 	  This tracer hooks to various trace points in the kernel,

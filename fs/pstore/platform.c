@@ -83,6 +83,12 @@ static DEFINE_SPINLOCK(pstore_lock);
 struct pstore_info *psinfo;
 
 static char *backend;
+static char *compress =
+#ifdef CONFIG_PSTORE_COMPRESS_DEFAULT
+		CONFIG_PSTORE_COMPRESS_DEFAULT;
+#else
+		NULL;
+#endif
 
 /* Compression parameters */
 #ifdef CONFIG_PSTORE_ZLIB_COMPRESS
@@ -90,7 +96,8 @@ static char *backend;
 #define WINDOW_BITS 12
 #define MEM_LEVEL 4
 static struct z_stream_s stream;
-#else
+#endif
+#if defined(CONFIG_PSTORE_LZO_COMPRESS) || defined(CONFIG_PSTORE_LZ4_COMPRESS)
 static unsigned char *workspace;
 #endif
 
@@ -411,16 +418,20 @@ static const struct pstore_zbackend backend_lz4 = {
 };
 #endif
 
-static const struct pstore_zbackend *zbackend =
+static const struct pstore_zbackend *zbackend;
+
+static const struct pstore_zbackend * const zbackends[] = {
 #if defined(CONFIG_PSTORE_ZLIB_COMPRESS)
-	&backend_zlib;
-#elif defined(CONFIG_PSTORE_LZO_COMPRESS)
-	&backend_lzo;
-#elif defined(CONFIG_PSTORE_LZ4_COMPRESS)
-	&backend_lz4;
-#else
-	NULL;
+	&backend_zlib,
 #endif
+#if defined(CONFIG_PSTORE_LZO_COMPRESS)
+	&backend_lzo,
+#endif
+#if defined(CONFIG_PSTORE_LZ4_COMPRESS)
+	&backend_lz4,
+#endif
+	NULL
+};
 
 static int pstore_compress(const void *in, void *out,
 			   size_t inlen, size_t outlen)
@@ -947,3 +958,22 @@ static void pstore_timefunc(unsigned long dummy)
 
 module_param(backend, charp, 0444);
 MODULE_PARM_DESC(backend, "Pstore backend to use");
+
+void __init pstore_choose_compression(void)
+{
+	const struct pstore_zbackend * const *step;
+
+	if (!compress)
+		return;
+
+	for (step = zbackends; *step; step++) {
+		if (!strcmp(compress, (*step)->name)) {
+			zbackend = *step;
+			pr_info("using %s compression\n", zbackend->name);
+			return;
+		}
+	}
+}
+
+module_param(compress, charp, 0444);
+MODULE_PARM_DESC(compress, "Pstore compression to use");
