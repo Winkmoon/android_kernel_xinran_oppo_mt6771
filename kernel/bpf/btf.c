@@ -3807,8 +3807,11 @@ static int btf_check_all_metas(struct btf_verifier_env *env)
 		s32 meta_size;
 
 		meta_size = btf_check_meta(env, t, end - cur);
-		if (meta_size < 0)
+		if (meta_size < 0) {
+			pr_err("btf: type id %u check failed: %d\n",
+			       env->log_type_id, meta_size);
 			return meta_size;
+		}
 
 		btf_add_type(env, t);
 		cur += meta_size;
@@ -4324,8 +4327,11 @@ static int btf_vmlinux_map_ids_init(const struct btf *btf,
 		}
 		btf_id = btf_find_by_name_kind(btf, ops->map_btf_name,
 					       BTF_KIND_STRUCT);
-		if (btf_id < 0)
+		if (btf_id < 0) {
+			pr_err("btf: map type %d name %s not found: %d\n",
+			       i, ops->map_btf_name, btf_id);
 			return btf_id;
+		}
 		*ops->map_btf_id = btf_id;
 	}
 
@@ -4355,6 +4361,7 @@ struct btf *btf_parse_vmlinux(void)
 	struct btf_verifier_env *env = NULL;
 	struct bpf_verifier_log *log;
 	struct btf *btf = NULL;
+	const char *stage = "alloc";
 	int err;
 
 	env = kzalloc(sizeof(*env), GFP_KERNEL | __GFP_NOWARN);
@@ -4374,16 +4381,19 @@ struct btf *btf_parse_vmlinux(void)
 	btf->data = __start_BTF;
 	btf->data_size = __stop_BTF - __start_BTF;
 
+	stage = "header";
 	err = btf_parse_hdr(env);
 	if (err)
 		goto errout;
 
 	btf->nohdr_data = btf->data + btf->hdr.hdr_len;
 
+	stage = "strings";
 	err = btf_parse_str_sec(env);
 	if (err)
 		goto errout;
 
+	stage = "types";
 	err = btf_check_all_metas(env);
 	if (err)
 		goto errout;
@@ -4392,6 +4402,7 @@ struct btf *btf_parse_vmlinux(void)
 	bpf_ctx_convert.t = btf_type_by_id(btf, bpf_ctx_convert_btf_id[0]);
 
 	/* find bpf map structs for map_ptr access checking */
+	stage = "map_ids";
 	err = btf_vmlinux_map_ids_init(btf, log);
 	if (err < 0)
 		goto errout;
@@ -4403,6 +4414,7 @@ struct btf *btf_parse_vmlinux(void)
 	return btf;
 
 errout:
+	pr_err("btf_parse_vmlinux: %s failed: %d\n", stage, err);
 	btf_verifier_env_free(env);
 	if (btf) {
 		kvfree(btf->types);
