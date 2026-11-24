@@ -82,8 +82,7 @@ enum rt6_nud_state {
 static struct dst_entry	*ip6_dst_check(struct dst_entry *dst, u32 cookie);
 static unsigned int	 ip6_default_advmss(const struct dst_entry *dst);
 static unsigned int	 ip6_mtu(const struct dst_entry *dst);
-static void		ip6_negative_advice(struct sock *sk,
-					    struct dst_entry *dst);
+static struct dst_entry *ip6_negative_advice(struct dst_entry *dst);
 static void		ip6_dst_destroy(struct dst_entry *);
 static void		ip6_dst_ifdown(struct dst_entry *,
 				       struct net_device *dev, int how);
@@ -1243,8 +1242,16 @@ static struct rt6_info *rt6_get_pcpu_route(struct fib6_info *rt)
 	p = this_cpu_ptr(rt->rt6i_pcpu);
 	pcpu_rt = *p;
 
-	if (pcpu_rt)
-		ip6_hold_safe(NULL, &pcpu_rt, false);
+	if (pcpu_rt && !ip6_hold_safe(NULL, &pcpu_rt, false)) {
+		/*
+		 * The per-cpu slot points at a dst whose refcount already
+		 * reached zero.  Clear the stale slot before allocating a
+		 * replacement, otherwise the following cmpxchg()/BUG_ON()
+		 * path operates on a dead dst.
+		 */
+		cmpxchg(p, *p, NULL);
+		pcpu_rt = NULL;
+	}
 
 	return pcpu_rt;
 }
@@ -1260,12 +1267,25 @@ static struct rt6_info *rt6_make_pcpu_route(struct net *net,
 		return net->ipv6.ip6_null_entry;
 	}
 
-	dst_hold(&pcpu_rt->dst);
 	p = this_cpu_ptr(rt->rt6i_pcpu);
 	prev = cmpxchg(p, NULL, pcpu_rt);
-	BUG_ON(prev);
+	if (prev) {
+		/* Another context installed a pcpu route first.  Drop the
+		 * route we just allocated and reuse the existing one if it
+		 * is still alive.
+		 */
+		dst_release(&pcpu_rt->dst);
+		if (!dst_hold_safe(&prev->dst)) {
+			cmpxchg(p, prev, NULL);
+			dst_hold(&net->ipv6.ip6_null_entry->dst);
+			return net->ipv6.ip6_null_entry;
+		}
+		pcpu_rt = prev;
+	} else {
+		dst_hold(&pcpu_rt->dst);
+	}
 
-	if (rt->fib6_destroying) {
+	if (!prev && rt->fib6_destroying) {
 		struct fib6_info *from;
 
 		from = xchg((__force struct fib6_info **)&pcpu_rt->from, NULL);
@@ -2229,22 +2249,22 @@ static struct dst_entry *ip6_dst_check(struct dst_entry *dst, u32 cookie)
 	return dst_ret;
 }
 
-static void ip6_negative_advice(struct sock *sk,
-				struct dst_entry *dst)
+static struct dst_entry *ip6_negative_advice(struct dst_entry *dst)
 {
 	struct rt6_info *rt = (struct rt6_info *) dst;
 
-	if (rt->rt6i_flags & RTF_CACHE) {
-		if (rt6_check_expired(rt)) {
-			/* counteract the dst_release() in sk_dst_reset() */
-			dst_hold(dst);
-			sk_dst_reset(sk);
-
-			rt6_remove_exception_rt(rt);
+	if (rt) {
+		if (rt->rt6i_flags & RTF_CACHE) {
+			if (rt6_check_expired(rt)) {
+				rt6_remove_exception_rt(rt);
+				dst = NULL;
+			}
+		} else {
+			dst_release(dst);
+			dst = NULL;
 		}
-		return;
 	}
-	sk_dst_reset(sk);
+	return dst;
 }
 
 static void ip6_link_failure(struct sk_buff *skb)
