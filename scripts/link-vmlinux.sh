@@ -223,7 +223,10 @@ gen_btf()
 
 	info "BTF" ${2}
 	vmlinux_link "" ${1}
-	LLVM_OBJCOPY=${OBJCOPY} ${pahole} -J ${1}
+	LLVM_OBJCOPY=${OBJCOPY} ${pahole} -J \
+		--skip_encoding_btf_enum64 \
+		--skip_encoding_btf_decl_tag \
+		--skip_encoding_btf_type_tag ${1}
 
 	# Create ${2} which contains just .BTF section but no symbols.
 	${OBJCOPY} --only-section=.BTF --set-section-flags .BTF=alloc,readonly \
