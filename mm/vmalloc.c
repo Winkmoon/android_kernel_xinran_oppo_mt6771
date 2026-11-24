@@ -26,6 +26,7 @@
 #include <linux/radix-tree.h>
 #include <linux/rcupdate.h>
 #include <linux/pfn.h>
+#include <linux/set_memory.h>
 #include <linux/kmemleak.h>
 #include <linux/atomic.h>
 #include <linux/compiler.h>
@@ -1533,6 +1534,26 @@ struct vm_struct *remove_vm_area(const void *addr)
 	return NULL;
 }
 
+static void vm_remove_mappings(struct vm_struct *area, int deallocate_pages)
+{
+	int flush_reset = area->flags & VM_FLUSH_RESET_PERMS;
+
+	/*
+	 * Make the executable alias non-executable and writable before
+	 * removing it, then flush the lazy vmalloc mappings.  This keeps
+	 * the BPF JIT image from retaining a writable+executable alias.
+	 */
+	if (flush_reset) {
+		set_memory_nx((unsigned long)area->addr, area->nr_pages);
+		set_memory_rw((unsigned long)area->addr, area->nr_pages);
+	}
+
+	remove_vm_area(area->addr);
+
+	if (flush_reset)
+		vm_unmap_aliases();
+}
+
 static void __vunmap(const void *addr, int deallocate_pages)
 {
 	struct vm_struct *area;
@@ -1554,7 +1575,7 @@ static void __vunmap(const void *addr, int deallocate_pages)
 	debug_check_no_locks_freed(addr, get_vm_area_size(area));
 	debug_check_no_obj_freed(addr, get_vm_area_size(area));
 
-	remove_vm_area(addr);
+	vm_remove_mappings(area, deallocate_pages);
 	if (deallocate_pages) {
 		int i;
 
