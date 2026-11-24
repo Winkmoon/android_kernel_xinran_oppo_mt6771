@@ -32,5 +32,6 @@ obj-$(CONFIG_NET_DEVLINK) += devlink.o
 obj-$(CONFIG_GRO_CELLS) += gro_cells.o
 
 obj-y += xdp.o
+obj-$(CONFIG_PAGE_POOL) += page_pool.o
 
 obj-y += bpf_sk_storage.o

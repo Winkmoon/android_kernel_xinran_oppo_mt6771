@@ -149,7 +149,7 @@ static inline void page_pool_release_page(struct page_pool *pool,
 static inline dma_addr_t page_pool_get_dma_addr(struct page *page)
 {
 #ifdef CONFIG_PAGE_POOL
-	return page->dma_addr;
+	return (dma_addr_t)page_private(page);
 #else
 	return 0;
 #endif
