@@ -604,30 +604,19 @@ static bool btf_name_offset_valid(const struct btf *btf, u32 offset)
 		offset < btf->hdr.str_len;
 }
 
-static bool __btf_name_char_ok(char c, bool first)
-{
-	if ((first ? !isalpha(c) :
-		     !isalnum(c)) &&
-	    c != '_' &&
-	    c != '.')
-		return false;
-	return true;
-}
-
 static bool __btf_name_valid(const struct btf *btf, u32 offset)
 {
-	/* offset must be valid */
 	const char *src = &btf->strings[offset];
 	const char *src_limit;
 
-	if (!__btf_name_char_ok(*src, true))
+	if (!isprint(*src))
 		return false;
 
 	/* set a limit on identifier length */
 	src_limit = src + KSYM_NAME_LEN;
 	src++;
 	while (*src && src < src_limit) {
-		if (!__btf_name_char_ok(*src, false))
+		if (!isprint(*src))
 			return false;
 		src++;
 	}
@@ -642,7 +631,19 @@ static bool btf_name_valid_identifier(const struct btf *btf, u32 offset)
 
 static bool btf_name_valid_section(const struct btf *btf, u32 offset)
 {
-	return __btf_name_valid(btf, offset);
+	const char *src = &btf->strings[offset];
+	const char *end = btf->strings + btf->hdr.str_len;
+
+	if (!*src)
+		return false;
+
+	while (src < end && *src) {
+		if (!isprint(*src))
+			return false;
+		src++;
+	}
+
+	return src < end;
 }
 
 static const char *__btf_name_by_offset(const struct btf *btf, u32 offset)
@@ -3759,11 +3760,15 @@ static s32 btf_check_meta(struct btf_verifier_env *env,
 	if (meta_left < sizeof(*t)) {
 		btf_verifier_log(env, "[%u] meta_left:%u meta_needed:%zu",
 				 env->log_type_id, meta_left, sizeof(*t));
+		pr_err("btf early id=%u reason=meta_left left=%u need=%zu\n",
+		       env->log_type_id, meta_left, sizeof(*t));
 		return -EINVAL;
 	}
 	meta_left -= sizeof(*t);
 
 	if (t->info & ~BTF_INFO_MASK) {
+		pr_err("btf early id=%u reason=info_mask info=%x mask=%x\n",
+		       env->log_type_id, t->info, BTF_INFO_MASK);
 		btf_verifier_log(env, "[%u] Invalid btf_info:%x",
 				 env->log_type_id, t->info);
 		return -EINVAL;
@@ -3773,18 +3778,37 @@ static s32 btf_check_meta(struct btf_verifier_env *env,
 	    BTF_INFO_KIND(t->info) == BTF_KIND_UNKN) {
 		btf_verifier_log(env, "[%u] Invalid kind:%u",
 				 env->log_type_id, BTF_INFO_KIND(t->info));
+		pr_err("btf early id=%u reason=kind kind=%u\n",
+		       env->log_type_id, BTF_INFO_KIND(t->info));
 		return -EINVAL;
 	}
 
 	if (!btf_name_offset_valid(env->btf, t->name_off)) {
+		pr_err("btf early id=%u reason=name_off off=%u str_len=%u\n",
+		       env->log_type_id, t->name_off, env->btf->hdr.str_len);
 		btf_verifier_log(env, "[%u] Invalid name_offset:%u",
 				 env->log_type_id, t->name_off);
 		return -EINVAL;
 	}
 
 	var_meta_size = btf_type_ops(t)->check_meta(env, t, meta_left);
-	if (var_meta_size < 0)
+	if (var_meta_size < 0) {
+		pr_err("btf meta id=%u kind=%u info=%x size=%u name_off=%u left=%u ret=%d str_len=%u\n",
+		       env->log_type_id, BTF_INFO_KIND(t->info), t->info, t->size,
+		       t->name_off, meta_left, var_meta_size, env->btf->hdr.str_len);
+		if (BTF_INFO_KIND(t->info) == BTF_KIND_ARRAY) {
+			const struct btf_array *a = btf_type_array(t);
+			pr_err("btf array elem=%u index=%u nelems=%u\n",
+			       a->type, a->index_type, a->nelems);
+		}
+		if (BTF_INFO_KIND(t->info) == BTF_KIND_DATASEC) {
+			const struct btf_var_secinfo *v = btf_type_var_secinfo(t);
+			pr_err("btf datasec name=%s size=%u vlen=%u vsi type=%u off=%u size=%u\n",
+			       btf_name_by_offset(env->btf, t->name_off),
+			       t->size, btf_type_vlen(t), v->type, v->offset, v->size);
+		}
 		return var_meta_size;
+	}
 
 	meta_left -= var_meta_size;
 
