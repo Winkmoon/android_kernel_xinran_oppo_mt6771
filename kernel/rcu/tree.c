@@ -33,6 +33,7 @@
 #include <linux/spinlock.h>
 #include <linux/smp.h>
 #include <linux/rcupdate_wait.h>
+#include <linux/srcu.h>
 #include <linux/interrupt.h>
 #include <linux/sched.h>
 #include <linux/sched/debug.h>
@@ -4243,22 +4244,49 @@ int cond_resched_rcu_qs(void)
 EXPORT_SYMBOL_GPL(cond_resched_rcu_qs);
 
 /*
- * This tree predates RCU-tasks-trace.  Provide the same read-side
- * lifetime guarantee with normal preemptible RCU for the BPF tracing
- * call sites that expect these helpers.
+ * RCU-tasks-trace backport for the BPF trampoline.  SRCU provides the
+ * required property that a grace period waits for readers which may
+ * block, while the per-task nesting count keeps the API signature used
+ * by include/linux/rcupdate_trace.h.  This is intentionally SRCU-based
+ * because the 4.14 RCU tree has no tasks-trace state machine.
  */
+DEFINE_SRCU(rcu_trace_srcu);
+
 void rcu_read_lock_trace(void)
 {
-	rcu_read_lock();
+	struct task_struct *t = current;
+
+	if (t->trc_reader_nesting++ == 0)
+		t->trc_reader_srcu_idx = srcu_read_lock(&rcu_trace_srcu);
 }
 EXPORT_SYMBOL_GPL(rcu_read_lock_trace);
+
 void rcu_read_unlock_trace(void)
 {
-	rcu_read_unlock();
+	struct task_struct *t = current;
+
+	if (WARN_ON_ONCE(t->trc_reader_nesting <= 0))
+		return;
+
+	if (--t->trc_reader_nesting == 0)
+		srcu_read_unlock(&rcu_trace_srcu, t->trc_reader_srcu_idx);
 }
 EXPORT_SYMBOL_GPL(rcu_read_unlock_trace);
+
 void call_rcu_tasks_trace(struct rcu_head *rhp, rcu_callback_t func)
 {
-	call_rcu(rhp, func);
+	call_srcu(&rcu_trace_srcu, rhp, func);
 }
 EXPORT_SYMBOL_GPL(call_rcu_tasks_trace);
+
+void synchronize_rcu_tasks_trace(void)
+{
+	synchronize_srcu(&rcu_trace_srcu);
+}
+EXPORT_SYMBOL_GPL(synchronize_rcu_tasks_trace);
+
+void rcu_barrier_tasks_trace(void)
+{
+	srcu_barrier(&rcu_trace_srcu);
+}
+EXPORT_SYMBOL_GPL(rcu_barrier_tasks_trace);

@@ -883,6 +883,10 @@ struct task_struct {
 	struct list_head		rcu_tasks_holdout_list;
 #endif /* #ifdef CONFIG_TASKS_RCU */
 
+	/* RCU-tasks-trace read-side nesting and SRCU cookie. */
+	int				trc_reader_nesting;
+	int				trc_reader_srcu_idx;
+
 	struct sched_info		sched_info;
 
 	struct list_head		tasks;
