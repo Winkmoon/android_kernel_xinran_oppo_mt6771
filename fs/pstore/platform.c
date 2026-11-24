@@ -767,6 +767,8 @@ int pstore_register(struct pstore_info *psi)
 		return -EINVAL;
 	}
 
+	pstore_choose_compression();
+
 	if (psi->flags & PSTORE_FLAGS_DMESG)
 		allocate_buf_for_compression();
 
@@ -959,7 +961,7 @@ static void pstore_timefunc(unsigned long dummy)
 module_param(backend, charp, 0444);
 MODULE_PARM_DESC(backend, "Pstore backend to use");
 
-void __init pstore_choose_compression(void)
+void pstore_choose_compression(void)
 {
 	const struct pstore_zbackend * const *step;
 

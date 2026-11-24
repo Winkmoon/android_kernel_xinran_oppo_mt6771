@@ -38,6 +38,6 @@ extern void	pstore_record_init(struct pstore_record *record,
 				   struct pstore_info *psi);
 
 /* Called during module_init() */
-extern void __init pstore_choose_compression(void);
+extern void pstore_choose_compression(void);
 
 #endif
