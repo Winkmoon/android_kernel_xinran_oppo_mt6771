@@ -106,10 +106,6 @@ struct sugov_cpu {
 #endif
 };
 
-#ifdef VENDOR_EDIT
-#define trace_cpu_iowait_util(cpu, boost) do { } while (0)
-#endif
-
 static DEFINE_PER_CPU(struct sugov_cpu, sugov_cpu);
 
 /************************ Governor internals ***********************/

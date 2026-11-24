@@ -3639,15 +3639,3 @@ const struct proc_ns_operations mntns_operations = {
 	.owner		= mntns_owner,
 };
 
-int ns_get_path_cb(struct path *path, int (*cb)(struct ns_common *, void *),
-		   void *data)
-{
-	return -EINVAL;
-}
-EXPORT_SYMBOL_GPL(ns_get_path_cb);
-
-bool ns_match(struct ns_common *ns, dev_t dev, ino_t ino)
-{
-	return false;
-}
-EXPORT_SYMBOL_GPL(ns_match);

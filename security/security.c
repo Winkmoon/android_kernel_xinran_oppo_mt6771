@@ -2407,6 +2407,6 @@ EXPORT_SYMBOL(security_locked_down);
 int security_capable_noaudit(const struct cred *cred, struct user_namespace *ns,
 			     int cap)
 {
-	return 0;
+	return call_int_hook(capable, 0, cred, ns, cap, CAP_OPT_NOAUDIT);
 }
 EXPORT_SYMBOL(security_capable_noaudit);

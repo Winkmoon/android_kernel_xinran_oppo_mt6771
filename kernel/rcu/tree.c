@@ -4227,14 +4227,35 @@ void __init rcu_init(void)
 #include "tree_exp.h"
 #include "tree_plugin.h"
 
-void rcu_softirq_qs(void) { }
+void rcu_softirq_qs(void)
+{
+	preempt_disable();
+	rcu_sched_qs();
+	rcu_preempt_qs();
+	preempt_enable();
+}
 EXPORT_SYMBOL_GPL(rcu_softirq_qs);
-int cond_resched_rcu_qs(void) { return 0; }
+int cond_resched_rcu_qs(void)
+{
+	rcu_softirq_qs();
+	return 1;
+}
 EXPORT_SYMBOL_GPL(cond_resched_rcu_qs);
 
-void rcu_read_lock_trace(void) { }
+/*
+ * This tree predates RCU-tasks-trace.  Provide the same read-side
+ * lifetime guarantee with normal preemptible RCU for the BPF tracing
+ * call sites that expect these helpers.
+ */
+void rcu_read_lock_trace(void)
+{
+	rcu_read_lock();
+}
 EXPORT_SYMBOL_GPL(rcu_read_lock_trace);
-void rcu_read_unlock_trace(void) { }
+void rcu_read_unlock_trace(void)
+{
+	rcu_read_unlock();
+}
 EXPORT_SYMBOL_GPL(rcu_read_unlock_trace);
 void call_rcu_tasks_trace(struct rcu_head *rhp, rcu_callback_t func)
 {

@@ -328,19 +328,16 @@ EXPORT_SYMBOL(__alloc_skb);
  *  before giving packet to stack.
  *  RX rings only contains data buffers, not full skbs.
  */
-struct sk_buff *__build_skb(void *data, unsigned int frag_size)
+/* Caller must provide SKB that is memset cleared */
+static struct sk_buff *__build_skb_around(struct sk_buff *skb,
+					  void *data, unsigned int frag_size)
 {
 	struct skb_shared_info *shinfo;
-	struct sk_buff *skb;
 	unsigned int size = frag_size ? : ksize(data);
-
-	skb = kmem_cache_alloc(skbuff_head_cache, GFP_ATOMIC);
-	if (!skb)
-		return NULL;
 
 	size -= SKB_DATA_ALIGN(sizeof(struct skb_shared_info));
 
-	memset(skb, 0, offsetof(struct sk_buff, tail));
+	/* Assumes caller memset cleared SKB */
 	skb->truesize = SKB_TRUESIZE(size);
 	refcount_set(&skb->users, 1);
 	skb->head = data;
@@ -356,6 +353,19 @@ struct sk_buff *__build_skb(void *data, unsigned int frag_size)
 	atomic_set(&shinfo->dataref, 1);
 
 	return skb;
+}
+
+struct sk_buff *__build_skb(void *data, unsigned int frag_size)
+{
+	struct sk_buff *skb;
+
+	skb = kmem_cache_alloc(skbuff_head_cache, GFP_ATOMIC);
+	if (unlikely(!skb))
+		return NULL;
+
+	memset(skb, 0, offsetof(struct sk_buff, tail));
+
+	return __build_skb_around(skb, data, frag_size);
 }
 
 /* build_skb() is wrapper over __build_skb(), that specifically
@@ -5677,6 +5687,16 @@ void skb_condense(struct sk_buff *skb)
 struct sk_buff *build_skb_around(struct sk_buff *skb, void *data,
 				 unsigned int frag_size)
 {
-	return build_skb(data, frag_size);
+	if (unlikely(!skb))
+		return NULL;
+
+	skb = __build_skb_around(skb, data, frag_size);
+
+	if (skb && frag_size) {
+		skb->head_frag = 1;
+		if (page_is_pfmemalloc(virt_to_head_page(data)))
+			skb->pfmemalloc = 1;
+	}
+	return skb;
 }
 EXPORT_SYMBOL(build_skb_around);

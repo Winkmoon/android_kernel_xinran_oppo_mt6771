@@ -11,11 +11,14 @@
 #include "trace.h"
 #include "trace_probe.h"
 
-void *create_local_trace_kprobe(char *func, void *addr, unsigned long off,
-				bool is_return);
-void destroy_local_trace_kprobe(void *tp);
-void *create_local_trace_uprobe(char *name, unsigned long off, bool is_return);
-void destroy_local_trace_uprobe(void *tp);
+struct trace_event_call *create_local_trace_kprobe(char *func, void *addr,
+					   unsigned long off,
+					   bool is_return);
+void destroy_local_trace_kprobe(struct trace_event_call *tp);
+struct trace_event_call *create_local_trace_uprobe(char *name,
+					   unsigned long off,
+					   bool is_return);
+void destroy_local_trace_uprobe(struct trace_event_call *tp);
 
 
 static char __percpu *perf_trace_buf[PERF_NR_CONTEXTS];
@@ -523,14 +526,4 @@ int perf_ftrace_event_register(struct trace_event_call *call,
 }
 #endif /* CONFIG_FUNCTION_TRACER */
 
-void *create_local_trace_kprobe(char *func, void *addr, unsigned long off,
-				bool is_return)
-{
-	return ERR_PTR(-EINVAL);
-}
-void destroy_local_trace_kprobe(void *tp) { }
-void *create_local_trace_uprobe(char *name, unsigned long off, bool is_return)
-{
-	return ERR_PTR(-EINVAL);
-}
-void destroy_local_trace_uprobe(void *tp) { }
+

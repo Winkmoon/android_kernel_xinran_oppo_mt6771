@@ -82,6 +82,13 @@ unsigned int stack_trace_save_tsk(struct task_struct *task,
 				  unsigned long *store, unsigned int size,
 				  unsigned int skipnr)
 {
-	return 0;
+	struct stack_trace trace = {
+		.entries	= store,
+		.max_entries	= size,
+		.skip		= skipnr + 1,
+	};
+
+	save_stack_trace_tsk(task, &trace);
+	return trace.nr_entries;
 }
 EXPORT_SYMBOL_GPL(stack_trace_save_tsk);

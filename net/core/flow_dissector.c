@@ -1643,11 +1643,25 @@ static const struct flow_dissector_key flow_keys_basic_dissector_keys[] = {
 	},
 };
 
+static const struct flow_dissector_key flow_keys_buf_dissector_keys[] = {
+	{
+		.key_id = FLOW_DISSECTOR_KEY_CONTROL,
+		.offset = offsetof(struct flow_keys, control),
+	},
+	{
+		.key_id = FLOW_DISSECTOR_KEY_BASIC,
+		.offset = offsetof(struct flow_keys, basic),
+	},
+};
+
 struct flow_dissector flow_keys_dissector __read_mostly;
 EXPORT_SYMBOL(flow_keys_dissector);
 
 struct flow_dissector flow_keys_basic_dissector __read_mostly;
 EXPORT_SYMBOL(flow_keys_basic_dissector);
+
+struct flow_dissector flow_keys_buf_dissector __read_mostly;
+EXPORT_SYMBOL(flow_keys_buf_dissector);
 
 static int __init init_default_flow_dissectors(void)
 {
@@ -1660,6 +1674,9 @@ static int __init init_default_flow_dissectors(void)
 	skb_flow_dissector_init(&flow_keys_basic_dissector,
 				flow_keys_basic_dissector_keys,
 				ARRAY_SIZE(flow_keys_basic_dissector_keys));
+	skb_flow_dissector_init(&flow_keys_buf_dissector,
+				flow_keys_buf_dissector_keys,
+				ARRAY_SIZE(flow_keys_buf_dissector_keys));
 	return 0;
 }
 core_initcall(init_default_flow_dissectors);
@@ -1673,5 +1690,3 @@ bool skb_flow_dissect_flow_keys_buf(struct flow_keys *keys,
 }
 EXPORT_SYMBOL(skb_flow_dissect_flow_keys_buf);
 
-struct flow_dissector flow_keys_buf_dissector;
-EXPORT_SYMBOL(flow_keys_buf_dissector);

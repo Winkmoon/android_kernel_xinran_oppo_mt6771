@@ -21,6 +21,10 @@ extern void save_stack_trace_tsk(struct task_struct *tsk,
 				struct stack_trace *trace);
 extern int save_stack_trace_tsk_reliable(struct task_struct *tsk,
 					 struct stack_trace *trace);
+extern unsigned int stack_trace_save_tsk(struct task_struct *task,
+					 unsigned long *store,
+					 unsigned int size,
+					 unsigned int skipnr);
 
 extern void print_stack_trace(struct stack_trace *trace, int spaces);
 extern int snprint_stack_trace(char *buf, size_t size,

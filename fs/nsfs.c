@@ -103,6 +103,23 @@ slow:
 	goto got_it;
 }
 
+void *ns_get_path_cb(struct path *path, ns_get_path_helper_t *ns_get_cb,
+		     void *private_data)
+{
+	void *ret;
+
+	do {
+		struct ns_common *ns = ns_get_cb(private_data);
+
+		if (!ns)
+			return ERR_PTR(-ENOENT);
+		ret = __ns_get_path(path, ns);
+	} while (ret == ERR_PTR(-EAGAIN));
+
+	return ret;
+}
+EXPORT_SYMBOL_GPL(ns_get_path_cb);
+
 void *ns_get_path(struct path *path, struct task_struct *task,
 			const struct proc_ns_operations *ns_ops)
 {
@@ -257,3 +274,9 @@ void __init nsfs_init(void)
 		panic("can't set nsfs up\n");
 	nsfs_mnt->mnt_sb->s_flags &= ~MS_NOUSER;
 }
+
+bool ns_match(const struct ns_common *ns, dev_t dev, ino_t ino)
+{
+	return (ns->inum == ino) && (nsfs_mnt->mnt_sb->s_dev == dev);
+}
+EXPORT_SYMBOL_GPL(ns_match);
