@@ -342,6 +342,8 @@ static inline int ftrace_modify_direct_caller(struct ftrace_func_entry *entry,
  */
 static inline void arch_ftrace_set_direct_caller(struct pt_regs *regs,
 						 unsigned long addr) { }
+#else
+void arch_ftrace_set_direct_caller(struct pt_regs *regs, unsigned long addr);
 #endif /* CONFIG_HAVE_DYNAMIC_FTRACE_WITH_DIRECT_CALLS */
 
 #ifdef CONFIG_STACK_TRACER

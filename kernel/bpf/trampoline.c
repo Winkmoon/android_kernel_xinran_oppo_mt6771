@@ -573,16 +573,3 @@ static int __init init_trampolines(void)
 	return 0;
 }
 late_initcall(init_trampolines);
-
-int register_ftrace_direct(unsigned long ip, unsigned long addr)
-{
-	return -ENODEV;
-}
-int modify_ftrace_direct(unsigned long ip, unsigned long old_addr, unsigned long new_addr)
-{
-	return -ENODEV;
-}
-int unregister_ftrace_direct(unsigned long ip, unsigned long addr)
-{
-	return -ENODEV;
-}

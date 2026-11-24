@@ -1622,6 +1622,30 @@ static int ftrace_cmp_recs(const void *a, const void *b)
 	return 0;
 }
 
+static struct dyn_ftrace *lookup_rec(unsigned long start, unsigned long end)
+{
+	struct ftrace_page *pg;
+	struct dyn_ftrace *rec;
+	struct dyn_ftrace key;
+
+	key.ip = start;
+	key.flags = end;	/* overload flags, as it is unsigned long */
+
+	for (pg = ftrace_pages_start; pg; pg = pg->next) {
+		if (pg->index == 0 ||
+		    end < pg->records[0].ip ||
+		    start >= (pg->records[pg->index - 1].ip + MCOUNT_INSN_SIZE))
+			continue;
+		rec = bsearch(&key, pg->records, pg->index,
+			      sizeof(struct dyn_ftrace),
+			      ftrace_cmp_recs);
+		if (rec)
+			return rec;
+	}
+
+	return NULL;
+}
+
 /**
  * ftrace_location_range - return the first address of a traced location
  *	if it touches the given ip range
@@ -5002,6 +5026,42 @@ ftrace_set_addr(struct ftrace_ops *ops, unsigned long ip, int remove,
 
 #ifdef CONFIG_DYNAMIC_FTRACE_WITH_DIRECT_CALLS
 
+static struct ftrace_hash *dup_hash(struct ftrace_hash *hash, int size_bits)
+{
+	struct ftrace_hash *new_hash;
+	struct ftrace_func_entry *entry;
+	struct ftrace_func_entry *new_entry;
+	int size, i;
+
+	new_hash = alloc_ftrace_hash(size_bits);
+	if (!new_hash)
+		return NULL;
+
+	if (hash)
+		new_hash->flags = hash->flags;
+
+	if (ftrace_hash_empty(hash))
+		return new_hash;
+
+	size = 1 << hash->size_bits;
+	for (i = 0; i < size; i++) {
+		hlist_for_each_entry(entry, &hash->buckets[i], hlist) {
+			new_entry = kmalloc(sizeof(*new_entry), GFP_KERNEL);
+			if (!new_entry)
+				goto free_hash;
+			new_entry->ip = entry->ip;
+			new_entry->direct = entry->direct;
+			__add_hash_entry(new_hash, new_entry);
+		}
+	}
+
+	return new_hash;
+
+free_hash:
+	free_ftrace_hash(new_hash);
+	return NULL;
+}
+
 struct ftrace_direct_func {
 	struct list_head	next;
 	unsigned long		addr;
@@ -5165,7 +5225,6 @@ static struct ftrace_func_entry *find_direct_entry(unsigned long *ip,
 						   struct dyn_ftrace **recp)
 {
 	struct ftrace_func_entry *entry;
-	struct ftrace_direct_func *direct;
 	struct dyn_ftrace *rec;
 
 	rec = lookup_rec(*ip, *ip);

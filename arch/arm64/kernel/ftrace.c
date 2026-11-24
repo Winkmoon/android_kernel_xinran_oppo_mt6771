@@ -285,3 +285,15 @@ int ftrace_disable_ftrace_graph_caller(void)
 }
 #endif /* CONFIG_DYNAMIC_FTRACE */
 #endif /* CONFIG_FUNCTION_GRAPH_TRACER */
+
+#ifdef CONFIG_DYNAMIC_FTRACE_WITH_DIRECT_CALLS
+/*
+ * When a direct caller shares an ftrace site with another callback, the
+ * ftrace direct helper needs to redirect the saved PC to the registered
+ * trampoline address.  This mirrors x86's regs->ip assignment.
+ */
+void arch_ftrace_set_direct_caller(struct pt_regs *regs, unsigned long addr)
+{
+	regs->pc = addr;
+}
+#endif
