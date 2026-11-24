@@ -887,6 +887,20 @@ void mt_mt65xx_led_set(struct led_classdev *led_cdev, enum led_brightness level)
 		schedule_work(&led_data->work);
 		return;
 	}
+#ifdef OPLUS_FEATURE_MULTIBITS_BL
+	/* Clamp out-of-range requests to the panel maximum. */
+	if (level > led_cdev->max_brightness)
+		level = led_cdev->max_brightness;
+
+	/*
+	 * OPPO userspace writes the legacy 8-bit backlight scale
+	 * (0..255) even when the panel exposes a 10/11/12-bit
+	 * backlight.  Convert it to the panel scale before AAL/display
+	 * consumes the level.
+	 */
+	if (level && level <= 255 && led_cdev->max_brightness > 255)
+		level = (level * led_cdev->max_brightness + 127) / 255;
+#endif
 	if (level != 0 && level * CONFIG_LIGHTNESS_MAPPING_VALUE < 255)
 		level = 1;
 	else

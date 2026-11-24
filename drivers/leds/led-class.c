@@ -82,7 +82,8 @@ static ssize_t brightness_store(struct device *dev,
 		struct device_attribute *attr, const char *buf, size_t size)
 {
 	struct led_classdev *led_cdev = dev_get_drvdata(dev);
-	unsigned long state;
+	unsigned long long value;
+	unsigned long state = 0;
 	ssize_t ret;
 
 	mutex_lock(&led_cdev->led_access);
@@ -92,9 +93,19 @@ static ssize_t brightness_store(struct device *dev,
 		goto unlock;
 	}
 
-	ret = kstrtoul(buf, 10, &state);
-	if (ret)
+	/*
+	 * Parse into 64-bit space first.  A value that overflows even this
+	 * is still a request for maximum brightness, not an error.
+	 */
+	ret = kstrtoull(buf, 10, &value);
+	if (ret == -ERANGE)
+		value = ~0ULL;
+	else if (ret)
 		goto unlock;
+
+	if (value > led_cdev->max_brightness)
+		value = led_cdev->max_brightness;
+	state = (unsigned long)value;
 
 	if (state == LED_OFF)
 		led_trigger_remove(led_cdev);
@@ -109,10 +120,10 @@ unlock:
 * add for oppo brightness and max_brightness node
 */
 #if defined(DRM_OPLUS_DISPLAY_NODES)
-	if (strncmp(led_cdev->name, "lcd-backlight", 13) == 0)
+	if (ret == size && strncmp(led_cdev->name, "lcd-backlight", 13) == 0)
 		oppo_display_brightness = state;
 #else
-	if (strncmp(led_cdev->name, "lcd-backlight", 13) == 0)
+	if (ret == size && strncmp(led_cdev->name, "lcd-backlight", 13) == 0)
 		oplus_display_brightness = state;
 #endif
 //#endif
